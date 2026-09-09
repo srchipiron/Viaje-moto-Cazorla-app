@@ -21,10 +21,12 @@ function mapsDir(q) { return `https://www.google.com/maps/dir/?api=1&destination
 function dots(n, max = 5) { return `<span class="dots d${n}" title="${n}/${max}">${'●'.repeat(n)}${'○'.repeat(max - n)}</span>`; }
 function tipoInfo(t) { const m = t.startsWith('montaña'); return { icon: m ? '⛰️' : '☀️', cls: m ? 'mount' : 'hot', label: human(t) }; }
 function list(items) { return `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`; }
+const EUR = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
+function fmtEur(v) { return EUR.format(v); }
 function fmtVal(k, v) {
   if (Array.isArray(v)) return esc(v.join(', '));
   if (typeof v === 'number') {
-    if (/precio.*eur|_eur_/.test(k) || /_eur$/.test(k)) return `${v} €`;
+    if (/precio.*eur|_eur_/.test(k) || /_eur$/.test(k)) return fmtEur(v);
     if (k === 'altitud_m') return `${v} m`;
   }
   return esc(v);
@@ -224,6 +226,23 @@ function viewTiempo() {
     <details class="card"><summary>Cómo se califica cada día</summary><dl><dt>🔴 Mal tiempo</dt><dd>${esc(mt.criterio.malo)}</dd><dt>🟠 Regular</dt><dd>${esc(mt.criterio.regular)}</dd><dt>🟢 Buen tiempo</dt><dd>${esc(mt.criterio.bueno)}</dd></dl><p><small>${esc(mt.nota_coordenadas)}</small></p></details>`;
 }
 
+/* Pago de un alojamiento: { total_eur, pagado_eur, pendiente_eur, donde } */
+function pagoInfo(a) {
+  const pg = a && a.pago; if (!pg) return null;
+  return { ...pg, pendiente: (pg.pendiente_eur || 0) > 0 };
+}
+function estadoBadge(a) {
+  const pg = pagoInfo(a);
+  if (pg && pg.pendiente) return `<span class="badge warn">Pendiente ${fmtEur(pg.pendiente_eur)}</span>`;
+  return `<span class="badge ok">${pg ? 'Pagado' : esc(a.estado)}</span>`;
+}
+function pagoHTML(a) {
+  const pg = pagoInfo(a); if (!pg) return '';
+  return `<dt>Pago</dt><dd>${pg.pendiente ? `<b>${fmtEur(pg.pendiente_eur)} pendientes</b> · ${esc(pg.donde)}${pg.pagado_eur ? `<br><small>Pagados ${fmtEur(pg.pagado_eur)} de ${fmtEur(pg.total_eur)}</small>` : ''}` : `Pagado por completo (${fmtEur(pg.total_eur)})`}</dd>`;
+}
+function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
+function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
+
 /* ---------- vistas ---------- */
 function etapaCard(e, opts = {}) {
   const t = tipoInfo(e.tipo);
@@ -304,13 +323,14 @@ function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.re
 function alojamientoCard(dia) {
   const a = dia.alojamiento; if (!a) return '';
   const LABELS = { tipo: 'Tipo', precio_eur: 'Precio', precio_total_eur: 'Precio total', precio_referencia_eur_noche: 'Precio ref. / noche', moto_eur_dia: 'Moto / día', checkin: 'Check-in', recepcion: 'Recepción', servicios: 'Servicios', horario_google: 'Horario (Google)', parking: 'Parking', moto: 'Moto', desayuno: 'Desayuno', restaurante: 'Restaurante', noches: 'Noches', fechas: 'Fechas', altitud_m: 'Altitud' };
-  const rows = Object.keys(LABELS).filter((k) => a[k] != null).map((k) => `<dt>${LABELS[k]}</dt><dd>${fmtVal(k, a[k])}</dd>`).join('');
+  const rows = Object.keys(LABELS).filter((k) => a[k] != null).map((k) => `<dt>${LABELS[k]}</dt><dd>${fmtVal(k, a[k])}</dd>`).join('') + pagoHTML(a);
   const keys = confirmarKeys(dia);
   const pend = a.pendiente_confirmar ? `<h4>Pendiente de confirmar ${progress(keys)}</h4>${a.pendiente_confirmar.map((t) => checkItem(`confirmar|${dia.dia}|${t}`, t)).join('')}` : '';
   const planB = a.plan_b_cena || a.plan_b;
   return `<h2>Alojamiento</h2>
     <div class="card ok">
-      <div class="card-title"><h3>${esc(a.nombre)}</h3><span class="badge ok">${esc(a.estado)}</span></div>
+      <div class="card-title"><h3>${esc(a.nombre)}</h3>${estadoBadge(a)}</div>
+      <p class="muted"><small>${esc(a.estado)}</small></p>
       <p>${esc(a.direccion)}<br><a href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar</a> · <a href="${mapsSearch(a.nombre + ', ' + a.direccion)}" target="_blank" rel="noopener">Ver en el mapa</a></p>
       <p>📞 ${telLink(a.telefono)}</p>
       <dl>${rows}</dl>
@@ -385,16 +405,23 @@ function viewEtapas(arg) {
 
 function viewNoches() {
   const it = D.data.itinerario, today = todayISO();
-  const total = it.reduce((s, d) => { const a = d.alojamiento; return s + (a ? (a.precio_eur || a.precio_total_eur || (a.precio_referencia_eur_noche || 0) * (a.noches || 1)) : 0); }, 0);
+  const total = it.reduce((s, d) => { const a = d.alojamiento; if (!a) return s; const pg = pagoInfo(a); return s + (pg ? pg.total_eur : (a.precio_eur || a.precio_total_eur || (a.precio_referencia_eur_noche || 0) * (a.noches || 1))); }, 0);
+  const pend = nochesPendientes();
+  const pendTotal = pend.reduce((s, e) => s + e.alojamiento.pago.pendiente_eur, 0);
+  const pendKeys = pend.map(pagoKey);
   return `<h2>Las ${D.data.alojamientos_resumen.length} noches</h2>
-    <p class="muted">Todas reservadas y pagadas. Total aprox. ${total} €. Toca el teléfono para llamar.</p>
+    <p class="muted">Todas reservadas. Total aprox. ${fmtEur(total)}. Toca el teléfono para llamar.</p>
+    ${pend.length ? `<div class="card warn"><div class="card-title"><h3>Por pagar en los alojamientos: ${fmtEur(pendTotal)}</h3>${progress(pendKeys)}</div>
+      ${pend.map((e) => checkItem(pagoKey(e), `${fmtEur(e.alojamiento.pago.pendiente_eur)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)}${e.alojamiento.pago.pagado_eur ? ` · ya pagados ${fmtEur(e.alojamiento.pago.pagado_eur)}` : ''}`)).join('')}
+      <p><small>Marca cada uno al pagarlo. Las marcas se guardan en este dispositivo.</small></p></div>` : ''}
     ${D.data.alojamientos_resumen.map((n) => {
       const dia = it.find((d) => d.fecha === n.fecha);
       const a = dia && dia.alojamiento;
       return `<div class="card${n.fecha === today ? ' warn' : ''}">
         <div class="card-title"><h3>Noche ${n.noche} · ${esc(n.lugar)}</h3><span class="muted">${fmtFecha(n.fecha)}</span></div>
         <p><b>${esc(n.alojamiento)}</b></p>
-        <div class="row spread"><span>📞 ${telLink(n.telefono)}</span><span class="badge ok">${esc(n.estado)}</span></div>
+        <div class="row spread"><span>📞 ${telLink(n.telefono)}</span>${a ? estadoBadge(a) : `<span class="badge ok">${esc(n.estado)}</span>`}</div>
+        <p class="muted"><small>${esc(n.estado)}</small></p>
         ${dia ? `<p><a class="btn small" href="#/etapas/${dia.dia}">Día ${dia.dia}${a ? ' · ficha completa' : ''}</a>${a ? ` <a class="btn small" href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}</p>` : ''}
       </div>`;
     }).join('')}`;
@@ -414,7 +441,8 @@ function viewListas() {
   const confKeys = confDias.flatMap(confirmarKeys);
   const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(d.contactos[k]));
   const contactoKeys = contactosPend.map((k) => `contacto|${k}`);
-  const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys];
+  const pagoKeys = nochesPendientes().map(pagoKey);
+  const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys];
   return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.</small></p></div>
     <h2>Checklist previa</h2>${previa}
     <h2>Compras pendientes ${progress(compraKeys)}</h2>
@@ -425,6 +453,8 @@ function viewListas() {
     <div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>
     ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
     <div class="card">${contactosPend.map((k) => { const c = d.contactos[k]; const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
+    ${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
+    <div class="card">${nochesPendientes().map((e) => checkItem(pagoKey(e), `${fmtEur(e.alojamiento.pago.pendiente_eur)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${e.alojamiento.pago.donde}`)).join('')}</div>` : ''}
     <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
     ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
     <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;

@@ -1,13 +1,13 @@
 {
   "meta": {
     "version": 3,
-    "revision": 4,
+    "revision": 5,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
       "Viaje ampliado a 11 dias / 10 noches (14-24 sept): noche extra en Albarracin, dia 5 antiguo partido en dos (bucle Bronchales-Orihuela y enlace Albarracin-Teruel-Alcala de la Selva)",
-      "Todas las noches reservadas y pagadas",
+      "Todas las noches reservadas. Segun Booking (9 sept): Hotel Albarracin pagado (134,19 EUR); Laminador con 11,70 EUR pagados y 35,10 pendientes; Cortes 45, Via Caprasia 65, Los Olivos 50 y La Cilla 56,10 EUR pendientes en el alojamiento (251,20 EUR en total). Puente de las Herrerias y Camping Los Alamos no aparecen en Booking: mantener lo apuntado.",
       "Origen B&B agotado: sustituido por Via Caprasia (Villargordo del Cabriel)",
       "Telefonos de todos los alojamientos",
       "Horarios verificados: openBlue24h Cuenca, restaurante La Cilla (cierra lunes y martes), acceso a los Chorros del Rio Mundo reabierto en julio con aforo al 60%",
@@ -147,8 +147,9 @@
         "nombre": "Hostal El Laminador - Restaurante La Alqueria de Manu (antigua Venta el Laminador)",
         "direccion": "CM-412 km 200, 02450 Riopar (Albacete)",
         "telefono": "+34 967 58 05 44",
-        "precio_eur": 47,
-        "estado": "Reservado y pagado",
+        "precio_eur": 46.80,
+        "estado": "Reservado; pagado 11,70 EUR por adelantado, 35,10 EUR pendientes en el alojamiento",
+        "pago": { "total_eur": 46.80, "pagado_eur": 11.70, "pendiente_eur": 35.10, "donde": "En el alojamiento" },
         "horario_google": "08:30-23:00 todos los dias",
         "pendiente_confirmar": ["Cena del martes", "Desayuno del miercoles y hora", "Donde dejar la moto", "Estado del acceso a los Chorros"],
         "plan_b_cena": "Restaurantes de Riopar a 5 minutos"
@@ -184,7 +185,8 @@
         "direccion": "C. Ramon y Cajal 45, 16004 Cuenca",
         "telefono": "+34 969 22 04 00",
         "precio_eur": 45,
-        "estado": "Reservado y pagado",
+        "estado": "Reservado; 45 EUR pendientes en el alojamiento",
+        "pago": { "total_eur": 45, "pagado_eur": 0, "pendiente_eur": 45, "donde": "En el alojamiento" },
         "parking": "Plaza en parking privado del hostal (confirmar al llegar)",
         "recepcion": "24 h"
       },
@@ -224,8 +226,9 @@
         "telefono": "+34 978 71 00 11",
         "noches": 2,
         "fechas": "17-19 sept",
-        "precio_total_eur": 134,
-        "estado": "Reservado y pagado",
+        "precio_total_eur": 134.19,
+        "estado": "Reservado y pagado (134,19 EUR)",
+        "pago": { "total_eur": 134.19, "pagado_eur": 134.19, "pendiente_eur": 0, "donde": "Pagado por adelantado" },
         "moto": "Sin parking en el hotel. Carga/descarga 20 min en la puerta. Parking publico en la parte baja del pueblo, ~4 EUR/24 h. Antirrobo de disco puesto las dos noches.",
         "desayuno": "Bufe 07:00-10:30, ~12 EUR (no incluido)",
         "restaurante": "Segun calendario de apertura; confirmar cenas jueves y viernes al llegar. Cafeteria 10:30-22:00.",
@@ -343,7 +346,8 @@
         "direccion": "C. Serrano Larrey 31, 46317 Villargordo del Cabriel (Valencia)",
         "telefono": "+34 605 62 32 66",
         "precio_eur": 65,
-        "estado": "Reservado y pagado",
+        "estado": "Reservado; 65 EUR pendientes en el alojamiento",
+        "pago": { "total_eur": 65, "pagado_eur": 0, "pendiente_eur": 65, "donde": "En el alojamiento" },
         "pendiente_confirmar": ["Donde dejar la moto (garaje, patio o calle)", "Procedimiento de entrada (caja de llaves o cita); llegada ~16:00"],
         "plan_b": "Casa Cabriel (C. Madrid 9, mismo pueblo): parking gratuito, cocina comun, restaurante"
       }
@@ -371,7 +375,8 @@
         "direccion": "Ctra. de Tolosa s/n, 02210 Alcala del Jucar (Albacete)",
         "telefono": "+34 967 11 01 90",
         "precio_eur": 50,
-        "estado": "Reservado y pagado",
+        "estado": "Reservado; 50 EUR pendientes en el alojamiento",
+        "pago": { "total_eur": 50, "pagado_eur": 0, "pendiente_eur": 50, "donde": "En el alojamiento" },
         "servicios": ["Cocina", "Lavadora", "Parking", "Piscina (probablemente cerrada)"],
         "pendiente_confirmar": ["Hora de entrada y dejar moto/equipaje antes del check-in"]
       }
@@ -401,8 +406,9 @@
         "nombre": "La Cilla Moratalla (Casa de Cristo)",
         "direccion": "Santuario de la Casa de Cristo, Lugar Ermita, 30440 Moratalla (Murcia)",
         "telefono": "+34 601 85 41 21",
-        "precio_eur": 56,
-        "estado": "Reservado y pagado",
+        "precio_eur": 56.10,
+        "estado": "Reservado; 56,10 EUR pendientes en el alojamiento",
+        "pago": { "total_eur": 56.10, "pagado_eur": 0, "pendiente_eur": 56.10, "donde": "En el alojamiento" },
         "restaurante": "Cierra lunes y martes. Miercoles 12:30-16:00 y 20:30-23:00. La llegada en miercoles permite cenar alli.",
         "pendiente_confirmar": ["Cena del miercoles (reservar mesa)", "Desayuno y hora", "Parking de la moto"],
         "plan_b_cena": "Cenar en Moratalla antes de subir"
@@ -431,15 +437,15 @@
 
   "alojamientos_resumen": [
     { "noche": 1, "fecha": "2026-09-14", "lugar": "Cazorla", "alojamiento": "Puente de las Herrerias", "telefono": "+34 953 72 70 90", "estado": "Reservado y pagado" },
-    { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Reservado y pagado" },
-    { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado y pagado" },
-    { "noche": 4, "fecha": "2026-09-17", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado (134 EUR / 2 noches)" },
+    { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Reservado; 35,10 EUR pendientes (pagados 11,70 de 46,80)" },
+    { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado; 45 EUR pendientes" },
+    { "noche": 4, "fecha": "2026-09-17", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado (134,19 EUR / 2 noches)" },
     { "noche": 5, "fecha": "2026-09-18", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado" },
     { "noche": 6, "fecha": "2026-09-19", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado y pagado" },
     { "noche": 7, "fecha": "2026-09-20", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - mismo bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado y pagado" },
-    { "noche": 8, "fecha": "2026-09-21", "lugar": "Villargordo del Cabriel", "alojamiento": "Via Caprasia", "telefono": "+34 605 62 32 66", "estado": "Reservado y pagado (65 EUR)" },
-    { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado y pagado" },
-    { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado y pagado" }
+    { "noche": 8, "fecha": "2026-09-21", "lugar": "Villargordo del Cabriel", "alojamiento": "Via Caprasia", "telefono": "+34 605 62 32 66", "estado": "Reservado; 65 EUR pendientes" },
+    { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado; 50 EUR pendientes" },
+    { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado; 56,10 EUR pendientes" }
   ],
 
   "contactos": {
@@ -579,7 +585,8 @@
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
-      "Medicacion con un dia de margen; llaves de repuesto en su sitio"
+      "Medicacion con un dia de margen; llaves de repuesto en su sitio",
+      "Tarjeta con saldo para los 251,20 EUR que se pagan en los alojamientos (Laminador, Cortes, Via Caprasia, Los Olivos, La Cilla)"
     ]
   },
 
