@@ -54,7 +54,8 @@ function contactoPendiente(c) { return typeof c === 'string' ? /^PENDIENTE/i.tes
 function contactoHTML(c) {
   if (typeof c === 'string') return contactoPendiente(c) ? `<span class="badge warn">Pendiente</span> <small>${esc(c.replace(/^PENDIENTE:\s*/i, ''))}</small>` : telLink(c);
   const quien = c.nombre || c.compania;
-  const nota = c.nota ? `<br><small>${esc(c.nota.replace(/^PENDIENTE:\s*/i, ''))}</small>` : '';
+  const alt = c.telefonos_alternativos && c.telefonos_alternativos.length ? `<br><small>También: ${c.telefonos_alternativos.map(telLink).join(' · ')}</small>` : '';
+  const nota = alt + (c.nota ? `<br><small>${esc(c.nota.replace(/^PENDIENTE:\s*/i, ''))}</small>` : '');
   if (!c.telefono) return `${quien ? `<b>${esc(quien)}</b> ` : ''}<span class="badge warn">Pendiente</span>${nota}`;
   return `${quien ? `${esc(quien)}: ` : ''}${telLink(c.telefono)}${nota}`;
 }

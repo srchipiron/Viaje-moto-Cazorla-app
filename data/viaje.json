@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 2,
+    "revision": 3,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -14,7 +14,7 @@
       "Compra Decathlon realizada (lista real); faltan 2 boxers largos",
       "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
       "Comparticion de ubicacion: Google Maps",
-      "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, telefono de asistencia pendiente"
+      "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822"
     ]
   },
 
@@ -432,7 +432,7 @@
 
   "contactos": {
     "emergencias": "112",
-    "seguro_asistencia": { "compania": "Mapfre", "telefono": null, "nota": "PENDIENTE: llamar a Mapfre, confirmar asistencia con remolque a taller desde el primer dia y apuntar aqui el telefono de asistencia en carretera" },
+    "seguro_asistencia": { "compania": "Mapfre", "telefono": "918 365 365", "telefonos_alternativos": ["900 822 822"], "nota": "Asistencia en carretera 24 h. Confirmar el viernes 11 que la poliza cubre remolque a taller desde el km 0 y traslado del motorista." },
     "en_casa": { "nombre": "Padre", "telefono": "+34 000 00 00 00", "nota": "Contacto con ubicacion compartida en Google Maps" }
   },
 
@@ -532,7 +532,7 @@
     ],
     "viernes_11": [
       "Tienda de moto: segundo par de guantes impermeables",
-      "Llamar a Mapfre: asistencia con remolque a taller desde el primer dia; apuntar telefono de asistencia en contactos",
+      "Llamar a Mapfre (918 365 365): confirmar remolque a taller desde el km 0 y traslado del motorista",
       "Sacar 150-200 EUR en billetes pequeños",
       "Emparejar D6A y Pixel; probar Kurviger por Android Auto",
       "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
