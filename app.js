@@ -22,7 +22,7 @@ function dots(n, max = 5) { return `<span class="dots d${n}" title="${n}/${max}"
 function tipoInfo(t) { const m = t.startsWith('montaña'); return { icon: m ? '⛰️' : '☀️', cls: m ? 'mount' : 'hot', label: human(t) }; }
 function list(items) { return `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`; }
 const EUR = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
-function fmtEur(v) { return EUR.format(v); }
+function fmtEur(v, aprox) { return (aprox ? '≈ ' : '') + EUR.format(v); }
 function fmtVal(k, v) {
   if (Array.isArray(v)) return esc(v.join(', '));
   if (typeof v === 'number') {
@@ -233,12 +233,12 @@ function pagoInfo(a) {
 }
 function estadoBadge(a) {
   const pg = pagoInfo(a);
-  if (pg && pg.pendiente) return `<span class="badge warn">Pendiente ${fmtEur(pg.pendiente_eur)}</span>`;
+  if (pg && pg.pendiente) return `<span class="badge warn">Pendiente ${fmtEur(pg.pendiente_eur, pg.aproximado)}</span>`;
   return `<span class="badge ok">${pg ? 'Pagado' : esc(a.estado)}</span>`;
 }
 function pagoHTML(a) {
   const pg = pagoInfo(a); if (!pg) return '';
-  return `<dt>Pago</dt><dd>${pg.pendiente ? `<b>${fmtEur(pg.pendiente_eur)} pendientes</b> · ${esc(pg.donde)}${pg.pagado_eur ? `<br><small>Pagados ${fmtEur(pg.pagado_eur)} de ${fmtEur(pg.total_eur)}</small>` : ''}` : `Pagado por completo (${fmtEur(pg.total_eur)})`}</dd>`;
+  return `<dt>Pago</dt><dd>${pg.pendiente ? `<b>${fmtEur(pg.pendiente_eur, pg.aproximado)} pendientes</b> · ${esc(pg.donde)}${pg.pagado_eur ? `<br><small>Pagados ${fmtEur(pg.pagado_eur, pg.aproximado)} de ${fmtEur(pg.total_eur, pg.aproximado)}</small>` : ''}${pg.nota ? `<br><small>${esc(pg.nota)}</small>` : ''}` : `Pagado por completo (${fmtEur(pg.total_eur)})`}</dd>`;
 }
 function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
 function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
@@ -408,11 +408,12 @@ function viewNoches() {
   const total = it.reduce((s, d) => { const a = d.alojamiento; if (!a) return s; const pg = pagoInfo(a); return s + (pg ? pg.total_eur : (a.precio_eur || a.precio_total_eur || (a.precio_referencia_eur_noche || 0) * (a.noches || 1))); }, 0);
   const pend = nochesPendientes();
   const pendTotal = pend.reduce((s, e) => s + e.alojamiento.pago.pendiente_eur, 0);
+  const pendAprox = pend.some((e) => e.alojamiento.pago.aproximado);
   const pendKeys = pend.map(pagoKey);
   return `<h2>Las ${D.data.alojamientos_resumen.length} noches</h2>
     <p class="muted">Todas reservadas. Total aprox. ${fmtEur(total)}. Toca el teléfono para llamar.</p>
-    ${pend.length ? `<div class="card warn"><div class="card-title"><h3>Por pagar en los alojamientos: ${fmtEur(pendTotal)}</h3>${progress(pendKeys)}</div>
-      ${pend.map((e) => checkItem(pagoKey(e), `${fmtEur(e.alojamiento.pago.pendiente_eur)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)}${e.alojamiento.pago.pagado_eur ? ` · ya pagados ${fmtEur(e.alojamiento.pago.pagado_eur)}` : ''}`)).join('')}
+    ${pend.length ? `<div class="card warn"><div class="card-title"><h3>Por pagar en los alojamientos: ${fmtEur(pendTotal, pendAprox)}</h3>${progress(pendKeys)}</div>
+      ${pend.map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)}${pg.pagado_eur ? ` · ya pagados ${fmtEur(pg.pagado_eur, pg.aproximado)}` : ''}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}
       <p><small>Marca cada uno al pagarlo. Las marcas se guardan en este dispositivo.</small></p></div>` : ''}
     ${D.data.alojamientos_resumen.map((n) => {
       const dia = it.find((d) => d.fecha === n.fecha);
@@ -454,7 +455,7 @@ function viewListas() {
     ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
     <div class="card">${contactosPend.map((k) => { const c = d.contactos[k]; const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
     ${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
-    <div class="card">${nochesPendientes().map((e) => checkItem(pagoKey(e), `${fmtEur(e.alojamiento.pago.pendiente_eur)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${e.alojamiento.pago.donde}`)).join('')}</div>` : ''}
+    <div class="card">${nochesPendientes().map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${pg.donde}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}</div>` : ''}
     <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
     ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
     <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;

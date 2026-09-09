@@ -1,13 +1,13 @@
 {
   "meta": {
     "version": 3,
-    "revision": 5,
+    "revision": 6,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
       "Viaje ampliado a 11 dias / 10 noches (14-24 sept): noche extra en Albarracin, dia 5 antiguo partido en dos (bucle Bronchales-Orihuela y enlace Albarracin-Teruel-Alcala de la Selva)",
-      "Todas las noches reservadas. Segun Booking (9 sept): Hotel Albarracin pagado (134,19 EUR); Laminador con 11,70 EUR pagados y 35,10 pendientes; Cortes 45, Via Caprasia 65, Los Olivos 50 y La Cilla 56,10 EUR pendientes en el alojamiento (251,20 EUR en total). Puente de las Herrerias y Camping Los Alamos no aparecen en Booking: mantener lo apuntado.",
+      "Todas las noches reservadas. Segun Booking (9 sept): Hotel Albarracin pagado (134,19 EUR); Laminador con 11,70 EUR pagados y 35,10 pendientes; Cortes 45, Via Caprasia 65, Los Olivos 50 y La Cilla 56,10 EUR pendientes en el alojamiento (251,20 EUR en total). Camping Los Alamos reservado aparte con la mitad pagada (resto aprox. 65 EUR en el camping). Puente de las Herrerias: mantener lo apuntado.",
       "Origen B&B agotado: sustituido por Via Caprasia (Villargordo del Cabriel)",
       "Telefonos de todos los alojamientos",
       "Horarios verificados: openBlue24h Cuenca, restaurante La Cilla (cierra lunes y martes), acceso a los Chorros del Rio Mundo reabierto en julio con aforo al 60%",
@@ -286,10 +286,11 @@
         "fechas": "19-21 sept",
         "precio_referencia_eur_noche": 65,
         "moto_eur_dia": 3.5,
-        "estado": "Reservado y pagado",
+        "estado": "Reservado; pagada la mitad al reservar, el resto en el camping (importe exacto por confirmar)",
+        "pago": { "total_eur": 130, "pagado_eur": 65, "pendiente_eur": 65, "donde": "En el camping", "aproximado": true, "nota": "Total de referencia 2 noches x 65 EUR; pagada la mitad al reservar. Confirmar cifra exacta y si la moto (3,50 EUR/dia) va aparte." },
         "recepcion": "Sab 09:00-14:00 y 16:00-21:00; dom 09:00-14:00 y 16:00-20:00; lun 10:00-13:00 y 16:00-20:00",
         "altitud_m": 1500,
-        "pendiente_confirmar": ["Restaurante sabado y domingo noche", "Desayunos", "Calefaccion"],
+        "pendiente_confirmar": ["Restaurante sabado y domingo noche", "Desayunos", "Calefaccion", "Importe exacto pendiente (pagada la mitad al reservar) y si la moto va aparte"],
         "plan_b_cena": "Bares y restaurantes de Alcala de la Selva (4 km)"
       }
     },
@@ -441,8 +442,8 @@
     { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado; 45 EUR pendientes" },
     { "noche": 4, "fecha": "2026-09-17", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado (134,19 EUR / 2 noches)" },
     { "noche": 5, "fecha": "2026-09-18", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado" },
-    { "noche": 6, "fecha": "2026-09-19", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado y pagado" },
-    { "noche": 7, "fecha": "2026-09-20", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - mismo bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado y pagado" },
+    { "noche": 6, "fecha": "2026-09-19", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado; pagada la mitad, resto en el camping (aprox. 65 EUR)" },
+    { "noche": 7, "fecha": "2026-09-20", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - mismo bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado; incluido en el pago de la noche 6" },
     { "noche": 8, "fecha": "2026-09-21", "lugar": "Villargordo del Cabriel", "alojamiento": "Via Caprasia", "telefono": "+34 605 62 32 66", "estado": "Reservado; 65 EUR pendientes" },
     { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado; 50 EUR pendientes" },
     { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado; 56,10 EUR pendientes" }
@@ -586,7 +587,7 @@
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
       "Medicacion con un dia de margen; llaves de repuesto en su sitio",
-      "Tarjeta con saldo para los 251,20 EUR que se pagan en los alojamientos (Laminador, Cortes, Via Caprasia, Los Olivos, La Cilla)"
+      "Tarjeta con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Cortes, Los Alamos, Via Caprasia, Los Olivos, La Cilla)"
     ]
   },
 
