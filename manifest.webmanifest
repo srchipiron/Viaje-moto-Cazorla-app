@@ -1,0 +1,16 @@
+{
+  "name": "Viaje NX500 · Almería–Cazorla–Cuenca–Albarracín",
+  "short_name": "Viaje NX500",
+  "description": "Plan del viaje en moto de 11 días. Funciona sin conexión.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1720",
+  "theme_color": "#1b3a5c",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

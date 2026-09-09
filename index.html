@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Viaje NX500 · Cazorla–Cuenca–Albarracín</title>
+  <meta name="description" content="Plan de viaje en moto: Almería, Cazorla, Cuenca, Albarracín, Gúdar/Maestrazgo, Júcar, Segura. 11 días en Honda NX500.">
+  <meta name="theme-color" content="#1b3a5c" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1720" media="(prefers-color-scheme: dark)">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Viaje NX500">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/resumen">
+      <span class="brand-icon" aria-hidden="true">🏍️</span>
+      <span class="brand-text"><strong>Viaje NX500</strong><small id="brand-sub">14–24 sept 2026</small></span>
+    </a>
+    <span id="net" class="net" title="Estado de conexión">●</span>
+  </header>
+
+  <main id="view" class="view" aria-live="polite">
+    <div class="loading">Cargando el plan…</div>
+  </main>
+
+  <noscript><p class="card">Esta app necesita JavaScript.</p></noscript>
+
+  <nav class="tabbar" aria-label="Secciones">
+    <a href="#/resumen" data-view="resumen"><span>🏠</span>Resumen</a>
+    <a href="#/etapas" data-view="etapas"><span>🛣️</span>Etapas</a>
+    <a href="#/noches" data-view="noches"><span>🛏️</span>Noches</a>
+    <a href="#/listas" data-view="listas"><span>✅</span>Listas</a>
+    <a href="#/equipaje" data-view="equipaje"><span>🎒</span>Equipaje</a>
+    <a href="#/guia" data-view="guia"><span>📖</span>Guía</a>
+  </nav>
+
+  <div id="toast" class="toast" hidden>
+    <span id="toast-text"></span>
+    <button id="toast-btn" type="button">Recargar</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+{
+  "meta": {
+    "version": 3,
+    "actualizado": "2026-09-09",
+    "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
+    "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
+    "cambios_v3": [
+      "Viaje ampliado a 11 dias / 10 noches (14-24 sept): noche extra en Albarracin, dia 5 antiguo partido en dos (bucle Bronchales-Orihuela y enlace Albarracin-Teruel-Alcala de la Selva)",
+      "Todas las noches reservadas y pagadas",
+      "Origen B&B agotado: sustituido por Via Caprasia (Villargordo del Cabriel)",
+      "Telefonos de todos los alojamientos",
+      "Horarios verificados: openBlue24h Cuenca, restaurante La Cilla (cierra lunes y martes), acceso a los Chorros del Rio Mundo reabierto en julio con aforo al 60%",
+      "Compra Decathlon realizada (lista real); faltan 2 boxers largos",
+      "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
+      "Comparticion de ubicacion: Google Maps"
+    ]
+  },
+
+  "proyecto": {
+    "nombre": "Viaje en moto Almeria - Cazorla - Cuenca - Albarracin - Gudar/Maestrazgo - Jucar - Segura - Almeria",
+    "objetivo": "11 dias en Honda NX500 para piloto A2 novato, priorizando disfrute, seguridad, asfalto, curvas fluidas y jornadas no agotadoras.",
+    "fechas": { "inicio": "2026-09-14", "fin": "2026-09-24", "dias": 11, "noches": 10 },
+    "vacaciones": { "inicio": "2026-09-14", "fin": "2026-09-28", "margen_tras_el_viaje_dias": 4 },
+    "distancia_total_aprox_km": 2210,
+    "piloto": {
+      "nombre": "Javier",
+      "nivel": "Novato con carnet A2 desde 2026-09-01",
+      "filosofia": [
+        "Disfrutar de la conduccion y el paisaje",
+        "No demostrar nada",
+        "Terminar cada jornada con sensacion de que podria haber conducido mas",
+        "Ganar experiencia progresivamente",
+        "Acortar sin remordimiento si el cuerpo o el tiempo no acompañan"
+      ]
+    },
+    "moto": {
+      "modelo": "Honda NX500",
+      "rueda_delantera": "19 pulgadas",
+      "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
+      "toma_usb_c": true,
+      "autonomia_orientativa_km": 380,
+      "regla_gasolina": "En zona de sierra, llenar cada vez que se baje de medio deposito. Gasolineras escasas y cierran a mediodia en Maestrazgo y Serrania.",
+      "equipaje": ["SHAD SH58X (top)", "SHAD SH38X izquierda", "SHAD SH38X derecha", "Bolsa deposito SHAD E09CL"]
+    },
+    "navegacion": {
+      "pantalla": "AOOCCI D6A (Android Auto inalambrico)",
+      "movil": "Google Pixel 9 Pro XL en la bolsa de deposito, cable USB-C corto a la toma de la moto",
+      "app": "Kurviger via Android Auto",
+      "ubicacion_compartida": "Google Maps > Compartir ubicacion > hasta desactivar. En zonas sin cobertura el punto se congela: avisar en casa.",
+      "fallback": "Si la pantalla se desconecta en un puerto: parar, mirar el telefono y seguir",
+      "kurviger": {
+        "extra_curvy": "Nunca",
+        "fast": "Enlaces",
+        "fast_and_curvy": "Enlaces con interes",
+        "curvy": "Montaña",
+        "shaping_points": "Sobre la carretera, no en plazas ni centros urbanos",
+        "control": "No dejar que invente pistas forestales o carreteras sin asfaltar",
+        "mapas_offline": ["Almeria", "Granada", "Jaen", "Albacete", "Cuenca", "Teruel", "Valencia", "Murcia"],
+        "rutas_a_crear": 11
+      }
+    },
+    "reglas_globales": {
+      "conduccion_real_objetivo": "3h-3h30",
+      "conduccion_real_maximo": "4h",
+      "superficie": "100% asfalto",
+      "horario": "Salir a las 09:00 en dias de montaña; llegar antes de las 16:00 por tormentas de tarde en el Sistema Iberico",
+      "paradas": "Cada 60-75 minutos aunque no haya cansancio; beber en cada parada",
+      "recortables_sin_cambiar_alojamiento": ["Nacimiento del Rio Cuervo (dia 4)", "Bucle Bronchales-Orihuela (dia 5)", "Bucle del Maestrazgo (dia 7)"]
+    }
+  },
+
+  "itinerario": [
+    {
+      "dia": 1,
+      "fecha": "2026-09-14",
+      "dia_semana": "lunes",
+      "tipo": "calor_y_llano_con_final_de_montaña",
+      "origen": "Almeria",
+      "destino": "Camping Puente de las Herrerias (Cazorla)",
+      "km_aprox": 280,
+      "tiempo_real_aprox": "3h45",
+      "dificultad": 2,
+      "fatiga": 3,
+      "perfil_kurviger": "Fast & Curvy",
+      "salida": "09:00",
+      "llegada_prevista": "16:30-17:00",
+      "waypoints": ["Almeria", "Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Empalme del Valle", "Vadillo Castril", "Camping Puente de las Herrerias"],
+      "horario_orientativo": [
+        { "hora": "10:45", "lugar": "Baza", "que": "Parada corta" },
+        { "hora": "12:15", "lugar": "Santuario de Tiscar", "que": "Parada visual" },
+        { "hora": "12:45", "lugar": "Quesada", "que": "Cafe" },
+        { "hora": "13:30-15:15", "lugar": "Cazorla", "que": "Comida ligera, Plaza Santa Maria, REPOSTAR, supermercado (cena plan B)" },
+        { "hora": "15:45", "lugar": "Mirador Puerto de las Palomas", "que": "Parada visual" }
+      ],
+      "notas": [
+        "El tramo de Tiscar es la A-6206.",
+        "Los ultimos 30 km (Cazorla-camping) son la parte de montaña del dia: comer ligero y hacerlos descansado.",
+        "Dentro del parque no contar con gasolinera hasta bien entrado el dia 2."
+      ],
+      "alojamiento": {
+        "nombre": "Complejo Turistico Puente de las Herrerias",
+        "tipo": "Pension/refugio, habitacion con baño",
+        "direccion": "Ctra. Nacimiento del Guadalquivir km 2, 23470 Cazorla (Jaen)",
+        "telefono": "+34 953 72 70 90",
+        "precio_eur": 44,
+        "estado": "Reservado y pagado",
+        "checkin": "16:00-20:00 (alquileres; confirmar refugio)",
+        "servicios": ["Restaurante", "Tienda", "Bar"],
+        "horario_google": "09:00-22:30 todos los dias",
+        "pendiente_confirmar": ["Cena del lunes y horario", "Desayuno del martes", "Donde dejar la moto"],
+        "plan_b_cena": "Comprar en supermercado de Cazorla antes de subir"
+      }
+    },
+    {
+      "dia": 2,
+      "fecha": "2026-09-15",
+      "dia_semana": "martes",
+      "tipo": "montaña",
+      "origen": "Camping Puente de las Herrerias",
+      "destino": "Hostal El Laminador (Riopar)",
+      "km_aprox": 155,
+      "tiempo_real_aprox": "3h10",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Curvy",
+      "salida": "09:00",
+      "llegada_prevista": "16:00",
+      "waypoints": ["Camping Puente de las Herrerias", "Vadillo Castril", "Empalme del Valle", "Arroyo Frio", "Coto Rios", "Presa del Tranco", "Hornos de Segura", "Cortijos Nuevos", "Segura de la Sierra", "Orcera", "Siles", "Puerto del Arenal", "Hostal El Laminador"],
+      "horario_orientativo": [
+        { "hora": "10:15", "lugar": "Presa del Tranco", "que": "Parada" },
+        { "hora": "11:00", "lugar": "Hornos de Segura", "que": "Cafe y mirador sobre el pantano" },
+        { "hora": "12:00-14:30", "lugar": "Segura de la Sierra", "que": "Castillo y comida (13:30)" },
+        { "hora": "15:10", "lugar": "Siles", "que": "Parada corta" }
+      ],
+      "notas": [
+        "Hornos-Segura es estrecho: hacerlo antes de comer.",
+        "Segura de la Sierra se sube y baja por la misma carretera.",
+        "Siles-Riopar por CM-3204 y Puerto del Arenal.",
+        "Repostar en Riopar por la tarde o en Alcaraz a primera hora del dia 3."
+      ],
+      "alojamiento": {
+        "nombre": "Hostal El Laminador - Restaurante La Alqueria de Manu (antigua Venta el Laminador)",
+        "direccion": "CM-412 km 200, 02450 Riopar (Albacete)",
+        "telefono": "+34 967 58 05 44",
+        "precio_eur": 47,
+        "estado": "Reservado y pagado",
+        "horario_google": "08:30-23:00 todos los dias",
+        "pendiente_confirmar": ["Cena del martes", "Desayuno del miercoles y hora", "Donde dejar la moto", "Estado del acceso a los Chorros"],
+        "plan_b_cena": "Restaurantes de Riopar a 5 minutos"
+      }
+    },
+    {
+      "dia": 3,
+      "fecha": "2026-09-16",
+      "dia_semana": "miercoles",
+      "tipo": "calor_y_llano",
+      "origen": "Hostal El Laminador",
+      "destino": "Hostal Cortes (Cuenca)",
+      "km_aprox": 265,
+      "tiempo_real_aprox": "3h20",
+      "dificultad": 2,
+      "fatiga": 2,
+      "perfil_kurviger": "Fast",
+      "salida": "09:00 (a los Chorros)",
+      "llegada_prevista": "16:00",
+      "waypoints": ["Hostal El Laminador", "Aparcamiento Nacimiento del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar", "Hostal Cortes"],
+      "horario_orientativo": [
+        { "hora": "09:00-10:15", "lugar": "Chorros del Rio Mundo", "que": "Solo paseo corto hasta la base de la cascada. Parking ~4 EUR, a 2 km de la CM-3204, aforo limitado. Poco caudal en septiembre." },
+        { "hora": "11:15", "lugar": "Alcaraz", "que": "Cafe y Plaza Mayor (no comida)" },
+        { "hora": "13:45", "lugar": "Motilla del Palancar", "que": "Comida" }
+      ],
+      "notas": [
+        "El acceso a los Chorros estuvo cerrado en 2026 por daños en la carretera; reabierto en julio con aforo al 60%. Confirmar la noche anterior.",
+        "No usar Albacete como waypoint (arrastra al centro urbano)."
+      ],
+      "alojamiento": {
+        "nombre": "Hostal Cortes",
+        "direccion": "C. Ramon y Cajal 45, 16004 Cuenca",
+        "telefono": "+34 969 22 04 00",
+        "precio_eur": 45,
+        "estado": "Reservado y pagado",
+        "parking": "Plaza en parking privado del hostal (confirmar al llegar)",
+        "recepcion": "24 h"
+      },
+      "lavanderia": {
+        "nombre": "openBlue24h",
+        "direccion": "C. Jorge Torner 19, Cuenca (a ~100 m del hostal)",
+        "horario": "08:00-23:00",
+        "precio": "Lavado ~5 EUR, secado 2-3 EUR, detergente incluido",
+        "plan": "Poner lavadora nada mas llegar y subir al casco antiguo mientras tanto. Merino: secado en frio o corto."
+      }
+    },
+    {
+      "dia": 4,
+      "fecha": "2026-09-17",
+      "dia_semana": "jueves",
+      "tipo": "montaña",
+      "origen": "Hostal Cortes",
+      "destino": "Hotel Albarracin",
+      "km_aprox": 160,
+      "tiempo_real_aprox": "3h15",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Curvy",
+      "salida": "09:00",
+      "llegada_prevista": "15:30",
+      "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
+      "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Tajo", "Albarracin - paseo de tarde y noche"],
+      "opcional": "Nacimiento del Rio Cuervo solo si se va bien de tiempo y meteo estable: Tragacete -> parking Rio Cuervo -> Tragacete.",
+      "notas": [
+        "Vigilar obras o regulaciones en la CM-2105; revisar DGT la noche anterior.",
+        "Llegada al hotel: parar en la puerta (carga y descarga, max 20 min), soltar las tres maletas, bajar a aparcar."
+      ],
+      "alojamiento": {
+        "nombre": "Hotel Albarracin",
+        "direccion": "C. Azagra s/n (Cta. de Teruel 21), 44100 Albarracin (Teruel)",
+        "telefono": "+34 978 71 00 11",
+        "noches": 2,
+        "fechas": "17-19 sept",
+        "precio_total_eur": 134,
+        "estado": "Reservado y pagado",
+        "moto": "Sin parking en el hotel. Carga/descarga 20 min en la puerta. Parking publico en la parte baja del pueblo, ~4 EUR/24 h. Antirrobo de disco puesto las dos noches.",
+        "desayuno": "Bufe 07:00-10:30, ~12 EUR (no incluido)",
+        "restaurante": "Segun calendario de apertura; confirmar cenas jueves y viernes al llegar. Cafeteria 10:30-22:00.",
+        "pendiente_confirmar": ["Cena jueves y viernes", "Si aceptan la moto en el punto de carga mas tiempo"]
+      }
+    },
+    {
+      "dia": 5,
+      "fecha": "2026-09-18",
+      "dia_semana": "viernes",
+      "tipo": "montaña_suave",
+      "origen": "Hotel Albarracin",
+      "destino": "Hotel Albarracin",
+      "km_aprox": 80,
+      "tiempo_real_aprox": "1h45",
+      "dificultad": 2,
+      "fatiga": 1,
+      "perfil_kurviger": "Curvy",
+      "equipaje": "Sin maletas (se quedan en la habitacion). Bolsa de deposito y SH58X con botiquin, kit de mechas, compresor y agua.",
+      "salida": "10:00 (sin prisa; desayuno en el hotel)",
+      "llegada_prevista": "13:00",
+      "waypoints": ["Hotel Albarracin", "Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin", "Tramacastilla", "Hotel Albarracin"],
+      "paradas": ["Bronchales - cafe", "Orihuela del Tremedal - paseo corto"],
+      "objetivo": "Dia de descanso activo antes del Maestrazgo. Tarde y noche en Albarracin a pie. Lavado a mano de ropa.",
+      "notas": ["Se sube y baja por la misma carretera; ida y vuelta identicas.", "Si no apetece, no se hace: es 100% recortable."]
+    },
+    {
+      "dia": 6,
+      "fecha": "2026-09-19",
+      "dia_semana": "sabado",
+      "tipo": "montaña",
+      "origen": "Hotel Albarracin",
+      "destino": "Camping Los Alamos (Virgen de la Vega / Alcala de la Selva)",
+      "km_aprox": 110,
+      "tiempo_real_aprox": "2h15",
+      "dificultad": 2,
+      "fatiga": 2,
+      "perfil_kurviger": "Fast & Curvy",
+      "salida": "09:30",
+      "llegada_prevista": "15:30",
+      "waypoints": ["Hotel Albarracin", "Centro de Interpretacion de Dornaque", "Bezas", "El Campillo", "San Blas", "Teruel", "Cedrillas", "Alcala de la Selva", "Camping Los Alamos"],
+      "paradas": ["Pinares de Rodeno / Dornaque", "Teruel - comida y torres mudejares", "Alcala de la Selva - repostar"],
+      "notas": [
+        "Forzar el corredor asfaltado Albarracin -> Dornaque -> Bezas; no usar Pinturas Rupestres como waypoint (pistas de tierra).",
+        "Llenar el deposito antes de entrar al camping: el dia 7 es el mas aislado."
+      ],
+      "alojamiento": {
+        "nombre": "Camping Los Alamos",
+        "tipo": "Bungalow pequeño 1-2 personas",
+        "direccion": "Paraje Fuen de la Reina s/n, 44431 La Virgen de la Vega (Teruel)",
+        "telefono": "+34 978 80 11 67",
+        "noches": 2,
+        "fechas": "19-21 sept",
+        "precio_referencia_eur_noche": 65,
+        "moto_eur_dia": 3.5,
+        "estado": "Reservado y pagado",
+        "recepcion": "Sab 09:00-14:00 y 16:00-21:00; dom 09:00-14:00 y 16:00-20:00; lun 10:00-13:00 y 16:00-20:00",
+        "altitud_m": 1500,
+        "pendiente_confirmar": ["Restaurante sabado y domingo noche", "Desayunos", "Calefaccion"],
+        "plan_b_cena": "Bares y restaurantes de Alcala de la Selva (4 km)"
+      }
+    },
+    {
+      "dia": 7,
+      "fecha": "2026-09-20",
+      "dia_semana": "domingo",
+      "tipo": "montaña_tecnica",
+      "origen": "Camping Los Alamos",
+      "destino": "Camping Los Alamos",
+      "km_aprox": 160,
+      "tiempo_real_aprox": "3h15",
+      "dificultad": 4,
+      "fatiga": 3,
+      "perfil_kurviger": "Curvy",
+      "equipaje": "Sin maletas laterales (se quedan en el bungalow). Pasar al SH58X: botiquin, Givi S450, compresor, agua extra y barrita.",
+      "salida": "09:00",
+      "llegada_prevista": "15:30",
+      "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva", "Camping Los Alamos"],
+      "paradas": ["Mosqueruela - cafe", "Cantavieja - comida", "Fortanete"],
+      "notas": [
+        "Dia mas tecnico del viaje: curvas ciegas y tramos estrechos, ritmo conservador.",
+        "Puertomingalvo eliminado del bucle.",
+        "Es domingo: mas motos y coches de fin de semana; en Cantavieja llegar a comer antes de las 14:00.",
+        "Etapa mas aislada: cobertura intermitente, el punto de ubicacion compartida se congelara.",
+        "100% recortable: Alcala -> Valdelinares -> Linares -> Mosqueruela y vuelta ya es una gran mañana."
+      ]
+    },
+    {
+      "dia": 8,
+      "fecha": "2026-09-21",
+      "dia_semana": "lunes",
+      "tipo": "montaña_y_enlace",
+      "origen": "Camping Los Alamos",
+      "destino": "Via Caprasia (Villargordo del Cabriel)",
+      "km_aprox": 215,
+      "tiempo_real_aprox": "3h30",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Fast & Curvy",
+      "salida": "09:00",
+      "llegada_prevista": "16:00",
+      "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Mora de Rubielos", "Sarrion", "Manzanera", "Torrijas", "Arcos de las Salinas", "Losilla", "Aras de los Olmos", "Santa Cruz de Moya", "Landete", "Sinarcas", "Utiel", "Via Caprasia"],
+      "paradas": ["Mora de Rubielos - castillo y cafe", "Manzanera", "Aras de los Olmos", "Utiel - supermercado para la cena"],
+      "notas": [
+        "Losilla es shaping point importante para forzar la conexion correcta.",
+        "Lunes en pueblo pequeño: dar por hecho que no hay cena fuera. Comprar en Utiel y cenar en el apartamento."
+      ],
+      "alojamiento": {
+        "nombre": "Via Caprasia Hotel Apartamento",
+        "tipo": "Apartamento entero con cocina",
+        "direccion": "C. Serrano Larrey 31, 46317 Villargordo del Cabriel (Valencia)",
+        "telefono": "+34 605 62 32 66",
+        "precio_eur": 65,
+        "estado": "Reservado y pagado",
+        "pendiente_confirmar": ["Donde dejar la moto (garaje, patio o calle)", "Procedimiento de entrada (caja de llaves o cita); llegada ~16:00"],
+        "plan_b": "Casa Cabriel (C. Madrid 9, mismo pueblo): parking gratuito, cocina comun, restaurante"
+      }
+    },
+    {
+      "dia": 9,
+      "fecha": "2026-09-22",
+      "dia_semana": "martes",
+      "tipo": "calor_y_llano",
+      "origen": "Via Caprasia",
+      "destino": "Casas Rurales Los Olivos (Alcala del Jucar)",
+      "km_aprox": 125,
+      "tiempo_real_aprox": "2h20",
+      "dificultad": 2,
+      "fatiga": 1,
+      "perfil_kurviger": "Fast & Curvy",
+      "salida": "10:00",
+      "llegada_prevista": "13:30",
+      "waypoints": ["Via Caprasia", "Requena", "Los Pedrones", "Cofrentes", "Jalance", "Casas de Ves", "Alcala del Jucar", "Casas Rurales Los Olivos"],
+      "paradas": ["Cofrentes - castillo y mirador", "Alcala del Jucar - casas cueva, castillo y rio"],
+      "objetivo": "Dia corto: descanso, colada en lavadora y revision de tension de cadena.",
+      "alojamiento": {
+        "nombre": "Casas Rurales / Apartamentos Turisticos Los Olivos",
+        "direccion": "Ctra. de Tolosa s/n, 02210 Alcala del Jucar (Albacete)",
+        "telefono": "+34 967 11 01 90",
+        "precio_eur": 50,
+        "estado": "Reservado y pagado",
+        "servicios": ["Cocina", "Lavadora", "Parking", "Piscina (probablemente cerrada)"],
+        "pendiente_confirmar": ["Hora de entrada y dejar moto/equipaje antes del check-in"]
+      }
+    },
+    {
+      "dia": 10,
+      "fecha": "2026-09-23",
+      "dia_semana": "miercoles",
+      "tipo": "calor_y_llano_con_sierra",
+      "origen": "Casas Rurales Los Olivos",
+      "destino": "La Cilla Hospederia (Moratalla)",
+      "km_aprox": 220,
+      "tiempo_real_aprox": "3h35",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Fast & Curvy",
+      "salida": "09:00",
+      "llegada_prevista": "16:00",
+      "waypoints": ["Casas Rurales Los Olivos", "Alcala del Jucar", "Jorquera", "Valdeganga", "Chinchilla de Monte-Aragon", "Pozo Cañada", "Peñas de San Pedro", "Alcadozo", "Lietor", "Ayna", "Elche de la Sierra", "Ferez", "Socovos", "Moratalla", "Santuario Casa de Cristo / La Cilla"],
+      "paradas": ["Jorquera - mirador", "Ayna - Mirador del Diablo y comida", "Elche de la Sierra - cafe"],
+      "notas": [
+        "Peñas de San Pedro y Alcadozo son waypoints intencionados para mantener el corredor asfaltado CM-3203.",
+        "No dejar a Kurviger buscar atajos secundarios."
+      ],
+      "alojamiento": {
+        "nombre": "La Cilla Moratalla (Casa de Cristo)",
+        "direccion": "Santuario de la Casa de Cristo, Lugar Ermita, 30440 Moratalla (Murcia)",
+        "telefono": "+34 601 85 41 21",
+        "precio_eur": 56,
+        "estado": "Reservado y pagado",
+        "restaurante": "Cierra lunes y martes. Miercoles 12:30-16:00 y 20:30-23:00. La llegada en miercoles permite cenar alli.",
+        "pendiente_confirmar": ["Cena del miercoles (reservar mesa)", "Desayuno y hora", "Parking de la moto"],
+        "plan_b_cena": "Cenar en Moratalla antes de subir"
+      }
+    },
+    {
+      "dia": 11,
+      "fecha": "2026-09-24",
+      "dia_semana": "jueves",
+      "tipo": "calor_y_llano",
+      "origen": "La Cilla (Moratalla)",
+      "destino": "Almeria",
+      "km_aprox": 265,
+      "tiempo_real_aprox": "3h10",
+      "dificultad": 2,
+      "fatiga": 2,
+      "perfil_kurviger": "Fast & Curvy hasta Velez-Rubio, luego Fast",
+      "salida": "09:30",
+      "llegada_prevista": "14:30",
+      "waypoints": ["La Cilla", "Moratalla", "Caravaca de la Cruz", "Barranda", "Puebla de Don Fadrique", "Maria", "Velez-Blanco", "Velez-Rubio", "Almeria"],
+      "paradas": ["Maria - cafe", "Velez-Blanco - castillo"],
+      "notas": ["No usar Puerto Lumbreras como waypoint.", "Desde Velez-Rubio dejar la opcion rapida por A-92N/A-7."]
+    }
+  ],
+
+  "alojamientos_resumen": [
+    { "noche": 1, "fecha": "2026-09-14", "lugar": "Cazorla", "alojamiento": "Puente de las Herrerias", "telefono": "+34 953 72 70 90", "estado": "Reservado y pagado" },
+    { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Reservado y pagado" },
+    { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado y pagado" },
+    { "noche": 4, "fecha": "2026-09-17", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado (134 EUR / 2 noches)" },
+    { "noche": 5, "fecha": "2026-09-18", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado" },
+    { "noche": 6, "fecha": "2026-09-19", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado y pagado" },
+    { "noche": 7, "fecha": "2026-09-20", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - mismo bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado y pagado" },
+    { "noche": 8, "fecha": "2026-09-21", "lugar": "Villargordo del Cabriel", "alojamiento": "Via Caprasia", "telefono": "+34 605 62 32 66", "estado": "Reservado y pagado (65 EUR)" },
+    { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado y pagado" },
+    { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado y pagado" }
+  ],
+
+  "contactos": {
+    "emergencias": "112",
+    "seguro_asistencia": "PENDIENTE: apuntar numero tras llamar al seguro",
+    "en_casa": "PENDIENTE: contacto con ubicacion compartida"
+  },
+
+  "equipacion_moto": {
+    "decision": "REV'IT Vertical GTX + REV'IT Tornado 4. Airwave 3 y vaqueros se quedan en casa.",
+    "puesto_siempre": ["Botas", "Guantes de verano", "Casco", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Tour"],
+    "configuracion_por_tipo_de_dia": {
+      "montaña": {
+        "dias": [2, 4, 5, 6, 7, 8],
+        "pantalon": "Tornado con forro impermeable puesto todo el dia; termico si la salida esta por debajo de 10 C",
+        "chaqueta": "Vertical GTX con top merino manga larga; polar solo con mucho frio; ventilaciones cerradas por la mañana, abiertas desde mediodia"
+      },
+      "calor_y_llano": {
+        "dias": [1, 3, 9, 10, 11],
+        "pantalon": "Tornado en mesh puro; forro impermeable en el SH58X",
+        "chaqueta": "Vertical GTX con merino manga corta, todo abierto",
+        "nota": "Si la prevision de la mañana marca tormentas, poner el forro impermeable antes de salir"
+      }
+    },
+    "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport solo en autovia larga; probar en la salida del 12-13."
+  },
+
+  "ropa_comprada_decathlon_2026_09_09": {
+    "total_eur": 254.88,
+    "articulos": [
+      { "articulo": "Wedze BL Top Ski 900 Wool (merino manga larga)", "talla": "XL/2XL", "cantidad": 1 },
+      { "articulo": "Merino Resist T-shirt gris (ref 5304363)", "talla": "2XL", "cantidad": 1 },
+      { "articulo": "Merino Resist T-shirt gris (ref 5721467)", "talla": "2XL", "cantidad": 1, "nota": "Comprobar en etiqueta si es manga corta o larga" },
+      { "articulo": "Boxer largo Performance", "talla": "2XL", "cantidad": 1 },
+      { "articulo": "Boxer largo Performance", "talla": "XL", "cantidad": 1, "nota": "Decidir talla preferida en la salida de prueba" },
+      { "articulo": "Calcetines MH900 altos (pack x2)", "talla": "43/46", "cantidad": 2, "pares_total": 4 },
+      { "articulo": "Braga de cuello MT500 lana merina", "talla": "unica", "cantidad": 1 },
+      { "articulo": "Forro polar MH100", "talla": "3XL", "cantidad": 1 },
+      { "articulo": "Pantalon desmontable MT100", "talla": "50 (L34)", "cantidad": 1 },
+      { "articulo": "Bolsa estanca 7 l", "talla": "unica", "cantidad": 1 },
+      { "articulo": "Organizadores de maleta (kit 3 fundas)", "talla": "unica", "cantidad": 1 }
+    ],
+    "falta": [
+      "2 boxers largos sin costuras mas (4 en total): web Decathlon con entrega antes del viernes o cualquier tienda",
+      "Mallas merino: descartadas como no criticas (forro termico del Tornado + boxer largo)"
+    ]
+  },
+
+  "ropa_y_lavanderia": {
+    "filosofia": "Ropa para 4 dias; lavanderia a mitad de viaje. No pijama: manga larga merino + pantalon corto.",
+    "lavados": [
+      { "noche": 3, "lugar": "Cuenca", "como": "openBlue24h, detergente incluido" },
+      { "noche": 5, "lugar": "Albarracin", "como": "A mano en el lavabo (gel/champu o hojas de detergente); tarde libre del dia 5" },
+      { "noche": 9, "lugar": "Alcala del Jucar", "como": "Lavadora de Los Olivos (capsulas)" }
+    ],
+    "cuidado_merino": "30 C, sin suavizante, nunca secadora caliente."
+  },
+
+  "material_en_propiedad": {
+    "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB: llevar cable micro-USB. Cargar a tope el domingo 13. Probar en las presiones del domingo." },
+    "antirrobo": { "modelo": "Abus Granit Detecto X-Plus 8008", "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito." },
+    "powerbank": { "modelo": "Baseus E0028Z", "nota": "Reserva para el Pixel si falla la toma USB-C; carga tambien compresor y frontal. Cargar a tope el domingo." },
+    "otros": ["Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
+  },
+
+  "pedido_amazon_llega_2026_09_10": [
+    "Botiquin PURAHELP DIN 13167",
+    "Motul C2 Road 400 ml",
+    "Alpine MotoSafe Duo Pack Tour + Sport",
+    "Givi S450 kit tubeless (CO2 de un solo uso)"
+  ],
+
+  "compras_pendientes": [
+    { "que": "2 boxers largos sin costuras", "donde": "Web Decathlon o cualquier tienda", "cuando": "Jueves 10" },
+    { "que": "Segundo par de guantes impermeables de entretiempo (probar talla)", "donde": "Tienda de moto", "cuando": "Viernes 11" },
+    { "que": "Cubrebotas", "donde": "Tienda de moto", "cuando": "Solo si las botas no son impermeables" },
+    { "que": "Chaleco reflectante de bolsillo", "donde": "Cualquier sitio", "cuando": "Antes del sabado" },
+    { "que": "Cable micro-USB para el compresor", "donde": "Casa o cualquier tienda", "cuando": "Antes del sabado" },
+    { "que": "Cinta americana: 2 m enrollados en la multiherramienta", "donde": "Casa", "cuando": "Domingo" },
+    { "que": "Frontal LED (opcional; la linterna del Pixel sirve)", "donde": "-", "cuando": "-" },
+    { "que": "Detergente en hojas (opcional; gel/champu sirve para lavar a mano)", "donde": "-", "cuando": "-" }
+  ],
+
+  "reparto_equipaje": {
+    "regla": "Cada cosa vive siempre en la misma maleta.",
+    "bolsa_deposito_e09cl": ["Pixel conectado por USB-C a la toma", "Powerbank Baseus", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
+    "sh38x_izquierda_ropa": ["Organizador grande: merino manga corta x2, top merino manga larga, boxers, calcetines", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente", "Sobre con el resto del efectivo"],
+    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB", "Cubrebotas si se compran"],
+    "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes impermeables", "Chaleco reflectante", "Casco y chaqueta al bajar a comer o pasear"],
+    "dias_sin_laterales": {
+      "dias": [5, 7],
+      "pasar_al_sh58x": ["Botiquin", "Givi S450", "Compresor", "Agua extra y barrita"]
+    },
+    "llaves": "Llave de repuesto de la moto y de las maletas SHAD guardada aparte de la principal (chaqueta una, maleta izquierda la otra)."
+  },
+
+  "checklist_previa": {
+    "jueves_10": [
+      "Comprobar que llegan los 4 articulos de Amazon",
+      "Comprar 2 boxers largos",
+      "Pedir chaleco reflectante y cable micro-USB si no se tienen"
+    ],
+    "viernes_11": [
+      "Tienda de moto: segundo par de guantes impermeables",
+      "Llamar al seguro: asistencia con remolque a taller desde el primer dia; apuntar telefono en contactos",
+      "Sacar 150-200 EUR en billetes pequeños",
+      "Emparejar D6A y Pixel; probar Kurviger por Android Auto",
+      "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
+      "Guardar los 10 telefonos de alojamientos + seguro + 112 en el movil",
+      "Activar compartir ubicacion en Google Maps con alguien de casa"
+    ],
+    "sabado_12_o_domingo_13": [
+      "Salida de prueba 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato)",
+      "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
+      "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
+      "Comprobar que la ubicacion compartida no se corta"
+    ],
+    "domingo_13_tarde": [
+      "Presiones con la moto cargada (probar el compresor Xiaomi)",
+      "Cargar compresor, powerbank y Pixel",
+      "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
+      "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
+      "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
+      "Medicacion con un dia de margen; llaves de repuesto en su sitio"
+    ]
+  },
+
+  "rutina_diaria": {
+    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank y D6A", "Spray de cadena con la cadena caliente (cada noche o cada dos)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
+    "mañana": ["Presiones si toca (cada 2-3 dias)", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
+    "en_ruta": ["Parada cada 60-75 min", "Beber en cada parada", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
+    "llegada": ["Antirrobo de disco puesto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
+  },
+
+  "principios_para_claude": [
+    "No cambiar destinos ni bases sin una razon fuerte y explicita.",
+    "No añadir turismo por añadir.",
+    "Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.",
+    "Mantener 100% asfalto. Evitar Extra Curvy.",
+    "No proponer jornadas reales de conduccion superiores a 4h.",
+    "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
+    "Tratar al piloto como novato A2 que busca progresion.",
+    "No inventar disponibilidad, horarios ni precios; verificar antes.",
+    "Este JSON v3 es la fuente de verdad: actualizar estados, no rehacer el plan.",
+    "No proponer nuevos accesorios ni instalaciones en la moto en la semana previa salvo necesidad de seguridad."
+  ]
+}
