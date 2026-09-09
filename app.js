@@ -330,7 +330,7 @@ window.addEventListener('online', updateNet);
 window.addEventListener('offline', updateNet);
 
 function registerSW() {
-  if (!('serviceWorker' in navigator)) return;
+  if (!('serviceWorker' in navigator) || window.VIAJE_DATA) return;
   navigator.serviceWorker.register('sw.js').then((reg) => {
     reg.addEventListener('updatefound', () => {
       const nw = reg.installing; if (!nw) return;
@@ -351,9 +351,13 @@ function registerSW() {
 async function init() {
   updateNet();
   try {
-    const res = await fetch('data/viaje.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    D.data = await res.json();
+    if (window.VIAJE_DATA) {
+      D.data = window.VIAJE_DATA; // version empaquetada en un solo fichero
+    } else {
+      const res = await fetch('data/viaje.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      D.data = await res.json();
+    }
   } catch (err) {
     document.getElementById('view').innerHTML = `<div class="card warn"><h3>No se pudo cargar el plan</h3><p>${esc(err.message)}</p><p><small>Si abres el archivo directamente (file://), sirve la carpeta con un servidor local o usa la versión publicada.</small></p></div>`;
     return;
