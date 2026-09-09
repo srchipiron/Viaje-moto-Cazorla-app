@@ -162,6 +162,23 @@ dd { margin: 0; }
 .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .spread { justify-content: space-between; }
 
+/* Llamada rapida */
+.calls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 10px 0; }
+@media (min-width: 560px) { .calls { grid-template-columns: repeat(4, 1fr); } }
+.call {
+  display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 12px;
+  background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow);
+  color: var(--text); text-decoration: none; min-height: 84px;
+}
+.call b { font-size: 1rem; line-height: 1.2; }
+.call small { font-size: .85rem; color: var(--link); font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.call .call-icon { font-size: 1.3rem; line-height: 1; }
+.call.sos { background: var(--hot-soft); border-color: transparent; }
+.call.sos small { color: var(--hot); }
+.call.pend { opacity: .75; }
+.call.pend small { color: var(--warn); }
+.version { text-align: center; font-size: .8rem; color: var(--muted); margin: 20px 0 6px; }
+
 /* Checklists */
 .check { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
 .check:last-child { border-bottom: 0; }

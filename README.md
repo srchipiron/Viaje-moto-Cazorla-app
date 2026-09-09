@@ -33,10 +33,14 @@ Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
 
 ## Actualizar el plan
 
-1. Editar `data/viaje.json` (validar que sigue siendo JSON válido).
-2. Subir la constante `VERSION` en `sw.js` (por ejemplo `v3.0.1`) para que los móviles
-   descarguen la versión nueva. La app avisa con un botón «Recargar» cuando la detecta.
-3. Commit y push. GitHub Pages publica en uno o dos minutos.
+1. Editar `data/viaje.json` (validar que sigue siendo JSON válido) y subir `meta.revision`.
+2. Commit y push. GitHub Pages publica en uno o dos minutos.
+3. La app descarga el JSON de la red cada vez que se abre (y con el enlace «Actualizar plan»
+   al final de Resumen), así que el cambio se ve al instante. Sin cobertura usa la última
+   copia guardada y lo indica en la cabecera. La cabecera muestra siempre «Plan v3.N · fecha»
+   para saber qué revisión se está viendo.
+4. Solo si cambian `index.html`, `styles.css` o `app.js`: subir también la constante
+   `VERSION` en `sw.js`. La app avisa con un botón «Recargar» cuando detecta la versión nueva.
 
 ## Probar en local
 

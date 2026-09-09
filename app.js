@@ -59,6 +59,26 @@ function contactoHTML(c) {
   return `${quien ? `${esc(quien)}: ` : ''}${telLink(c.telefono)}${nota}`;
 }
 
+/* Botones grandes de llamada: 112, casa, seguro y alojamiento de hoy o el proximo. */
+function quickCalls() {
+  const c = D.data.contactos, it = D.data.itinerario, today = todayISO();
+  const btn = (icon, label, tel, sub, cls = '') => tel
+    ? `<a class="call ${cls}" href="tel:${esc(String(tel).replace(/\s+/g, ''))}"><span class="call-icon">${icon}</span><b>${esc(label)}</b><small>${esc(sub || tel)}</small></a>`
+    : `<span class="call pend"><span class="call-icon">${icon}</span><b>${esc(label)}</b><small>${esc(sub || 'Sin teléfono')}</small></span>`;
+  const casa = c.en_casa, seg = c.seguro_asistencia;
+  const casaTel = typeof casa === 'string' ? (contactoPendiente(casa) ? null : casa) : casa.telefono;
+  const segTel = typeof seg === 'string' ? (contactoPendiente(seg) ? null : seg) : seg.telefono;
+  const hoy = it.find((d) => d.fecha === today && d.alojamiento);
+  const prox = hoy || it.find((d) => d.fecha >= today && d.alojamiento) || null;
+  const a = prox && prox.alojamiento;
+  return `<div class="calls">
+    ${btn('🚨', 'Emergencias', c.emergencias, '112', 'sos')}
+    ${btn('🏠', typeof casa === 'string' ? 'En casa' : (casa.nombre || 'En casa'), casaTel, casaTel ? casaTel : 'Pendiente')}
+    ${btn('🛡️', typeof seg === 'string' ? 'Seguro' : (seg.compania || 'Seguro'), segTel, segTel ? segTel : 'Teléfono pendiente')}
+    ${a ? btn('🛏️', hoy ? 'Alojamiento de hoy' : `Noche ${prox.dia} · ${fmtFecha(prox.fecha)}`, a.telefono, a.nombre) : ''}
+  </div>`;
+}
+
 /* ---------- vistas ---------- */
 function etapaCard(e, opts = {}) {
   const t = tipoInfo(e.tipo);
@@ -104,6 +124,8 @@ function viewResumen() {
       </div>
     </div>
     ${estado || ''}
+    <h2>Llamar</h2>
+    ${quickCalls()}
     <h2>Contactos</h2>
     <div class="card"><dl>${contactoRow('Emergencias', c.emergencias)}${contactoRow('Seguro / asistencia', c.seguro_asistencia)}${contactoRow('En casa', c.en_casa)}</dl>
       <p><a class="btn small" href="#/noches">Teléfonos de alojamientos</a></p></div>
@@ -123,8 +145,10 @@ function viewResumen() {
       ${Object.keys(rd).map((k) => `<details${k === 'mañana' || k === 'en_ruta' ? ' open' : ''}><summary>${human(k)}</summary>${list(rd[k])}</details>`).join('')}
     </div>
     <h2>Filosofía</h2>
-    <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}</p>${list(p.piloto.filosofia)}</div>`;
+    <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}</p>${list(p.piloto.filosofia)}</div>
+    <p class="version">${planVersion()} · <a href="#" id="reload-plan">Actualizar plan</a></p>`;
 }
+function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
 
 function alojamientoCard(dia) {
   const a = dia.alojamiento; if (!a) return '';
@@ -296,7 +320,7 @@ function viewGuia() {
     <div class="card">${list(d.principios_para_claude)}</div>
 
     <h2>Versión del plan</h2>
-    <div class="card"><p><b>JSON v${meta.version}</b> · actualizado ${meta.actualizado}<br><small>${esc(meta.sustituye_a)}</small></p><p><small>${esc(meta.uso)}</small></p><details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios_v3)}</details></div>`;
+    <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}<br><small>${esc(meta.sustituye_a)}</small></p><p><small>${esc(meta.uso)}</small></p><details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios_v3)}</details></div>`;
 }
 
 /* ---------- router y arranque ---------- */
@@ -329,6 +353,7 @@ document.addEventListener('change', (ev) => {
 });
 
 document.addEventListener('click', (ev) => {
+  if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
   const btn = ev.target.closest('#reset-checks');
   if (!btn) return;
   if (confirm('¿Borrar todas las marcas de las listas en este dispositivo?')) { D.checks = {}; saveChecks(); render(); }
@@ -363,8 +388,9 @@ async function init() {
     if (window.VIAJE_DATA) {
       D.data = window.VIAJE_DATA; // version empaquetada en un solo fichero
     } else {
-      const res = await fetch('data/viaje.json', { cache: 'no-cache' });
+      const res = await fetch('data/viaje.json', { cache: 'no-store' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      D.fromCache = res.headers.get('X-Viaje-Cache') === 'offline';
       D.data = await res.json();
     }
   } catch (err) {
@@ -372,7 +398,7 @@ async function init() {
     return;
   }
   const f = D.data.proyecto.fechas;
-  document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)}`;
+  document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
   window.addEventListener('hashchange', render);
   render();
   registerSW();

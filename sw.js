@@ -1,6 +1,6 @@
 /* Service worker: precarga la app y los datos para funcionar sin cobertura.
    Al cambiar cualquier fichero (sobre todo data/viaje.json), subir VERSION. */
-const VERSION = 'v3.0.1';
+const VERSION = 'v3.1.0';
 const CACHE = `viaje-nx500-${VERSION}`;
 const SHELL = [
   './',
@@ -33,7 +33,31 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  // Stale-while-revalidate: responde desde caché al instante y refresca en segundo plano.
+  // El plan (JSON) va siempre por red primero: asi cualquier cambio subido al
+  // repositorio se ve al abrir la app. Sin cobertura se sirve la ultima copia.
+  if (url.pathname.endsWith('/data/viaje.json')) {
+    event.respondWith(
+      caches.open(CACHE).then(async (cache) => {
+        try {
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 6000);
+          const res = await fetch(req, { cache: 'no-store', signal: ctrl.signal });
+          clearTimeout(timer);
+          if (res && res.ok) { cache.put(req, res.clone()); return res; }
+          throw new Error('bad response');
+        } catch (e) {
+          const cached = await cache.match(req, { ignoreSearch: true });
+          if (!cached) throw e;
+          const headers = new Headers(cached.headers);
+          headers.set('X-Viaje-Cache', 'offline');
+          return new Response(await cached.blob(), { status: 200, headers });
+        }
+      })
+    );
+    return;
+  }
+
+  // Resto de la app: responde desde caché al instante y refresca en segundo plano.
   event.respondWith(
     caches.open(CACHE).then(async (cache) => {
       const cached = await cache.match(req, { ignoreSearch: true });
