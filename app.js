@@ -48,6 +48,17 @@ function bar(keys) {
 function confirmarKeys(dia) { const a = dia.alojamiento; return (a && a.pendiente_confirmar || []).map((t) => `confirmar|${dia.dia}|${t}`); }
 function previaKeys() { const c = D.data.checklist_previa; return Object.keys(c).flatMap((g) => c[g].map((t) => `previa|${g}|${t}`)); }
 
+/* Un contacto puede ser un texto (telefono o "PENDIENTE: ...") o un objeto
+   { nombre|compania, telefono, nota }. Sin telefono se muestra como pendiente. */
+function contactoPendiente(c) { return typeof c === 'string' ? /^PENDIENTE/i.test(c) : !c.telefono; }
+function contactoHTML(c) {
+  if (typeof c === 'string') return contactoPendiente(c) ? `<span class="badge warn">Pendiente</span> <small>${esc(c.replace(/^PENDIENTE:\s*/i, ''))}</small>` : telLink(c);
+  const quien = c.nombre || c.compania;
+  const nota = c.nota ? `<br><small>${esc(c.nota.replace(/^PENDIENTE:\s*/i, ''))}</small>` : '';
+  if (!c.telefono) return `${quien ? `<b>${esc(quien)}</b> ` : ''}<span class="badge warn">Pendiente</span>${nota}`;
+  return `${quien ? `${esc(quien)}: ` : ''}${telLink(c.telefono)}${nota}`;
+}
+
 /* ---------- vistas ---------- */
 function etapaCard(e, opts = {}) {
   const t = tipoInfo(e.tipo);
@@ -80,10 +91,7 @@ function viewResumen() {
     estado = `<div class="card ok"><h3>Viaje terminado</h3><p>Hasta el ${fmtFecha(p.vacaciones.fin)} quedan ${p.vacaciones.margen_tras_el_viaje_dias} días de margen de vacaciones.</p></div>`;
   }
   const r = p.reglas_globales, m = p.moto, c = D.data.contactos, rd = D.data.rutina_diaria;
-  const contactoRow = (label, val) => {
-    const pend = /^PENDIENTE/i.test(val);
-    return `<dt>${label}</dt><dd>${pend ? `<span class="badge warn">Pendiente</span> <small>${esc(val.replace(/^PENDIENTE:\s*/i, ''))}</small>` : telLink(val)}</dd>`;
-  };
+  const contactoRow = (label, val) => `<dt>${label}</dt><dd>${contactoHTML(val)}</dd>`;
   return `
     <div class="card accent">
       <h1>${esc(p.nombre)}</h1>
@@ -228,7 +236,8 @@ function viewListas() {
   const faltaKeys = d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => `falta|${t}`);
   const confDias = d.itinerario.filter((e) => e.alojamiento && e.alojamiento.pendiente_confirmar);
   const confKeys = confDias.flatMap(confirmarKeys);
-  const contactoKeys = ['contacto|seguro_asistencia', 'contacto|en_casa'];
+  const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(d.contactos[k]));
+  const contactoKeys = contactosPend.map((k) => `contacto|${k}`);
   const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys];
   return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.</small></p></div>
     <h2>Checklist previa</h2>${previa}
@@ -238,8 +247,8 @@ function viewListas() {
     <div class="card">${d.pedido_amazon_llega_2026_09_10.map((t) => checkItem(`amazon|${t}`, t)).join('')}</div>
     <h2>Ropa: falta ${progress(faltaKeys)}</h2>
     <div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>
-    <h2>Contactos pendientes ${progress(contactoKeys)}</h2>
-    <div class="card">${checkItem('contacto|seguro_asistencia', 'Seguro / asistencia', d.contactos.seguro_asistencia)}${checkItem('contacto|en_casa', 'Contacto en casa', d.contactos.en_casa)}</div>
+    ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
+    <div class="card">${contactosPend.map((k) => { const c = d.contactos[k]; const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
     <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
     ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
     <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;

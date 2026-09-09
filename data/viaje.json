@@ -12,7 +12,8 @@
       "Horarios verificados: openBlue24h Cuenca, restaurante La Cilla (cierra lunes y martes), acceso a los Chorros del Rio Mundo reabierto en julio con aforo al 60%",
       "Compra Decathlon realizada (lista real); faltan 2 boxers largos",
       "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
-      "Comparticion de ubicacion: Google Maps"
+      "Comparticion de ubicacion: Google Maps",
+      "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, telefono de asistencia pendiente"
     ]
   },
 
@@ -430,8 +431,8 @@
 
   "contactos": {
     "emergencias": "112",
-    "seguro_asistencia": "PENDIENTE: apuntar numero tras llamar al seguro",
-    "en_casa": "PENDIENTE: contacto con ubicacion compartida"
+    "seguro_asistencia": { "compania": "Mapfre", "telefono": null, "nota": "PENDIENTE: llamar a Mapfre, confirmar asistencia con remolque a taller desde el primer dia y apuntar aqui el telefono de asistencia en carretera" },
+    "en_casa": { "nombre": "Padre", "telefono": "+34 000 00 00 00", "nota": "Contacto con ubicacion compartida en Google Maps" }
   },
 
   "equipacion_moto": {
@@ -530,12 +531,12 @@
     ],
     "viernes_11": [
       "Tienda de moto: segundo par de guantes impermeables",
-      "Llamar al seguro: asistencia con remolque a taller desde el primer dia; apuntar telefono en contactos",
+      "Llamar a Mapfre: asistencia con remolque a taller desde el primer dia; apuntar telefono de asistencia en contactos",
       "Sacar 150-200 EUR en billetes pequeños",
       "Emparejar D6A y Pixel; probar Kurviger por Android Auto",
       "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
       "Guardar los 10 telefonos de alojamientos + seguro + 112 en el movil",
-      "Activar compartir ubicacion en Google Maps con alguien de casa"
+      "Activar compartir ubicacion en Google Maps con mi padre (numero en el movil)"
     ],
     "sabado_12_o_domingo_13": [
       "Salida de prueba 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato)",
