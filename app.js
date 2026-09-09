@@ -80,6 +80,150 @@ function quickCalls() {
   </div>`;
 }
 
+/* ---------- meteo (Open-Meteo, sin clave) ---------- */
+const METEO_KEY = 'viaje-nx500-meteo';
+const METEO_TTL_MS = 3 * 60 * 60 * 1000; // refresco automatico cada 3 h
+const METEO_API = 'https://api.open-meteo.com/v1/forecast';
+const METEO_DAILY = ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_probability_max', 'precipitation_sum', 'wind_gusts_10m_max'];
+D.meteo = { status: 'idle', fetched: null, byPoint: {}, error: null, lastTry: 0 };
+const METEO_RETRY_MS = 60 * 1000; // no reintentar solo antes de 1 min tras un fallo
+
+function meteoPoints() {
+  const seen = {}; const out = [];
+  D.data.itinerario.forEach((e) => (e.meteo_puntos || []).forEach((pt) => { const k = meteoKey(pt); if (!seen[k]) { seen[k] = true; out.push(pt); } }));
+  return out;
+}
+function meteoKey(pt) { return `${pt.lat},${pt.lon}`; }
+function meteoLoadCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem(METEO_KEY));
+    if (c && c.byPoint) { D.meteo.byPoint = c.byPoint; D.meteo.fetched = c.fetched; D.meteo.status = 'ok'; }
+  } catch (e) { /* sin cache */ }
+}
+function meteoStale() { return !D.meteo.fetched || (Date.now() - new Date(D.meteo.fetched).getTime()) > METEO_TTL_MS; }
+async function meteoFetch(force) {
+  if (D.meteo.status === 'loading') return;
+  if (!force && (!meteoStale() || Date.now() - D.meteo.lastTry < METEO_RETRY_MS)) return;
+  D.meteo.lastTry = Date.now();
+  if (!navigator.onLine) { D.meteo.error = 'Sin conexión'; return; }
+  const pts = meteoPoints(); if (!pts.length) return;
+  D.meteo.status = 'loading'; D.meteo.error = null;
+  const q = `latitude=${pts.map((p) => p.lat).join(',')}&longitude=${pts.map((p) => p.lon).join(',')}&daily=${METEO_DAILY.join(',')}&timezone=${encodeURIComponent(D.data.meteo.zona_horaria || 'Europe/Madrid')}&forecast_days=16`;
+  try {
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 12000);
+    const res = await fetch(`${METEO_API}?${q}`, { signal: ctrl.signal, cache: 'no-store' });
+    clearTimeout(t);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const arr = Array.isArray(json) ? json : [json];
+    const byPoint = {};
+    arr.forEach((loc, i) => {
+      const pt = pts[i]; if (!pt || !loc.daily) return;
+      const days = {};
+      loc.daily.time.forEach((date, j) => {
+        days[date] = { code: loc.daily.weather_code[j], tmax: loc.daily.temperature_2m_max[j], tmin: loc.daily.temperature_2m_min[j], pprob: loc.daily.precipitation_probability_max[j], psum: loc.daily.precipitation_sum[j], gust: loc.daily.wind_gusts_10m_max[j] };
+      });
+      byPoint[meteoKey(pt)] = { nombre: pt.nombre, elev: loc.elevation, days };
+    });
+    D.meteo.byPoint = byPoint; D.meteo.fetched = new Date().toISOString(); D.meteo.status = 'ok';
+    try { localStorage.setItem(METEO_KEY, JSON.stringify({ fetched: D.meteo.fetched, byPoint })); } catch (e) { /* sin almacenamiento */ }
+  } catch (err) {
+    D.meteo.status = Object.keys(D.meteo.byPoint).length ? 'ok' : 'error';
+    D.meteo.error = err.name === 'AbortError' ? 'Tiempo de espera agotado' : (err instanceof TypeError ? 'Sin acceso a la red' : (err.message || 'Error de red'));
+  }
+  if (route().view === 'tiempo' || route().view === 'etapas') { const y = window.scrollY; render(); window.scrollTo(0, y); }
+}
+/* Codigos WMO de Open-Meteo */
+function wmo(code) {
+  if (code === 0) return { icon: '☀️', label: 'Despejado' };
+  if (code === 1) return { icon: '🌤️', label: 'Casi despejado' };
+  if (code === 2) return { icon: '⛅', label: 'Nubes y claros' };
+  if (code === 3) return { icon: '☁️', label: 'Cubierto' };
+  if (code === 45 || code === 48) return { icon: '🌫️', label: 'Niebla' };
+  if (code >= 51 && code <= 57) return { icon: '🌦️', label: 'Llovizna' };
+  if (code >= 61 && code <= 67) return { icon: '🌧️', label: 'Lluvia' };
+  if (code >= 71 && code <= 77) return { icon: '🌨️', label: 'Nieve' };
+  if (code >= 80 && code <= 82) return { icon: '🌦️', label: 'Chubascos' };
+  if (code >= 85 && code <= 86) return { icon: '🌨️', label: 'Chubascos de nieve' };
+  if (code >= 95) return { icon: '⛈️', label: 'Tormenta' };
+  return { icon: '❔', label: 'Sin dato' };
+}
+function meteoVerdictOne(w) {
+  if (!w) return null;
+  if (w.code >= 95 || w.pprob >= 70 || w.psum >= 8 || w.gust >= 70) return 'malo';
+  if (w.pprob >= 40 || w.psum >= 2 || (w.code >= 51 && w.code <= 82) || w.gust >= 50) return 'regular';
+  return 'bueno';
+}
+const VERDICT = { bueno: { cls: 'ok', txt: 'Buen tiempo', icon: '🟢' }, regular: { cls: 'warn', txt: 'Regular', icon: '🟠' }, malo: { cls: 'hot', txt: 'Mal tiempo', icon: '🔴' } };
+function meteoDia(e) {
+  const pts = (e.meteo_puntos || []).map((pt) => { const bp = D.meteo.byPoint[meteoKey(pt)]; return { pt, w: bp && bp.days[e.fecha] }; });
+  const rank = { bueno: 0, regular: 1, malo: 2 };
+  let worst = null;
+  pts.forEach(({ w }) => { const v = meteoVerdictOne(w); if (v && (!worst || rank[v] > rank[worst])) worst = v; });
+  const tmin = Math.min(...pts.filter((x) => x.w).map((x) => x.w.tmin));
+  const tmax = Math.max(...pts.filter((x) => x.w).map((x) => x.w.tmax));
+  return { pts, verdict: worst, tmin: isFinite(tmin) ? tmin : null, tmax: isFinite(tmax) ? tmax : null };
+}
+function fmtHace(iso) {
+  const min = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (min < 1) return 'ahora mismo'; if (min < 60) return `hace ${min} min`;
+  const h = Math.round(min / 60); if (h < 48) return `hace ${h} h`;
+  return `hace ${Math.round(h / 24)} días`;
+}
+function meteoLinks(pt) {
+  return `<a href="https://www.google.com/search?q=${encodeURIComponent('el tiempo en ' + pt.nombre)}" target="_blank" rel="noopener">Google</a> · <a href="https://www.windy.com/?${pt.lat},${pt.lon},9" target="_blank" rel="noopener">Windy</a>`;
+}
+function meteoPointRow(pt, w) {
+  if (!w) return `<div class="wx-row"><span class="wx-icon">❔</span><div class="wx-main"><b>${esc(pt.nombre)}</b><small>Sin previsión todavía</small></div><small class="wx-links">${meteoLinks(pt)}</small></div>`;
+  const k = wmo(w.code), v = meteoVerdictOne(w);
+  return `<div class="wx-row wx-${v}">
+    <span class="wx-icon" title="${k.label}">${k.icon}</span>
+    <div class="wx-main"><b>${esc(pt.nombre)}</b><small>${k.label} · ${Math.round(w.tmin)}° / <b>${Math.round(w.tmax)}°</b></small></div>
+    <div class="wx-nums"><span title="Probabilidad de lluvia">💧 ${w.pprob == null ? '–' : w.pprob + '%'}</span><span title="Lluvia acumulada">${w.psum == null ? '' : w.psum.toFixed(1) + ' mm'}</span><span title="Rachas máximas">💨 ${w.gust == null ? '–' : Math.round(w.gust) + ' km/h'}</span></div>
+    <small class="wx-links">${meteoLinks(pt)}</small>
+  </div>`;
+}
+function meteoStrip(e) {
+  const m = meteoDia(e);
+  if (!m.verdict) return '';
+  const v = VERDICT[m.verdict];
+  const avisos = [];
+  if (m.tmin != null && m.tmin <= 8) avisos.push('Frío al salir: forro térmico');
+  if (m.tmax != null && m.tmax >= 32) avisos.push('Calor: beber en cada parada');
+  return `<div class="card wx-strip"><div class="card-title"><h3>Previsión</h3><span class="badge ${v.cls}">${v.icon} ${v.txt}</span></div>
+    ${m.pts.map(({ pt, w }) => meteoPointRow(pt, w)).join('')}
+    ${avisos.length ? `<div class="note">${avisos.map(esc).join(' · ')}</div>` : ''}
+    <p><small>${D.meteo.fetched ? `Actualizado ${fmtHace(D.meteo.fetched)}` : ''} · <a href="#/tiempo">Ver todos los días</a></small></p></div>`;
+}
+
+function viewTiempo() {
+  const it = D.data.itinerario, mt = D.data.meteo, today = todayISO();
+  if (D.meteo.status === 'idle' || (D.meteo.status === 'ok' && meteoStale())) meteoFetch(false);
+  const hasData = Object.keys(D.meteo.byPoint).length > 0;
+  let estado;
+  if (D.meteo.status === 'loading' && !hasData) estado = '<span class="badge">Consultando…</span>';
+  else if (hasData) estado = `<span class="badge ok">Actualizado ${fmtHace(D.meteo.fetched)}</span>${D.meteo.error ? ` <span class="badge warn">Sin refrescar: ${esc(D.meteo.error)}</span>` : ''}`;
+  else estado = `<span class="badge warn">No disponible${D.meteo.error ? `: ${esc(D.meteo.error)}` : ''}</span>`;
+  const dias = it.map((e) => {
+    const m = meteoDia(e); const t = tipoInfo(e.tipo);
+    const lejos = daysBetween(today, e.fecha) > 15;
+    const v = m.verdict ? VERDICT[m.verdict] : null;
+    return `<div class="card wx-day">
+      <div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${cap(e.dia_semana)} ${fmtFecha(e.fecha)}</a></h3>${v ? `<span class="badge ${v.cls}">${v.icon} ${v.txt}</span>` : `<span class="badge">${lejos ? 'A más de 16 días' : 'Sin previsión'}</span>`}</div>
+      <p class="muted">${t.icon} ${esc(e.origen)} → ${esc(e.destino)}</p>
+      ${m.pts.map(({ pt, w }) => meteoPointRow(pt, w)).join('')}
+    </div>`;
+  }).join('');
+  return `<div class="card accent"><div class="card-title"><h1>Tiempo en ruta</h1>${estado}</div>
+      <p class="muted">Previsión diaria de ${esc(mt.proveedor.split(' (')[0])} para dos puntos de cada etapa. Se guarda en el móvil y se refresca sola cada 3 horas.</p>
+      <p><button class="btn small" type="button" id="meteo-refresh"${D.meteo.status === 'loading' ? ' disabled' : ''}>Actualizar ahora</button> <a class="btn small" href="${esc(mt.enlaces.aemet)}" target="_blank" rel="noopener">AEMET</a> <a class="btn small" href="${esc(mt.enlaces.windy)}" target="_blank" rel="noopener">Windy</a></p>
+      ${!hasData && D.meteo.status === 'error' ? `<div class="note">No se ha podido consultar la previsión desde aquí. Usa los enlaces de cada punto o abre la app publicada en GitHub Pages.</div>` : ''}
+    </div>
+    <div class="note info"><b>Regla:</b> ${esc(mt.regla)}</div>
+    ${dias}
+    <details class="card"><summary>Cómo se califica cada día</summary><dl><dt>🔴 Mal tiempo</dt><dd>${esc(mt.criterio.malo)}</dd><dt>🟠 Regular</dt><dd>${esc(mt.criterio.regular)}</dd><dt>🟢 Buen tiempo</dt><dd>${esc(mt.criterio.bueno)}</dd></dl><p><small>${esc(mt.nota_coordenadas)}</small></p></details>`;
+}
+
 /* ---------- vistas ---------- */
 function etapaCard(e, opts = {}) {
   const t = tipoInfo(e.tipo);
@@ -91,8 +235,14 @@ function etapaCard(e, opts = {}) {
       <span class="badge ${t.cls}">${t.icon} ${t.label}</span>
     </div>
     <div class="etapa-ruta">${esc(e.origen)} → ${esc(e.destino)}</div>
-    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span></div>
+    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${etapaWx(e)}</div>
   </a>`;
+}
+
+function etapaWx(e) {
+  const m = meteoDia(e); if (!m.verdict) return '';
+  const v = VERDICT[m.verdict];
+  return `<span class="wx-inline">${v.icon} ${v.txt}${m.tmin != null ? ` · ${Math.round(m.tmin)}°/${Math.round(m.tmax)}°` : ''}</span>`;
 }
 
 function viewResumen() {
@@ -211,6 +361,7 @@ function viewEtapas(arg) {
       ${e.opcional ? `<div class="note mount"><b>Opcional:</b> ${esc(e.opcional)}</div>` : ''}
     </div>
 
+    ${meteoStrip(e)}
     <h2>Waypoints (${e.waypoints.length})</h2>
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
       <p><small>Enlaces de consulta en Google Maps. La ruta real se crea en Kurviger con estos puntos como shaping points sobre la carretera.</small></p></div>
@@ -325,7 +476,7 @@ function viewGuia() {
 }
 
 /* ---------- router y arranque ---------- */
-const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia };
+const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia };
 
 function route() {
   const h = location.hash.replace(/^#\/?/, '');
@@ -338,7 +489,7 @@ function render() {
   const { view, arg } = route();
   document.getElementById('view').innerHTML = VIEWS[view](arg);
   document.querySelectorAll('.tabbar a').forEach((a) => a.classList.toggle('active', a.dataset.view === view));
-  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía' };
+  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía' };
   document.title = `${titles[view]} · Viaje NX500`;
   window.scrollTo(0, 0);
 }
@@ -355,6 +506,7 @@ document.addEventListener('change', (ev) => {
 
 document.addEventListener('click', (ev) => {
   if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
+  if (ev.target.closest('#meteo-refresh')) { meteoFetch(true); render(); return; }
   const btn = ev.target.closest('#reset-checks');
   if (!btn) return;
   if (confirm('¿Borrar todas las marcas de las listas en este dispositivo?')) { D.checks = {}; saveChecks(); render(); }
@@ -400,9 +552,11 @@ async function init() {
   }
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
+  meteoLoadCache();
   window.addEventListener('hashchange', render);
   render();
   registerSW();
+  if (route().view !== 'tiempo') meteoFetch(false); // la vista Tiempo ya lo pide
 }
 
 init();

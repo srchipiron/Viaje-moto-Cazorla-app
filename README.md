@@ -18,6 +18,7 @@ Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
 | Resumen | Cuenta atrás o etapa de hoy, contactos, reglas globales, rutina diaria, filosofía |
 | Etapas | Las 11 etapas con km, tiempo real, dificultad, fatiga, perfil Kurviger, waypoints (enlace a Google Maps), horario, paradas, notas, equipación del día y ficha del alojamiento |
 | Noches | Las 10 noches con teléfono pulsable y «cómo llegar» |
+| Tiempo | Previsión diaria de [Open-Meteo](https://open-meteo.com/) (gratuita, sin clave, 16 días) para dos puntos de cada etapa, con veredicto Bueno / Regular / Malo, temperaturas, probabilidad de lluvia y rachas. Se guarda en el móvil y se refresca cada 3 h. La misma previsión aparece en la ficha de cada etapa y en las tarjetas de Resumen |
 | Listas | Checklist previa, compras, pedido Amazon, contactos pendientes y cosas a confirmar con cada alojamiento. Las marcas se guardan en el dispositivo (`localStorage`) |
 | Equipaje | Equipación por tipo de día, reparto por maleta, días sin laterales, material, ropa y lavandería |
 | Guía | Navegación y ajustes de Kurviger, moto, principios del plan y versión del JSON |
@@ -65,4 +66,9 @@ icons/                iconos SVG (normal y maskable)
 .nojekyll             evita que GitHub Pages procese el sitio con Jekyll
 ```
 
-Sin dependencias, sin build, sin CDN: todo va en el repositorio.
+Sin dependencias, sin build, sin CDN: todo va en el repositorio. La única llamada externa es
+a `api.open-meteo.com` para la previsión; si no responde, la app sigue funcionando con la última
+previsión guardada o sin ella.
+
+Los puntos de previsión están en `data/viaje.json`, en `meteo_puntos` de cada día
+(nombre, latitud y longitud aproximadas).

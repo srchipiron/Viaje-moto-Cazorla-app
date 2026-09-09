@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 3,
+    "revision": 4,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -14,7 +14,8 @@
       "Compra Decathlon realizada (lista real); faltan 2 boxers largos",
       "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
       "Comparticion de ubicacion: Google Maps",
-      "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822"
+      "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
+      "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app"
     ]
   },
 
@@ -86,6 +87,7 @@
       "perfil_kurviger": "Fast & Curvy",
       "salida": "09:00",
       "llegada_prevista": "16:30-17:00",
+      "meteo_puntos": [{ "nombre": "Baza", "lat": 37.49, "lon": -2.77 }, { "nombre": "Sierra de Cazorla", "lat": 37.92, "lon": -2.93 }],
       "waypoints": ["Almeria", "Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Empalme del Valle", "Vadillo Castril", "Camping Puente de las Herrerias"],
       "horario_orientativo": [
         { "hora": "10:45", "lugar": "Baza", "que": "Parada corta" },
@@ -127,6 +129,7 @@
       "perfil_kurviger": "Curvy",
       "salida": "09:00",
       "llegada_prevista": "16:00",
+      "meteo_puntos": [{ "nombre": "Segura de la Sierra", "lat": 38.30, "lon": -2.65 }, { "nombre": "Riopar", "lat": 38.50, "lon": -2.42 }],
       "waypoints": ["Camping Puente de las Herrerias", "Vadillo Castril", "Empalme del Valle", "Arroyo Frio", "Coto Rios", "Presa del Tranco", "Hornos de Segura", "Cortijos Nuevos", "Segura de la Sierra", "Orcera", "Siles", "Puerto del Arenal", "Hostal El Laminador"],
       "horario_orientativo": [
         { "hora": "10:15", "lugar": "Presa del Tranco", "que": "Parada" },
@@ -165,6 +168,7 @@
       "perfil_kurviger": "Fast",
       "salida": "09:00 (a los Chorros)",
       "llegada_prevista": "16:00",
+      "meteo_puntos": [{ "nombre": "Alcaraz", "lat": 38.67, "lon": -2.49 }, { "nombre": "Cuenca", "lat": 40.07, "lon": -2.14 }],
       "waypoints": ["Hostal El Laminador", "Aparcamiento Nacimiento del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar", "Hostal Cortes"],
       "horario_orientativo": [
         { "hora": "09:00-10:15", "lugar": "Chorros del Rio Mundo", "que": "Solo paseo corto hasta la base de la cascada. Parking ~4 EUR, a 2 km de la CM-3204, aforo limitado. Poco caudal en septiembre." },
@@ -206,6 +210,7 @@
       "perfil_kurviger": "Curvy",
       "salida": "09:00",
       "llegada_prevista": "15:30",
+      "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
       "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
       "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Tajo", "Albarracin - paseo de tarde y noche"],
       "opcional": "Nacimiento del Rio Cuervo solo si se va bien de tiempo y meteo estable: Tragacete -> parking Rio Cuervo -> Tragacete.",
@@ -242,6 +247,7 @@
       "equipaje": "Sin maletas (se quedan en la habitacion). Bolsa de deposito y SH58X con botiquin, kit de mechas, compresor y agua.",
       "salida": "10:00 (sin prisa; desayuno en el hotel)",
       "llegada_prevista": "13:00",
+      "meteo_puntos": [{ "nombre": "Bronchales", "lat": 40.51, "lon": -1.59 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
       "waypoints": ["Hotel Albarracin", "Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin", "Tramacastilla", "Hotel Albarracin"],
       "paradas": ["Bronchales - cafe", "Orihuela del Tremedal - paseo corto"],
       "objetivo": "Dia de descanso activo antes del Maestrazgo. Tarde y noche en Albarracin a pie. Lavado a mano de ropa.",
@@ -261,6 +267,7 @@
       "perfil_kurviger": "Fast & Curvy",
       "salida": "09:30",
       "llegada_prevista": "15:30",
+      "meteo_puntos": [{ "nombre": "Teruel", "lat": 40.34, "lon": -1.11 }, { "nombre": "Alcala de la Selva", "lat": 40.36, "lon": -0.71 }],
       "waypoints": ["Hotel Albarracin", "Centro de Interpretacion de Dornaque", "Bezas", "El Campillo", "San Blas", "Teruel", "Cedrillas", "Alcala de la Selva", "Camping Los Alamos"],
       "paradas": ["Pinares de Rodeno / Dornaque", "Teruel - comida y torres mudejares", "Alcala de la Selva - repostar"],
       "notas": [
@@ -298,6 +305,7 @@
       "equipaje": "Sin maletas laterales (se quedan en el bungalow). Pasar al SH58X: botiquin, Givi S450, compresor, agua extra y barrita.",
       "salida": "09:00",
       "llegada_prevista": "15:30",
+      "meteo_puntos": [{ "nombre": "Valdelinares", "lat": 40.39, "lon": -0.61 }, { "nombre": "Cantavieja", "lat": 40.53, "lon": -0.41 }],
       "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva", "Camping Los Alamos"],
       "paradas": ["Mosqueruela - cafe", "Cantavieja - comida", "Fortanete"],
       "notas": [
@@ -322,6 +330,7 @@
       "perfil_kurviger": "Fast & Curvy",
       "salida": "09:00",
       "llegada_prevista": "16:00",
+      "meteo_puntos": [{ "nombre": "Manzanera", "lat": 40.05, "lon": -0.83 }, { "nombre": "Villargordo del Cabriel", "lat": 39.53, "lon": -1.44 }],
       "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Mora de Rubielos", "Sarrion", "Manzanera", "Torrijas", "Arcos de las Salinas", "Losilla", "Aras de los Olmos", "Santa Cruz de Moya", "Landete", "Sinarcas", "Utiel", "Via Caprasia"],
       "paradas": ["Mora de Rubielos - castillo y cafe", "Manzanera", "Aras de los Olmos", "Utiel - supermercado para la cena"],
       "notas": [
@@ -353,6 +362,7 @@
       "perfil_kurviger": "Fast & Curvy",
       "salida": "10:00",
       "llegada_prevista": "13:30",
+      "meteo_puntos": [{ "nombre": "Cofrentes", "lat": 39.23, "lon": -1.06 }, { "nombre": "Alcala del Jucar", "lat": 39.19, "lon": -1.43 }],
       "waypoints": ["Via Caprasia", "Requena", "Los Pedrones", "Cofrentes", "Jalance", "Casas de Ves", "Alcala del Jucar", "Casas Rurales Los Olivos"],
       "paradas": ["Cofrentes - castillo y mirador", "Alcala del Jucar - casas cueva, castillo y rio"],
       "objetivo": "Dia corto: descanso, colada en lavadora y revision de tension de cadena.",
@@ -380,6 +390,7 @@
       "perfil_kurviger": "Fast & Curvy",
       "salida": "09:00",
       "llegada_prevista": "16:00",
+      "meteo_puntos": [{ "nombre": "Ayna", "lat": 38.56, "lon": -2.08 }, { "nombre": "Moratalla", "lat": 38.19, "lon": -1.89 }],
       "waypoints": ["Casas Rurales Los Olivos", "Alcala del Jucar", "Jorquera", "Valdeganga", "Chinchilla de Monte-Aragon", "Pozo Cañada", "Peñas de San Pedro", "Alcadozo", "Lietor", "Ayna", "Elche de la Sierra", "Ferez", "Socovos", "Moratalla", "Santuario Casa de Cristo / La Cilla"],
       "paradas": ["Jorquera - mirador", "Ayna - Mirador del Diablo y comida", "Elche de la Sierra - cafe"],
       "notas": [
@@ -411,6 +422,7 @@
       "perfil_kurviger": "Fast & Curvy hasta Velez-Rubio, luego Fast",
       "salida": "09:30",
       "llegada_prevista": "14:30",
+      "meteo_puntos": [{ "nombre": "Velez-Blanco", "lat": 37.69, "lon": -2.10 }, { "nombre": "Almeria", "lat": 36.84, "lon": -2.46 }],
       "waypoints": ["La Cilla", "Moratalla", "Caravaca de la Cruz", "Barranda", "Puebla de Don Fadrique", "Maria", "Velez-Blanco", "Velez-Rubio", "Almeria"],
       "paradas": ["Maria - cafe", "Velez-Blanco - castillo"],
       "notas": ["No usar Puerto Lumbreras como waypoint.", "Desde Velez-Rubio dejar la opcion rapida por A-92N/A-7."]
@@ -434,6 +446,22 @@
     "emergencias": "112",
     "seguro_asistencia": { "compania": "Mapfre", "telefono": "918 365 365", "telefonos_alternativos": ["900 822 822"], "nota": "Asistencia en carretera 24 h. Confirmar el viernes 11 que la poliza cubre remolque a taller desde el km 0 y traslado del motorista." },
     "en_casa": { "nombre": "Padre", "telefono": "+34 000 00 00 00", "nota": "Contacto con ubicacion compartida en Google Maps" }
+  },
+
+  "meteo": {
+    "proveedor": "Open-Meteo (api.open-meteo.com), gratuito, sin clave, prevision diaria a 16 dias",
+    "zona_horaria": "Europe/Madrid",
+    "regla": "Consultar la noche anterior y a las 08:00. Tormentas de tarde en el Sistema Iberico: si la probabilidad de lluvia de la tarde supera el 40% en Tragacete, Bronchales o Valdelinares, salir a las 09:00 y acortar el bucle.",
+    "criterio": {
+      "malo": "Tormenta, probabilidad de lluvia >= 70%, >= 8 mm o rachas >= 70 km/h",
+      "regular": "Probabilidad de lluvia >= 40%, >= 2 mm, chubascos o rachas >= 50 km/h",
+      "bueno": "Todo lo demas"
+    },
+    "nota_coordenadas": "Coordenadas aproximadas de los municipios (2 decimales); suficiente para la rejilla del modelo.",
+    "enlaces": {
+      "aemet": "https://www.aemet.es/es/eltiempo/prediccion/municipios",
+      "windy": "https://www.windy.com/?37.9,-2.9,7"
+    }
   },
 
   "equipacion_moto": {
