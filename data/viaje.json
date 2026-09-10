@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 10,
+    "revision": 11,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,7 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
-      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 3, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 3, 4, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
 
@@ -410,6 +410,7 @@
       "salida": "09:00",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
+      "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "nota": "Ruta Kurviger 'Dia 4 Hostal Cortés, Cuenca - Albarracín' (10 sept): 149,4 km y 2h05 estimadas frente a 160 km / 3h15 del plan." },
       "guia": {
         "resumen": "La etapa más bella de la Serranía de Cuenca: el Ventano del Diablo, la laguna de Uña, el Júcar encajonado hasta Tragacete, el Puerto del Cubillo, el nacimiento del Tajo y la llegada a Albarracín, un pueblo de postal.",
         "ver": [
