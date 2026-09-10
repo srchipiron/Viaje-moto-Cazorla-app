@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 6,
+    "revision": 7,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -15,7 +15,8 @@
       "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
       "Comparticion de ubicacion: Google Maps",
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
-      "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app"
+      "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
+      "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia"
     ]
   },
 
@@ -88,6 +89,67 @@
       "salida": "09:00",
       "llegada_prevista": "16:30-17:00",
       "meteo_puntos": [{ "nombre": "Baza", "lat": 37.49, "lon": -2.77 }, { "nombre": "Sierra de Cazorla", "lat": 37.92, "lon": -2.93 }],
+      "guia": {
+        "resumen": "Del mar a la sierra en un día: desierto y badlands de la Hoya de Baza, el santuario colgado de Tíscar, olivares infinitos y, al final, el corazón del Parque Natural de Cazorla, Segura y Las Villas.",
+        "ver": [
+          {
+            "lugar": "Baza",
+            "tipo": "pueblo",
+            "que": "Ciudad con casco antiguo de origen árabe. Los Baños Árabes de la judería (s. XI) son de los mejor conservados de España, la Alcazaba y la Iglesia Mayor están a cinco minutos a pie de cualquier bar de la plaza. La Dama de Baza (escultura íbera) se puede ver en copia en el museo local; la original está en Madrid.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Santuario de Tiscar",
+            "tipo": "monumento",
+            "que": "Santuario encajado en un desfiladero bajo el Puerto de Tíscar, patrona de Quesada. A pocos minutos a pie está la Cueva del Agua, una gruta natural con un salto de agua (poco caudal en septiembre). Muy fotogénico desde el propio aparcamiento.",
+            "tiempo": "15-30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Quesada",
+            "tipo": "cafe",
+            "que": "Pueblo de olivar y del pintor Rafael Zabaleta, con museo dedicado a él en el centro. Buen sitio para el café: plaza pequeña, bares de pueblo, aceite de la DOP Sierra de Cazorla en cualquier tienda.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Cazorla",
+            "tipo": "pueblo",
+            "que": "Plaza de Santa María con las Ruinas de Santa María (iglesia renacentista de Vandelvira nunca terminada, sin techo) y la Bóveda del río Cerezuelo que pasa por debajo. El Castillo de la Yedra domina el pueblo; el Balcón de Zabaleta es el mirador sobre los tejados. Es la parada larga del día: comer, repostar y supermercado.",
+            "tiempo": "1h30",
+            "en_ruta": true
+          },
+          {
+            "lugar": "La Iruela",
+            "tipo": "monumento",
+            "que": "Castillo de origen templario sobre un peñón, a la salida de Cazorla hacia la sierra. Se ve perfectamente desde la carretera; no hace falta subir.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Mirador Puerto de las Palomas",
+            "tipo": "mirador",
+            "que": "A 1.290 m, el gran balcón sobre el valle del Guadalquivir y las sierras del parque. Parada obligada antes de bajar al camping. Aire fresco: ojo al cambio de temperatura.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Cazorla, a las 13:30. Comida ligera porque quedan 30 km de montaña. Bares y restaurantes alrededor de la Plaza de Santa María y la Plaza de la Corredera.",
+          "platos": [
+            "Rin-ran (patata, bacalao y pimiento seco, frío o templado)",
+            "Gachamiga",
+            "Andrajos o talarines (guiso de masa con liebre o bacalao)",
+            "Carne de monte: venado, jabalí",
+            "Trucha de la sierra",
+            "Ochíos (pan con pimentón) y hornazos de dulce"
+          ],
+          "nota": "Aceite de oliva virgen extra de la DOP Sierra de Cazorla en cualquier mesa: es el producto de la zona."
+        },
+        "tarde": "Llegada al camping y paseo a pie junto al Guadalquivir recién nacido: el Puente de las Herrerías es un puente de piedra sobre el río, con la leyenda de haberse construido en una noche para el paso de Isabel la Católica. Cena en el complejo (confirmar) o con lo comprado en Cazorla.",
+        "consejo": "Comer ligero en Cazorla y no alargar la sobremesa: el tramo Cazorla-La Iruela-Puerto de las Palomas es estrecho y con curvas, mejor con luz y descansado."
+      },
       "waypoints": ["Almeria", "Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Empalme del Valle", "Vadillo Castril", "Camping Puente de las Herrerias"],
       "horario_orientativo": [
         { "hora": "10:45", "lugar": "Baza", "que": "Parada corta" },
@@ -130,6 +192,75 @@
       "salida": "09:00",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Segura de la Sierra", "lat": 38.30, "lon": -2.65 }, { "nombre": "Riopar", "lat": 38.50, "lon": -2.42 }],
+      "guia": {
+        "resumen": "El gran día de Cazorla y Segura: el valle del Guadalquivir, el embalse del Tranco, Hornos colgado sobre el agua y Segura de la Sierra, uno de los pueblos más bonitos de Andalucía. Se remata con los pinares de Siles y el Calar del Mundo.",
+        "ver": [
+          {
+            "lugar": "Vadillo Castril",
+            "tipo": "naturaleza",
+            "que": "Poblado forestal junto al río. Muy cerca, entre Vadillo y el Empalme del Valle, está la Cerrada del Utrero: un sendero circular corto (unos 2 km) que pasa por la cascada de Linarejos y una garganta. Solo si apetece estirar las piernas a primera hora.",
+            "tiempo": "0 / 45 min",
+            "en_ruta": true,
+            "opcional": true
+          },
+          {
+            "lugar": "Torre del Vinagre",
+            "tipo": "naturaleza",
+            "que": "Centro de visitantes del parque entre Arroyo Frío y Coto Ríos, con jardín botánico y museo de caza. Parada rápida para el mapa del parque y los baños.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Presa del Tranco",
+            "tipo": "mirador",
+            "que": "Presa y embalse del Tranco. Con el agua baja se ve la isla de Cabeza de la Viña con las ruinas del castillo de Bujaraiza. Buena foto desde la carretera sobre la presa.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Hornos de Segura",
+            "tipo": "mirador",
+            "que": "Pueblo sobre un peñón con castillo (dentro está el Cosmolarium, un pequeño centro de astronomía) y un mirador espectacular sobre el pantano. Café en la plaza.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Segura de la Sierra",
+            "tipo": "pueblo",
+            "que": "Castillo mudéjar restaurado y visitable en lo alto, baños árabes, la casa natal del poeta Jorge Manrique, la Fuente Imperial de Carlos V y una de las pocas plazas de toros cuadradas de España. Se sube y baja por la misma carretera estrecha: hacerlo antes de comer, como está previsto.",
+            "tiempo": "2h con comida",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Orcera",
+            "tipo": "pueblo",
+            "que": "Al pie de Segura. Las Torres de Santa Catalina, tres torreones medievales a las afueras, se ven desde la carretera.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Siles",
+            "tipo": "cafe",
+            "que": "Pueblo de pinares y de la sierra de Segura. Parada corta para café o agua antes del Puerto del Arenal. Cerca está el acebal de Las Acebeas (bosque de acebos), pero es un desvío; no toca hoy.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Segura de la Sierra hacia las 13:30, en el pueblo. Reservar mesa no suele hacer falta entre semana en septiembre, pero conviene llegar antes de las 14:00.",
+          "platos": [
+            "Ajoatao (patata machacada con ajo, huevo y aceite)",
+            "Galianos o gachamiga",
+            "Andrajos con conejo o bacalao",
+            "Carne de caza y cordero segureño",
+            "Queso de cabra de la sierra",
+            "Roscos de anís"
+          ],
+          "nota": "Aceite DOP Sierra de Segura, de los más valorados de Jaén. En Segura hay tiendas donde comprar una botella pequeña para el viaje."
+        },
+        "tarde": "Riópar. Si hay fuerzas, Riópar Viejo está a 3 km por carretera asfaltada: pueblo antiguo casi despoblado con ruinas del castillo y vistas al Calar del Mundo. En Riópar nuevo, las Reales Fábricas de San Juan de Alcaraz (fábricas de latón del s. XVIII) tienen museo. Cena en el hostal o en Riópar (5 min).",
+        "consejo": "Hornos-Segura es estrecho y con tráfico de visitantes: ritmo tranquilo, uso de bocina en curvas ciegas si hace falta, y nunca en la línea del centro."
+      },
       "waypoints": ["Camping Puente de las Herrerias", "Vadillo Castril", "Empalme del Valle", "Arroyo Frio", "Coto Rios", "Presa del Tranco", "Hornos de Segura", "Cortijos Nuevos", "Segura de la Sierra", "Orcera", "Siles", "Puerto del Arenal", "Hostal El Laminador"],
       "horario_orientativo": [
         { "hora": "10:15", "lugar": "Presa del Tranco", "que": "Parada" },
@@ -170,6 +301,68 @@
       "salida": "09:00 (a los Chorros)",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Alcaraz", "lat": 38.67, "lon": -2.49 }, { "nombre": "Cuenca", "lat": 40.07, "lon": -2.14 }],
+      "guia": {
+        "resumen": "Amanecer con la cascada del río Mundo, café en la Plaza Mayor renacentista de Alcaraz y luego la llanura manchega a ritmo de enlace hasta Cuenca, donde espera una de las ciudades más singulares de España.",
+        "ver": [
+          {
+            "lugar": "Aparcamiento Nacimiento del Rio Mundo",
+            "tipo": "naturaleza",
+            "que": "Los Chorros del río Mundo: el río nace saliendo de una cueva en una pared caliza y cae unos 80 m en cascada. Desde el aparcamiento hay un paseo corto (unos 20 min) hasta la base. En septiembre lleva poco caudal; el espectáculo del reventón es de otoño y primavera. Aforo limitado y parking de pago (~4 EUR).",
+            "tiempo": "1h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Alcaraz",
+            "tipo": "cafe",
+            "que": "Una de las plazas mayores más bonitas de Castilla-La Mancha: renacentista, con las torres gemelas del Tardón y de la Trinidad, la Lonja del Corregidor y soportales. Café aquí, no comida. Ruinas del castillo en lo alto para la foto.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Balazote",
+            "tipo": "pueblo",
+            "que": "Solo de paso: es el pueblo de la Bicha de Balazote, escultura íbera (original en el Museo Arqueológico Nacional).",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Tarazona de la Mancha",
+            "tipo": "pueblo",
+            "que": "Plaza Mayor porticada muy castellana, en plena llanura. Parada corta solo si toca descanso.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Motilla del Palancar",
+            "tipo": "comida",
+            "que": "Cruce de caminos de la Manchuela conquense. Comida en cualquiera de los restaurantes del centro o de la carretera; buen sitio para probar cocina manchega de pueblo.",
+            "tiempo": "1h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Cuenca",
+            "tipo": "pueblo",
+            "que": "Ciudad Patrimonio de la Humanidad entre las hoces del Júcar y del Huécar. Lo esencial: Casas Colgadas (con el Museo de Arte Abstracto Español dentro), cruzar el Puente de San Pablo para la vista clásica, Plaza Mayor y Catedral (gótica, s. XII), la subida al Barrio del Castillo con el mirador sobre la hoz del Huécar, y la Torre de Mangana.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Motilla del Palancar hacia las 13:45.",
+          "platos": [
+            "Morteruelo (paté caliente de caza y especias, típico de Cuenca)",
+            "Ajoarriero o atascaburras (bacalao y patata)",
+            "Gazpacho manchego (guiso de caza con torta)",
+            "Queso manchego curado",
+            "Pisto manchego",
+            "Zarajos (tripas de cordero asadas) para los atrevidos",
+            "Alajú (dulce de miel y nueces) de postre"
+          ],
+          "nota": "Vino de la DO Manchuela, uva bobal: zona de Motilla e Iniesta. Solo para la cena, no para conducir."
+        },
+        "tarde": "Lavadora en openBlue24h nada más llegar y subir al casco antiguo mientras lava (el hostal está en la parte nueva, a 20-25 min a pie de la Plaza Mayor o un taxi). Ruta recomendada: Puente de San Pablo, Casas Colgadas, Plaza Mayor, Barrio del Castillo al atardecer y bajada por la calle Alfonso VIII. Cena de tapas en la Plaza Mayor o en los bares de la parte nueva junto al hostal. Resolí (licor de café y anís) para rematar.",
+        "consejo": "Confirmar la noche anterior en el hostal el estado del acceso a los Chorros y salir a las 09:00 para tener el parking y el sendero tranquilos."
+      },
       "waypoints": ["Hostal El Laminador", "Aparcamiento Nacimiento del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar", "Hostal Cortes"],
       "horario_orientativo": [
         { "hora": "09:00-10:15", "lugar": "Chorros del Rio Mundo", "que": "Solo paseo corto hasta la base de la cascada. Parking ~4 EUR, a 2 km de la CM-3204, aforo limitado. Poco caudal en septiembre." },
@@ -213,6 +406,81 @@
       "salida": "09:00",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
+      "guia": {
+        "resumen": "La etapa más bella de la Serranía de Cuenca: el Ventano del Diablo, la laguna de Uña, el Júcar encajonado hasta Tragacete, el Puerto del Cubillo, el nacimiento del Tajo y la llegada a Albarracín, un pueblo de postal.",
+        "ver": [
+          {
+            "lugar": "Ventano del Diablo",
+            "tipo": "mirador",
+            "que": "Ventanas naturales en la roca sobre la hoz del Júcar, a pie de carretera con aparcamiento. Primera parada, de cinco minutos y foto obligada.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Uña",
+            "tipo": "cafe",
+            "que": "Pueblo diminuto junto a la laguna de Uña, bajo la pared del Escalerón. Café en el bar del pueblo y paseo de cinco minutos hasta la orilla de la laguna.",
+            "tiempo": "25 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Huelamo",
+            "tipo": "pueblo",
+            "que": "Pueblo colgado sobre el Júcar. Se ve entero desde la carretera; no hace falta entrar.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Tragacete",
+            "tipo": "pueblo",
+            "que": "Capital de la alta Serranía, a 1.280 m. Desde aquí sale el desvío opcional al Nacimiento del río Cuervo (unos 12 km, sendero corto de 1 km hasta las cascadas). Solo si se va bien de tiempo y sin tormentas a la vista.",
+            "tiempo": "10 min / 1h30 con el Cuervo",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Puerto del Cubillo",
+            "tipo": "mirador",
+            "que": "Puerto a 1.620 m entre la Serranía de Cuenca y los Montes Universales. Pinares y vistas; el punto más alto del día, aire frío por la mañana.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Nacimiento del Rio Tajo",
+            "tipo": "monumento",
+            "que": "Monumento junto a la carretera, en la Muela de San Juan, con las esculturas que representan al Tajo y a las provincias de Cuenca, Guadalajara y Teruel. Aparcamiento al lado. Aquí nace el río más largo de la península.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Calomarde",
+            "tipo": "naturaleza",
+            "que": "Junto al pueblo, la cascada de Calomarde (Batida) se ve desde la carretera y se baja a ella en pocos minutos a pie. Un poco más allá, el Barranco de la Hoz tiene pasarelas, pero es una excursión larga: no toca.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Hotel Albarracin",
+            "tipo": "pueblo",
+            "que": "Albarracín: murallas (subir hasta la Torre del Andador al atardecer, unos 30 min ida y vuelta), Plaza Mayor, Catedral del Salvador y su museo diocesano (tapices flamencos), Casa de la Julianeta, calle del Portal de Molina y la Casa de los Navarro de Arzuriaga. Todo se hace a pie y a la luz del atardecer las casas de yeso rojizo lucen más.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Sin parada larga de comida en ruta: bocadillo o tapa en Tragacete o Frías de Albarracín, y comida completa al llegar a Albarracín (15:30) o directamente merienda-cena. Alternativa: comer en Tragacete a las 13:00 si el ritmo lo permite.",
+          "platos": [
+            "Jamón de Teruel DO",
+            "Ternasco de Aragón asado",
+            "Migas de pastor",
+            "Queso de la Sierra de Albarracín",
+            "Delicias de Teruel (jamón con melocotón)",
+            "Suspiros de amante o almojábanas de postre"
+          ],
+          "nota": "En Tragacete: trucha y cordero serrano. En Albarracín todo es cocina aragonesa de montaña; los restaurantes del pueblo llenan en fin de semana, entre semana no hay problema."
+        },
+        "tarde": "Descargar en la puerta del hotel (20 min), aparcar en el parking de abajo con el antirrobo, y pueblo a pie: murallas al atardecer, cena en el hotel o en el casco. Albarracín de noche, iluminado, merece un segundo paseo corto.",
+        "consejo": "Revisar la DGT la noche anterior por la CM-2105 (obras y regulaciones). Salir a las 09:00: es día de montaña y la tarde en el Sistema Ibérico es de tormentas."
+      },
       "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
       "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Tajo", "Albarracin - paseo de tarde y noche"],
       "opcional": "Nacimiento del Rio Cuervo solo si se va bien de tiempo y meteo estable: Tragacete -> parking Rio Cuervo -> Tragacete.",
@@ -251,6 +519,60 @@
       "salida": "10:00 (sin prisa; desayuno en el hotel)",
       "llegada_prevista": "13:00",
       "meteo_puntos": [{ "nombre": "Bronchales", "lat": 40.51, "lon": -1.59 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
+      "guia": {
+        "resumen": "Día de descanso activo por los pinares de la Sierra de Albarracín: bucle corto y suave hasta Bronchales y Orihuela del Tremedal, y tarde entera para Albarracín sin prisa.",
+        "ver": [
+          {
+            "lugar": "Tramacastilla",
+            "tipo": "pueblo",
+            "que": "Pueblo del alto Guadalaviar, de paso. La carretera sigue el río entre chopos y pinos.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Noguera de Albarracin",
+            "tipo": "pueblo",
+            "que": "Pueblo de pinares a 1.400 m, con casas de piedra y madera. De paso a la ida y a la vuelta.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Bronchales",
+            "tipo": "cafe",
+            "que": "A 1.570 m, uno de los pueblos más altos de Aragón, rodeado de pino albar; sanatorio y veraneo de altura de toda la vida. Café en la plaza con calma.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Orihuela del Tremedal",
+            "tipo": "pueblo",
+            "que": "Final del bucle. Iglesia barroca de San Millán, con una de las torres más grandes de la sierra, y tradición de forja e industria del hierro. Paseo corto por el pueblo. Sobre el pueblo, el Santuario del Tremedal es un mirador (carretera asfaltada corta), solo si apetece.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Hotel Albarracin",
+            "tipo": "paseo",
+            "que": "Tarde libre en Albarracín: lo que quedara pendiente del día anterior (Catedral y museo diocesano, Museo de Albarracín en el antiguo hospital, la Casa de la Julianeta por dentro si está abierta) y un paseo por el Paseo Fluvial del Guadalaviar, un sendero llano de una hora que rodea el peñón del pueblo junto al río.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Vuelta al hotel hacia las 13:00 y comida tranquila en Albarracín.",
+          "platos": [
+            "Ternasco al horno o a la brasa",
+            "Migas con uva",
+            "Conejo escabechado",
+            "Trucha del Guadalaviar",
+            "Queso de Albarracín",
+            "Almojábanas y suspiros de amante"
+          ],
+          "nota": "Es viernes: buen día para reservar mesa para la cena si se quiere cenar fuera del hotel."
+        },
+        "tarde": "Lavado a mano de ropa, siesta y Albarracín a pie sin horario. Cena en el hotel (confirmar) o en el casco. Preparar la etapa del Maestrazgo: repasar la ruta en Kurviger y decidir forros.",
+        "consejo": "Es 100% recortable: si no apetece la moto, se cambia por el Paseo Fluvial y la Catedral. Si se hace, salir a las 10:00 y volver a las 13:00, sin alargar."
+      },
       "waypoints": ["Hotel Albarracin", "Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin", "Tramacastilla", "Hotel Albarracin"],
       "paradas": ["Bronchales - cafe", "Orihuela del Tremedal - paseo corto"],
       "objetivo": "Dia de descanso activo antes del Maestrazgo. Tarde y noche en Albarracin a pie. Lavado a mano de ropa.",
@@ -271,6 +593,60 @@
       "salida": "09:30",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Teruel", "lat": 40.34, "lon": -1.11 }, { "nombre": "Alcala de la Selva", "lat": 40.36, "lon": -0.71 }],
+      "guia": {
+        "resumen": "Los pinares de rodeno rojo de Albarracín, la Teruel mudéjar con sus torres Patrimonio de la Humanidad y la subida a la Sierra de Gúdar hasta el camping, a 1.500 m.",
+        "ver": [
+          {
+            "lugar": "Centro de Interpretacion de Dornaque",
+            "tipo": "naturaleza",
+            "que": "Paisaje Protegido de los Pinares de Rodeno: pinos sobre arenisca roja. El centro de interpretación tiene aparcamiento y exposición pequeña. Desde aquí salen sendas cortas y señalizadas a pie hasta varios abrigos con pinturas rupestres levantinas (Patrimonio de la Humanidad). Ir a pie; la moto se queda en el parking: las pistas son de tierra.",
+            "tiempo": "30-45 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Bezas",
+            "tipo": "pueblo",
+            "que": "Pueblo pequeño entre pinares. De paso; el corredor asfaltado Dornaque-Bezas-El Campillo es la ruta prevista.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Teruel",
+            "tipo": "pueblo",
+            "que": "Torres mudéjares de El Salvador (se puede subir), San Martín y San Pedro (junto al Mausoleo de los Amantes), Catedral de Santa María de Mediavilla con su techumbre mudéjar pintada, Plaza del Torico, la Escalinata neomudéjar y el acueducto de Los Arcos. Todo en un radio de 10 minutos a pie desde la Plaza del Torico.",
+            "tiempo": "2h con comida",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Cedrillas",
+            "tipo": "pueblo",
+            "que": "Puerta de la Sierra de Gúdar, a 1.300 m. De paso.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Alcala de la Selva",
+            "tipo": "pueblo",
+            "que": "Pueblo de montaña con castillo medieval sobre el caserío y la iglesia parroquial en la plaza. Repostar aquí sin falta (el día 7 no tiene gasolinera fiable). El camping está a 4 km, en La Virgen de la Vega.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Teruel, en los alrededores de la Plaza del Torico, hacia las 13:30.",
+          "platos": [
+            "Jamón de Teruel DO (la ciudad es su capital)",
+            "Delicias de Teruel",
+            "Ternasco asado",
+            "Migas turolenses",
+            "Trufa negra de Sarrión: solo en temporada (noviembre a marzo), fuera de ella conservas",
+            "Suspiros de amante de postre"
+          ],
+          "nota": "Buscar mesa fuera de la plaza principal si está muy llena: las calles laterales tienen la misma cocina y menos espera."
+        },
+        "tarde": "Llegada al camping a las 15:30, instalarse en el bungalow y paseo por la Virgen de la Vega (santuario y pradera junto al río). Cena en el restaurante del camping (confirmar) o en Alcalá de la Selva. Noche fresca a 1.500 m: calefacción y polar.",
+        "consejo": "En Dornaque no usar 'Pinturas Rupestres' como destino en el navegador: lleva por pistas de tierra. Aparcar en el centro de interpretación e ir a pie."
+      },
       "waypoints": ["Hotel Albarracin", "Centro de Interpretacion de Dornaque", "Bezas", "El Campillo", "San Blas", "Teruel", "Cedrillas", "Alcala de la Selva", "Camping Los Alamos"],
       "paradas": ["Pinares de Rodeno / Dornaque", "Teruel - comida y torres mudejares", "Alcala de la Selva - repostar"],
       "notas": [
@@ -310,6 +686,81 @@
       "salida": "09:00",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Valdelinares", "lat": 40.39, "lon": -0.61 }, { "nombre": "Cantavieja", "lat": 40.53, "lon": -0.41 }],
+      "guia": {
+        "resumen": "El bucle del Maestrazgo: Valdelinares, el pueblo más alto de España, y una sucesión de villas medievales de piedra (Linares de Mora, Mosqueruela, La Iglesuela del Cid, Cantavieja, Fortanete) por carreteras solitarias entre 1.200 y 1.800 m.",
+        "ver": [
+          {
+            "lugar": "Valdelinares",
+            "tipo": "pueblo",
+            "que": "El municipio más alto de España (casi 1.700 m), con estación de esquí. Pueblo pequeño de piedra; la carretera de acceso pasa por encima de los 1.800 m con vistas a toda la sierra. Parada corta para la foto y el frío.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Linares de Mora",
+            "tipo": "pueblo",
+            "que": "Villa amurallada con restos de castillo sobre el barranco, portales y casas solariegas. Se ve bien desde la carretera; entrada corta si apetece.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Mosqueruela",
+            "tipo": "cafe",
+            "que": "Villa medieval de las mejor conservadas del Maestrazgo: muralla con portales, Plaza Mayor porticada y calles empedradas. Café aquí.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "La Iglesuela del Cid",
+            "tipo": "pueblo",
+            "que": "Conjunto histórico con la plaza gótico-renacentista (Casa Consistorial, iglesia, Casa Aliaga, torre de los Nublos de origen templario). Un vistazo de 15 minutos merece la pena.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Cantavieja",
+            "tipo": "comida",
+            "que": "Capital del Alto Maestrazgo, encaramada sobre un barranco a 1.300 m. Plaza de Cristo Rey porticada, iglesia de la Asunción, ayuntamiento gótico y el Museo de las Guerras Carlistas. Comida antes de las 14:00 (es domingo).",
+            "tiempo": "1h30",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Fortanete",
+            "tipo": "pueblo",
+            "que": "Pueblo a 1.350 m con lonja gótica y plaza. Parada corta de descanso; a partir de aquí el tramo por Villarroya de los Pinares y Allepuz es el más solitario.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Villarroya de los Pinares",
+            "tipo": "pueblo",
+            "que": "Iglesia gótica desproporcionadamente grande para el pueblo y casas de piedra. De paso.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Gudar",
+            "tipo": "pueblo",
+            "que": "Pueblo que da nombre a la sierra, en un valle al pie de Peñarroya (2.000 m, el techo de Teruel). De paso, ya de vuelta.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Cantavieja, llegando antes de las 14:00 por ser domingo. Si va justo, comer en Mosqueruela y hacer el resto por la tarde.",
+          "platos": [
+            "Ternasco a la brasa",
+            "Cecina y jamón de la sierra",
+            "Queso de Tronchón (el que cita El Quijote, del pueblo vecino)",
+            "Olla maestratense (guiso de legumbres y carnes)",
+            "Migas",
+            "Trufa negra solo en temporada"
+          ],
+          "nota": "Los restaurantes de estos pueblos son pocos y de menú: no contar con comer después de las 15:00."
+        },
+        "tarde": "Vuelta al camping hacia las 15:30, descanso y paseo por la Virgen de la Vega. Última noche en altura: revisar la moto (cadena, presiones) y preparar el enlace largo del lunes.",
+        "consejo": "Domingo: motos de grupo y coches de excursión en las mismas carreteras. Ritmo conservador, no seguir a nadie, y recortar por Mosqueruela si el cuerpo o el cielo lo piden."
+      },
       "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva", "Camping Los Alamos"],
       "paradas": ["Mosqueruela - cafe", "Cantavieja - comida", "Fortanete"],
       "notas": [
@@ -335,6 +786,74 @@
       "salida": "09:00",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Manzanera", "lat": 40.05, "lon": -0.83 }, { "nombre": "Villargordo del Cabriel", "lat": 39.53, "lon": -1.44 }],
+      "guia": {
+        "resumen": "De la Sierra de Gúdar a la Serranía valenciana y la Manchuela: Mora de Rubielos y su castillo, Sarrión (la capital de la trufa), la sierra de Javalambre por Manzanera y Arcos de las Salinas, y el interior de Valencia hasta la meseta de Utiel-Requena.",
+        "ver": [
+          {
+            "lugar": "Mora de Rubielos",
+            "tipo": "cafe",
+            "que": "Castillo-palacio gótico enorme y muy bien conservado, excolegiata de Santa María y plaza porticada. Café en la plaza y un vistazo al castillo desde fuera (dentro, unos 45 min si se quiere).",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Sarrion",
+            "tipo": "pueblo",
+            "que": "Capital española de la trufa negra. Fuera de temporada (noviembre a marzo) solo tiendas con conservas y aceites trufados. De paso.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Manzanera",
+            "tipo": "pueblo",
+            "que": "Pueblo al pie de la sierra de Javalambre con restos de muralla y portal. Parada de descanso corta.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Arcos de las Salinas",
+            "tipo": "naturaleza",
+            "que": "Último pueblo de Teruel, con salinas históricas junto al río. De paso, foto rápida.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Aras de los Olmos",
+            "tipo": "cafe",
+            "que": "Pueblo del alto Turia, en una de las zonas con menos contaminación lumínica de la península (observatorios astronómicos cerca). Casco pequeño con torre y ermita. Parada de descanso y café.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Santa Cruz de Moya",
+            "tipo": "pueblo",
+            "que": "Ya en Cuenca, pueblo del Turia junto al río. De paso. La ruta baja después por Landete y Sinarcas hacia la meseta.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Utiel",
+            "tipo": "comida",
+            "que": "Capital de la DO Utiel-Requena (uva bobal). Compra en el supermercado para la cena: pan, embutido de la zona, queso, fruta y una botella de bobal. Si el horario lo permite, comer aquí; si no, en Aras o Landete.",
+            "tiempo": "45 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Comida en Aras de los Olmos o Landete si es la hora (13:00-13:30); si se llega bien, en Utiel. Cena en el apartamento con lo comprado en Utiel: lunes en pueblo pequeño, no contar con cenar fuera.",
+          "platos": [
+            "Embutidos de Requena: morcilla de cebolla, perro, güeña, longaniza",
+            "Ajoarriero",
+            "Gazpacho manchego",
+            "Bollo con sardina (pan con sardina, tomate y pimiento)",
+            "Olla de pueblo",
+            "Vino bobal de Utiel-Requena (para la cena)"
+          ],
+          "nota": "Villargordo del Cabriel está junto al Parque Natural de las Hoces del Cabriel; Casa Cabriel, el plan B, tiene restaurante."
+        },
+        "tarde": "Llegada a las 16:00 a Villargordo, entrada por caja de llaves o cita (confirmar). Descanso y, si apetece, un paseo corto: el mirador de los Cuchillos de Contreras sobre las Hoces del Cabriel está en la antigua N-III junto al embalse de Contreras, a pocos km por asfalto (confirmar acceso en el alojamiento). Cena en el apartamento.",
+        "consejo": "Losilla es el shaping point clave para que Kurviger no invente atajos. Gasolina: llenar en Mora de Rubielos o Sarrión; en el tramo Manzanera-Aras no contar con surtidor abierto a mediodía."
+      },
       "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Mora de Rubielos", "Sarrion", "Manzanera", "Torrijas", "Arcos de las Salinas", "Losilla", "Aras de los Olmos", "Santa Cruz de Moya", "Landete", "Sinarcas", "Utiel", "Via Caprasia"],
       "paradas": ["Mora de Rubielos - castillo y cafe", "Manzanera", "Aras de los Olmos", "Utiel - supermercado para la cena"],
       "notas": [
@@ -368,6 +887,60 @@
       "salida": "10:00",
       "llegada_prevista": "13:30",
       "meteo_puntos": [{ "nombre": "Cofrentes", "lat": 39.23, "lon": -1.06 }, { "nombre": "Alcala del Jucar", "lat": 39.19, "lon": -1.43 }],
+      "guia": {
+        "resumen": "Etapa corta y de placer: la Requena medieval y sus cuevas, el valle de Ayora-Cofrentes con su castillo sobre la confluencia del Júcar y el Cabriel, y la hoz del Júcar hasta Alcalá del Júcar, un pueblo de cuevas colgado del cañón.",
+        "ver": [
+          {
+            "lugar": "Requena",
+            "tipo": "cafe",
+            "que": "Barrio de La Villa: casco medieval sobre un peñón con la Plaza de Albornoz, la Torre del Homenaje y las Cuevas de la Villa (bodegas y silos subterráneos, visita guiada corta). Café en la plaza y compra de embutido si apetece.",
+            "tiempo": "45 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Cofrentes",
+            "tipo": "mirador",
+            "que": "Castillo sobre la confluencia del Júcar y el Cabriel, con mirador; al lado, el cerro Agrás, un volcán extinguido, y el balneario de Hervideros. La central nuclear se ve desde la carretera. Parada de 20-30 min.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Jalance",
+            "tipo": "pueblo",
+            "que": "Pueblo con castillo árabe en lo alto. De paso; la carretera hacia Casas de Ves y la hoz del Júcar es el plato fuerte.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Casas de Ves",
+            "tipo": "pueblo",
+            "que": "Último pueblo antes de entrar en la hoz del Júcar. La carretera baja al cañón entre paredes y meandros: despacio, es de las más bonitas del viaje.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Alcala del Jucar",
+            "tipo": "pueblo",
+            "que": "Uno de los pueblos más bonitos de España: casas escalonadas en la ladera del cañón, castillo almohade arriba, puente sobre el Júcar, plaza de toros de forma irregular y casas-cueva que atraviesan la montaña de lado a lado (varias son visitables, con bar dentro). Paseo por el río y subida al castillo al atardecer.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Alcalá del Júcar, con calma, a las 14:00 tras llegar. Restaurantes junto al río y en la calle principal.",
+          "platos": [
+            "Gazpacho manchego",
+            "Atascaburras",
+            "Ajo mataero (paté de hígado de cerdo, pan y especias)",
+            "Mojete (ensalada de tomate, bacalao y huevo)",
+            "Carne a la brasa",
+            "Dulces de sartén y miguelitos de la comarca"
+          ],
+          "nota": "Vino DO Manchuela, también bobal. Es martes: ambiente tranquilo, buen día para el pueblo."
+        },
+        "tarde": "Colada en la lavadora de Los Olivos, revisión de la tensión de cadena y paseo largo por Alcalá: cuevas, río, castillo. Baño en el río si el tiempo acompaña (hay zonas de baño junto al pueblo). Cena en el pueblo o en el apartamento.",
+        "consejo": "Salida a las 10:00 sin prisa. En la hoz del Júcar, carretera estrecha con curvas ciegas y algún ciclista: ritmo de paseo."
+      },
       "waypoints": ["Via Caprasia", "Requena", "Los Pedrones", "Cofrentes", "Jalance", "Casas de Ves", "Alcala del Jucar", "Casas Rurales Los Olivos"],
       "paradas": ["Cofrentes - castillo y mirador", "Alcala del Jucar - casas cueva, castillo y rio"],
       "objetivo": "Dia corto: descanso, colada en lavadora y revision de tension de cadena.",
@@ -397,6 +970,75 @@
       "salida": "09:00",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Ayna", "lat": 38.56, "lon": -2.08 }, { "nombre": "Moratalla", "lat": 38.19, "lon": -1.89 }],
+      "guia": {
+        "resumen": "Los meandros del Júcar por Jorquera, la llanura de Chinchilla, y luego el sur de Albacete: Liétor y Ayna colgados sobre el río Mundo, Elche de la Sierra, y la entrada en Murcia por Socovos hasta Moratalla y su santuario.",
+        "ver": [
+          {
+            "lugar": "Jorquera",
+            "tipo": "mirador",
+            "que": "Pueblo sobre un meandro del Júcar rodeado de murallas almohades. Mirador a la entrada con vistas al cañón. Parada de diez minutos.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Chinchilla de Monte-Aragon",
+            "tipo": "pueblo",
+            "que": "Ciudad histórica sobre un cerro con castillo, Plaza de la Mancha porticada e iglesia de Santa María del Salvador. Si se va bien de tiempo, café rápido en la plaza; si no, de paso.",
+            "tiempo": "0 / 30 min",
+            "en_ruta": true,
+            "opcional": true
+          },
+          {
+            "lugar": "Peñas de San Pedro",
+            "tipo": "monumento",
+            "que": "Castillo sobre una peña enorme que se ve desde kilómetros. Waypoint de paso para mantener el corredor asfaltado; foto desde la carretera.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Lietor",
+            "tipo": "pueblo",
+            "que": "Pueblo colgado sobre el río Mundo, con la ermita de Belén (frescos del s. XVIII) y calles moriscas. Parada corta y mirador.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Ayna",
+            "tipo": "comida",
+            "que": "El pueblo de 'Amanece, que no es poco' (Berlanga rodó aquí), encajado en el cañón del río Mundo. El Mirador del Diablo, en la carretera antes de bajar al pueblo, es la gran foto del día. Comida en el pueblo.",
+            "tiempo": "1h30",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Elche de la Sierra",
+            "tipo": "cafe",
+            "que": "Pueblo famoso por sus alfombras de serrín del Corpus. Café y descanso antes de la subida a Férez y Socovos.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Moratalla",
+            "tipo": "pueblo",
+            "que": "Casco medieval escalonado bajo el castillo-fortaleza. Las últimas curvas suben al Santuario de la Casa de Cristo, entre pinares, donde está La Cilla: sitio tranquilo y con vistas.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Ayna, hacia las 13:30, en el pueblo.",
+          "platos": [
+            "Ajo mataero",
+            "Gazpacho manchego",
+            "Atascaburras",
+            "Trucha del río Mundo",
+            "Cordero segureño",
+            "Miel y dulces de la sierra"
+          ],
+          "nota": "Por la noche ya en Murcia: en La Cilla (miércoles abre 20:30-23:00, reservar) o en Moratalla, cocina murciana del noroeste."
+        },
+        "tarde": "Llegada a La Cilla a las 16:00. Paseo por el santuario y los pinares, y si apetece, bajar a Moratalla (10 min) para ver el casco y el castillo. Cena en La Cilla con reserva hecha desde casa.",
+        "consejo": "Peñas de San Pedro y Alcadozo van como waypoints para forzar la CM-3203; no dejar que Kurviger busque atajos por secundarias sin asfalto."
+      },
       "waypoints": ["Casas Rurales Los Olivos", "Alcala del Jucar", "Jorquera", "Valdeganga", "Chinchilla de Monte-Aragon", "Pozo Cañada", "Peñas de San Pedro", "Alcadozo", "Lietor", "Ayna", "Elche de la Sierra", "Ferez", "Socovos", "Moratalla", "Santuario Casa de Cristo / La Cilla"],
       "paradas": ["Jorquera - mirador", "Ayna - Mirador del Diablo y comida", "Elche de la Sierra - cafe"],
       "notas": [
@@ -430,6 +1072,67 @@
       "salida": "09:30",
       "llegada_prevista": "14:30",
       "meteo_puntos": [{ "nombre": "Velez-Blanco", "lat": 37.69, "lon": -2.10 }, { "nombre": "Almeria", "lat": 36.84, "lon": -2.46 }],
+      "guia": {
+        "resumen": "Vuelta a casa por el noroeste murciano y la comarca de Los Vélez: Caravaca de la Cruz, la sierra de María, el castillo renacentista de Vélez-Blanco, y desde Vélez-Rubio la autovía hasta Almería.",
+        "ver": [
+          {
+            "lugar": "Caravaca de la Cruz",
+            "tipo": "monumento",
+            "que": "Una de las cinco ciudades santas del mundo. La Basílica-Santuario de la Vera Cruz dentro del castillo, en lo alto, domina la ciudad. Parada solo de foto desde abajo o café rápido en el casco; no es día de visitas largas.",
+            "tiempo": "0 / 30 min",
+            "en_ruta": true,
+            "opcional": true
+          },
+          {
+            "lugar": "Barranda",
+            "tipo": "pueblo",
+            "que": "Pedanía de Caravaca conocida por su fiesta de las Cuadrillas y el Museo de Música Étnica. De paso.",
+            "tiempo": "0 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Puebla de Don Fadrique",
+            "tipo": "pueblo",
+            "que": "Ya en Granada, a los pies de La Sagra (2.380 m). Pueblo de paso, buen sitio para repostar si hace falta.",
+            "tiempo": "5 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Maria",
+            "tipo": "cafe",
+            "que": "Pueblo blanco del Parque Natural Sierra de María-Los Vélez, a 1.200 m. Café en la plaza.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Velez-Blanco",
+            "tipo": "monumento",
+            "que": "Castillo de los Fajardo, renacentista, sobre el pueblo: su patio de mármol se vendió y hoy está en el Museo Metropolitano de Nueva York. Cerca, la Cueva de los Letreros, con las pinturas rupestres del Indalo (el símbolo de Almería). Parada de 20 minutos en el pueblo.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Velez-Rubio",
+            "tipo": "pueblo",
+            "que": "Iglesia de la Encarnación, barroca y enorme, en la plaza. Último pueblo de sierra; desde aquí, autovía A-92N y A-7 a casa.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Comida en casa en Almería, llegando a las 14:30. Si aprieta el hambre, tapa en Vélez-Blanco o Vélez-Rubio.",
+          "platos": [
+            "Gurullos con conejo (pasta de la comarca)",
+            "Olla de trigo",
+            "Migas de sémola con tropezones",
+            "Tortas de chicharrones",
+            "Jamón y embutidos de Los Vélez"
+          ],
+          "nota": "Última etapa: no hay prisa por comer en ruta; mejor llegar y cerrar el viaje con calma."
+        },
+        "tarde": "En casa: descargar maletas, foto de la moto con el cuentakilómetros y anotar los km reales del viaje. Cadena limpia y engrasada antes de que se enfríe la satisfacción.",
+        "consejo": "No usar Puerto Lumbreras como waypoint. Desde Vélez-Rubio, autovía sin dudarlo: el cansancio acumulado de once días no se nota hasta que se nota."
+      },
       "waypoints": ["La Cilla", "Moratalla", "Caravaca de la Cruz", "Barranda", "Puebla de Don Fadrique", "Maria", "Velez-Blanco", "Velez-Rubio", "Almeria"],
       "paradas": ["Maria - cafe", "Velez-Blanco - castillo"],
       "notas": ["No usar Puerto Lumbreras como waypoint.", "Desde Velez-Rubio dejar la opcion rapida por A-92N/A-7."]

@@ -16,7 +16,7 @@ Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
 | Pestaña | Contenido |
 | --- | --- |
 | Resumen | Cuenta atrás o etapa de hoy, contactos, reglas globales, rutina diaria, filosofía |
-| Etapas | Las 11 etapas con km, tiempo real, dificultad, fatiga, perfil Kurviger, waypoints (enlace a Google Maps), horario, paradas, notas, equipación del día y ficha del alojamiento |
+| Etapas | Las 11 etapas con km, tiempo real, dificultad, fatiga, perfil Kurviger, waypoints (enlace a Google Maps), horario, paradas, guía turística del día (qué ver y dónde parar, qué comer, la tarde, un consejo), notas, equipación del día y ficha del alojamiento |
 | Noches | Las 10 noches con teléfono pulsable y «cómo llegar» |
 | Tiempo | Previsión diaria de [Open-Meteo](https://open-meteo.com/) (gratuita, sin clave, 16 días) para dos puntos de cada etapa, con veredicto Bueno / Regular / Malo, temperaturas, probabilidad de lluvia y rachas. Se guarda en el móvil y se refresca cada 3 h. La misma previsión aparece en la ficha de cada etapa y en las tarjetas de Resumen |
 | Listas | Checklist previa, compras, pedido Amazon, contactos pendientes y cosas a confirmar con cada alojamiento. Las marcas se guardan en el dispositivo (`localStorage`) |

@@ -243,6 +243,29 @@ function pagoHTML(a) {
 function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
 function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
 
+/* ---------- guia turistica por etapa ---------- */
+const POI_ICON = { mirador: '🔭', monumento: '🏰', naturaleza: '🌲', pueblo: '🏘️', cafe: '☕', comida: '🍽️', paseo: '🚶' };
+function guiaHTML(e) {
+  const g = e.guia; if (!g) return '';
+  const ver = (g.ver || []).map((v) => `<div class="poi${v.opcional ? ' opcional' : ''}">
+      <span class="poi-icon" aria-hidden="true">${POI_ICON[v.tipo] || '📍'}</span>
+      <div class="poi-body">
+        <div class="poi-head"><b>${esc(v.lugar)}</b>${v.opcional ? '<span class="badge">Opcional</span>' : ''}${v.tiempo ? `<span class="poi-time">⏱ ${esc(v.tiempo)}</span>` : ''}</div>
+        <p>${esc(v.que)}</p>
+        <small><a href="${mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small>
+      </div></div>`).join('');
+  const c = g.comer;
+  return `<h2 id="guia">Guía del día</h2>
+    <div class="card guia">
+      <p class="lead">${esc(g.resumen)}</p>
+      <h4>Qué ver y dónde parar</h4>
+      <div class="poi-list">${ver}</div>
+      ${c ? `<h4>Qué comer</h4><p>${esc(c.donde)}</p><ul class="platos">${(c.platos || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>${c.nota ? `<p><small>${esc(c.nota)}</small></p>` : ''}` : ''}
+      ${g.tarde ? `<h4>La tarde</h4><p>${esc(g.tarde)}</p>` : ''}
+      ${g.consejo ? `<div class="note info"><b>Consejo:</b> ${esc(g.consejo)}</div>` : ''}
+    </div>`;
+}
+
 /* ---------- vistas ---------- */
 function etapaCard(e, opts = {}) {
   const t = tipoInfo(e.tipo);
@@ -388,6 +411,7 @@ function viewEtapas(arg) {
 
     ${e.horario_orientativo ? `<h2>Horario orientativo</h2><div class="card"><div class="tbl-wrap"><table><thead><tr><th>Hora</th><th>Lugar</th><th>Qué</th></tr></thead><tbody>${e.horario_orientativo.map((h) => `<tr><td><b>${esc(h.hora)}</b></td><td>${esc(h.lugar)}</td><td>${esc(h.que)}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
     ${e.paradas ? `<h2>Paradas</h2><div class="card">${list(e.paradas)}</div>` : ''}
+    ${guiaHTML(e)}
     ${e.notas ? `<h2>Notas</h2><div class="card">${list(e.notas)}</div>` : ''}
 
     ${cfg ? `<h2>Equipación del día</h2><div class="card"><p class="muted">Configuración «${human(cfgKey)}»</p><dl><dt>Pantalón</dt><dd>${esc(cfg.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(cfg.chaqueta)}</dd>${cfg.nota ? `<dt>Nota</dt><dd>${esc(cfg.nota)}</dd>` : ''}</dl>
@@ -489,7 +513,11 @@ function viewEquipaje() {
 function viewGuia() {
   const d = D.data, nav = d.proyecto.navegacion, k = nav.kurviger, m = d.proyecto.moto, meta = d.meta;
   const KV = { extra_curvy: 'Extra Curvy', fast: 'Fast', fast_and_curvy: 'Fast & Curvy', curvy: 'Curvy', shaping_points: 'Shaping points', control: 'Control' };
-  return `<h2>Navegación</h2>
+  const conGuia = d.itinerario.filter((e) => e.guia);
+  return `${conGuia.length ? `<h2>Guía turística por etapa</h2>
+    <div class="card"><p class="muted">Qué ver, dónde parar, qué comer y qué hacer por la tarde. Está en la ficha de cada día.</p>
+      <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
+    <h2>Navegación</h2>
     <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd></dl></div>
     <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl></div>
 

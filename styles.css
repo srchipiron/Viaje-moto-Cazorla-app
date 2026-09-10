@@ -195,6 +195,28 @@ dd { margin: 0; }
   .wx-row { grid-template-columns: 34px 1fr; grid-template-areas: "icon main" "icon nums" "icon links"; }
 }
 
+/* Guia turistica */
+.guia .lead { font-size: 1.02rem; line-height: 1.5; margin: 2px 0 6px; }
+.poi-list { display: flex; flex-direction: column; }
+.poi { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.poi:last-child { border-bottom: 0; }
+.poi-icon { flex: 0 0 30px; font-size: 1.4rem; line-height: 1.3; text-align: center; }
+.poi-body { flex: 1; min-width: 0; }
+.poi-body p { margin: 3px 0 4px; font-size: .95rem; }
+.poi-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.poi-time { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+.poi.opcional .poi-body { color: var(--muted); }
+.poi.opcional .poi-body b { color: var(--text); }
+.platos { columns: 2; column-gap: 18px; padding-left: 20px; }
+.platos li { break-inside: avoid; }
+@media (max-width: 480px) { .platos { columns: 1; } }
+.guia-index { display: flex; flex-direction: column; }
+.guia-link { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "b t" "b s"; gap: 0 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; }
+.guia-link:last-child { border-bottom: 0; }
+.guia-link .badge { grid-area: b; }
+.guia-link > span:not(.badge) { grid-area: t; font-weight: 600; }
+.guia-link small { grid-area: s; }
+
 /* Checklists */
 .check { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
 .check:last-child { border-bottom: 0; }
