@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 28,
+    "revision": 29,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 10 corregido: la via que estaba en Corral Rubio se movio a Chinchilla y el destino a La Cilla; de 318 km a 242 km y 4h, horario recalculado, llegada 16:15",
       "Dia 9 ajustado a la ruta de Kurviger, ya desde Via Caprasia: 117 km, 2h, horario recalculado, llegada 13:35",
       "Dia 8 ajustado a la ruta de Kurviger con destino en Via Caprasia: 208 km, 3h30, horario recalculado, llegada 15:55",
       "Dia 7 ajustado a la ruta DEF de Kurviger (coincide con el plan): 144 km, 2h30, horario recalculado, llegada 15:20",
@@ -1072,15 +1073,15 @@
       "tipo": "calor_y_llano_con_sierra",
       "origen": "Casas Rurales Los Olivos",
       "destino": "La Cilla Hospederia (Moratalla)",
-      "km_aprox": 220,
-      "tiempo_real_aprox": "3h35",
+      "km_aprox": 242,
+      "tiempo_real_aprox": "4h",
       "dificultad": 3,
-      "fatiga": 3,
+      "fatiga": 4,
       "perfil_kurviger": "Fast & Curvy",
       "salida": "09:00",
-      "llegada_prevista": "16:00",
+      "llegada_prevista": "16:15",
       "meteo_puntos": [{ "nombre": "Ayna", "lat": 38.56, "lon": -2.08 }, { "nombre": "Moratalla", "lat": 38.19, "lon": -1.89 }],
-      "gpx": { "archivo": "gpx/dia-10.gpx", "track": "data/tracks/dia-10.json", "nota": "Ruta Kurviger 'Dia 9 Alcala del Jucar - Moratalla' (10 sept; en el plan es el dia 10): 318,2 km y 4h52 estimadas frente a 220 km / 3h35 del plan. Supera el maximo de 4 h de conduccion real: revisar el trazado o recortar. Termina en Moratalla la Vieja, no en el santuario de la Casa de Cristo." },
+      "gpx": { "archivo": "gpx/dia-10.gpx", "track": "data/tracks/dia-10.json", "vias": ["Jorquera (mirador)", "Valdeganga", "Chinchilla de Monte-Aragon", "Pozo Cañada", "Peñas de San Pedro", "Alcadozo", "Lietor", "Ayna", "Elche de la Sierra", "Ferez", "Socovos", "Moratalla"], "nota": "Ruta Kurviger 'Dia 10' corregida (10 sept): 241,8 km y 3h42 estimadas, frente a los 318 km y 4h52 de la version anterior. Ya pasa por Chinchilla y termina en La Cilla. Es la etapa mas larga en tiempo del viaje: si el cuerpo no acompaña, saltar Chinchilla ahorra unos 20 km." },
       "guia": {
         "resumen": "Los meandros del Júcar por Jorquera, la llanura de Chinchilla, y luego el sur de Albacete: Liétor y Ayna colgados sobre el río Mundo, Elche de la Sierra, y la entrada en Murcia por Socovos hasta Moratalla y su santuario.",
         "ver": [
@@ -1151,10 +1152,23 @@
         "consejo": "Peñas de San Pedro y Alcadozo van como waypoints para forzar la CM-3203; no dejar que Kurviger busque atajos por secundarias sin asfalto."
       },
       "waypoints": ["Casas Rurales Los Olivos", "Alcala del Jucar", "Jorquera", "Valdeganga", "Chinchilla de Monte-Aragon", "Pozo Cañada", "Peñas de San Pedro", "Alcadozo", "Lietor", "Ayna", "Elche de la Sierra", "Ferez", "Socovos", "Moratalla", "Santuario Casa de Cristo / La Cilla"],
-      "paradas": ["Jorquera - mirador", "Ayna - Mirador del Diablo y comida", "Elche de la Sierra - cafe"],
+      "horario_orientativo": [
+        { "hora": "09:17-09:35", "lugar": "Jorquera", "que": "Mirador sobre el meandro del Jucar y murallas almohades" },
+        { "hora": "10:25-10:55", "lugar": "Chinchilla de Monte-Aragon", "que": "Cafe en la Plaza de la Mancha; castillo sobre el cerro. Recortable si se va justo" },
+        { "hora": "11:25", "lugar": "Pozo Cañada", "que": "De paso. REPOSTAR aqui: a partir de Peñas empieza la sierra" },
+        { "hora": "11:50", "lugar": "Peñas de San Pedro", "que": "Castillo sobre la peña, visible desde la carretera" },
+        { "hora": "12:25-12:45", "lugar": "Lietor", "que": "Pueblo morisco sobre el rio Mundo; mirador" },
+        { "hora": "13:10-14:45", "lugar": "Ayna", "que": "Mirador del Diablo antes de bajar al pueblo y comida. Es la gran parada del dia" },
+        { "hora": "15:10-15:25", "lugar": "Elche de la Sierra", "que": "Cafe" },
+        { "hora": "16:00", "lugar": "Moratalla", "que": "De paso; ultimas curvas hasta el santuario" },
+        { "hora": "16:15", "lugar": "La Cilla (Casa de Cristo)", "que": "Llegada. Cena reservada a las 20:30" }
+      ],
+      "paradas": ["Jorquera - mirador", "Chinchilla - cafe", "Ayna - Mirador del Diablo y comida", "Elche de la Sierra - cafe"],
       "notas": [
+        "Horas de paso calculadas con los tiempos de Kurviger (3h42 de conduccion) mas las paradas. Es la etapa con mas conduccion junto con el dia 3: salir a las 09:00 sin falta.",
         "Peñas de San Pedro y Alcadozo son waypoints intencionados para mantener el corredor asfaltado CM-3203.",
-        "No dejar a Kurviger buscar atajos secundarios."
+        "No dejar a Kurviger buscar atajos secundarios.",
+        "Recorte disponible: saltar Chinchilla de Monte-Aragon ahorra unos 20 km y 20 minutos."
       ],
       "alojamiento": {
         "nombre": "La Cilla Moratalla (Casa de Cristo)",
