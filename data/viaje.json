@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 8,
+    "revision": 9,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,7 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
-      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dia 1 integrado."
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
 
@@ -194,6 +194,7 @@
       "salida": "09:00",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Segura de la Sierra", "lat": 38.30, "lon": -2.65 }, { "nombre": "Riopar", "lat": 38.50, "lon": -2.42 }],
+      "gpx": { "archivo": "gpx/dia-02.gpx", "track": "data/tracks/dia-02.json", "nota": "Ruta Kurviger 'Dia 2 Camping Puente de las Herrerias - Riopar' (10 sept): 131,4 km y 2h20 estimadas frente a 155 km / 3h10 del plan." },
       "guia": {
         "resumen": "El gran día de Cazorla y Segura: el valle del Guadalquivir, el embalse del Tranco, Hornos colgado sobre el agua y Segura de la Sierra, uno de los pueblos más bonitos de Andalucía. Se remata con los pinares de Siles y el Calar del Mundo.",
         "ver": [
@@ -788,6 +789,7 @@
       "salida": "09:00",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Manzanera", "lat": 40.05, "lon": -0.83 }, { "nombre": "Villargordo del Cabriel", "lat": 39.53, "lon": -1.44 }],
+      "gpx": { "archivo": "gpx/dia-08.gpx", "track": "data/tracks/dia-08.json", "nota": "Ruta Kurviger 'Dia 7 Camping Los Alamos - Utiel' (10 sept; en el plan es el dia 8): 178,7 km y 2h52 hasta Utiel. Termina en Utiel, no en Villargordo del Cabriel: faltan unos 25 km hasta Via Caprasia." },
       "guia": {
         "resumen": "De la Sierra de Gúdar a la Serranía valenciana y la Manchuela: Mora de Rubielos y su castillo, Sarrión (la capital de la trufa), la sierra de Javalambre por Manzanera y Arcos de las Salinas, y el interior de Valencia hasta la meseta de Utiel-Requena.",
         "ver": [
@@ -889,6 +891,7 @@
       "salida": "10:00",
       "llegada_prevista": "13:30",
       "meteo_puntos": [{ "nombre": "Cofrentes", "lat": 39.23, "lon": -1.06 }, { "nombre": "Alcala del Jucar", "lat": 39.19, "lon": -1.43 }],
+      "gpx": { "archivo": "gpx/dia-09.gpx", "track": "data/tracks/dia-09.json", "nota": "Ruta Kurviger 'Dia 8 Utiel - Alcala del Jucar' (10 sept; en el plan es el dia 9): 106,4 km y 1h42. Arranca en Utiel, no en Villargordo del Cabriel." },
       "guia": {
         "resumen": "Etapa corta y de placer: la Requena medieval y sus cuevas, el valle de Ayora-Cofrentes con su castillo sobre la confluencia del Júcar y el Cabriel, y la hoz del Júcar hasta Alcalá del Júcar, un pueblo de cuevas colgado del cañón.",
         "ver": [
@@ -972,6 +975,7 @@
       "salida": "09:00",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Ayna", "lat": 38.56, "lon": -2.08 }, { "nombre": "Moratalla", "lat": 38.19, "lon": -1.89 }],
+      "gpx": { "archivo": "gpx/dia-10.gpx", "track": "data/tracks/dia-10.json", "nota": "Ruta Kurviger 'Dia 9 Alcala del Jucar - Moratalla' (10 sept; en el plan es el dia 10): 318,2 km y 4h52 estimadas frente a 220 km / 3h35 del plan. Supera el maximo de 4 h de conduccion real: revisar el trazado o recortar. Termina en Moratalla la Vieja, no en el santuario de la Casa de Cristo." },
       "guia": {
         "resumen": "Los meandros del Júcar por Jorquera, la llanura de Chinchilla, y luego el sur de Albacete: Liétor y Ayna colgados sobre el río Mundo, Elche de la Sierra, y la entrada en Murcia por Socovos hasta Moratalla y su santuario.",
         "ver": [
@@ -1074,6 +1078,7 @@
       "salida": "09:30",
       "llegada_prevista": "14:30",
       "meteo_puntos": [{ "nombre": "Velez-Blanco", "lat": 37.69, "lon": -2.10 }, { "nombre": "Almeria", "lat": 36.84, "lon": -2.46 }],
+      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "nota": "Ruta Kurviger 'Dia 10 Casa Cristo Moratalla - Almeria' (10 sept; en el plan es el dia 11): 263,0 km y 3h53 frente a 265 km / 3h10 del plan." },
       "guia": {
         "resumen": "Vuelta a casa por el noroeste murciano y la comarca de Los Vélez: Caravaca de la Cruz, la sierra de María, el castillo renacentista de Vélez-Blanco, y desde Vélez-Rubio la autovía hasta Almería.",
         "ver": [
