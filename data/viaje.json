@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 20,
+    "revision": 21,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -566,7 +566,7 @@
       "salida": "10:00 (sin prisa; desayuno en el hotel)",
       "llegada_prevista": "12:30",
       "meteo_puntos": [{ "nombre": "Bronchales", "lat": 40.51, "lon": -1.59 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
-      "gpx": { "archivo": "gpx/dia-05.gpx", "track": "data/tracks/dia-05.json", "vias": ["Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin (vuelta)", "Tramacastilla (vuelta)", "Torres de Albarracin"], "nota": "Primera mitad del GPX 'Dia 5 Albarracin - Camping Los Alamos' de Kurviger (10 sept), partido en Albarracin con tools/gpxsplit.py. 78,8 km y 1h20 estimadas. Coincide con el plan; la vuelta de Orihuela a Noguera va por la carretera directa, sin repetir Bronchales." },
+      "gpx": { "archivo": "gpx/dia-05.gpx", "track": "data/tracks/dia-05.json", "vias": ["Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Orihuela del Tremedal (salida)", "Noguera de Albarracin (vuelta)", "Tramacastilla (vuelta)", "Torres de Albarracin"], "nota": "Ruta Kurviger 'Dia 5 DEF' (10 sept), ya cortada en Kurviger: 79,7 km y 1h20 estimadas. Coincide con el plan; la vuelta de Orihuela a Noguera va por la carretera directa, sin repetir Bronchales. Las vias 4 y 5 estan las dos en Orihuela (duplicada, sin efecto)." },
       "guia": {
         "resumen": "Día de descanso activo por los pinares de la Sierra de Albarracín: bucle corto y suave hasta Bronchales y Orihuela del Tremedal, y tarde entera para Albarracín sin prisa.",
         "ver": [
