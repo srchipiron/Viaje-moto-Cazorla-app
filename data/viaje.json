@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 12,
+    "revision": 13,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,7 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
-      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 3, 4, 6, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Todos los dias integrados salvo el 5 (bucle de Bronchales) (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
 
@@ -692,6 +692,7 @@
       "salida": "09:00",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Valdelinares", "lat": 40.39, "lon": -0.61 }, { "nombre": "Cantavieja", "lat": 40.53, "lon": -0.41 }],
+      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "nota": "Ruta Kurviger 'Dia 6 Camping Los Álamos, Alcalá de la Selva' (10 sept; en el plan es el dia 7): 158,1 km y 2h46 estimadas frente a 160 km / 3h15 del plan. Las vias coinciden con el bucle previsto." },
       "guia": {
         "resumen": "El bucle del Maestrazgo: Valdelinares, el pueblo más alto de España, y una sucesión de villas medievales de piedra (Linares de Mora, Mosqueruela, La Iglesuela del Cid, Cantavieja, Fortanete) por carreteras solitarias entre 1.200 y 1.800 m.",
         "ver": [
