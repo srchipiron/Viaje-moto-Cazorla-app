@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 23,
+    "revision": 24,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 7 ajustado a la ruta de Kurviger (coincide con el plan): 158 km, 3h, horario recalculado, llegada 15:40",
       "Dia 6 ajustado a la ruta de Kurviger (coincide con el plan): 93 km, 2h, horario recalculado, llegada 14:45",
       "Dia 5 ajustado a la ruta de Kurviger (coincide con el plan): 79 km, 1h30, horario recalculado, llegada 12:25",
       "Dia 4 ajustado a la ruta DEF de Kurviger: 153 km con el rio Cuervo incluido, 2h30, horario recalculado, llegada 13:25; pendiente decidir Huelamo o carretera de Valdemeca",
@@ -746,16 +747,16 @@
       "tipo": "montaña_tecnica",
       "origen": "Camping Los Alamos",
       "destino": "Camping Los Alamos",
-      "km_aprox": 160,
-      "tiempo_real_aprox": "3h15",
+      "km_aprox": 158,
+      "tiempo_real_aprox": "3h",
       "dificultad": 4,
       "fatiga": 3,
       "perfil_kurviger": "Curvy",
       "equipaje": "Sin maletas laterales (se quedan en el bungalow). Pasar al SH58X: botiquin, Givi S450, compresor, agua extra y barrita.",
       "salida": "09:00",
-      "llegada_prevista": "15:30",
+      "llegada_prevista": "15:40",
       "meteo_puntos": [{ "nombre": "Valdelinares", "lat": 40.39, "lon": -0.61 }, { "nombre": "Cantavieja", "lat": 40.53, "lon": -0.41 }],
-      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "nota": "Ruta Kurviger 'Dia 6 Camping Los Álamos, Alcalá de la Selva' (10 sept; en el plan es el dia 7): 158,1 km y 2h46 estimadas frente a 160 km / 3h15 del plan. Las vias coinciden con el bucle previsto." },
+      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "vias": ["Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva (vuelta)"], "nota": "Ruta Kurviger 'Dia 6' (10 sept; en el plan es el dia 7): 158,1 km y 2h46 estimadas. Coincide con el bucle previsto punto por punto. Maximo 1.965 m en el km 13, subiendo de Alcala a Valdelinares: es el punto mas alto de todo el viaje." },
       "guia": {
         "resumen": "El bucle del Maestrazgo: Valdelinares, el pueblo más alto de España, y una sucesión de villas medievales de piedra (Linares de Mora, Mosqueruela, La Iglesuela del Cid, Cantavieja, Fortanete) por carreteras solitarias entre 1.200 y 1.800 m.",
         "ver": [
@@ -832,13 +833,26 @@
         "consejo": "Domingo: motos de grupo y coches de excursión en las mismas carreteras. Ritmo conservador, no seguir a nadie, y recortar por Mosqueruela si el cuerpo o el cielo lo piden."
       },
       "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva", "Camping Los Alamos"],
+      "horario_orientativo": [
+        { "hora": "09:42-10:00", "lugar": "Valdelinares", "que": "Parada visual. Se pasa antes por el punto mas alto del viaje (1.965 m): frio a esa hora" },
+        { "hora": "10:26-10:40", "lugar": "Linares de Mora", "que": "Parada corta; villa amurallada sobre el barranco" },
+        { "hora": "10:54-11:35", "lugar": "Mosqueruela", "que": "Cafe en la Plaza Mayor porticada" },
+        { "hora": "11:59-12:30", "lugar": "La Iglesuela del Cid", "que": "Plaza gotico-renacentista; paseo corto" },
+        { "hora": "12:45-14:15", "lugar": "Cantavieja", "que": "Comida. Es domingo: sentarse antes de las 14:00" },
+        { "hora": "14:30-14:45", "lugar": "Fortanete", "que": "Parada de descanso antes del tramo mas solitario" },
+        { "hora": "15:01", "lugar": "Villarroya de los Pinares", "que": "De paso" },
+        { "hora": "15:18", "lugar": "Gudar", "que": "De paso" },
+        { "hora": "15:40", "lugar": "Camping Los Alamos", "que": "Llegada" }
+      ],
       "paradas": ["Mosqueruela - cafe", "Cantavieja - comida", "Fortanete"],
       "notas": [
+        "Horas de paso calculadas con los tiempos de Kurviger (2h46 de conduccion) mas las paradas.",
         "Dia mas tecnico del viaje: curvas ciegas y tramos estrechos, ritmo conservador.",
         "Puertomingalvo eliminado del bucle.",
         "Es domingo: mas motos y coches de fin de semana; en Cantavieja llegar a comer antes de las 14:00.",
         "Etapa mas aislada: cobertura intermitente, el punto de ubicacion compartida se congelara.",
-        "100% recortable: Alcala -> Valdelinares -> Linares -> Mosqueruela y vuelta ya es una gran mañana."
+        "100% recortable: Alcala -> Valdelinares -> Linares -> Mosqueruela y vuelta ya es una gran mañana (unos 110 km).",
+        "Segundo recorte posible: saltar La Iglesuela del Cid ahorra 25 km y 25 minutos sin tocar el resto del bucle."
       ]
     },
     {
