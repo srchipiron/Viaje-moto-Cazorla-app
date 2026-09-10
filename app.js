@@ -19,6 +19,32 @@ function human(key) { return cap(String(key).replace(/_/g, ' ')); }
 function telLink(tel) { return `<a class="tel" href="tel:${esc(String(tel).replace(/\s+/g, ''))}">${esc(tel)}</a>`; }
 function mapsSearch(q) { return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`; }
 function mapsDir(q) { return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}&travelmode=driving`; }
+/* Horas "HH:MM" o "HH:MM-HH:MM" (se usa el inicio) -> minutos desde medianoche. */
+function horaMin(s) { const m = /(\d{1,2}):(\d{2})/.exec(String(s || '')); return m ? (+m[1]) * 60 + (+m[2]) : null; }
+function ahoraMin() { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+function fmtHM(min) { return `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`; }
+/* Orto y ocaso (algoritmo NOAA simplificado, precision de ~2 min). Devuelve horas locales "HH:MM". */
+function solDia(lat, lon, iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const n = Math.floor((Date.UTC(y, m - 1, d) - Date.UTC(y, 0, 0)) / 86400000);
+  const rad = Math.PI / 180;
+  const calc = (rise) => {
+    const lngH = lon / 15, t = n + ((rise ? 6 : 18) - lngH) / 24;
+    const M = (0.9856 * t) - 3.289;
+    let L = M + (1.916 * Math.sin(M * rad)) + (0.020 * Math.sin(2 * M * rad)) + 282.634; L = (L + 360) % 360;
+    let RA = Math.atan(0.91764 * Math.tan(L * rad)) / rad; RA = (RA + 360) % 360;
+    RA += (Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90); RA /= 15;
+    const sinDec = 0.39782 * Math.sin(L * rad), cosDec = Math.cos(Math.asin(sinDec));
+    const cosH = (Math.cos(90.833 * rad) - (sinDec * Math.sin(lat * rad))) / (cosDec * Math.cos(lat * rad));
+    if (cosH > 1 || cosH < -1) return null;
+    let H = rise ? 360 - Math.acos(cosH) / rad : Math.acos(cosH) / rad; H /= 15;
+    const T = H + RA - (0.06571 * t) - 6.622;
+    const UT = (((T - lngH) % 24) + 24) % 24;
+    const date = new Date(Date.UTC(y, m - 1, d, 0, 0, 0) + UT * 3600000);
+    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: (D.data && D.data.meteo && D.data.meteo.zona_horaria) || 'Europe/Madrid' });
+  };
+  return { orto: calc(true), ocaso: calc(false) };
+}
 function dots(n, max = 5) { return `<span class="dots d${n}" title="${n}/${max}">${'●'.repeat(n)}${'○'.repeat(max - n)}</span>`; }
 function tipoInfo(t) { const m = t.startsWith('montaña'); return { icon: m ? '⛰️' : '☀️', cls: m ? 'mount' : 'hot', label: human(t) }; }
 function list(items) { return `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`; }
@@ -148,7 +174,17 @@ async function meteoFetch(force) {
     D.meteo.status = Object.keys(D.meteo.byPoint).length ? 'ok' : 'error';
     D.meteo.error = err.name === 'AbortError' ? 'Tiempo de espera agotado' : (err instanceof TypeError ? 'Sin acceso a la red' : (err.message || 'Error de red'));
   }
-  if (route().view === 'tiempo' || route().view === 'etapas') { const y = window.scrollY; render(); window.scrollTo(0, y); }
+  rerender('tiempo'); rerender('etapas'); rerender('resumen');
+}
+/* Re-pinta la vista actual conservando el scroll, solo si coincide con la vista (y dia) indicados.
+   Las llamadas seguidas se agrupan en un unico repintado. */
+let RERENDER_T = 0;
+function rerender(view, dia) {
+  const r = route();
+  if (view && r.view !== view) return;
+  if (dia != null && r.view === 'etapas' && String(r.arg) !== String(dia)) return;
+  if (RERENDER_T) return;
+  RERENDER_T = setTimeout(() => { RERENDER_T = 0; const y = window.scrollY; render(); window.scrollTo(0, y); }, 30);
 }
 /* Codigos WMO de Open-Meteo */
 function wmo(code) {
@@ -210,7 +246,68 @@ function meteoStrip(e) {
   return `<div class="card wx-strip"><div class="card-title"><h3>Previsión</h3><span class="badge ${v.cls}">${v.icon} ${v.txt}</span></div>
     ${m.pts.map(({ pt, w }) => meteoPointRow(pt, w)).join('')}
     ${avisos.length ? `<div class="note">${avisos.map(esc).join(' · ')}</div>` : ''}
+    ${meteoHorasHTML(e)}
     <p><small>${D.meteo.fetched ? `Actualizado ${fmtHace(D.meteo.fetched)}` : ''} · <a href="#/tiempo">Ver todos los días</a></small></p></div>`;
+}
+
+/* Prevision por horas de una etapa (solo cuando la fecha esta a menos de 16 dias). */
+const METEO_H_KEY = 'viaje-nx500-meteo-horas';
+const METEO_HOURLY = ['precipitation_probability', 'temperature_2m', 'weather_code', 'wind_gusts_10m'];
+const HORA_INI = 7, HORA_FIN = 20; // franja que se pinta
+D.meteoH = { byDay: {}, loading: {} };
+function meteoHLoadCache() { try { const c = JSON.parse(localStorage.getItem(METEO_H_KEY)); if (c && typeof c === 'object') D.meteoH.byDay = c; } catch (e) { /* sin cache */ } }
+function meteoHDisponible(e) { const n = daysBetween(todayISO(), e.fecha); return n >= 0 && n <= 15; }
+async function meteoHorasFetch(e, force) {
+  if (!meteoHDisponible(e) || !(e.meteo_puntos || []).length || D.meteoH.loading[e.dia]) return;
+  const c = D.meteoH.byDay[e.dia];
+  if (!force && c && c.fecha === e.fecha && (Date.now() - new Date(c.fetched).getTime()) < METEO_TTL_MS) return;
+  if (!navigator.onLine) return;
+  if (!force && c && c.lastTry && Date.now() - c.lastTry < METEO_RETRY_MS) return;
+  D.meteoH.loading[e.dia] = true;
+  const pts = e.meteo_puntos;
+  const q = `latitude=${pts.map((p) => p.lat).join(',')}&longitude=${pts.map((p) => p.lon).join(',')}&hourly=${METEO_HOURLY.join(',')}&timezone=${encodeURIComponent(D.data.meteo.zona_horaria || 'Europe/Madrid')}&start_date=${e.fecha}&end_date=${e.fecha}`;
+  try {
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 12000);
+    const res = await fetch(`${METEO_API}?${q}`, { signal: ctrl.signal, cache: 'no-store' });
+    clearTimeout(t);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json(); const arr = Array.isArray(json) ? json : [json];
+    const out = { fecha: e.fecha, fetched: new Date().toISOString(), pts: [] };
+    arr.forEach((loc, i) => {
+      const pt = pts[i]; const h = loc.hourly; if (!pt || !h) return;
+      const horas = h.time.map((tm, j) => ({ h: +tm.slice(11, 13), pp: h.precipitation_probability[j], t: h.temperature_2m[j], code: h.weather_code[j], gust: h.wind_gusts_10m[j] })).filter((x) => x.h >= HORA_INI && x.h <= HORA_FIN);
+      out.pts.push({ nombre: pt.nombre, horas });
+    });
+    D.meteoH.byDay[e.dia] = out;
+    try { localStorage.setItem(METEO_H_KEY, JSON.stringify(D.meteoH.byDay)); } catch (err) { /* sin almacenamiento */ }
+  } catch (err) {
+    D.meteoH.byDay[e.dia] = { ...(c || { fecha: e.fecha, pts: [] }), lastTry: Date.now(), error: err.message };
+  }
+  delete D.meteoH.loading[e.dia];
+  rerender('etapas', e.dia);
+}
+/* Aviso de tormenta de tarde: probabilidad >= 40 % o tormenta entre las 13 y las 19 h en algun punto. */
+function tormentaTarde(hd) {
+  let peor = null;
+  (hd.pts || []).forEach((p) => p.horas.forEach((x) => {
+    if (x.h < 13 || x.h > 19) return;
+    if (x.pp >= 40 || x.code >= 95) { if (!peor || x.h < peor.h) peor = { h: x.h, pp: x.pp, code: x.code, punto: p.nombre }; }
+  }));
+  return peor;
+}
+function meteoHorasHTML(e) {
+  if (!meteoHDisponible(e)) return '';
+  const hd = D.meteoH.byDay[e.dia];
+  if (!hd || hd.fecha !== e.fecha || !hd.pts.length) { meteoHorasFetch(e, false); return hd && hd.error ? '' : `<p class="muted"><small>Cargando la previsión por horas…</small></p>`; }
+  meteoHorasFetch(e, false); // refresca si esta caducada
+  const filas = hd.pts.map((p) => `<div class="hrs-row"><b>${esc(p.nombre)}</b><div class="hrs">${p.horas.map((x) => {
+    const v = x.pp >= 70 || x.code >= 95 ? 'malo' : x.pp >= 40 || (x.code >= 51 && x.code <= 82) ? 'regular' : 'bueno';
+    return `<div class="hr hr-${v}" title="${x.h}:00 · ${wmo(x.code).label} · ${x.pp}% lluvia · ${Math.round(x.t)}° · rachas ${Math.round(x.gust)} km/h"><span class="hr-ico">${wmo(x.code).icon}</span><span class="hr-t">${Math.round(x.t)}°</span><span class="hr-bar"><i style="height:${Math.max(4, x.pp)}%"></i></span><span class="hr-pp">${x.pp}</span><span class="hr-h">${x.h}</span></div>`;
+  }).join('')}</div></div>`).join('');
+  const tt = tormentaTarde(hd);
+  const llegada = horaMin(e.llegada_prevista);
+  const aviso = tt ? `<div class="note"><b>⛈️ Lluvia o tormenta de tarde</b> desde las ${tt.h}:00 en ${esc(tt.punto)} (${tt.pp}%).${llegada != null && llegada >= tt.h * 60 ? ` La llegada prevista (${esc(e.llegada_prevista.split(' ')[0])}) cae dentro: salir antes o acortar.` : ' Llegas antes, según el plan.'}</div>` : '';
+  return `<h4>Por horas · ${fmtFecha(e.fecha)}</h4>${filas}<p><small>Barra: probabilidad de lluvia (%). Temperatura en °C.</small></p>${aviso}`;
 }
 
 function viewTiempo() {
@@ -269,8 +366,26 @@ function trackLoad(e) {
   fetch(e.gpx.track).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then((data) => { D.tracks[e.dia] = { status: 'ok', data }; })
     .catch((err) => { D.tracks[e.dia] = { status: 'error', error: err.message }; })
-    .then(() => { const r = route(); if (r.view === 'etapas' && String(r.arg) === String(e.dia)) { const y = window.scrollY; render(); window.scrollTo(0, y); } });
+    .then(() => { rerender('etapas', e.dia); rerender('guia'); rerender('hoja'); });
 }
+function trackLoadP(e) {
+  if (!e.gpx || !e.gpx.track) return Promise.resolve(null);
+  const t = D.tracks[e.dia];
+  if (t && t.status === 'ok') return Promise.resolve(t.data);
+  if (window.VIAJE_TRACKS && window.VIAJE_TRACKS[e.dia]) { D.tracks[e.dia] = { status: 'ok', data: window.VIAJE_TRACKS[e.dia] }; return Promise.resolve(D.tracks[e.dia].data); }
+  if (!t || t.status !== 'loading') D.tracks[e.dia] = { status: 'loading' };
+  return new Promise((resolve) => {
+    const wait = () => { const s = D.tracks[e.dia]; if (s && s.status !== 'loading') resolve(s.status === 'ok' ? s.data : null); else setTimeout(wait, 80); };
+    if (!t || t.status !== 'loading') {
+      fetch(e.gpx.track).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+        .then((data) => { D.tracks[e.dia] = { status: 'ok', data }; })
+        .catch((err) => { D.tracks[e.dia] = { status: 'error', error: err.message }; })
+        .then(wait);
+    } else wait();
+  });
+}
+function tracksLoadAll() { return Promise.all(D.data.itinerario.map(trackLoadP)); }
+const DIA_COLORS = ['#1d5fa5', '#c2410c', '#1f8a4c', '#7c3aed', '#b2600a', '#0e7490', '#be123c', '#4d7c0f', '#6d28d9', '#b45309', '#0369a1'];
 function fmtMin(min) { if (min == null) return '–'; const h = Math.floor(min / 60), m = min % 60; return `${h}h${String(m).padStart(2, '0')}`; }
 function fmtKm(km) { return `${km.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km`; }
 function fmtM(m) { return m == null ? '–' : `${Math.round(m).toLocaleString('es-ES')} m`; }
@@ -384,15 +499,51 @@ function loadLeaflet() {
     const js = document.createElement('script'); js.src = 'vendor/leaflet/leaflet.js'; js.onload = resolve; js.onerror = () => reject(new Error('No se pudo cargar el mapa')); document.head.appendChild(js);
   });
 }
-async function openMap(dia) {
-  const e = D.data.itinerario.find((d) => String(d.dia) === String(dia)); const st = e && D.tracks[e.dia]; if (!st || st.status !== 'ok') return;
-  const t = st.data;
-  const box = document.getElementById('mapa'); box.hidden = false; document.body.classList.add('mapa-abierto');
-  document.getElementById('mapa-titulo').textContent = `Día ${e.dia} · ${t.nombre}`;
-  try { await loadLeaflet(); } catch (err) { closeMap(); alert(err.message); return; }
+function mapaBase() {
   if (LMAP) { LMAP.remove(); LMAP = null; }
   LMAP = L.map('mapa-lienzo', { zoomControl: true });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(LMAP);
+  return LMAP;
+}
+function mapaAbrirCaja(titulo) {
+  const box = document.getElementById('mapa'); box.hidden = false; document.body.classList.add('mapa-abierto');
+  document.getElementById('mapa-titulo').textContent = titulo;
+}
+/* Mapa del viaje completo: los 11 tracks, cada dia de un color, con las noches marcadas. */
+async function openMapTodos() {
+  mapaAbrirCaja('Viaje completo · cargando…');
+  try { await loadLeaflet(); } catch (err) { closeMap(); alert(err.message); return; }
+  const tracks = await tracksLoadAll();
+  if (document.getElementById('mapa').hidden) return;
+  mapaBase();
+  const it = D.data.itinerario; const bounds = [];
+  it.forEach((e, i) => {
+    const t = tracks[i]; if (!t) return;
+    const color = DIA_COLORS[i % DIA_COLORS.length];
+    const line = L.polyline(t.track, { color, weight: 4, opacity: .85 }).addTo(LMAP).bindTooltip(`Día ${e.dia} · ${fmtFecha(e.fecha)} · ${esc(e.origen)} → ${esc(e.destino)} · ${fmtKm(t.km)}`, { sticky: true });
+    line.on('click', () => { closeMap(); location.hash = `#/etapas/${e.dia}`; });
+    bounds.push(line.getBounds());
+    // Salidas que coinciden con otra anterior (bucles desde la misma base) se desplazan un poco para que se vean.
+    const ini = t.track[0];
+    const repes = it.slice(0, i).filter((d) => { const s = tracks[it.indexOf(d)]; return s && Math.abs(s.track[0][0] - ini[0]) < 0.01 && Math.abs(s.track[0][1] - ini[1]) < 0.01; }).length;
+    L.marker(ini, { zIndexOffset: 1000, icon: L.divIcon({ className: 'via-icon via-dia', html: `<span style="background:${color}">${e.dia}</span>`, iconSize: [24, 24], iconAnchor: [12 - repes * 26, 12] }) }).addTo(LMAP).bindTooltip(`Salida día ${e.dia}: ${esc(e.origen)}`);
+    const noche = D.data.alojamientos_resumen.find((n) => n.fecha === e.fecha);
+    if (noche) {
+      const fin = t.track[t.track.length - 1];
+      L.marker(fin, { zIndexOffset: 500, icon: L.divIcon({ className: 'via-icon via-noche', html: '<span>🛏️</span>', iconSize: [24, 24], iconAnchor: [-4, 28] }) }).addTo(LMAP).bindTooltip(`Noche ${noche.noche} · ${esc(noche.lugar)}: ${esc(noche.alojamiento)}`);
+    }
+  });
+  document.getElementById('mapa-titulo').textContent = `Viaje completo · ${it.length} etapas · ${D.data.proyecto.distancia_total_aprox_km} km`;
+  if (bounds.length) LMAP.fitBounds(bounds.reduce((a, b) => a.extend(b)), { padding: [24, 24] });
+  setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
+}
+async function openMap(dia) {
+  if (dia === 'todos') return openMapTodos();
+  const e = D.data.itinerario.find((d) => String(d.dia) === String(dia)); const st = e && D.tracks[e.dia]; if (!st || st.status !== 'ok') return;
+  const t = st.data;
+  mapaAbrirCaja(`Día ${e.dia} · ${t.nombre}`);
+  try { await loadLeaflet(); } catch (err) { closeMap(); alert(err.message); return; }
+  mapaBase();
   const line = L.polyline(t.track, { color: '#1d5fa5', weight: 4, opacity: .9 }).addTo(LMAP);
   t.vias.filter((v) => v.tipo !== 'shaping').forEach((v, i) => {
     const label = v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : String(i);
@@ -401,7 +552,7 @@ async function openMap(dia) {
   });
   (e.meteo_puntos || []).forEach((p) => L.circleMarker([p.lat, p.lon], { radius: 6, color: '#b2600a', fillColor: '#f0a94a', fillOpacity: .9, weight: 2 }).addTo(LMAP).bindTooltip(`Previsión: ${p.nombre}`));
   LMAP.fitBounds(line.getBounds(), { padding: [24, 24] });
-  setTimeout(() => LMAP.invalidateSize(), 50);
+  setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
 }
 function closeMap() { document.getElementById('mapa').hidden = true; document.body.classList.remove('mapa-abierto'); if (LMAP) { LMAP.remove(); LMAP = null; } }
 
@@ -444,6 +595,62 @@ function guiaHTML(e) {
     </div>`;
 }
 
+/* ---------- avisar en casa: resumen del dia para compartir ---------- */
+function resumenDiaTexto(e) {
+  const a = e.alojamiento; const m = meteoDia(e); const v = m.verdict ? VERDICT[m.verdict] : null;
+  const l = [`🏍️ Día ${e.dia} de ${D.data.itinerario.length} · ${cap(e.dia_semana)} ${fmtFecha(e.fecha)}`,
+    `${e.origen} → ${e.destino}`,
+    `Salida ${e.salida.split(' ')[0]} · llegada prevista ${e.llegada_prevista.split(' ')[0]} · ${e.km_aprox} km (${e.tiempo_real_aprox} de conducción)`];
+  if (a) l.push(`Duermo en ${a.nombre}, ${a.direccion}. Tel. ${a.telefono}`);
+  else { const n = D.data.alojamientos_resumen.find((x) => x.fecha === e.fecha); if (n) l.push(`Duermo en ${n.alojamiento} (${n.lugar}). Tel. ${n.telefono}`); }
+  if (v) l.push(`Previsión: ${v.txt}${m.tmin != null ? ` · ${Math.round(m.tmin)}°/${Math.round(m.tmax)}°` : ''}`);
+  const nav = D.data.proyecto.navegacion; if (nav && nav.ubicacion_compartida) l.push(`Ubicación en tiempo real: ${nav.ubicacion_compartida}`);
+  return l.join('\n');
+}
+function avisarBtn(e) {
+  return `<button class="btn" type="button" data-avisar="${e.dia}" title="Enviar el resumen del día a casa">📤 Avisar en casa</button>`;
+}
+async function avisarCasa(dia) {
+  const e = D.data.itinerario.find((d) => String(d.dia) === String(dia)); if (!e) return;
+  const text = resumenDiaTexto(e);
+  if (navigator.share) { try { await navigator.share({ title: `Día ${e.dia} · Viaje NX500`, text }); return; } catch (err) { if (err && err.name === 'AbortError') return; } }
+  const casa = contacto('en_casa'); const tel = casa && typeof casa === 'object' && casa.telefono ? String(casa.telefono).replace(/\D/g, '') : '';
+  const num = tel ? (tel.length === 9 ? '34' + tel : tel) : '';
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+}
+function toast(msg, ms = 2500) {
+  const t = document.getElementById('toast'); const b = document.getElementById('toast-btn');
+  document.getElementById('toast-text').textContent = msg; b.hidden = true; t.hidden = false;
+  clearTimeout(toast.timer); toast.timer = setTimeout(() => { t.hidden = true; b.hidden = false; }, ms);
+}
+
+/* Progreso del viaje y proxima parada del dia (segun el horario orientativo y la hora actual). */
+function progresoViaje(hoy) {
+  const it = D.data.itinerario;
+  const hechos = it.filter((d) => d.dia < hoy.dia).reduce((s, d) => s + d.km_aprox, 0);
+  const total = it.reduce((s, d) => s + d.km_aprox, 0);
+  const pct = Math.round((hechos / total) * 100);
+  return `<div class="card"><div class="card-title"><h3>Día ${hoy.dia} de ${it.length}</h3><span class="muted">${hechos} km hechos · ${total - hechos} km por delante</span></div><div class="bar"><i style="width:${pct}%"></i></div></div>`;
+}
+function proximaParada(e) {
+  const h = e.horario_orientativo; if (!h || !h.length || e.fecha !== todayISO()) return '';
+  const now = ahoraMin();
+  const idx = h.findIndex((x) => { const m = horaMin(x.hora); return m != null && m >= now; });
+  if (idx < 0) return `<div class="note info"><b>Horario del día cumplido.</b> Última parada prevista: ${esc(h[h.length - 1].lugar)} (${esc(h[h.length - 1].hora)}).</div>`;
+  const p = h[idx], m = horaMin(p.hora), en = m - now;
+  return `<div class="note info"><b>Próximo:</b> ${esc(p.lugar)} a las ${esc(p.hora)}${en > 0 ? ` (en ${en >= 60 ? `${Math.floor(en / 60)} h ${en % 60} min` : `${en} min`})` : ''} · ${esc(p.que)}${h[idx + 1] ? `<br><small>Después: ${esc(h[idx + 1].lugar)} (${esc(h[idx + 1].hora)})</small>` : ''}</div>`;
+}
+function gasolinaAviso(e) {
+  const aut = D.data.proyecto.moto.autonomia_orientativa_km; if (!aut) return '';
+  if (e.km_aprox >= aut * 0.6) return `<div class="note"><b>⛽ Repostar en ruta:</b> ${e.km_aprox} km con ${aut} km de autonomía orientativa. Llenar en el primer pueblo grande, no apurar.</div>`;
+  return '';
+}
+function solHTML(e) {
+  const pt = (e.meteo_puntos || [])[e.meteo_puntos.length - 1]; if (!pt) return '';
+  const s = solDia(pt.lat, pt.lon, e.fecha); if (!s || !s.ocaso) return '';
+  return `<span title="Ocaso en ${esc(pt.nombre)}">🌇 Anochece a las ${s.ocaso}</span>`;
+}
+
 /* ---------- vistas ---------- */
 function etapaCard(e, opts = {}) {
   const t = tipoInfo(e.tipo);
@@ -477,7 +684,7 @@ function viewResumen() {
       <p><a class="btn small" href="#/listas">Checklist previa</a> <a class="btn small" href="#/etapas/1">Ver día 1</a></p></div>`;
   } else if (hoy) {
     const manana = it.find((d) => d.dia === hoy.dia + 1);
-    estado = `<h2>Hoy</h2>${etapaCard(hoy, { hoy: true })}${manana ? `<h4>Mañana</h4>${etapaCard(manana)}` : ''}`;
+    estado = `<h2>Hoy</h2>${progresoViaje(hoy)}${etapaCard(hoy, { hoy: true })}${proximaParada(hoy)}<p class="row">${avisarBtn(hoy)}<a class="btn" href="#/etapas/${hoy.dia}">Ficha del día</a></p>${manana ? `<h4>Mañana</h4>${etapaCard(manana)}` : ''}`;
   } else if (today > p.fechas.fin) {
     estado = `<div class="card ok"><h3>Viaje terminado</h3><p>Hasta el ${fmtFecha(p.vacaciones.fin)} quedan ${p.vacaciones.margen_tras_el_viaje_dias} días de margen de vacaciones.</p></div>`;
   }
@@ -503,7 +710,9 @@ function viewResumen() {
         <div class="stat"><small>Distancia aprox.</small><b>${p.distancia_total_aprox_km} km</b></div>
         <div class="stat"><small>Moto</small><b>${esc(m.modelo)}</b></div>
       </div>
+      <p class="row">${window.VIAJE_DATA ? '' : '<button class="btn primary" type="button" data-mapa="todos">🗺️ Mapa del viaje completo</button>'}<a class="btn" href="#/hoja">📄 Hoja de ruta</a></p>
     </div>
+    ${instalarHTML()}
     ${estado || ''}
     <h2>Llamar</h2>
     ${quickCalls()}
@@ -528,7 +737,15 @@ function viewResumen() {
     </div>
     <h2>Filosofía</h2>
     <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}</p>${list(p.piloto.filosofia)}</div>
-    <p class="version">${planVersion()} · <a href="#" id="reload-plan">Actualizar plan</a></p>`;
+    <p class="version">${planVersion()} · <a href="#" id="reload-plan">Actualizar plan</a> · <a href="#" id="imprimir">Imprimir</a></p>`;
+}
+/* Instalacion como app: Android/Chrome muestra el boton; iOS recibe la indicacion. */
+function esStandalone() { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }
+function instalarHTML() {
+  if (esStandalone() || window.VIAJE_DATA) return '';
+  if (D.installEvt) return `<div class="card ok"><div class="card-title"><h3>📲 Instalar en el móvil</h3><button class="btn small primary" type="button" id="instalar">Instalar</button></div><p class="muted"><small>Se abre a pantalla completa y funciona sin cobertura.</small></p></div>`;
+  if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !localStorage.getItem('viaje-nx500-ios-hint')) return `<div class="card"><div class="card-title"><h3>📲 Añadir a la pantalla de inicio</h3><button class="btn small" type="button" id="ios-hint-ok">Entendido</button></div><p class="muted"><small>En Safari: botón Compartir → «Añadir a pantalla de inicio». Así funciona sin cobertura.</small></p></div>`;
+  return '';
 }
 function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
 
@@ -588,7 +805,10 @@ function viewEtapas(arg) {
         <div class="stat"><small>Llegada prevista</small><b>${esc(e.llegada_prevista)}</b></div>
         <div class="stat"><small>Perfil Kurviger</small><b>${esc(e.perfil_kurviger)}</b></div>
       </div>
+      <p class="row muted"><small>${solHTML(e)}</small>${avisarBtn(e)}</p>
+      ${proximaParada(e)}
       ${e.objetivo ? `<div class="note info"><b>Objetivo:</b> ${esc(e.objetivo)}</div>` : ''}
+      ${gasolinaAviso(e)}
       ${e.equipaje ? `<div class="note"><b>Equipaje:</b> ${esc(e.equipaje)}</div>` : ''}
       ${e.opcional ? `<div class="note mount"><b>Opcional:</b> ${esc(e.opcional)}</div>` : ''}
     </div>
@@ -658,7 +878,11 @@ function viewListas() {
   const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(contacto(k)));
   const contactoKeys = contactosPend.map((k) => `contacto|${k}`);
   const pagoKeys = nochesPendientes().map(pagoKey);
-  const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys];
+  const rep = d.reparto_equipaje;
+  const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
+  const cargaKeys = Object.keys(MALETAS).flatMap((k) => rep[k].map((t) => `carga|${k}|${t}`));
+  const carga = Object.keys(MALETAS).map((k) => { const keys = rep[k].map((t) => `carga|${k}|${t}`); return `<details class="card"${keys.every((x) => D.checks[x]) ? '' : ' open'}><summary>${MALETAS[k]} ${progress(keys)}</summary>${rep[k].map((t) => checkItem(`carga|${k}|${t}`, t)).join('')}</details>`; }).join('');
+  const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys, ...cargaKeys];
   return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.</small></p></div>
     <h2>Checklist previa</h2>${previa}
     <h2>Compras pendientes ${progress(compraKeys)}</h2>
@@ -671,6 +895,9 @@ function viewListas() {
     <div class="card">${contactosPend.map((k) => { const c = contacto(k); const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
     ${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
     <div class="card">${nochesPendientes().map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${pg.donde}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}</div>` : ''}
+    <h2>Carga de maletas ${progress(cargaKeys)}</h2>
+    <p class="muted"><small>${esc(rep.regla)} Marca cada cosa al meterla el domingo por la tarde.</small></p>
+    ${carga}
     <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
     ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
     <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;
@@ -737,6 +964,8 @@ function viewGuia() {
   return `${conGuia.length ? `<h2>Guía turística por etapa</h2>
     <div class="card"><p class="muted">Qué ver, dónde parar, qué comer y qué hacer por la tarde. Está en la ficha de cada día.</p>
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
+    <h2>Rutas en Kurviger</h2>
+    ${rutasKurvigerHTML()}
     <h2>Navegación</h2>
     <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd></dl></div>
     <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl></div>
@@ -754,8 +983,44 @@ function viewGuia() {
     <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}<br><small>${esc(meta.sustituye_a)}</small></p><p><small>${esc(meta.uso)}</small></p><details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios_v3)}</details></div>`;
 }
 
+/* Tabla con las 11 rutas tal y como se llaman en Kurviger (nombre del GPX), km y tiempo. */
+function rutasKurvigerHTML() {
+  const it = D.data.itinerario; const con = it.filter((e) => e.gpx && e.gpx.track);
+  if (!con.length) return '';
+  con.forEach(trackLoad);
+  const rows = con.map((e) => { const t = D.tracks[e.dia] && D.tracks[e.dia].data; return `<tr><td><a href="#/etapas/${e.dia}">Día ${e.dia}</a></td><td>${t ? esc(t.nombre) : '<span class="muted">cargando…</span>'}</td><td>${t ? fmtKm(t.km) : `${e.km_aprox} km`}</td><td>${t ? fmtMin(t.duracion_min) : '–'}</td><td><a href="${esc(e.gpx.archivo)}" download title="Descargar GPX">⬇️</a></td></tr>`; }).join('');
+  const tot = con.reduce((s, e) => { const t = D.tracks[e.dia] && D.tracks[e.dia].data; return s + (t ? t.km : e.km_aprox); }, 0);
+  const min = con.reduce((s, e) => { const t = D.tracks[e.dia] && D.tracks[e.dia].data; return s + (t && t.duracion_min ? t.duracion_min : 0); }, 0);
+  return `<div class="card"><p class="muted"><small>Nombre exacto de cada ruta en Kurviger, según el GPX guardado. Comprueba que en el móvil tienes estas ${con.length} rutas.</small></p>
+    <div class="tbl-wrap"><table class="rutas"><thead><tr><th>Día</th><th>Ruta en Kurviger</th><th>km</th><th>Kurviger</th><th></th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td></td><td><b>Total</b></td><td><b>${fmtKm(Math.round(tot))}</b></td><td><b>${fmtMin(min)}</b></td><td></td></tr></tfoot></table></div>
+    <p class="row">${window.VIAJE_DATA ? '' : '<button class="btn primary" type="button" data-mapa="todos">🗺️ Mapa del viaje completo</button>'}<a class="btn" href="#/hoja">📄 Hoja de ruta</a></p></div>`;
+}
+
+/* Hoja de ruta: todo el viaje en una pagina compacta, pensada para imprimir o por si falla el movil. */
+function viewHoja() {
+  const d = D.data, it = d.itinerario, p = d.proyecto, c = d.contactos;
+  const seg = contacto('seguro_asistencia'), casa = contacto('en_casa');
+  const telTxt = (x) => typeof x === 'string' ? x : (x && x.telefono) || '—';
+  const rows = it.map((e) => {
+    const a = e.alojamiento; const n = d.alojamientos_resumen.find((x) => x.fecha === e.fecha);
+    const t = D.tracks[e.dia] && D.tracks[e.dia].data;
+    return `<tr><td><b>${e.dia}</b><br><small>${cap(e.dia_semana).slice(0, 3)} ${fmtFecha(e.fecha)}</small></td>
+      <td><b>${esc(e.origen)} → ${esc(e.destino)}</b><br><small>${esc(e.waypoints.join(' · '))}</small>${t ? `<br><small class="muted">Kurviger: ${esc(t.nombre)}</small>` : ''}</td>
+      <td class="num">${e.km_aprox} km<br><small>${esc(e.tiempo_real_aprox)}</small><br><small>${esc(e.salida.split(' ')[0])} → ${esc(e.llegada_prevista.split(' ')[0])}</small></td>
+      <td>${a ? `<b>${esc(a.nombre)}</b><br><small>${esc(a.direccion)}</small><br>${telLink(a.telefono)}${pagoInfo(a) && pagoInfo(a).pendiente ? `<br><small>Por pagar: ${fmtEur(a.pago.pendiente_eur, a.pago.aproximado)}</small>` : ''}` : n ? `<b>${esc(n.alojamiento)}</b><br><small>${esc(n.lugar)}</small><br>${telLink(n.telefono)}` : '<small>Casa</small>'}</td></tr>`;
+  }).join('');
+  it.forEach(trackLoad);
+  return `<div class="card accent hoja"><div class="card-title"><h1>Hoja de ruta · ${esc(p.nombre)}</h1><button class="btn small" type="button" id="imprimir">🖨️ Imprimir</button></div>
+      <p class="muted">${fmtFecha(p.fechas.inicio)} – ${fmtFecha(p.fechas.fin)} ${p.fechas.inicio.slice(0, 4)} · ${it.length} etapas · ${p.distancia_total_aprox_km} km · ${esc(p.moto.modelo)} · ${esc(p.piloto.nombre)}</p>
+      <p><b>Emergencias ${telLink(c.emergencias)}</b> · Seguro ${typeof seg === 'object' ? esc(seg.compania) + ' ' : ''}${telLink(telTxt(seg))}${typeof seg === 'object' && seg.telefonos_alternativos ? ` / ${seg.telefonos_alternativos.map(telLink).join(' / ')}` : ''} · En casa ${typeof casa === 'object' && casa.telefono ? telLink(casa.telefono) : '<small>(número en el móvil)</small>'}</p>
+    </div>
+    <div class="card hoja"><div class="tbl-wrap"><table class="hoja-tabla"><thead><tr><th>Día</th><th>Etapa y puntos de paso</th><th>km</th><th>Noche</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+    <div class="card hoja"><h3>Reglas</h3><ul><li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li><li>${esc(p.reglas_globales.horario)}</li><li>${esc(p.moto.regla_gasolina)}</li><li>${esc(d.meteo.regla)}</li></ul></div>
+    <p class="version no-print"><a href="#/resumen">← Resumen</a></p>`;
+}
+
 /* ---------- router y arranque ---------- */
-const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia };
+const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja };
 
 function route() {
   const h = location.hash.replace(/^#\/?/, '');
@@ -768,9 +1033,11 @@ function render() {
   const { view, arg } = route();
   document.getElementById('view').innerHTML = VIEWS[view](arg);
   document.querySelectorAll('.tabbar a').forEach((a) => a.classList.toggle('active', a.dataset.view === view));
-  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía' };
+  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía', hoja: 'Hoja de ruta' };
   document.title = `${titles[view]} · Viaje NX500`;
   window.scrollTo(0, 0);
+  const chip = document.querySelector('.chip.active');
+  if (chip && chip.scrollIntoView) { try { chip.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { /* navegadores antiguos */ } }
 }
 
 document.addEventListener('change', (ev) => {
@@ -797,11 +1064,22 @@ document.addEventListener('click', (ev) => {
   const del = ev.target.closest('[data-borrar]');
   if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const mb = ev.target.closest('[data-mapa]'); if (mb) { openMap(mb.dataset.mapa); return; }
+  const av = ev.target.closest('[data-avisar]'); if (av) { avisarCasa(av.dataset.avisar); return; }
+  if (ev.target.closest('#imprimir')) { ev.preventDefault(); window.print(); return; }
+  if (ev.target.closest('#instalar')) { const p = D.installEvt; if (!p) return; D.installEvt = null; p.prompt(); p.userChoice.then(() => render()).catch(() => render()); return; }
+  if (ev.target.closest('#ios-hint-ok')) { try { localStorage.setItem('viaje-nx500-ios-hint', '1'); } catch (e) { /* nada */ } render(); return; }
   if (ev.target.closest('#mapa-cerrar')) { closeMap(); return; }
   const btn = ev.target.closest('#reset-checks');
   if (!btn) return;
   if (confirm('¿Borrar todas las marcas de las listas en este dispositivo?')) { D.checks = {}; saveChecks(); render(); }
 });
+
+window.addEventListener('beforeinstallprompt', (ev) => { ev.preventDefault(); D.installEvt = ev; rerender('resumen'); });
+window.addEventListener('appinstalled', () => { D.installEvt = null; toast('App instalada'); rerender('resumen'); });
+/* Al imprimir se abren todos los desplegables y se restauran despues. */
+let PRINT_OPEN = [];
+window.addEventListener('beforeprint', () => { PRINT_OPEN = [...document.querySelectorAll('details:not([open])')]; PRINT_OPEN.forEach((d) => { d.open = true; }); });
+window.addEventListener('afterprint', () => { PRINT_OPEN.forEach((d) => { d.open = false; }); PRINT_OPEN = []; });
 
 function updateNet() { const n = document.getElementById('net'); n.classList.toggle('off', !navigator.onLine); n.title = navigator.onLine ? 'Con conexión' : 'Sin conexión (modo offline)'; }
 window.addEventListener('online', updateNet);
@@ -843,7 +1121,7 @@ async function init() {
   }
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
-  meteoLoadCache();
+  meteoLoadCache(); meteoHLoadCache();
   window.addEventListener('hashchange', () => { closeMap(); render(); });
   render();
   registerSW();

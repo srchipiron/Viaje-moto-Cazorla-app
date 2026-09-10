@@ -21,13 +21,21 @@ Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
 
 | Pestaña | Contenido |
 | --- | --- |
-| Resumen | Cuenta atrás o etapa de hoy, contactos, reglas globales, rutina diaria, filosofía |
-| Etapas | Las 11 etapas con km, tiempo real, dificultad, fatiga, perfil Kurviger, waypoints (enlace a Google Maps), horario, paradas, guía turística del día (qué ver y dónde parar, qué comer, la tarde, un consejo), notas, equipación del día y ficha del alojamiento |
-| Noches | Las 10 noches con teléfono pulsable y «cómo llegar» |
-| Tiempo | Previsión diaria de [Open-Meteo](https://open-meteo.com/) (gratuita, sin clave, 16 días) para dos puntos de cada etapa, con veredicto Bueno / Regular / Malo, temperaturas, probabilidad de lluvia y rachas. Se guarda en el móvil y se refresca cada 3 h. La misma previsión aparece en la ficha de cada etapa y en las tarjetas de Resumen |
-| Listas | Checklist previa, compras, pedido Amazon, contactos pendientes y cosas a confirmar con cada alojamiento. Las marcas se guardan en el dispositivo (`localStorage`) |
-| Equipaje | Equipación por tipo de día, reparto por maleta, días sin laterales, material, ropa y lavandería |
-| Guía | Navegación y ajustes de Kurviger, moto, principios del plan y versión del JSON |
+| Resumen | Cuenta atrás antes de salir; durante el viaje, progreso (día X de 11, km hechos), etapa de hoy con la próxima parada según el horario y la hora, botón «Avisar en casa» y la de mañana. Mapa del viaje completo, hoja de ruta, botón de instalar la app, llamadas rápidas, contactos, reglas, rutina y filosofía |
+| Etapas | Las 11 etapas con km, tiempo real, dificultad, fatiga, perfil Kurviger, hora del ocaso, aviso de repostaje en las largas, ruta GPX (croquis, perfil, puntos de paso, mapa interactivo), waypoints (enlace a Google Maps), horario, paradas, guía turística del día (qué ver y dónde parar, qué comer, la tarde, un consejo), decisiones pendientes, notas, equipación del día y ficha del alojamiento |
+| Noches | Las 10 noches con teléfono pulsable, estado del pago y «cómo llegar» |
+| Tiempo | Previsión diaria de [Open-Meteo](https://open-meteo.com/) (gratuita, sin clave, 16 días) para dos o tres puntos de cada etapa, con veredicto Bueno / Regular / Malo, temperaturas, probabilidad de lluvia y rachas. Se guarda en el móvil y se refresca cada 3 h. La misma previsión aparece en la ficha de cada etapa y en las tarjetas de Resumen. Cuando la etapa está a menos de 16 días, la ficha añade la previsión por horas (07–20 h) con aviso de lluvia o tormenta de tarde |
+| Listas | Checklist previa, compras, pedido Amazon, contactos pendientes, pagos, carga de cada maleta y cosas a confirmar con cada alojamiento. Las marcas se guardan en el dispositivo (`localStorage`) |
+| Equipaje | Equipación por tipo de día, reparto por maleta, días sin laterales, material, inventario real, ropa y lavandería |
+| Guía | Índice de la guía turística, tabla con el nombre exacto de las 11 rutas en Kurviger (km y tiempo), navegación, moto, principios del plan y versión del JSON |
+| Hoja de ruta (`#/hoja`) | Todo el viaje en una página: etapas, puntos de paso, horas, alojamientos con teléfono y contactos. Pensada para imprimir (botón Imprimir; cualquier vista se imprime limpia) o por si falla el móvil |
+
+Otros detalles:
+
+- **Avisar en casa**: comparte un resumen del día (etapa, horas, km, alojamiento con teléfono y previsión) con la hoja de compartir del móvil o, si no la hay, por WhatsApp. Si el teléfono de casa está guardado en el dispositivo, abre directamente ese chat.
+- **Mapa del viaje completo**: los 11 tracks, cada día de un color, con la salida numerada y una cama en cada noche. Tocar una línea abre la ficha del día.
+- **Mapas sin conexión**: el service worker guarda las teselas de OpenStreetMap ya vistas (hasta 800), así que las zonas consultadas con cobertura se ven después sin ella.
+- **Instalar**: en Android/Chrome aparece el botón «Instalar»; en iPhone, la indicación para añadir a la pantalla de inicio.
 
 ## Rutas GPX de Kurviger
 
@@ -92,19 +100,37 @@ python3 -m http.server 8080
 Abrir `index.html` directamente con `file://` no funciona: el navegador bloquea el `fetch`
 del JSON y el service worker.
 
+Prueba de humo (necesita Playwright con Chromium, global o local):
+
+```bash
+python3 -m http.server 8080 &
+node tests/smoke.js
+```
+
+Recorre todas las vistas, comprueba que no hay errores de JavaScript, que las marcas persisten,
+el botón de avisar, la lista de carga, la tabla de rutas, los dos mapas, la meteo por horas con
+reloj simulado en mitad del viaje, el service worker y el modo sin conexión. Open-Meteo y las
+teselas se simulan.
+
+Versión en un solo fichero (para compartir o abrir sin servidor): `python3 tools/bundle.py`
+genera `dist/viaje-nx500.html` con el plan y los tracks incrustados.
+
 ## Ficheros
 
 ```
 index.html            estructura y barra de pestañas
 styles.css            estilos (claro/oscuro según el sistema)
 app.js                render de vistas, router por hash, checklists persistentes, registro del SW
-sw.js                 service worker: precarga y caché stale-while-revalidate
+sw.js                 service worker: precarga, caché stale-while-revalidate y teselas del mapa
 manifest.webmanifest  manifiesto PWA
 data/viaje.json       fuente de verdad (JSON v3)
 data/tracks/          tracks ligeros generados a partir de los GPX
 gpx/                  rutas GPX originales exportadas de Kurviger
 tools/gpx2json.py     conversor GPX -> track ligero
 tools/gpxsplit.py     parte un GPX en dos por un punto de ruta
+tools/bundle.py       genera dist/viaje-nx500.html (app + datos + tracks en un solo fichero)
+tests/smoke.js        prueba de humo con Playwright
+CLAUDE.md             convenciones para trabajar en el repositorio
 vendor/leaflet/       Leaflet 1.9.4 (BSD-2) para el mapa interactivo
 icons/                iconos SVG (normal y maskable)
 .nojekyll             evita que GitHub Pages procese el sitio con Jekyll

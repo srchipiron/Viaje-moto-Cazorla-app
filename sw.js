@@ -1,7 +1,9 @@
 /* Service worker: precarga la app y los datos para funcionar sin cobertura.
    Al cambiar cualquier fichero (sobre todo data/viaje.json), subir VERSION. */
-const VERSION = 'v3.7.1';
+const VERSION = 'v3.8.0';
 const CACHE = `viaje-nx500-${VERSION}`;
+const TILES = 'viaje-nx500-tiles'; // teselas de OpenStreetMap ya vistas (se conservan entre versiones)
+const TILES_MAX = 800;
 const SHELL = [
   './',
   './index.html',
@@ -31,7 +33,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== TILES).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -40,6 +42,21 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+
+  // Teselas del mapa: primero cache, luego red. Las ya vistas quedan disponibles sin cobertura
+  // (limite de TILES_MAX entradas; se borran las mas antiguas).
+  if (/(^|\.)tile\.openstreetmap\.org$/.test(url.hostname)) {
+    event.respondWith(
+      caches.open(TILES).then(async (cache) => {
+        const cached = await cache.match(req);
+        if (cached) return cached;
+        const res = await fetch(req);
+        if (res && res.ok) { cache.put(req, res.clone()); event.waitUntil(trimCache(cache, TILES_MAX)); }
+        return res;
+      }).catch(() => new Response('', { status: 503 }))
+    );
+    return;
+  }
   if (url.origin !== self.location.origin) return;
 
   // El plan (JSON) va siempre por red primero: asi cualquier cambio subido al
@@ -84,6 +101,12 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+async function trimCache(cache, max) {
+  const keys = await cache.keys();
+  if (keys.length <= max) return;
+  await Promise.all(keys.slice(0, keys.length - max).map((k) => cache.delete(k)));
+}
 
 self.addEventListener('message', (event) => {
   if (event.data === 'skipWaiting') self.skipWaiting();

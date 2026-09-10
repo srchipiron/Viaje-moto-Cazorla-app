@@ -123,6 +123,7 @@ a.card:active { transform: scale(.995); }
 
 /* Stage */
 .etapa-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+.etapa-head .badge, .stats span { white-space: normal; max-width: 100%; }
 .etapa-ruta { font-weight: 600; font-size: 1.02rem; }
 .stats { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: .88rem; color: var(--muted); }
 .stats b { color: var(--text); font-weight: 600; }
@@ -313,3 +314,48 @@ details[open] > summary::after { transform: rotate(180deg); }
 }
 .toast[hidden] { display: none; }
 .toast button { background: var(--warn); color: #000; border: 0; border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+
+/* Meteo por horas */
+.hrs-row { margin: 8px 0 4px; }
+.hrs-row > b { display: block; font-size: .88rem; margin-bottom: 4px; }
+.hrs { display: flex; gap: 3px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+.hr { flex: 1 0 34px; display: flex; flex-direction: column; align-items: center; gap: 1px; font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hr-ico { font-size: 1rem; line-height: 1.2; }
+.hr-t { color: var(--text); font-weight: 600; }
+.hr-bar { display: flex; align-items: flex-end; width: 100%; height: 44px; background: var(--accent-soft); border-radius: 4px; overflow: hidden; }
+.hr-bar i { display: block; width: 100%; background: var(--link); opacity: .8; }
+.hr-regular .hr-bar i { background: var(--warn); }
+.hr-malo .hr-bar i { background: var(--hot); }
+.hr-pp { font-size: .68rem; }
+.hr-h { font-size: .68rem; }
+.hr-h::after { content: "h"; }
+
+/* Mapa del viaje completo */
+.via-icon.via-noche span { background: var(--card); font-size: 13px; }
+.via-icon.via-dia span { font-size: 11px; }
+
+/* Hoja de ruta */
+.hoja-tabla { min-width: 640px; }
+.hoja-tabla td { font-size: .88rem; }
+.hoja-tabla td.num { white-space: nowrap; }
+.hoja-tabla small { display: inline; }
+table.rutas td:nth-child(3), table.rutas td:nth-child(4) { white-space: nowrap; }
+table.rutas tfoot td { border-top: 2px solid var(--line); }
+
+/* Impresion: sin barras ni botones, tarjetas sin cortar, desplegables abiertos */
+@media print {
+  :root { --bg: #fff; --card: #fff; --text: #000; --muted: #444; --line: #bbb; --shadow: none; }
+  body { padding: 0; font-size: 12px; background: #fff; color: #000; }
+  .topbar, .tabbar, .toast, .mapa, .btn, .calls, .tel-local, .chips, .nav-prev-next, .no-print, .version, .wx-links, .perfil .hover, .hit { display: none !important; }
+  .view { max-width: none; padding: 0; }
+  .card { break-inside: avoid; box-shadow: none; border: 1px solid #bbb; margin: 6px 0; padding: 8px 10px; }
+  .card.warn, .card.ok, .card.accent { background: #fff; }
+  h2 { break-after: avoid; margin: 12px 0 6px; }
+  a { color: #000; text-decoration: none; }
+  a.card::after { content: none; }
+  details > summary::after { content: none; }
+  details > summary { padding: 2px 0; }
+  .sketch { max-height: 220px; }
+  .hoja-tabla { min-width: 0; }
+  .hoja-tabla th, .hoja-tabla td { padding: 4px 6px 4px 0; }
+}

@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 35,
+    "revision": 36,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Distancia total recalculada con las rutas GPX (1940 km). App: meteo por horas con aviso de tormenta de tarde, boton Avisar en casa, mapa del viaje completo, mapas sin conexion, lista de carga de maletas, progreso del viaje, instalacion y version imprimible",
       "Camara DJI Osmo 360 con soporte de parabrisas K&F: en el inventario, con la carga en la rutina de cada noche, la prueba en la salida del sabado y la revision del apriete en cada repostaje",
       "Inventario real del equipo (moto, maletas, casco con Sena SRL3, chaquetas, pantalones, guantes y botas) incorporado; ajustadas la equipacion, las compras y la rutina",
       "Datos personales fuera del repositorio: el telefono del contacto en casa se introduce en la app y se guarda solo en el dispositivo",
@@ -41,7 +42,8 @@
     "objetivo": "11 dias en Honda NX500 para piloto A2 novato, priorizando disfrute, seguridad, asfalto, curvas fluidas y jornadas no agotadoras.",
     "fechas": { "inicio": "2026-09-14", "fin": "2026-09-24", "dias": 11, "noches": 10 },
     "vacaciones": { "inicio": "2026-09-14", "fin": "2026-09-28", "margen_tras_el_viaje_dias": 4 },
-    "distancia_total_aprox_km": 2210,
+    "distancia_total_aprox_km": 1940,
+    "distancia_nota": "Suma de las 11 etapas segun las rutas GPX de Kurviger.",
     "piloto": {
       "nombre": "Javier",
       "nivel": "Novato con carnet A2 desde 2026-09-01",
