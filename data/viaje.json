@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 9,
+    "revision": 10,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,7 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
-      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 3, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
 
@@ -304,6 +304,7 @@
       "salida": "09:00 (a los Chorros)",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Alcaraz", "lat": 38.67, "lon": -2.49 }, { "nombre": "Cuenca", "lat": 40.07, "lon": -2.14 }],
+      "gpx": { "archivo": "gpx/dia-03.gpx", "track": "data/tracks/dia-03.json", "nota": "Ruta Kurviger 'Dia 3 Riópar - Hostal Cortés, Cuenca' (10 sept): 271,7 km y 4h18 estimadas frente a 265 km / 3h20 del plan." },
       "guia": {
         "resumen": "Amanecer con la cascada del río Mundo, café en la Plaza Mayor renacentista de Alcaraz y luego la llanura manchega a ritmo de enlace hasta Cuenca, donde espera una de las ciudades más singulares de España.",
         "ver": [
