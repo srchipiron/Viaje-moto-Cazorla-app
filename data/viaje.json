@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 39,
+    "revision": 40,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Datos del piloto (33 años, 1,70 m, 120 kg) y su efecto en la moto: bloque carga (estimacion 162 kg frente a unos 183 kg de carga maxima) y precarga trasera recomendada (4 de 5 con maletas). Hidratacion reforzada en la rutina y ajuste de precarga en la checklist del domingo",
       "Poliza Mapfre (Terceros Ampliado, condiciones particulares del 11 sept) resumida en el bloque seguro: coberturas y limites, accesorios declarados, exclusiones relevantes y que hacer en averia, accidente o robo. Sin datos personales: el numero de poliza se guarda solo en el movil",
       "Recibidos de Amazon el 10 sept: kit tubeless Givi S450, grasa de cadena Motul C2 Road y limpiador de casco Motul (este no estaba en la lista). Pendientes de llegar: botiquin y tapones Alpine. El pedido pasa a objetos con estado recibido",
       "Presiones de la NX500 segun el manual 2024 (2,0 bar delante / 2,5 bar detras, en frio, iguales con carga) en el bloque moto, la Guia, el Resumen y las listas",
@@ -50,6 +51,10 @@
     "piloto": {
       "nombre": "Javier",
       "nivel": "Novato con carnet A2 desde 2026-09-01",
+      "edad": 33,
+      "altura_m": 1.70,
+      "peso_kg": 120,
+      "nota_fisica": "Con 120 kg de piloto mas equipacion y maletas la moto va cerca de su carga maxima: precarga trasera alta, presiones nunca por debajo de las del manual, mas agua en los dias de calor y equipaje ligero. A 1,70 m con 830 mm de asiento, el hundimiento por el peso ayuda a llegar al suelo; al subir la precarga se pierde un poco.",
       "filosofia": [
         "Disfrutar de la conduccion y el paisaje",
         "No demostrar nada",
@@ -64,6 +69,20 @@
       "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
       "toma_usb_c": true,
       "autonomia_orientativa_km": 380,
+      "carga": {
+        "peso_en_orden_de_marcha_kg": 196,
+        "carga_maxima_kg_aprox": 183,
+        "carga_maxima_nota": "Valor del manual de la CB500X (misma plataforma): confirmar en el manual de la NX500 (Especificaciones, capacidad maxima de peso).",
+        "estimacion_viaje": { "piloto_kg": 120, "equipacion_puesta_kg": 8, "maletas_vacias_kg": 14, "contenido_kg": 20, "total_kg": 162 },
+        "regla": "Contenido de las maletas por debajo de 20 kg y pesado en casa: superar la carga maxima es causa de exclusion en la poliza si provoca el accidente."
+      },
+      "precarga_trasera": {
+        "posiciones": 5,
+        "de_serie": "2 (habitual en la plataforma; comprobar la posicion actual)",
+        "recomendada": "4 con maletas cargadas; 5 si toca fondo o la moto se siente blanda de atras",
+        "como": "Anillo escalonado en el amortiguador trasero, con la llave de gancho del kit de herramientas bajo el asiento. Ajustar el domingo con la moto cargada y probar en la salida del sabado si se puede.",
+        "por_que": "Con 120 kg de piloto mas maletas, en la posicion de serie el amortiguador va muy hundido: la moto se vuelve lenta al entrar en curva, toca fondo en baches y el faro apunta alto."
+      },
       "presiones": {
         "delantera_bar": 2.0,
         "trasera_bar": 2.5,
@@ -1601,6 +1620,7 @@
     ],
     "domingo_13_tarde": [
       "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi)",
+      "Precarga trasera a la posicion 4 de 5 con la moto cargada (llave de gancho del kit); pesar las maletas: menos de 20 kg de contenido",
       "Cargar compresor, powerbank, Pixel y Sena SRL3",
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
@@ -1613,7 +1633,7 @@
   "rutina_diaria": {
     "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A, el Sena SRL3 del casco y la Osmo 360", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
-    "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
+    "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada: con 120 kg y calor, medio litro por hora como minimo", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
     "llegada": ["Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
   },
 

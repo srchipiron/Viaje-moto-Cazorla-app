@@ -743,6 +743,7 @@ function viewResumen() {
         <dt>Paradas</dt><dd>${esc(r.paradas)}</dd>
         <dt>Gasolina</dt><dd>${esc(m.regla_gasolina)} Autonomía orientativa: ${m.autonomia_orientativa_km} km.</dd>
         ${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m, true)} · <a href="#/guia">detalle</a></dd>` : ''}
+        ${m.precarga_trasera ? `<dt>Precarga</dt><dd>Trasera en posición <b>${esc(m.precarga_trasera.recomendada.split(' ')[0])}</b> de ${m.precarga_trasera.posiciones} con maletas</dd>` : ''}
         <dt>Recortable</dt><dd>${esc(r.recortables_sin_cambiar_alojamiento.join(' · '))}</dd>
       </dl>
     </div>
@@ -751,7 +752,7 @@ function viewResumen() {
       ${Object.keys(rd).map((k) => `<details${k === 'mañana' || k === 'en_ruta' ? ' open' : ''}><summary>${human(k)}</summary>${list(rd[k])}</details>`).join('')}
     </div>
     <h2>Filosofía</h2>
-    <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}</p>${list(p.piloto.filosofia)}</div>
+    <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}${p.piloto.peso_kg ? ` · ${p.piloto.edad} años, ${p.piloto.altura_m.toLocaleString('es-ES', { minimumFractionDigits: 2 })} m, ${p.piloto.peso_kg} kg` : ''}</p>${list(p.piloto.filosofia)}${p.piloto.nota_fisica ? `<div class="note info">${esc(p.piloto.nota_fisica)} <a href="#/guia">Ajustes de la moto</a></div>` : ''}</div>
     <p class="version">${planVersion()} · <a href="#" id="reload-plan">Actualizar plan</a> · <a href="#" id="imprimir">Imprimir</a></p>`;
 }
 /* Instalacion como app: Android/Chrome muestra el boton; iOS recibe la indicacion. */
@@ -991,7 +992,7 @@ function viewGuia() {
 
     ${d.seguro ? `<h2>Seguro</h2><div class="card">${seguroHTML(true)}</div>` : ''}
     <h2>La moto</h2>
-    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
+    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}${m.precarga_trasera ? `<dt>Precarga trasera</dt><dd><b>Posición ${esc(m.precarga_trasera.recomendada)}</b> (de serie: ${esc(m.precarga_trasera.de_serie)}; ${m.precarga_trasera.posiciones} posiciones)<br><small>${esc(m.precarga_trasera.como)} ${esc(m.precarga_trasera.por_que)}</small></dd>` : ''}${m.carga ? `<dt>Carga</dt><dd>Estimación del viaje: <b>${m.carga.estimacion_viaje.total_kg} kg</b> (piloto ${m.carga.estimacion_viaje.piloto_kg} + equipación ${m.carga.estimacion_viaje.equipacion_puesta_kg} + maletas ${m.carga.estimacion_viaje.maletas_vacias_kg} + contenido ${m.carga.estimacion_viaje.contenido_kg}) frente a unos ${m.carga.carga_maxima_kg_aprox} kg de carga máxima.<br><small>${esc(m.carga.regla)} ${esc(m.carga.carga_maxima_nota)}</small></dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
 
     <h2>Vacaciones</h2>
     <div class="card"><p>Del ${fmtFecha(d.proyecto.vacaciones.inicio)} al ${fmtFecha(d.proyecto.vacaciones.fin)}. Margen tras el viaje: ${d.proyecto.vacaciones.margen_tras_el_viaje_dias} días.</p></div>
