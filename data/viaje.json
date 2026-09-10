@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 27,
+    "revision": 28,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,7 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
-      "Dia 9 ajustado a la ruta de Kurviger: 102 km estimados, 1h45, horario recalculado, llegada 13:15; pendiente mover la salida de Utiel a Via Caprasia",
+      "Dia 9 ajustado a la ruta de Kurviger, ya desde Via Caprasia: 117 km, 2h, horario recalculado, llegada 13:35",
       "Dia 8 ajustado a la ruta de Kurviger con destino en Via Caprasia: 208 km, 3h30, horario recalculado, llegada 15:55",
       "Dia 7 ajustado a la ruta DEF de Kurviger (coincide con el plan): 144 km, 2h30, horario recalculado, llegada 15:20",
       "Dia 6 ajustado a la ruta de Kurviger (coincide con el plan): 93 km, 2h, horario recalculado, llegada 14:45",
@@ -977,15 +977,15 @@
       "tipo": "calor_y_llano",
       "origen": "Via Caprasia",
       "destino": "Casas Rurales Los Olivos (Alcala del Jucar)",
-      "km_aprox": 102,
-      "tiempo_real_aprox": "1h45",
+      "km_aprox": 117,
+      "tiempo_real_aprox": "2h",
       "dificultad": 2,
       "fatiga": 1,
       "perfil_kurviger": "Fast & Curvy",
       "salida": "10:00",
-      "llegada_prevista": "13:15",
+      "llegada_prevista": "13:35",
       "meteo_puntos": [{ "nombre": "Cofrentes", "lat": 39.23, "lon": -1.06 }, { "nombre": "Alcala del Jucar", "lat": 39.19, "lon": -1.43 }],
-      "gpx": { "archivo": "gpx/dia-09.gpx", "track": "data/tracks/dia-09.json", "vias": ["Requena", "Los Pedrones", "Cofrentes", "Cofrentes (duplicada)", "Casas de Ves"], "nota": "Ruta Kurviger 'Dia 9' (10 sept): 92,4 km y 1h21. PENDIENTE: la salida sigue estando en Utiel, no en Via Caprasia (39.5406, -1.4363); faltan unos 10 km iniciales. Las vias 3 y 4 estan las dos en Cofrentes (duplicada). Jalance ya no esta en la ruta: se va de Cofrentes directo a Casas de Ves, 6 km menos." },
+      "gpx": { "archivo": "gpx/dia-09.gpx", "track": "data/tracks/dia-09.json", "vias": ["Requena", "Los Pedrones", "Cofrentes", "Cofrentes (duplicada)", "Casas de Ves"], "nota": "Ruta Kurviger 'Dia 9' (10 sept), ya desde Via Caprasia: 116,6 km y 1h40 estimadas. Sale de Villargordo por carretera secundaria hacia Venta del Moro en vez de la N-III, sin pasar por Utiel. Jalance fuera de la ruta: de Cofrentes directo a Casas de Ves. Las vias 3 y 4 estan las dos en Cofrentes (duplicada, sin efecto)." },
       "guia": {
         "resumen": "Etapa corta y de placer: la Requena medieval y sus cuevas, el valle de Ayora-Cofrentes con su castillo sobre la confluencia del Júcar y el Cabriel, y la hoz del Júcar hasta Alcalá del Júcar, un pueblo de cuevas colgado del cañón.",
         "ver": [
@@ -1042,17 +1042,17 @@
       },
       "waypoints": ["Via Caprasia", "Requena", "Los Pedrones", "Cofrentes", "Casas de Ves", "Alcala del Jucar", "Casas Rurales Los Olivos"],
       "horario_orientativo": [
-        { "hora": "10:25-11:30", "lugar": "Requena", "que": "Barrio de La Villa: plaza de Albornoz, torre del Homenaje y las Cuevas de la Villa (visita guiada corta). Cafe" },
-        { "hora": "11:50", "lugar": "Los Pedrones", "que": "De paso" },
-        { "hora": "12:05-12:35", "lugar": "Cofrentes", "que": "Castillo y mirador sobre la confluencia del Jucar y el Cabriel" },
-        { "hora": "13:00", "lugar": "Casas de Ves", "que": "Entrada a la hoz del Jucar: bajada al cañon, despacio" },
-        { "hora": "13:15", "lugar": "Casas Rurales Los Olivos", "que": "Llegada; comida en Alcala del Jucar" }
+        { "hora": "10:35-11:40", "lugar": "Requena", "que": "Barrio de La Villa: plaza de Albornoz, torre del Homenaje y las Cuevas de la Villa (visita guiada corta). Cafe" },
+        { "hora": "11:55", "lugar": "Los Pedrones", "que": "De paso" },
+        { "hora": "12:10-12:45", "lugar": "Cofrentes", "que": "Castillo y mirador sobre la confluencia del Jucar y el Cabriel" },
+        { "hora": "13:10", "lugar": "Casas de Ves", "que": "Entrada a la hoz del Jucar: bajada al cañon, despacio" },
+        { "hora": "13:35", "lugar": "Casas Rurales Los Olivos", "que": "Llegada; comida en Alcala del Jucar" }
       ],
       "paradas": ["Requena - La Villa y las cuevas", "Cofrentes - castillo y mirador", "Alcala del Jucar - casas cueva, castillo y rio"],
       "objetivo": "Dia corto: descanso, colada en lavadora y revision de tension de cadena.",
       "notas": [
-        "Horas de paso calculadas con los tiempos de Kurviger mas las paradas. Los 92 km del GPX no incluyen los ~10 km iniciales desde Villargordo: la ruta arranca en Utiel y hay que corregir la salida.",
-        "Desde Villargordo no hace falta pasar por Utiel: la N-III lleva directa a Requena."
+        "Horas de paso calculadas con los tiempos de Kurviger (1h40 de conduccion) mas las paradas.",
+        "La salida de Villargordo va por secundarias hacia Venta del Moro, sin pasar por Utiel."
       ],
       "alojamiento": {
         "nombre": "Casas Rurales / Apartamentos Turisticos Los Olivos",
