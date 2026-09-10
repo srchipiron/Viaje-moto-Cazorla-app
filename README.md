@@ -41,8 +41,11 @@ python3 tools/gpx2json.py gpx/dia-04.gpx data/tracks/dia-04.json
 y en `data/viaje.json`, dentro del día 4:
 
 ```json
-"gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json" }
+"gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Uña", "Tragacete", "..."] }
 ```
+
+`vias` es opcional: los nombres, en orden, de los puntos de vía de Kurviger (sin la salida ni el
+destino) para que la tabla y el mapa muestren el lugar en vez de «Vía 1, Vía 2».
 
 El script simplifica el track (Douglas-Peucker, ~25 m) y genera el perfil, el desnivel y los
 kilómetros de cada vía. Si un GPX trae dos etapas juntas, `tools/gpxsplit.py` lo parte por un

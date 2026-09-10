@@ -321,6 +321,13 @@ function profileHover(ev) {
 document.addEventListener('pointermove', profileHover);
 document.addEventListener('pointerleave', profileHover, true);
 
+/* Nombre de un punto de ruta: salida, destino, o el nombre de e.gpx.vias por orden de via. */
+function viaNombre(e, v, idxVia) {
+  if (v.tipo === 'start') return 'Salida';
+  if (v.tipo === 'destination') return 'Destino';
+  const nombres = (e.gpx && e.gpx.vias) || [];
+  return nombres[idxVia - 1] || v.nombre.replace('Via Point', 'Vía');
+}
 function rutaHTML(e) {
   if (!e.gpx) return '';
   const st = D.tracks[e.dia];
@@ -342,7 +349,7 @@ function rutaHTML(e) {
       <h4>Perfil de altitud</h4>
       ${trackProfile(t)}
       <h4>Puntos de la ruta (${vias.length})</h4>
-      <div class="tbl-wrap"><table class="vias"><thead><tr><th>#</th><th>Punto</th><th>km</th><th></th></tr></thead><tbody>${vias.map((v, i) => `<tr><td>${v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : i}</td><td>${esc(v.nombre === 'Start' ? 'Salida' : v.nombre === 'Destination' ? 'Destino' : v.nombre.replace('Via Point', 'Vía'))}</td><td>${v.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td><td><a href="${mapsSearch(`${v.lat},${v.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
+      <div class="tbl-wrap"><table class="vias"><thead><tr><th>#</th><th>Punto</th><th>km</th><th></th></tr></thead><tbody>${vias.map((v, i) => `<tr><td>${v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : i}</td><td>${esc(viaNombre(e, v, i))}</td><td>${v.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td><td><a href="${mapsSearch(`${v.lat},${v.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
       <p class="row">
         ${window.VIAJE_DATA ? '' : `<button class="btn primary" type="button" data-mapa="${e.dia}">🗺️ Mapa interactivo</button>`}
         <a class="btn" href="${esc(e.gpx.archivo)}" download>⬇️ Descargar GPX</a>
@@ -375,7 +382,7 @@ async function openMap(dia) {
   t.vias.filter((v) => v.tipo !== 'shaping').forEach((v, i) => {
     const label = v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : String(i);
     const icon = L.divIcon({ className: `via-icon via-${v.tipo}`, html: `<span>${label}</span>`, iconSize: [24, 24], iconAnchor: [12, 12] });
-    L.marker([v.lat, v.lon], { icon }).addTo(LMAP).bindTooltip(`${v.nombre.replace('Via Point', 'Vía').replace('Start', 'Salida').replace('Destination', 'Destino')} · km ${v.km}`);
+    L.marker([v.lat, v.lon], { icon }).addTo(LMAP).bindTooltip(`${viaNombre(e, v, i)} · km ${v.km}`);
   });
   (e.meteo_puntos || []).forEach((p) => L.circleMarker([p.lat, p.lon], { radius: 6, color: '#b2600a', fillColor: '#f0a94a', fillOpacity: .9, weight: 2 }).addTo(LMAP).bindTooltip(`Previsión: ${p.nombre}`));
   LMAP.fitBounds(line.getBounds(), { padding: [24, 24] });

@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 14,
+    "revision": 15,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,6 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
+      "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
@@ -79,21 +80,28 @@
       "dia": 1,
       "fecha": "2026-09-14",
       "dia_semana": "lunes",
-      "tipo": "calor_y_llano_con_final_de_montaña",
+      "tipo": "montaña_por_la_mañana_y_llano_con_final_de_sierra",
       "origen": "Almeria",
       "destino": "Camping Puente de las Herrerias (Cazorla)",
-      "km_aprox": 280,
-      "tiempo_real_aprox": "3h45",
-      "dificultad": 2,
+      "km_aprox": 232,
+      "tiempo_real_aprox": "3h40",
+      "dificultad": 3,
       "fatiga": 3,
-      "perfil_kurviger": "Fast & Curvy",
+      "perfil_kurviger": "Fast & Curvy con shaping points en Gergal y Seron (fuerza Calar Alto)",
       "salida": "09:00",
-      "llegada_prevista": "16:30-17:00",
-      "meteo_puntos": [{ "nombre": "Baza", "lat": 37.49, "lon": -2.77 }, { "nombre": "Sierra de Cazorla", "lat": 37.92, "lon": -2.93 }],
-      "gpx": { "archivo": "gpx/dia-01.gpx", "track": "data/tracks/dia-01.json", "nota": "Ruta Kurviger 'Dia 1 Almeria - Cazorla b' (10 sept). Pasa por Calar Alto: 263,7 km y 4h23 estimadas por Kurviger frente a los 280 km / 3h45 del plan." },
+      "llegada_prevista": "15:30-16:00",
+      "meteo_puntos": [{ "nombre": "Calar Alto", "lat": 37.22, "lon": -2.55 }, { "nombre": "Baza", "lat": 37.49, "lon": -2.77 }, { "nombre": "Sierra de Cazorla", "lat": 37.92, "lon": -2.93 }],
+      "gpx": { "archivo": "gpx/dia-01.gpx", "track": "data/tracks/dia-01.json", "vias": ["Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Puerto de las Palomas", "Vadillo Castril", "Cerrada del Utrero (confirmar)"], "nota": "Ruta Kurviger 'Almeria - Camping Puente de las Herrerias' (version DEF, 10 sept): 232,1 km y 3h37 estimadas. Va por la A-92 hasta Gergal, sube a Calar Alto (1.975 m) y baja por Bacares a Seron y Baza. El plan del dia 1 esta ajustado a esta ruta." },
       "guia": {
-        "resumen": "Del mar a la sierra en un día: desierto y badlands de la Hoya de Baza, el santuario colgado de Tíscar, olivares infinitos y, al final, el corazón del Parque Natural de Cazorla, Segura y Las Villas.",
+        "resumen": "Del mar a la sierra en un día: el desierto de Tabernas desde la autovía, la subida a Calar Alto entre pinares hasta el observatorio, la bajada al valle del Almanzora, el santuario colgado de Tíscar, olivares infinitos y, al final, el corazón del Parque Natural de Cazorla, Segura y Las Villas.",
         "ver": [
+          {
+            "lugar": "Calar Alto",
+            "tipo": "mirador",
+            "que": "Observatorio astronómico hispano-alemán en la cima de la Sierra de los Filabres (2.168 m), el mayor de la Europa continental. La carretera asfaltada desde Gérgal sube entre pinares con curvas amplias y termina junto a las cúpulas; parada visual con vistas al desierto de Tabernas y, con aire limpio, al mar. Hace frío a esa hora. Bajada por Bacares hasta Serón.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
           {
             "lugar": "Baza",
             "tipo": "pueblo",
@@ -152,15 +160,21 @@
         "tarde": "Llegada al camping y paseo a pie junto al Guadalquivir recién nacido: el Puente de las Herrerías es un puente de piedra sobre el río, con la leyenda de haberse construido en una noche para el paso de Isabel la Católica. Cena en el complejo (confirmar) o con lo comprado en Cazorla.",
         "consejo": "Comer ligero en Cazorla y no alargar la sobremesa: el tramo Cazorla-La Iruela-Puerto de las Palomas es estrecho y con curvas, mejor con luz y descansado."
       },
-      "waypoints": ["Almeria", "Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Empalme del Valle", "Vadillo Castril", "Camping Puente de las Herrerias"],
+      "waypoints": ["Almeria", "Gergal", "Calar Alto", "Bacares", "Seron", "Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Puerto de las Palomas", "Vadillo Castril", "Camping Puente de las Herrerias"],
       "horario_orientativo": [
-        { "hora": "10:45", "lugar": "Baza", "que": "Parada corta" },
-        { "hora": "12:15", "lugar": "Santuario de Tiscar", "que": "Parada visual" },
-        { "hora": "12:45", "lugar": "Quesada", "que": "Cafe" },
-        { "hora": "13:30-15:15", "lugar": "Cazorla", "que": "Comida ligera, Plaza Santa Maria, REPOSTAR, supermercado (cena plan B)" },
-        { "hora": "15:45", "lugar": "Mirador Puerto de las Palomas", "que": "Parada visual" }
+        { "hora": "09:30", "lugar": "Gergal", "que": "De paso: se deja la A-92 y empieza la subida a Calar Alto" },
+        { "hora": "09:50-10:05", "lugar": "Calar Alto", "que": "Parada visual junto al observatorio (1.975 m en carretera). Frio: 8-12 C a esa hora" },
+        { "hora": "10:50", "lugar": "Seron", "que": "De paso; ya en el valle del Almanzora" },
+        { "hora": "11:10-11:30", "lugar": "Baza", "que": "Cafe corto; quitar capas" },
+        { "hora": "12:15-12:30", "lugar": "Santuario de Tiscar", "que": "Parada visual" },
+        { "hora": "12:45", "lugar": "Quesada", "que": "Parada corta o de paso" },
+        { "hora": "13:10-14:45", "lugar": "Cazorla", "que": "Comida ligera, Plaza Santa Maria, REPOSTAR, supermercado (cena plan B)" },
+        { "hora": "15:05", "lugar": "Mirador Puerto de las Palomas", "que": "Parada visual" },
+        { "hora": "15:30", "lugar": "Camping Puente de las Herrerias", "que": "Llegada" }
       ],
       "notas": [
+        "Horas de paso calculadas con los tiempos de Kurviger (3h37 de conduccion) mas las paradas.",
+        "Calar Alto a media mañana: salir con el forro o el polar puestos y quitarlos en Baza. Carretera de montaña asfaltada Gergal - Calar Alto - Bacares - Seron; sin gasolinera entre Gergal y Seron.",
         "El tramo de Tiscar es la A-6206.",
         "Los ultimos 30 km (Cazorla-camping) son la parte de montaña del dia: comer ligero y hacerlos descansado.",
         "Dentro del parque no contar con gasolinera hasta bien entrado el dia 2."
@@ -1199,7 +1213,7 @@
         "dias": [1, 3, 9, 10, 11],
         "pantalon": "Tornado en mesh puro; forro impermeable en el SH58X",
         "chaqueta": "Vertical GTX con merino manga corta, todo abierto",
-        "nota": "Si la prevision de la mañana marca tormentas, poner el forro impermeable antes de salir"
+        "nota": "Si la prevision de la mañana marca tormentas, poner el forro impermeable antes de salir. Dia 1: salir con el polar o el forro puestos por Calar Alto (2.000 m a las 10:00) y quitarlos en Baza."
       }
     },
     "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport solo en autovia larga; probar en la salida del 12-13."
