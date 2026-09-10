@@ -3,6 +3,12 @@
 App web estática (PWA, funciona sin cobertura) con el plan del viaje en moto de 11 días / 10 noches
 (14–24 septiembre 2026) en Honda NX500.
 
+## Datos personales
+
+El repositorio no contiene teléfonos ni datos de personas privadas. El contacto en casa se
+marca en `data/viaje.json` con `"local": true` y sin número; la app pide el teléfono una vez y
+lo guarda en `localStorage` del dispositivo, así que nunca sale del móvil.
+
 ## Fuente de verdad
 
 Todo el contenido sale de **`data/viaje.json`** (JSON v3). La app no tiene datos propios:

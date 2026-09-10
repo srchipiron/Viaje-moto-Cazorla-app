@@ -3,6 +3,7 @@
 'use strict';
 
 const STORAGE_KEY = 'viaje-nx500-v3-checks';
+const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en este dispositivo
 const D = { data: null, checks: loadChecks() };
 
 /* ---------- utilidades ---------- */
@@ -50,6 +51,20 @@ function bar(keys) {
 function confirmarKeys(dia) { const a = dia.alojamiento; return (a && a.pendiente_confirmar || []).map((t) => `confirmar|${dia.dia}|${t}`); }
 function previaKeys() { const c = D.data.checklist_previa; return Object.keys(c).flatMap((g) => c[g].map((t) => `previa|${g}|${t}`)); }
 
+/* Telefonos personales guardados solo en el navegador, nunca en el repositorio. */
+function contactosLocales() { try { return JSON.parse(localStorage.getItem(CONTACTOS_KEY)) || {}; } catch (e) { return {}; } }
+function setContactoLocal(k, tel) {
+  const c = contactosLocales();
+  if (tel) c[k] = tel; else delete c[k];
+  try { localStorage.setItem(CONTACTOS_KEY, JSON.stringify(c)); } catch (e) { /* sin almacenamiento */ }
+}
+/* Devuelve el contacto con el telefono local incorporado si lo hay. */
+function contacto(k) {
+  const c = D.data.contactos[k];
+  if (c && typeof c === 'object' && c.local) { const tel = contactosLocales()[k]; return tel ? { ...c, telefono: tel } : c; }
+  return c;
+}
+
 /* Un contacto puede ser un texto (telefono o "PENDIENTE: ...") o un objeto
    { nombre|compania, telefono, nota }. Sin telefono se muestra como pendiente. */
 function contactoPendiente(c) { return typeof c === 'string' ? /^PENDIENTE/i.test(c) : !c.telefono; }
@@ -58,7 +73,7 @@ function contactoHTML(c) {
   const quien = c.nombre || c.compania;
   const alt = c.telefonos_alternativos && c.telefonos_alternativos.length ? `<br><small>También: ${c.telefonos_alternativos.map(telLink).join(' · ')}</small>` : '';
   const nota = alt + (c.nota ? `<br><small>${esc(c.nota.replace(/^PENDIENTE:\s*/i, ''))}</small>` : '');
-  if (!c.telefono) return `${quien ? `<b>${esc(quien)}</b> ` : ''}<span class="badge warn">Pendiente</span>${nota}`;
+  if (!c.telefono) return `${quien ? `<b>${esc(quien)}</b> ` : ''}<span class="badge warn">${c.local ? 'Sin guardar en este móvil' : 'Pendiente'}</span>${nota}`;
   return `${quien ? `${esc(quien)}: ` : ''}${telLink(c.telefono)}${nota}`;
 }
 
@@ -68,7 +83,7 @@ function quickCalls() {
   const btn = (icon, label, tel, sub, cls = '') => tel
     ? `<a class="call ${cls}" href="tel:${esc(String(tel).replace(/\s+/g, ''))}"><span class="call-icon">${icon}</span><b>${esc(label)}</b><small>${esc(sub || tel)}</small></a>`
     : `<span class="call pend"><span class="call-icon">${icon}</span><b>${esc(label)}</b><small>${esc(sub || 'Sin teléfono')}</small></span>`;
-  const casa = c.en_casa, seg = c.seguro_asistencia;
+  const casa = contacto('en_casa'), seg = contacto('seguro_asistencia');
   const casaTel = typeof casa === 'string' ? (contactoPendiente(casa) ? null : casa) : casa.telefono;
   const segTel = typeof seg === 'string' ? (contactoPendiente(seg) ? null : seg) : seg.telefono;
   const hoy = it.find((d) => d.fecha === today && d.alojamiento);
@@ -76,7 +91,7 @@ function quickCalls() {
   const a = prox && prox.alojamiento;
   return `<div class="calls">
     ${btn('🚨', 'Emergencias', c.emergencias, '112', 'sos')}
-    ${btn('🏠', typeof casa === 'string' ? 'En casa' : (casa.nombre || 'En casa'), casaTel, casaTel ? casaTel : 'Pendiente')}
+    ${btn('🏠', typeof casa === 'string' ? 'En casa' : (casa.nombre || 'En casa'), casaTel, casaTel || (casa.local ? 'Añádelo en Contactos' : 'Pendiente'))}
     ${btn('🛡️', typeof seg === 'string' ? 'Seguro' : (seg.compania || 'Seguro'), segTel, segTel ? segTel : 'Teléfono pendiente')}
     ${a ? btn('🛏️', hoy ? 'Alojamiento de hoy' : `Noche ${prox.dia} · ${fmtFecha(prox.fecha)}`, a.telefono, a.nombre) : ''}
   </div>`;
@@ -468,6 +483,16 @@ function viewResumen() {
   }
   const r = p.reglas_globales, m = p.moto, c = D.data.contactos, rd = D.data.rutina_diaria;
   const contactoRow = (label, val) => `<dt>${label}</dt><dd>${contactoHTML(val)}</dd>`;
+  const localForm = (k, label) => {
+    const c = D.data.contactos[k]; if (!c || !c.local) return '';
+    const tel = contactosLocales()[k] || '';
+    return `<form class="tel-local" data-contacto="${esc(k)}">
+      <label for="tel-${esc(k)}">${esc(label)} · teléfono en este móvil</label>
+      <div class="row"><input id="tel-${esc(k)}" type="tel" inputmode="tel" placeholder="+34 600 00 00 00" value="${esc(tel)}" autocomplete="off">
+      <button class="btn small primary" type="submit">Guardar</button>${tel ? '<button class="btn small danger" type="button" data-borrar>Borrar</button>' : ''}</div>
+      <small>Se guarda solo en este dispositivo. No viaja al repositorio ni a ningún servidor.</small>
+    </form>`;
+  };
   return `
     <div class="card accent">
       <h1>${esc(p.nombre)}</h1>
@@ -483,7 +508,8 @@ function viewResumen() {
     <h2>Llamar</h2>
     ${quickCalls()}
     <h2>Contactos</h2>
-    <div class="card"><dl>${contactoRow('Emergencias', c.emergencias)}${contactoRow('Seguro / asistencia', c.seguro_asistencia)}${contactoRow('En casa', c.en_casa)}</dl>
+    <div class="card"><dl>${contactoRow('Emergencias', c.emergencias)}${contactoRow('Seguro / asistencia', contacto('seguro_asistencia'))}${contactoRow('En casa', contacto('en_casa'))}</dl>
+      ${localForm('en_casa', 'En casa')}
       <p><a class="btn small" href="#/noches">Teléfonos de alojamientos</a></p></div>
     <h2>Reglas del viaje</h2>
     <div class="card">
@@ -629,7 +655,7 @@ function viewListas() {
   const faltaKeys = d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => `falta|${t}`);
   const confDias = d.itinerario.filter((e) => e.alojamiento && e.alojamiento.pendiente_confirmar);
   const confKeys = confDias.flatMap(confirmarKeys);
-  const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(d.contactos[k]));
+  const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(contacto(k)));
   const contactoKeys = contactosPend.map((k) => `contacto|${k}`);
   const pagoKeys = nochesPendientes().map(pagoKey);
   const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys];
@@ -642,7 +668,7 @@ function viewListas() {
     <h2>Ropa: falta ${progress(faltaKeys)}</h2>
     <div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>
     ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
-    <div class="card">${contactosPend.map((k) => { const c = d.contactos[k]; const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
+    <div class="card">${contactosPend.map((k) => { const c = contacto(k); const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
     ${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
     <div class="card">${nochesPendientes().map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${pg.donde}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}</div>` : ''}
     <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
@@ -728,9 +754,19 @@ document.addEventListener('change', (ev) => {
   const y = window.scrollY; render(); window.scrollTo(0, y);
 });
 
+document.addEventListener('submit', (ev) => {
+  const f = ev.target.closest('.tel-local'); if (!f) return;
+  ev.preventDefault();
+  const k = f.dataset.contacto;
+  setContactoLocal(k, f.querySelector('input').value.trim());
+  const y = window.scrollY; render(); window.scrollTo(0, y);
+});
+
 document.addEventListener('click', (ev) => {
   if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
   if (ev.target.closest('#meteo-refresh')) { meteoFetch(true); render(); return; }
+  const del = ev.target.closest('[data-borrar]');
+  if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const mb = ev.target.closest('[data-mapa]'); if (mb) { openMap(mb.dataset.mapa); return; }
   if (ev.target.closest('#mapa-cerrar')) { closeMap(); return; }
   const btn = ev.target.closest('#reset-checks');

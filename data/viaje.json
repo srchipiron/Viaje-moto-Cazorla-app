@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 32,
+    "revision": 33,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -14,11 +14,12 @@
       "Compra Decathlon realizada (lista real); faltan 2 boxers largos",
       "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
       "Comparticion de ubicacion: Google Maps",
-      "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
+      "Contactos: el padre es el contacto en casa (numero guardado solo en el movil, no en el repositorio); seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Datos personales fuera del repositorio: el telefono del contacto en casa se introduce en la app y se guarda solo en el dispositivo",
       "Decisiones pendientes visibles en la app: bloque de opciones en los dias 2 (Hornos) y 4 (Huelamo y rio Cuervo)",
       "Dia 11 ajustado a la ruta DEF de Kurviger: 264 km y 3h30, con autovia desde Velez-Rubio; llegada 14:20. La version por el Almanzora queda guardada como alternativa",
       "Dia 10 corregido: la via que estaba en Corral Rubio se movio a Chinchilla y el destino a La Cilla; de 318 km a 242 km y 4h, horario recalculado, llegada 16:15",
@@ -1359,7 +1360,7 @@
   "contactos": {
     "emergencias": "112",
     "seguro_asistencia": { "compania": "Mapfre", "telefono": "918 365 365", "telefonos_alternativos": ["900 822 822"], "nota": "Asistencia en carretera 24 h. Confirmar el viernes 11 que la poliza cubre remolque a taller desde el km 0 y traslado del motorista." },
-    "en_casa": { "nombre": "Padre", "telefono": "+34 000 00 00 00", "nota": "Contacto con ubicacion compartida en Google Maps" }
+    "en_casa": { "nombre": "Padre", "telefono": null, "local": true, "nota": "Contacto con ubicacion compartida en Google Maps. El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil." }
   },
 
   "meteo": {
@@ -1479,7 +1480,7 @@
       "Emparejar D6A y Pixel; probar Kurviger por Android Auto",
       "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
       "Guardar los 10 telefonos de alojamientos + seguro + 112 en el movil",
-      "Activar compartir ubicacion en Google Maps con mi padre (numero en el movil)"
+      "Activar compartir ubicacion en Google Maps con mi padre"
     ],
     "sabado_12_o_domingo_13": [
       "Salida de prueba 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato)",

@@ -228,6 +228,13 @@ body.mapa-abierto { overflow: hidden; }
 .via-icon.via-start span { background: #1f8a4c; }
 .via-icon.via-destination span { background: #c2410c; }
 
+/* Telefono personal guardado en el dispositivo */
+.tel-local { display: block; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.tel-local label { display: block; font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.tel-local input { flex: 1 1 160px; min-width: 0; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; font-variant-numeric: tabular-nums; }
+.tel-local input:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+.tel-local small { display: block; margin-top: 6px; }
+
 /* Decisiones del dia */
 .card.opcion { border-left: 4px solid var(--warn); }
 .alts { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
