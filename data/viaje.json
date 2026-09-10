@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 18,
+    "revision": 19,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 4 ajustado a la ruta DEF de Kurviger: 153 km con el rio Cuervo incluido, 2h30, horario recalculado, llegada 13:25; pendiente decidir Huelamo o carretera de Valdemeca",
       "Dia 3 ajustado a la ruta DEF de Kurviger (coincide con el plan; via en el parking de los Chorros y en Barrax): 279 km, 4h20, horario recalculado",
       "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
@@ -430,15 +431,15 @@
       "tipo": "montaña",
       "origen": "Hostal Cortes",
       "destino": "Hotel Albarracin",
-      "km_aprox": 160,
-      "tiempo_real_aprox": "3h15",
+      "km_aprox": 153,
+      "tiempo_real_aprox": "2h30",
       "dificultad": 3,
       "fatiga": 3,
       "perfil_kurviger": "Curvy",
       "salida": "09:00",
-      "llegada_prevista": "15:30",
+      "llegada_prevista": "13:30 (con el rio Cuervo incluido)",
       "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
-      "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "nota": "Ruta Kurviger 'Dia 4 Hostal Cortés, Cuenca - Albarracín' (10 sept): 149,4 km y 2h05 estimadas frente a 160 km / 3h15 del plan." },
+      "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Villalba de la Sierra", "Ventano del Diablo", "Uña", "Carretera de Valdemeca", "Tragacete", "Parking Nacimiento del Rio Cuervo", "Tragacete (vuelta)", "Nacimiento del Rio Tajo", "Calomarde", "Royuela"], "nota": "Ruta Kurviger 'Dia 4 DEF' (10 sept): 152,9 km y 2h13 estimadas, con la ida y vuelta al rio Cuervo incluida. Entre Uña y Tragacete va por la carretera de Valdemeca, no por la CM-2105 y Huelamo como decia el plan; pendiente decidir si es intencionado." },
       "guia": {
         "resumen": "La etapa más bella de la Serranía de Cuenca: el Ventano del Diablo, la laguna de Uña, el Júcar encajonado hasta Tragacete, el Puerto del Cubillo, el nacimiento del Tajo y la llegada a Albarracín, un pueblo de postal.",
         "ver": [
@@ -514,10 +515,22 @@
         "tarde": "Descargar en la puerta del hotel (20 min), aparcar en el parking de abajo con el antirrobo, y pueblo a pie: murallas al atardecer, cena en el hotel o en el casco. Albarracín de noche, iluminado, merece un segundo paseo corto.",
         "consejo": "Revisar la DGT la noche anterior por la CM-2105 (obras y regulaciones). Salir a las 09:00: es día de montaña y la tarde en el Sistema Ibérico es de tormentas."
       },
-      "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
-      "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Tajo", "Albarracin - paseo de tarde y noche"],
-      "opcional": "Nacimiento del Rio Cuervo solo si se va bien de tiempo y meteo estable: Tragacete -> parking Rio Cuervo -> Tragacete.",
+      "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Carretera de Valdemeca", "Tragacete", "Nacimiento del Rio Cuervo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
+      "horario_orientativo": [
+        { "hora": "09:26-09:36", "lugar": "Ventano del Diablo", "que": "Parada visual" },
+        { "hora": "09:45-10:10", "lugar": "Uña", "que": "Cafe y laguna" },
+        { "hora": "10:40", "lugar": "Tragacete", "que": "De paso hacia el rio Cuervo" },
+        { "hora": "10:50-11:50", "lugar": "Nacimiento del Rio Cuervo", "que": "Sendero corto a las cascadas (1 km). Recortable: si el cielo no acompaña, saltar esta via en Kurviger" },
+        { "hora": "12:00", "lugar": "Tragacete", "que": "De vuelta; CM-2106 hacia el Puerto del Cubillo" },
+        { "hora": "12:20-12:35", "lugar": "Nacimiento del Rio Tajo", "que": "Monumento; aparcamiento junto a la carretera" },
+        { "hora": "12:50-13:05", "lugar": "Calomarde", "que": "Cascada junto al pueblo" },
+        { "hora": "13:15", "lugar": "Royuela", "que": "De paso" },
+        { "hora": "13:25", "lugar": "Hotel Albarracin", "que": "Llegada: descarga en la puerta (20 min), aparcar abajo y comer en el pueblo" }
+      ],
+      "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Cuervo", "Nacimiento del Rio Tajo", "Calomarde", "Albarracin - comida, paseo de tarde y noche"],
+      "opcional": "El Nacimiento del Rio Cuervo ya va en la ruta (Tragacete -> parking -> Tragacete, 24 km y 20 min). Si hay tormentas a la vista o se va tarde, saltar esa via: se llega a Albarracin hacia las 12:30.",
       "notas": [
+        "Horas de paso calculadas con los tiempos de Kurviger (2h13 de conduccion) mas las paradas.",
         "Vigilar obras o regulaciones en la CM-2105; revisar DGT la noche anterior.",
         "Llegada al hotel: parar en la puerta (carga y descarga, max 20 min), soltar las tres maletas, bajar a aparcar."
       ],
