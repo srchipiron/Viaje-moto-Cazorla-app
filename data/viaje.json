@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 36,
+    "revision": 37,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Presiones de la NX500 segun el manual 2024 (2,0 bar delante / 2,5 bar detras, en frio, iguales con carga) en el bloque moto, la Guia, el Resumen y las listas",
       "Viaje ampliado a 11 dias / 10 noches (14-24 sept): noche extra en Albarracin, dia 5 antiguo partido en dos (bucle Bronchales-Orihuela y enlace Albarracin-Teruel-Alcala de la Selva)",
       "Todas las noches reservadas. Segun Booking (9 sept): Hotel Albarracin pagado (134,19 EUR); Laminador con 11,70 EUR pagados y 35,10 pendientes; Cortes 45, Via Caprasia 65, Los Olivos 50 y La Cilla 56,10 EUR pendientes en el alojamiento (251,20 EUR en total). Camping Los Alamos reservado aparte con la mitad pagada (resto aprox. 65 EUR en el camping). Puente de las Herrerias: mantener lo apuntado.",
       "Origen B&B agotado: sustituido por Via Caprasia (Villargordo del Cabriel)",
@@ -61,6 +62,16 @@
       "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
       "toma_usb_c": true,
       "autonomia_orientativa_km": 380,
+      "presiones": {
+        "delantera_bar": 2.0,
+        "trasera_bar": 2.5,
+        "delantera_psi": 29,
+        "trasera_psi": 36,
+        "en_frio": true,
+        "con_carga": "Mismos valores solo o con carga: el manual no distingue. No subir por las maletas.",
+        "comprobar": "Con los neumaticos frios, antes de arrancar, cada 2-3 dias con el compresor Xiaomi. En caliente suben 0,2-0,3 bar: no desinflar nunca en caliente.",
+        "fuente": "Manual de usuario Honda NX500 2024: 200 kPa / 250 kPa (29 / 36 psi). Confirmar con la pegatina del basculante."
+      },
       "regla_gasolina": "En zona de sierra, llenar cada vez que se baje de medio deposito. Gasolineras escasas y cierran a mediodia en Maestrazgo y Serrania.",
       "equipaje": ["SHAD SH58X (top)", "SHAD SH38X izquierda", "SHAD SH38X derecha", "Bolsa deposito SHAD E09CL"]
     },
@@ -1537,7 +1548,7 @@
       "Comprobar que la ubicacion compartida no se corta"
     ],
     "domingo_13_tarde": [
-      "Presiones con la moto cargada (probar el compresor Xiaomi)",
+      "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi)",
       "Cargar compresor, powerbank, Pixel y Sena SRL3",
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
@@ -1549,7 +1560,7 @@
 
   "rutina_diaria": {
     "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A, el Sena SRL3 del casco y la Osmo 360", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
-    "mañana": ["Presiones si toca (cada 2-3 dias)", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
+    "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
     "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
     "llegada": ["Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
   },

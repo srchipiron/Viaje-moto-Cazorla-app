@@ -640,6 +640,13 @@ function proximaParada(e) {
   const p = h[idx], m = horaMin(p.hora), en = m - now;
   return `<div class="note info"><b>Próximo:</b> ${esc(p.lugar)} a las ${esc(p.hora)}${en > 0 ? ` (en ${en >= 60 ? `${Math.floor(en / 60)} h ${en % 60} min` : `${en} min`})` : ''} · ${esc(p.que)}${h[idx + 1] ? `<br><small>Después: ${esc(h[idx + 1].lugar)} (${esc(h[idx + 1].hora)})</small>` : ''}</div>`;
 }
+function presionesHTML(m, corto) {
+  const p = m.presiones; if (!p) return '';
+  const bar = (v) => v.toLocaleString('es-ES', { minimumFractionDigits: 1 });
+  const head = `<b>${bar(p.delantera_bar)} bar</b> delante · <b>${bar(p.trasera_bar)} bar</b> detrás${p.en_frio ? ' (en frío)' : ''}`;
+  if (corto) return head;
+  return `${head}<br><small>${p.delantera_psi ? `${p.delantera_psi} / ${p.trasera_psi} psi. ` : ''}${esc(p.con_carga || '')} ${esc(p.comprobar || '')}${p.fuente ? `<br>${esc(p.fuente)}` : ''}</small>`;
+}
 function gasolinaAviso(e) {
   const aut = D.data.proyecto.moto.autonomia_orientativa_km; if (!aut) return '';
   if (e.km_aprox >= aut * 0.6) return `<div class="note"><b>⛽ Repostar en ruta:</b> ${e.km_aprox} km con ${aut} km de autonomía orientativa. Llenar en el primer pueblo grande, no apurar.</div>`;
@@ -728,6 +735,7 @@ function viewResumen() {
         <dt>Horario</dt><dd>${esc(r.horario)}</dd>
         <dt>Paradas</dt><dd>${esc(r.paradas)}</dd>
         <dt>Gasolina</dt><dd>${esc(m.regla_gasolina)} Autonomía orientativa: ${m.autonomia_orientativa_km} km.</dd>
+        ${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m, true)} · <a href="#/guia">detalle</a></dd>` : ''}
         <dt>Recortable</dt><dd>${esc(r.recortables_sin_cambiar_alojamiento.join(' · '))}</dd>
       </dl>
     </div>
@@ -945,7 +953,7 @@ function viewEquipaje() {
     <div class="card"><h3>🔑 Llaves</h3><p>${esc(rep.llaves)}</p></div>
 
     <h2>Material en propiedad</h2>
-    <div class="card"><dl>${['compresor', 'antirrobo', 'powerbank'].map((k) => `<dt>${human(k)}</dt><dd><b>${esc(mat[k].modelo)}</b><br><small>${esc(mat[k].nota)}</small></dd>`).join('')}<dt>Otros</dt><dd>${esc(mat.otros.join(', '))}</dd></dl></div>
+    <div class="card"><dl>${['compresor', 'antirrobo', 'powerbank'].map((k) => `<dt>${human(k)}</dt><dd><b>${esc(mat[k].modelo)}</b><br><small>${esc(mat[k].nota)}</small>${k === 'compresor' && d.proyecto.moto.presiones ? `<br><small>Presiones NX500: ${presionesHTML(d.proyecto.moto, true)}</small>` : ''}</dd>`).join('')}<dt>Otros</dt><dd>${esc(mat.otros.join(', '))}</dd></dl></div>
 
     <h2>Ropa y lavandería</h2>
     <div class="card"><p>${esc(lav.filosofia)}</p>
@@ -971,7 +979,7 @@ function viewGuia() {
     <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl></div>
 
     <h2>La moto</h2>
-    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd><dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
+    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
 
     <h2>Vacaciones</h2>
     <div class="card"><p>Del ${fmtFecha(d.proyecto.vacaciones.inicio)} al ${fmtFecha(d.proyecto.vacaciones.fin)}. Margen tras el viaje: ${d.proyecto.vacaciones.margen_tras_el_viaje_dias} días.</p></div>
@@ -1015,7 +1023,7 @@ function viewHoja() {
       <p><b>Emergencias ${telLink(c.emergencias)}</b> · Seguro ${typeof seg === 'object' ? esc(seg.compania) + ' ' : ''}${telLink(telTxt(seg))}${typeof seg === 'object' && seg.telefonos_alternativos ? ` / ${seg.telefonos_alternativos.map(telLink).join(' / ')}` : ''} · En casa ${typeof casa === 'object' && casa.telefono ? telLink(casa.telefono) : '<small>(número en el móvil)</small>'}</p>
     </div>
     <div class="card hoja"><div class="tbl-wrap"><table class="hoja-tabla"><thead><tr><th>Día</th><th>Etapa y puntos de paso</th><th>km</th><th>Noche</th></tr></thead><tbody>${rows}</tbody></table></div></div>
-    <div class="card hoja"><h3>Reglas</h3><ul><li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li><li>${esc(p.reglas_globales.horario)}</li><li>${esc(p.moto.regla_gasolina)}</li><li>${esc(d.meteo.regla)}</li></ul></div>
+    <div class="card hoja"><h3>Reglas</h3><ul><li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li><li>${esc(p.reglas_globales.horario)}</li><li>${esc(p.moto.regla_gasolina)}</li>${p.moto.presiones ? `<li>Presiones: ${presionesHTML(p.moto, true)}.</li>` : ''}<li>${esc(d.meteo.regla)}</li></ul></div>
     <p class="version no-print"><a href="#/resumen">← Resumen</a></p>`;
 }
 
