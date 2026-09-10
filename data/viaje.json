@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 34,
+    "revision": 35,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Camara DJI Osmo 360 con soporte de parabrisas K&F: en el inventario, con la carga en la rutina de cada noche, la prueba en la salida del sabado y la revision del apriete en cada repostaje",
       "Inventario real del equipo (moto, maletas, casco con Sena SRL3, chaquetas, pantalones, guantes y botas) incorporado; ajustadas la equipacion, las compras y la rutina",
       "Datos personales fuera del repositorio: el telefono del contacto en casa se introduce en la app y se guarda solo en el dispositivo",
       "Decisiones pendientes visibles en la app: bloque de opciones en los dias 2 (Hornos) y 4 (Huelamo y rio Cuervo)",
@@ -1462,6 +1463,11 @@
       { "marca": "REV'IT", "modelo": "Sand 5 H2O", "impermeable": true },
       { "marca": "REV'IT", "modelo": "Caliber 1", "impermeable": false }
     ],
+    "camara": {
+      "marca": "DJI", "modelo": "Osmo 360", "tipo": "camara 360",
+      "soporte": { "marca": "K&F Concept", "tipo": "Abrazadera de parabrisas para moto", "material": "PP66", "anclajes": "Rosca 1/4 y horquilla tipo GoPro", "montaje": "Sin herramientas, palanca", "llega": "2026-09-11" },
+      "pendiente_probar": "Montarla en la pantalla de la NX500 y grabar en la salida de prueba del sabado: la pantalla es el punto que mas vibra de la moto. Revisar el material en casa antes de salir."
+    },
     "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Airwave 4" } },
     "botas": { "marca": "REV'IT", "modelo": "Breccia GTX", "talla": 43, "membrana": "Gore-Tex" }
   },
@@ -1492,9 +1498,9 @@
 
   "reparto_equipaje": {
     "regla": "Cada cosa vive siempre en la misma maleta.",
-    "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Pixel conectado por USB-C a la toma", "Powerbank Baseus", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
+    "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado por USB-C a la toma", "Powerbank Baseus", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
     "sh38x_izquierda_ropa": ["Organizador grande: merino manga corta x2, top merino manga larga, boxers, calcetines", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente", "Sobre con el resto del efectivo"],
-    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB", "Cubrebotas si se compran"],
+    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB + cable de la Osmo 360", "Cubrebotas si se compran"],
     "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Chaleco reflectante", "Casco y chaqueta al bajar a comer o pasear"],
     "dias_sin_laterales": {
       "dias": [5, 7],
@@ -1507,7 +1513,8 @@
     "jueves_10": [
       "Comprobar que llegan los 4 articulos de Amazon",
       "Comprar 2 boxers largos",
-      "Pedir chaleco reflectante y cable micro-USB si no se tienen"
+      "Pedir chaleco reflectante y cable micro-USB si no se tienen",
+      "Comprobar que llega el soporte K&F y que la Osmo 360 tiene bateria y tarjeta con espacio"
     ],
     "viernes_11": [
       "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",
@@ -1521,6 +1528,7 @@
     ],
     "sabado_12_o_domingo_13": [
       "Salida de prueba 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato), Sena SRL3 con indicaciones de voz",
+      "Osmo 360 en la pantalla: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor, cambiar de sitio el domingo",
       "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
       "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
       "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
@@ -1538,10 +1546,10 @@
   },
 
   "rutina_diaria": {
-    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A y el Sena SRL3 del casco", "Spray de cadena con la cadena caliente (cada noche o cada dos)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
+    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A, el Sena SRL3 del casco y la Osmo 360", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones si toca (cada 2-3 dias)", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
-    "en_ruta": ["Parada cada 60-75 min", "Beber en cada parada", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
-    "llegada": ["Antirrobo de disco puesto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
+    "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
+    "llegada": ["Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
   },
 
   "principios_para_claude": [

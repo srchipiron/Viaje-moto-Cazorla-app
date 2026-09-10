@@ -693,7 +693,9 @@ function inventarioHTML(inv) {
       <dt>Maletas</dt><dd>${esc(e.marca)} ${esc(e.baul)} + 2× ${esc(e.maletas_laterales)}<br><small>Bolsa de depósito ${esc(e.bolsa_deposito.modelo)}, ${esc(e.bolsa_deposito.anclaje)}${e.bolsa_deposito.cierre_con_llave ? ', con cierre de llave' : ''}</small></dd>
       <dt>Casco</dt><dd><b>${esc(c.marca)} ${esc(c.modelo)}</b> · ${esc(c.tipo)} · talla ${esc(c.talla)}${c.intercomunicador ? `<br><small>Intercomunicador ${esc(c.intercomunicador.marca)} ${esc(c.intercomunicador.modelo)}${c.intercomunicador.integrado ? ' integrado' : ''}</small>` : ''}</dd>
       <dt>Botas</dt><dd><b>${esc(inv.botas.marca)} ${esc(inv.botas.modelo)}</b><br><small>${flags(inv.botas)}</small></dd>
+      ${inv.camara ? `<dt>Cámara</dt><dd><b>${esc(inv.camara.marca)} ${esc(inv.camara.modelo)}</b> · ${esc(inv.camara.tipo)}${inv.camara.soporte ? `<br><small>Soporte ${esc(inv.camara.soporte.marca)}: ${esc(inv.camara.soporte.tipo.toLowerCase())}, ${esc(inv.camara.soporte.anclajes.toLowerCase())}</small>` : ''}</dd>` : ''}
     </dl>
+    ${inv.camara && inv.camara.pendiente_probar ? `<div class="note"><b>Por probar:</b> ${esc(inv.camara.pendiente_probar)}</div>` : ''}
     <h4>Chaquetas</h4><ul>${inv.chaquetas.map((x) => item(x, flags(x))).join('')}</ul>
     <h4>Pantalones</h4><ul>${inv.pantalones.map((x) => item(x, flags(x))).join('')}</ul>
     <h4>Guantes</h4><ul>${inv.guantes.map((x) => item(x, flags(x))).join('')}</ul>
