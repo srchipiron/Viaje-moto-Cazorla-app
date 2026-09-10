@@ -44,6 +44,10 @@ y en `data/viaje.json`, dentro del día 4:
 "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Uña", "Tragacete", "..."] }
 ```
 
+Cada día admite además un campo `opciones` con las decisiones abiertas (título, estado,
+cuándo se decide y las alternativas con su coste y qué tocar en Kurviger). La app las muestra
+como «Decisiones del día» y marca la etapa en la lista.
+
 `vias` es opcional: los nombres, en orden, de los puntos de vía de Kurviger (sin la salida ni el
 destino) para que la tabla y el mapa muestren el lugar en vez de «Vía 1, Vía 2».
 

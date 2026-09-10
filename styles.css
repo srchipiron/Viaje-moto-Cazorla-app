@@ -228,6 +228,16 @@ body.mapa-abierto { overflow: hidden; }
 .via-icon.via-start span { background: #1f8a4c; }
 .via-icon.via-destination span { background: #c2410c; }
 
+/* Decisiones del dia */
+.card.opcion { border-left: 4px solid var(--warn); }
+.alts { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+@media (min-width: 560px) { .alts { grid-template-columns: 1fr 1fr; } }
+.alt { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--card); }
+.alt b { display: block; }
+.alt-coste { display: inline-block; margin-top: 2px; font-size: .8rem; font-weight: 600; color: var(--warn); }
+.alt p { margin: 6px 0; font-size: .93rem; }
+.alt small { color: var(--muted); }
+
 /* Guia turistica */
 .guia .lead { font-size: 1.02rem; line-height: 1.5; margin: 2px 0 6px; }
 .poi-list { display: flex; flex-direction: column; }

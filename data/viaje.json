@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 31,
+    "revision": 32,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Decisiones pendientes visibles en la app: bloque de opciones en los dias 2 (Hornos) y 4 (Huelamo y rio Cuervo)",
       "Dia 11 ajustado a la ruta DEF de Kurviger: 264 km y 3h30, con autovia desde Velez-Rubio; llegada 14:20. La version por el Almanzora queda guardada como alternativa",
       "Dia 10 corregido: la via que estaba en Corral Rubio se movio a Chinchilla y el destino a La Cilla; de 318 km a 242 km y 4h, horario recalculado, llegada 16:15",
       "Dia 9 ajustado a la ruta de Kurviger, ya desde Via Caprasia: 117 km, 2h, horario recalculado, llegada 13:35",
@@ -306,6 +307,27 @@
         "Siles-Riopar por CM-3204 y Puerto del Arenal.",
         "Repostar en Riopar por la tarde o en Alcaraz a primera hora del dia 3."
       ],
+      "opciones": [
+        {
+          "titulo": "Hornos de Segura: subir al pueblo o pasar de largo",
+          "estado": "Por decidir",
+          "cuando": "Hay que cambiarlo en Kurviger antes de salir",
+          "alternativas": [
+            {
+              "nombre": "Subir al pueblo",
+              "coste": "+3 km, +10 min",
+              "por_que": "Castillo con el Cosmolarium dentro y el mejor mirador sobre el pantano del Tranco. Es la parada de cafe prevista en el plan.",
+              "como": "Mover la via 5 (ahora en la A-317) a 38.2178, -2.7194"
+            },
+            {
+              "nombre": "Seguir por la A-317",
+              "coste": "Como esta la ruta ahora",
+              "por_que": "El pantano se ve igualmente desde la carretera y se gana media hora. El cafe se hace en Segura de la Sierra.",
+              "como": "No tocar nada"
+            }
+          ]
+        }
+      ],
       "alojamiento": {
         "nombre": "Hostal El Laminador - Restaurante La Alqueria de Manu (antigua Venta el Laminador)",
         "direccion": "CM-412 km 200, 02450 Riopar (Albacete)",
@@ -540,6 +562,46 @@
         "Horas de paso calculadas con los tiempos de Kurviger (2h13 de conduccion) mas las paradas.",
         "Vigilar obras o regulaciones en la CM-2105; revisar DGT la noche anterior.",
         "Llegada al hotel: parar en la puerta (carga y descarga, max 20 min), soltar las tres maletas, bajar a aparcar."
+      ],
+      "opciones": [
+        {
+          "titulo": "Entre Uña y Tragacete: Huelamo o la carretera de Valdemeca",
+          "estado": "Por decidir",
+          "cuando": "Hay que cambiarlo en Kurviger antes de salir",
+          "alternativas": [
+            {
+              "nombre": "Por Huelamo (CM-2105)",
+              "coste": "Kilometros parecidos",
+              "por_que": "Sigue la hoz del Jucar encajonada entre paredes; es el tramo que el plan daba por bueno y pasa por el pueblo colgado sobre el rio.",
+              "como": "Mover la via 4 al pueblo de Huelamo, al norte de Uña sobre la CM-2105"
+            },
+            {
+              "nombre": "Por la carretera de Valdemeca",
+              "coste": "Como esta la ruta ahora",
+              "por_que": "Carretera de pinares mas abierta y solitaria, por el este. Es lo que trae la ruta actual desde la primera version.",
+              "como": "No tocar nada"
+            }
+          ]
+        },
+        {
+          "titulo": "Nacimiento del Rio Cuervo",
+          "estado": "Incluido en la ruta",
+          "cuando": "Se puede decidir esa misma mañana, en Tragacete",
+          "alternativas": [
+            {
+              "nombre": "Hacerlo",
+              "coste": "+24 km, +20 min de moto y una hora de paseo",
+              "por_que": "Ida y vuelta desde Tragacete hasta el parking y sendero corto de 1 km hasta las cascadas.",
+              "como": "Ya esta en la ruta: no hay que hacer nada"
+            },
+            {
+              "nombre": "Saltarlo",
+              "coste": "Llegada a Albarracin a las 12:30 en vez de las 13:25",
+              "por_que": "Si hay tormentas a la vista o se va tarde. El dia es corto igualmente.",
+              "como": "Saltar la via del parking del rio Cuervo durante la navegacion"
+            }
+          ]
+        }
       ],
       "alojamiento": {
         "nombre": "Hotel Albarracin",

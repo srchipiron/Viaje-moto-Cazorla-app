@@ -1,6 +1,6 @@
 /* Service worker: precarga la app y los datos para funcionar sin cobertura.
    Al cambiar cualquier fichero (sobre todo data/viaje.json), subir VERSION. */
-const VERSION = 'v3.4.1';
+const VERSION = 'v3.5.0';
 const CACHE = `viaje-nx500-${VERSION}`;
 const SHELL = [
   './',

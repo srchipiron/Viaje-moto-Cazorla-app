@@ -390,6 +390,22 @@ async function openMap(dia) {
 }
 function closeMap() { document.getElementById('mapa').hidden = true; document.body.classList.remove('mapa-abierto'); if (LMAP) { LMAP.remove(); LMAP = null; } }
 
+/* Decisiones abiertas de una etapa: cada opcion con sus alternativas. */
+function opcionesHTML(e) {
+  const ops = e.opciones; if (!ops || !ops.length) return '';
+  return `<h2>Decisiones del día</h2>
+    ${ops.map((o) => `<div class="card opcion">
+      <div class="card-title"><h3>${esc(o.titulo)}</h3><span class="badge ${/pendiente|decidir/i.test(o.estado) ? 'warn' : 'ok'}">${esc(o.estado)}</span></div>
+      ${o.cuando ? `<p class="muted"><small>${esc(o.cuando)}</small></p>` : ''}
+      <div class="alts">${(o.alternativas || []).map((a) => `<div class="alt">
+          <b>${esc(a.nombre)}</b>
+          <span class="alt-coste">${esc(a.coste)}</span>
+          <p>${esc(a.por_que)}</p>
+          ${a.como ? `<small><b>En Kurviger:</b> ${esc(a.como)}</small>` : ''}
+        </div>`).join('')}</div>
+    </div>`).join('')}`;
+}
+
 /* ---------- guia turistica por etapa ---------- */
 const POI_ICON = { mirador: '🔭', monumento: '🏰', naturaleza: '🌲', pueblo: '🏘️', cafe: '☕', comida: '🍽️', paseo: '🚶' };
 function guiaHTML(e) {
@@ -424,7 +440,7 @@ function etapaCard(e, opts = {}) {
       <span class="badge ${t.cls}">${t.icon} ${t.label}</span>
     </div>
     <div class="etapa-ruta">${esc(e.origen)} → ${esc(e.destino)}</div>
-    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${etapaWx(e)}</div>
+    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${(e.opciones || []).some((o) => /pendiente|decidir/i.test(o.estado)) ? '<span class="wx-inline" title="Hay una decisión pendiente">⚖️ Por decidir</span>' : ''}${etapaWx(e)}</div>
   </a>`;
 }
 
@@ -560,6 +576,7 @@ function viewEtapas(arg) {
     ${e.horario_orientativo ? `<h2>Horario orientativo</h2><div class="card"><div class="tbl-wrap"><table><thead><tr><th>Hora</th><th>Lugar</th><th>Qué</th></tr></thead><tbody>${e.horario_orientativo.map((h) => `<tr><td><b>${esc(h.hora)}</b></td><td>${esc(h.lugar)}</td><td>${esc(h.que)}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
     ${e.paradas ? `<h2>Paradas</h2><div class="card">${list(e.paradas)}</div>` : ''}
     ${guiaHTML(e)}
+    ${opcionesHTML(e)}
     ${e.notas ? `<h2>Notas</h2><div class="card">${list(e.notas)}</div>` : ''}
 
     ${cfg ? `<h2>Equipación del día</h2><div class="card"><p class="muted">Configuración «${human(cfgKey)}»</p><dl><dt>Pantalón</dt><dd>${esc(cfg.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(cfg.chaqueta)}</dd>${cfg.nota ? `<dt>Nota</dt><dd>${esc(cfg.nota)}</dd>` : ''}</dl>
