@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 25,
+    "revision": 26,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 8 ajustado a la ruta de Kurviger con destino en Via Caprasia: 208 km, 3h30, horario recalculado, llegada 15:55",
       "Dia 7 ajustado a la ruta DEF de Kurviger (coincide con el plan): 144 km, 2h30, horario recalculado, llegada 15:20",
       "Dia 6 ajustado a la ruta de Kurviger (coincide con el plan): 93 km, 2h, horario recalculado, llegada 14:45",
       "Dia 5 ajustado a la ruta de Kurviger (coincide con el plan): 79 km, 1h30, horario recalculado, llegada 12:25",
@@ -862,15 +863,15 @@
       "tipo": "montaña_y_enlace",
       "origen": "Camping Los Alamos",
       "destino": "Via Caprasia (Villargordo del Cabriel)",
-      "km_aprox": 215,
+      "km_aprox": 208,
       "tiempo_real_aprox": "3h30",
       "dificultad": 3,
       "fatiga": 3,
       "perfil_kurviger": "Fast & Curvy",
       "salida": "09:00",
-      "llegada_prevista": "16:00",
+      "llegada_prevista": "15:45",
       "meteo_puntos": [{ "nombre": "Manzanera", "lat": 40.05, "lon": -0.83 }, { "nombre": "Villargordo del Cabriel", "lat": 39.53, "lon": -1.44 }],
-      "gpx": { "archivo": "gpx/dia-08.gpx", "track": "data/tracks/dia-08.json", "nota": "Ruta Kurviger 'Dia 7 Camping Los Alamos - Utiel' (10 sept; en el plan es el dia 8): 178,7 km y 2h52 hasta Utiel. Termina en Utiel, no en Villargordo del Cabriel: faltan unos 25 km hasta Via Caprasia." },
+      "gpx": { "archivo": "gpx/dia-08.gpx", "track": "data/tracks/dia-08.json", "vias": ["Alcala de la Selva", "Mora de Rubielos", "Sarrion", "Manzanera", "Torrijas", "Arcos de las Salinas", "Losilla", "Aras de los Olmos", "Santa Cruz de Moya", "Landete", "Sinarcas", "Utiel"], "nota": "Ruta Kurviger 'Dia 8' (10 sept), ya con el destino en Via Caprasia: 208,4 km y 3h13 estimadas. Coincide con el plan e incluye Losilla como via, que era el punto clave de la conexion. Utiel queda como via para la compra de la cena." },
       "guia": {
         "resumen": "De la Sierra de Gúdar a la Serranía valenciana y la Manchuela: Mora de Rubielos y su castillo, Sarrión (la capital de la trufa), la sierra de Javalambre por Manzanera y Arcos de las Salinas, y el interior de Valencia hasta la meseta de Utiel-Requena.",
         "ver": [
@@ -940,9 +941,20 @@
         "consejo": "Losilla es el shaping point clave para que Kurviger no invente atajos. Gasolina: llenar en Mora de Rubielos o Sarrión; en el tramo Manzanera-Aras no contar con surtidor abierto a mediodía."
       },
       "waypoints": ["Camping Los Alamos", "Alcala de la Selva", "Mora de Rubielos", "Sarrion", "Manzanera", "Torrijas", "Arcos de las Salinas", "Losilla", "Aras de los Olmos", "Santa Cruz de Moya", "Landete", "Sinarcas", "Utiel", "Via Caprasia"],
+      "horario_orientativo": [
+        { "hora": "09:34-10:20", "lugar": "Mora de Rubielos", "que": "Cafe en la plaza y castillo-palacio gotico" },
+        { "hora": "10:40", "lugar": "Sarrion", "que": "De paso. REPOSTAR aqui o en Mora: entre Manzanera y Aras no hay surtidor fiable a mediodia" },
+        { "hora": "10:55-11:10", "lugar": "Manzanera", "que": "Parada de descanso" },
+        { "hora": "11:35-11:50", "lugar": "Arcos de las Salinas", "que": "Salinas historicas junto al rio; foto rapida" },
+        { "hora": "12:05-12:30", "lugar": "Aras de los Olmos", "que": "Cafe y paseo corto" },
+        { "hora": "13:00-14:15", "lugar": "Landete", "que": "Comida (o en Aras si se prefiere)" },
+        { "hora": "15:05-15:35", "lugar": "Utiel", "que": "Supermercado para la cena; vino DO Utiel-Requena" },
+        { "hora": "15:55", "lugar": "Via Caprasia", "que": "Llegada a Villargordo del Cabriel" }
+      ],
       "paradas": ["Mora de Rubielos - castillo y cafe", "Manzanera", "Aras de los Olmos", "Utiel - supermercado para la cena"],
       "notas": [
-        "Losilla es shaping point importante para forzar la conexion correcta.",
+        "Horas de paso calculadas con los tiempos de Kurviger (3h13 de conduccion) mas las paradas.",
+        "Losilla ya va como via en la ruta: es el punto que fuerza la conexion correcta.",
         "Lunes en pueblo pequeño: dar por hecho que no hay cena fuera. Comprar en Utiel y cenar en el apartamento."
       ],
       "alojamiento": {
