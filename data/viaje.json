@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 11,
+    "revision": 12,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,7 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
-      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 3, 4, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dias 1, 2, 3, 4, 6, 8, 9, 10 y 11 integrados (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
 
@@ -598,6 +598,7 @@
       "salida": "09:30",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Teruel", "lat": 40.34, "lon": -1.11 }, { "nombre": "Alcala de la Selva", "lat": 40.36, "lon": -0.71 }],
+      "gpx": { "archivo": "gpx/dia-06.gpx", "track": "data/tracks/dia-06.json", "nota": "Ruta Kurviger 'Dia 5 Albarracín - Camping Los Álamos, Alcalá de la Selva' (10 sept; en el plan es el dia 6): 171,5 km y 3h10 estimadas frente a 110 km / 2h15 del plan." },
       "guia": {
         "resumen": "Los pinares de rodeno rojo de Albarracín, la Teruel mudéjar con sus torres Patrimonio de la Humanidad y la subida a la Sierra de Gúdar hasta el camping, a 1.500 m.",
         "ver": [
