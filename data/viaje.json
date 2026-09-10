@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 19,
+    "revision": 20,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 5 ajustado a la ruta de Kurviger (coincide con el plan): 79 km, 1h30, horario recalculado, llegada 12:25",
       "Dia 4 ajustado a la ruta DEF de Kurviger: 153 km con el rio Cuervo incluido, 2h30, horario recalculado, llegada 13:25; pendiente decidir Huelamo o carretera de Valdemeca",
       "Dia 3 ajustado a la ruta DEF de Kurviger (coincide con el plan; via en el parking de los Chorros y en Barrax): 279 km, 4h20, horario recalculado",
       "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
@@ -556,16 +557,16 @@
       "tipo": "montaña_suave",
       "origen": "Hotel Albarracin",
       "destino": "Hotel Albarracin",
-      "km_aprox": 80,
-      "tiempo_real_aprox": "1h45",
+      "km_aprox": 79,
+      "tiempo_real_aprox": "1h30",
       "dificultad": 2,
       "fatiga": 1,
       "perfil_kurviger": "Curvy",
       "equipaje": "Sin maletas (se quedan en la habitacion). Bolsa de deposito y SH58X con botiquin, kit de mechas, compresor y agua.",
       "salida": "10:00 (sin prisa; desayuno en el hotel)",
-      "llegada_prevista": "13:00",
+      "llegada_prevista": "12:30",
       "meteo_puntos": [{ "nombre": "Bronchales", "lat": 40.51, "lon": -1.59 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
-      "gpx": { "archivo": "gpx/dia-05.gpx", "track": "data/tracks/dia-05.json", "nota": "Ruta Kurviger 'Dia 5 Albarracin - Bronchales - Orihuela del Tremedal - Albarracin': primera mitad del GPX 'Dia 5 Albarracin - Camping Los Alamos' (10 sept), partido en Albarracin (km 78,8) con tools/gpxsplit.py. 78,8 km y 1h20 estimadas frente a 80 km / 1h45 del plan." },
+      "gpx": { "archivo": "gpx/dia-05.gpx", "track": "data/tracks/dia-05.json", "vias": ["Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin (vuelta)", "Tramacastilla (vuelta)", "Torres de Albarracin"], "nota": "Primera mitad del GPX 'Dia 5 Albarracin - Camping Los Alamos' de Kurviger (10 sept), partido en Albarracin con tools/gpxsplit.py. 78,8 km y 1h20 estimadas. Coincide con el plan; la vuelta de Orihuela a Noguera va por la carretera directa, sin repetir Bronchales." },
       "guia": {
         "resumen": "Día de descanso activo por los pinares de la Sierra de Albarracín: bucle corto y suave hasta Bronchales y Orihuela del Tremedal, y tarde entera para Albarracín sin prisa.",
         "ver": [
@@ -620,10 +621,18 @@
         "tarde": "Lavado a mano de ropa, siesta y Albarracín a pie sin horario. Cena en el hotel (confirmar) o en el casco. Preparar la etapa del Maestrazgo: repasar la ruta en Kurviger y decidir forros.",
         "consejo": "Es 100% recortable: si no apetece la moto, se cambia por el Paseo Fluvial y la Catedral. Si se hace, salir a las 10:00 y volver a las 13:00, sin alargar."
       },
-      "waypoints": ["Hotel Albarracin", "Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin", "Tramacastilla", "Hotel Albarracin"],
+      "waypoints": ["Hotel Albarracin", "Torres de Albarracin", "Tramacastilla", "Noguera de Albarracin", "Bronchales", "Orihuela del Tremedal", "Noguera de Albarracin", "Tramacastilla", "Torres de Albarracin", "Hotel Albarracin"],
+      "horario_orientativo": [
+        { "hora": "10:15", "lugar": "Tramacastilla", "que": "De paso" },
+        { "hora": "10:22", "lugar": "Noguera de Albarracin", "que": "De paso" },
+        { "hora": "10:31-11:00", "lugar": "Bronchales", "que": "Cafe en la plaza" },
+        { "hora": "11:12-11:45", "lugar": "Orihuela del Tremedal", "que": "Paseo corto; la carretera pasa junto al desvio del Santuario del Tremedal" },
+        { "hora": "12:00", "lugar": "Noguera de Albarracin", "que": "De vuelta por la carretera directa desde Orihuela" },
+        { "hora": "12:25", "lugar": "Hotel Albarracin", "que": "Llegada; comida en el pueblo" }
+      ],
       "paradas": ["Bronchales - cafe", "Orihuela del Tremedal - paseo corto"],
       "objetivo": "Dia de descanso activo antes del Maestrazgo. Tarde y noche en Albarracin a pie. Lavado a mano de ropa.",
-      "notas": ["Se sube y baja por la misma carretera; ida y vuelta identicas.", "Si no apetece, no se hace: es 100% recortable."]
+      "notas": ["Horas de paso calculadas con los tiempos de Kurviger (1h20 de conduccion) mas las paradas.", "Es un bucle: ida por Bronchales y vuelta de Orihuela a Noguera por la carretera directa; solo se repite Noguera - Albarracin.", "Si no apetece, no se hace: es 100% recortable."]
     },
     {
       "dia": 6,
