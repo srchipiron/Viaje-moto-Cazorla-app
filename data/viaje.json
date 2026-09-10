@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 30,
+    "revision": 31,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,7 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
-      "Dia 11 ajustado a la ruta de Kurviger: 263 km y 3h55 por secundarias (Almanzora, Uleila, Tabernas) en vez de autovia; horario recalculado, llegada 14:45",
+      "Dia 11 ajustado a la ruta DEF de Kurviger: 264 km y 3h30, con autovia desde Velez-Rubio; llegada 14:20. La version por el Almanzora queda guardada como alternativa",
       "Dia 10 corregido: la via que estaba en Corral Rubio se movio a Chinchilla y el destino a La Cilla; de 318 km a 242 km y 4h, horario recalculado, llegada 16:15",
       "Dia 9 ajustado a la ruta de Kurviger, ya desde Via Caprasia: 117 km, 2h, horario recalculado, llegada 13:35",
       "Dia 8 ajustado a la ruta de Kurviger con destino en Via Caprasia: 208 km, 3h30, horario recalculado, llegada 15:55",
@@ -1190,15 +1190,15 @@
       "tipo": "calor_y_llano",
       "origen": "La Cilla (Moratalla)",
       "destino": "Almeria",
-      "km_aprox": 263,
-      "tiempo_real_aprox": "3h55",
+      "km_aprox": 264,
+      "tiempo_real_aprox": "3h30",
       "dificultad": 2,
-      "fatiga": 3,
-      "perfil_kurviger": "Fast & Curvy todo el dia (la ruta no usa autovia)",
+      "fatiga": 2,
+      "perfil_kurviger": "Fast & Curvy hasta Velez-Rubio, autovia despues",
       "salida": "09:30",
-      "llegada_prevista": "14:45",
+      "llegada_prevista": "14:20",
       "meteo_puntos": [{ "nombre": "Velez-Blanco", "lat": 37.69, "lon": -2.10 }, { "nombre": "Almeria", "lat": 36.84, "lon": -2.46 }],
-      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "vias": ["Moratalla", "Caravaca de la Cruz", "Barranda", "Campo de San Juan", "Maria", "Velez-Blanco", "Velez-Rubio"], "nota": "Ruta Kurviger 'Dia 10' (10 sept; en el plan es el dia 11): 263 km y 3h53 estimadas. Dos diferencias con el plan: no pasa por Puebla de Don Fadrique (va directa de Barranda a Maria) y despues de Velez-Rubio no coge la autovia, sino secundarias por Chirivel, el valle del Almanzora (Macael), Uleila del Campo y Tabernas. Por la A-92N y la A-7 serian unos 220 km y 3h05." },
+      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "vias": ["Moratalla", "Salida de Moratalla", "Caravaca de la Cruz", "Barranda", "C-330 Campo de San Juan", "Campo de San Juan", "Maria", "Velez-Blanco", "Velez-Rubio"], "nota": "Ruta Kurviger 'Dia 11' (10 sept): 263,6 km y 3h28 estimadas. Hasta Velez-Rubio va por carreteras de sierra; despues coge la autovia por Puerto Lumbreras y la A-7 de la costa hasta Almeria. Alternativa guardada en gpx/dia-11-alt-almanzora.gpx: mismos km pero 25 minutos mas, volviendo por Chirivel, el valle del Almanzora, Uleila y Tabernas." },
       "guia": {
         "resumen": "Vuelta a casa por el noroeste murciano y la comarca de Los Vélez: Caravaca de la Cruz, la sierra de María, el castillo renacentista de Vélez-Blanco, y desde Vélez-Rubio la autovía hasta Almería.",
         "ver": [
@@ -1260,23 +1260,23 @@
         "tarde": "En casa: descargar maletas, foto de la moto con el cuentakilómetros y anotar los km reales del viaje. Cadena limpia y engrasada antes de que se enfríe la satisfacción.",
         "consejo": "No usar Puerto Lumbreras como waypoint. Desde Vélez-Rubio, autovía sin dudarlo: el cansancio acumulado de once días no se nota hasta que se nota."
       },
-      "waypoints": ["La Cilla", "Moratalla", "Caravaca de la Cruz", "Barranda", "Campo de San Juan", "Maria", "Velez-Blanco", "Velez-Rubio", "Chirivel", "Valle del Almanzora", "Uleila del Campo", "Tabernas", "Almeria"],
+      "waypoints": ["La Cilla", "Moratalla", "Caravaca de la Cruz", "Barranda", "Campo de San Juan", "Maria", "Velez-Blanco", "Velez-Rubio", "Puerto Lumbreras", "A-7 por Huercal-Overa y Vera", "Almeria"],
       "horario_orientativo": [
         { "hora": "09:54-10:15", "lugar": "Caravaca de la Cruz", "que": "Basilica de la Vera Cruz sobre el castillo; parada de foto o cafe rapido" },
         { "hora": "10:20", "lugar": "Barranda", "que": "De paso" },
         { "hora": "11:20-11:40", "lugar": "Maria", "que": "Cafe en la plaza; Parque Natural Sierra de Maria-Los Velez" },
-        { "hora": "11:50-12:20", "lugar": "Velez-Blanco", "que": "Castillo de los Fajardo; ultima parada turistica del viaje" },
-        { "hora": "12:25-12:35", "lugar": "Velez-Rubio", "que": "REPOSTAR para el tramo final" },
-        { "hora": "13:30", "lugar": "Valle del Almanzora / Macael", "que": "De paso, canteras de marmol" },
-        { "hora": "14:10", "lugar": "Tabernas", "que": "De paso, desierto" },
-        { "hora": "14:45", "lugar": "Almeria", "que": "Llegada a casa" }
+        { "hora": "11:48-12:15", "lugar": "Velez-Blanco", "que": "Castillo de los Fajardo; ultima parada turistica del viaje" },
+        { "hora": "12:20-12:30", "lugar": "Velez-Rubio", "que": "REPOSTAR. Aqui acaba la sierra y empieza la autovia" },
+        { "hora": "12:45", "lugar": "Puerto Lumbreras", "que": "Entrada a la A-7" },
+        { "hora": "13:20", "lugar": "Huercal-Overa / Vera", "que": "De paso por la A-7" },
+        { "hora": "14:20", "lugar": "Almeria", "que": "Llegada a casa" }
       ],
       "paradas": ["Caravaca de la Cruz - basilica", "Maria - cafe", "Velez-Blanco - castillo"],
       "notas": [
         "Horas de paso calculadas con los tiempos de Kurviger (3h53 de conduccion) mas las paradas.",
-        "La ruta evita la autovia y vuelve por secundarias: 45 minutos mas que por la A-92N y la A-7. Decision del dia: si hay cansancio acumulado, desde Velez-Rubio tirar de autovia y llegar a las 14:00.",
-        "No usar Puerto Lumbreras como waypoint.",
-        "Deposito lleno al salir de Moratalla o en Caravaca: son 263 km y el tramo del Almanzora tiene pocas gasolineras."
+        "Desde Velez-Rubio son 120 km de autovia (A-92N hasta Puerto Lumbreras y A-7 de la costa). Tapones Sport y ritmo tranquilo: es el unico tramo largo de autovia del viaje.",
+        "Alternativa por secundarias (gpx/dia-11-alt-almanzora.gpx): mismos km, 25 minutos mas, por Chirivel, Macael, Uleila del Campo y Tabernas. Mas bonita pero mas exigente en el ultimo dia.",
+        "Deposito lleno al salir de Moratalla o en Caravaca; ultimo repostaje comodo en Velez-Rubio."
       ]
     }
   ],
