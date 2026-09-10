@@ -195,6 +195,39 @@ dd { margin: 0; }
   .wx-row { grid-template-columns: 34px 1fr; grid-template-areas: "icon main" "icon nums" "icon links"; }
 }
 
+/* Ruta GPX */
+.sketch { width: 100%; height: auto; display: block; background: var(--accent-soft); border-radius: 10px; margin: 6px 0 4px; }
+.sketch polyline { fill: none; stroke: var(--link); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.sketch circle { stroke: var(--card); stroke-width: 2; }
+.sketch text { font-size: 9px; font-weight: 700; fill: #fff; }
+.sketch .sk-via circle { fill: var(--accent); }
+.sketch .sk-ini circle { fill: var(--ok); }
+.sketch .sk-fin circle { fill: var(--hot); }
+.perfil { width: 100%; height: auto; display: block; margin: 4px 0 6px; touch-action: pan-y; }
+.perfil .grid line { stroke: var(--line); stroke-width: 1; }
+.perfil text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.perfil .unit { font-size: 10px; }
+.perfil .area { fill: var(--link); opacity: .18; }
+.perfil .line { fill: none; stroke: var(--link); stroke-width: 2; stroke-linejoin: round; }
+.perfil .max circle { fill: var(--link); stroke: var(--card); stroke-width: 2; }
+.perfil .max text { fill: var(--text); font-weight: 600; }
+.perfil .hover line { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.perfil .hover circle { fill: var(--card); stroke: var(--link); stroke-width: 2; }
+.perfil .hover text { fill: var(--text); font-weight: 600; paint-order: stroke; stroke: var(--card); stroke-width: 3px; }
+.ruta .statgrid .stat small:last-child { text-transform: none; letter-spacing: 0; margin-top: 2px; }
+table.vias td:first-child { font-weight: 700; color: var(--accent); }
+
+/* Mapa interactivo */
+.mapa { position: fixed; inset: 0; z-index: 40; background: var(--bg); display: flex; flex-direction: column; }
+.mapa[hidden] { display: none; }
+.mapa-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: calc(8px + env(safe-area-inset-top)) 12px 8px; background: var(--card); border-bottom: 1px solid var(--line); }
+.mapa-bar b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#mapa-lienzo { flex: 1; }
+body.mapa-abierto { overflow: hidden; }
+.via-icon span { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #1b3a5c; color: #fff; font: 700 11px system-ui, sans-serif; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.via-icon.via-start span { background: #1f8a4c; }
+.via-icon.via-destination span { background: #c2410c; }
+
 /* Guia turistica */
 .guia .lead { font-size: 1.02rem; line-height: 1.5; margin: 2px 0 6px; }
 .poi-list { display: flex; flex-direction: column; }

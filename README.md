@@ -23,6 +23,31 @@ Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
 | Equipaje | Equipación por tipo de día, reparto por maleta, días sin laterales, material, ropa y lavandería |
 | Guía | Navegación y ajustes de Kurviger, moto, principios del plan y versión del JSON |
 
+## Rutas GPX de Kurviger
+
+Cada día puede llevar su ruta exportada de Kurviger. En la ficha de la etapa aparece un croquis
+del recorrido, distancia y tiempo estimados por Kurviger frente a los del plan, desnivel,
+perfil de altitud con tooltip, la tabla de vías con su kilómetro, un botón para descargar el
+GPX original (para importarlo en Kurviger en el móvil) y un mapa interactivo con
+OpenStreetMap (Leaflet, incluido en `vendor/`; los mapas necesitan conexión, el resto no).
+
+Para añadir la ruta de un día:
+
+```bash
+cp "Dia 4 Cuenca - Albarracin.gpx" gpx/dia-04.gpx
+python3 tools/gpx2json.py gpx/dia-04.gpx data/tracks/dia-04.json
+```
+
+y en `data/viaje.json`, dentro del día 4:
+
+```json
+"gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json" }
+```
+
+El script simplifica el track (Douglas-Peucker, ~25 m) y genera el perfil, el desnivel y los
+kilómetros de cada vía. El service worker precarga automáticamente los tracks listados en el
+plan, así que funcionan sin cobertura.
+
 ## Publicar en GitHub Pages
 
 1. En el repositorio: **Settings → Pages → Build and deployment → Source: Deploy from a branch**.
@@ -62,6 +87,10 @@ app.js                render de vistas, router por hash, checklists persistentes
 sw.js                 service worker: precarga y caché stale-while-revalidate
 manifest.webmanifest  manifiesto PWA
 data/viaje.json       fuente de verdad (JSON v3)
+data/tracks/          tracks ligeros generados a partir de los GPX
+gpx/                  rutas GPX originales exportadas de Kurviger
+tools/gpx2json.py     conversor GPX -> track ligero
+vendor/leaflet/       Leaflet 1.9.4 (BSD-2) para el mapa interactivo
 icons/                iconos SVG (normal y maskable)
 .nojekyll             evita que GitHub Pages procese el sitio con Jekyll
 ```

@@ -1,6 +1,6 @@
 /* Service worker: precarga la app y los datos para funcionar sin cobertura.
    Al cambiar cualquier fichero (sobre todo data/viaje.json), subir VERSION. */
-const VERSION = 'v3.3.0';
+const VERSION = 'v3.4.0';
 const CACHE = `viaje-nx500-${VERSION}`;
 const SHELL = [
   './',
@@ -15,7 +15,16 @@ const SHELL = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE).then(async (cache) => {
+      await cache.addAll(SHELL);
+      // Tracks GPX ligeros y Leaflet: se precachean si el plan los lista (sin bloquear la instalacion si fallan).
+      try {
+        const plan = await (await fetch('./data/viaje.json', { cache: 'no-store' })).json();
+        const extra = plan.itinerario.filter((d) => d.gpx && d.gpx.track).map((d) => './' + d.gpx.track);
+        if (extra.length) extra.push('./vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css');
+        await Promise.all(extra.map((u) => cache.add(u).catch(() => null)));
+      } catch (e) { /* sin plan accesible: solo el shell */ }
+    }).then(() => self.skipWaiting())
   );
 });
 

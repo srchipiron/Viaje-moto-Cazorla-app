@@ -243,6 +243,146 @@ function pagoHTML(a) {
 function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
 function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
 
+/* ---------- rutas GPX (track ligero generado con tools/gpx2json.py) ---------- */
+D.tracks = {};  // dia -> { status, data }
+function trackLoad(e) {
+  if (!e.gpx || !e.gpx.track) return;
+  const t = D.tracks[e.dia];
+  if (t && (t.status === 'ok' || t.status === 'loading')) return;
+  if (window.VIAJE_TRACKS && window.VIAJE_TRACKS[e.dia]) { D.tracks[e.dia] = { status: 'ok', data: window.VIAJE_TRACKS[e.dia] }; return; }
+  D.tracks[e.dia] = { status: 'loading' };
+  fetch(e.gpx.track).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then((data) => { D.tracks[e.dia] = { status: 'ok', data }; })
+    .catch((err) => { D.tracks[e.dia] = { status: 'error', error: err.message }; })
+    .then(() => { const r = route(); if (r.view === 'etapas' && String(r.arg) === String(e.dia)) { const y = window.scrollY; render(); window.scrollTo(0, y); } });
+}
+function fmtMin(min) { if (min == null) return '–'; const h = Math.floor(min / 60), m = min % 60; return `${h}h${String(m).padStart(2, '0')}`; }
+function fmtKm(km) { return `${km.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km`; }
+function fmtM(m) { return m == null ? '–' : `${Math.round(m).toLocaleString('es-ES')} m`; }
+
+/* Croquis del recorrido: proyeccion equirectangular sobre el bbox. */
+function trackSketch(t) {
+  const [la0, lo0, la1, lo1] = t.bbox;
+  const kx = Math.cos(((la0 + la1) / 2) * Math.PI / 180);
+  const w = (lo1 - lo0) * kx, h = (la1 - la0);
+  const W = 600, H = Math.max(160, Math.min(320, Math.round(W * h / (w || 1))));
+  const pad = 18;
+  const sx = (W - 2 * pad) / (w || 1), sy = (H - 2 * pad) / (h || 1), sc = Math.min(sx, sy);
+  const ox = pad + ((W - 2 * pad) - w * sc) / 2, oy = pad + ((H - 2 * pad) - h * sc) / 2;
+  const X = (lon) => (ox + (lon - lo0) * kx * sc).toFixed(1), Y = (lat) => (oy + (la1 - lat) * sc).toFixed(1);
+  const pts = t.track.map(([la, lo]) => `${X(lo)},${Y(la)}`).join(' ');
+  const vias = t.vias.filter((v) => v.tipo !== 'shaping');
+  const marks = vias.map((v, i) => {
+    const cls = v.tipo === 'start' ? 'ini' : v.tipo === 'destination' ? 'fin' : 'via';
+    const label = v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : String(i);
+    return `<g class="sk-${cls}"><circle cx="${X(v.lon)}" cy="${Y(v.lat)}" r="${cls === 'via' ? 7 : 8}"></circle><text x="${X(v.lon)}" y="${(+Y(v.lat) + 3.2).toFixed(1)}" text-anchor="middle">${label}</text></g>`;
+  }).join('');
+  return `<svg class="sketch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Croquis del recorrido"><polyline points="${pts}"></polyline>${marks}</svg>`;
+}
+
+/* Perfil de altitud: una serie, area + linea, rejilla ligera, etiqueta del maximo y tooltip. */
+function trackProfile(t) {
+  if (!t.perfil || !t.perfil.length) return '';
+  const W = 600, H = 190, L = 44, R = 10, T = 18, B = 26;
+  const kmMax = t.perfil[t.perfil.length - 1][0];
+  const eMin = Math.floor((t.alt_min_m || 0) / 100) * 100, eMax = Math.ceil((t.alt_max_m || 100) / 100) * 100;
+  const X = (km) => L + (km / kmMax) * (W - L - R), Y = (m) => T + (1 - (m - eMin) / (eMax - eMin || 1)) * (H - T - B);
+  const line = t.perfil.map(([k, m]) => `${X(k).toFixed(1)},${Y(m).toFixed(1)}`).join(' ');
+  const area = `M${X(0).toFixed(1)},${Y(eMin).toFixed(1)} L${line.replace(/ /g, ' L')} L${X(kmMax).toFixed(1)},${Y(eMin).toFixed(1)} Z`;
+  const yStep = (eMax - eMin) > 1500 ? 500 : (eMax - eMin) > 600 ? 250 : 100;
+  let ys = ''; for (let m = eMin; m <= eMax; m += yStep) ys += `<line x1="${L}" x2="${W - R}" y1="${Y(m).toFixed(1)}" y2="${Y(m).toFixed(1)}"></line><text x="${L - 6}" y="${(Y(m) + 3.5).toFixed(1)}" text-anchor="end">${m.toLocaleString('es-ES')}</text>`;
+  const xStep = kmMax > 200 ? 50 : kmMax > 80 ? 25 : 10;
+  let xs = ''; for (let k = 0; k <= kmMax; k += xStep) xs += `<text x="${X(k).toFixed(1)}" y="${H - 8}" text-anchor="middle">${k}</text>`;
+  let iMax = 0; t.perfil.forEach((p, i) => { if (p[1] > t.perfil[iMax][1]) iMax = i; });
+  const pm = t.perfil[iMax];
+  const lx = X(pm[0]), anchor = lx > W - 90 ? 'end' : lx < L + 60 ? 'start' : 'middle';
+  return `<svg class="perfil" viewBox="0 0 ${W} ${H}" role="img" aria-label="Perfil de altitud" data-kmmax="${kmMax}" data-l="${L}" data-r="${R}">
+    <g class="grid">${ys}</g><g class="axis">${xs}<text x="${W - R}" y="${H - 8}" text-anchor="end" class="unit">km</text><text x="${L - 6}" y="${T - 6}" text-anchor="end" class="unit">m</text></g>
+    <path class="area" d="${area}"></path><polyline class="line" points="${line}"></polyline>
+    <g class="max"><circle cx="${lx.toFixed(1)}" cy="${Y(pm[1]).toFixed(1)}" r="4"></circle><text x="${lx.toFixed(1)}" y="${(Y(pm[1]) - 9).toFixed(1)}" text-anchor="${anchor}">${pm[1].toLocaleString('es-ES')} m · km ${pm[0].toLocaleString('es-ES', { maximumFractionDigits: 1 })}</text></g>
+    <g class="hover" hidden><line y1="${T}" y2="${H - B}"></line><circle r="4.5"></circle><text></text></g>
+    <rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"></rect>
+  </svg>`;
+}
+function profileHover(ev) {
+  const svg = ev.target.closest('svg.perfil'); if (!svg) return;
+  const e = D.data.itinerario.find((d) => String(d.dia) === String(route().arg)); const t = e && D.tracks[e.dia] && D.tracks[e.dia].data; if (!t) return;
+  const g = svg.querySelector('.hover'); if (ev.type === 'pointerleave') { g.hidden = true; return; }
+  const rect = svg.getBoundingClientRect(); const W = 600, L = +svg.dataset.l, R = +svg.dataset.r, kmMax = +svg.dataset.kmmax;
+  const xv = (ev.clientX - rect.left) / rect.width * W; const km = Math.max(0, Math.min(kmMax, (xv - L) / (W - L - R) * kmMax));
+  let best = 0; t.perfil.forEach((p, i) => { if (Math.abs(p[0] - km) < Math.abs(t.perfil[best][0] - km)) best = i; });
+  const p = t.perfil[best]; const H = 190, T = 18, B = 26;
+  const eMin = Math.floor((t.alt_min_m || 0) / 100) * 100, eMax = Math.ceil((t.alt_max_m || 100) / 100) * 100;
+  const x = L + (p[0] / kmMax) * (W - L - R), y = T + (1 - (p[1] - eMin) / (eMax - eMin || 1)) * (H - T - B);
+  g.hidden = false; g.querySelector('line').setAttribute('x1', x); g.querySelector('line').setAttribute('x2', x);
+  const c = g.querySelector('circle'); c.setAttribute('cx', x); c.setAttribute('cy', y);
+  const tx = g.querySelector('text'); tx.textContent = `km ${p[0].toLocaleString('es-ES', { maximumFractionDigits: 1 })} · ${p[1].toLocaleString('es-ES')} m`; tx.setAttribute('x', x > W - 110 ? x - 8 : x + 8); tx.setAttribute('y', T + 12); tx.setAttribute('text-anchor', x > W - 110 ? 'end' : 'start');
+}
+document.addEventListener('pointermove', profileHover);
+document.addEventListener('pointerleave', profileHover, true);
+
+function rutaHTML(e) {
+  if (!e.gpx) return '';
+  const st = D.tracks[e.dia];
+  if (!st || st.status === 'loading') { trackLoad(e); return `<h2>Ruta GPX</h2><div class="card"><p class="muted">Cargando la ruta…</p></div>`; }
+  if (st.status === 'error') return `<h2>Ruta GPX</h2><div class="card warn"><p>No se pudo cargar el track (${esc(st.error)}).</p><p><a class="btn small" href="${esc(e.gpx.archivo)}" download>Descargar GPX</a></p></div>`;
+  const t = st.data;
+  const vias = t.vias.filter((v) => v.tipo !== 'shaping');
+  const diffKm = t.km - e.km_aprox;
+  return `<h2>Ruta GPX</h2>
+    <div class="card ruta">
+      <div class="card-title"><h3>${esc(t.nombre)}</h3><span class="badge">${esc(t.fuente)}</span></div>
+      ${trackSketch(t)}
+      <div class="statgrid">
+        <div class="stat"><small>Distancia (GPX)</small><b>${fmtKm(t.km)}</b><small>Plan: ${e.km_aprox} km${Math.abs(diffKm) >= 5 ? ` (${diffKm > 0 ? '+' : ''}${Math.round(diffKm)})` : ''}</small></div>
+        <div class="stat"><small>Tiempo Kurviger</small><b>${fmtMin(t.duracion_min)}</b><small>Plan: ${esc(e.tiempo_real_aprox)} reales</small></div>
+        <div class="stat"><small>Desnivel</small><b>+${fmtM(t.subida_m)}</b><small>−${fmtM(t.bajada_m)}</small></div>
+        <div class="stat"><small>Altitud</small><b>${fmtM(t.alt_max_m)}</b><small>mín. ${fmtM(t.alt_min_m)}</small></div>
+      </div>
+      <h4>Perfil de altitud</h4>
+      ${trackProfile(t)}
+      <h4>Puntos de la ruta (${vias.length})</h4>
+      <div class="tbl-wrap"><table class="vias"><thead><tr><th>#</th><th>Punto</th><th>km</th><th></th></tr></thead><tbody>${vias.map((v, i) => `<tr><td>${v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : i}</td><td>${esc(v.nombre === 'Start' ? 'Salida' : v.nombre === 'Destination' ? 'Destino' : v.nombre.replace('Via Point', 'Vía'))}</td><td>${v.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td><td><a href="${mapsSearch(`${v.lat},${v.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
+      <p class="row">
+        ${window.VIAJE_DATA ? '' : `<button class="btn primary" type="button" data-mapa="${e.dia}">🗺️ Mapa interactivo</button>`}
+        <a class="btn" href="${esc(e.gpx.archivo)}" download>⬇️ Descargar GPX</a>
+        <a class="btn" href="${mapsSearch(`${t.track[0][0]},${t.track[0][1]}`)}" target="_blank" rel="noopener">Inicio en Maps ↗</a>
+      </p>
+      ${e.gpx.nota ? `<p><small>${esc(e.gpx.nota)}</small></p>` : ''}
+      <p><small>Los ${t.puntos_track_original.toLocaleString('es-ES')} puntos del GPX se muestran simplificados a ${t.track.length}. Para navegar, importa el GPX original en Kurviger.</small></p>
+    </div>`;
+}
+
+/* Mapa interactivo (Leaflet + OpenStreetMap, se carga solo al abrirlo). */
+let LMAP = null;
+function loadLeaflet() {
+  if (window.L) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'vendor/leaflet/leaflet.css'; document.head.appendChild(css);
+    const js = document.createElement('script'); js.src = 'vendor/leaflet/leaflet.js'; js.onload = resolve; js.onerror = () => reject(new Error('No se pudo cargar el mapa')); document.head.appendChild(js);
+  });
+}
+async function openMap(dia) {
+  const e = D.data.itinerario.find((d) => String(d.dia) === String(dia)); const st = e && D.tracks[e.dia]; if (!st || st.status !== 'ok') return;
+  const t = st.data;
+  const box = document.getElementById('mapa'); box.hidden = false; document.body.classList.add('mapa-abierto');
+  document.getElementById('mapa-titulo').textContent = `Día ${e.dia} · ${t.nombre}`;
+  try { await loadLeaflet(); } catch (err) { closeMap(); alert(err.message); return; }
+  if (LMAP) { LMAP.remove(); LMAP = null; }
+  LMAP = L.map('mapa-lienzo', { zoomControl: true });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(LMAP);
+  const line = L.polyline(t.track, { color: '#1d5fa5', weight: 4, opacity: .9 }).addTo(LMAP);
+  t.vias.filter((v) => v.tipo !== 'shaping').forEach((v, i) => {
+    const label = v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : String(i);
+    const icon = L.divIcon({ className: `via-icon via-${v.tipo}`, html: `<span>${label}</span>`, iconSize: [24, 24], iconAnchor: [12, 12] });
+    L.marker([v.lat, v.lon], { icon }).addTo(LMAP).bindTooltip(`${v.nombre.replace('Via Point', 'Vía').replace('Start', 'Salida').replace('Destination', 'Destino')} · km ${v.km}`);
+  });
+  (e.meteo_puntos || []).forEach((p) => L.circleMarker([p.lat, p.lon], { radius: 6, color: '#b2600a', fillColor: '#f0a94a', fillOpacity: .9, weight: 2 }).addTo(LMAP).bindTooltip(`Previsión: ${p.nombre}`));
+  LMAP.fitBounds(line.getBounds(), { padding: [24, 24] });
+  setTimeout(() => LMAP.invalidateSize(), 50);
+}
+function closeMap() { document.getElementById('mapa').hidden = true; document.body.classList.remove('mapa-abierto'); if (LMAP) { LMAP.remove(); LMAP = null; } }
+
 /* ---------- guia turistica por etapa ---------- */
 const POI_ICON = { mirador: '🔭', monumento: '🏰', naturaleza: '🌲', pueblo: '🏘️', cafe: '☕', comida: '🍽️', paseo: '🚶' };
 function guiaHTML(e) {
@@ -277,7 +417,7 @@ function etapaCard(e, opts = {}) {
       <span class="badge ${t.cls}">${t.icon} ${t.label}</span>
     </div>
     <div class="etapa-ruta">${esc(e.origen)} → ${esc(e.destino)}</div>
-    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${etapaWx(e)}</div>
+    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${etapaWx(e)}</div>
   </a>`;
 }
 
@@ -405,6 +545,7 @@ function viewEtapas(arg) {
     </div>
 
     ${meteoStrip(e)}
+    ${rutaHTML(e)}
     <h2>Waypoints (${e.waypoints.length})</h2>
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
       <p><small>Enlaces de consulta en Google Maps. La ruta real se crea en Kurviger con estos puntos como shaping points sobre la carretera.</small></p></div>
@@ -566,6 +707,8 @@ document.addEventListener('change', (ev) => {
 document.addEventListener('click', (ev) => {
   if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
   if (ev.target.closest('#meteo-refresh')) { meteoFetch(true); render(); return; }
+  const mb = ev.target.closest('[data-mapa]'); if (mb) { openMap(mb.dataset.mapa); return; }
+  if (ev.target.closest('#mapa-cerrar')) { closeMap(); return; }
   const btn = ev.target.closest('#reset-checks');
   if (!btn) return;
   if (confirm('¿Borrar todas las marcas de las listas en este dispositivo?')) { D.checks = {}; saveChecks(); render(); }
@@ -612,7 +755,7 @@ async function init() {
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
   meteoLoadCache();
-  window.addEventListener('hashchange', render);
+  window.addEventListener('hashchange', () => { closeMap(); render(); });
   render();
   registerSW();
   if (route().view !== 'tiempo') meteoFetch(false); // la vista Tiempo ya lo pide

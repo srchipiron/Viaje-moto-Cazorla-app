@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 7,
+    "revision": 8,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -16,7 +16,8 @@
       "Comparticion de ubicacion: Google Maps",
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
-      "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia"
+      "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Dia 1 integrado."
     ]
   },
 
@@ -89,6 +90,7 @@
       "salida": "09:00",
       "llegada_prevista": "16:30-17:00",
       "meteo_puntos": [{ "nombre": "Baza", "lat": 37.49, "lon": -2.77 }, { "nombre": "Sierra de Cazorla", "lat": 37.92, "lon": -2.93 }],
+      "gpx": { "archivo": "gpx/dia-01.gpx", "track": "data/tracks/dia-01.json", "nota": "Ruta Kurviger 'Dia 1 Almeria - Cazorla b' (10 sept). Pasa por Calar Alto: 263,7 km y 4h23 estimadas por Kurviger frente a los 280 km / 3h45 del plan." },
       "guia": {
         "resumen": "Del mar a la sierra en un día: desierto y badlands de la Hoya de Baza, el santuario colgado de Tíscar, olivares infinitos y, al final, el corazón del Parque Natural de Cazorla, Segura y Las Villas.",
         "ver": [
