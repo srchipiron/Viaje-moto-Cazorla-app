@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 15,
+    "revision": 16,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -18,6 +18,7 @@
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
+      "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
       "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
@@ -200,15 +201,15 @@
       "tipo": "montaña",
       "origen": "Camping Puente de las Herrerias",
       "destino": "Hostal El Laminador (Riopar)",
-      "km_aprox": 155,
-      "tiempo_real_aprox": "3h10",
+      "km_aprox": 130,
+      "tiempo_real_aprox": "2h30",
       "dificultad": 3,
       "fatiga": 3,
       "perfil_kurviger": "Curvy",
       "salida": "09:00",
-      "llegada_prevista": "16:00",
+      "llegada_prevista": "15:30-16:00",
       "meteo_puntos": [{ "nombre": "Segura de la Sierra", "lat": 38.30, "lon": -2.65 }, { "nombre": "Riopar", "lat": 38.50, "lon": -2.42 }],
-      "gpx": { "archivo": "gpx/dia-02.gpx", "track": "data/tracks/dia-02.json", "nota": "Ruta Kurviger 'Dia 2 Camping Puente de las Herrerias - Riopar' (10 sept): 131,4 km y 2h20 estimadas frente a 155 km / 3h10 del plan." },
+      "gpx": { "archivo": "gpx/dia-02.gpx", "track": "data/tracks/dia-02.json", "vias": ["Cerrada del Utrero", "Vadillo Castril", "Coto Rios", "Presa del Tranco", "A-317 al norte de Hornos", "Segura de la Sierra", "Orcera", "Siles"], "nota": "Ruta Kurviger 'Dia 2 DEF' (10 sept): 130,1 km y 2h15 estimadas. Coincide con el plan salvo Hornos: la via 5 esta en la A-317 (38.2481, -2.7250) y la ruta no sube al pueblo. Para el cafe y el mirador, mover esa via al casco de Hornos (38.2178, -2.7194)." },
       "guia": {
         "resumen": "El gran día de Cazorla y Segura: el valle del Guadalquivir, el embalse del Tranco, Hornos colgado sobre el agua y Segura de la Sierra, uno de los pueblos más bonitos de Andalucía. Se remata con los pinares de Siles y el Calar del Mundo.",
         "ver": [
@@ -280,12 +281,17 @@
       },
       "waypoints": ["Camping Puente de las Herrerias", "Vadillo Castril", "Empalme del Valle", "Arroyo Frio", "Coto Rios", "Presa del Tranco", "Hornos de Segura", "Cortijos Nuevos", "Segura de la Sierra", "Orcera", "Siles", "Puerto del Arenal", "Hostal El Laminador"],
       "horario_orientativo": [
-        { "hora": "10:15", "lugar": "Presa del Tranco", "que": "Parada" },
-        { "hora": "11:00", "lugar": "Hornos de Segura", "que": "Cafe y mirador sobre el pantano" },
-        { "hora": "12:00-14:30", "lugar": "Segura de la Sierra", "que": "Castillo y comida (13:30)" },
-        { "hora": "15:10", "lugar": "Siles", "que": "Parada corta" }
+        { "hora": "09:05", "lugar": "Cerrada del Utrero", "que": "De paso (o 45 min de sendero si apetece; entonces sumar 45 min a todo lo demas)" },
+        { "hora": "09:35-09:50", "lugar": "Torre del Vinagre / Coto Rios", "que": "Parada corta: centro de visitantes y baños" },
+        { "hora": "10:10-10:20", "lugar": "Presa del Tranco", "que": "Parada visual" },
+        { "hora": "10:35-11:05", "lugar": "Hornos de Segura", "que": "Cafe y mirador sobre el pantano (subir al pueblo)" },
+        { "hora": "11:20-14:30", "lugar": "Segura de la Sierra", "que": "Castillo, paseo y comida (13:00-14:30)" },
+        { "hora": "14:40", "lugar": "Orcera", "que": "De paso" },
+        { "hora": "15:00-15:15", "lugar": "Siles", "que": "Parada corta" },
+        { "hora": "15:45", "lugar": "Hostal El Laminador", "que": "Llegada por el Puerto del Arenal" }
       ],
       "notas": [
+        "Horas de paso calculadas con los tiempos de Kurviger (2h15 de conduccion) mas las paradas. Los 155 km del plan original estaban sobrestimados: son 130.",
         "Hornos-Segura es estrecho: hacerlo antes de comer.",
         "Segura de la Sierra se sube y baja por la misma carretera.",
         "Siles-Riopar por CM-3204 y Puerto del Arenal.",
