@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 16,
+    "revision": 17,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -19,6 +19,7 @@
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
       "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 3 ajustado a la ruta de Kurviger (coincide con el plan): 272 km, 4h, horario recalculado",
       "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
@@ -316,15 +317,15 @@
       "tipo": "calor_y_llano",
       "origen": "Hostal El Laminador",
       "destino": "Hostal Cortes (Cuenca)",
-      "km_aprox": 265,
-      "tiempo_real_aprox": "3h20",
+      "km_aprox": 272,
+      "tiempo_real_aprox": "4h",
       "dificultad": 2,
-      "fatiga": 2,
+      "fatiga": 3,
       "perfil_kurviger": "Fast",
       "salida": "09:00 (a los Chorros)",
       "llegada_prevista": "16:00",
       "meteo_puntos": [{ "nombre": "Alcaraz", "lat": 38.67, "lon": -2.49 }, { "nombre": "Cuenca", "lat": 40.07, "lon": -2.14 }],
-      "gpx": { "archivo": "gpx/dia-03.gpx", "track": "data/tracks/dia-03.json", "nota": "Ruta Kurviger 'Dia 3 Riópar - Hostal Cortés, Cuenca' (10 sept): 271,7 km y 4h18 estimadas frente a 265 km / 3h20 del plan." },
+      "gpx": { "archivo": "gpx/dia-03.gpx", "track": "data/tracks/dia-03.json", "vias": ["Parking Chorros del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar"], "nota": "Ruta Kurviger 'Dia 3 Riopar - Hostal Cortes' (10 sept): 271,7 km y 4h18 estimadas. Coincide con el plan; esquiva Albacete por Barrax. Es el dia mas largo de conduccion: llano y de enlace, sin paradas largas salvo los Chorros y la comida." },
       "guia": {
         "resumen": "Amanecer con la cascada del río Mundo, café en la Plaza Mayor renacentista de Alcaraz y luego la llanura manchega a ritmo de enlace hasta Cuenca, donde espera una de las ciudades más singulares de España.",
         "ver": [
@@ -389,11 +390,18 @@
       },
       "waypoints": ["Hostal El Laminador", "Aparcamiento Nacimiento del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar", "Hostal Cortes"],
       "horario_orientativo": [
-        { "hora": "09:00-10:15", "lugar": "Chorros del Rio Mundo", "que": "Solo paseo corto hasta la base de la cascada. Parking ~4 EUR, a 2 km de la CM-3204, aforo limitado. Poco caudal en septiembre." },
-        { "hora": "11:15", "lugar": "Alcaraz", "que": "Cafe y Plaza Mayor (no comida)" },
-        { "hora": "13:45", "lugar": "Motilla del Palancar", "que": "Comida" }
+        { "hora": "09:10-10:15", "lugar": "Chorros del Rio Mundo", "que": "Solo paseo corto hasta la base de la cascada. Parking ~4 EUR, a 2 km de la CM-3204, aforo limitado. Poco caudal en septiembre." },
+        { "hora": "10:25", "lugar": "Riopar", "que": "De paso (repostar si no se hizo el martes)" },
+        { "hora": "10:55-11:25", "lugar": "Alcaraz", "que": "Cafe y Plaza Mayor (no comida)" },
+        { "hora": "12:10", "lugar": "Balazote", "que": "De paso; la ruta esquiva Albacete por Barrax" },
+        { "hora": "12:45", "lugar": "La Gineta", "que": "Parada corta si toca descanso" },
+        { "hora": "13:15", "lugar": "Quintanar del Rey", "que": "De paso" },
+        { "hora": "13:45-14:45", "lugar": "Motilla del Palancar", "que": "Comida" },
+        { "hora": "15:05", "lugar": "Almodovar del Pinar", "que": "De paso" },
+        { "hora": "15:50", "lugar": "Hostal Cortes", "que": "Llegada; lavadora en openBlue24h" }
       ],
       "notas": [
+        "Horas de paso calculadas con los tiempos de Kurviger (4h18 de conduccion) mas las paradas. Es el dia con mas conduccion del viaje, aunque llano: parada cada hora aunque no apetezca.",
         "El acceso a los Chorros estuvo cerrado en 2026 por daños en la carretera; reabierto en julio con aforo al 60%. Confirmar la noche anterior.",
         "No usar Albacete como waypoint (arrastra al centro urbano)."
       ],
