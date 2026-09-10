@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 22,
+    "revision": 23,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -642,7 +642,7 @@
       "tipo": "montaña",
       "origen": "Hotel Albarracin",
       "destino": "Camping Los Alamos (Virgen de la Vega / Alcala de la Selva)",
-      "km_aprox": 93,
+      "km_aprox": 92,
       "tiempo_real_aprox": "2h",
       "dificultad": 2,
       "fatiga": 2,
@@ -650,7 +650,7 @@
       "salida": "09:30",
       "llegada_prevista": "14:45",
       "meteo_puntos": [{ "nombre": "Teruel", "lat": 40.34, "lon": -1.11 }, { "nombre": "Alcala de la Selva", "lat": 40.36, "lon": -0.71 }],
-      "gpx": { "archivo": "gpx/dia-06.gpx", "track": "data/tracks/dia-06.json", "vias": ["Centro de Interpretacion de Dornaque", "Bezas", "El Campillo", "San Blas", "Teruel", "Cedrillas", "Alcala de la Selva"], "nota": "Segunda mitad del GPX 'Dia 5 Albarracin - Camping Los Alamos' de Kurviger (10 sept), partido en Albarracin con tools/gpxsplit.py. 92,7 km y 1h49 estimadas; maximo 1.594 m en el Puerto de Cabigordo. Coincide con el plan punto por punto. Si se exporta desde Kurviger una ruta 'Dia 6' ya cortada, sustituir este fichero." },
+      "gpx": { "archivo": "gpx/dia-06.gpx", "track": "data/tracks/dia-06.json", "vias": ["Centro de Interpretacion de Dornaque", "Bezas", "El Campillo", "San Blas", "Teruel", "Cedrillas", "Alcala de la Selva"], "nota": "Ruta Kurviger 'Dia 6 DEF' (10 sept), ya cortada en Kurviger: 92,1 km y 1h39 estimadas; maximo 1.594 m en el Puerto de Cabigordo. Coincide con el plan punto por punto." },
       "guia": {
         "resumen": "Los pinares de rodeno rojo de Albarracín, la Teruel mudéjar con sus torres Patrimonio de la Humanidad y la subida a la Sierra de Gúdar hasta el camping, a 1.500 m.",
         "ver": [
