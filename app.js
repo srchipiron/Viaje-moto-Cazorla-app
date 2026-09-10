@@ -676,11 +676,37 @@ function viewListas() {
     <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;
 }
 
+/* Inventario de equipo en propiedad. */
+function inventarioHTML(inv) {
+  if (!inv) return '';
+  const item = (o, extra) => `<li><b>${esc(o.marca)} ${esc(o.modelo)}</b>${extra ? ` <small>${extra}</small>` : ''}</li>`;
+  const flags = (o) => [
+    o.uso, o.tipo, o.talla ? `talla ${o.talla}` : '', o.membrana,
+    o.impermeable === true ? 'impermeable' : (o.impermeable === false ? 'no impermeable' : ''),
+    o.forro_termico_desmontable ? 'forro térmico' : '', o.forro_impermeable_desmontable ? 'forro impermeable' : '',
+    o.espaldera === true ? 'con espaldera' : (o.espaldera === false ? 'SIN espaldera' : '')
+  ].filter(Boolean).join(' · ');
+  const m = inv.moto, e = inv.equipaje, c = inv.casco;
+  return `<h2>Equipo en propiedad</h2>
+    <div class="card"><dl>
+      <dt>Moto</dt><dd><b>${esc(m.marca)} ${esc(m.modelo)}</b> · carnet ${esc(m.carnet)}<br><small>${(m.accesorios || []).map((a) => `${esc(a.marca)} ${esc(a.modelo)} (${esc(a.tipo.toLowerCase())})`).join('<br>')}</small></dd>
+      <dt>Maletas</dt><dd>${esc(e.marca)} ${esc(e.baul)} + 2× ${esc(e.maletas_laterales)}<br><small>Bolsa de depósito ${esc(e.bolsa_deposito.modelo)}, ${esc(e.bolsa_deposito.anclaje)}${e.bolsa_deposito.cierre_con_llave ? ', con cierre de llave' : ''}</small></dd>
+      <dt>Casco</dt><dd><b>${esc(c.marca)} ${esc(c.modelo)}</b> · ${esc(c.tipo)} · talla ${esc(c.talla)}${c.intercomunicador ? `<br><small>Intercomunicador ${esc(c.intercomunicador.marca)} ${esc(c.intercomunicador.modelo)}${c.intercomunicador.integrado ? ' integrado' : ''}</small>` : ''}</dd>
+      <dt>Botas</dt><dd><b>${esc(inv.botas.marca)} ${esc(inv.botas.modelo)}</b><br><small>${flags(inv.botas)}</small></dd>
+    </dl>
+    <h4>Chaquetas</h4><ul>${inv.chaquetas.map((x) => item(x, flags(x))).join('')}</ul>
+    <h4>Pantalones</h4><ul>${inv.pantalones.map((x) => item(x, flags(x))).join('')}</ul>
+    <h4>Guantes</h4><ul>${inv.guantes.map((x) => item(x, flags(x))).join('')}</ul>
+    ${inv.protecciones && inv.protecciones.espaldera ? `<h4>Espaldera</h4><p>${esc(inv.protecciones.espaldera.marca)} ${esc(inv.protecciones.espaldera.modelo)} · montada en ${esc(inv.protecciones.espaldera.montada_en)}</p>` : ''}
+    <p><small>${esc(inv.nota)}</small></p></div>`;
+}
+
 function viewEquipaje() {
   const d = D.data, eq = d.equipacion_moto, rep = d.reparto_equipaje, ropa = d.ropa_comprada_decathlon_2026_09_09, lav = d.ropa_y_lavanderia, mat = d.material_en_propiedad;
   const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito E09CL', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
   return `<h2>Equipación de moto</h2>
-    <div class="card"><p><b>${esc(eq.decision)}</b></p><h4>Puesto siempre</h4>${list(eq.puesto_siempre)}<h4>Tapones</h4><p>${esc(eq.tapones)}</p></div>
+    ${eq.aviso_espaldera ? `<div class="card warn"><div class="card-title"><h3>⚠️ Espaldera</h3><span class="badge warn">Antes de salir</span></div><p>${esc(eq.aviso_espaldera)}</p></div>` : ''}
+    <div class="card"><p><b>${esc(eq.decision)}</b></p><h4>Puesto siempre</h4>${list(eq.puesto_siempre)}${eq.lluvia ? `<h4>Si llueve</h4><p>${esc(eq.lluvia)}</p>` : ''}<h4>Tapones</h4><p>${esc(eq.tapones)}</p></div>
     <div class="grid">${Object.keys(eq.configuracion_por_tipo_de_dia).map((k) => { const c = eq.configuracion_por_tipo_de_dia[k]; const t = tipoInfo(k); return `<div class="card"><div class="card-title"><h3>${t.icon} ${human(k)}</h3><span class="badge ${t.cls}">Días ${c.dias.join(', ')}</span></div><dl><dt>Pantalón</dt><dd>${esc(c.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(c.chaqueta)}</dd>${c.nota ? `<dt>Nota</dt><dd>${esc(c.nota)}</dd>` : ''}</dl></div>`; }).join('')}</div>
 
     <h2>Reparto del equipaje</h2>
@@ -696,6 +722,7 @@ function viewEquipaje() {
     <div class="card"><p>${esc(lav.filosofia)}</p>
       <div class="tbl-wrap"><table><thead><tr><th>Noche</th><th>Lugar</th><th>Cómo</th></tr></thead><tbody>${lav.lavados.map((l) => `<tr><td><b>${l.noche}</b></td><td>${esc(l.lugar)}</td><td>${esc(l.como)}</td></tr>`).join('')}</tbody></table></div>
       <div class="note info"><b>Merino:</b> ${esc(lav.cuidado_merino)}</div></div>
+    ${inventarioHTML(d.inventario)}
     <details class="card"><summary>Compra Decathlon del 9 sept (${ropa.total_eur.toFixed(2)} €)</summary>
       <div class="tbl-wrap"><table><thead><tr><th>Artículo</th><th>Talla</th><th>Ud.</th></tr></thead><tbody>${ropa.articulos.map((a) => `<tr><td>${esc(a.articulo)}${a.nota ? `<br><small>${esc(a.nota)}</small>` : ''}</td><td>${esc(a.talla)}</td><td>${a.cantidad}${a.pares_total ? ` <small>(${a.pares_total} pares)</small>` : ''}</td></tr>`).join('')}</tbody></table></div>
       <h4>Falta</h4>${list(ropa.falta)}</details>`;
