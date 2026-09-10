@@ -879,7 +879,11 @@ function viewListas() {
     return `<div class="card"><div class="card-title"><h3>${grupos[g] || human(g)}</h3>${progress(keys)}</div>${d.checklist_previa[g].map((t) => checkItem(`previa|${g}|${t}`, t)).join('')}</div>`;
   }).join('');
   const compraKeys = d.compras_pendientes.map((c) => `compra|${c.que}`);
-  const amazonKeys = d.pedido_amazon_llega_2026_09_10.map((t) => `amazon|${t}`);
+  // Pedido Amazon: cada articulo puede ser un texto o { que, recibido, fecha }. Los recibidos cuentan como hechos.
+  const amazon = d.pedido_amazon_llega_2026_09_10.map((x) => typeof x === 'string' ? { que: x } : x);
+  const amazonKeys = amazon.map((x) => `amazon|${x.que}`);
+  amazon.forEach((x) => { if (x.recibido) D.checks[`amazon|${x.que}`] = true; });
+  const amazonRec = amazon.filter((x) => x.recibido).length;
   const faltaKeys = d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => `falta|${t}`);
   const confDias = d.itinerario.filter((e) => e.alojamiento && e.alojamiento.pendiente_confirmar);
   const confKeys = confDias.flatMap(confirmarKeys);
@@ -895,8 +899,8 @@ function viewListas() {
     <h2>Checklist previa</h2>${previa}
     <h2>Compras pendientes ${progress(compraKeys)}</h2>
     <div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>
-    <h2>Pedido Amazon (llega 10 sept) ${progress(amazonKeys)}</h2>
-    <div class="card">${d.pedido_amazon_llega_2026_09_10.map((t) => checkItem(`amazon|${t}`, t)).join('')}</div>
+    <h2>Pedido Amazon ${progress(amazonKeys)}</h2>
+    <div class="card">${amazonRec < amazon.length ? `<p class="muted"><small>Recibidos ${amazonRec} de ${amazon.length}. Faltan: ${esc(amazon.filter((x) => !x.recibido).map((x) => x.que).join(', '))}.</small></p>` : '<p class="muted"><small>Todo recibido.</small></p>'}${amazon.map((x) => checkItem(`amazon|${x.que}`, x.que, x.recibido ? `Recibido${x.fecha ? ` el ${fmtFecha(x.fecha)}` : ''}` : 'Pendiente de llegar')).join('')}</div>
     <h2>Ropa: falta ${progress(faltaKeys)}</h2>
     <div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>
     ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>

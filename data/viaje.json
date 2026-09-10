@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 37,
+    "revision": 38,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Recibidos de Amazon el 10 sept: kit tubeless Givi S450, grasa de cadena Motul C2 Road y limpiador de casco Motul (este no estaba en la lista). Pendientes de llegar: botiquin y tapones Alpine. El pedido pasa a objetos con estado recibido",
       "Presiones de la NX500 segun el manual 2024 (2,0 bar delante / 2,5 bar detras, en frio, iguales con carga) en el bloque moto, la Guia, el Resumen y las listas",
       "Viaje ampliado a 11 dias / 10 noches (14-24 sept): noche extra en Albarracin, dia 5 antiguo partido en dos (bucle Bronchales-Orihuela y enlace Albarracin-Teruel-Alcala de la Selva)",
       "Todas las noches reservadas. Segun Booking (9 sept): Hotel Albarracin pagado (134,19 EUR); Laminador con 11,70 EUR pagados y 35,10 pendientes; Cortes 45, Via Caprasia 65, Los Olivos 50 y La Cilla 56,10 EUR pendientes en el alojamiento (251,20 EUR en total). Camping Los Alamos reservado aparte con la mitad pagada (resto aprox. 65 EUR en el camping). Puente de las Herrerias: mantener lo apuntado.",
@@ -1489,14 +1490,15 @@
     "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB: llevar cable micro-USB. Cargar a tope el domingo 13. Probar en las presiones del domingo." },
     "antirrobo": { "modelo": "Abus Granit Detecto X-Plus 8008", "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito." },
     "powerbank": { "modelo": "Baseus E0028Z", "nota": "Reserva para el Pixel si falla la toma USB-C; carga tambien compresor y frontal. Cargar a tope el domingo." },
-    "otros": ["Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
+    "otros": ["Givi S450 kit tubeless (recibido 10 sept)", "Motul C2 Road grasa de cadena (recibido 10 sept)", "Motul limpiador de casco y visera (recibido 10 sept)", "Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
   },
 
   "pedido_amazon_llega_2026_09_10": [
-    "Botiquin PURAHELP DIN 13167",
-    "Motul C2 Road 400 ml",
-    "Alpine MotoSafe Duo Pack Tour + Sport",
-    "Givi S450 kit tubeless (CO2 de un solo uso)"
+    { "que": "Botiquin PURAHELP DIN 13167", "recibido": false },
+    { "que": "Motul C2 Road 400 ml (grasa de cadena)", "recibido": true, "fecha": "2026-09-10" },
+    { "que": "Alpine MotoSafe Duo Pack Tour + Sport", "recibido": false },
+    { "que": "Givi S450 kit tubeless (CO2 de un solo uso)", "recibido": true, "fecha": "2026-09-10" },
+    { "que": "Motul limpiador de casco y visera", "recibido": true, "fecha": "2026-09-10" }
   ],
 
   "compras_pendientes": [
@@ -1513,7 +1515,7 @@
     "regla": "Cada cosa vive siempre en la misma maleta.",
     "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado por USB-C a la toma", "Powerbank Baseus", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
     "sh38x_izquierda_ropa": ["Organizador grande: merino manga corta x2, top merino manga larga, boxers, calcetines", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente", "Sobre con el resto del efectivo"],
-    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB + cable de la Osmo 360", "Cubrebotas si se compran"],
+    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road, limpiador de casco Motul", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB + cable de la Osmo 360", "Cubrebotas si se compran"],
     "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Chaleco reflectante", "Casco y chaqueta al bajar a comer o pasear"],
     "dias_sin_laterales": {
       "dias": [5, 7],
@@ -1524,7 +1526,7 @@
 
   "checklist_previa": {
     "jueves_10": [
-      "Comprobar que llegan los 4 articulos de Amazon",
+      "Amazon: ya han llegado el kit Givi S450, la grasa Motul C2 y el limpiador de casco; falta que lleguen el botiquin y los tapones Alpine",
       "Comprar 2 boxers largos",
       "Pedir chaleco reflectante y cable micro-USB si no se tienen",
       "Comprobar que llega el soporte K&F y que la Osmo 360 tiene bateria y tarjeta con espacio"
