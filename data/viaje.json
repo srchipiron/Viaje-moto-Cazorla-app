@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 13,
+    "revision": 14,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -17,7 +17,7 @@
       "Contactos: padre (numero en el movil) como contacto en casa; seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
-      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Todos los dias integrados salvo el 5 (bucle de Bronchales) (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
+      "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
 
@@ -524,6 +524,7 @@
       "salida": "10:00 (sin prisa; desayuno en el hotel)",
       "llegada_prevista": "13:00",
       "meteo_puntos": [{ "nombre": "Bronchales", "lat": 40.51, "lon": -1.59 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
+      "gpx": { "archivo": "gpx/dia-05.gpx", "track": "data/tracks/dia-05.json", "nota": "Ruta Kurviger 'Dia 5 Albarracin - Bronchales - Orihuela del Tremedal - Albarracin': primera mitad del GPX 'Dia 5 Albarracin - Camping Los Alamos' (10 sept), partido en Albarracin (km 78,8) con tools/gpxsplit.py. 78,8 km y 1h20 estimadas frente a 80 km / 1h45 del plan." },
       "guia": {
         "resumen": "Día de descanso activo por los pinares de la Sierra de Albarracín: bucle corto y suave hasta Bronchales y Orihuela del Tremedal, y tarde entera para Albarracín sin prisa.",
         "ver": [
@@ -598,7 +599,7 @@
       "salida": "09:30",
       "llegada_prevista": "15:30",
       "meteo_puntos": [{ "nombre": "Teruel", "lat": 40.34, "lon": -1.11 }, { "nombre": "Alcala de la Selva", "lat": 40.36, "lon": -0.71 }],
-      "gpx": { "archivo": "gpx/dia-06.gpx", "track": "data/tracks/dia-06.json", "nota": "Ruta Kurviger 'Dia 5 Albarracín - Camping Los Álamos, Alcalá de la Selva' (10 sept; en el plan es el dia 6): 171,5 km y 3h10 estimadas frente a 110 km / 2h15 del plan." },
+      "gpx": { "archivo": "gpx/dia-06.gpx", "track": "data/tracks/dia-06.json", "nota": "Ruta Kurviger 'Dia 6 Albarracin - Teruel - Camping Los Alamos, Alcala de la Selva': segunda mitad del GPX 'Dia 5 Albarracin - Camping Los Alamos' (10 sept), que traia juntos el bucle de Bronchales y el enlace al camping; partido en Albarracin con tools/gpxsplit.py (original en gpx/dia-05-06-original.gpx). 92,7 km y 1h49 estimadas frente a 110 km / 2h15 del plan." },
       "guia": {
         "resumen": "Los pinares de rodeno rojo de Albarracín, la Teruel mudéjar con sus torres Patrimonio de la Humanidad y la subida a la Sierra de Gúdar hasta el camping, a 1.500 m.",
         "ver": [

@@ -45,7 +45,8 @@ y en `data/viaje.json`, dentro del día 4:
 ```
 
 El script simplifica el track (Douglas-Peucker, ~25 m) y genera el perfil, el desnivel y los
-kilómetros de cada vía. El service worker precarga automáticamente los tracks listados en el
+kilómetros de cada vía. Si un GPX trae dos etapas juntas, `tools/gpxsplit.py` lo parte por un
+punto de ruta (ver su cabecera); así se separaron los días 5 y 6. El service worker precarga automáticamente los tracks listados en el
 plan, así que funcionan sin cobertura.
 
 ## Publicar en GitHub Pages
@@ -90,6 +91,7 @@ data/viaje.json       fuente de verdad (JSON v3)
 data/tracks/          tracks ligeros generados a partir de los GPX
 gpx/                  rutas GPX originales exportadas de Kurviger
 tools/gpx2json.py     conversor GPX -> track ligero
+tools/gpxsplit.py     parte un GPX en dos por un punto de ruta
 vendor/leaflet/       Leaflet 1.9.4 (BSD-2) para el mapa interactivo
 icons/                iconos SVG (normal y maskable)
 .nojekyll             evita que GitHub Pages procese el sitio con Jekyll
