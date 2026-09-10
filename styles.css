@@ -334,6 +334,8 @@ details[open] > summary::after { transform: rotate(180deg); }
 .via-icon.via-noche span { background: var(--card); font-size: 13px; }
 .via-icon.via-dia span { font-size: 11px; }
 
+table.seguro td:first-child { font-weight: 600; width: 42%; }
+
 /* Hoja de ruta */
 .hoja-tabla { min-width: 640px; }
 .hoja-tabla td { font-size: .88rem; }

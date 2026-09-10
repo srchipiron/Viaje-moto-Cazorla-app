@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 38,
+    "revision": 39,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Poliza Mapfre (Terceros Ampliado, condiciones particulares del 11 sept) resumida en el bloque seguro: coberturas y limites, accesorios declarados, exclusiones relevantes y que hacer en averia, accidente o robo. Sin datos personales: el numero de poliza se guarda solo en el movil",
       "Recibidos de Amazon el 10 sept: kit tubeless Givi S450, grasa de cadena Motul C2 Road y limpiador de casco Motul (este no estaba en la lista). Pendientes de llegar: botiquin y tapones Alpine. El pedido pasa a objetos con estado recibido",
       "Presiones de la NX500 segun el manual 2024 (2,0 bar delante / 2,5 bar detras, en frio, iguales con carga) en el bloque moto, la Guia, el Resumen y las listas",
       "Viaje ampliado a 11 dias / 10 noches (14-24 sept): noche extra en Albarracin, dia 5 antiguo partido en dos (bucle Bronchales-Orihuela y enlace Albarracin-Teruel-Alcala de la Selva)",
@@ -1376,8 +1377,56 @@
 
   "contactos": {
     "emergencias": "112",
-    "seguro_asistencia": { "compania": "Mapfre", "telefono": "918 365 365", "telefonos_alternativos": ["900 822 822"], "nota": "Asistencia en carretera 24 h. Confirmar el viernes 11 que la poliza cubre remolque a taller desde el km 0 y traslado del motorista." },
+    "seguro_asistencia": { "compania": "Mapfre", "telefono": "918 365 365", "telefonos_alternativos": ["900 822 822"], "poliza_local": true, "nota": "Asistencia en viaje 24 h incluida en la poliza (Terceros Ampliado). Llamar SIEMPRE antes de pedir grua o taller: los servicios contratados por cuenta propia no se reembolsan. El numero de poliza se guarda solo en el movil." },
     "en_casa": { "nombre": "Padre", "telefono": null, "local": true, "nota": "Contacto con ubicacion compartida en Google Maps. El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil." }
+  },
+
+  "seguro": {
+    "compania": "Mapfre España",
+    "producto": "Automoviles particulares - Terceros Ampliado (motocicleta Honda NX500, uso particular)",
+    "vigencia": { "desde": "2026-09-01", "hasta": "2027-09-01" },
+    "documento": "Condiciones particulares del 11/09/2026. El PDF va en el movil (Drive o Archivos) y en la bolsa estanca en papel; el numero de poliza se introduce en la app y queda solo en el dispositivo.",
+    "coberturas": [
+      { "nombre": "Responsabilidad civil obligatoria", "limite": "Incluida" },
+      { "nombre": "Responsabilidad civil suplementaria", "limite": "Hasta 50.000.000 EUR por siniestro" },
+      { "nombre": "Asistencia en viaje", "limite": "Incluida, 24 h. Los limites (km, grua, hotel, vuelta a casa) estan en las condiciones generales, no en las particulares: confirmarlos por telefono el viernes 11" },
+      { "nombre": "Seguro del conductor (accidentes personales)", "limite": "Fallecimiento 8.000 EUR; invalidez hasta 8.000 EUR segun baremo; asistencia sanitaria 8.000 EUR" },
+      { "nombre": "Defensa juridica", "limite": "3.000 EUR" },
+      { "nombre": "Defensa en multas y asesoramiento", "limite": "Incluida" },
+      { "nombre": "Incendio del vehiculo", "limite": "Incluido. Perdida total: 100 % valor nuevo el primer año para primer propietario; despues valor de mercado" },
+      { "nombre": "Robo del vehiculo", "limite": "Incluido con franquicia de 150 EUR. Solo robo de la moto completa" }
+    ],
+    "no_incluye": "No es a todo riesgo: los daños propios de la moto por caida o accidente sin tercero responsable NO estan cubiertos (ni lunas, ni daños propios).",
+    "accesorios_declarados": [
+      { "nombre": "Maleta SHAD SH58X", "valor_eur": 195.00 },
+      { "nombre": "Juego de maletas SHAD SH38X", "valor_eur": 409.64 },
+      { "nombre": "Bolsa de deposito SHAD", "valor_eur": 74.51 },
+      { "nombre": "Pantalla inteligente D6A", "valor_eur": 186.48 },
+      { "nombre": "Defensas Motoguard SG67", "valor_eur": 324.99 }
+    ],
+    "exclusiones_relevantes": [
+      "Equipos extraibles de telefonia y navegacion (Pixel, Osmo 360) no estan cubiertos por esta poliza en ninguna garantia",
+      "Robo parcial (maletas, piezas o accesorios sueltos) no cubierto: solo la sustraccion de la moto completa, y los accesorios solo si estan declarados",
+      "Actos vandalicos no cubiertos en robo",
+      "Asistencia: no se reembolsa ningun servicio (grua, taller) contratado sin avisar antes a Mapfre",
+      "Alcohol o drogas por encima de la tasa: sin cobertura voluntaria",
+      "Carga o pasajeros fuera de lo reglamentario como causa del accidente: sin cobertura"
+    ],
+    "en_caso_de": {
+      "averia_o_accidente": [
+        "Ponerse a salvo con el chaleco reflectante puesto; 112 si hay heridos",
+        "Llamar a Mapfre asistencia (918 365 365 o 900 822 822) antes de nada: dar poliza, matricula, lugar (compartir ubicacion) y que es una moto con maletas",
+        "Si hay otro vehiculo: parte amistoso con fotos de todo (carnets, matriculas, posicion, daños). Nunca reconocer la culpa por escrito",
+        "Fotos de la moto, la via y las señales; datos de testigos",
+        "Avisar en casa y al alojamiento de esa noche si se va a llegar tarde"
+      ],
+      "robo": [
+        "Denuncia en la Guardia Civil o Policia (necesaria para la cobertura)",
+        "Llamar a Mapfre con el numero de denuncia",
+        "Las maletas y el contenido no estan cubiertos por la poliza de la moto: lleva la Osmo, el Pixel y los documentos siempre encima"
+      ]
+    },
+    "aviso": "La poliza declara las defensas como Motoguard SG67 y el inventario dice HG44: comprobar cual es el modelo real y corregir donde toque (si no coincide, en un siniestro pueden discutir la cobertura de las defensas)."
   },
 
   "meteo": {
@@ -1529,7 +1578,8 @@
       "Amazon: ya han llegado el kit Givi S450, la grasa Motul C2 y el limpiador de casco; falta que lleguen el botiquin y los tapones Alpine",
       "Comprar 2 boxers largos",
       "Pedir chaleco reflectante y cable micro-USB si no se tienen",
-      "Comprobar que llega el soporte K&F y que la Osmo 360 tiene bateria y tarjeta con espacio"
+      "Comprobar que llega el soporte K&F y que la Osmo 360 tiene bateria y tarjeta con espacio",
+      "Poliza Mapfre: guardar el PDF en el movil y apuntar el numero de poliza en la app (Resumen > Contactos); comprobar si las defensas son Motoguard SG67 (poliza) o HG44 (inventario)"
     ],
     "viernes_11": [
       "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",

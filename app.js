@@ -98,7 +98,8 @@ function contactoHTML(c) {
   if (typeof c === 'string') return contactoPendiente(c) ? `<span class="badge warn">Pendiente</span> <small>${esc(c.replace(/^PENDIENTE:\s*/i, ''))}</small>` : telLink(c);
   const quien = c.nombre || c.compania;
   const alt = c.telefonos_alternativos && c.telefonos_alternativos.length ? `<br><small>También: ${c.telefonos_alternativos.map(telLink).join(' · ')}</small>` : '';
-  const nota = alt + (c.nota ? `<br><small>${esc(c.nota.replace(/^PENDIENTE:\s*/i, ''))}</small>` : '');
+  const pol = c.poliza_local ? contactosLocales()[`${c._k || 'seguro_asistencia'}:poliza`] : '';
+  const nota = alt + (pol ? `<br><small>Póliza nº <b>${esc(pol)}</b> (guardada en este móvil)</small>` : '') + (c.nota ? `<br><small>${esc(c.nota.replace(/^PENDIENTE:\s*/i, ''))}</small>` : '');
   if (!c.telefono) return `${quien ? `<b>${esc(quien)}</b> ` : ''}<span class="badge warn">${c.local ? 'Sin guardar en este móvil' : 'Pendiente'}</span>${nota}`;
   return `${quien ? `${esc(quien)}: ` : ''}${telLink(c.telefono)}${nota}`;
 }
@@ -697,13 +698,17 @@ function viewResumen() {
   }
   const r = p.reglas_globales, m = p.moto, c = D.data.contactos, rd = D.data.rutina_diaria;
   const contactoRow = (label, val) => `<dt>${label}</dt><dd>${contactoHTML(val)}</dd>`;
-  const localForm = (k, label) => {
-    const c = D.data.contactos[k]; if (!c || !c.local) return '';
-    const tel = contactosLocales()[k] || '';
-    return `<form class="tel-local" data-contacto="${esc(k)}">
-      <label for="tel-${esc(k)}">${esc(label)} · teléfono en este móvil</label>
-      <div class="row"><input id="tel-${esc(k)}" type="tel" inputmode="tel" placeholder="+34 600 00 00 00" value="${esc(tel)}" autocomplete="off">
-      <button class="btn small primary" type="submit">Guardar</button>${tel ? '<button class="btn small danger" type="button" data-borrar>Borrar</button>' : ''}</div>
+  const localForm = (k, label, campo = 'telefono') => {
+    const c = D.data.contactos[k]; if (!c) return '';
+    if (campo === 'telefono' && !c.local) return '';
+    if (campo === 'poliza' && !c.poliza_local) return '';
+    const sk = campo === 'poliza' ? `${k}:poliza` : k;
+    const val = contactosLocales()[sk] || '';
+    const id = `loc-${esc(k)}-${campo}`;
+    return `<form class="tel-local" data-contacto="${esc(k)}" data-campo="${campo}">
+      <label for="${id}">${esc(label)} · ${campo === 'poliza' ? 'nº de póliza' : 'teléfono'} en este móvil</label>
+      <div class="row"><input id="${id}" type="${campo === 'poliza' ? 'text' : 'tel'}" inputmode="${campo === 'poliza' ? 'numeric' : 'tel'}" placeholder="${campo === 'poliza' ? 'Número de póliza' : '+34 600 00 00 00'}" value="${esc(val)}" autocomplete="off">
+      <button class="btn small primary" type="submit">Guardar</button>${val ? '<button class="btn small danger" type="button" data-borrar>Borrar</button>' : ''}</div>
       <small>Se guarda solo en este dispositivo. No viaja al repositorio ni a ningún servidor.</small>
     </form>`;
   };
@@ -726,7 +731,9 @@ function viewResumen() {
     <h2>Contactos</h2>
     <div class="card"><dl>${contactoRow('Emergencias', c.emergencias)}${contactoRow('Seguro / asistencia', contacto('seguro_asistencia'))}${contactoRow('En casa', contacto('en_casa'))}</dl>
       ${localForm('en_casa', 'En casa')}
-      <p><a class="btn small" href="#/noches">Teléfonos de alojamientos</a></p></div>
+      ${localForm('seguro_asistencia', 'Seguro', 'poliza')}
+      ${D.data.seguro ? `<details><summary>Qué cubre el seguro y qué hacer</summary>${seguroHTML(false)}</details>` : ''}
+      <p><a class="btn small" href="#/noches">Teléfonos de alojamientos</a> <a class="btn small" href="#/guia">Seguro al detalle</a></p></div>
     <h2>Reglas del viaje</h2>
     <div class="card">
       <dl>
@@ -982,6 +989,7 @@ function viewGuia() {
     <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd></dl></div>
     <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl></div>
 
+    ${d.seguro ? `<h2>Seguro</h2><div class="card">${seguroHTML(true)}</div>` : ''}
     <h2>La moto</h2>
     <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
 
@@ -993,6 +1001,28 @@ function viewGuia() {
 
     <h2>Versión del plan</h2>
     <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}<br><small>${esc(meta.sustituye_a)}</small></p><p><small>${esc(meta.uso)}</small></p><details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios_v3)}</details></div>`;
+}
+
+/* Resumen de la poliza (sin datos personales). full=true: version completa para la Guia. */
+function seguroHTML(full) {
+  const s = D.data.seguro; if (!s) return '';
+  const seg = contacto('seguro_asistencia');
+  const tel = seg && typeof seg === 'object' ? [seg.telefono, ...(seg.telefonos_alternativos || [])].filter(Boolean) : [];
+  const pasos = (arr) => `<ol>${arr.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>`;
+  const cob = `<div class="tbl-wrap"><table class="seguro"><tbody>${s.coberturas.map((c) => `<tr><td>${esc(c.nombre)}</td><td>${esc(c.limite)}</td></tr>`).join('')}</tbody></table></div>`;
+  const acc = s.accesorios_declarados && s.accesorios_declarados.length ? `<h4>Accesorios declarados</h4><ul>${s.accesorios_declarados.map((a) => `<li>${esc(a.nombre)}${a.valor_eur ? ` <small>(${fmtEur(a.valor_eur)})</small>` : ''}</li>`).join('')}</ul>` : '';
+  const basico = `<p><b>${esc(s.compania)}</b> · ${esc(s.producto)}<br><small>Vigente del ${fmtFecha(s.vigencia.desde)} ${s.vigencia.desde.slice(0, 4)} al ${fmtFecha(s.vigencia.hasta)} ${s.vigencia.hasta.slice(0, 4)}.</small></p>
+    <p>📞 Asistencia 24 h: ${tel.map(telLink).join(' · ')}</p>
+    ${s.no_incluye ? `<div class="note"><b>Ojo:</b> ${esc(s.no_incluye)}</div>` : ''}
+    <h4>Si hay avería o accidente</h4>${pasos(s.en_caso_de.averia_o_accidente)}
+    <h4>Si roban la moto</h4>${pasos(s.en_caso_de.robo)}`;
+  if (!full) return `${basico}<p><small>${esc(s.documento)}</small></p>`;
+  return `${basico}
+    <h4>Coberturas y límites</h4>${cob}
+    ${acc}
+    <h4>Lo que no cubre (lo que importa en este viaje)</h4>${list(s.exclusiones_relevantes)}
+    ${s.aviso ? `<div class="note"><b>Por comprobar:</b> ${esc(s.aviso)}</div>` : ''}
+    <p><small>${esc(s.documento)}</small></p>`;
 }
 
 /* Tabla con las 11 rutas tal y como se llaman en Kurviger (nombre del GPX), km y tiempo. */
@@ -1027,7 +1057,7 @@ function viewHoja() {
       <p><b>Emergencias ${telLink(c.emergencias)}</b> · Seguro ${typeof seg === 'object' ? esc(seg.compania) + ' ' : ''}${telLink(telTxt(seg))}${typeof seg === 'object' && seg.telefonos_alternativos ? ` / ${seg.telefonos_alternativos.map(telLink).join(' / ')}` : ''} · En casa ${typeof casa === 'object' && casa.telefono ? telLink(casa.telefono) : '<small>(número en el móvil)</small>'}</p>
     </div>
     <div class="card hoja"><div class="tbl-wrap"><table class="hoja-tabla"><thead><tr><th>Día</th><th>Etapa y puntos de paso</th><th>km</th><th>Noche</th></tr></thead><tbody>${rows}</tbody></table></div></div>
-    <div class="card hoja"><h3>Reglas</h3><ul><li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li><li>${esc(p.reglas_globales.horario)}</li><li>${esc(p.moto.regla_gasolina)}</li>${p.moto.presiones ? `<li>Presiones: ${presionesHTML(p.moto, true)}.</li>` : ''}<li>${esc(d.meteo.regla)}</li></ul></div>
+    <div class="card hoja"><h3>Reglas</h3><ul><li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li><li>${esc(p.reglas_globales.horario)}</li><li>${esc(p.moto.regla_gasolina)}</li>${p.moto.presiones ? `<li>Presiones: ${presionesHTML(p.moto, true)}.</li>` : ''}<li>${esc(d.meteo.regla)}</li>${d.seguro ? `<li>Seguro ${esc(d.seguro.compania)}, ${esc(d.seguro.producto.split(' (')[0])}: en avería o accidente llamar a asistencia ANTES de pedir grúa o taller.${contactosLocales()['seguro_asistencia:poliza'] ? ` Póliza nº ${esc(contactosLocales()['seguro_asistencia:poliza'])}.` : ''}</li>` : ''}</ul></div>
     <p class="version no-print"><a href="#/resumen">← Resumen</a></p>`;
 }
 
@@ -1065,7 +1095,7 @@ document.addEventListener('change', (ev) => {
 document.addEventListener('submit', (ev) => {
   const f = ev.target.closest('.tel-local'); if (!f) return;
   ev.preventDefault();
-  const k = f.dataset.contacto;
+  const k = f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.contacto;
   setContactoLocal(k, f.querySelector('input').value.trim());
   const y = window.scrollY; render(); window.scrollTo(0, y);
 });
@@ -1074,7 +1104,7 @@ document.addEventListener('click', (ev) => {
   if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
   if (ev.target.closest('#meteo-refresh')) { meteoFetch(true); render(); return; }
   const del = ev.target.closest('[data-borrar]');
-  if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
+  if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const mb = ev.target.closest('[data-mapa]'); if (mb) { openMap(mb.dataset.mapa); return; }
   const av = ev.target.closest('[data-avisar]'); if (av) { avisarCasa(av.dataset.avisar); return; }
   if (ev.target.closest('#imprimir')) { ev.preventDefault(); window.print(); return; }
