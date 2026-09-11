@@ -456,12 +456,12 @@ function sketchMark(t, f) {
   const x = (P.ox + (ln - P.lo0) * P.kx * P.sc).toFixed(1), y = (P.oy + (P.la1 - la) * P.sc).toFixed(1);
   g.hidden = false; g.querySelectorAll('circle').forEach((c) => { c.setAttribute('cx', x); c.setAttribute('cy', y); });
 }
-function profileHover(ev) {
-  const svg = ev.target.closest('svg.perfil'); if (!svg) return;
-  const e = D.data.itinerario.find((d) => String(d.dia) === String(route().arg)); const t = e && D.tracks[e.dia] && D.tracks[e.dia].data; if (!t) return;
-  const g = svg.querySelector('.hover'); if (ev.type === 'pointerleave') { g.hidden = true; sketchMark(t, null); return; }
-  const rect = svg.getBoundingClientRect(); const W = 600, L = +svg.dataset.l, R = +svg.dataset.r, kmMax = +svg.dataset.kmmax;
-  const xv = (ev.clientX - rect.left) / rect.width * W; const km = Math.max(0, Math.min(kmMax, (xv - L) / (W - L - R) * kmMax));
+/* Pinta en el perfil el punto a km dados (y lo refleja en el croquis). */
+function profileShowKm(t, km) {
+  const svg = document.querySelector('svg.perfil'); if (!svg) return;
+  const g = svg.querySelector('.hover');
+  if (km == null) { g.hidden = true; sketchMark(t, null); return; }
+  const W = 600, L = +svg.dataset.l, R = +svg.dataset.r, kmMax = +svg.dataset.kmmax;
   let best = 0; t.perfil.forEach((p, i) => { if (Math.abs(p[0] - km) < Math.abs(t.perfil[best][0] - km)) best = i; });
   const p = t.perfil[best]; const H = 190, T = 18, B = 26;
   const eMin = Math.floor((t.alt_min_m || 0) / 100) * 100, eMax = Math.ceil((t.alt_max_m || 100) / 100) * 100;
@@ -471,8 +471,34 @@ function profileHover(ev) {
   sketchMark(t, kmMax ? p[0] / kmMax : 0);
   const tx = g.querySelector('text'); tx.textContent = `km ${p[0].toLocaleString('es-ES', { maximumFractionDigits: 1 })} · ${p[1].toLocaleString('es-ES')} m`; tx.setAttribute('x', x > W - 110 ? x - 8 : x + 8); tx.setAttribute('y', T + 12); tx.setAttribute('text-anchor', x > W - 110 ? 'end' : 'start');
 }
-document.addEventListener('pointermove', profileHover);
-document.addEventListener('pointerleave', profileHover, true);
+function trackActual() {
+  const e = D.data && D.data.itinerario.find((d) => String(d.dia) === String(route().arg)); const st = e && D.tracks[e.dia];
+  return st && st.status === 'ok' ? st.data : null;
+}
+/* Raton o dedo sobre el perfil: punto en el perfil y en el croquis. */
+function profileHover(ev) {
+  const svg = ev.target.closest('svg.perfil'); if (!svg) return;
+  const t = trackActual(); if (!t) return;
+  if (ev.type === 'pointerleave') { profileShowKm(t, null); return; }
+  const rect = svg.getBoundingClientRect(); const W = 600, L = +svg.dataset.l, R = +svg.dataset.r, kmMax = +svg.dataset.kmmax;
+  const xv = (ev.clientX - rect.left) / rect.width * W;
+  profileShowKm(t, Math.max(0, Math.min(kmMax, (xv - L) / (W - L - R) * kmMax)));
+}
+/* Raton o dedo sobre el croquis: busca el punto del track mas cercano y lo lleva al perfil. */
+function sketchHover(ev) {
+  const svg = ev.target.closest('svg.sketch'); if (!svg) return;
+  const t = trackActual(); if (!t || !t._proj) return;
+  if (ev.type === 'pointerleave') { profileShowKm(t, null); return; }
+  const rect = svg.getBoundingClientRect(); const vb = svg.viewBox.baseVal;
+  const x = (ev.clientX - rect.left) / rect.width * vb.width, y = (ev.clientY - rect.top) / rect.height * vb.height;
+  const P = t._proj; let best = -1, bd = Infinity;
+  t.track.forEach(([la, ln], i) => { const px = P.ox + (ln - P.lo0) * P.kx * P.sc, py = P.oy + (P.la1 - la) * P.sc; const d = (px - x) ** 2 + (py - y) ** 2; if (d < bd) { bd = d; best = i; } });
+  if (best < 0 || bd > 30 * 30) { profileShowKm(t, null); return; }
+  const cum = trackCum(t); const kmMax = t.perfil[t.perfil.length - 1][0];
+  profileShowKm(t, cum[best] / cum[cum.length - 1] * kmMax);
+}
+document.addEventListener('pointermove', (ev) => { profileHover(ev); sketchHover(ev); });
+document.addEventListener('pointerleave', (ev) => { profileHover(ev); sketchHover(ev); }, true);
 
 /* Nombre de un punto de ruta: salida, destino, o el nombre de e.gpx.vias por orden de via. */
 function viaNombre(e, v, idxVia) {
