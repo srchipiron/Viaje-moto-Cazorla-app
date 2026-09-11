@@ -81,7 +81,16 @@ function bar(keys) {
   return `<div class="bar"><i style="width:${pct}%"></i></div>`;
 }
 function confirmarKeys(dia) { const a = dia.alojamiento; return (a && a.pendiente_confirmar || []).map((t) => `confirmar|${dia.dia}|${t}`); }
-function previaKeys() { const c = D.data.checklist_previa; return Object.keys(c).flatMap((g) => c[g].map((t) => `previa|${g}|${t}`)); }
+/* Un elemento de lista puede ser un texto o { que, hecho }; los hechos cuentan como marcados. */
+function itemObj(x) { return typeof x === 'string' ? { que: x } : x; }
+function previaItems(g) { return D.data.checklist_previa[g].map(itemObj); }
+function previaKeys() { const c = D.data.checklist_previa; return Object.keys(c).flatMap((g) => previaItems(g).map((t) => `previa|${g}|${t.que}`)); }
+function marcarHechos() {
+  const c = D.data.checklist_previa; let n = 0;
+  Object.keys(c).forEach((g) => previaItems(g).forEach((t) => { if (t.hecho && !D.checks[`previa|${g}|${t.que}`]) { D.checks[`previa|${g}|${t.que}`] = true; n++; } }));
+  (D.data.compras_pendientes || []).forEach((x) => { if (x.hecho && !D.checks[`compra|${x.que}`]) { D.checks[`compra|${x.que}`] = true; n++; } });
+  if (n) saveChecks();
+}
 
 /* Telefonos personales guardados solo en el navegador, nunca en el repositorio. */
 function contactosLocales() { try { return JSON.parse(localStorage.getItem(CONTACTOS_KEY)) || {}; } catch (e) { return {}; } }
@@ -925,7 +934,7 @@ function viewResumen() {
   let estado;
   if (today < p.fechas.inicio) {
     const n = daysBetween(today, p.fechas.inicio);
-    const keys = previaKeys();
+    marcarHechos(); const keys = previaKeys();
     estado = `<div class="card warn"><div class="card-title"><h3>Faltan ${n} día${n === 1 ? '' : 's'} para la salida</h3>${progress(keys)}</div>
       <p>Salida el lunes ${fmtFecha(p.fechas.inicio)} a las ${esc(it[0].salida)} hacia ${esc(it[0].destino)}.</p>${bar(keys)}
       <p><a class="btn small" href="#/listas">Checklist previa</a> <a class="btn small" href="#/etapas/1">Ver día 1</a></p></div>`;
@@ -1126,9 +1135,10 @@ function viewNoches() {
 function viewListas() {
   const d = D.data;
   const grupos = { jueves_10: 'Jueves 10', viernes_11: 'Viernes 11', sabado_12_o_domingo_13: 'Sábado 12 o domingo 13', domingo_13_tarde: 'Domingo 13 por la tarde' };
+  marcarHechos();
   const previa = Object.keys(d.checklist_previa).map((g) => {
-    const keys = d.checklist_previa[g].map((t) => `previa|${g}|${t}`);
-    return `<div class="card"><div class="card-title"><h3>${grupos[g] || human(g)}</h3>${progress(keys)}</div>${d.checklist_previa[g].map((t) => checkItem(`previa|${g}|${t}`, t)).join('')}</div>`;
+    const items = previaItems(g); const keys = items.map((t) => `previa|${g}|${t.que}`);
+    return `<div class="card"><div class="card-title"><h3>${grupos[g] || human(g)}</h3>${progress(keys)}</div>${items.map((t) => checkItem(`previa|${g}|${t.que}`, t.que, t.hecho ? 'Hecho' : '')).join('')}</div>`;
   }).join('');
   const compraKeys = d.compras_pendientes.map((c) => `compra|${c.que}`);
   // Pedido Amazon: cada articulo puede ser un texto o { que, recibido, fecha }. Los recibidos cuentan como hechos.
@@ -1150,7 +1160,7 @@ function viewListas() {
   return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.</small></p></div>
     <h2>Checklist previa</h2>${previa}
     <h2>Compras pendientes ${progress(compraKeys)}</h2>
-    <div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>
+    <div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, c.hecho ? 'Hecho' : [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>
     <h2>Pedido Amazon ${progress(amazonKeys)}</h2>
     <div class="card">${amazonRec < amazon.length ? `<p class="muted"><small>Recibidos ${amazonRec} de ${amazon.length}. Faltan: ${esc(amazon.filter((x) => !x.recibido).map((x) => x.que).join(', '))}.</small></p>` : '<p class="muted"><small>Todo recibido.</small></p>'}${amazon.map((x) => checkItem(`amazon|${x.que}`, x.que, x.recibido ? `Recibido${x.fecha ? ` el ${fmtFecha(x.fecha)}` : ''}` : 'Pendiente de llegar')).join('')}</div>
     <h2>Ropa: falta ${progress(faltaKeys)}</h2>
@@ -1221,7 +1231,7 @@ function viewEquipaje() {
     ${inventarioHTML(d.inventario)}
     <details class="card"><summary>Compra Decathlon del 9 sept (${ropa.total_eur.toFixed(2)} €)</summary>
       <div class="tbl-wrap"><table><thead><tr><th>Artículo</th><th>Talla</th><th>Ud.</th></tr></thead><tbody>${ropa.articulos.map((a) => `<tr><td>${esc(a.articulo)}${a.nota ? `<br><small>${esc(a.nota)}</small>` : ''}</td><td>${esc(a.talla)}</td><td>${a.cantidad}${a.pares_total ? ` <small>(${a.pares_total} pares)</small>` : ''}</td></tr>`).join('')}</tbody></table></div>
-      <h4>Falta</h4>${list(ropa.falta)}</details>`;
+      ${ropa.boxers ? `<h4>Boxers</h4><p>${esc(ropa.boxers)}</p>` : ''}<h4>Falta</h4>${list(ropa.falta)}</details>`;
 }
 
 function viewGuia() {

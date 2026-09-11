@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 45,
+    "revision": 46,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Estado del 11 sept: poliza y resguardo en la app de Mapfre, 4 boxers en total (2 comprados + 2 de casa), chaleco y cable micro-USB en casa, Amazon completo, D6A emparejada con el Pixel; la prueba del soporte K&F queda para el sabado. Las listas admiten elementos ya hechos (objeto con hecho: true)",
       "Hostal Cortes pagado por completo el 11 sept (45 EUR). Pedido Amazon completo: botiquin y tapones Alpine recibidos el 11 sept",
       "Dia 7: nota para otro viaje con la Ruta del Silencio (A-1702 desde Cantavieja), con lo que costaria meterla y por que se deja fuera",
       "Puntos de despiste por dia (idas y vueltas, bucles, vias dobles, cambio a autovia) en gpx.avisos, con km y coordenadas, y consejos de navegacion con Kurviger en navegacion.kurviger.en_ruta. Perfil de altitud enlazado con el croquis: al recorrer el perfil se ve el punto en la ruta",
@@ -1434,7 +1435,7 @@
     "compania": "Mapfre España",
     "producto": "Automoviles particulares - Terceros Ampliado (motocicleta Honda NX500, uso particular)",
     "vigencia": { "desde": "2026-09-01", "hasta": "2027-09-01" },
-    "documento": "Condiciones particulares del 11/09/2026. El PDF va en el movil (Drive o Archivos) y en la bolsa estanca en papel; el numero de poliza se introduce en la app y queda solo en el dispositivo.",
+    "documento": "Condiciones particulares del 11/09/2026. Poliza y resguardo del pago van en la app de Mapfre del movil (hecho el 11 sept); ademas, el PDF en Archivos y una copia en papel en la bolsa estanca por si el movil falla. El numero de poliza se introduce en esta app y queda solo en el dispositivo.",
     "coberturas": [
       { "nombre": "Responsabilidad civil obligatoria", "limite": "Incluida" },
       { "nombre": "Responsabilidad civil suplementaria", "limite": "Hasta 50.000.000 EUR por siniestro" },
@@ -1530,8 +1531,8 @@
       { "articulo": "Bolsa estanca 7 l", "talla": "unica", "cantidad": 1 },
       { "articulo": "Organizadores de maleta (kit 3 fundas)", "talla": "unica", "cantidad": 1 }
     ],
+    "boxers": "4 en total: 2 comprados + 2 de casa. Suficiente con los tres lavados previstos (noches 3, 5 y 9); el tramo justo es del dia 6 al 9, cuatro dias seguidos sin lavar.",
     "falta": [
-      "2 boxers largos sin costuras mas (4 en total): web Decathlon con entrega antes del viernes o cualquier tienda",
       "Mallas merino: descartadas como no criticas (forro termico del Tornado + boxer largo)"
     ]
   },
@@ -1600,10 +1601,10 @@
   ],
 
   "compras_pendientes": [
-    { "que": "2 boxers largos sin costuras", "donde": "Web Decathlon o cualquier tienda", "cuando": "Jueves 10" },
+    { "que": "2 boxers largos sin costuras", "donde": "Web Decathlon o cualquier tienda", "cuando": "Jueves 10", "hecho": true },
 
-    { "que": "Chaleco reflectante de bolsillo", "donde": "Cualquier sitio", "cuando": "Antes del sabado" },
-    { "que": "Cable micro-USB para el compresor", "donde": "Casa o cualquier tienda", "cuando": "Antes del sabado" },
+    { "que": "Chaleco reflectante de bolsillo", "donde": "Cualquier sitio", "cuando": "Antes del sabado", "hecho": true },
+    { "que": "Cable micro-USB para el compresor", "donde": "Casa o cualquier tienda", "cuando": "Antes del sabado", "hecho": true },
     { "que": "Cinta americana: 2 m enrollados en la multiherramienta", "donde": "Casa", "cuando": "Domingo" },
     { "que": "Frontal LED (opcional; la linterna del Pixel sirve)", "donde": "-", "cuando": "-" },
     { "que": "Detergente en hojas (opcional; gel/champu sirve para lavar a mano)", "donde": "-", "cuando": "-" }
@@ -1624,18 +1625,20 @@
 
   "checklist_previa": {
     "jueves_10": [
-      "Amazon: todo recibido (kit Givi S450, grasa Motul C2, limpiador de casco, botiquin y tapones Alpine)",
-      "Comprar 2 boxers largos",
-      "Pedir chaleco reflectante y cable micro-USB si no se tienen",
-      "Comprobar que llega el soporte K&F y que la Osmo 360 tiene bateria y tarjeta con espacio",
-      "Poliza Mapfre: guardar el PDF en el movil y apuntar el numero de poliza en la app (Resumen > Contactos); comprobar si las defensas son Motoguard SG67 (poliza) o HG44 (inventario)"
+      {"que": "Amazon: todo recibido (kit Givi S450, grasa Motul C2, limpiador de casco, botiquin y tapones Alpine)", "hecho": true},
+      {"que": "Boxers: 4 en total (2 comprados + 2 de casa)", "hecho": true},
+      {"que": "Chaleco reflectante y cable micro-USB para el compresor", "hecho": true},
+      {"que": "Soporte K&F recibido; la Osmo 360 con bateria y tarjeta con espacio (la prueba en la moto es el sabado)", "hecho": true},
+      {"que": "Poliza y resguardo del pago en la app de Mapfre del movil", "hecho": true},
+      "Apuntar el numero de poliza en la app (Resumen > Contactos) y comprobar si las defensas son Motoguard SG67 (poliza) o HG44 (inventario)"
     ],
     "viernes_11": [
       "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",
       "Llamar a Mapfre (918 365 365): confirmar remolque a taller desde el km 0 y traslado del motorista",
       "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
       "Sacar 150-200 EUR en billetes pequeños",
-      "Emparejar D6A y Pixel; probar Kurviger por Android Auto",
+      {"que": "Emparejar D6A y Pixel", "hecho": true},
+      "Probar Kurviger por Android Auto en la D6A (abrir una ruta de la coleccion y navegar unos minutos)",
       "Emparejar el Sena SRL3 con el Pixel y probar las indicaciones de voz de Kurviger con los tapones puestos",
       "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
       "Guardar los 10 telefonos de alojamientos + seguro + 112 en el movil",
@@ -1643,7 +1646,7 @@
     ],
     "sabado_12_o_domingo_13": [
       "Salida de prueba 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato), Sena SRL3 con indicaciones de voz",
-      "Osmo 360 en la pantalla: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor, cambiar de sitio el domingo",
+      "Montar el soporte K&F en la pantalla con la Osmo 360: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor o se afloja, cambiar de sitio el domingo",
       "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
       "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
       "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
