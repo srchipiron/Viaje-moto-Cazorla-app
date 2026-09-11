@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 46,
+    "revision": 47,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Pinlock EVO en la GT-Air 3 para el viaje: montaje en la lista del viernes, comprobacion en la salida del sabado y cuidado en la rutina de cada noche",
       "Estado del 11 sept: poliza y resguardo en la app de Mapfre, 4 boxers en total (2 comprados + 2 de casa), chaleco y cable micro-USB en casa, Amazon completo, D6A emparejada con el Pixel; la prueba del soporte K&F queda para el sabado. Las listas admiten elementos ya hechos (objeto con hecho: true)",
       "Hostal Cortes pagado por completo el 11 sept (45 EUR). Pedido Amazon completo: botiquin y tapones Alpine recibidos el 11 sept",
       "Dia 7: nota para otro viaje con la Ruta del Silencio (A-1702 desde Cantavieja), con lo que costaria meterla y por que se deja fuera",
@@ -1634,6 +1635,7 @@
     ],
     "viernes_11": [
       "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",
+      "Montar el Pinlock EVO en la pantalla CWR-F2R (manos limpias, silicona hacia la pantalla, tensar los pivotes hasta que selle todo el contorno) y probarlo el sabado",
       "Llamar a Mapfre (918 365 365): confirmar remolque a taller desde el km 0 y traslado del motorista",
       "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
       "Sacar 150-200 EUR en billetes pequeños",
@@ -1650,6 +1652,7 @@
       "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
       "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
       "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
+      "Pinlock: si el borde inferior se empaña en las paradas, falta tension en los pivotes",
       "Comprobar que la ubicacion compartida no se corta"
     ],
     "domingo_13_tarde": [
@@ -1665,7 +1668,8 @@
   },
 
   "rutina_diaria": {
-    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A, el Sena SRL3 del casco y la Osmo 360", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
+    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A, el Sena SRL3 del casco y la Osmo 360", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
+      "Casco abierto en la habitacion para que seque el Pinlock; su cara interior solo con agua tibia y microfibra (el limpiador Motul, solo para el exterior)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
     "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada: con 120 kg y calor, medio litro por hora como minimo", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
     "llegada": ["Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
