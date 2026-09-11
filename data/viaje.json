@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 41,
+    "revision": 42,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Revision de los GPX frente a la coleccion de Kurviger Cloud y al plan: los 11 tracks coinciden punto por punto (todos los waypoints de la nube a menos de 400 m del track, extremos identicos). Corregida la etiqueta del dia 4: el GPX ya iba por Huelamo, no por Valdemeca; no hay que reexportar nada",
       "Coleccion de Kurviger Cloud 'Viaje vacaciones def' (11 rutas, 1946 km, 30h32) integrada: enlace para abrir cada ruta en Kurviger, nombre exacto, km, tiempo, desnivel y cortes de carretera reportados (dias 2, 3 y 11). La ruta del dia 4 en la nube va por Huelamo: decision cerrada; falta reexportar su GPX. Dia 1 en la nube: 236 km y 4h04 (el GPX DEF daba 3h37)",
       "Datos del piloto (33 años, 1,70 m, 120 kg) y su efecto en la moto: bloque carga (estimacion 162 kg frente a unos 183 kg de carga maxima) y precarga trasera recomendada (4 de 5 con maletas). Hidratacion reforzada en la rutina y ajuste de precarga en la checklist del domingo",
       "Poliza Mapfre (Terceros Ampliado, condiciones particulares del 11 sept) resumida en el bloque seguro: coberturas y limites, accesorios declarados, exclusiones relevantes y que hacer en averia, accidente o robo. Sin datos personales: el numero de poliza se guarda solo en el movil",
@@ -511,7 +512,7 @@
       "salida": "09:00",
       "llegada_prevista": "13:30 (con el rio Cuervo incluido)",
       "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
-      "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Villalba de la Sierra", "Ventano del Diablo", "Uña", "Carretera de Valdemeca", "Tragacete", "Parking Nacimiento del Rio Cuervo", "Tragacete (vuelta)", "Nacimiento del Rio Tajo", "Calomarde", "Royuela"], "nota": "Ruta Kurviger 'Dia 4 DEF' (10 sept): 152,9 km y 2h13 estimadas, con la ida y vuelta al rio Cuervo incluida. Entre Uña y Tragacete va por la carretera de Valdemeca, no por la CM-2105 y Huelamo como decia el plan; pendiente decidir si es intencionado. AVISO: el GPX guardado aqui es la version por la carretera de Valdemeca; la ruta definitiva en Kurviger Cloud (11 sept) va por Huelamo con los mismos 153 km. Exportar el GPX nuevo y actualizar data/tracks/dia-04.json.",
+      "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo (CM-2105, bajo el pueblo)", "Tragacete", "Parking Nacimiento del Rio Cuervo", "Tragacete (vuelta)", "Nacimiento del Rio Tajo", "Calomarde", "Royuela"], "nota": "Ruta Kurviger 'Dia 4 DEF' (10 sept): 152,9 km y 2h13 estimadas, con la ida y vuelta al rio Cuervo incluida. Entre Uña y Tragacete va por la carretera de Valdemeca, no por la CM-2105 y Huelamo como decia el plan; pendiente decidir si es intencionado. Comprobado el 11 sept: el GPX guardado pasa bajo Huelamo (via 4 a 300 m del pueblo, Valdemeca queda a 3 km) y coincide punto por punto con la ruta de Kurviger Cloud.",
             "kurviger": {"nombre": "Día 4 · Cuenca → Albarracín", "route_id": "S7lRUwHg7HMChMhvG5FE", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/S7lRUwHg7HMChMhvG5FE", "plan_url": "https://kurviger.com/es/plan?point=40.069384%2C-2.135418&padr.0=Hostal+Cort%C3%A9s%2C+Calle+Ram%C3%B3n+y+Cajal%2C+45%2C+16004%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.235604%2C-2.089295&padr.1=Villalba+de+la+Sierra%2C+16140%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.236774%2C-2.071429&point=40.223109%2C-1.977556&padr.3=U%C3%B1a%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.27662%2C-1.809834&padr.4=Hu%C3%A9lamo%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.350232%2C-1.85104&padr.5=Tragacete%2C+16150%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.427628%2C-1.895558&padr.6=Bajada+del+nacimiento+r%C3%ADo+Cuervo%2C+16150%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.350232%2C-1.85104&padr.7=Tragacete%2C+16150%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.320719%2C-1.697189&padr.8=Monumento+al+Nacimiento+del+r%C3%ADo+Tajo%2C+Albarrac%C3%ADn%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.372606%2C-1.575476&padr.9=Calomarde%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.377888%2C-1.510759&point=40.407938%2C-1.442042&padr.11=Hotel+Albarrac%C3%ADn%2C+Calle+de+Azagra%2C+44100%2C+Albarrac%C3%ADn%2C+Arag%C3%B3n%2C+Espa%C3%B1a&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+4+%C2%B7+Cuenca+%E2%86%92+Albarrac%C3%ADn&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=S7lRUwHg7HMChMhvG5FE", "km": 153.0, "duracion_min": 137, "subida_m": 3566, "bajada_m": 3357, "cortes_reportados": 0, "perfil": "por defecto", "waypoints": 12, "exportado": "2026-09-11"} },
       "guia": {
         "resumen": "La etapa más bella de la Serranía de Cuenca: el Ventano del Diablo, la laguna de Uña, el Júcar encajonado hasta Tragacete, el Puerto del Cubillo, el nacimiento del Tajo y la llegada a Albarracín, un pueblo de postal.",
@@ -588,7 +589,7 @@
         "tarde": "Descargar en la puerta del hotel (20 min), aparcar en el parking de abajo con el antirrobo, y pueblo a pie: murallas al atardecer, cena en el hotel o en el casco. Albarracín de noche, iluminado, merece un segundo paseo corto.",
         "consejo": "Revisar la DGT la noche anterior por la CM-2105 (obras y regulaciones). Salir a las 09:00: es día de montaña y la tarde en el Sistema Ibérico es de tormentas."
       },
-      "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Carretera de Valdemeca", "Tragacete", "Nacimiento del Rio Cuervo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
+      "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Nacimiento del Rio Cuervo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
       "horario_orientativo": [
         { "hora": "09:26-09:36", "lugar": "Ventano del Diablo", "que": "Parada visual" },
         { "hora": "09:45-10:10", "lugar": "Uña", "que": "Cafe y laguna" },
@@ -611,18 +612,18 @@
         {
           "titulo": "Entre Uña y Tragacete: Huelamo o la carretera de Valdemeca",
           "estado": "Decidido: por Huelamo",
-          "cuando": "La ruta de la nube (11 sept) ya pasa por Huelamo. Falta reexportar el GPX del dia 4 para la app.",
+          "cuando": "Decidido: la ruta de Kurviger Cloud y el GPX guardado pasan por Huelamo. No hay nada que cambiar.",
           "alternativas": [
             {
               "nombre": "Por Huelamo (CM-2105)",
               "coste": "153 km y 2h17 (ruta en la nube)",
               "por_que": "Sigue la hoz del Jucar encajonada entre paredes; es el tramo que el plan daba por bueno y pasa por el pueblo colgado sobre el rio.",
-              "como": "Ya esta: via 4 en Huelamo en la ruta de Kurviger Cloud"
+              "como": "Ya esta: via 4 bajo Huelamo, tanto en Kurviger Cloud como en el GPX de la app"
             },
             {
               "nombre": "Por la carretera de Valdemeca",
-              "coste": "Como esta la ruta ahora",
-              "por_que": "Carretera de pinares mas abierta y solitaria, por el este. Es lo que trae el GPX antiguo guardado en la app.",
+              "coste": "Descartada",
+              "por_que": "Carretera de pinares mas abierta y solitaria, por el este. Se penso como alternativa; la ruta final no la usa.",
               "como": "Solo si se cambia de idea: mover la via 4 a la carretera de Valdemeca"
             }
           ]
@@ -1617,7 +1618,6 @@
       "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",
       "Llamar a Mapfre (918 365 365): confirmar remolque a taller desde el km 0 y traslado del motorista",
       "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
-      "Exportar de Kurviger el GPX nuevo del dia 4 (por Huelamo) y pasarlo para actualizar la app",
       "Sacar 150-200 EUR en billetes pequeños",
       "Emparejar D6A y Pixel; probar Kurviger por Android Auto",
       "Emparejar el Sena SRL3 con el Pixel y probar las indicaciones de voz de Kurviger con los tapones puestos",
