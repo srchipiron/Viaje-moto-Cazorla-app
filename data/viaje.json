@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 44,
+    "revision": 45,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Hostal Cortes pagado por completo el 11 sept (45 EUR). Pedido Amazon completo: botiquin y tapones Alpine recibidos el 11 sept",
       "Dia 7: nota para otro viaje con la Ruta del Silencio (A-1702 desde Cantavieja), con lo que costaria meterla y por que se deja fuera",
       "Puntos de despiste por dia (idas y vueltas, bucles, vias dobles, cambio a autovia) en gpx.avisos, con km y coordenadas, y consejos de navegacion con Kurviger en navegacion.kurviger.en_ruta. Perfil de altitud enlazado con el croquis: al recorrer el perfil se ve el punto en la ruta",
       "Revision de los GPX frente a la coleccion de Kurviger Cloud y al plan: los 11 tracks coinciden punto por punto (todos los waypoints de la nube a menos de 400 m del track, extremos identicos). Corregida la etiqueta del dia 4: el GPX ya iba por Huelamo, no por Valdemeca; no hay que reexportar nada",
@@ -490,8 +491,8 @@
         "direccion": "C. Ramon y Cajal 45, 16004 Cuenca",
         "telefono": "+34 969 22 04 00",
         "precio_eur": 45,
-        "estado": "Reservado; 45 EUR pendientes en el alojamiento",
-        "pago": { "total_eur": 45, "pagado_eur": 0, "pendiente_eur": 45, "donde": "En el alojamiento" },
+        "estado": "Reservado y pagado (45 EUR, 11 sept)",
+        "pago": { "total_eur": 45, "pagado_eur": 45, "pendiente_eur": 0, "donde": "Pagado por adelantado el 11 sept" },
         "parking": "Plaza en parking privado del hostal (confirmar al llegar)",
         "recepcion": "24 h"
       },
@@ -1413,7 +1414,7 @@
   "alojamientos_resumen": [
     { "noche": 1, "fecha": "2026-09-14", "lugar": "Cazorla", "alojamiento": "Puente de las Herrerias", "telefono": "+34 953 72 70 90", "estado": "Reservado y pagado" },
     { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Reservado; 35,10 EUR pendientes (pagados 11,70 de 46,80)" },
-    { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado; 45 EUR pendientes" },
+    { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado y pagado" },
     { "noche": 4, "fecha": "2026-09-17", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado (134,19 EUR / 2 noches)" },
     { "noche": 5, "fecha": "2026-09-18", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado" },
     { "noche": 6, "fecha": "2026-09-19", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado; pagada la mitad, resto en el camping (aprox. 65 EUR)" },
@@ -1591,9 +1592,9 @@
   },
 
   "pedido_amazon_llega_2026_09_10": [
-    { "que": "Botiquin PURAHELP DIN 13167", "recibido": false },
+    { "que": "Botiquin PURAHELP DIN 13167", "recibido": true, "fecha": "2026-09-11" },
     { "que": "Motul C2 Road 400 ml (grasa de cadena)", "recibido": true, "fecha": "2026-09-10" },
-    { "que": "Alpine MotoSafe Duo Pack Tour + Sport", "recibido": false },
+    { "que": "Alpine MotoSafe Duo Pack Tour + Sport", "recibido": true, "fecha": "2026-09-11" },
     { "que": "Givi S450 kit tubeless (CO2 de un solo uso)", "recibido": true, "fecha": "2026-09-10" },
     { "que": "Motul limpiador de casco y visera", "recibido": true, "fecha": "2026-09-10" }
   ],
@@ -1623,7 +1624,7 @@
 
   "checklist_previa": {
     "jueves_10": [
-      "Amazon: ya han llegado el kit Givi S450, la grasa Motul C2 y el limpiador de casco; falta que lleguen el botiquin y los tapones Alpine",
+      "Amazon: todo recibido (kit Givi S450, grasa Motul C2, limpiador de casco, botiquin y tapones Alpine)",
       "Comprar 2 boxers largos",
       "Pedir chaleco reflectante y cable micro-USB si no se tienen",
       "Comprobar que llega el soporte K&F y que la Osmo 360 tiene bateria y tarjeta con espacio",
@@ -1656,7 +1657,7 @@
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
       "Medicacion con un dia de margen; llaves de repuesto en su sitio",
-      "Tarjeta con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Cortes, Los Alamos, Via Caprasia, Los Olivos, La Cilla)"
+      "Tarjeta con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Los Alamos, Via Caprasia, Los Olivos, La Cilla)"
     ]
   },
 
