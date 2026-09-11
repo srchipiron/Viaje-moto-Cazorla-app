@@ -463,17 +463,19 @@ function rutaHTML(e) {
   if (!e.gpx) return '';
   const st = D.tracks[e.dia];
   if (!st || st.status === 'loading') { trackLoad(e); return `<h2>Ruta GPX</h2><div class="card"><p class="muted">Cargando la ruta…</p></div>`; }
-  if (st.status === 'error') return `<h2>Ruta GPX</h2><div class="card warn"><p>No se pudo cargar el track (${esc(st.error)}).</p><p><a class="btn small" href="${esc(e.gpx.archivo)}" download>Descargar GPX</a></p></div>`;
+  if (st.status === 'error') return `<h2>Ruta GPX</h2><div class="card warn"><p>No se pudo cargar el track (${esc(st.error)}).</p><p class="row">${kurvigerBtns(e)} <a class="btn small" href="${esc(e.gpx.archivo)}" download>Descargar GPX</a></p></div>`;
   const t = st.data;
   const vias = t.vias.filter((v) => v.tipo !== 'shaping');
   const diffKm = t.km - e.km_aprox;
   return `<h2>Ruta GPX</h2>
     <div class="card ruta">
-      <div class="card-title"><h3>${esc(t.nombre)}</h3><span class="badge">${esc(t.fuente)}</span></div>
+      <div class="card-title"><h3>${esc((e.gpx.kurviger && e.gpx.kurviger.nombre) || t.nombre)}</h3><span class="badge">${esc(t.fuente)}</span></div>
+      ${e.gpx.kurviger ? `<p class="row">${kurvigerBtns(e)}</p>` : ''}
       ${trackSketch(t)}
       <div class="statgrid">
         <div class="stat"><small>Distancia (GPX)</small><b>${fmtKm(t.km)}</b><small>Plan: ${e.km_aprox} km${Math.abs(diffKm) >= 5 ? ` (${diffKm > 0 ? '+' : ''}${Math.round(diffKm)})` : ''}</small></div>
         <div class="stat"><small>Tiempo Kurviger</small><b>${fmtMin(t.duracion_min)}</b><small>Plan: ${esc(e.tiempo_real_aprox)} reales</small></div>
+        ${e.gpx.kurviger ? `<div class="stat"><small>Kurviger Cloud ${fmtFecha(e.gpx.kurviger.exportado)}</small><b>${fmtKm(e.gpx.kurviger.km)} · ${fmtMin(e.gpx.kurviger.duracion_min)}</b><small>${e.gpx.kurviger.waypoints} puntos · perfil ${esc(e.gpx.kurviger.perfil)}${Math.abs(e.gpx.kurviger.duracion_min - (t.duracion_min || 0)) >= 15 ? ` · ${e.gpx.kurviger.duracion_min > t.duracion_min ? '+' : '−'}${fmtMin(Math.abs(e.gpx.kurviger.duracion_min - t.duracion_min))} respecto al GPX` : ''}</small></div>` : ''}
         <div class="stat"><small>Desnivel</small><b>+${fmtM(t.subida_m)}</b><small>−${fmtM(t.bajada_m)}</small></div>
         <div class="stat"><small>Altitud</small><b>${fmtM(t.alt_max_m)}</b><small>mín. ${fmtM(t.alt_min_m)}</small></div>
       </div>
@@ -482,7 +484,7 @@ function rutaHTML(e) {
       <h4>Puntos de la ruta (${vias.length})</h4>
       <div class="tbl-wrap"><table class="vias"><thead><tr><th>#</th><th>Punto</th><th>km</th><th></th></tr></thead><tbody>${vias.map((v, i) => `<tr><td>${v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : i}</td><td>${esc(viaNombre(e, v, i))}</td><td>${v.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td><td><a href="${mapsSearch(`${v.lat},${v.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
       <p class="row">
-        ${window.VIAJE_DATA ? '' : `<button class="btn primary" type="button" data-mapa="${e.dia}">🗺️ Mapa interactivo</button>`}
+        ${window.VIAJE_DATA ? '' : `<button class="btn${e.gpx.kurviger ? '' : ' primary'}" type="button" data-mapa="${e.dia}">🗺️ Mapa interactivo</button>`}
         <a class="btn" href="${esc(e.gpx.archivo)}" download>⬇️ Descargar GPX</a>
         <a class="btn" href="${mapsSearch(`${t.track[0][0]},${t.track[0][1]}`)}" target="_blank" rel="noopener">Inicio en Maps ↗</a>
       </p>
@@ -647,6 +649,14 @@ function presionesHTML(m, corto) {
   const head = `<b>${bar(p.delantera_bar)} bar</b> delante · <b>${bar(p.trasera_bar)} bar</b> detrás${p.en_frio ? ' (en frío)' : ''}`;
   if (corto) return head;
   return `${head}<br><small>${p.delantera_psi ? `${p.delantera_psi} / ${p.trasera_psi} psi. ` : ''}${esc(p.con_carga || '')} ${esc(p.comprobar || '')}${p.fuente ? `<br>${esc(p.fuente)}` : ''}</small>`;
+}
+function kurvigerBtns(e) {
+  const k = e.gpx && e.gpx.kurviger; if (!k) return '';
+  return `<a class="btn primary" href="${esc(k.cloud_url)}" target="_blank" rel="noopener">🧭 Abrir en Kurviger</a>${k.plan_url ? ` <a class="btn" href="${esc(k.plan_url)}" target="_blank" rel="noopener">Kurviger web ↗</a>` : ''}`;
+}
+function cortesAviso(e) {
+  const k = e.gpx && e.gpx.kurviger; if (!k || !k.cortes_reportados) return '';
+  return `<div class="note"><b>🚧 Kurviger informa de ${k.cortes_reportados} corte${k.cortes_reportados > 1 ? 's' : ''} de carretera en esta ruta</b> (datos del ${fmtFecha(k.exportado)}). Abrir la ruta en Kurviger antes de salir, ver el tramo afectado y decidir el desvío.</div>`;
 }
 function gasolinaAviso(e) {
   const aut = D.data.proyecto.moto.autonomia_orientativa_km; if (!aut) return '';
@@ -824,6 +834,7 @@ function viewEtapas(arg) {
       <p class="row muted"><small>${solHTML(e)}</small>${avisarBtn(e)}</p>
       ${proximaParada(e)}
       ${e.objetivo ? `<div class="note info"><b>Objetivo:</b> ${esc(e.objetivo)}</div>` : ''}
+      ${cortesAviso(e)}
       ${gasolinaAviso(e)}
       ${e.equipaje ? `<div class="note"><b>Equipaje:</b> ${esc(e.equipaje)}</div>` : ''}
       ${e.opcional ? `<div class="note mount"><b>Opcional:</b> ${esc(e.opcional)}</div>` : ''}
@@ -1031,10 +1042,12 @@ function rutasKurvigerHTML() {
   const it = D.data.itinerario; const con = it.filter((e) => e.gpx && e.gpx.track);
   if (!con.length) return '';
   con.forEach(trackLoad);
-  const rows = con.map((e) => { const t = D.tracks[e.dia] && D.tracks[e.dia].data; return `<tr><td><a href="#/etapas/${e.dia}">Día ${e.dia}</a></td><td>${t ? esc(t.nombre) : '<span class="muted">cargando…</span>'}</td><td>${t ? fmtKm(t.km) : `${e.km_aprox} km`}</td><td>${t ? fmtMin(t.duracion_min) : '–'}</td><td><a href="${esc(e.gpx.archivo)}" download title="Descargar GPX">⬇️</a></td></tr>`; }).join('');
-  const tot = con.reduce((s, e) => { const t = D.tracks[e.dia] && D.tracks[e.dia].data; return s + (t ? t.km : e.km_aprox); }, 0);
-  const min = con.reduce((s, e) => { const t = D.tracks[e.dia] && D.tracks[e.dia].data; return s + (t && t.duracion_min ? t.duracion_min : 0); }, 0);
-  return `<div class="card"><p class="muted"><small>Nombre exacto de cada ruta en Kurviger, según el GPX guardado. Comprueba que en el móvil tienes estas ${con.length} rutas.</small></p>
+  const col = D.data.proyecto.navegacion.kurviger.coleccion;
+  const info = (e) => { const k = e.gpx.kurviger; const t = D.tracks[e.dia] && D.tracks[e.dia].data; return k ? { nombre: k.nombre, km: k.km, min: k.duracion_min, url: k.cloud_url, cortes: k.cortes_reportados } : t ? { nombre: t.nombre, km: t.km, min: t.duracion_min } : null; };
+  const rows = con.map((e) => { const i = info(e); return `<tr><td><a href="#/etapas/${e.dia}">Día ${e.dia}</a></td><td>${i ? (i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.nombre.replace(/^Día \d+ · /, ''))}</a>` : esc(i.nombre)) : '<span class="muted">cargando…</span>'}${i && i.cortes ? ` <span class="badge warn" title="Cortes de carretera reportados">🚧 ${i.cortes}</span>` : ''}</td><td>${i ? fmtKm(i.km) : `${e.km_aprox} km`}</td><td>${i ? fmtMin(i.min) : '–'}</td><td><a href="${esc(e.gpx.archivo)}" download title="Descargar GPX">⬇️</a></td></tr>`; }).join('');
+  const tot = con.reduce((s, e) => { const i = info(e); return s + (i ? i.km : e.km_aprox); }, 0);
+  const min = con.reduce((s, e) => { const i = info(e); return s + (i && i.min ? i.min : 0); }, 0);
+  return `<div class="card">${col ? `<p><b>Colección «${esc(col.nombre)}»</b> en Kurviger Cloud · ${col.rutas} rutas · ${fmtKm(Math.round(col.km_total))} · ${fmtMin(col.duracion_min)} · +${fmtM(col.desnivel_subida_m)}<br><a class="btn small primary" href="${esc(col.url)}" target="_blank" rel="noopener">🧭 Abrir la colección en Kurviger</a></p><p class="muted"><small>Toca el nombre de una ruta para abrirla en Kurviger (app o web). Comprueba que en el móvil tienes estas ${con.length} rutas descargadas.</small></p>` : `<p class="muted"><small>Nombre exacto de cada ruta en Kurviger, según el GPX guardado. Comprueba que en el móvil tienes estas ${con.length} rutas.</small></p>`}
     <div class="tbl-wrap"><table class="rutas"><thead><tr><th>Día</th><th>Ruta en Kurviger</th><th>km</th><th>Kurviger</th><th></th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td></td><td><b>Total</b></td><td><b>${fmtKm(Math.round(tot))}</b></td><td><b>${fmtMin(min)}</b></td><td></td></tr></tfoot></table></div>
     <p class="row">${window.VIAJE_DATA ? '' : '<button class="btn primary" type="button" data-mapa="todos">🗺️ Mapa del viaje completo</button>'}<a class="btn" href="#/hoja">📄 Hoja de ruta</a></p></div>`;
 }
@@ -1048,7 +1061,7 @@ function viewHoja() {
     const a = e.alojamiento; const n = d.alojamientos_resumen.find((x) => x.fecha === e.fecha);
     const t = D.tracks[e.dia] && D.tracks[e.dia].data;
     return `<tr><td><b>${e.dia}</b><br><small>${cap(e.dia_semana).slice(0, 3)} ${fmtFecha(e.fecha)}</small></td>
-      <td><b>${esc(e.origen)} → ${esc(e.destino)}</b><br><small>${esc(e.waypoints.join(' · '))}</small>${t ? `<br><small class="muted">Kurviger: ${esc(t.nombre)}</small>` : ''}</td>
+      <td><b>${esc(e.origen)} → ${esc(e.destino)}</b><br><small>${esc(e.waypoints.join(' · '))}</small>${e.gpx && e.gpx.kurviger ? `<br><small class="muted">Kurviger: ${esc(e.gpx.kurviger.nombre)}</small>` : t ? `<br><small class="muted">Kurviger: ${esc(t.nombre)}</small>` : ''}</td>
       <td class="num">${e.km_aprox} km<br><small>${esc(e.tiempo_real_aprox)}</small><br><small>${esc(e.salida.split(' ')[0])} → ${esc(e.llegada_prevista.split(' ')[0])}</small></td>
       <td>${a ? `<b>${esc(a.nombre)}</b><br><small>${esc(a.direccion)}</small><br>${telLink(a.telefono)}${pagoInfo(a) && pagoInfo(a).pendiente ? `<br><small>Por pagar: ${fmtEur(a.pago.pendiente_eur, a.pago.aproximado)}</small>` : ''}` : n ? `<b>${esc(n.alojamiento)}</b><br><small>${esc(n.lugar)}</small><br>${telLink(n.telefono)}` : '<small>Casa</small>'}</td></tr>`;
   }).join('');
