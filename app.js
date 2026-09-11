@@ -402,13 +402,14 @@ function trackSketch(t) {
   const ox = pad + ((W - 2 * pad) - w * sc) / 2, oy = pad + ((H - 2 * pad) - h * sc) / 2;
   const X = (lon) => (ox + (lon - lo0) * kx * sc).toFixed(1), Y = (lat) => (oy + (la1 - lat) * sc).toFixed(1);
   const pts = t.track.map(([la, lo]) => `${X(lo)},${Y(la)}`).join(' ');
+  t._proj = { ox, oy, sc, kx, lo0, la1 }; // para situar el punto del perfil sobre el croquis
   const vias = t.vias.filter((v) => v.tipo !== 'shaping');
   const marks = vias.map((v, i) => {
     const cls = v.tipo === 'start' ? 'ini' : v.tipo === 'destination' ? 'fin' : 'via';
     const label = v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : String(i);
     return `<g class="sk-${cls}"><circle cx="${X(v.lon)}" cy="${Y(v.lat)}" r="${cls === 'via' ? 7 : 8}"></circle><text x="${X(v.lon)}" y="${(+Y(v.lat) + 3.2).toFixed(1)}" text-anchor="middle">${label}</text></g>`;
   }).join('');
-  return `<svg class="sketch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Croquis del recorrido"><polyline points="${pts}"></polyline>${marks}</svg>`;
+  return `<svg class="sketch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Croquis del recorrido"><polyline points="${pts}"></polyline>${marks}<g class="sk-hover" hidden><circle r="9"></circle><circle r="4"></circle></g></svg>`;
 }
 
 /* Perfil de altitud: una serie, area + linea, rejilla ligera, etiqueta del maximo y tooltip. */
@@ -435,10 +436,30 @@ function trackProfile(t) {
     <rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"></rect>
   </svg>`;
 }
+function trackCum(t) {
+  if (t._cum) return t._cum;
+  const R = 6371, rad = Math.PI / 180; const cum = [0];
+  for (let i = 1; i < t.track.length; i++) {
+    const [a1, o1] = t.track[i - 1], [a2, o2] = t.track[i];
+    const x = Math.sin((a2 - a1) * rad / 2) ** 2 + Math.cos(a1 * rad) * Math.cos(a2 * rad) * Math.sin((o2 - o1) * rad / 2) ** 2;
+    cum.push(cum[i - 1] + 2 * R * Math.asin(Math.sqrt(x)));
+  }
+  t._cum = cum; return cum;
+}
+/* Situa sobre el croquis el punto del track que esta a la fraccion f (0-1) del recorrido. */
+function sketchMark(t, f) {
+  const svg = document.querySelector('svg.sketch'); const g = svg && svg.querySelector('.sk-hover'); if (!g || !t._proj) return;
+  if (f == null) { g.hidden = true; return; }
+  const cum = trackCum(t); const target = f * cum[cum.length - 1];
+  let lo = 0, hi = cum.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (cum[m] < target) lo = m + 1; else hi = m; }
+  const [la, ln] = t.track[lo]; const P = t._proj;
+  const x = (P.ox + (ln - P.lo0) * P.kx * P.sc).toFixed(1), y = (P.oy + (P.la1 - la) * P.sc).toFixed(1);
+  g.hidden = false; g.querySelectorAll('circle').forEach((c) => { c.setAttribute('cx', x); c.setAttribute('cy', y); });
+}
 function profileHover(ev) {
   const svg = ev.target.closest('svg.perfil'); if (!svg) return;
   const e = D.data.itinerario.find((d) => String(d.dia) === String(route().arg)); const t = e && D.tracks[e.dia] && D.tracks[e.dia].data; if (!t) return;
-  const g = svg.querySelector('.hover'); if (ev.type === 'pointerleave') { g.hidden = true; return; }
+  const g = svg.querySelector('.hover'); if (ev.type === 'pointerleave') { g.hidden = true; sketchMark(t, null); return; }
   const rect = svg.getBoundingClientRect(); const W = 600, L = +svg.dataset.l, R = +svg.dataset.r, kmMax = +svg.dataset.kmmax;
   const xv = (ev.clientX - rect.left) / rect.width * W; const km = Math.max(0, Math.min(kmMax, (xv - L) / (W - L - R) * kmMax));
   let best = 0; t.perfil.forEach((p, i) => { if (Math.abs(p[0] - km) < Math.abs(t.perfil[best][0] - km)) best = i; });
@@ -447,6 +468,7 @@ function profileHover(ev) {
   const x = L + (p[0] / kmMax) * (W - L - R), y = T + (1 - (p[1] - eMin) / (eMax - eMin || 1)) * (H - T - B);
   g.hidden = false; g.querySelector('line').setAttribute('x1', x); g.querySelector('line').setAttribute('x2', x);
   const c = g.querySelector('circle'); c.setAttribute('cx', x); c.setAttribute('cy', y);
+  sketchMark(t, kmMax ? p[0] / kmMax : 0);
   const tx = g.querySelector('text'); tx.textContent = `km ${p[0].toLocaleString('es-ES', { maximumFractionDigits: 1 })} · ${p[1].toLocaleString('es-ES')} m`; tx.setAttribute('x', x > W - 110 ? x - 8 : x + 8); tx.setAttribute('y', T + 12); tx.setAttribute('text-anchor', x > W - 110 ? 'end' : 'start');
 }
 document.addEventListener('pointermove', profileHover);
@@ -650,6 +672,14 @@ function presionesHTML(m, corto) {
   if (corto) return head;
   return `${head}<br><small>${p.delantera_psi ? `${p.delantera_psi} / ${p.trasera_psi} psi. ` : ''}${esc(p.con_carga || '')} ${esc(p.comprobar || '')}${p.fuente ? `<br>${esc(p.fuente)}` : ''}</small>`;
 }
+/* Puntos de despiste de la etapa: idas y vueltas, bucles, vias dobles. */
+function avisosNavHTML(e) {
+  const av = e.gpx && e.gpx.avisos; if (!e.gpx) return '';
+  if (!av || !av.length) return `<h2>Puntos de despiste</h2><div class="card ok"><p>Ninguno: la ruta es lineal, sin idas y vueltas ni vías dobles. Seguir a Kurviger.</p></div>`;
+  return `<h2>Puntos de despiste (${av.length})</h2>
+    <div class="card"><ol class="despistes">${av.map((a) => `<li><div class="desp-head"><b>${esc(a.lugar)}</b><span class="badge">km ${a.km}</span>${a.lat != null ? `<a href="${mapsSearch(`${a.lat},${a.lon}`)}" target="_blank" rel="noopener">mapa ↗</a>` : ''}</div><p>${esc(a.que)}</p></li>`).join('')}</ol>
+    <p><small>Sitios donde Kurviger te hará dar la vuelta o repetir carretera. Ninguno es un error: están comprobados sobre el GPX.</small></p></div>`;
+}
 function kurvigerBtns(e) {
   const k = e.gpx && e.gpx.kurviger; if (!k) return '';
   return `<a class="btn primary" href="${esc(k.cloud_url)}" target="_blank" rel="noopener">🧭 Abrir en Kurviger</a>${k.plan_url ? ` <a class="btn" href="${esc(k.plan_url)}" target="_blank" rel="noopener">Kurviger web ↗</a>` : ''}`;
@@ -680,7 +710,7 @@ function etapaCard(e, opts = {}) {
       <span class="badge ${t.cls}">${t.icon} ${t.label}</span>
     </div>
     <div class="etapa-ruta">${esc(e.origen)} → ${esc(e.destino)}</div>
-    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${(e.opciones || []).some((o) => /pendiente|decidir/i.test(o.estado)) ? '<span class="wx-inline" title="Hay una decisión pendiente">⚖️ Por decidir</span>' : ''}${etapaWx(e)}</div>
+    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${e.gpx && e.gpx.avisos && e.gpx.avisos.length ? `<span title="Puntos de despiste">🔁 ${e.gpx.avisos.length}</span>` : ''}${(e.opciones || []).some((o) => /pendiente|decidir/i.test(o.estado)) ? '<span class="wx-inline" title="Hay una decisión pendiente">⚖️ Por decidir</span>' : ''}${etapaWx(e)}</div>
   </a>`;
 }
 
@@ -841,6 +871,7 @@ function viewEtapas(arg) {
     </div>
 
     ${meteoStrip(e)}
+    ${avisosNavHTML(e)}
     ${rutaHTML(e)}
     <h2>Waypoints (${e.waypoints.length})</h2>
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
@@ -999,7 +1030,7 @@ function viewGuia() {
     ${rutasKurvigerHTML()}
     <h2>Navegación</h2>
     <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd></dl></div>
-    <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl></div>
+    <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>
 
     ${d.seguro ? `<h2>Seguro</h2><div class="card">${seguroHTML(true)}</div>` : ''}
     <h2>La moto</h2>

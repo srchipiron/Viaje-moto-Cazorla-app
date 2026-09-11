@@ -218,6 +218,16 @@ dd { margin: 0; }
 .ruta .statgrid .stat small:last-child { text-transform: none; letter-spacing: 0; margin-top: 2px; }
 table.vias td:first-child { font-weight: 700; color: var(--accent); }
 
+.despistes { padding-left: 20px; }
+.despistes li { margin: 8px 0; padding-bottom: 8px; border-bottom: 1px dashed var(--line); }
+.despistes li:last-child { border-bottom: 0; }
+.desp-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.desp-head a { font-size: .8rem; }
+.despistes p { margin: 3px 0 0; font-size: .93rem; }
+.sketch .sk-hover circle:first-child { fill: var(--hot); opacity: .25; stroke: none; }
+.sketch .sk-hover circle:last-child { fill: var(--hot); stroke: var(--card); stroke-width: 2; }
+.sketch .sk-hover[hidden] { display: none; }
+
 /* Mapa interactivo */
 .mapa { position: fixed; inset: 0; z-index: 40; background: var(--bg); display: flex; flex-direction: column; }
 .mapa[hidden] { display: none; }
