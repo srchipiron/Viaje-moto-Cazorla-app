@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 43,
+    "revision": 44,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Dia 7: nota para otro viaje con la Ruta del Silencio (A-1702 desde Cantavieja), con lo que costaria meterla y por que se deja fuera",
       "Puntos de despiste por dia (idas y vueltas, bucles, vias dobles, cambio a autovia) en gpx.avisos, con km y coordenadas, y consejos de navegacion con Kurviger en navegacion.kurviger.en_ruta. Perfil de altitud enlazado con el croquis: al recorrer el perfil se ve el punto en la ruta",
       "Revision de los GPX frente a la coleccion de Kurviger Cloud y al plan: los 11 tracks coinciden punto por punto (todos los waypoints de la nube a menos de 400 m del track, extremos identicos). Corregida la etiqueta del dia 4: el GPX ya iba por Huelamo, no por Valdemeca; no hay que reexportar nada",
       "Coleccion de Kurviger Cloud 'Viaje vacaciones def' (11 rutas, 1946 km, 30h32) integrada: enlace para abrir cada ruta en Kurviger, nombre exacto, km, tiempo, desnivel y cortes de carretera reportados (dias 2, 3 y 11). La ruta del dia 4 en la nube va por Huelamo: decision cerrada; falta reexportar su GPX. Dia 1 en la nube: 236 km y 4h04 (el GPX DEF daba 3h37)",
@@ -975,7 +976,8 @@
         "Es domingo: mas motos y coches de fin de semana; en Cantavieja llegar a comer antes de las 14:00.",
         "Etapa mas aislada: cobertura intermitente, el punto de ubicacion compartida se congelara.",
         "100% recortable: Alcala -> Valdelinares -> Linares -> Mosqueruela y vuelta ya es una gran mañana (unos 100 km).",
-        "Segundo recorte posible: saltar La Iglesuela del Cid ahorra unos 20 km sin tocar el resto del bucle."
+        "Segundo recorte posible: saltar La Iglesuela del Cid ahorra unos 20 km sin tocar el resto del bucle.",
+        "PARA OTRO VIAJE: la Ruta del Silencio (A-1702, Cantavieja - Cañada de Benatanduz - Villarluengo - Organos de Montoro - Ejulve, unos 65 km) empieza en Cantavieja, km 79 de este bucle; el desvio hacia Villarluengo esta señalizado. No se hace en este viaje: entera de ida y vuelta son +130 km y 2h30 (el dia pasaria de 5 h); solo hasta los Organos de Montoro y vuelta, +65 km y 1h20. Mejor como destino propio: dos noches en Cantavieja o Villarluengo, la A-1702 en los dos sentidos, Parrizal de Beceite y los puertos hacia Morella."
       ]
     },
     {
