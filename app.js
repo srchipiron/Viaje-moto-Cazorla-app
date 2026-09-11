@@ -494,6 +494,8 @@ function rutaHTML(e) {
       <div class="card-title"><h3>${esc((e.gpx.kurviger && e.gpx.kurviger.nombre) || t.nombre)}</h3><span class="badge">${esc(t.fuente)}</span></div>
       ${e.gpx.kurviger ? `<p class="row">${kurvigerBtns(e)}</p>` : ''}
       ${trackSketch(t)}
+      <h4>Perfil de altitud</h4>
+      ${trackProfile(t)}
       <div class="statgrid">
         <div class="stat"><small>Distancia (GPX)</small><b>${fmtKm(t.km)}</b><small>Plan: ${e.km_aprox} km${Math.abs(diffKm) >= 5 ? ` (${diffKm > 0 ? '+' : ''}${Math.round(diffKm)})` : ''}</small></div>
         <div class="stat"><small>Tiempo Kurviger</small><b>${fmtMin(t.duracion_min)}</b><small>Plan: ${esc(e.tiempo_real_aprox)} reales</small></div>
@@ -501,8 +503,6 @@ function rutaHTML(e) {
         <div class="stat"><small>Desnivel</small><b>+${fmtM(t.subida_m)}</b><small>−${fmtM(t.bajada_m)}</small></div>
         <div class="stat"><small>Altitud</small><b>${fmtM(t.alt_max_m)}</b><small>mín. ${fmtM(t.alt_min_m)}</small></div>
       </div>
-      <h4>Perfil de altitud</h4>
-      ${trackProfile(t)}
       <h4>Puntos de la ruta (${vias.length})</h4>
       <div class="tbl-wrap"><table class="vias"><thead><tr><th>#</th><th>Punto</th><th>km</th><th></th></tr></thead><tbody>${vias.map((v, i) => `<tr><td>${v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : i}</td><td>${esc(viaNombre(e, v, i))}</td><td>${v.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td><td><a href="${mapsSearch(`${v.lat},${v.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
       <p class="row">
