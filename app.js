@@ -1197,6 +1197,7 @@ function inventarioHTML(inv) {
       <dt>Maletas</dt><dd>${esc(e.marca)} ${esc(e.baul)} + 2× ${esc(e.maletas_laterales)}<br><small>Bolsa de depósito ${esc(e.bolsa_deposito.modelo)}, ${esc(e.bolsa_deposito.anclaje)}${e.bolsa_deposito.cierre_con_llave ? ', con cierre de llave' : ''}</small></dd>
       <dt>Casco</dt><dd><b>${esc(c.marca)} ${esc(c.modelo)}</b> · ${esc(c.tipo)} · talla ${esc(c.talla)}${c.intercomunicador ? `<br><small>Intercomunicador ${esc(c.intercomunicador.marca)} ${esc(c.intercomunicador.modelo)}${c.intercomunicador.integrado ? ' integrado' : ''}</small>` : ''}</dd>
       <dt>Botas</dt><dd><b>${esc(inv.botas.marca)} ${esc(inv.botas.modelo)}</b><br><small>${flags(inv.botas)}</small></dd>
+      ${inv.ropa_tecnica ? `<dt>Primera capa</dt><dd><b>${esc(inv.ropa_tecnica.marca)} ${esc(inv.ropa_tecnica.modelo)}</b>: ${esc((inv.ropa_tecnica.piezas || []).join(', ').toLowerCase())}<br><small>${esc(inv.ropa_tecnica.uso)}</small></dd>` : ''}
       ${inv.camara ? `<dt>Cámara</dt><dd><b>${esc(inv.camara.marca)} ${esc(inv.camara.modelo)}</b> · ${esc(inv.camara.tipo)}${inv.camara.soporte ? `<br><small>Soporte ${esc(inv.camara.soporte.marca)}: ${esc(inv.camara.soporte.tipo.toLowerCase())}, ${esc(inv.camara.soporte.anclajes.toLowerCase())}</small>` : ''}</dd>` : ''}
     </dl>
     ${inv.camara && inv.camara.pendiente_probar ? `<div class="note"><b>Por probar:</b> ${esc(inv.camara.pendiente_probar)}</div>` : ''}
@@ -1212,7 +1213,7 @@ function viewEquipaje() {
   const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito E09CL', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
   return `<h2>Equipación de moto</h2>
     ${eq.aviso_espaldera ? `<div class="card warn"><div class="card-title"><h3>⚠️ Espaldera</h3><span class="badge warn">Antes de salir</span></div><p>${esc(eq.aviso_espaldera)}</p></div>` : ''}
-    <div class="card"><p><b>${esc(eq.decision)}</b></p><h4>Puesto siempre</h4>${list(eq.puesto_siempre)}${eq.lluvia ? `<h4>Si llueve</h4><p>${esc(eq.lluvia)}</p>` : ''}<h4>Tapones</h4><p>${esc(eq.tapones)}</p></div>
+    <div class="card"><p><b>${esc(eq.decision)}</b></p><h4>Puesto siempre</h4>${list(eq.puesto_siempre)}${eq.lluvia ? `<h4>Si llueve</h4><p>${esc(eq.lluvia)}</p>` : ''}<h4>Tapones</h4><p>${esc(eq.tapones)}</p>${eq.sixs ? `<h4>Primera capa SIXS</h4><p>${esc(eq.sixs)}</p>` : ''}</div>
     <div class="grid">${Object.keys(eq.configuracion_por_tipo_de_dia).map((k) => { const c = eq.configuracion_por_tipo_de_dia[k]; const t = tipoInfo(k); return `<div class="card"><div class="card-title"><h3>${t.icon} ${human(k)}</h3><span class="badge ${t.cls}">Días ${c.dias.join(', ')}</span></div><dl><dt>Pantalón</dt><dd>${esc(c.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(c.chaqueta)}</dd>${c.nota ? `<dt>Nota</dt><dd>${esc(c.nota)}</dd>` : ''}</dl></div>`; }).join('')}</div>
 
     <h2>Reparto del equipaje</h2>

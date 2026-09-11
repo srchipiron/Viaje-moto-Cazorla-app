@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 47,
+    "revision": 48,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Conjunto SIXS Carbon Underwear (top, bottom, sotocasco, calcetines) incorporado como primera capa: inventario, equipacion por tipo de dia, reparto, lavado nocturno y pruebas del sabado",
       "Pinlock EVO en la GT-Air 3 para el viaje: montaje en la lista del viernes, comprobacion en la salida del sabado y cuidado en la rutina de cada noche",
       "Estado del 11 sept: poliza y resguardo en la app de Mapfre, 4 boxers en total (2 comprados + 2 de casa), chaleco y cable micro-USB en casa, Amazon completo, D6A emparejada con el Pixel; la prueba del soporte K&F queda para el sabado. Las listas admiten elementos ya hechos (objeto con hecho: true)",
       "Hostal Cortes pagado por completo el 11 sept (45 EUR). Pedido Amazon completo: botiquin y tapones Alpine recibidos el 11 sept",
@@ -1504,17 +1505,18 @@
     "configuracion_por_tipo_de_dia": {
       "montaña": {
         "dias": [2, 4, 5, 6, 7, 8],
-        "pantalon": "Tornado con forro impermeable puesto todo el dia; termico si la salida esta por debajo de 10 C",
-        "chaqueta": "Vertical GTX con top merino manga larga; polar solo con mucho frio; ventilaciones cerradas por la mañana, abiertas desde mediodia"
+        "pantalon": "Tornado con forro impermeable puesto todo el dia y el SIXS bottom debajo; termico solo si la salida esta por debajo de 8 C",
+        "chaqueta": "Vertical GTX con SIXS top debajo y el merino manga larga encima; polar solo con mucho frio; ventilaciones cerradas por la mañana, abiertas desde mediodia"
       },
       "calor_y_llano": {
         "dias": [1, 3, 9, 10, 11],
-        "pantalon": "Tornado en mesh puro; forro impermeable en el SH58X",
-        "chaqueta": "Vertical GTX con merino manga corta, todo abierto",
+        "pantalon": "Tornado en mesh puro con boxer largo; forro impermeable en el SH58X",
+        "chaqueta": "Vertical GTX con el SIXS top solo (o la merino manga corta), todo abierto",
         "nota": "Si la prevision de la mañana marca tormentas, poner el forro impermeable antes de salir. Dia 1: salir con el polar o el forro puestos por Calar Alto (2.000 m a las 10:00) y quitarlos en Baza."
       }
     },
-    "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport solo en autovia larga; probar en la salida del 12-13."
+    "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport solo en autovia larga; probar en la salida del 12-13.",
+    "sixs": "Conjunto SIXS Carbon Underwear: top y bottom como primera capa todos los dias (se lavan a mano por la noche y estan secos por la mañana). Sotocasco en las salidas frias (dia 1 por Calar Alto, Albarracin, Maestrazgo) y para mantener el casco limpio; probar el sabado que no molesta con los altavoces del Sena ni con los tapones. Calcetines SIXS los dias de calor, MH900 los de montaña."
   },
 
   "ropa_comprada_decathlon_2026_09_09": {
@@ -1532,14 +1534,14 @@
       { "articulo": "Bolsa estanca 7 l", "talla": "unica", "cantidad": 1 },
       { "articulo": "Organizadores de maleta (kit 3 fundas)", "talla": "unica", "cantidad": 1 }
     ],
-    "boxers": "4 en total: 2 comprados + 2 de casa. Suficiente con los tres lavados previstos (noches 3, 5 y 9); el tramo justo es del dia 6 al 9, cuatro dias seguidos sin lavar.",
+    "boxers": "4 en total: 2 comprados + 2 de casa. Suficiente con los tres lavados previstos (noches 3, 5 y 9); el tramo justo es del dia 6 al 9. Los dias de montaña el SIXS bottom hace de boxer, asi que sobran.",
     "falta": [
       "Mallas merino: descartadas como no criticas (forro termico del Tornado + boxer largo)"
     ]
   },
 
   "ropa_y_lavanderia": {
-    "filosofia": "Ropa para 4 dias; lavanderia a mitad de viaje. No pijama: manga larga merino + pantalon corto.",
+    "filosofia": "Ropa para 4 dias; lavanderia a mitad de viaje. No pijama: manga larga merino + pantalon corto. El conjunto SIXS se lava a mano cada noche en el lavabo y se seca colgado en 2-3 h: es la capa que va siempre pegada al cuerpo.",
     "lavados": [
       { "noche": 3, "lugar": "Cuenca", "como": "openBlue24h, detergente incluido" },
       { "noche": 5, "lugar": "Albarracin", "como": "A mano en el lavabo (gel/champu o hojas de detergente); tarde libre del dia 5" },
@@ -1583,6 +1585,7 @@
       "pendiente_probar": "Montarla en la pantalla de la NX500 y grabar en la salida de prueba del sabado: la pantalla es el punto que mas vibra de la moto. Revisar el material en casa antes de salir."
     },
     "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Airwave 4" } },
+    "ropa_tecnica": {"marca": "SIXS", "modelo": "Carbon Underwear (conjunto)", "piezas": ["Camiseta interior (top)", "Pantalon interior (bottom)", "Sotocasco", "Calcetines"], "uso": "Primera capa fina y transpirable: seca el sudor, no huele y se seca en 2-3 h. Vale para el calor (bajo la chaqueta abierta) y para el frio (bajo el merino)."},
     "botas": { "marca": "REV'IT", "modelo": "Breccia GTX", "talla": 43, "membrana": "Gore-Tex" }
   },
 
@@ -1614,7 +1617,7 @@
   "reparto_equipaje": {
     "regla": "Cada cosa vive siempre en la misma maleta.",
     "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado por USB-C a la toma", "Powerbank Baseus", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
-    "sh38x_izquierda_ropa": ["Organizador grande: merino manga corta x2, top merino manga larga, boxers, calcetines", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente", "Sobre con el resto del efectivo"],
+    "sh38x_izquierda_ropa": ["Organizador grande: SIXS (top, bottom, sotocasco, calcetines), merino manga corta x2, top merino manga larga, boxers, calcetines", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente", "Sobre con el resto del efectivo"],
     "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road, limpiador de casco Motul", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB + cable de la Osmo 360", "Cubrebotas si se compran"],
     "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Chaleco reflectante", "Casco y chaqueta al bajar a comer o pasear"],
     "dias_sin_laterales": {
@@ -1651,6 +1654,7 @@
       "Montar el soporte K&F en la pantalla con la Osmo 360: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor o se afloja, cambiar de sitio el domingo",
       "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
       "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
+      "Salir con el conjunto SIXS puesto (top, bottom, sotocasco): comprobar que el sotocasco no molesta con el Sena ni con los tapones y que el top no da calor bajo la Vertical",
       "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
       "Pinlock: si el borde inferior se empaña en las paradas, falta tension en los pivotes",
       "Comprobar que la ubicacion compartida no se corta"
@@ -1663,6 +1667,7 @@
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
       "Medicacion con un dia de margen; llaves de repuesto en su sitio",
+      "Conjunto SIXS lavado y seco para salir con el puesto el lunes",
       "Tarjeta con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Los Alamos, Via Caprasia, Los Olivos, La Cilla)"
     ]
   },
