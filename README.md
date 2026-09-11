@@ -28,6 +28,8 @@ Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
 | Listas | Checklist previa, compras, pedido Amazon, contactos pendientes, pagos, carga de cada maleta y cosas a confirmar con cada alojamiento. Las marcas se guardan en el dispositivo (`localStorage`) |
 | Equipaje | Equipación por tipo de día, reparto por maleta, días sin laterales, material, inventario real, ropa y lavandería |
 | Guía | Índice de la guía turística, tabla con el nombre exacto de las 11 rutas en Kurviger (km y tiempo), navegación, moto, principios del plan y versión del JSON |
+| Emergencia (`#/sos`, botón SOS arriba) | Llamadas grandes (112, Mapfre, casa, alojamiento de hoy), posición GPS con enlace y envío por WhatsApp o compartir, búsquedas cercanas (gasolinera, taller, centro de salud, farmacia), qué decir al 112, matrícula y datos médicos guardados solo en el móvil, pasos con el seguro |
+| Buscar (`#/buscar`, lupa arriba) | Busca en etapas, guía, horarios, alojamientos, listas, equipaje y seguro, sin acentos |
 | Hoja de ruta (`#/hoja`) | Todo el viaje en una página: etapas, puntos de paso, horas, alojamientos con teléfono y contactos. Pensada para imprimir (botón Imprimir; cualquier vista se imprime limpia) o por si falla el móvil |
 
 Otros detalles:
@@ -36,6 +38,12 @@ Otros detalles:
 - **Mapa del viaje completo**: los 11 tracks, cada día de un color, con la salida numerada y una cama en cada noche. Tocar una línea abre la ficha del día.
 - **Mapas sin conexión**: el service worker guarda las teselas de OpenStreetMap ya vistas (hasta 800), así que las zonas consultadas con cobertura se ven después sin ella.
 - **Instalar**: en Android/Chrome aparece el botón «Instalar»; en iPhone, la indicación para añadir a la pantalla de inicio.
+- **Dónde estoy**: en cada etapa con GPX (y en Emergencia), el GPS del móvil sitúa la posición sobre el track: km de la etapa, distancia a la ruta (avisa si estás fuera), km que quedan con tiempo estimado y siguiente punto de la ruta. Funciona sin cobertura. La posición se ve también en el mapa interactivo.
+- **Puntos de despiste**: por día, los sitios donde Kurviger hace dar la vuelta o repetir carretera, con km y mapa. Los días lineales lo dicen.
+- **Diario y gastos**: en cada etapa, un cuaderno de texto y una lista de gastos (gasolina, comida, alojamiento, otros) que se guardan solo en el móvil; el Resumen muestra el total del viaje.
+- **Horario en vivo**: el día del viaje, la tabla del horario atenúa lo pasado y resalta la siguiente parada según la hora.
+- **Tema**: botón ◐ arriba para forzar claro u oscuro (con sol, el claro se lee mejor); por defecto sigue al sistema.
+- **Copia de seguridad**: en Listas, copiar al portapapeles todo lo local (marcas, teléfonos, póliza, diario, gastos) y restaurarlo en otro móvil.
 
 ## Rutas GPX de Kurviger
 

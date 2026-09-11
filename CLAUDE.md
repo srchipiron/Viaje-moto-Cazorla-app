@@ -41,7 +41,8 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 ## Estructura de la app
 
 `app.js` es un único fichero con router por hash (`#/resumen`, `#/etapas/N`, `#/noches`,
-`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`). Cada vista es una función `viewX()` que
-devuelve HTML; `render()` lo pinta. Estado en `D`. Persistencia en `localStorage`
-(marcas de listas, contactos locales, caché de meteo). Meteo: Open-Meteo, sin clave.
+`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`). Cada vista es
+una función `viewX()` que devuelve HTML; `render()` lo pinta. Estado en `D`. Persistencia en
+`localStorage` (marcas de listas, contactos y datos locales, diario, gastos, tema, caché de meteo).
+Todo lo que sea dato personal (teléfonos, póliza, matrícula, médico) va en localStorage, nunca en el JSON. Meteo: Open-Meteo, sin clave.
 Mapa: Leaflet vendorizado en `vendor/leaflet`, tiles de OpenStreetMap.

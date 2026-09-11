@@ -4,7 +4,13 @@
 
 const STORAGE_KEY = 'viaje-nx500-v3-checks';
 const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en este dispositivo
-const D = { data: null, checks: loadChecks() };
+const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
+const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
+const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
+const D = { data: null, checks: loadChecks(), pos: null };
+function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sin almacenamiento */ } }
+function norm(s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
 
 /* ---------- utilidades ---------- */
 function loadChecks() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch (e) { return {}; } }
@@ -117,7 +123,7 @@ function quickCalls() {
   const prox = hoy || it.find((d) => d.fecha >= today && d.alojamiento) || null;
   const a = prox && prox.alojamiento;
   return `<div class="calls">
-    ${btn('🚨', 'Emergencias', c.emergencias, '112', 'sos')}
+    <a class="call sos" href="#/sos"><span class="call-icon">🆘</span><b>Emergencia</b><small>112 · posición GPS · seguro</small></a>
     ${btn('🏠', typeof casa === 'string' ? 'En casa' : (casa.nombre || 'En casa'), casaTel, casaTel || (casa.local ? 'Añádelo en Contactos' : 'Pendiente'))}
     ${btn('🛡️', typeof seg === 'string' ? 'Seguro' : (seg.compania || 'Seguro'), segTel, segTel ? segTel : 'Teléfono pendiente')}
     ${a ? btn('🛏️', hoy ? 'Alojamiento de hoy' : `Noche ${prox.dia} · ${fmtFecha(prox.fecha)}`, a.telefono, a.nombre) : ''}
@@ -584,6 +590,7 @@ async function openMapTodos() {
       L.marker(fin, { zIndexOffset: 500, icon: L.divIcon({ className: 'via-icon via-noche', html: '<span>🛏️</span>', iconSize: [24, 24], iconAnchor: [-4, 28] }) }).addTo(LMAP).bindTooltip(`Noche ${noche.noche} · ${esc(noche.lugar)}: ${esc(noche.alojamiento)}`);
     }
   });
+  posMarker();
   document.getElementById('mapa-titulo').textContent = `Viaje completo · ${it.length} etapas · ${D.data.proyecto.distancia_total_aprox_km} km`;
   if (bounds.length) LMAP.fitBounds(bounds.reduce((a, b) => a.extend(b)), { padding: [24, 24] });
   setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
@@ -602,8 +609,15 @@ async function openMap(dia) {
     L.marker([v.lat, v.lon], { icon }).addTo(LMAP).bindTooltip(`${viaNombre(e, v, i)} · km ${v.km}`);
   });
   (e.meteo_puntos || []).forEach((p) => L.circleMarker([p.lat, p.lon], { radius: 6, color: '#b2600a', fillColor: '#f0a94a', fillOpacity: .9, weight: 2 }).addTo(LMAP).bindTooltip(`Previsión: ${p.nombre}`));
+  (e.gpx.avisos || []).filter((a) => a.lat != null).forEach((a) => L.marker([a.lat, a.lon], { icon: L.divIcon({ className: 'via-icon via-aviso', html: '<span>🔁</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) }).addTo(LMAP).bindTooltip(`${a.lugar} (km ${a.km}): ${a.que}`));
+  posMarker();
   LMAP.fitBounds(line.getBounds(), { padding: [24, 24] });
   setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
+}
+function posMarker() {
+  if (!LMAP || !D.pos) return;
+  L.circle([D.pos.lat, D.pos.lon], { radius: D.pos.acc, color: '#1d5fa5', weight: 1, fillOpacity: .1 }).addTo(LMAP);
+  L.marker([D.pos.lat, D.pos.lon], { zIndexOffset: 2000, icon: L.divIcon({ className: 'via-icon via-yo', html: '<span>📍</span>', iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(LMAP).bindTooltip('Estoy aquí');
 }
 function closeMap() { document.getElementById('mapa').hidden = true; document.body.classList.remove('mapa-abierto'); if (LMAP) { LMAP.remove(); LMAP = null; } }
 
@@ -644,6 +658,103 @@ function guiaHTML(e) {
       ${g.tarde ? `<h4>La tarde</h4><p>${esc(g.tarde)}</p>` : ''}
       ${g.consejo ? `<div class="note info"><b>Consejo:</b> ${esc(g.consejo)}</div>` : ''}
     </div>`;
+}
+
+/* ---------- posicion GPS: donde estoy respecto a la etapa ---------- */
+function geoGet() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) { reject(new Error('Este navegador no tiene GPS')); return; }
+    navigator.geolocation.getCurrentPosition((p) => {
+      D.pos = { lat: p.coords.latitude, lon: p.coords.longitude, acc: p.coords.accuracy, t: Date.now() }; resolve(D.pos);
+    }, (err) => reject(new Error(err.code === 1 ? 'Permiso de ubicación denegado' : err.code === 2 ? 'Sin señal GPS' : 'Tiempo de espera del GPS agotado')), { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 });
+  });
+}
+function havKm(a, b) {
+  const R = 6371, rad = Math.PI / 180;
+  const x = Math.sin((b[0] - a[0]) * rad / 2) ** 2 + Math.cos(a[0] * rad) * Math.cos(b[0] * rad) * Math.sin((b[1] - a[1]) * rad / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(x));
+}
+/* Situa una posicion sobre el track de una etapa: km recorrido, distancia a la ruta, siguiente via y km restantes. */
+function posEnEtapa(t, pos) {
+  let best = 0, bd = Infinity;
+  t.track.forEach((p, i) => { const d = havKm([pos.lat, pos.lon], p); if (d < bd) { bd = d; best = i; } });
+  const cum = trackCum(t); const total = cum[cum.length - 1];
+  const km = cum[best] / total * t.km;
+  const vias = t.vias.filter((v) => v.tipo !== 'shaping');
+  const next = vias.find((v) => v.km > km + 0.3);
+  return { km, dist: bd, restante: Math.max(0, t.km - km), next, idxNext: next ? vias.indexOf(next) : -1, pct: Math.round(km / t.km * 100) };
+}
+function cercaLinks(pos) {
+  const q = (what) => `https://www.google.com/maps/search/${encodeURIComponent(what)}/@${pos.lat},${pos.lon},13z`;
+  return `<a class="btn small" href="${q('gasolinera')}" target="_blank" rel="noopener">⛽ Gasolinera</a> <a class="btn small" href="${q('taller motos')}" target="_blank" rel="noopener">🔧 Taller de motos</a> <a class="btn small" href="${q('centro de salud')}" target="_blank" rel="noopener">🏥 Centro de salud</a> <a class="btn small" href="${q('farmacia')}" target="_blank" rel="noopener">💊 Farmacia</a>`;
+}
+function posHTML(e) {
+  const pos = D.pos; const t = e && D.tracks[e.dia] && D.tracks[e.dia].data;
+  if (D.posError) return `<div class="note"><b>Sin posición:</b> ${esc(D.posError)}</div>`;
+  if (!pos) return '';
+  const hace = fmtHace(new Date(pos.t).toISOString());
+  const link = `https://www.google.com/maps/search/?api=1&query=${pos.lat.toFixed(5)},${pos.lon.toFixed(5)}`;
+  let sobre = '';
+  if (t) {
+    const r = posEnEtapa(t, pos);
+    const lejos = r.dist > 1;
+    sobre = `<div class="statgrid">
+      <div class="stat"><small>Km de la etapa</small><b>${r.km.toLocaleString('es-ES', { maximumFractionDigits: 1 })}</b><small>de ${fmtKm(t.km)} · ${r.pct} %</small></div>
+      <div class="stat"><small>Distancia a la ruta</small><b class="${lejos ? 'txt-hot' : 'txt-ok'}">${r.dist < 1 ? `${Math.round(r.dist * 1000)} m` : `${r.dist.toFixed(1)} km`}</b><small>${lejos ? 'Fuera de la ruta' : 'Sobre la ruta'}</small></div>
+      <div class="stat"><small>Quedan</small><b>${fmtKm(Math.round(r.restante))}</b><small>${t.duracion_min ? `≈ ${fmtMin(Math.round(r.restante / t.km * t.duracion_min))} de moto` : ''}</small></div>
+      <div class="stat"><small>Siguiente punto</small><b>${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'Destino'}</b><small>${r.next ? `en ${fmtKm(Math.round((r.next.km - r.km) * 10) / 10)}` : ''}</small></div>
+    </div>${lejos ? `<div class="note"><b>Estás a ${r.dist.toFixed(1)} km de la ruta.</b> Si no es a propósito, deja que Kurviger recalcule hacia la ruta o vuelve al último punto: ${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'destino'}.</div>` : ''}`;
+  }
+  return `<div class="card pos"><div class="card-title"><h3>📍 Dónde estoy</h3><span class="muted"><small>${hace} · ±${Math.round(pos.acc)} m</small></span></div>
+    ${sobre}
+    <p class="row"><a class="btn small" href="${link}" target="_blank" rel="noopener">Ver en Google Maps ↗</a><button class="btn small" type="button" data-compartir-pos>📤 Enviar mi posición</button>${e && !window.VIAJE_DATA && t ? `<button class="btn small" type="button" data-mapa="${e.dia}">🗺️ En el mapa</button>` : ''}</p>
+    <p class="row">${cercaLinks(pos)}</p></div>`;
+}
+async function localizar(dia) {
+  D.posError = null; D.posLoading = true; rerender();
+  try { await geoGet(); } catch (err) { D.posError = err.message; }
+  D.posLoading = false; rerender();
+}
+async function compartirPos() {
+  const pos = D.pos; if (!pos) return;
+  const link = `https://www.google.com/maps/search/?api=1&query=${pos.lat.toFixed(5)},${pos.lon.toFixed(5)}`;
+  const text = `Estoy aquí: ${link}`;
+  if (navigator.share) { try { await navigator.share({ text }); return; } catch (err) { if (err && err.name === 'AbortError') return; } }
+  const casa = contacto('en_casa'); const tel = casa && typeof casa === 'object' && casa.telefono ? String(casa.telefono).replace(/\D/g, '') : '';
+  window.open(`https://wa.me/${tel ? (tel.length === 9 ? '34' + tel : tel) : ''}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+}
+function localizarBtn(e) { return `<button class="btn" type="button" data-localizar="${e ? e.dia : ''}"${D.posLoading ? ' disabled' : ''}>📍 ${D.posLoading ? 'Buscando GPS…' : 'Dónde estoy'}</button>`; }
+
+/* Panel de emergencia: llamadas grandes, posicion y datos del seguro. */
+function viewSos() {
+  const c = D.data.contactos, it = D.data.itinerario, today = todayISO(), s = D.data.seguro;
+  const hoy = it.find((d) => d.fecha === today);
+  const casa = contacto('en_casa'), seg = contacto('seguro_asistencia');
+  const loc = contactosLocales();
+  const big = (icon, label, tel, sub, cls = '') => tel ? `<a class="call ${cls}" href="tel:${esc(String(tel).replace(/\s+/g, ''))}"><span class="call-icon">${icon}</span><b>${esc(label)}</b><small>${esc(sub || tel)}</small></a>` : '';
+  const n = hoy ? D.data.alojamientos_resumen.find((x) => x.fecha === today) : null;
+  const localForm = (k, label, ph) => `<form class="tel-local" data-contacto="${k}" data-campo="texto"><label for="sos-${k}">${label} · en este móvil</label><div class="row"><input id="sos-${k}" type="text" placeholder="${ph}" value="${esc(loc[k + ':texto'] || '')}" autocomplete="off"><button class="btn small primary" type="submit">Guardar</button>${loc[k + ':texto'] ? '<button class="btn small danger" type="button" data-borrar>Borrar</button>' : ''}</div></form>`;
+  return `<div class="card sos-head"><h1>🆘 Emergencia</h1><p>Primero a salvo, chaleco puesto, moto fuera de la calzada si se puede. Luego llama.</p></div>
+    <div class="calls sos-calls">
+      ${big('🚨', 'Emergencias', c.emergencias, '112', 'sos')}
+      ${big('🛡️', typeof seg === 'object' ? seg.compania : 'Seguro', typeof seg === 'object' ? seg.telefono : seg, 'Asistencia 24 h')}
+      ${typeof seg === 'object' && seg.telefonos_alternativos ? big('🛡️', 'Seguro (alternativo)', seg.telefonos_alternativos[0]) : ''}
+      ${big('🏠', typeof casa === 'object' ? casa.nombre : 'En casa', typeof casa === 'object' ? casa.telefono : casa, typeof casa === 'object' && !casa.telefono ? '' : undefined) || `<span class="call pend"><span class="call-icon">🏠</span><b>En casa</b><small>Añade el número en Resumen</small></span>`}
+      ${n ? big('🛏️', 'Alojamiento de hoy', n.telefono, n.alojamiento) : ''}
+    </div>
+    <h2>Mi posición</h2>
+    <p class="row">${localizarBtn(hoy)}</p>
+    ${posHTML(hoy)}
+    ${!D.pos && !D.posError ? '<p class="muted"><small>Pulsa «Dónde estoy» para obtener las coordenadas por GPS (funciona sin cobertura) y enviarlas por WhatsApp o compartir.</small></p>' : ''}
+    <h2>Qué decir al 112</h2>
+    <div class="card"><ol><li>Dónde estás: carretera, punto kilométrico o pueblo más cercano, o las coordenadas de arriba.</li><li>Qué ha pasado y cuántas personas hay heridas; si respiran y están conscientes.</li><li>Que vas en moto, solo, y el estado de la vía (curva, sin visibilidad).</li><li>No cuelgues hasta que te lo digan.</li></ol></div>
+    <h2>Datos para el seguro</h2>
+    <div class="card"><dl>${s ? `<dt>Póliza</dt><dd>${esc(s.compania)} · ${esc(s.producto.split(' (')[0])}${loc['seguro_asistencia:poliza'] ? `<br><b>Nº ${esc(loc['seguro_asistencia:poliza'])}</b>` : '<br><small>Nº de póliza: guárdalo en Resumen → Contactos</small>'}</dd>` : ''}<dt>Moto</dt><dd>${esc(D.data.proyecto.moto.modelo)}${loc['matricula:texto'] ? ` · matrícula <b>${esc(loc['matricula:texto'])}</b>` : ''}</dd></dl>
+      ${localForm('matricula', 'Matrícula', '0000 XXX')}
+      ${localForm('medico', 'Datos médicos', 'Alergias, medicación, grupo sanguíneo…')}
+      ${loc['medico:texto'] ? `<div class="note info"><b>Médico:</b> ${esc(loc['medico:texto'])}</div>` : ''}
+      <p><small>Estos datos se guardan solo en este dispositivo.</small></p></div>
+    ${s ? `<h2>Pasos con el seguro</h2><div class="card"><ol>${s.en_caso_de.averia_o_accidente.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></div>` : ''}`;
 }
 
 /* ---------- avisar en casa: resumen del dia para compartir ---------- */
@@ -723,6 +834,68 @@ function solHTML(e) {
   const pt = (e.meteo_puntos || [])[e.meteo_puntos.length - 1]; if (!pt) return '';
   const s = solDia(pt.lat, pt.lon, e.fecha); if (!s || !s.ocaso) return '';
   return `<span title="Ocaso en ${esc(pt.nombre)}">🌇 Anochece a las ${s.ocaso}</span>`;
+}
+
+/* ---------- diario y gastos del dia (solo en este dispositivo) ---------- */
+const GASTO_TIPOS = { gasolina: '⛽ Gasolina', comida: '🍽️ Comida', alojamiento: '🛏️ Alojamiento', otros: '🧾 Otros' };
+function gastosDia(dia) { return (lsGet(GASTOS_KEY, {})[dia] || []); }
+function gastosTotal(lista) { return lista.reduce((s, g) => s + (+g.importe || 0), 0); }
+function diarioHTML(e) {
+  const txt = lsGet(DIARIO_KEY, {})[e.dia] || '';
+  const g = gastosDia(e.dia); const tot = gastosTotal(g);
+  return `<h2>Diario y gastos del día</h2>
+    <div class="card diario">
+      <label for="diario-${e.dia}"><b>Diario</b> <small>· se guarda solo mientras escribes, en este móvil</small></label>
+      <textarea id="diario-${e.dia}" data-diario="${e.dia}" rows="3" placeholder="Cómo ha ido, km reales, qué repetirías…">${esc(txt)}</textarea>
+      <h4>Gastos ${g.length ? `<span class="badge">${fmtEur(tot)}</span>` : ''}</h4>
+      ${g.length ? `<ul class="gastos">${g.map((x, i) => `<li><span>${GASTO_TIPOS[x.tipo] || x.tipo}${x.concepto ? ` · ${esc(x.concepto)}` : ''}</span><b>${fmtEur(+x.importe)}</b><button class="btn small danger" type="button" data-gasto-borrar="${e.dia}|${i}" title="Borrar">✕</button></li>`).join('')}</ul>` : ''}
+      <form class="gasto-form row" data-gasto="${e.dia}">
+        <select name="tipo">${Object.keys(GASTO_TIPOS).map((k) => `<option value="${k}">${GASTO_TIPOS[k]}</option>`).join('')}</select>
+        <input name="importe" type="number" inputmode="decimal" step="0.01" min="0" placeholder="€" required>
+        <input name="concepto" type="text" placeholder="Concepto (opcional)">
+        <button class="btn small primary" type="submit">Añadir</button>
+      </form>
+    </div>`;
+}
+function gastosResumenHTML() {
+  const all = lsGet(GASTOS_KEY, {}); const dias = Object.keys(all).filter((k) => all[k].length);
+  if (!dias.length) return '';
+  const porTipo = {}; let tot = 0;
+  dias.forEach((k) => all[k].forEach((x) => { porTipo[x.tipo] = (porTipo[x.tipo] || 0) + (+x.importe || 0); tot += +x.importe || 0; }));
+  return `<h2>Gastos del viaje</h2><div class="card"><div class="card-title"><h3>${fmtEur(tot)}</h3><span class="muted">${dias.length} día${dias.length === 1 ? '' : 's'} con gastos</span></div>
+    <p>${Object.keys(porTipo).map((k) => `${GASTO_TIPOS[k] || k} <b>${fmtEur(porTipo[k])}</b>`).join(' · ')}</p>
+    <p><small>${dias.sort((a, b) => a - b).map((k) => `<a href="#/etapas/${k}">Día ${k}: ${fmtEur(gastosTotal(all[k]))}</a>`).join(' · ')}</small></p></div>`;
+}
+
+/* ---------- buscador ---------- */
+function viewBuscar(arg) {
+  const q = decodeURIComponent(arg || '').trim(); const nq = norm(q);
+  let res = '';
+  if (nq.length >= 2) {
+    const hits = [];
+    const add = (href, titulo, texto) => { if (norm(titulo + ' ' + texto).includes(nq)) hits.push({ href, titulo, texto }); };
+    D.data.itinerario.forEach((e) => {
+      const base = `#/etapas/${e.dia}`, pre = `Día ${e.dia} · `;
+      add(base, pre + `${e.origen} → ${e.destino}`, [e.tipo, e.objetivo, e.equipaje, e.opcional].filter(Boolean).join(' '));
+      (e.waypoints || []).forEach((w) => add(base, pre + w, 'waypoint'));
+      (e.paradas || []).forEach((p) => add(base, pre + 'Parada', p));
+      (e.notas || []).forEach((n) => add(base, pre + 'Nota', n));
+      (e.horario_orientativo || []).forEach((h) => add(base, pre + `${h.hora} ${h.lugar}`, h.que));
+      if (e.guia) { (e.guia.ver || []).forEach((v) => add(base + '#guia', pre + v.lugar, v.que)); if (e.guia.comer) add(base, pre + 'Comer', `${e.guia.comer.donde} ${(e.guia.comer.platos || []).join(' ')}`); if (e.guia.tarde) add(base, pre + 'La tarde', e.guia.tarde); if (e.guia.consejo) add(base, pre + 'Consejo', e.guia.consejo); }
+      if (e.alojamiento) add(base, pre + e.alojamiento.nombre, `${e.alojamiento.direccion} ${e.alojamiento.telefono} ${e.alojamiento.estado || ''} ${e.alojamiento.plan_b_cena || ''}`);
+      (e.opciones || []).forEach((o) => add(base, pre + o.titulo, (o.alternativas || []).map((a) => `${a.nombre} ${a.por_que}`).join(' ')));
+      ((e.gpx && e.gpx.avisos) || []).forEach((a) => add(base, pre + `Despiste: ${a.lugar}`, a.que));
+      if (e.lavanderia) add(base, pre + e.lavanderia.nombre, `lavandería ${e.lavanderia.direccion} ${e.lavanderia.plan}`);
+    });
+    const rep = D.data.reparto_equipaje; Object.keys(rep).forEach((k) => { if (Array.isArray(rep[k])) rep[k].forEach((t) => add('#/equipaje', `Equipaje · ${human(k)}`, t)); });
+    Object.keys(D.data.checklist_previa).forEach((k) => D.data.checklist_previa[k].forEach((t) => add('#/listas', `Checklist · ${human(k)}`, t)));
+    D.data.compras_pendientes.forEach((c) => add('#/listas', 'Compra pendiente', `${c.que} ${c.donde}`));
+    const mat = D.data.material_en_propiedad; ['compresor', 'antirrobo', 'powerbank'].forEach((k) => add('#/equipaje', `Material · ${human(k)}`, `${mat[k].modelo} ${mat[k].nota}`));
+    if (D.data.seguro) { D.data.seguro.coberturas.forEach((c) => add('#/guia', `Seguro · ${c.nombre}`, c.limite)); D.data.seguro.exclusiones_relevantes.forEach((x) => add('#/guia', 'Seguro · no cubre', x)); }
+    const mark = (s) => { const i = norm(s).indexOf(nq); if (i < 0) return esc(s); return `${esc(s.slice(0, i))}<mark>${esc(s.slice(i, i + q.length))}</mark>${esc(s.slice(i + q.length))}`; };
+    res = hits.length ? `<p class="muted">${hits.length} resultado${hits.length === 1 ? '' : 's'}</p><div class="card"><div class="guia-index">${hits.slice(0, 80).map((h) => `<a class="guia-link" href="${h.href}"><span class="badge">→</span><span>${mark(h.titulo)}</span><small>${mark(h.texto.length > 160 ? h.texto.slice(0, 160) + '…' : h.texto)}</small></a>`).join('')}</div></div>` : '<div class="card"><p class="muted">Nada con ese texto.</p></div>';
+  }
+  return `<div class="card accent"><h1>Buscar en el plan</h1><form class="buscar row" id="buscar-form"><input type="search" id="buscar-q" placeholder="Pueblo, hotel, plato, cosa que llevar…" value="${esc(q)}" autofocus><button class="btn primary" type="submit">Buscar</button></form><p class="muted"><small>Busca en etapas, guía, horarios, alojamientos, listas y equipaje. Sin acentos también vale.</small></p></div>${res}`;
 }
 
 /* ---------- vistas ---------- */
@@ -817,6 +990,7 @@ function viewResumen() {
     <div class="card">
       ${Object.keys(rd).map((k) => `<details${k === 'mañana' || k === 'en_ruta' ? ' open' : ''}><summary>${human(k)}</summary>${list(rd[k])}</details>`).join('')}
     </div>
+    ${gastosResumenHTML()}
     <h2>Filosofía</h2>
     <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}${p.piloto.peso_kg ? ` · ${p.piloto.edad} años, ${p.piloto.altura_m.toLocaleString('es-ES', { minimumFractionDigits: 2 })} m, ${p.piloto.peso_kg} kg` : ''}</p>${list(p.piloto.filosofia)}${p.piloto.nota_fisica ? `<div class="note info">${esc(p.piloto.nota_fisica)} <a href="#/guia">Ajustes de la moto</a></div>` : ''}</div>
     <p class="version">${planVersion()} · <a href="#" id="reload-plan">Actualizar plan</a> · <a href="#" id="imprimir">Imprimir</a></p>`;
@@ -887,7 +1061,8 @@ function viewEtapas(arg) {
         <div class="stat"><small>Llegada prevista</small><b>${esc(e.llegada_prevista)}</b></div>
         <div class="stat"><small>Perfil Kurviger</small><b>${esc(e.perfil_kurviger)}</b></div>
       </div>
-      <p class="row muted"><small>${solHTML(e)}</small>${avisarBtn(e)}</p>
+      <p class="row muted"><small>${solHTML(e)}</small>${avisarBtn(e)}${e.gpx ? localizarBtn(e) : ''}</p>
+      ${D.pos || D.posError ? posHTML(e) : ''}
       ${proximaParada(e)}
       ${e.objetivo ? `<div class="note info"><b>Objetivo:</b> ${esc(e.objetivo)}</div>` : ''}
       ${cortesAviso(e)}
@@ -903,7 +1078,7 @@ function viewEtapas(arg) {
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
       <p><small>Enlaces de consulta en Google Maps. La ruta real se crea en Kurviger con estos puntos como shaping points sobre la carretera.</small></p></div>
 
-    ${e.horario_orientativo ? `<h2>Horario orientativo</h2><div class="card"><div class="tbl-wrap"><table><thead><tr><th>Hora</th><th>Lugar</th><th>Qué</th></tr></thead><tbody>${e.horario_orientativo.map((h) => `<tr><td><b>${esc(h.hora)}</b></td><td>${esc(h.lugar)}</td><td>${esc(h.que)}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
+    ${e.horario_orientativo ? (() => { const esHoy = e.fecha === today, now = ahoraMin(); let nextIdx = -1; if (esHoy) nextIdx = e.horario_orientativo.findIndex((h) => { const m = horaMin(h.hora); return m != null && m >= now; }); return `<h2>Horario orientativo</h2><div class="card"><div class="tbl-wrap"><table class="horario"><thead><tr><th>Hora</th><th>Lugar</th><th>Qué</th></tr></thead><tbody>${e.horario_orientativo.map((h, i) => `<tr class="${esHoy ? (i === nextIdx ? 'now' : (nextIdx < 0 || i < nextIdx) ? 'past' : '') : ''}"><td><b>${esc(h.hora)}</b></td><td>${esc(h.lugar)}</td><td>${esc(h.que)}</td></tr>`).join('')}</tbody></table></div>${esHoy ? '<p><small>Las filas en gris ya han pasado; la resaltada es la siguiente según la hora.</small></p>' : ''}</div>`; })() : ''}
     ${e.paradas ? `<h2>Paradas</h2><div class="card">${list(e.paradas)}</div>` : ''}
     ${guiaHTML(e)}
     ${opcionesHTML(e)}
@@ -913,6 +1088,7 @@ function viewEtapas(arg) {
       ${sinLat.dias.includes(n) ? `<div class="note"><b>Sin maletas laterales.</b> Pasar al SH58X: ${esc(sinLat.pasar_al_sh58x.join(', '))}.</div>` : ''}</div>` : ''}
 
     ${alojamientoCard(e)}
+    ${diarioHTML(e)}
     ${e.lavanderia ? `<h2>Lavandería</h2><div class="card"><div class="card-title"><h3>${esc(e.lavanderia.nombre)}</h3><span class="badge">${esc(e.lavanderia.horario)}</span></div>
       <p>${esc(e.lavanderia.direccion)} · <a href="${mapsSearch(e.lavanderia.nombre + ', ' + e.lavanderia.direccion)}" target="_blank" rel="noopener">mapa ↗</a></p><p>${esc(e.lavanderia.precio)}</p><div class="note info">${esc(e.lavanderia.plan)}</div></div>` : ''}
 
@@ -988,6 +1164,9 @@ function viewListas() {
     ${carga}
     <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
     ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
+    <h2>Copia de seguridad</h2>
+    <div class="card"><p class="muted"><small>Marcas, teléfono de casa, nº de póliza, matrícula, diario y gastos viven solo en este móvil. Cópialos al portapapeles para pegarlos en otro dispositivo o guardarlos en una nota.</small></p>
+      <p class="row"><button class="btn small" type="button" id="backup-copiar">📋 Copiar copia de seguridad</button><button class="btn small" type="button" id="backup-restaurar">📥 Restaurar desde el portapapeles</button></p></div>
     <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;
 }
 
@@ -1133,7 +1312,7 @@ function viewHoja() {
 }
 
 /* ---------- router y arranque ---------- */
-const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja };
+const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja, sos: viewSos, buscar: viewBuscar };
 
 function route() {
   const h = location.hash.replace(/^#\/?/, '');
@@ -1146,9 +1325,11 @@ function render() {
   const { view, arg } = route();
   document.getElementById('view').innerHTML = VIEWS[view](arg);
   document.querySelectorAll('.tabbar a').forEach((a) => a.classList.toggle('active', a.dataset.view === view));
-  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía', hoja: 'Hoja de ruta' };
+  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía', hoja: 'Hoja de ruta', sos: 'Emergencia', buscar: 'Buscar' };
+  document.body.classList.toggle('vista-sos', view === 'sos');
   document.title = `${titles[view]} · Viaje NX500`;
   window.scrollTo(0, 0);
+  const q = document.getElementById('buscar-q'); if (q && !arg) { try { q.focus(); } catch (e) { /* nada */ } }
   const chip = document.querySelector('.chip.active');
   if (chip && chip.scrollIntoView) { try { chip.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { /* navegadores antiguos */ } }
 }
@@ -1164,20 +1345,42 @@ document.addEventListener('change', (ev) => {
 });
 
 document.addEventListener('submit', (ev) => {
+  const g = ev.target.closest('.gasto-form');
+  if (g) {
+    ev.preventDefault();
+    const dia = g.dataset.gasto; const all = lsGet(GASTOS_KEY, {}); const imp = parseFloat(String(g.importe.value).replace(',', '.'));
+    if (!(imp > 0)) return;
+    (all[dia] = all[dia] || []).push({ tipo: g.tipo.value, importe: Math.round(imp * 100) / 100, concepto: g.concepto.value.trim(), t: Date.now() });
+    lsSet(GASTOS_KEY, all); const y = window.scrollY; render(); window.scrollTo(0, y); return;
+  }
+  const b = ev.target.closest('#buscar-form');
+  if (b) { ev.preventDefault(); location.hash = `#/buscar/${encodeURIComponent(document.getElementById('buscar-q').value.trim())}`; return; }
   const f = ev.target.closest('.tel-local'); if (!f) return;
   ev.preventDefault();
-  const k = f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.contacto;
+  const k = f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.campo === 'texto' ? `${f.dataset.contacto}:texto` : f.dataset.contacto;
   setContactoLocal(k, f.querySelector('input').value.trim());
   const y = window.scrollY; render(); window.scrollTo(0, y);
+});
+let DIARIO_T = 0;
+document.addEventListener('input', (ev) => {
+  const ta = ev.target.closest('[data-diario]'); if (!ta) return;
+  clearTimeout(DIARIO_T);
+  DIARIO_T = setTimeout(() => { const all = lsGet(DIARIO_KEY, {}); if (ta.value.trim()) all[ta.dataset.diario] = ta.value; else delete all[ta.dataset.diario]; lsSet(DIARIO_KEY, all); }, 400);
 });
 
 document.addEventListener('click', (ev) => {
   if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
   if (ev.target.closest('#meteo-refresh')) { meteoFetch(true); render(); return; }
   const del = ev.target.closest('[data-borrar]');
-  if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
+  if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.campo === 'texto' ? `${f.dataset.contacto}:texto` : f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const mb = ev.target.closest('[data-mapa]'); if (mb) { openMap(mb.dataset.mapa); return; }
   const av = ev.target.closest('[data-avisar]'); if (av) { avisarCasa(av.dataset.avisar); return; }
+  const lz = ev.target.closest('[data-localizar]'); if (lz) { localizar(lz.dataset.localizar); return; }
+  if (ev.target.closest('[data-compartir-pos]')) { compartirPos(); return; }
+  const gb = ev.target.closest('[data-gasto-borrar]'); if (gb) { const [dia, i] = gb.dataset.gastoBorrar.split('|'); const all = lsGet(GASTOS_KEY, {}); (all[dia] || []).splice(+i, 1); lsSet(GASTOS_KEY, all); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
+  if (ev.target.closest('#tema')) { ciclarTema(); return; }
+  if (ev.target.closest('#backup-copiar')) { backupCopiar(); return; }
+  if (ev.target.closest('#backup-restaurar')) { backupRestaurar(); return; }
   if (ev.target.closest('#imprimir')) { ev.preventDefault(); window.print(); return; }
   if (ev.target.closest('#instalar')) { const p = D.installEvt; if (!p) return; D.installEvt = null; p.prompt(); p.userChoice.then(() => render()).catch(() => render()); return; }
   if (ev.target.closest('#ios-hint-ok')) { try { localStorage.setItem('viaje-nx500-ios-hint', '1'); } catch (e) { /* nada */ } render(); return; }
@@ -1193,6 +1396,34 @@ window.addEventListener('appinstalled', () => { D.installEvt = null; toast('App 
 let PRINT_OPEN = [];
 window.addEventListener('beforeprint', () => { PRINT_OPEN = [...document.querySelectorAll('details:not([open])')]; PRINT_OPEN.forEach((d) => { d.open = true; }); });
 window.addEventListener('afterprint', () => { PRINT_OPEN.forEach((d) => { d.open = false; }); PRINT_OPEN = []; });
+
+/* Tema: auto (segun el sistema), claro o oscuro. Con sol en la carretera el claro se lee mejor. */
+const TEMAS = ['auto', 'light', 'dark'];
+function aplicarTema() {
+  const t = lsGet(TEMA_KEY, 'auto');
+  if (t === 'auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = t;
+  const b = document.getElementById('tema'); if (b) { b.textContent = t === 'auto' ? '◐' : t === 'light' ? '☀️' : '🌙'; b.title = `Tema: ${t === 'auto' ? 'según el sistema' : t === 'light' ? 'claro' : 'oscuro'} (pulsa para cambiar)`; }
+}
+function ciclarTema() { const t = lsGet(TEMA_KEY, 'auto'); lsSet(TEMA_KEY, TEMAS[(TEMAS.indexOf(t) + 1) % TEMAS.length]); aplicarTema(); }
+
+/* Copia de seguridad de todo lo local (portapapeles). */
+const LOCAL_KEYS = [STORAGE_KEY, CONTACTOS_KEY, DIARIO_KEY, GASTOS_KEY, TEMA_KEY, 'viaje-nx500-ios-hint'];
+async function backupCopiar() {
+  const out = { app: 'viaje-nx500', fecha: new Date().toISOString(), datos: {} };
+  LOCAL_KEYS.forEach((k) => { const v = localStorage.getItem(k); if (v != null) out.datos[k] = v; });
+  const txt = JSON.stringify(out);
+  try { await navigator.clipboard.writeText(txt); toast('Copia de seguridad copiada al portapapeles'); }
+  catch (e) { prompt('Copia este texto y guárdalo:', txt); }
+}
+async function backupRestaurar() {
+  let txt = '';
+  try { txt = await navigator.clipboard.readText(); } catch (e) { txt = prompt('Pega aquí la copia de seguridad:') || ''; }
+  let obj; try { obj = JSON.parse(txt); } catch (e) { toast('Eso no es una copia de seguridad válida'); return; }
+  if (!obj || obj.app !== 'viaje-nx500' || !obj.datos) { toast('Eso no es una copia de seguridad válida'); return; }
+  if (!confirm(`Restaurar la copia del ${new Date(obj.fecha).toLocaleString('es-ES')}? Sustituye las marcas y datos locales de este móvil.`)) return;
+  Object.keys(obj.datos).forEach((k) => { if (LOCAL_KEYS.includes(k)) localStorage.setItem(k, obj.datos[k]); });
+  D.checks = loadChecks(); aplicarTema(); render(); toast('Copia restaurada');
+}
 
 function updateNet() { const n = document.getElementById('net'); n.classList.toggle('off', !navigator.onLine); n.title = navigator.onLine ? 'Con conexión' : 'Sin conexión (modo offline)'; }
 window.addEventListener('online', updateNet);
@@ -1218,7 +1449,7 @@ function registerSW() {
 }
 
 async function init() {
-  updateNet();
+  updateNet(); aplicarTema();
   try {
     if (window.VIAJE_DATA) {
       D.data = window.VIAJE_DATA; // version empaquetada en un solo fichero

@@ -43,12 +43,12 @@ function mockMeteo(url) {
   const errors = [];
   page.on('pageerror', (e) => errors.push('pageerror: ' + e.message));
   page.on('console', (m) => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
-  const views = ['#/resumen', '#/etapas', '#/etapas/1', '#/etapas/4', '#/etapas/7', '#/etapas/11', '#/noches', '#/tiempo', '#/listas', '#/equipaje', '#/guia', '#/hoja'];
+  const views = ['#/resumen', '#/etapas', '#/etapas/1', '#/etapas/4', '#/etapas/7', '#/etapas/11', '#/noches', '#/tiempo', '#/listas', '#/equipaje', '#/guia', '#/hoja', '#/sos', '#/buscar', '#/buscar/albarrac'];
   for (const v of views) {
     await page.goto(BASE + v, { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !document.querySelector('.loading'));
     const n = (await page.locator('#view').innerText()).length;
-    if (n < 200) errors.push(`vista ${v} casi vacia (${n} chars)`);
+    if (n < 200 && v !== '#/buscar') errors.push(`vista ${v} casi vacia (${n} chars)`);
     console.log(`${v.padEnd(12)} ${n} chars`);
   }
   // marcas persistentes
@@ -95,6 +95,31 @@ function mockMeteo(url) {
   if (!/tormenta de tarde/i.test(t3)) errors.push('sin aviso de tormenta de tarde con el mock');
   await p2.screenshot({ path: process.env.SHOT_DIR ? process.env.SHOT_DIR + '/etapa3-viaje.png' : '/dev/null', fullPage: false }).catch(() => null);
   await ctx2.close();
+  // buscador
+  await page.goto(BASE + '#/buscar/laminador', { waitUntil: 'networkidle' });
+  const nres = await page.locator('.guia-link').count(); if (!nres) errors.push('buscador sin resultados para "laminador"'); console.log('buscar laminador:', nres, 'resultados');
+  // diario y gastos persistentes
+  await page.goto(BASE + '#/etapas/5', { waitUntil: 'networkidle' });
+  await page.fill('[data-diario="5"]', 'Prueba de diario'); await page.waitForTimeout(600);
+  await page.selectOption('.gasto-form select', 'gasolina'); await page.fill('.gasto-form input[name=importe]', '21.5'); await page.fill('.gasto-form input[name=concepto]', 'Repsol'); await page.click('.gasto-form button[type=submit]');
+  await page.reload({ waitUntil: 'networkidle' });
+  const diario = await page.inputValue('[data-diario="5"]'); const gasto = await page.locator('.gastos li').count();
+  if (diario !== 'Prueba de diario' || gasto !== 1) errors.push(`diario/gastos no persisten (${diario} / ${gasto})`); console.log('diario y gasto persistentes:', diario === 'Prueba de diario', gasto);
+  await page.goto(BASE + '#/resumen', { waitUntil: 'networkidle' });
+  if (!/Gastos del viaje/.test(await page.locator('#view').innerText())) errors.push('resumen sin gastos del viaje');
+  // tema manual
+  await page.click('#tema'); const tema1 = await page.evaluate(() => document.documentElement.dataset.theme); await page.click('#tema'); const tema2 = await page.evaluate(() => document.documentElement.dataset.theme);
+  if (tema1 !== 'light' || tema2 !== 'dark') errors.push(`tema: ${tema1}/${tema2}`); console.log('tema:', tema1, tema2); await page.click('#tema');
+  // SOS + GPS simulado sobre la ruta del dia 3 (cerca de Alcaraz)
+  await ctx.grantPermissions(['geolocation']); await ctx.setGeolocation({ latitude: 38.6648, longitude: -2.4911, accuracy: 12 });
+  await page.goto(BASE + '#/etapas/3', { waitUntil: 'networkidle' });
+  await page.click('[data-localizar]'); await page.waitForSelector('.card.pos', { timeout: 10000 }).catch(() => errors.push('sin tarjeta de posicion'));
+  const posTxt = await page.locator('.card.pos').innerText().catch(() => '');
+  console.log('posicion:', posTxt.replace(/\n/g, ' | ').slice(0, 160));
+  if (!/sobre la ruta/i.test(posTxt) || !/alcaraz/i.test(posTxt)) errors.push('posicion en etapa incorrecta (esperaba sobre la ruta y siguiente punto Alcaraz)');
+  await page.goto(BASE + '#/sos', { waitUntil: 'networkidle' });
+  const sos = await page.locator('#view').innerText(); if (!/112/.test(sos) || !/Emergencia/.test(sos)) errors.push('vista SOS incompleta');
+  await page.screenshot({ path: process.env.SHOT_DIR ? process.env.SHOT_DIR + '/sos.png' : '/dev/null' }).catch(() => null);
   // mapa interactivo
   await page.goto(BASE + '#/etapas/1', { waitUntil: 'networkidle' });
   if (await page.locator('[data-mapa]').count()) {
