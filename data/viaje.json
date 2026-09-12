@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 48,
+    "revision": 49,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Pinlock montado (12 sept). La salida de prueba pasa al domingo 13 por la mañana; las presiones en frio, a ultima hora o el lunes antes de salir",
       "Conjunto SIXS Carbon Underwear (top, bottom, sotocasco, calcetines) incorporado como primera capa: inventario, equipacion por tipo de dia, reparto, lavado nocturno y pruebas del sabado",
       "Pinlock EVO en la GT-Air 3 para el viaje: montaje en la lista del viernes, comprobacion en la salida del sabado y cuidado en la rutina de cada noche",
       "Estado del 11 sept: poliza y resguardo en la app de Mapfre, 4 boxers en total (2 comprados + 2 de casa), chaleco y cable micro-USB en casa, Amazon completo, D6A emparejada con el Pixel; la prueba del soporte K&F queda para el sabado. Las listas admiten elementos ya hechos (objeto con hecho: true)",
@@ -1638,7 +1639,7 @@
     ],
     "viernes_11": [
       "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",
-      "Montar el Pinlock EVO en la pantalla CWR-F2R (manos limpias, silicona hacia la pantalla, tensar los pivotes hasta que selle todo el contorno) y probarlo el sabado",
+      {"que": "Pinlock EVO montado en la CWR-F2R", "hecho": true},
       "Llamar a Mapfre (918 365 365): confirmar remolque a taller desde el km 0 y traslado del motorista",
       "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
       "Sacar 150-200 EUR en billetes pequeños",
@@ -1650,7 +1651,7 @@
       "Activar compartir ubicacion en Google Maps con mi padre"
     ],
     "sabado_12_o_domingo_13": [
-      "Salida de prueba 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato), Sena SRL3 con indicaciones de voz",
+      "Salida de prueba el domingo por la mañana, 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato), Sena SRL3 con indicaciones de voz. Salir pronto para tener la tarde para el resto",
       "Montar el soporte K&F en la pantalla con la Osmo 360: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor o se afloja, cambiar de sitio el domingo",
       "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
       "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
@@ -1660,7 +1661,7 @@
       "Comprobar que la ubicacion compartida no se corta"
     ],
     "domingo_13_tarde": [
-      "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi)",
+      "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi). Tras la salida de prueba los neumaticos tardan 2-3 h en enfriarse: medir a ultima hora o el lunes antes de arrancar",
       "Precarga trasera a la posicion 4 de 5 con la moto cargada (llave de gancho del kit); pesar las maletas: menos de 20 kg de contenido",
       "Cargar compresor, powerbank, Pixel y Sena SRL3",
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",

@@ -1134,7 +1134,7 @@ function viewNoches() {
 
 function viewListas() {
   const d = D.data;
-  const grupos = { jueves_10: 'Jueves 10', viernes_11: 'Viernes 11', sabado_12_o_domingo_13: 'Sábado 12 o domingo 13', domingo_13_tarde: 'Domingo 13 por la tarde' };
+  const grupos = { jueves_10: 'Jueves 10', viernes_11: 'Viernes 11 (lo que quede, sábado)', sabado_12_o_domingo_13: 'Domingo 13 por la mañana · salida de prueba', domingo_13_tarde: 'Domingo 13 por la tarde' };
   marcarHechos();
   const previa = Object.keys(d.checklist_previa).map((g) => {
     const items = previaItems(g); const keys = items.map((t) => `previa|${g}|${t.que}`);
