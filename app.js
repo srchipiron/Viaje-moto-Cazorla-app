@@ -1245,7 +1245,7 @@ function viewGuia() {
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
     <h2>Navegación</h2>
-    <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd></dl></div>
+    <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd>${nav.sygic ? `<dt>Sygic</dt><dd>${esc(nav.sygic)}</dd>` : ''}</dl></div>
     <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>
 
     ${d.seguro ? `<h2>Seguro</h2><div class="card">${seguroHTML(true)}</div>` : ''}
