@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 55,
+    "revision": 56,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Rutina de la mañana: cerrar Instagram, Brave, Radarbot y RoadSync antes de salir (GSam del 13 sept: un tercio del gasto en ruta era de apps en segundo plano)",
       "D6A cableada directa a bateria: desenchufarla en cada parada larga y cada noche (rutina). Consumo del Pixel medido en ruta (15 %/h) y medidas para bajarlo",
       "Toma USB-C de la moto averiada (13 sept): el Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche; revisar el fusible de accesorios antes de salir",
       "Salida de prueba del 13 sept: 220 km por el Puerto de la Ragua con Vertical GTX, Tornado y SIXS, todo bien; sin laterales. Queda montar las laterales cargadas y probar el conjunto",
@@ -1693,7 +1694,8 @@
     "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, las dos powerbanks, D6A, el Sena SRL3 del casco y la Osmo 360 (el Pixel al 100 % antes de salir)", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
       "Casco abierto en la habitacion para que seque el Pinlock; su cara interior solo con agua tibia y microfibra (el limpiador Motul, solo para el exterior)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar",
-      "Enchufar la D6A; Pixel al 100 % y conectado a la powerbank 1; solo Kurviger abierto", "Salir a las 09:00 en dias de montaña"],
+      "Enchufar la D6A; Pixel al 100 % y conectado a la powerbank 1; solo Kurviger abierto",
+      "Forzar detencion de Instagram, Brave, Radarbot y RoadSync (gastan un tercio de la bateria en ruta); red en 4G", "Salir a las 09:00 en dias de montaña"],
     "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada: con 120 kg y calor, medio litro por hora como minimo", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir",
       "En paradas largas (comida): desenchufar la D6A"],
     "llegada": ["Desenchufar la D6A (se queda encendida y vacia la bateria de la moto)",
