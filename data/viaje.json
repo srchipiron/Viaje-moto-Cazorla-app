@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 52,
+    "revision": 53,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Salida de prueba del 13 sept: 220 km por el Puerto de la Ragua con Vertical GTX, Tornado y SIXS, todo bien; sin laterales. Queda montar las laterales cargadas y probar el conjunto",
       "Dia 1 en Kurviger Cloud pasado a Curvy-Fastest (13 sept): 229 km y 3h40 con los mismos 15 puntos; antes 236 km y 4h04 con el perfil por defecto",
       "Los Olivos (noche 9) pagado por Booking el 13 sept (50 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65, Via Caprasia 65 y La Cilla 56,10",
       "Reparto de papeles entre Kurviger (ruta, en la D6A) y Sygic (segundo navegador: direcciones, radares), y las dos pruebas del domingo",
@@ -1655,19 +1656,23 @@
       "Activar compartir ubicacion en Google Maps con mi padre"
     ],
     "sabado_12_o_domingo_13": [
-      "Salida de prueba el domingo por la mañana, 80-100 km: tres maletas cargadas con lo real, bolsa de deposito, D6A navegando, tapones Tour (probar Sport un rato), Sena SRL3 con indicaciones de voz. Salir pronto para tener la tarde para el resto",
+      {"que": "Salida de prueba hecha el 13 sept: 220 km de montaña por el Puerto de la Ragua, solo con el baul. Vertical GTX + Tornado + SIXS: frescos, comodos y sin frio", "hecho": true},
+      "Pendiente de la prueba: montar las dos laterales cargadas con lo real y dar una vuelta corta con todo puesto (el montaje de las SH38X llevo mucho tiempo: practicarlo hoy hasta que sea un clic)",
       "Kurviger en la D6A con una ruta de la coleccion: salirse de la ruta a proposito y comprobar que recalcula hacia la ruta (no hacia el destino); probar \"saltar waypoint\"",
       "Despues, Sygic con el GPX del dia 1 importado, solo para ver como lo trata (plan B). Nunca los dos navegando a la vez: en la D6A va Kurviger; Sygic solo si se cierra Kurviger",
       "Montar el soporte K&F en la pantalla con la Osmo 360: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor o se afloja, cambiar de sitio el domingo",
       "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
-      "Comparar boxers XL y 2XL; probar ventilaciones de la Vertical GTX",
-      "Salir con el conjunto SIXS puesto (top, bottom, sotocasco): comprobar que el sotocasco no molesta con el Sena ni con los tapones y que el top no da calor bajo la Vertical",
+      {"que": "Ventilaciones de la Vertical GTX y el Tornado probadas en la salida: van bien", "hecho": true},
+      "Comparar boxers XL y 2XL",
+      {"que": "Conjunto SIXS probado en la salida: muy fresco y comodo, sin pasar frio", "hecho": true},
+      "Sotocasco SIXS: comprobar que no molesta con el Sena ni con los tapones (no se probo en la salida)",
       "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
       "Pinlock: si el borde inferior se empaña en las paradas, falta tension en los pivotes",
       "Comprobar que la ubicacion compartida no se corta"
     ],
     "domingo_13_tarde": [
       "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi). Tras la salida de prueba los neumaticos tardan 2-3 h en enfriarse: medir a ultima hora o el lunes antes de arrancar",
+      "Montar las laterales esta noche y dejar la moto cargada: mañana solo hay que enganchar el baul y la bolsa",
       "Precarga trasera a la posicion 4 de 5 con la moto cargada (llave de gancho del kit); pesar las maletas: menos de 20 kg de contenido",
       "Cargar compresor, powerbank, Pixel y Sena SRL3",
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
