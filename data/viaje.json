@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 61,
+    "revision": 62,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Tres powerbanks: dos Baseus de 10.000 en la bolsa de deposito y una de 5.000 en la chaqueta como reserva de emergencia",
       "Powerbank 1 identificada: Baseus PPKPC-1027G, ya conectada al Pixel",
       "Precarga en la 4 (13 sept). Agua: 0,5 l en la bolsa de deposito y 1-1,5 l de reserva en el baul",
       "Presiones puestas el 12 sept (2,0 / 2,5) con el compresor Xiaomi",
@@ -1516,7 +1517,8 @@
   "equipacion_moto": {
     "decision": "REV'IT Vertical GTX + REV'IT Tornado 4. La Airwave 4 y los vaqueros Racered se quedan en casa.",
     "aviso_espaldera": "La espaldera SeeFlex esta montada en la Airwave 4 y la Vertical GTX no lleva ninguna. Pasarla a la Vertical GTX antes del viaje: son 2.000 km sin proteccion dorsal si no se hace.",
-    "puesto_siempre": ["Botas REV'IT Breccia GTX (Gore-Tex)", "Guantes REV'IT Caliber 1 (verano)", "Casco Shoei GT-Air 3 con Sena SRL3", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Tour"],
+    "puesto_siempre": [
+      "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)","Botas REV'IT Breccia GTX (Gore-Tex)", "Guantes REV'IT Caliber 1 (verano)", "Casco Shoei GT-Air 3 con Sena SRL3", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Tour"],
     "lluvia": "Guantes REV'IT Sand 5 H2O (impermeables) en el SH58X. Las botas son Gore-Tex: no hacen falta cubrebotas.",
     "configuracion_por_tipo_de_dia": {
       "montaña": {
@@ -1608,7 +1610,7 @@
   "material_en_propiedad": {
     "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB: llevar cable micro-USB. Cargar a tope el domingo 13. Probar en las presiones del domingo." },
     "antirrobo": { "modelo": "Abus Granit Detecto X-Plus 8008", "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito." },
-    "powerbank": { "modelo": "Baseus PPKPC-1027G (powerbank 1, conectada al Pixel en la bolsa de deposito) + segunda powerbank de 10.000 mAh de reserva", "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen." },
+    "powerbank": { "modelo": "2x Baseus PPKPC-1027G de 10.000 mAh (la 1 conectada al Pixel en la bolsa de deposito, la 2 de reserva en la misma bolsa) + Baseus de 5.000 mAh en el bolsillo de la chaqueta como reserva de emergencia lejos de la moto", "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen." },
     "otros": ["Givi S450 kit tubeless (recibido 10 sept)", "Motul C2 Road grasa de cadena (recibido 10 sept)", "Motul limpiador de casco y visera (recibido 10 sept)", "Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
   },
 
