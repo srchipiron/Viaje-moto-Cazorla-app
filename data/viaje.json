@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 66,
+    "revision": 67,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Sitios curiosos junto a la ruta añadidos a la guia: Cueva del Agua de Tiscar (1), Charco del Aceite con parada en el horario y Cerrada de Elias (2), Cascada Batida de Calomarde (4), Laguna de Bezas (6), Salinas de Arcos y Cuchillos de Contreras (8), mirador de Embarcaderos (9), Mirador del Diablo de Ayna (10), Cueva de los Letreros (11). Todos comprobados a menos de 1,5 km del track",
       "Sena listo. Aerosoles (Motul C2 y CO2) pasan a la maleta izquierda, lejos del escape; comprobacion de la distancia escape-maleta derecha y prueba de temperatura en Baza",
       "Noche del 13 sept: espaldera pasada, Mapfre sin llamar, fusible descartado, medicacion y Bizum listos",
       "Pesaje de las maletas pendiente para el lunes por la mañana, con el limite de SHAD por maleta",
@@ -197,7 +198,7 @@
             "que": "Santuario encajado en un desfiladero bajo el Puerto de Tíscar, patrona de Quesada. A pocos minutos a pie está la Cueva del Agua, una gruta natural con un salto de agua (poco caudal en septiembre). Muy fotogénico desde el propio aparcamiento.",
             "tiempo": "15-30 min",
             "en_ruta": true
-          },
+          }, {"lugar": "Cueva del Agua de Tiscar", "tipo": "naturaleza", "que": "Gruta abierta donde el rio Turrilla se mete bajo la roca, 300 m por debajo del santuario. Bajada por escaleras, 10 min. Fresca y fotogenica.", "tiempo": "15 min", "opcional": true, "lat": 37.769, "lon": -3.025},
           {
             "lugar": "Quesada",
             "tipo": "cafe",
@@ -310,7 +311,7 @@
             "que": "Centro de visitantes del parque entre Arroyo Frío y Coto Ríos, con jardín botánico y museo de caza. Parada rápida para el mapa del parque y los baños.",
             "tiempo": "15 min",
             "en_ruta": true
-          },
+          }, {"lugar": "Charco del Aceite", "tipo": "naturaleza", "que": "Piscina natural de agua turquesa en el cauce viejo del Guadalquivir, entre Coto Rios y el Tranco. Aparcamiento a pie de carretera y 5 min de sendero. Foto obligada y, si hace calor, pies en el agua.", "tiempo": "25 min", "opcional": false}, {"lugar": "Cerrada de Elias (rio Borosa)", "tipo": "paseo", "que": "Pasarelas colgadas sobre el Borosa, salida desde Torre del Vinagre. 1h30 ida y vuelta a pie: no cabe hoy. Para otro viaje.", "tiempo": "1h30", "opcional": true, "lat": 37.99, "lon": -2.86},
           {
             "lugar": "Presa del Tranco",
             "tipo": "mirador",
@@ -366,9 +367,10 @@
       "horario_orientativo": [
         { "hora": "09:05", "lugar": "Cerrada del Utrero", "que": "De paso (o 45 min de sendero si apetece; entonces sumar 45 min a todo lo demas)" },
         { "hora": "09:35-09:50", "lugar": "Torre del Vinagre / Coto Rios", "que": "Parada corta: centro de visitantes y baños" },
-        { "hora": "10:10-10:20", "lugar": "Presa del Tranco", "que": "Parada visual" },
-        { "hora": "10:35-11:05", "lugar": "Hornos de Segura", "que": "Cafe y mirador sobre el pantano (subir al pueblo)" },
-        { "hora": "11:20-14:30", "lugar": "Segura de la Sierra", "que": "Castillo, paseo y comida (13:00-14:30)" },
+        { "hora": "09:55-10:20", "lugar": "Charco del Aceite", "que": "Piscina natural: parking a pie de carretera, 5 min a pie. Foto y remojo de pies" },
+        { "hora": "10:35-10:45", "lugar": "Presa del Tranco", "que": "Parada visual" },
+        { "hora": "11:00-11:30", "lugar": "Hornos de Segura", "que": "Cafe y mirador sobre el pantano (subir al pueblo)" },
+        { "hora": "11:45-14:30", "lugar": "Segura de la Sierra", "que": "Castillo, paseo y comida (13:00-14:30)" },
         { "hora": "14:40", "lugar": "Orcera", "que": "De paso" },
         { "hora": "15:00-15:15", "lugar": "Siles", "que": "Parada corta" },
         { "hora": "15:45", "lugar": "Hostal El Laminador", "que": "Llegada por el Puerto del Arenal" }
@@ -597,7 +599,7 @@
             "que": "Junto al pueblo, la cascada de Calomarde (Batida) se ve desde la carretera y se baja a ella en pocos minutos a pie. Un poco más allá, el Barranco de la Hoz tiene pasarelas, pero es una excursión larga: no toca.",
             "tiempo": "15 min",
             "en_ruta": true
-          },
+          }, {"lugar": "Cascada Batida de Calomarde", "tipo": "naturaleza", "que": "Cascada del Molino Viejo pegada a la carretera A-1704 entre Calomarde y Royuela, con un refugio forestal al lado. Se ve desde la moto; parar 10 min.", "tiempo": "10 min", "opcional": false, "lat": 40.3717, "lon": -1.5781},
           {
             "lugar": "Hotel Albarracin",
             "tipo": "pueblo",
@@ -815,7 +817,7 @@
             "que": "Pueblo pequeño entre pinares. De paso; el corredor asfaltado Dornaque-Bezas-El Campillo es la ruta prevista.",
             "tiempo": "0 min",
             "en_ruta": true
-          },
+          }, {"lugar": "Laguna de Bezas", "tipo": "naturaleza", "que": "Laguna entre los pinares de rodeno, a 600 m de la carretera. Parada corta de foto si va con agua.", "tiempo": "10 min", "opcional": true, "lat": 40.325, "lon": -1.32},
           {
             "lugar": "Teruel",
             "tipo": "pueblo",
@@ -1053,7 +1055,7 @@
             "que": "Último pueblo de Teruel, con salinas históricas junto al río. De paso, foto rápida.",
             "tiempo": "5 min",
             "en_ruta": true
-          },
+          }, {"lugar": "Salinas de Arcos", "tipo": "naturaleza", "que": "Salinas de interior todavia en uso, al pie de la carretera: eras blancas y balsas en mitad de la sierra. Curioso y muy fotogenico.", "tiempo": "10 min", "opcional": true, "lat": 39.988, "lon": -1.05},
           {
             "lugar": "Aras de los Olmos",
             "tipo": "cafe",
@@ -1074,7 +1076,7 @@
             "que": "Capital de la DO Utiel-Requena (uva bobal). Compra en el supermercado para la cena: pan, embutido de la zona, queso, fruta y una botella de bobal. Si el horario lo permite, comer aquí; si no, en Aras o Landete.",
             "tiempo": "45 min",
             "en_ruta": true
-          }
+          }, {"lugar": "Mirador de los Cuchillos de Contreras", "tipo": "mirador", "que": "A 1 km del hotel, en la N-III: las hoces del Cabriel con sus agujas de roca sobre el embalse. Para la tarde, tras llegar.", "tiempo": "20 min", "opcional": true, "lat": 39.5196, "lon": -1.4247}
         ],
         "comer": {
           "donde": "Comida en Aras de los Olmos o Landete si es la hora (13:00-13:30); si se llega bien, en Utiel. Cena en el apartamento con lo comprado en Utiel: lunes en pueblo pequeño, no contar con cenar fuera.",
@@ -1137,7 +1139,7 @@
       "meteo_puntos": [{ "nombre": "Cofrentes", "lat": 39.23, "lon": -1.06 }, { "nombre": "Alcala del Jucar", "lat": 39.19, "lon": -1.43 }],
       "gpx": { "archivo": "gpx/dia-09.gpx", "track": "data/tracks/dia-09.json", "vias": ["Requena", "Los Pedrones", "Cofrentes", "Cofrentes (duplicada)", "Casas de Ves"], "nota": "Ruta Kurviger 'Dia 9' (10 sept), ya desde Via Caprasia: 116,6 km y 1h40 estimadas. Sale de Villargordo por carretera secundaria hacia Venta del Moro en vez de la N-III, sin pasar por Utiel. Jalance fuera de la ruta: de Cofrentes directo a Casas de Ves. Las vias 3 y 4 estan las dos en Cofrentes (duplicada, sin efecto).",
             "kurviger": {"nombre": "Día 9 · Villargordo del Cabriel → Alcalá del Júcar", "route_id": "2LcPpgUEJeWp67GVi3U8", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/2LcPpgUEJeWp67GVi3U8", "plan_url": "https://kurviger.com/es/plan?point=39.535494%2C-1.444777&padr.0=Calle+Serrano+Larrey%2C+46317%2C+Villargordo+del+Cabriel%2C+Comunidad+Valenciana%2C+Espa%C3%B1a&point=39.481708%2C-1.101436&point=39.336627%2C-1.084599&point=39.228984%2C-1.061745&point=39.228065%2C-1.064804&point=39.256212%2C-1.334715&point=39.19289%2C-1.428994&padr.6=Alcal%C3%A1+del+J%C3%BAcar%2C+02210%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&weighting=curvaturefastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+9+%C2%B7+Villargordo+del+Cabriel+%E2%86%92+Alcal%C3%A1+del+J%C3%BAcar&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=2LcPpgUEJeWp67GVi3U8&id=1", "km": 117.0, "duracion_min": 102, "subida_m": 1865, "bajada_m": 2165, "cortes_reportados": 0, "perfil": "curvaturefastest", "waypoints": 7, "exportado": "2026-09-11"},
-            "avisos": [{"km": 73, "lugar": "Cofrentes", "lat": 39.229, "lon": -1.0617, "que": "Dos vias casi en el mismo punto. Kurviger las marca seguidas; sigue recto."}] },
+            "avisos": [{"km": 73, "lugar": "Cofrentes", "lat": 39.229, "lon": -1.0617, "que": "Dos vias casi en el mismo punto. Kurviger las marca seguidas; sigue recto."}, {"lugar": "Mirador del embalse de Embarcaderos", "tipo": "mirador", "que": "Donde se juntan Jucar y Cabriel bajo el castillo y el volcan de Cofrentes. A 600 m de la ruta.", "tiempo": "10 min", "opcional": true, "lat": 39.24, "lon": -1.1}] },
       "guia": {
         "resumen": "Etapa corta y de placer: la Requena medieval y sus cuevas, el valle de Ayora-Cofrentes con su castillo sobre la confluencia del Júcar y el Cabriel, y la hoz del Júcar hasta Alcalá del Júcar, un pueblo de cuevas colgado del cañón.",
         "ver": [
@@ -1273,7 +1275,7 @@
             "que": "El pueblo de 'Amanece, que no es poco' (Berlanga rodó aquí), encajado en el cañón del río Mundo. El Mirador del Diablo, en la carretera antes de bajar al pueblo, es la gran foto del día. Comida en el pueblo.",
             "tiempo": "1h30",
             "en_ruta": true
-          },
+          }, {"lugar": "Mirador del Diablo (Ayna)", "tipo": "mirador", "que": "Balcon sobre la hoz del rio Mundo con Ayna colgado abajo. Desvio de 1,5 km desde la carretera. La foto del dia.", "tiempo": "15 min", "opcional": false, "lat": 38.5586, "lon": -2.0478},
           {
             "lugar": "Elche de la Sierra",
             "tipo": "cafe",
@@ -1391,7 +1393,7 @@
             "que": "Castillo de los Fajardo, renacentista, sobre el pueblo: su patio de mármol se vendió y hoy está en el Museo Metropolitano de Nueva York. Cerca, la Cueva de los Letreros, con las pinturas rupestres del Indalo (el símbolo de Almería). Parada de 20 minutos en el pueblo.",
             "tiempo": "30 min",
             "en_ruta": true
-          },
+          }, {"lugar": "Cueva de los Letreros", "tipo": "monumento", "que": "Pinturas rupestres Patrimonio de la Humanidad (de aqui sale el Indalo), justo en el punto de ruta bajo Velez-Blanco. Se visita solo con guia y reserva; sin reserva, la boca de la cueva y el mirador.", "tiempo": "20 min", "opcional": true, "lat": 37.6935, "lon": -2.0965},
           {
             "lugar": "Velez-Rubio",
             "tipo": "pueblo",

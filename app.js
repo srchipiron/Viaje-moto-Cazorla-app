@@ -655,7 +655,7 @@ function guiaHTML(e) {
       <div class="poi-body">
         <div class="poi-head"><b>${esc(v.lugar)}</b>${v.opcional ? '<span class="badge">Opcional</span>' : ''}${v.tiempo ? `<span class="poi-time">⏱ ${esc(v.tiempo)}</span>` : ''}</div>
         <p>${esc(v.que)}</p>
-        <small><a href="${mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small>
+        <small><a href="${v.lat != null ? mapsSearch(`${v.lat},${v.lon}`) : mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small>
       </div></div>`).join('');
   const c = g.comer;
   return `<h2 id="guia">Guía del día</h2>
