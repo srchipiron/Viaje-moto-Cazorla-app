@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 50,
+    "revision": 51,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Los Olivos (noche 9) pagado por Booking el 13 sept (50 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65, Via Caprasia 65 y La Cilla 56,10",
       "Reparto de papeles entre Kurviger (ruta, en la D6A) y Sygic (segundo navegador: direcciones, radares), y las dos pruebas del domingo",
       "Pinlock montado (12 sept). La salida de prueba pasa al domingo 13 por la mañana; las presiones en frio, a ultima hora o el lunes antes de salir",
       "Conjunto SIXS Carbon Underwear (top, bottom, sotocasco, calcetines) incorporado como primera capa: inventario, equipacion por tipo de dia, reparto, lavado nocturno y pruebas del sabado",
@@ -1193,8 +1194,8 @@
         "direccion": "Ctra. de Tolosa s/n, 02210 Alcala del Jucar (Albacete)",
         "telefono": "+34 967 11 01 90",
         "precio_eur": 50,
-        "estado": "Reservado; 50 EUR pendientes en el alojamiento",
-        "pago": { "total_eur": 50, "pagado_eur": 0, "pendiente_eur": 50, "donde": "En el alojamiento" },
+        "estado": "Reservado y pagado (50 EUR por Booking, 13 sept)",
+        "pago": { "total_eur": 50, "pagado_eur": 50, "pendiente_eur": 0, "donde": "Pagado por Booking el 13 sept" },
         "servicios": ["Cocina", "Lavadora", "Parking", "Piscina (probablemente cerrada)"],
         "pendiente_confirmar": ["Hora de entrada y dejar moto/equipaje antes del check-in"]
       }
@@ -1426,7 +1427,7 @@
     { "noche": 6, "fecha": "2026-09-19", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado; pagada la mitad, resto en el camping (aprox. 65 EUR)" },
     { "noche": 7, "fecha": "2026-09-20", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - mismo bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado; incluido en el pago de la noche 6" },
     { "noche": 8, "fecha": "2026-09-21", "lugar": "Villargordo del Cabriel", "alojamiento": "Via Caprasia", "telefono": "+34 605 62 32 66", "estado": "Reservado; 65 EUR pendientes" },
-    { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado; 50 EUR pendientes" },
+    { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado y pagado" },
     { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado; 56,10 EUR pendientes" }
   ],
 
@@ -1673,7 +1674,7 @@
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
       "Medicacion con un dia de margen; llaves de repuesto en su sitio",
       "Conjunto SIXS lavado y seco para salir con el puesto el lunes",
-      "Tarjeta con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Los Alamos, Via Caprasia, Los Olivos, La Cilla)"
+      "Tarjeta con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Los Alamos, Via Caprasia, La Cilla)"
     ]
   },
 
