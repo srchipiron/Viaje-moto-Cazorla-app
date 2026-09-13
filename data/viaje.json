@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 58,
+    "revision": 59,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Presiones puestas el 12 sept (2,0 / 2,5) con el compresor Xiaomi",
       "Pagos: 20 EUR en efectivo y el resto con tarjeta o Bizum; sin sobre de efectivo en la maleta",
       "Tablet en la maleta izquierda entre la ropa; un solo cargador de pared multitoma para todo",
       "Rutina de la mañana: cerrar Instagram, Brave, Radarbot y RoadSync antes de salir (GSam del 13 sept: un tercio del gasto en ruta era de apps en segundo plano)",
@@ -1679,7 +1680,7 @@
       "Comprobar que la ubicacion compartida no se corta"
     ],
     "domingo_13_tarde": [
-      "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi). Tras la salida de prueba los neumaticos tardan 2-3 h en enfriarse: medir a ultima hora o el lunes antes de arrancar",
+      {"que": "Presiones puestas el 12 sept: 2,0 bar delante / 2,5 bar detras (compresor Xiaomi probado)", "hecho": true},
       "Montar las laterales esta noche y dejar la moto cargada: mañana solo hay que enganchar el baul y la bolsa",
       "Precarga trasera a la posicion 4 de 5 con la moto cargada (llave de gancho del kit); pesar las maletas: menos de 20 kg de contenido",
       "Cargar compresor, las dos powerbanks, Pixel y Sena SRL3",
