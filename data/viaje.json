@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 67,
+    "revision": 68,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Aparato para dormir en el baul, en la rutina de noche y mañana, y comprobacion de enchufe en el camping",
       "Sitios curiosos junto a la ruta añadidos a la guia: Cueva del Agua de Tiscar (1), Charco del Aceite con parada en el horario y Cerrada de Elias (2), Cascada Batida de Calomarde (4), Laguna de Bezas (6), Salinas de Arcos y Cuchillos de Contreras (8), mirador de Embarcaderos (9), Mirador del Diablo de Ayna (10), Cueva de los Letreros (11). Todos comprobados a menos de 1,5 km del track",
       "Sena listo. Aerosoles (Motul C2 y CO2) pasan a la maleta izquierda, lejos del escape; comprobacion de la distancia escape-maleta derecha y prueba de temperatura en Baza",
       "Noche del 13 sept: espaldera pasada, Mapfre sin llamar, fusible descartado, medicacion y Bizum listos",
@@ -1645,7 +1646,7 @@
       "Tablet entre la ropa, pantalla hacia el interior (nunca en la maleta de herramientas). Al comer, sube con el casco o asume el riesgo: la poliza no cubre electronica", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras",
       "Al fondo: spray Motul C2 Road y capsulas de CO2 del kit de mechas (aerosoles lejos del escape; la izquierda no lleva escape al lado)", "Organizador vacio para ropa sucia + detergente"],
     "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, herramienta del Givi S450 (las capsulas de CO2 y el spray Motul, en la izquierda: lejos del escape)", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Un solo cargador de pared de varias tomas (el de la tablet) + cable largo + cable micro-USB + cable de la Osmo 360; los demas cargadores se quedan en casa", "Cubrebotas si se compran"],
-    "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Chaleco reflectante", "Botella de agua de 1 a 1,5 l de reserva (se rellena en cada parada; con 120 kg y calor, medio litro por hora)", "Casco y chaqueta al bajar a comer o pasear"],
+    "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Aparato para dormir con su bolsa, mascarilla, tubo y fuente de alimentacion (imprescindible; humidificador vacio y seco cada mañana; alargador corto)", "Chaleco reflectante", "Botella de agua de 1 a 1,5 l de reserva (se rellena en cada parada; con 120 kg y calor, medio litro por hora)", "Casco y chaqueta al bajar a comer o pasear"],
     "dias_sin_laterales": {
       "dias": [5, 7],
       "pasar_al_sh58x": ["Botiquin", "Givi S450", "Compresor", "Agua extra y barrita"]
@@ -1701,6 +1702,7 @@
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
+      "Camping Los Alamos (dia 6): confirmar que el alojamiento reservado tiene enchufe (necesario para el aparato de dormir)",
       {"que": "Medicacion con un dia de margen metida", "hecho": true},
       "Llaves de repuesto en su sitio (una en la chaqueta, otra en la maleta izquierda)",
       "Conjunto SIXS lavado y seco para salir con el puesto el lunes",
@@ -1709,7 +1711,8 @@
   },
 
   "rutina_diaria": {
-    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, las dos powerbanks, D6A, el Sena SRL3 del casco y la Osmo 360 (el Pixel al 100 % antes de salir)", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
+    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, las dos powerbanks, D6A, el Sena SRL3 del casco y la Osmo 360 (el Pixel al 100 % antes de salir)",
+      "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacio y seco y todo en su bolsa al baul", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
       "Casco abierto en la habitacion para que seque el Pinlock; su cara interior solo con agua tibia y microfibra (el limpiador Motul, solo para el exterior)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar",
       "Enchufar la D6A; Pixel al 100 % y conectado a la powerbank 1; solo Kurviger abierto",
@@ -1717,7 +1720,8 @@
     "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada: con 120 kg y calor, medio litro por hora como minimo", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir",
       "En paradas largas (comida): desenchufar la D6A"],
     "llegada": ["Desenchufar la D6A (se queda encendida y vacia la bateria de la moto)",
-      "Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion", "Lavado a mano si toca"]
+      "Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion",
+      "Al entrar en la habitacion: enchufe cerca de la cama para el aparato de dormir (si no, alargador)", "Lavado a mano si toca"]
   },
 
   "principios_para_claude": [
