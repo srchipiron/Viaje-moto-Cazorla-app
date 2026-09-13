@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 64,
+    "revision": 65,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Noche del 13 sept: espaldera pasada, Mapfre sin llamar, fusible descartado, medicacion y Bizum listos",
       "Pesaje de las maletas pendiente para el lunes por la mañana, con el limite de SHAD por maleta",
       "Maletas cargadas y pesadas el 13 sept, dentro del limite",
       "Tres powerbanks: dos Baseus de 10.000 en la bolsa de deposito y una de 5.000 en la chaqueta como reserva de emergencia",
@@ -1658,9 +1659,9 @@
       "Apuntar el numero de poliza en la app (Resumen > Contactos) y comprobar si las defensas son Motoguard SG67 (poliza) o HG44 (inventario)"
     ],
     "viernes_11": [
-      "Pasar la espaldera SeeFlex de la Airwave 4 a la Vertical GTX y comprobar que encaja en el bolsillo dorsal",
+      {"que": "Espaldera SeeFlex pasada a la Vertical GTX", "hecho": true},
       {"que": "Pinlock EVO montado en la CWR-F2R", "hecho": true},
-      "Llamar a Mapfre (918 365 365): confirmar remolque a taller desde el km 0 y traslado del motorista",
+      {"que": "Mapfre: no hace falta llamar (asistencia en viaje incluida en la poliza)", "hecho": true},
       "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
       {"que": "Efectivo: se va con 20 EUR en billete y el resto con tarjeta (Revolut) o Bizum. Cajeros solo si un sitio no acepta ninguna de las dos", "hecho": true},
       {"que": "Emparejar D6A y Pixel", "hecho": true},
@@ -1676,7 +1677,7 @@
       "Kurviger en la D6A con una ruta de la coleccion: salirse de la ruta a proposito y comprobar que recalcula hacia la ruta (no hacia el destino); probar \"saltar waypoint\"",
       "Despues, Sygic con el GPX del dia 1 importado, solo para ver como lo trata (plan B). Nunca los dos navegando a la vez: en la D6A va Kurviger; Sygic solo si se cierra Kurviger",
       "Montar el soporte K&F en la pantalla con la Osmo 360: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor o se afloja, cambiar de sitio el domingo",
-      "Comprobar que la espaldera SeeFlex no molesta en la Vertical GTX con la mochila de la jornada",
+      {"que": "Espaldera SeeFlex en la Vertical GTX: probada en la salida del 13 sept", "hecho": true},
       {"que": "Ventilaciones de la Vertical GTX y el Tornado probadas en la salida: van bien", "hecho": true},
       "Comparar boxers XL y 2XL",
       {"que": "Conjunto SIXS probado en la salida: muy fresco y comodo, sin pasar frio", "hecho": true},
@@ -1691,13 +1692,14 @@
       {"que": "Precarga trasera en la posicion 4 con la moto cargada (13 sept)", "hecho": true},
       "Pesar las maletas el lunes antes de bajarlas: menos de 10 kg cada lateral y el baul (limite de SHAD), menos de 20 kg de contenido en total",
       "Cargar compresor, las dos powerbanks, Pixel y Sena SRL3",
-      "Toma USB-C de la moto: revisar el fusible de accesorios en la caja bajo el asiento (hay repuestos en la tapa) y el conector detras de la toma; si no se arregla, se va con las dos powerbanks",
+      {"que": "Toma USB-C: fusible comprobado el 12 sept, no es eso. Se va con las powerbanks", "hecho": true},
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
-      "Medicacion con un dia de margen; llaves de repuesto en su sitio",
+      {"que": "Medicacion con un dia de margen metida", "hecho": true},
+      "Llaves de repuesto en su sitio (una en la chaqueta, otra en la maleta izquierda)",
       "Conjunto SIXS lavado y seco para salir con el puesto el lunes",
-      "Revolut con saldo para lo que se paga en los alojamientos (ver total en Noches: Laminador, Los Alamos, Via Caprasia, La Cilla, unos 221 EUR) y Bizum activo por si alguno solo acepta efectivo o Bizum"
+      {"que": "Revolut con saldo (unos 221 EUR de alojamientos) y Bizum probado", "hecho": true}
     ]
   },
 
