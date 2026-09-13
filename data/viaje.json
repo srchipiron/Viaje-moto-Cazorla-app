@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 63,
+    "revision": 64,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Pesaje de las maletas pendiente para el lunes por la mañana, con el limite de SHAD por maleta",
       "Maletas cargadas y pesadas el 13 sept, dentro del limite",
       "Tres powerbanks: dos Baseus de 10.000 en la bolsa de deposito y una de 5.000 en la chaqueta como reserva de emergencia",
       "Powerbank 1 identificada: Baseus PPKPC-1027G, ya conectada al Pixel",
@@ -1688,7 +1689,7 @@
       {"que": "Presiones puestas el 12 sept: 2,0 bar delante / 2,5 bar detras (compresor Xiaomi probado)", "hecho": true},
       "Montar las laterales esta noche y dejar la moto cargada: mañana solo hay que enganchar el baul y la bolsa",
       {"que": "Precarga trasera en la posicion 4 con la moto cargada (13 sept)", "hecho": true},
-      {"que": "Maletas pesadas: dentro del limite", "hecho": true},
+      "Pesar las maletas el lunes antes de bajarlas: menos de 10 kg cada lateral y el baul (limite de SHAD), menos de 20 kg de contenido en total",
       "Cargar compresor, las dos powerbanks, Pixel y Sena SRL3",
       "Toma USB-C de la moto: revisar el fusible de accesorios en la caja bajo el asiento (hay repuestos en la tapa) y el conector detras de la toma; si no se arregla, se va con las dos powerbanks",
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
