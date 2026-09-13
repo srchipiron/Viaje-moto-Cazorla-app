@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 60,
+    "revision": 61,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Powerbank 1 identificada: Baseus PPKPC-1027G, ya conectada al Pixel",
       "Precarga en la 4 (13 sept). Agua: 0,5 l en la bolsa de deposito y 1-1,5 l de reserva en el baul",
       "Presiones puestas el 12 sept (2,0 / 2,5) con el compresor Xiaomi",
       "Pagos: 20 EUR en efectivo y el resto con tarjeta o Bizum; sin sobre de efectivo en la maleta",
@@ -1607,7 +1608,7 @@
   "material_en_propiedad": {
     "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB: llevar cable micro-USB. Cargar a tope el domingo 13. Probar en las presiones del domingo." },
     "antirrobo": { "modelo": "Abus Granit Detecto X-Plus 8008", "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito." },
-    "powerbank": { "modelo": "Baseus E0028Z + segunda powerbank de 10.000 mAh", "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen." },
+    "powerbank": { "modelo": "Baseus PPKPC-1027G (powerbank 1, conectada al Pixel en la bolsa de deposito) + segunda powerbank de 10.000 mAh de reserva", "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen." },
     "otros": ["Givi S450 kit tubeless (recibido 10 sept)", "Motul C2 Road grasa de cadena (recibido 10 sept)", "Motul limpiador de casco y visera (recibido 10 sept)", "Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
   },
 
