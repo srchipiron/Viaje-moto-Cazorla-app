@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 53,
+    "revision": 54,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Toma USB-C de la moto averiada (13 sept): el Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche; revisar el fusible de accesorios antes de salir",
       "Salida de prueba del 13 sept: 220 km por el Puerto de la Ragua con Vertical GTX, Tornado y SIXS, todo bien; sin laterales. Queda montar las laterales cargadas y probar el conjunto",
       "Dia 1 en Kurviger Cloud pasado a Curvy-Fastest (13 sept): 229 km y 3h40 con los mismos 15 puntos; antes 236 km y 4h04 con el perfil por defecto",
       "Los Olivos (noche 9) pagado por Booking el 13 sept (50 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65, Via Caprasia 65 y La Cilla 56,10",
@@ -80,7 +81,8 @@
       "modelo": "Honda NX500",
       "rueda_delantera": "19 pulgadas",
       "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
-      "toma_usb_c": true,
+      "toma_usb_c": false,
+      "toma_usb_c_nota": "La toma USB-C de serie no funciona (13 sept). Revisar el fusible de accesorios bajo el asiento; si no se arregla, el Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche.",
       "autonomia_orientativa_km": 380,
       "carga": {
         "peso_en_orden_de_marcha_kg": 196,
@@ -111,7 +113,7 @@
     },
     "navegacion": {
       "pantalla": "AOOCCI D6A (Android Auto inalambrico)",
-      "movil": "Google Pixel 9 Pro XL en la bolsa de deposito, cable USB-C corto a la toma de la moto",
+      "movil": "Google Pixel 9 Pro XL en la bolsa de deposito, conectado a una powerbank de 10.000 mAh (la toma USB-C de la moto no funciona); la segunda powerbank de reserva en la misma bolsa",
       "app": "Kurviger via Android Auto",
       "audio": "Sena SRL3 integrado en el casco Shoei GT-Air 3: indicaciones de voz de Kurviger. Con los tapones Tour puestos hay que subir el volumen; ajustarlo en la salida de prueba.",
       "ubicacion_compartida": "Google Maps > Compartir ubicacion > hasta desactivar. En zonas sin cobertura el punto se congela: avisar en casa.",
@@ -1598,7 +1600,7 @@
   "material_en_propiedad": {
     "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB: llevar cable micro-USB. Cargar a tope el domingo 13. Probar en las presiones del domingo." },
     "antirrobo": { "modelo": "Abus Granit Detecto X-Plus 8008", "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito." },
-    "powerbank": { "modelo": "Baseus E0028Z", "nota": "Reserva para el Pixel si falla la toma USB-C; carga tambien compresor y frontal. Cargar a tope el domingo." },
+    "powerbank": { "modelo": "Baseus E0028Z + segunda powerbank de 10.000 mAh", "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen." },
     "otros": ["Givi S450 kit tubeless (recibido 10 sept)", "Motul C2 Road grasa de cadena (recibido 10 sept)", "Motul limpiador de casco y visera (recibido 10 sept)", "Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
   },
 
@@ -1622,7 +1624,7 @@
 
   "reparto_equipaje": {
     "regla": "Cada cosa vive siempre en la misma maleta.",
-    "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado por USB-C a la toma", "Powerbank Baseus", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
+    "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado a la powerbank 1 (cable corto)", "Powerbank 2 de reserva", "Botella de agua 0,5 l (si estorba, al SH58X)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas"],
     "sh38x_izquierda_ropa": ["Organizador grande: SIXS (top, bottom, sotocasco, calcetines), merino manga corta x2, top merino manga larga, boxers, calcetines", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente", "Sobre con el resto del efectivo"],
     "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road, limpiador de casco Motul", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Cargador de pared USB-C + cable largo + cable micro-USB + cable de la Osmo 360", "Cubrebotas si se compran"],
     "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Chaleco reflectante", "Casco y chaqueta al bajar a comer o pasear"],
@@ -1674,7 +1676,8 @@
       "Presiones en frio: 2,0 bar delante / 2,5 bar detras (probar el compresor Xiaomi). Tras la salida de prueba los neumaticos tardan 2-3 h en enfriarse: medir a ultima hora o el lunes antes de arrancar",
       "Montar las laterales esta noche y dejar la moto cargada: mañana solo hay que enganchar el baul y la bolsa",
       "Precarga trasera a la posicion 4 de 5 con la moto cargada (llave de gancho del kit); pesar las maletas: menos de 20 kg de contenido",
-      "Cargar compresor, powerbank, Pixel y Sena SRL3",
+      "Cargar compresor, las dos powerbanks, Pixel y Sena SRL3",
+      "Toma USB-C de la moto: revisar el fusible de accesorios en la caja bajo el asiento (hay repuestos en la tapa) y el conector detras de la toma; si no se arregla, se va con las dos powerbanks",
       "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
       "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
       "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
@@ -1685,7 +1688,7 @@
   },
 
   "rutina_diaria": {
-    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, powerbank, D6A, el Sena SRL3 del casco y la Osmo 360", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
+    "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, las dos powerbanks, D6A, el Sena SRL3 del casco y la Osmo 360 (el Pixel al 100 % antes de salir)", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
       "Casco abierto en la habitacion para que seque el Pinlock; su cara interior solo con agua tibia y microfibra (el limpiador Motul, solo para el exterior)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar", "Salir a las 09:00 en dias de montaña"],
     "en_ruta": ["Parada cada 60-75 min", "En cada repostaje, comprobar el apriete de la abrazadera de la camara", "Beber en cada parada: con 120 kg y calor, medio litro por hora como minimo", "Gasolina: en sierra, llenar por debajo de medio deposito", "Si la pantalla se cae: parar, mirar el telefono, seguir"],
