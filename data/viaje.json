@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 65,
+    "revision": 66,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Sena listo. Aerosoles (Motul C2 y CO2) pasan a la maleta izquierda, lejos del escape; comprobacion de la distancia escape-maleta derecha y prueba de temperatura en Baza",
       "Noche del 13 sept: espaldera pasada, Mapfre sin llamar, fusible descartado, medicacion y Bizum listos",
       "Pesaje de las maletas pendiente para el lunes por la mañana, con el limite de SHAD por maleta",
       "Maletas cargadas y pesadas el 13 sept, dentro del limite",
@@ -1639,8 +1640,9 @@
     "regla": "Cada cosa vive siempre en la misma maleta.",
     "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado a la powerbank 1 (cable corto)", "Powerbank 2 de reserva", "Botella de agua 0,5 l (la de beber en marcha y en cada parada)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas", "Billete de 20 EUR en el bolsillo exterior (el resto, tarjeta o Bizum)"],
     "sh38x_izquierda_ropa": ["Organizador grande: SIXS (top, bottom, sotocasco, calcetines), merino manga corta x2, top merino manga larga, boxers, calcetines",
-      "Tablet entre la ropa, pantalla hacia el interior (nunca en la maleta de herramientas). Al comer, sube con el casco o asume el riesgo: la poliza no cubre electronica", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras", "Organizador vacio para ropa sucia + detergente"],
-    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, Givi S450, Motul C2 Road, limpiador de casco Motul", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Un solo cargador de pared de varias tomas (el de la tablet) + cable largo + cable micro-USB + cable de la Osmo 360; los demas cargadores se quedan en casa", "Cubrebotas si se compran"],
+      "Tablet entre la ropa, pantalla hacia el interior (nunca en la maleta de herramientas). Al comer, sube con el casco o asume el riesgo: la poliza no cubre electronica", "Organizador pequeño: pantalon MT100, toalla microfibra", "Bolsa: chanclas y zapatillas ligeras",
+      "Al fondo: spray Motul C2 Road y capsulas de CO2 del kit de mechas (aerosoles lejos del escape; la izquierda no lleva escape al lado)", "Organizador vacio para ropa sucia + detergente"],
+    "sh38x_derecha_taller_y_aseo": ["Fondo: compresor Xiaomi, herramienta del Givi S450 (las capsulas de CO2 y el spray Motul, en la izquierda: lejos del escape)", "Multiherramienta con cinta americana, bridas, nitrilo, microfibras", "Botiquin", "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip", "Un solo cargador de pared de varias tomas (el de la tablet) + cable largo + cable micro-USB + cable de la Osmo 360; los demas cargadores se quedan en casa", "Cubrebotas si se compran"],
     "sh58x_capas_y_lluvia": ["Forros del Tornado que no se lleven puestos", "Polar MH100", "Guantes REV'IT Sand 5 H2O (impermeables)", "Chaleco reflectante", "Botella de agua de 1 a 1,5 l de reserva (se rellena en cada parada; con 120 kg y calor, medio litro por hora)", "Casco y chaqueta al bajar a comer o pasear"],
     "dias_sin_laterales": {
       "dias": [5, 7],
@@ -1666,7 +1668,7 @@
       {"que": "Efectivo: se va con 20 EUR en billete y el resto con tarjeta (Revolut) o Bizum. Cajeros solo si un sitio no acepta ninguna de las dos", "hecho": true},
       {"que": "Emparejar D6A y Pixel", "hecho": true},
       "Probar Kurviger por Android Auto en la D6A (abrir una ruta de la coleccion y navegar unos minutos)",
-      "Emparejar el Sena SRL3 con el Pixel y probar las indicaciones de voz de Kurviger con los tapones puestos",
+      {"que": "Sena SRL3 emparejado y en uso desde hace tiempo", "hecho": true},
       "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
       "Guardar los 10 telefonos de alojamientos + seguro + 112 en el movil",
       "Activar compartir ubicacion en Google Maps con mi padre"
@@ -1689,6 +1691,7 @@
     "domingo_13_tarde": [
       {"que": "Presiones puestas el 12 sept: 2,0 bar delante / 2,5 bar detras (compresor Xiaomi probado)", "hecho": true},
       "Montar las laterales esta noche y dejar la moto cargada: mañana solo hay que enganchar el baul y la bolsa",
+      "Lateral derecha y escape: comprobar la distancia (4 dedos o mas, bien; menos, cinta de aluminio o chapa entre escape y maleta). En Baza, tras Calar Alto, mano en la pared de la maleta: si quema, cinta de aluminio de una ferreteria",
       {"que": "Precarga trasera en la posicion 4 con la moto cargada (13 sept)", "hecho": true},
       "Pesar las maletas el lunes antes de bajarlas: menos de 10 kg cada lateral y el baul (limite de SHAD), menos de 20 kg de contenido en total",
       "Cargar compresor, las dos powerbanks, Pixel y Sena SRL3",
