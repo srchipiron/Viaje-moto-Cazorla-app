@@ -663,7 +663,12 @@ function guiaHTML(e) {
       <p class="lead">${esc(g.resumen)}</p>
       <h4>Qué ver y dónde parar</h4>
       <div class="poi-list">${ver}</div>
-      ${c ? `<h4>Qué comer</h4><p>${esc(c.donde)}</p><ul class="platos">${(c.platos || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>${c.nota ? `<p><small>${esc(c.nota)}</small></p>` : ''}` : ''}
+      ${c ? `<h4>Dónde comer</h4>
+        ${c.desayuno ? `<p><b>☕ Desayuno:</b> ${esc(c.desayuno)}</p>` : ''}
+        ${c.cafe_en_ruta ? `<p><b>🥐 Café en ruta:</b> ${esc(c.cafe_en_ruta)}</p>` : ''}
+        ${(c.sitios || []).length ? `<div class="sitios">${c.sitios.map((s) => `<div class="sitio"><div class="sitio-head"><b>${esc(s.nombre)}</b><a href="${mapsSearch(`${s.nombre} ${s.donde}`)}" target="_blank" rel="noopener">mapa ↗</a></div><small>${esc(s.donde)}</small><p>${esc(s.que)}</p></div>`).join('')}</div>` : ''}
+        ${c.aviso_horarios ? `<div class="note"><b>Horarios:</b> ${esc(c.aviso_horarios)}</div>` : ''}
+        <p>${esc(c.donde)}</p><ul class="platos">${(c.platos || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>${c.nota ? `<p><small>${esc(c.nota)}</small></p>` : ''}` : ''}
       ${g.tarde ? `<h4>La tarde</h4><p>${esc(g.tarde)}</p>` : ''}
       ${g.consejo ? `<div class="note info"><b>Consejo:</b> ${esc(g.consejo)}</div>` : ''}
     </div>`;

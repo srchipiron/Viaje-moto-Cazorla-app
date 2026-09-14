@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 69,
+    "revision": 70,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Guia de comer y desayunar por etapa: donde desayunar, donde parar a cafe y 2-3 sitios concretos para comer en cada dia, con aviso de horarios y dias de cierre. Fuentes: rankings y guias locales de sept 2026; confirmar por telefono los dias justos",
       "La Cilla (noche 10) pagada por Booking el 14 sept (56,10 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65 y Via Caprasia 65",
       "Aparato para dormir en el baul, en la rutina de noche y mañana, y comprobacion de enchufe en el camping",
       "Sitios curiosos junto a la ruta añadidos a la guia: Cueva del Agua de Tiscar (1), Charco del Aceite con parada en el horario y Cerrada de Elias (2), Cascada Batida de Calomarde (4), Laguna de Bezas (6), Salinas de Arcos y Cuchillos de Contreras (8), mirador de Embarcaderos (9), Mirador del Diablo de Ayna (10), Cueva de los Letreros (11). Todos comprobados a menos de 1,5 km del track",
@@ -232,6 +233,10 @@
         ],
         "comer": {
           "donde": "Cazorla, a las 13:30. Comida ligera porque quedan 30 km de montaña. Bares y restaurantes alrededor de la Plaza de Santa María y la Plaza de la Corredera.",
+            "desayuno": "En casa antes de salir, fuerte: quedan 114 km hasta el cafe de Baza.",
+            "cafe_en_ruta": "Baza (11:10). Bares en la plaza Mayor y alrededores de la Fuente Pilar Alto; cualquiera de la plaza sirve para un cafe corto.",
+            "sitios": [{"nombre": "Taberna Lusco", "donde": "Cazorla, plaza del Balcon de Zabaleta / Santa Maria", "que": "Terraza con vistas a las ruinas de Santa Maria. 15-20 EUR. Comida ligera, que quedan 30 km de montaña"}, {"nombre": "Bar Casa Tino", "donde": "Cazorla, plaza de Santa Maria", "que": "Tapas y trato cercano, en la propia plaza. Lo mas rapido"}, {"nombre": "Meson Leandro", "donde": "Cazorla, casco historico", "que": "Cocina tradicional y caza si se quiere comida seria (mas lento)"}],
+            "aviso_horarios": "Es lunes: algun sitio puede cerrar. La plaza de la Corredera siempre tiene algo abierto.",
           "platos": [
             "Rin-ran (patata, bacalao y pimiento seco, frío o templado)",
             "Gachamiga",
@@ -352,6 +357,10 @@
         ],
         "comer": {
           "donde": "Segura de la Sierra hacia las 13:30, en el pueblo. Reservar mesa no suele hacer falta entre semana en septiembre, pero conviene llegar antes de las 14:00.",
+            "desayuno": "Camping Puente de las Herrerias: cafeteria del complejo. Si esta cerrada, cafe en Coto Rios (km 27) o en Hornos.",
+            "cafe_en_ruta": "Hornos de Segura (11:00), bares de la plaza junto al mirador del pantano.",
+            "sitios": [{"nombre": "La Mesa Segureña", "donde": "Segura de la Sierra, casco historico", "que": "La mejor opcion del pueblo: casera con toques modernos. Llegar antes de las 14:00"}, {"nombre": "Mirador de Peñalta", "donde": "Segura de la Sierra", "que": "Tapas y asados con las mejores vistas del pueblo"}, {"nombre": "Hotel Rio Madera", "donde": "Carretera JF-7038, junto a la ermita de San Francisco Javier", "que": "Plan B fuera del pueblo: abundante, de calidad y barato"}],
+            "aviso_horarios": "Martes en pueblo pequeño: si algo esta cerrado, el Mirador de Peñalta o bajar a Orcera.",
           "platos": [
             "Ajoatao (patata machacada con ajo, huevo y aceite)",
             "Galianos o gachamiga",
@@ -483,6 +492,10 @@
         ],
         "comer": {
           "donde": "Motilla del Palancar hacia las 13:45.",
+            "desayuno": "Hostal El Laminador / restaurante La Alqueria de Manu, antes de salir a los Chorros.",
+            "cafe_en_ruta": "Alcaraz (11:10), soportales de la plaza Mayor: es la plaza mas bonita del dia.",
+            "sitios": [{"nombre": "Hotel Restaurante Setos", "donde": "Motilla del Palancar, N-III", "que": "Cocina manchega, el clasico de la parada. Fiable y con aparcamiento"}, {"nombre": "Autoservicio Nuevo Muelas", "donde": "Motilla del Palancar, antigua N-III", "que": "Autoservicio de toda la vida: rapido, barato y sin esperas. Ideal si vas justo de hora"}],
+            "aviso_horarios": "Etapa larga (279 km): comer rapido y seguir. Cena en Cuenca, que hay de todo.",
           "platos": [
             "Morteruelo (paté caliente de caza y especias, típico de Cuenca)",
             "Ajoarriero o atascaburras (bacalao y patata)",
@@ -612,6 +625,10 @@
         ],
         "comer": {
           "donde": "Sin parada larga de comida en ruta: bocadillo o tapa en Tragacete o Frías de Albarracín, y comida completa al llegar a Albarracín (15:30) o directamente merienda-cena. Alternativa: comer en Tragacete a las 13:00 si el ritmo lo permite.",
+            "desayuno": "Hostal Cortes o cafeteria del centro de Cuenca antes de salir.",
+            "cafe_en_ruta": "Uña (09:45), bar junto a la laguna. Segundo cafe posible en Tragacete.",
+            "sitios": [{"nombre": "Bocadillo o tapa en Tragacete", "donde": "Tragacete, bares de la plaza", "que": "Lo previsto: comer ligero en ruta y guardar la comida seria para Albarracin"}, {"nombre": "Alizia", "donde": "Albarracin, casco", "que": "Solete Repsol. La mejor relacion calidad-precio del pueblo. Reservar"}, {"nombre": "El Batan", "donde": "Albarracin, antigua fabrica de lanas junto al Guadalaviar", "que": "Estrella Michelin, cocina de territorio (caza, trufa, setas). Solo si quieres darte un homenaje y reservas"}],
+            "aviso_horarios": "En Albarracin hay que reservar: los buenos se llenan. Llama desde Tragacete.",
           "platos": [
             "Jamón de Teruel DO",
             "Ternasco de Aragón asado",
@@ -759,6 +776,10 @@
         ],
         "comer": {
           "donde": "Vuelta al hotel hacia las 13:00 y comida tranquila en Albarracín.",
+            "desayuno": "Bufe del Hotel Albarracin, 07:00-10:30, unos 12 EUR (no incluido). Hoy sales a las 10:00: aprovechalo.",
+            "cafe_en_ruta": "Bronchales (10:30), bares de la plaza. Tambien Orihuela del Tremedal.",
+            "sitios": [{"nombre": "Comida tranquila en Albarracin", "donde": "Casco de Albarracin", "que": "Vuelves a las 12:30 con toda la tarde: es el dia para sentarse bien. Menus de 17-22 EUR en el casco"}, {"nombre": "Alizia", "donde": "Albarracin", "que": "Si ayer no pudiste, hoy es el dia. Reserva por la mañana antes de salir"}],
+            "aviso_horarios": "Viernes: el pueblo se llena por la tarde. Reserva la comida antes de salir de ruta.",
           "platos": [
             "Ternasco al horno o a la brasa",
             "Migas con uva",
@@ -844,6 +865,10 @@
         ],
         "comer": {
           "donde": "Teruel, en los alrededores de la Plaza del Torico, hacia las 13:30.",
+            "desayuno": "Bufe del Hotel Albarracin (07:00-10:30). Salida a las 09:30.",
+            "cafe_en_ruta": "Bezas o El Campillo, bares de pueblo. Nada de parada larga: la buena es Teruel.",
+            "sitios": [{"nombre": "Torico Gourmet", "donde": "Teruel, plaza del Torico", "que": "Carnes a la brasa, migas, trufa negra de Teruel, jamon DO. En la plaza misma"}, {"nombre": "Gran Cafe de Teruel", "donde": "Teruel, plaza del Torico", "que": "Para vermut y bocadillo si prefieres algo corto: tienes 2h30 en Teruel"}, {"nombre": "Bar Torreon", "donde": "Teruel, calle El Salvador", "que": "Tapeo clasico: longaniza y migas"}],
+            "aviso_horarios": "Sabado en Teruel: la plaza del Torico se llena a las 14:00. Sientate a las 13:30.",
           "platos": [
             "Jamón de Teruel DO (la ciudad es su capital)",
             "Delicias de Teruel",
@@ -972,6 +997,10 @@
         ],
         "comer": {
           "donde": "Cantavieja, llegando antes de las 14:00 por ser domingo. Si va justo, comer en Mosqueruela y hacer el resto por la tarde.",
+            "desayuno": "Camping Los Alamos o el bar de Virgen de la Vega antes de salir.",
+            "cafe_en_ruta": "Mosqueruela (10:30), plaza Mayor porticada. Es el mejor cafe del viaje por ambiente.",
+            "sitios": [{"nombre": "Restaurante 4 Vientos", "donde": "Cantavieja", "que": "Menu del dia sobre 12 EUR y unas migas de pastor con fama. La opcion practica"}, {"nombre": "La Bodeguilla", "donde": "Cantavieja", "que": "Institucion del pueblo: chuletillas de cordero a la brasa"}, {"nombre": "Restaurante Balfagon", "donde": "Cantavieja", "que": "El mas cuidado: carta de temporada, ternera del Maestrazgo. Reservar"}],
+            "aviso_horarios": "DOMINGO en el Maestrazgo: sentarse antes de las 14:00 o te quedas sin comer. Reserva desde Mosqueruela.",
           "platos": [
             "Ternasco a la brasa",
             "Cecina y jamón de la sierra",
@@ -1082,6 +1111,10 @@
         ],
         "comer": {
           "donde": "Comida en Aras de los Olmos o Landete si es la hora (13:00-13:30); si se llega bien, en Utiel. Cena en el apartamento con lo comprado en Utiel: lunes en pueblo pequeño, no contar con cenar fuera.",
+            "desayuno": "Camping Los Alamos. Etapa larga (208 km), desayuna fuerte.",
+            "cafe_en_ruta": "Mora de Rubielos (09:35), plaza junto al castillo-palacio gotico. Segundo cafe en Aras de los Olmos (12:05).",
+            "sitios": [{"nombre": "Bares de la plaza de Landete", "donde": "Landete", "que": "Lo previsto: comida de pueblo a las 13:00-14:15, sencilla y rapida"}, {"nombre": "Aras de los Olmos", "donde": "Aras de los Olmos", "que": "Alternativa si llegas con hambre antes: comer aqui y llegar antes a Villargordo"}],
+            "aviso_horarios": "LUNES: en Villargordo del Cabriel no cuentes con cenar fuera. Compra la cena en Utiel (km 184) antes de llegar.",
           "platos": [
             "Embutidos de Requena: morcilla de cebolla, perro, güeña, longaniza",
             "Ajoarriero",
@@ -1183,6 +1216,10 @@
         ],
         "comer": {
           "donde": "Alcalá del Júcar, con calma, a las 14:00 tras llegar. Restaurantes junto al río y en la calle principal.",
+            "desayuno": "Via Caprasia o bar de Villargordo. Salida relajada a las 10:00.",
+            "cafe_en_ruta": "Requena (10:35), barrio de La Villa: plaza de Albornoz. Cafe con las Cuevas de la Villa al lado.",
+            "sitios": [{"nombre": "Casa El Moli", "donde": "Alcala del Jucar, junto al rio", "que": "Terrazas cubiertas y al aire libre sobre el rio. Lomo de orza, queso frito, guisos. El que mejor combina vistas y precio"}, {"nombre": "Fogones El Chato", "donde": "Alcala del Jucar, cerca del rio", "que": "Familiar, cocina tradicional y caza. Croquetas de rabo de toro. Unos 30 EUR"}, {"nombre": "Asador Vistas al Rio", "donde": "Alcala del Jucar", "que": "Terraza con el rio y el castillo enfrente"}],
+            "aviso_horarios": "Etapa corta: llegas a las 13:35 y comes con calma a las 14:00. El dia mas tranquilo del viaje.",
           "platos": [
             "Gazpacho manchego",
             "Atascaburras",
@@ -1295,6 +1332,10 @@
         ],
         "comer": {
           "donde": "Ayna, hacia las 13:30, en el pueblo.",
+            "desayuno": "Los Olivos tiene cocina: desayuna alli con lo comprado, o bar en Alcala del Jucar. Etapa de 242 km.",
+            "cafe_en_ruta": "Chinchilla de Monte-Aragon (10:25), plaza de la Mancha bajo el castillo.",
+            "sitios": [{"nombre": "Restaurante El Goteron", "donde": "Ayna, centro del pueblo", "que": "Comedor con vistas al valle del rio Mundo. Cordero a la brasa, migas, gazpacho manchego. La gran parada del dia"}, {"nombre": "Restaurante La Toba", "donde": "Ayna", "que": "Antigua fabrica de esparto restaurada, cocina local con vistas"}, {"nombre": "El Casino de Ayna", "donde": "Ayna", "que": "Familiar y sencillo, buena relacion calidad-precio"}],
+            "aviso_horarios": "Antes de bajar al pueblo, para en el Mirador del Diablo. Cena en La Cilla: miercoles abren 20:30-23:00, reserva mesa.",
           "platos": [
             "Ajo mataero",
             "Gazpacho manchego",
@@ -1406,6 +1447,10 @@
         ],
         "comer": {
           "donde": "Comida en casa en Almería, llegando a las 14:30. Si aprieta el hambre, tapa en Vélez-Blanco o Vélez-Rubio.",
+            "desayuno": "La Cilla (confirmar hora al llegar el miercoles). Si no hay, cafe en Moratalla al bajar.",
+            "cafe_en_ruta": "Caravaca de la Cruz (09:54) para un cafe rapido bajo la basilica, o Maria (11:20) en la plaza, ya en Almeria.",
+            "sitios": [{"nombre": "Comida en casa", "donde": "Almeria, 14:20-14:30", "que": "Lo previsto: llegas a comer a casa"}, {"nombre": "Tapa en Velez-Blanco o Velez-Rubio", "donde": "Velez-Blanco / Velez-Rubio, km 100", "que": "Si aprieta el hambre antes de la autovia. Ultimo sitio con encanto antes de 160 km de A-7"}],
+            "aviso_horarios": "Desde Velez-Rubio todo es autovia: come antes o aguanta a casa.",
           "platos": [
             "Gurullos con conejo (pasta de la comarca)",
             "Olla de trigo",
