@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 68,
+    "revision": 69,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "La Cilla (noche 10) pagada por Booking el 14 sept (56,10 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65 y Via Caprasia 65",
       "Aparato para dormir en el baul, en la rutina de noche y mañana, y comprobacion de enchufe en el camping",
       "Sitios curiosos junto a la ruta añadidos a la guia: Cueva del Agua de Tiscar (1), Charco del Aceite con parada en el horario y Cerrada de Elias (2), Cascada Batida de Calomarde (4), Laguna de Bezas (6), Salinas de Arcos y Cuchillos de Contreras (8), mirador de Embarcaderos (9), Mirador del Diablo de Ayna (10), Cueva de los Letreros (11). Todos comprobados a menos de 1,5 km del track",
       "Sena listo. Aerosoles (Motul C2 y CO2) pasan a la maleta izquierda, lejos del escape; comprobacion de la distancia escape-maleta derecha y prueba de temperatura en Baza",
@@ -1331,8 +1332,8 @@
         "direccion": "Santuario de la Casa de Cristo, Lugar Ermita, 30440 Moratalla (Murcia)",
         "telefono": "+34 601 85 41 21",
         "precio_eur": 56.10,
-        "estado": "Reservado; 56,10 EUR pendientes en el alojamiento",
-        "pago": { "total_eur": 56.10, "pagado_eur": 0, "pendiente_eur": 56.10, "donde": "En el alojamiento" },
+        "estado": "Reservado y pagado (56,10 EUR por Booking, 14 sept)",
+        "pago": { "total_eur": 56.10, "pagado_eur": 56.10, "pendiente_eur": 0, "donde": "Pagado por Booking el 14 sept" },
         "restaurante": "Cierra lunes y martes. Miercoles 12:30-16:00 y 20:30-23:00. La llegada en miercoles permite cenar alli.",
         "pendiente_confirmar": ["Cena del miercoles (reservar mesa)", "Desayuno y hora", "Parking de la moto"],
         "plan_b_cena": "Cenar en Moratalla antes de subir"
@@ -1448,7 +1449,7 @@
     { "noche": 7, "fecha": "2026-09-20", "lugar": "Virgen de la Vega", "alojamiento": "Camping Los Alamos - mismo bungalow", "telefono": "+34 978 80 11 67", "estado": "Reservado; incluido en el pago de la noche 6" },
     { "noche": 8, "fecha": "2026-09-21", "lugar": "Villargordo del Cabriel", "alojamiento": "Via Caprasia", "telefono": "+34 605 62 32 66", "estado": "Reservado; 65 EUR pendientes" },
     { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado y pagado" },
-    { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado; 56,10 EUR pendientes" }
+    { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado y pagado" }
   ],
 
   "contactos": {
@@ -1706,7 +1707,7 @@
       {"que": "Medicacion con un dia de margen metida", "hecho": true},
       "Llaves de repuesto en su sitio (una en la chaqueta, otra en la maleta izquierda)",
       "Conjunto SIXS lavado y seco para salir con el puesto el lunes",
-      {"que": "Revolut con saldo (unos 221 EUR de alojamientos) y Bizum probado", "hecho": true}
+      {"que": "Revolut con saldo (unos 165 EUR de alojamientos: Laminador, Los Alamos, Via Caprasia) y Bizum probado", "hecho": true}
     ]
   },
 
