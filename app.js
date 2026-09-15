@@ -7,6 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
+const APP_VERSION = 'v3.10.2';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
@@ -1219,7 +1220,7 @@ function instalarHTML() {
   if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !localStorage.getItem('viaje-nx500-ios-hint')) return `<div class="card"><div class="card-title"><h3>📲 Añadir a la pantalla de inicio</h3><button class="btn small" type="button" id="ios-hint-ok">Entendido</button></div><p class="muted"><small>En Safari: botón Compartir → «Añadir a pantalla de inicio». Así funciona sin cobertura.</small></p></div>`;
   return '';
 }
-function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
+function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · App ${APP_VERSION} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
 
 function alojamientoCard(dia) {
   const a = dia.alojamiento; if (!a) return '';
