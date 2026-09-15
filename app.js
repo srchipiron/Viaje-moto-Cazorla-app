@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.10.6';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.10.7';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
@@ -831,13 +831,15 @@ function viewAhora() {
   }
   const ctx = D.pos ? etapaActual(D.pos) : null;
   const e = (ctx && ctx.e) || hoy, t = ctx && ctx.t, r = ctx && ctx.r;
+  /* A menos de 1,5 km del final, la etapa esta hecha: ni progreso, ni retraso, ni puntos por delante. */
+  const llegado = !!(r && r.restante < 1.5);
   const cards = [];
   /* 1. Fuera de ruta */
-  if (r && r.dist > 1) cards.push({ p: 0, html: `<div class="card warn"><div class="card-title"><h3>⚠️ Fuera de la ruta</h3><span class="badge warn">${r.dist.toFixed(1)} km</span></div>
+  if (r && r.dist > 1 && !llegado) cards.push({ p: 0, html: `<div class="card warn"><div class="card-title"><h3>⚠️ Fuera de la ruta</h3><span class="badge warn">${r.dist.toFixed(1)} km</span></div>
     <p>Estás a ${r.dist.toFixed(1)} km del track del día ${e.dia}. Si no es a propósito, deja que Kurviger recalcule <b>hacia la ruta</b>, o vuelve al último punto: ${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'el destino'}.</p>
     <p class="row">${kurvigerBtns(e)}</p></div>` });
   /* 2. Progreso y llegada estimada */
-  if (r) {
+  if (r && !llegado) {
     const ritmo = t.duracion_min ? t.duracion_min / t.km : 1.1;
     const min = r.restante * ritmo;
     const llega = now + min;
@@ -853,8 +855,8 @@ function viewAhora() {
       </div>
       ${tarde ? `<div class="note">Vas con retraso sobre el plan. ${rec.length ? `Hoy puedes saltarte, sin tocar el alojamiento: ${esc(rec.join(' · '))}.` : 'Hoy no hay paradas opcionales que saltar: acorta las paradas, no alargues la comida y avisa al alojamiento si se hace de noche.'}</div>` : ''}</div>` });
   }
-  /* 2b. Sin GPS: al menos el plan del dia */
-  if (!r) {
+  /* 2b. Sin GPS o ya en destino: el plan del dia, sin cuenta atras */
+  if (!r || llegado) {
     const m = meteoDia(e), v = m.verdict ? VERDICT[m.verdict] : null;
     cards.push({ p: 1, html: `<div class="card"><div class="card-title"><h3>Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</h3><span class="badge">${fmtKm(e.km_aprox)}</span></div>
       <div class="statgrid">
@@ -864,10 +866,10 @@ function viewAhora() {
         <div class="stat"><small>Puntos de despiste</small><b>${((e.gpx && e.gpx.avisos) || []).length}</b><small><a href="#/etapas/${e.dia}">ver la etapa</a></small></div>
       </div>
       ${D.pos ? '' : '<div class="note">Dale a <b>Dónde estoy</b> para que cuente kilómetros, gasolina, despistes y llegada estimada.</div>'}
-      ${alojamientoMini(e)}</div>` });
+      ${llegado ? '' : alojamientoMini(e)}</div>` });
   }
   /* 3. Despistes que vienen */
-  if (r) {
+  if (r && !llegado) {
     const av = ((e.gpx && e.gpx.avisos) || []).filter((a) => a.km > r.km - 1 && a.km < r.km + 25).sort((a, b) => a.km - b.km)[0];
     if (av) cards.push({ p: 2, html: `<div class="card"><div class="card-title"><h3>🔁 ${esc(av.lugar)}</h3><span class="badge">${av.km <= r.km ? 'aquí' : `en ${fmtKm(Math.round((av.km - r.km) * 10) / 10)}`}</span></div><p>${esc(av.que)}</p></div>` });
   }
@@ -887,7 +889,7 @@ function viewAhora() {
     }
   }
   /* 5. Que ver, lo que viene por delante */
-  if (r && t) {
+  if (r && t && !llegado) {
     const pois = poisConKm(e, t).filter((p) => p.km > r.km - 0.5 && p.km < r.km + 40).slice(0, 3);
     if (pois.length) cards.push({ p: 3, html: `<div class="card"><h3>Por delante</h3><div class="poi-list">${pois.map((v) => `<div class="poi${v.opcional ? ' opcional' : ''}">
         <span class="poi-icon" aria-hidden="true">${POI_ICON[v.tipo] || '📍'}</span>
@@ -913,7 +915,7 @@ function viewAhora() {
     const desde = kmDesdeRepostaje(e.dia, r.km);
     const usado = desde == null ? kmViaje(e.dia, r.km) : desde;
     const pct = Math.min(100, Math.round(usado / aut * 100));
-    const alerta = usado > aut * 0.5;
+    const alerta = usado > aut * 0.5 && !llegado;
     cards.push({ p: alerta ? 2.2 : 6, html: `<div class="card${alerta ? ' warn' : ''}"><div class="card-title"><h3>⛽ Gasolina</h3><span class="badge${alerta ? ' warn' : ''}">${usado.toLocaleString('es-ES', { maximumFractionDigits: 0 })} km</span></div>
       <div class="bar"><i style="width:${pct}%"></i></div>
       <p><small>${desde == null ? 'Desde la salida de Almería (marca un repostaje para que cuente bien)' : 'Desde el último repostaje'} · autonomía orientativa ${aut} km.</small></p>
@@ -921,9 +923,27 @@ function viewAhora() {
       <p class="row"><button class="btn small" type="button" data-repostaje="${e.dia}|${Math.round(r.km)}">⛽ He repostado aquí</button>${D.pos ? `<a class="btn small" href="https://www.google.com/maps/search/gasolinera/@${D.pos.lat},${D.pos.lon},13z" target="_blank" rel="noopener">Gasolineras cerca ↗</a>` : ''}</p></div>` });
   }
   /* 9. Al llegar */
-  const llegada = D.data.rutina_diaria.llegada || [];
-  if (r && r.restante < 25) cards.push({ p: 2.8, html: `<div class="card ok"><h3>Llegando: al bajarte</h3>${list(llegada)}${e.mantenimiento ? `<div class="note mant"><b>🔧 Hoy toca:</b> ${esc(e.mantenimiento.que)}</div>` : ''}${alojamientoMini(e)}</div>` });
+  const rut = D.data.rutina_diaria, llegada = rut.llegada || [];
+  if (r && r.restante < 25) cards.push({ p: 2.8, html: `<div class="card ok"><h3>${llegado ? `Ya en ${esc(e.destino)}` : 'Llegando: al bajarte'}</h3>${list(llegada)}${e.mantenimiento ? `<div class="note mant"><b>🔧 Hoy toca:</b> ${esc(e.mantenimiento.que)}</div>` : ''}${alojamientoMini(e)}</div>` });
   else if (e.mantenimiento) cards.push({ p: 5, html: `<div class="note mant"><b>🔧 Al llegar hoy:</b> ${esc(e.mantenimiento.que)}</div>` });
+  /* Ya en el hotel, o de noche: lo que importa es esta noche y mañana. */
+  const manana = it.find((x) => x.dia === e.dia + 1);
+  if (llegado || now >= 19 * 60) {
+    cards.push({ p: 2.9, html: `<div class="card"><h3>🌙 Esta noche</h3>${list(rut.noche_anterior || [])}</div>` });
+    if (manana) {
+      const m = meteoDia(manana), v = m.verdict ? VERDICT[m.verdict] : null;
+      cards.push({ p: 3.2, html: `<div class="card"><div class="card-title"><h3>Mañana · día ${manana.dia}</h3><span class="badge">${fmtKm(manana.km_aprox)}</span></div>
+        <p><b>${esc(manana.origen)} → ${esc(manana.destino)}</b></p>
+        <div class="statgrid">
+          <div class="stat"><small>Salida</small><b>${esc(manana.salida.split(' ')[0])}</b><small>${esc(manana.tiempo_real_aprox)} de moto</small></div>
+          <div class="stat"><small>Llegada prevista</small><b>${esc(manana.llegada_prevista.split(' ')[0])}</b><small>${esc(manana.destino)}</small></div>
+          ${v ? `<div class="stat"><small>Previsión</small><b>${esc(v.txt)}</b><small>${m.tmin != null ? `${Math.round(m.tmin)}° / ${Math.round(m.tmax)}°` : ''}</small></div>` : ''}
+          <div class="stat"><small>Puntos de despiste</small><b>${((manana.gpx && manana.gpx.avisos) || []).length}</b><small><a href="#/etapas/${manana.dia}">ver la etapa</a></small></div>
+        </div>
+        ${manana.mantenimiento ? `<div class="note mant"><b>🔧 Mañana al llegar:</b> ${esc(manana.mantenimiento.que)}</div>` : ''}
+        <p class="row"><a class="btn" href="#/etapas/${manana.dia}">Ficha del día ${manana.dia}</a>${kurvigerBtns(manana)}</p></div>` });
+    }
+  }
   /* 10. Posicion y accesos rapidos */
   if (D.pos) cards.push({ p: 7, html: posHTML(e) });
   cards.push({ p: 8, html: `<div class="card"><h3>Accesos rápidos</h3><p class="row">${kurvigerBtns(e)}<a class="btn" href="#/etapas/${e.dia}">Ficha del día</a>${avisarBtn(e)}<a class="btn" href="#/sos">🆘 Emergencia</a></p></div>` });

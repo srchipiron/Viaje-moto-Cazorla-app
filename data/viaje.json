@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 83,
+    "revision": 84,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "La vista Ahora distingue ir de camino de haber llegado: a menos de 1,5 km del destino desaparecen el progreso, el aviso de retraso, los despistes y los puntos por delante, y salen la rutina de la noche y la etapa de mañana",
       "Laminador (noche 2) pagado del todo el 15 sept: 35,10 EUR en el hostal sobre los 11,70 de Booking. Quedan por pagar Los Alamos (dia 6, unos 65) y Via Caprasia (dia 8, 65)",
       "Repaso del 15 sept con el viaje ya empezado: las 25 tareas de antes de salir y las 3 compras que seguian sin marcar pasan a hechas, las confirmaciones del dia 1 se vacian, la decision de Hornos del dia 2 queda cerrada, el soporte de la camara deja de estar por probar (esta roto) y se quitan las contradicciones del changelog sobre pagos, fusible, maletas y GPX del dia 4",
       "Lo dado por hecho se calla: el aviso de la espaldera desaparece de la vista de equipacion en vez de salir marcado como resuelto. La espaldera sigue en el inventario, montada en la Vertical GTX",
