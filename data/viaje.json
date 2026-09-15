@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 71,
+    "revision": 72,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "La moto tiene caballete central: engrasar la cadena sobre el, mucho mas comodo. Espaldera confirmada en la Vertical GTX (aviso resuelto)",
       "Cena de cada noche en la guia: donde, con los tres avisos criticos (lunes 14 comprar en Cazorla antes de subir al camping, domingo 20 solo el camping, lunes 21 comprar la cena en Utiel para Villargordo) y la reserva del miercoles en La Cilla",
       "Guia de comer y desayunar por etapa: donde desayunar, donde parar a cafe y 2-3 sitios concretos para comer en cada dia, con aviso de horarios y dias de cierre. Fuentes: rankings y guias locales de sept 2026; confirmar por telefono los dias justos",
       "La Cilla (noche 10) pagada por Booking el 14 sept (56,10 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65 y Via Caprasia 65",
@@ -1581,7 +1582,7 @@
 
   "equipacion_moto": {
     "decision": "REV'IT Vertical GTX + REV'IT Tornado 4. La Airwave 4 y los vaqueros Racered se quedan en casa.",
-    "aviso_espaldera": "La espaldera SeeFlex esta montada en la Airwave 4 y la Vertical GTX no lleva ninguna. Pasarla a la Vertical GTX antes del viaje: son 2.000 km sin proteccion dorsal si no se hace.",
+    "aviso_espaldera": "Resuelto: la espaldera SeeFlex esta montada en la Vertical GTX desde el 13 sept y probada en la salida de prueba y en la etapa 1.",
     "puesto_siempre": [
       "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)","Botas REV'IT Breccia GTX (Gore-Tex)", "Guantes REV'IT Caliber 1 (verano)", "Casco Shoei GT-Air 3 con Sena SRL3", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Tour"],
     "lluvia": "Guantes REV'IT Sand 5 H2O (impermeables) en el SH58X. Las botas son Gore-Tex: no hacen falta cubrebotas.",
@@ -1639,6 +1640,7 @@
       "marca": "Honda", "modelo": "NX500", "carnet": "A2", "ubicacion": "Almeria",
       "accesorios": [
         { "tipo": "Defensas superiores", "marca": "Motoguard", "modelo": "HG44" },
+        { "tipo": "Caballete central", "marca": "-", "modelo": "-" },
         { "tipo": "Pantalla Android Auto inalambrico", "marca": "AOOCCI", "modelo": "D6A" }
       ]
     },
@@ -1722,7 +1724,7 @@
       "Apuntar el numero de poliza en la app (Resumen > Contactos) y comprobar si las defensas son Motoguard SG67 (poliza) o HG44 (inventario)"
     ],
     "viernes_11": [
-      {"que": "Espaldera SeeFlex pasada a la Vertical GTX", "hecho": true},
+      {"que": "Espaldera SeeFlex montada en la Vertical GTX y probada en ruta", "hecho": true},
       {"que": "Pinlock EVO montado en la CWR-F2R", "hecho": true},
       {"que": "Mapfre: no hace falta llamar (asistencia en viaje incluida en la poliza)", "hecho": true},
       "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
@@ -1770,7 +1772,7 @@
 
   "rutina_diaria": {
     "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, las dos powerbanks, D6A, el Sena SRL3 del casco y la Osmo 360 (el Pixel al 100 % antes de salir)",
-      "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacio y seco y todo en su bolsa al baul", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente (cada noche o cada dos)",
+      "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacio y seco y todo en su bolsa al baul", "Vaciar la tarjeta de la camara si va llena", "Spray de cadena con la cadena caliente, sobre el caballete central, al llegar (cada dos dias o 400-500 km, y siempre despues de lluvia)",
       "Casco abierto en la habitacion para que seque el Pinlock; su cara interior solo con agua tibia y microfibra (el limpiador Motul, solo para el exterior)", "Repasar la ruta del dia en Kurviger", "Decidir forros segun prevision de la mañana"],
     "mañana": ["Presiones en frio si toca (cada 2-3 dias): 2,0 delante / 2,5 detras", "Cargar maletas en 5 minutos (cada cosa en su sitio)", "Cable recordatorio del Abus fuera antes de arrancar",
       "Enchufar la D6A; Pixel al 100 % y conectado a la powerbank 1; solo Kurviger abierto",
