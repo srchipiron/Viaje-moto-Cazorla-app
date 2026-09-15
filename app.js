@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.10.7';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.11.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
@@ -1584,6 +1584,24 @@ function route() {
   const [view, arg] = h.split('/');
   return { view: VIEWS[view] ? view : 'resumen', arg };
 }
+/* #/diario/N/<texto codificado>: apunta una linea en el diario del dia N y abre su ficha.
+   No pisa lo que ya hubiera escrito: lo añade debajo. */
+function diarioDesdeEnlace() {
+  const m = location.hash.match(/^#\/diario\/(\d+)\/(.+)$/);
+  if (!m) return false;
+  let txt = '';
+  try { txt = decodeURIComponent(m[2]).trim(); } catch (err) { txt = m[2]; }
+  const dia = m[1];
+  if (txt) {
+    const all = lsGet(DIARIO_KEY, {});
+    const antes = (all[dia] || '').trim();
+    if (antes.indexOf(txt) < 0) all[dia] = antes ? `${antes}\n${txt}` : txt;
+    lsSet(DIARIO_KEY, all);
+  }
+  location.replace(`#/etapas/${dia}`);
+  setTimeout(() => toast(`Apuntado en el diario del día ${dia}`), 100);
+  return true;
+}
 
 function render() {
   if (!D.data) return;
@@ -1739,8 +1757,8 @@ async function init() {
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
   meteoLoadCache(); meteoHLoadCache();
-  window.addEventListener('hashchange', () => { closeMap(); render(); });
-  render();
+  window.addEventListener('hashchange', () => { closeMap(); if (diarioDesdeEnlace()) return; render(); });
+  if (!diarioDesdeEnlace()) render();
   registerSW();
   if (route().view !== 'tiempo') meteoFetch(false); // la vista Tiempo ya lo pide
 }

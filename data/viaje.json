@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 87,
+    "revision": 88,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Enlace para apuntar en el diario desde fuera de la app: #/diario/N/<texto>. El diario vive solo en el movil, asi que era la unica forma de dictarle una entrada",
       "Los Chorros del Rio Mundo se vieron el dia 2, de pasada: el dia 3 se salta la ida y vuelta al parking (saltar waypoint en Kurviger). De 279 km y 4h20 a 263 km y 3h55, salida a las 09:30 y llegada a Cuenca sobre las 15:05, con el horario recalculado",
       "La vista Ahora distingue ir de camino de haber llegado: a menos de 1,5 km del destino desaparecen el progreso, el aviso de retraso, los despistes y los puntos por delante, y salen la rutina de la noche y la etapa de mañana",
       "Laminador (noche 2) pagado del todo el 15 sept: 35,10 EUR en el hostal sobre los 11,70 de Booking. Quedan por pagar Los Alamos (dia 6, unos 65) y Via Caprasia (dia 8, 65)",

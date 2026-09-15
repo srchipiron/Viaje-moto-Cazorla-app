@@ -54,5 +54,10 @@ caché de meteo).
 y siguiente punto, y `viewAhora()` monta tarjetas con una prioridad numérica y las ordena. Para
 añadir un consejo nuevo basta con empujar `{ p, html }` a `cards`. `seguirPos()` mantiene un
 `watchPosition` mientras la vista está abierta y repinta cuando te mueves más de 300 m.
+El diario, los gastos y las marcas viven solo en el móvil, así que desde el repositorio no se
+pueden escribir. Para apuntar algo en el diario hay un enlace profundo:
+`#/diario/N/<texto codificado con encodeURIComponent>` añade una línea al diario del día N
+(no pisa lo escrito) y abre su ficha.
+
 Todo lo que sea dato personal (teléfonos, póliza, matrícula, médico) va en localStorage, nunca en el JSON. Meteo: Open-Meteo, sin clave.
 Mapa: Leaflet vendorizado en `vendor/leaflet`, tiles de OpenStreetMap.
