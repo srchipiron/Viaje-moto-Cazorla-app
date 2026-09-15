@@ -34,6 +34,9 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 
 - Servidor local: `python3 -m http.server 8080` desde la raíz.
 - Prueba de humo: `node tests/smoke.js` (Playwright global o local, Chromium).
+- Antes de nada, comprobar que el JSON sigue siendo valido: nunca commitear sin
+  `python3 -c "import json; json.load(open('data/viaje.json'))"`. Hay un gancho en
+  `.githooks/pre-commit` que lo hace solo: activarlo con `git config core.hooksPath .githooks`.
 - Artefacto de Claude (un solo HTML): `python3 tools/bundle.py` genera `dist/viaje-nx500.html`;
   republicar con la herramienta Artifact sobre esa ruta. `dist/` no se versiona.
 - Commits en español, autor Javier; rama de trabajo la indicada por la sesión.

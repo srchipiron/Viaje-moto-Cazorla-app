@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 3,
-    "revision": 86,
+    "revision": 87,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
@@ -409,7 +409,7 @@
         "Hornos-Segura es estrecho: hacerlo antes de comer.",
         "Segura de la Sierra se sube y baja por la misma carretera.",
         "Siles-Riopar por CM-3204 y Puerto del Arenal.",
-        "Repostar en Riopar por la tarde o en Alcaraz a primera hora del dia 3.,
+        "Repostar en Riopar por la tarde o en Alcaraz a primera hora del dia 3.",
         "Chorros del Rio Mundo vistos hoy (15 sept), de paso al llegar a Riopar. El dia 3 se salta la ida y vuelta al parking."
       ],
       "opciones": [
