@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 74,
+    "revision": 75,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Recado del dia 3 en Cuenca: soporte para la Osmo 360 tras pasarse la rosca del K&F. Que comprar, el arreglo de ferreteria, seis tiendas de Cuenca con telefono y el orden de la tarde (cadena primero, compra mientras reposa)",
       "Calendario de engrase de la cadena: dias 3, 6 y 9 al llegar, con los km acumulados y el procedimiento completo. Aviso destacado en la ficha de esos dias",
       "Inventario: la espaldera SeeFlex figura ya montada en la Vertical GTX",
       "La moto tiene caballete central: engrasar la cadena sobre el, mucho mas comodo. Espaldera confirmada en la Vertical GTX (aviso resuelto)",
@@ -540,7 +541,10 @@
       "notas": [
         "Horas de paso calculadas con los tiempos de Kurviger (4h38 de conduccion, con la ida y vuelta a los Chorros) mas las paradas. Es el dia con mas conduccion del viaje, aunque llano: parada cada hora aunque no apetezca. Si se va tarde, la comida en Motilla puede ser rapida.",
         "El acceso a los Chorros estuvo cerrado en 2026 por daños en la carretera; reabierto en julio con aforo al 60%. Confirmar la noche anterior.",
-        "No usar Albacete como waypoint (arrastra al centro urbano)."
+        "No usar Albacete como waypoint (arrastra al centro urbano).",
+        "RECADO EN CUENCA: soporte para la Osmo 360 (el K&F del parabrisas tiene la rosca pasada). Llevar el palo oficial y la pieza del K&F a la tienda para calzar la rosca. Lo que se busca es una mordaza corta y rigida de manillar o espejo con rosca de tripode de 1/4, o un soporte de menton adhesivo tipo GoPro con adaptador a 1/4. Arreglo de 3 EUR en ferreteria si la pieza del K&F tiene agujero pasante: tornillo Whitworth 1/4 de 20 hilos mas largo, arandela ancha, arandela grower y tuerca autoblocante por detras. Comprar tambien cordino o bridas para atar la camara al manillar. NO grabar en marcha con el palo de 1,5 m desplegado: vibra, se parte y la imagen sale inservible; el palo, para las paradas.",
+        "Tiendas en Cuenca para el recado (confirmar por telefono antes de ir, muchas cierran de 14 a 17): Decathlon, Travesia Av. Cruz Roja Espanola s/n (abre sin cierre a mediodia, soportes de camara de accion y bridas); Foto Cuenca Video, Av. Reyes Catolicos 50, 969 213 108; La Luz Fotografia, Hermanos Becerril 14, 969 239 695 (a un paseo del hostal); Centro Digital de Imagen, Pl. de la Constitucion 7, 969 212 232; Fotografia Luis Diacha, Fermin Caballero 20, 660 259 428; P&M Motorcuenca (taller de motos), Pol. Ind. Palancares, 680 161 219.",
+        "Orden de la tarde en Cuenca: llegar sobre las 16:00, engrasar la cadena con la cadena aun caliente y dejarla reposar, y mientras tanto ir a por el soporte. Si sale un soporte de menton adhesivo, pegarlo esa noche en el hostal: el adhesivo quiere unas horas de curado."
       ],
       "alojamiento": {
         "nombre": "Hostal Cortes",
@@ -1678,7 +1682,7 @@
     ],
     "camara": {
       "marca": "DJI", "modelo": "Osmo 360", "tipo": "camara 360",
-      "soporte": { "marca": "K&F Concept", "tipo": "Abrazadera de parabrisas para moto", "material": "PP66", "anclajes": "Rosca 1/4 y horquilla tipo GoPro", "montaje": "Sin herramientas, palanca", "llega": "2026-09-11" },
+      "soporte": { "marca": "K&F Concept", "tipo": "Abrazadera de parabrisas para moto", "material": "PP66", "anclajes": "Rosca 1/4 y horquilla tipo GoPro", "montaje": "Sin herramientas, palanca", "llega": "2026-09-11", "estado": "Rosca de 1/4 pasada (aluminio sobre acero). Fuera de servicio hasta encontrar recambio; recado en Cuenca el dia 3.", "alternativa": "Palo oficial DJI solo en paradas y miradores, nunca desplegado en marcha." },
       "pendiente_probar": "Montarla en la pantalla de la NX500 y grabar en la salida de prueba del sabado: la pantalla es el punto que mas vibra de la moto. Revisar el material en casa antes de salir."
     },
     "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Vertical GTX (pasada desde la Airwave 4 el 13 sept; probada en la salida de prueba y en la etapa 1)" } },
