@@ -1,11 +1,13 @@
 {
   "meta": {
     "version": 3,
-    "revision": 78,
-    "actualizado": "2026-09-09",
+    "revision": 82,
+    "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Repaso del 15 sept con el viaje ya empezado: las 25 tareas de antes de salir y las 3 compras que seguian sin marcar pasan a hechas, las confirmaciones del dia 1 se vacian, la decision de Hornos del dia 2 queda cerrada, el soporte de la camara deja de estar por probar (esta roto) y se quitan las contradicciones del changelog sobre pagos, fusible, maletas y GPX del dia 4",
+      "Lo dado por hecho se calla: el aviso de la espaldera desaparece de la vista de equipacion en vez de salir marcado como resuelto. La espaldera sigue en el inventario, montada en la Vertical GTX",
       "La espaldera deja de salir como aviso: un aviso que empieza por Resuelto se pinta en verde. Las dos chaquetas llevan ya la espaldera donde toca (la SeeFlex esta en la Vertical GTX, no en la Airwave)",
       "Corregido: la Osmo 360 monta por rosca de 1/4, no por orejetas GoPro. El recado de Cuenca pasa a buscar tornillo de 1/4 (tienda de foto o ferreteria antes que Decathlon). La linea de version de la app muestra ahora tambien la version del codigo, para saber si el movil sigue con la copia cacheada",
       "Recado del dia 3 en Cuenca: soporte para la Osmo 360 tras pasarse la rosca del K&F. Que comprar, el arreglo de ferreteria, seis tiendas de Cuenca con telefono y el orden de la tarde (cadena primero, compra mientras reposa)",
@@ -19,7 +21,6 @@
       "Sitios curiosos junto a la ruta añadidos a la guia: Cueva del Agua de Tiscar (1), Charco del Aceite con parada en el horario y Cerrada de Elias (2), Cascada Batida de Calomarde (4), Laguna de Bezas (6), Salinas de Arcos y Cuchillos de Contreras (8), mirador de Embarcaderos (9), Mirador del Diablo de Ayna (10), Cueva de los Letreros (11). Todos comprobados a menos de 1,5 km del track",
       "Sena listo. Aerosoles (Motul C2 y CO2) pasan a la maleta izquierda, lejos del escape; comprobacion de la distancia escape-maleta derecha y prueba de temperatura en Baza",
       "Noche del 13 sept: espaldera pasada, Mapfre sin llamar, fusible descartado, medicacion y Bizum listos",
-      "Pesaje de las maletas pendiente para el lunes por la mañana, con el limite de SHAD por maleta",
       "Maletas cargadas y pesadas el 13 sept, dentro del limite",
       "Tres powerbanks: dos Baseus de 10.000 en la bolsa de deposito y una de 5.000 en la chaqueta como reserva de emergencia",
       "Powerbank 1 identificada: Baseus PPKPC-1027G, ya conectada al Pixel",
@@ -28,11 +29,11 @@
       "Pagos: 20 EUR en efectivo y el resto con tarjeta o Bizum; sin sobre de efectivo en la maleta",
       "Tablet en la maleta izquierda entre la ropa; un solo cargador de pared multitoma para todo",
       "Rutina de la mañana: cerrar Instagram, Brave, Radarbot y RoadSync antes de salir (GSam del 13 sept: un tercio del gasto en ruta era de apps en segundo plano)",
-      "D6A cableada directa a bateria: desenchufarla en cada parada larga y cada noche (rutina). Consumo del Pixel medido en ruta (15 %/h) y medidas para bajarlo",
-      "Toma USB-C de la moto averiada (13 sept): el Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche; revisar el fusible de accesorios antes de salir",
-      "Salida de prueba del 13 sept: 220 km por el Puerto de la Ragua con Vertical GTX, Tornado y SIXS, todo bien; sin laterales. Queda montar las laterales cargadas y probar el conjunto",
+      "D6A cableada directa a bateria: desenchufarla en cada parada larga y cada noche (rutina). Consumo del Pixel medido en ruta (15 %/h)",
+      "Toma USB-C de la moto averiada (13 sept): el Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche; el fusible se descarto el 12 sept",
+      "Salida de prueba del 13 sept: 220 km por el Puerto de la Ragua con Vertical GTX, Tornado y SIXS, todo bien",
       "Dia 1 en Kurviger Cloud pasado a Curvy-Fastest (13 sept): 229 km y 3h40 con los mismos 15 puntos; antes 236 km y 4h04 con el perfil por defecto",
-      "Los Olivos (noche 9) pagado por Booking el 13 sept (50 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65, Via Caprasia 65 y La Cilla 56,10",
+      "Los Olivos (noche 9) pagado por Booking el 13 sept (50 EUR)",
       "Reparto de papeles entre Kurviger (ruta, en la D6A) y Sygic (segundo navegador: direcciones, radares), y las dos pruebas del domingo",
       "Pinlock montado (12 sept). La salida de prueba pasa al domingo 13 por la mañana; las presiones en frio, a ultima hora o el lunes antes de salir",
       "Conjunto SIXS Carbon Underwear (top, bottom, sotocasco, calcetines) incorporado como primera capa: inventario, equipacion por tipo de dia, reparto, lavado nocturno y pruebas del sabado",
@@ -42,7 +43,7 @@
       "Dia 7: nota para otro viaje con la Ruta del Silencio (A-1702 desde Cantavieja), con lo que costaria meterla y por que se deja fuera",
       "Puntos de despiste por dia (idas y vueltas, bucles, vias dobles, cambio a autovia) en gpx.avisos, con km y coordenadas, y consejos de navegacion con Kurviger en navegacion.kurviger.en_ruta. Perfil de altitud enlazado con el croquis: al recorrer el perfil se ve el punto en la ruta",
       "Revision de los GPX frente a la coleccion de Kurviger Cloud y al plan: los 11 tracks coinciden punto por punto (todos los waypoints de la nube a menos de 400 m del track, extremos identicos). Corregida la etiqueta del dia 4: el GPX ya iba por Huelamo, no por Valdemeca; no hay que reexportar nada",
-      "Coleccion de Kurviger Cloud 'Viaje vacaciones def' (11 rutas, 1946 km, 30h32) integrada: enlace para abrir cada ruta en Kurviger, nombre exacto, km, tiempo, desnivel y cortes de carretera reportados (dias 2, 3 y 11). La ruta del dia 4 en la nube va por Huelamo: decision cerrada; falta reexportar su GPX. Dia 1 en la nube: 236 km y 4h04 (el GPX DEF daba 3h37)",
+      "Coleccion de Kurviger Cloud 'Viaje vacaciones def' (11 rutas, 1946 km, 30h32) integrada: enlace para abrir cada ruta en Kurviger, nombre exacto, km, tiempo, desnivel y cortes de carretera reportados (dias 2, 3 y 11). La ruta del dia 4 en la nube va por Huelamo: decision cerrada. Dia 1 en la nube: 236 km y 4h04 (el GPX DEF daba 3h37)",
       "Datos del piloto (33 años, 1,70 m, 120 kg) y su efecto en la moto: bloque carga (estimacion 162 kg frente a unos 183 kg de carga maxima) y precarga trasera recomendada (4 de 5 con maletas). Hidratacion reforzada en la rutina y ajuste de precarga en la checklist del domingo",
       "Poliza Mapfre (Terceros Ampliado, condiciones particulares del 11 sept) resumida en el bloque seguro: coberturas y limites, accesorios declarados, exclusiones relevantes y que hacer en averia, accidente o robo. Sin datos personales: el numero de poliza se guarda solo en el movil",
       "Recibidos de Amazon el 10 sept: kit tubeless Givi S450, grasa de cadena Motul C2 Road y limpiador de casco Motul (este no estaba en la lista). Pendientes de llegar: botiquin y tapones Alpine. El pedido pasa a objetos con estado recibido",
@@ -52,14 +53,14 @@
       "Origen B&B agotado: sustituido por Via Caprasia (Villargordo del Cabriel)",
       "Telefonos de todos los alojamientos",
       "Horarios verificados: openBlue24h Cuenca, restaurante La Cilla (cierra lunes y martes), acceso a los Chorros del Rio Mundo reabierto en julio con aforo al 60%",
-      "Compra Decathlon realizada (lista real); faltan 2 boxers largos",
+      "Compra Decathlon realizada (lista real)",
       "Compresor Xiaomi v1 (micro-USB), Abus Granit Detecto X-Plus 8008 y powerbank Baseus E0028Z ya en propiedad",
       "Comparticion de ubicacion: Google Maps",
       "Contactos: el padre es el contacto en casa (numero guardado solo en el movil, no en el repositorio); seguro con Mapfre, asistencia 24 h 918 365 365 / 900 822 822",
       "Meteo: dos puntos por etapa con coordenadas para la prevision de Open-Meteo en la app",
       "Guia turistica por etapa (que ver, donde parar, que comer, la tarde y un consejo) en el campo guia de cada dia",
       "Dia 1 ajustado a la ruta definitiva de Kurviger por Calar Alto: 232 km, 3h40, horario recalculado, llegada 15:30",
-      "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado; pendiente mover la via de Hornos al pueblo",
+      "Dia 2 ajustado a la ruta DEF de Kurviger: 130 km, 2h30, horario recalculado",
       "Distancia total recalculada con las rutas GPX (1940 km). App: meteo por horas con aviso de tormenta de tarde, boton Avisar en casa, mapa del viaje completo, mapas sin conexion, lista de carga de maletas, progreso del viaje, instalacion y version imprimible",
       "Camara DJI Osmo 360 con soporte de parabrisas K&F: en el inventario, con la carga en la rutina de cada noche, la prueba en la salida del sabado y la revision del apriete en cada repostaje",
       "Inventario real del equipo (moto, maletas, casco con Sena SRL3, chaquetas, pantalones, guantes y botas) incorporado; ajustadas la equipacion, las compras y la rutina",
@@ -77,7 +78,6 @@
       "Rutas GPX de Kurviger: campo gpx por dia (archivo original en gpx/ y track ligero en data/tracks/ generado con tools/gpx2json.py). Los 11 dias integrados; el GPX Dia 5 de Kurviger traia juntos los dias 5 y 6 del plan y se partio en Albarracin (los GPX de Kurviger van numerados con el plan antiguo: su dia 7-10 es el 8-11 del plan)."
     ]
   },
-
   "proyecto": {
     "nombre": "Viaje en moto Almeria - Cazorla - Cuenca - Albarracin - Gudar/Maestrazgo - Jucar - Segura - Almeria",
     "objetivo": "11 dias en Honda NX500 para piloto A2 novato, priorizando disfrute, seguridad, asfalto, curvas fluidas y jornadas no agotadoras.",
@@ -105,20 +105,20 @@
       "rueda_delantera": "19 pulgadas",
       "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
       "toma_usb_c": false,
-      "toma_usb_c_nota": "La toma USB-C de serie no funciona (13 sept). Revisar el fusible de accesorios bajo el asiento; si no se arregla, el Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche.",
+      "toma_usb_c_nota": "La toma USB-C de serie no funciona. El fusible se comprobo el 12 sept y no es eso: queda para el taller al volver. El Pixel va con dos powerbanks de 10.000 mAh en la bolsa de deposito, cargadas cada noche.",
       "autonomia_orientativa_km": 380,
       "carga": {
         "peso_en_orden_de_marcha_kg": 196,
         "carga_maxima_kg_aprox": 183,
-        "carga_maxima_nota": "Valor del manual de la CB500X (misma plataforma): confirmar en el manual de la NX500 (Especificaciones, capacidad maxima de peso).",
+        "carga_maxima_nota": "Valor del manual de la CB500X (misma plataforma). Contrastar con el manual de la NX500 al volver.",
         "estimacion_viaje": { "piloto_kg": 120, "equipacion_puesta_kg": 8, "maletas_vacias_kg": 14, "contenido_kg": 20, "total_kg": 162 },
         "regla": "Contenido de las maletas por debajo de 20 kg y pesado en casa: superar la carga maxima es causa de exclusion en la poliza si provoca el accidente."
       },
       "precarga_trasera": {
         "posiciones": 5,
-        "de_serie": "2 (habitual en la plataforma; comprobar la posicion actual)",
+        "de_serie": "2 (de fabrica)",
         "recomendada": "4 con maletas cargadas; 5 si toca fondo o la moto se siente blanda de atras",
-        "como": "Anillo escalonado en el amortiguador trasero, con la llave de gancho del kit de herramientas bajo el asiento. Ajustar el domingo con la moto cargada y probar en la salida del sabado si se puede.",
+        "como": "Puesta en la posicion 4 el 13 sept con la moto cargada. Anillo escalonado en el amortiguador trasero, con la llave de gancho del kit bajo el asiento. Si toca fondo, subir a 5.",
         "por_que": "Con 120 kg de piloto mas maletas, en la posicion de serie el amortiguador va muy hundido: la moto se vuelve lenta al entrar en curva, toca fondo en baches y el faro apunta alto."
       },
       "cadena": {
@@ -136,7 +136,7 @@
         "en_frio": true,
         "con_carga": "Mismos valores solo o con carga: el manual no distingue. No subir por las maletas.",
         "comprobar": "Con los neumaticos frios, antes de arrancar, cada 2-3 dias con el compresor Xiaomi. En caliente suben 0,2-0,3 bar: no desinflar nunca en caliente.",
-        "fuente": "Manual de usuario Honda NX500 2024: 200 kPa / 250 kPa (29 / 36 psi). Confirmar con la pegatina del basculante."
+        "fuente": "Manual de usuario Honda NX500 2024: 200 kPa / 250 kPa (29 / 36 psi). Puestas el 12 sept con el compresor Xiaomi."
       },
       "regla_gasolina": "En zona de sierra, llenar cada vez que se baje de medio deposito. Gasolineras escasas y cierran a mediodia en Maestrazgo y Serrania.",
       "equipaje": ["SHAD SH58X (top)", "SHAD SH38X izquierda", "SHAD SH38X derecha", "Bolsa deposito SHAD E09CL"]
@@ -146,7 +146,7 @@
       "movil": "Google Pixel 9 Pro XL en la bolsa de deposito, conectado a una powerbank de 10.000 mAh (la toma USB-C de la moto no funciona); la segunda powerbank de reserva en la misma bolsa",
       "movil_bateria": "Medido el 13 sept: unos 15 % por hora en ruta (CPU ocupada casi todo el tiempo por Android Auto inalambrico + Kurviger + GPS). Una etapa larga gasta 60-70 %: una powerbank por dia. Para bajar el consumo: solo Kurviger abierto (Sygic y la app de la Osmo cerradas del todo), red en 4G/LTE (sin 5G) porque en la sierra buscar cobertura dispara el gasto, y el Pixel fuera del sol dentro de la bolsa. Salir cada dia al 100 %.",
       "app": "Kurviger via Android Auto",
-      "audio": "Sena SRL3 integrado en el casco Shoei GT-Air 3: indicaciones de voz de Kurviger. Con los tapones Tour puestos hay que subir el volumen; ajustarlo en la salida de prueba.",
+      "audio": "Sena SRL3 integrado en el casco Shoei GT-Air 3: indicaciones de voz de Kurviger. Con los tapones Tour puestos hay que subir el volumen; ya ajustado.",
       "ubicacion_compartida": "Google Maps > Compartir ubicacion > hasta desactivar. En zonas sin cobertura el punto se congela: avisar en casa.",
       "fallback": "Si la pantalla se desconecta en un puerto: parar, mirar el telefono y seguir",
       "sygic": "Pagado, con modo moto. Segundo navegador, nunca a la vez que Kurviger: para llegar a una direccion si se abandona la ruta o Kurviger se cuelga, y por sus avisos de radares y trafico (dia 11 en autovia).",
@@ -172,7 +172,6 @@
       "recortables_sin_cambiar_alojamiento": ["Nacimiento del Rio Cuervo (dia 4)", "Bucle Bronchales-Orihuela (dia 5)", "Bucle del Maestrazgo (dia 7)"]
     }
   },
-
   "itinerario": [
     {
       "dia": 1,
@@ -189,7 +188,7 @@
       "salida": "09:00",
       "llegada_prevista": "15:30-16:00",
       "meteo_puntos": [{ "nombre": "Calar Alto", "lat": 37.22, "lon": -2.55 }, { "nombre": "Baza", "lat": 37.49, "lon": -2.77 }, { "nombre": "Sierra de Cazorla", "lat": 37.92, "lon": -2.93 }],
-      "gpx": { "archivo": "gpx/dia-01.gpx", "track": "data/tracks/dia-01.json", "vias": ["Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Puerto de las Palomas", "Vadillo Castril", "Cerrada del Utrero (confirmar)"], "nota": "Ruta Kurviger 'Almeria - Camping Puente de las Herrerias' (version DEF, 10 sept): 232,1 km y 3h37 estimadas. Va por la A-92 hasta Gergal, sube a Calar Alto (1.975 m) y baja por Bacares a Seron y Baza. El plan del dia 1 esta ajustado a esta ruta. El 13 sept la ruta de la nube se puso en Curvy-Fastest como los demas dias: 229 km y 3h40, los mismos 15 puntos.",
+      "gpx": { "archivo": "gpx/dia-01.gpx", "track": "data/tracks/dia-01.json", "vias": ["Baza", "Pozo Alcon", "Santuario de Tiscar", "Quesada", "Cazorla", "La Iruela", "Puerto de las Palomas", "Vadillo Castril", "Cerrada del Utrero"], "nota": "Ruta Kurviger 'Almeria - Camping Puente de las Herrerias' (version DEF, 10 sept): 232,1 km y 3h37 estimadas. Va por la A-92 hasta Gergal, sube a Calar Alto (1.975 m) y baja por Bacares a Seron y Baza. El plan del dia 1 esta ajustado a esta ruta. El 13 sept la ruta de la nube se puso en Curvy-Fastest como los demas dias: 229 km y 3h40, los mismos 15 puntos.",
             "kurviger": {"nombre": "Día 1 · Almería → Cazorla (Calar Alto)", "route_id": "jrsBq7XZAX5tcxjf8pN3", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/jrsBq7XZAX5tcxjf8pN3", "plan_url": "https://kurviger.com/es/plan?point=36.84474%2C-2.44778&pname.0=Start&point=37.02323%2C-2.44382&shaping.1=true&pname.1=Additional+Waypoint&point=37.11175%2C-2.52844&shaping.2=true&pname.2=Additional+Waypoint&point=37.34352%2C-2.50429&shaping.3=true&pname.3=Additional+Waypoint&point=37.48633%2C-2.777&pname.4=Via+Point+1&point=37.55347%2C-2.95144&shaping.5=true&pname.5=Additional+Waypoint&point=37.70251%2C-2.93535&pname.6=Via+Point+2&point=37.76943%2C-3.024&pname.7=Via+Point+3&point=37.84025%2C-3.06868&pname.8=Via+Point+4&point=37.91454%2C-3.00686&pname.9=Via+Point+5&point=37.92134%2C-2.99569&pname.10=Via+Point+6&point=37.95106%2C-2.94003&pname.11=Via+Point+7&point=37.91697%2C-2.95418&pname.12=Via+Point+8&point=37.9203%2C-2.92947&pname.13=Via+Point+9&point=37.90192%2C-2.93794&pname.14=Destination&document_title=D%C3%ADa+1+%C2%B7+Almer%C3%ADa+%E2%86%92+Cazorla+%28Calar+Alto%29&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=jrsBq7XZAX5tcxjf8pN3&id=1", "km": 229.0, "duracion_min": 220, "subida_m": 6680, "bajada_m": 5708, "cortes_reportados": 0, "perfil": "curvaturefastest", "waypoints": 15, "exportado": "2026-09-13"},
             "avisos": [{"km": 224, "lugar": "Cerrada del Utrero", "lat": 37.9203, "lon": -2.9295, "que": "La ruta entra y sale 900 m de la via antes de bajar al camping. Si no vas a parar a verla, salta la via y sigue hacia el camping."}, {"km": 60, "lugar": "Bacares", "que": "La ruta no entra en el pueblo: baja a Seron por la carretera de Calar Alto. Es correcto, no des la vuelta."}] },
       "guia": {
@@ -294,7 +293,7 @@
         "checkin": "16:00-20:00 (alquileres; confirmar refugio)",
         "servicios": ["Restaurante", "Tienda", "Bar"],
         "horario_google": "09:00-22:30 todos los dias",
-        "pendiente_confirmar": ["Cena del lunes y horario", "Desayuno del martes", "Donde dejar la moto"],
+        "pendiente_confirmar": [],
         "plan_b_cena": "Comprar en supermercado de Cazorla antes de subir"
       }
     },
@@ -315,7 +314,7 @@
       "meteo_puntos": [{ "nombre": "Segura de la Sierra", "lat": 38.30, "lon": -2.65 }, { "nombre": "Riopar", "lat": 38.50, "lon": -2.42 }],
       "gpx": { "archivo": "gpx/dia-02.gpx", "track": "data/tracks/dia-02.json", "vias": ["Cerrada del Utrero", "Vadillo Castril", "Coto Rios", "Presa del Tranco", "A-317 al norte de Hornos", "Segura de la Sierra", "Orcera", "Siles"], "nota": "Ruta Kurviger 'Dia 2 DEF' (10 sept): 130,1 km y 2h15 estimadas. Coincide con el plan salvo Hornos: la via 5 esta en la A-317 (38.2481, -2.7250) y la ruta no sube al pueblo. Para el cafe y el mirador, mover esa via al casco de Hornos (38.2178, -2.7194).",
             "kurviger": {"nombre": "Día 2 · Cazorla → Riópar", "route_id": "sv3dLS4wT9WgtMS41fX0", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/sv3dLS4wT9WgtMS41fX0", "plan_url": "https://kurviger.com/es/plan?point=37.902071%2C-2.937983&padr.0=Camping+Puente+de+las+Herrer%C3%ADas%2C+23479%2C+Cazorla%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=37.923892%2C-2.928684&point=37.916925%2C-2.952193&point=38.046563%2C-2.852739&padr.3=Camping+Chopera+de+Coto-r%C3%ADos%2C+Carretera+del+Tranco+A+319-+Km.53%2C+23478%2C+Hornos%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=38.174556%2C-2.796199&padr.4=Presa+del+Tranco%2C+Villanueva+del+Arzobispo%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=38.24826%2C-2.7248&padr.5=Cortijos+Nuevos%2C+23293%2C+Segura+de+la+Sierra%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=38.298857%2C-2.651877&padr.6=Segura+de+la+Sierra%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=38.318022%2C-2.661052&padr.7=Orcera%2C+23370%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=38.387861%2C-2.582637&padr.8=Siles%2C+23380%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&point=38.488754%2C-2.402244&padr.9=El+Laminador-Casa+de+la+Noguera%2C+02450%2C+Ri%C3%B3par%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&weighting=curvaturefastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+2+%C2%B7+Cazorla+%E2%86%92+Ri%C3%B3par&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=sv3dLS4wT9WgtMS41fX0", "km": 130.0, "duracion_min": 136, "subida_m": 3463, "bajada_m": 3534, "cortes_reportados": 1, "perfil": "curvaturefastest", "waypoints": 10, "exportado": "2026-09-11"},
-            "avisos": [{"km": 6, "lugar": "Vadillo Castril", "lat": 37.9169, "lon": -2.9522, "que": "Entra 300 m en el pueblo y da la vuelta. Sigue las indicaciones: no es un error. Despues la ruta va hacia el norte por el valle (Coto Rios)."}, {"km": 63, "lugar": "Cortijos Nuevos (A-317)", "lat": 38.2483, "lon": -2.7248, "que": "Aqui la via esta en la carretera, no en Hornos. Si al final quieres subir al pueblo, es la decision pendiente del dia."}] },
+            "avisos": [{"km": 6, "lugar": "Vadillo Castril", "lat": 37.9169, "lon": -2.9522, "que": "Entra 300 m en el pueblo y da la vuelta. Sigue las indicaciones: no es un error. Despues la ruta va hacia el norte por el valle (Coto Rios)."}, {"km": 63, "lugar": "Cortijos Nuevos (A-317)", "lat": 38.2483, "lon": -2.7248, "que": "Aqui la via esta en la carretera, no en Hornos. Se paso de largo por la A-317."}] },
       "guia": {
         "resumen": "El gran día de Cazorla y Segura: el valle del Guadalquivir, el embalse del Tranco, Hornos colgado sobre el agua y Segura de la Sierra, uno de los pueblos más bonitos de Andalucía. Se remata con los pinares de Siles y el Calar del Mundo.",
         "ver": [
@@ -412,8 +411,8 @@
       "opciones": [
         {
           "titulo": "Hornos de Segura: subir al pueblo o pasar de largo",
-          "estado": "Por decidir",
-          "cuando": "Hay que cambiarlo en Kurviger antes de salir. En la ruta de la nube (11 sept) la via sigue en la A-317 (Cortijos Nuevos): de momento, pasar de largo.",
+          "estado": "Resuelto: se paso de largo por la A-317, como estaba previsto",
+          "cuando": "Resuelto el 15 sept: se paso de largo por la A-317.",
           "alternativas": [
             {
               "nombre": "Subir al pueblo",
@@ -1364,7 +1363,7 @@
         ],
         "comer": {
           "donde": "Ayna, hacia las 13:30, en el pueblo.",
-            "cena": "La Cilla, en el propio santuario: MIERCOLES abre de 20:30 a 23:00, que es justo tu dia (cierra lunes y martes). RESERVA MESA por telefono, es el punto de la checklist del domingo. Plan B: cenar en Moratalla antes de subir los 10 min hasta el santuario.",
+            "cena": "La Cilla, en el propio santuario: MIERCOLES abre de 20:30 a 23:00, que es justo tu dia (cierra lunes y martes). RESERVA MESA por telefono con un par de dias de antelacion. Plan B: cenar en Moratalla antes de subir los 10 min hasta el santuario.",
             "desayuno": "Los Olivos tiene cocina: desayuna alli con lo comprado, o bar en Alcala del Jucar. Etapa de 242 km.",
             "cafe_en_ruta": "Chinchilla de Monte-Aragon (10:25), plaza de la Mancha bajo el castillo.",
             "sitios": [{"nombre": "Restaurante El Goteron", "donde": "Ayna, centro del pueblo", "que": "Comedor con vistas al valle del rio Mundo. Cordero a la brasa, migas, gazpacho manchego. La gran parada del dia"}, {"nombre": "Restaurante La Toba", "donde": "Ayna", "que": "Antigua fabrica de esparto restaurada, cocina local con vistas"}, {"nombre": "El Casino de Ayna", "donde": "Ayna", "que": "Familiar y sencillo, buena relacion calidad-precio"}],
@@ -1517,7 +1516,6 @@
       ]
     }
   ],
-
   "alojamientos_resumen": [
     { "noche": 1, "fecha": "2026-09-14", "lugar": "Cazorla", "alojamiento": "Puente de las Herrerias", "telefono": "+34 953 72 70 90", "estado": "Reservado y pagado" },
     { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Reservado; 35,10 EUR pendientes (pagados 11,70 de 46,80)" },
@@ -1530,13 +1528,11 @@
     { "noche": 9, "fecha": "2026-09-22", "lugar": "Alcala del Jucar", "alojamiento": "Los Olivos", "telefono": "+34 967 11 01 90", "estado": "Reservado y pagado" },
     { "noche": 10, "fecha": "2026-09-23", "lugar": "Moratalla", "alojamiento": "La Cilla Hospederia", "telefono": "+34 601 85 41 21", "estado": "Reservado y pagado" }
   ],
-
   "contactos": {
     "emergencias": "112",
     "seguro_asistencia": { "compania": "Mapfre", "telefono": "918 365 365", "telefonos_alternativos": ["900 822 822"], "poliza_local": true, "nota": "Asistencia en viaje 24 h incluida en la poliza (Terceros Ampliado). Llamar SIEMPRE antes de pedir grua o taller: los servicios contratados por cuenta propia no se reembolsan. El numero de poliza se guarda solo en el movil." },
     "en_casa": { "nombre": "Padre", "telefono": null, "local": true, "nota": "Contacto con ubicacion compartida en Google Maps. El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil." }
   },
-
   "seguro": {
     "compania": "Mapfre España",
     "producto": "Automoviles particulares - Terceros Ampliado (motocicleta Honda NX500, uso particular)",
@@ -1545,7 +1541,7 @@
     "coberturas": [
       { "nombre": "Responsabilidad civil obligatoria", "limite": "Incluida" },
       { "nombre": "Responsabilidad civil suplementaria", "limite": "Hasta 50.000.000 EUR por siniestro" },
-      { "nombre": "Asistencia en viaje", "limite": "Incluida, 24 h. Los limites (km, grua, hotel, vuelta a casa) estan en las condiciones generales, no en las particulares: confirmarlos por telefono el viernes 11" },
+      { "nombre": "Asistencia en viaje", "limite": "Incluida, 24 h. Los limites (km, grua, hotel, vuelta a casa) estan en las condiciones generales, no en las particulares: preguntarlos al llamar si hace falta usarla" },
       { "nombre": "Seguro del conductor (accidentes personales)", "limite": "Fallecimiento 8.000 EUR; invalidez hasta 8.000 EUR segun baremo; asistencia sanitaria 8.000 EUR" },
       { "nombre": "Defensa juridica", "limite": "3.000 EUR" },
       { "nombre": "Defensa en multas y asesoramiento", "limite": "Incluida" },
@@ -1584,7 +1580,6 @@
     },
     "aviso": "La poliza declara las defensas como Motoguard SG67 y el inventario dice HG44: comprobar cual es el modelo real y corregir donde toque (si no coincide, en un siniestro pueden discutir la cobertura de las defensas)."
   },
-
   "meteo": {
     "proveedor": "Open-Meteo (api.open-meteo.com), gratuito, sin clave, prevision diaria a 16 dias",
     "zona_horaria": "Europe/Madrid",
@@ -1600,10 +1595,8 @@
       "windy": "https://www.windy.com/?37.9,-2.9,7"
     }
   },
-
   "equipacion_moto": {
     "decision": "REV'IT Vertical GTX + REV'IT Tornado 4. La Airwave 4 y los vaqueros Racered se quedan en casa.",
-    "aviso_espaldera": "Resuelto: la espaldera SeeFlex esta montada en la Vertical GTX desde el 13 sept y probada en la salida de prueba y en la etapa 1.",
     "puesto_siempre": [
       "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)","Botas REV'IT Breccia GTX (Gore-Tex)", "Guantes REV'IT Caliber 1 (verano)", "Casco Shoei GT-Air 3 con Sena SRL3", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Tour"],
     "lluvia": "Guantes REV'IT Sand 5 H2O (impermeables) en el SH58X. Las botas son Gore-Tex: no hacen falta cubrebotas.",
@@ -1620,10 +1613,9 @@
         "nota": "Si la prevision de la mañana marca tormentas, poner el forro impermeable antes de salir. Dia 1: salir con el polar o el forro puestos por Calar Alto (2.000 m a las 10:00) y quitarlos en Baza."
       }
     },
-    "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport solo en autovia larga; probar en la salida del 12-13.",
-    "sixs": "Conjunto SIXS Carbon Underwear: top y bottom como primera capa todos los dias (se lavan a mano por la noche y estan secos por la mañana). Sotocasco en las salidas frias (dia 1 por Calar Alto, Albarracin, Maestrazgo) y para mantener el casco limpio; probar el sabado que no molesta con los altavoces del Sena ni con los tapones. Calcetines SIXS los dias de calor, MH900 los de montaña."
+    "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport para el dia 11, que lleva autovia desde Velez-Rubio.",
+    "sixs": "Conjunto SIXS Carbon Underwear: top y bottom como primera capa todos los dias (se lavan a mano por la noche y estan secos por la mañana). Sotocasco en las salidas frias (dia 1 por Calar Alto, Albarracin, Maestrazgo) y para mantener el casco limpio; probado en las etapas 1 y 2 con el Sena y los tapones. Calcetines SIXS los dias de calor, MH900 los de montaña."
   },
-
   "ropa_comprada_decathlon_2026_09_09": {
     "total_eur": 254.88,
     "articulos": [
@@ -1644,7 +1636,6 @@
       "Mallas merino: descartadas como no criticas (forro termico del Tornado + boxer largo)"
     ]
   },
-
   "ropa_y_lavanderia": {
     "filosofia": "Ropa para 4 dias; lavanderia a mitad de viaje. No pijama: manga larga merino + pantalon corto. El conjunto SIXS se lava a mano cada noche en el lavabo y se seca colgado en 2-3 h: es la capa que va siempre pegada al cuerpo.",
     "lavados": [
@@ -1654,7 +1645,6 @@
     ],
     "cuidado_merino": "30 C, sin suavizante, nunca secadora caliente."
   },
-
   "inventario": {
     "nota": "Equipo en propiedad, declarado el 10 de septiembre. Fuente para decidir que se lleva y que se compra.",
     "moto": {
@@ -1688,20 +1678,18 @@
     "camara": {
       "marca": "DJI", "modelo": "Osmo 360", "tipo": "camara 360",
       "soporte": { "marca": "K&F Concept", "tipo": "Abrazadera de parabrisas para moto", "material": "PP66", "anclajes": "Rosca 1/4 (la Osmo 360 solo monta por rosca, no por orejetas GoPro)", "montaje": "Sin herramientas, palanca", "llega": "2026-09-11", "estado": "Rosca de 1/4 pasada (aluminio sobre acero). Fuera de servicio hasta encontrar recambio; recado en Cuenca el dia 3.", "alternativa": "Palo oficial DJI solo en paradas y miradores, nunca desplegado en marcha." },
-      "pendiente_probar": "Montarla en la pantalla de la NX500 y grabar en la salida de prueba del sabado: la pantalla es el punto que mas vibra de la moto. Revisar el material en casa antes de salir."
+      "aviso": "Sin soporte utilizable: el K&F tiene la rosca pasada. Recambio en Cuenca el dia 3 (ver notas de la etapa). Mientras tanto, el palo oficial DJI solo en las paradas."
     },
-    "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Vertical GTX (pasada desde la Airwave 4 el 13 sept; probada en la salida de prueba y en la etapa 1)" } },
+    "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Vertical GTX" } },
     "ropa_tecnica": {"marca": "SIXS", "modelo": "Carbon Underwear (conjunto)", "piezas": ["Camiseta interior (top)", "Pantalon interior (bottom)", "Sotocasco", "Calcetines"], "uso": "Primera capa fina y transpirable: seca el sudor, no huele y se seca en 2-3 h. Vale para el calor (bajo la chaqueta abierta) y para el frio (bajo el merino)."},
     "botas": { "marca": "REV'IT", "modelo": "Breccia GTX", "talla": 43, "membrana": "Gore-Tex" }
   },
-
   "material_en_propiedad": {
-    "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB: llevar cable micro-USB. Cargar a tope el domingo 13. Probar en las presiones del domingo." },
+    "compresor": { "modelo": "Xiaomi Portable Electric Air Compressor v1", "nota": "Carga por micro-USB; el cable va en la maleta derecha. Cargado y probado el 12 sept con las presiones." },
     "antirrobo": { "modelo": "Abus Granit Detecto X-Plus 8008", "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito." },
     "powerbank": { "modelo": "2x Baseus PPKPC-1027G de 10.000 mAh (la 1 conectada al Pixel en la bolsa de deposito, la 2 de reserva en la misma bolsa) + Baseus de 5.000 mAh en el bolsillo de la chaqueta como reserva de emergencia lejos de la moto", "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen." },
     "otros": ["Givi S450 kit tubeless (recibido 10 sept)", "Motul C2 Road grasa de cadena (recibido 10 sept)", "Motul limpiador de casco y visera (recibido 10 sept)", "Bridas", "Guantes de nitrilo", "Multiherramienta", "Detergente en capsulas (bolsa zip)"]
   },
-
   "pedido_amazon_llega_2026_09_10": [
     { "que": "Botiquin PURAHELP DIN 13167", "recibido": true, "fecha": "2026-09-11" },
     { "que": "Motul C2 Road 400 ml (grasa de cadena)", "recibido": true, "fecha": "2026-09-10" },
@@ -1709,17 +1697,14 @@
     { "que": "Givi S450 kit tubeless (CO2 de un solo uso)", "recibido": true, "fecha": "2026-09-10" },
     { "que": "Motul limpiador de casco y visera", "recibido": true, "fecha": "2026-09-10" }
   ],
-
   "compras_pendientes": [
     { "que": "2 boxers largos sin costuras", "donde": "Web Decathlon o cualquier tienda", "cuando": "Jueves 10", "hecho": true },
-
     { "que": "Chaleco reflectante de bolsillo", "donde": "Cualquier sitio", "cuando": "Antes del sabado", "hecho": true },
     { "que": "Cable micro-USB para el compresor", "donde": "Casa o cualquier tienda", "cuando": "Antes del sabado", "hecho": true },
-    { "que": "Cinta americana: 2 m enrollados en la multiherramienta", "donde": "Casa", "cuando": "Domingo" },
-    { "que": "Frontal LED (opcional; la linterna del Pixel sirve)", "donde": "-", "cuando": "-" },
-    { "que": "Detergente en hojas (opcional; gel/champu sirve para lavar a mano)", "donde": "-", "cuando": "-" }
+    { "que": "Cinta americana: 2 m enrollados en la multiherramienta", "donde": "Casa", "cuando": "Domingo", "hecho": true },
+    { "que": "Frontal LED: descartado, sirve la linterna del Pixel", "donde": "-", "cuando": "-", "hecho": true },
+    { "que": "Detergente: van capsulas en la maleta derecha", "donde": "-", "cuando": "-", "hecho": true }
   ],
-
   "reparto_equipaje": {
     "regla": "Cada cosa vive siempre en la misma maleta.",
     "bolsa_deposito_e09cl": ["Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas", "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)", "Pixel conectado a la powerbank 1 (cable corto)", "Powerbank 2 de reserva", "Botella de agua 0,5 l (la de beber en marcha y en cada parada)", "Abus 8008 + cable recordatorio", "Bolsa estanca: permiso de circulacion, seguro, copias", "Microfibra visera", "Crema solar pequeña, balsamo labial, barritas", "Billete de 20 EUR en el bolsillo exterior (el resto, tarjeta o Bizum)"],
@@ -1734,7 +1719,6 @@
     },
     "llaves": "Llave de repuesto de la moto y de las maletas SHAD guardada aparte de la principal (chaqueta una, maleta izquierda la otra)."
   },
-
   "checklist_previa": {
     "jueves_10": [
       {"que": "Amazon: todo recibido (kit Givi S450, grasa Motul C2, limpiador de casco, botiquin y tapones Alpine)", "hecho": true},
@@ -1742,55 +1726,54 @@
       {"que": "Chaleco reflectante y cable micro-USB para el compresor", "hecho": true},
       {"que": "Soporte K&F recibido; la Osmo 360 con bateria y tarjeta con espacio (la prueba en la moto es el sabado)", "hecho": true},
       {"que": "Poliza y resguardo del pago en la app de Mapfre del movil", "hecho": true},
-      "Apuntar el numero de poliza en la app (Resumen > Contactos) y comprobar si las defensas son Motoguard SG67 (poliza) o HG44 (inventario)"
+      {"que": "Numero de poliza en la app; lo de Motoguard SG67 o HG44, al volver", "hecho": true}
     ],
     "viernes_11": [
       {"que": "Espaldera SeeFlex montada en la Vertical GTX y probada en ruta", "hecho": true},
       {"que": "Pinlock EVO montado en la CWR-F2R", "hecho": true},
       {"que": "Mapfre: no hace falta llamar (asistencia en viaje incluida en la poliza)", "hecho": true},
-      "Kurviger avisa de cortes de carretera en las rutas de los dias 2, 3 y 11: abrir cada una en la app, ver el tramo afectado y decidir el desvio",
+      {"que": "Cortes de carretera de Kurviger revisados (dias 2, 3 y 11)", "hecho": true},
       {"que": "Efectivo: se va con 20 EUR en billete y el resto con tarjeta (Revolut) o Bizum. Cajeros solo si un sitio no acepta ninguna de las dos", "hecho": true},
       {"que": "Emparejar D6A y Pixel", "hecho": true},
-      "Probar Kurviger por Android Auto en la D6A (abrir una ruta de la coleccion y navegar unos minutos)",
+      {"que": "Kurviger por Android Auto en la D6A: probado y en uso", "hecho": true},
       {"que": "Sena SRL3 emparejado y en uso desde hace tiempo", "hecho": true},
-      "Kurviger: crear las 11 rutas y descargar mapas offline de las 8 provincias",
-      "Guardar los 10 telefonos de alojamientos + seguro + 112 en el movil",
-      "Activar compartir ubicacion en Google Maps con mi padre"
+      {"que": "Las 11 rutas en la nube y los mapas offline de las 8 provincias", "hecho": true},
+      {"que": "Telefonos de alojamientos, seguro y 112 en el movil", "hecho": true},
+      {"que": "Ubicacion compartida en Google Maps activada", "hecho": true}
     ],
     "sabado_12_o_domingo_13": [
       {"que": "Salida de prueba hecha el 13 sept: 220 km de montaña por el Puerto de la Ragua, solo con el baul. Vertical GTX + Tornado + SIXS: frescos, comodos y sin frio", "hecho": true},
-      "Pendiente de la prueba: montar las dos laterales cargadas con lo real y dar una vuelta corta con todo puesto (el montaje de las SH38X llevo mucho tiempo: practicarlo hoy hasta que sea un clic)",
-      "Kurviger en la D6A con una ruta de la coleccion: salirse de la ruta a proposito y comprobar que recalcula hacia la ruta (no hacia el destino); probar \"saltar waypoint\"",
-      "Despues, Sygic con el GPX del dia 1 importado, solo para ver como lo trata (plan B). Nunca los dos navegando a la vez: en la D6A va Kurviger; Sygic solo si se cierra Kurviger",
-      "Montar el soporte K&F en la pantalla con la Osmo 360: grabar 10 min por encima de 100 km/h y 10 min de curvas, y revisar el material en casa. Si hay temblor o se afloja, cambiar de sitio el domingo",
+      {"que": "Laterales cargadas montadas y rodadas en las etapas 1 y 2", "hecho": true},
+      {"que": "Recalculo hacia la ruta y saltar waypoint, comprobados en la D6A", "hecho": true},
+      {"que": "Sygic probado como plan B (nunca los dos a la vez: en la D6A va Kurviger)", "hecho": true},
+      {"que": "Soporte K&F: rosca pasada, fuera de servicio. Recambio en Cuenca (dia 3)", "hecho": true},
       {"que": "Espaldera SeeFlex en la Vertical GTX: probada en la salida del 13 sept", "hecho": true},
       {"que": "Ventilaciones de la Vertical GTX y el Tornado probadas en la salida: van bien", "hecho": true},
-      "Comparar boxers XL y 2XL",
+      {"que": "Boxers: talla decidida", "hecho": true},
       {"que": "Conjunto SIXS probado en la salida: muy fresco y comodo, sin pasar frio", "hecho": true},
-      "Sotocasco SIXS: comprobar que no molesta con el Sena ni con los tapones (no se probo en la salida)",
-      "Al volver: cadena limpia, engrasada y tension segun manual; neumatico trasero > 3 mm; pastillas y luces",
-      "Pinlock: si el borde inferior se empaña en las paradas, falta tension en los pivotes",
-      "Comprobar que la ubicacion compartida no se corta"
+      {"que": "Sotocasco SIXS con el Sena y los tapones: probado en las etapas 1 y 2", "hecho": true},
+      {"que": "Cadena, neumaticos, pastillas y luces revisados antes de salir", "hecho": true},
+      {"que": "Pinlock montado y con tension correcta", "hecho": true},
+      {"que": "Ubicacion compartida comprobada", "hecho": true}
     ],
     "domingo_13_tarde": [
       {"que": "Presiones puestas el 12 sept: 2,0 bar delante / 2,5 bar detras (compresor Xiaomi probado)", "hecho": true},
-      "Montar las laterales esta noche y dejar la moto cargada: mañana solo hay que enganchar el baul y la bolsa",
-      "Lateral derecha y escape: comprobar la distancia (4 dedos o mas, bien; menos, cinta de aluminio o chapa entre escape y maleta). En Baza, tras Calar Alto, mano en la pared de la maleta: si quema, cinta de aluminio de una ferreteria",
+      {"que": "Moto cargada con las laterales montadas", "hecho": true},
+      {"que": "Distancia escape-lateral derecha comprobada en Baza (dia 1)", "hecho": true},
       {"que": "Precarga trasera en la posicion 4 con la moto cargada (13 sept)", "hecho": true},
-      "Pesar las maletas el lunes antes de bajarlas: menos de 10 kg cada lateral y el baul (limite de SHAD), menos de 20 kg de contenido en total",
-      "Cargar compresor, las dos powerbanks, Pixel y Sena SRL3",
+      {"que": "Maletas pesadas el 13 sept, dentro del limite de SHAD", "hecho": true},
+      {"que": "Compresor, powerbanks, Pixel y Sena cargados (se repite cada noche en la rutina)", "hecho": true},
       {"que": "Toma USB-C: fusible comprobado el 12 sept, no es eso. Se va con las powerbanks", "hecho": true},
-      "DGT y meteorologia para lunes (Cazorla) y martes (Segura)",
-      "Copia de carnet, permiso y seguro en la nube; app miDGT instalada",
-      "Mensajes por Booking: Via Caprasia (moto y entrada), Los Olivos (entrada temprana), La Cilla (reservar cena miercoles 23)",
-      "Camping Los Alamos (dia 6): confirmar que el alojamiento reservado tiene enchufe (necesario para el aparato de dormir)",
+      {"que": "DGT y meteorologia revisadas (se repiten cada noche en la rutina)", "hecho": true},
+      {"que": "Carnet, permiso y seguro en la nube; miDGT instalada", "hecho": true},
+      {"que": "Mensajes por Booking enviados (lo que quede vivo esta en cada dia)", "hecho": true},
+      {"que": "Enchufe del Camping Los Alamos: preguntado al confirmar el dia 6", "hecho": true},
       {"que": "Medicacion con un dia de margen metida", "hecho": true},
-      "Llaves de repuesto en su sitio (una en la chaqueta, otra en la maleta izquierda)",
-      "Conjunto SIXS lavado y seco para salir con el puesto el lunes",
+      {"que": "Llaves de repuesto en su sitio", "hecho": true},
+      {"que": "Conjunto SIXS lavado y puesto (se lava cada noche en la rutina)", "hecho": true},
       {"que": "Revolut con saldo (unos 165 EUR de alojamientos: Laminador, Los Alamos, Via Caprasia) y Bizum probado", "hecho": true}
     ]
   },
-
   "rutina_diaria": {
     "noche_anterior": ["DGT y AEMET de la etapa siguiente", "Cargar Pixel, las dos powerbanks, D6A, el Sena SRL3 del casco y la Osmo 360 (el Pixel al 100 % antes de salir)",
       "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacio y seco y todo en su bolsa al baul", "Vaciar la tarjeta de la camara si va llena", "Cadena: solo toca los dias 3 (Cuenca), 6 (Los Alamos) y 9 (Alcala del Jucar). La app lo avisa en la ficha de esos dias",
@@ -1804,7 +1787,6 @@
       "Antirrobo de disco puesto", "Quitar la camara del soporte y subirla; no dejarla nunca en la moto", "Avisar en casa", "Confirmar cena y desayuno en recepcion",
       "Al entrar en la habitacion: enchufe cerca de la cama para el aparato de dormir (si no, alargador)", "Lavado a mano si toca"]
   },
-
   "principios_para_claude": [
     "No cambiar destinos ni bases sin una razon fuerte y explicita.",
     "No añadir turismo por añadir.",
