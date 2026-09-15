@@ -442,6 +442,10 @@ table.horario tr.past td b { color: var(--muted); font-weight: 500; }
 table.horario tr.now td { background: var(--accent-soft); font-weight: 600; }
 table.horario tr.now td:first-child { border-left: 3px solid var(--accent); padding-left: 6px; }
 
+.note.mant { background: var(--mount-soft); }
+.note.mant details { margin: 6px 0 0; }
+.note.mant summary { font-size: .9rem; }
+
 /* Diario y gastos */
 .diario textarea { width: 100%; min-height: 72px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; resize: vertical; margin-top: 6px; }
 .diario textarea:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }

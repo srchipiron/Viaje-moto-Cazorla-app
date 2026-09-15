@@ -840,6 +840,13 @@ function cortesAviso(e) {
   const k = e.gpx && e.gpx.kurviger; if (!k || !k.cortes_reportados) return '';
   return `<div class="note"><b>🚧 Kurviger informa de ${k.cortes_reportados} corte${k.cortes_reportados > 1 ? 's' : ''} de carretera en esta ruta</b> (datos del ${fmtFecha(k.exportado)}). Abrir la ruta en Kurviger antes de salir, ver el tramo afectado y decidir el desvío.</div>`;
 }
+/* Mantenimiento del dia (engrase de cadena y demas), destacado en la ficha. */
+function mantenimientoAviso(e) {
+  const m = e.mantenimiento; if (!m) return '';
+  return `<div class="note mant"><b>🔧 Al llegar hoy:</b> ${esc(m.que)}
+    ${m.km_acumulados ? `<br><small>${m.km_acumulados.toLocaleString('es-ES')} km acumulados del viaje${m.desde_la_ultima && m.desde_la_ultima !== m.km_acumulados ? ` · ${m.desde_la_ultima.toLocaleString('es-ES')} km desde la última vez` : ''}</small>` : ''}
+    ${m.detalle ? `<details><summary>Cómo se hace</summary><p>${esc(m.detalle)}</p></details>` : ''}</div>`;
+}
 function gasolinaAviso(e) {
   const aut = D.data.proyecto.moto.autonomia_orientativa_km; if (!aut) return '';
   if (e.km_aprox >= aut * 0.6) return `<div class="note"><b>⛽ Repostar en ruta:</b> ${e.km_aprox} km con ${aut} km de autonomía orientativa. Llenar en el primer pueblo grande, no apurar.</div>`;
@@ -924,7 +931,7 @@ function etapaCard(e, opts = {}) {
       <span class="badge ${t.cls}">${t.icon} ${t.label}</span>
     </div>
     <div class="etapa-ruta">${esc(e.origen)} → ${esc(e.destino)}</div>
-    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${e.gpx && e.gpx.avisos && e.gpx.avisos.length ? `<span title="Puntos de despiste">🔁 ${e.gpx.avisos.length}</span>` : ''}${(e.opciones || []).some((o) => /pendiente|decidir/i.test(o.estado)) ? '<span class="wx-inline" title="Hay una decisión pendiente">⚖️ Por decidir</span>' : ''}${etapaWx(e)}</div>
+    <div class="stats"><b>${e.km_aprox} km</b><span><b>${esc(e.tiempo_real_aprox)}</b> reales</span><span>Dif. ${dots(e.dificultad)}</span><span>Fatiga ${dots(e.fatiga)}</span><span>${esc(e.perfil_kurviger)}</span>${e.gpx ? '<span title="Ruta GPX disponible">🗺️ GPX</span>' : ''}${e.gpx && e.gpx.avisos && e.gpx.avisos.length ? `<span title="Puntos de despiste">🔁 ${e.gpx.avisos.length}</span>` : ''}${e.mantenimiento ? '<span title="Mantenimiento al llegar">🔧 Cadena</span>' : ''}${(e.opciones || []).some((o) => /pendiente|decidir/i.test(o.estado)) ? '<span class="wx-inline" title="Hay una decisión pendiente">⚖️ Por decidir</span>' : ''}${etapaWx(e)}</div>
   </a>`;
 }
 
@@ -1081,6 +1088,7 @@ function viewEtapas(arg) {
       ${proximaParada(e)}
       ${e.objetivo ? `<div class="note info"><b>Objetivo:</b> ${esc(e.objetivo)}</div>` : ''}
       ${cortesAviso(e)}
+      ${mantenimientoAviso(e)}
       ${gasolinaAviso(e)}
       ${e.equipaje ? `<div class="note"><b>Equipaje:</b> ${esc(e.equipaje)}</div>` : ''}
       ${e.opcional ? `<div class="note mount"><b>Opcional:</b> ${esc(e.opcional)}</div>` : ''}
@@ -1256,7 +1264,7 @@ function viewGuia() {
 
     ${d.seguro ? `<h2>Seguro</h2><div class="card">${seguroHTML(true)}</div>` : ''}
     <h2>La moto</h2>
-    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}${m.precarga_trasera ? `<dt>Precarga trasera</dt><dd><b>Posición ${esc(m.precarga_trasera.recomendada)}</b> (de serie: ${esc(m.precarga_trasera.de_serie)}; ${m.precarga_trasera.posiciones} posiciones)<br><small>${esc(m.precarga_trasera.como)} ${esc(m.precarga_trasera.por_que)}</small></dd>` : ''}${m.carga ? `<dt>Carga</dt><dd>Estimación del viaje: <b>${m.carga.estimacion_viaje.total_kg} kg</b> (piloto ${m.carga.estimacion_viaje.piloto_kg} + equipación ${m.carga.estimacion_viaje.equipacion_puesta_kg} + maletas ${m.carga.estimacion_viaje.maletas_vacias_kg} + contenido ${m.carga.estimacion_viaje.contenido_kg}) frente a unos ${m.carga.carga_maxima_kg_aprox} kg de carga máxima.<br><small>${esc(m.carga.regla)} ${esc(m.carga.carga_maxima_nota)}</small></dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
+    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}${m.cadena ? `<dt>Cadena</dt><dd><b>${esc(m.cadena.dias_previstos)}</b><br><small>${esc(m.cadena.cuando)} ${esc(m.cadena.regla_extra)}<br>Producto: ${esc(m.cadena.producto)}<br>Tensión: ${esc(m.cadena.tension)}</small></dd>` : ''}${m.precarga_trasera ? `<dt>Precarga trasera</dt><dd><b>Posición ${esc(m.precarga_trasera.recomendada)}</b> (de serie: ${esc(m.precarga_trasera.de_serie)}; ${m.precarga_trasera.posiciones} posiciones)<br><small>${esc(m.precarga_trasera.como)} ${esc(m.precarga_trasera.por_que)}</small></dd>` : ''}${m.carga ? `<dt>Carga</dt><dd>Estimación del viaje: <b>${m.carga.estimacion_viaje.total_kg} kg</b> (piloto ${m.carga.estimacion_viaje.piloto_kg} + equipación ${m.carga.estimacion_viaje.equipacion_puesta_kg} + maletas ${m.carga.estimacion_viaje.maletas_vacias_kg} + contenido ${m.carga.estimacion_viaje.contenido_kg}) frente a unos ${m.carga.carga_maxima_kg_aprox} kg de carga máxima.<br><small>${esc(m.carga.regla)} ${esc(m.carga.carga_maxima_nota)}</small></dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
 
     <h2>Vacaciones</h2>
     <div class="card"><p>Del ${fmtFecha(d.proyecto.vacaciones.inicio)} al ${fmtFecha(d.proyecto.vacaciones.fin)}. Margen tras el viaje: ${d.proyecto.vacaciones.margen_tras_el_viaje_dias} días.</p></div>
