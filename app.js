@@ -7,6 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
+const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sin almacenamiento */ } }
@@ -512,8 +513,9 @@ function sketchHover(ev) {
   const cum = trackCum(t); const kmMax = t.perfil[t.perfil.length - 1][0];
   profileShowKm(t, cum[best] / cum[cum.length - 1] * kmMax);
 }
-document.addEventListener('pointermove', (ev) => { profileHover(ev); sketchHover(ev); });
-document.addEventListener('pointerleave', (ev) => { profileHover(ev); sketchHover(ev); }, true);
+function hover(ev) { if (!ev.target || typeof ev.target.closest !== 'function') return; profileHover(ev); sketchHover(ev); }
+document.addEventListener('pointermove', hover);
+document.addEventListener('pointerleave', hover, true);
 
 /* Nombre de un punto de ruta: salida, destino, o el nombre de e.gpx.vias por orden de via. */
 function viaNombre(e, v, idxVia) {
@@ -725,6 +727,19 @@ function posHTML(e) {
     <p class="row"><a class="btn small" href="${link}" target="_blank" rel="noopener">Ver en Google Maps ↗</a><button class="btn small" type="button" data-compartir-pos>📤 Enviar mi posición</button>${e && !window.VIAJE_DATA && t ? `<button class="btn small" type="button" data-mapa="${e.dia}">🗺️ En el mapa</button>` : ''}</p>
     <p class="row">${cercaLinks(pos)}</p></div>`;
 }
+/* En la vista Ahora, la posicion se actualiza sola mientras este abierta. */
+let POS_WATCH = null;
+function seguirPos(on) {
+  if (on) {
+    if (!D.pos && !D.posLoading && !D.posError) localizar();
+    if (POS_WATCH != null || !navigator.geolocation) return;
+    POS_WATCH = navigator.geolocation.watchPosition((p) => {
+      const antes = D.pos;
+      D.pos = { lat: p.coords.latitude, lon: p.coords.longitude, acc: p.coords.accuracy, t: Date.now() };
+      if (!antes || havKm([antes.lat, antes.lon], [D.pos.lat, D.pos.lon]) > 0.3) rerender('ahora');
+    }, () => { /* se mantiene la ultima posicion */ }, { enableHighAccuracy: true, maximumAge: 20000, timeout: 20000 });
+  } else if (POS_WATCH != null) { navigator.geolocation.clearWatch(POS_WATCH); POS_WATCH = null; }
+}
 async function localizar(dia) {
   D.posError = null; D.posLoading = true; rerender();
   try { await geoGet(); } catch (err) { D.posError = err.message; }
@@ -739,6 +754,174 @@ async function compartirPos() {
   window.open(`https://wa.me/${tel ? (tel.length === 9 ? '34' + tel : tel) : ''}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
 }
 function localizarBtn(e) { return `<button class="btn" type="button" data-localizar="${e ? e.dia : ''}"${D.posLoading ? ' disabled' : ''}>📍 ${D.posLoading ? 'Buscando GPS…' : 'Dónde estoy'}</button>`; }
+
+/* ---------- "Ahora": cruza posicion + hora + plan y dice que toca ---------- */
+/* Km del track donde cae un punto, y a que distancia esta de la ruta. */
+function kmDe(t, lat, lon) {
+  const cum = trackCum(t); let best = 0, bd = Infinity;
+  t.track.forEach((p, i) => { const d = havKm([lat, lon], p); if (d < bd) { bd = d; best = i; } });
+  return { km: cum[best] / cum[cum.length - 1] * t.km, dist: bd };
+}
+/* Puntos de la guia con su km estimado: por coordenadas, o por el nombre de la via. */
+function poisConKm(e, t) {
+  const vias = t.vias.filter((v) => v.tipo !== 'shaping');
+  const nombreKm = {};
+  vias.forEach((v, i) => { nombreKm[norm(viaNombre(e, v, i))] = v.km; });
+  return ((e.guia && e.guia.ver) || []).map((p) => {
+    if (p.lat != null) { const r = kmDe(t, p.lat, p.lon); return { ...p, km: r.km, lejos: r.dist }; }
+    const n = norm(p.lugar);
+    const hit = Object.keys(nombreKm).find((k) => k.includes(n) || n.includes(k));
+    return hit ? { ...p, km: nombreKm[hit] } : { ...p, km: null };
+  }).filter((p) => p.km != null).sort((a, b) => a.km - b.km);
+}
+function repostajes() { return lsGet(REPOSTAJES_KEY, []); }
+function marcarRepostaje(dia, km) {
+  const r = repostajes(); r.push({ t: Date.now(), dia: +dia || null, km: km == null ? null : Math.round(km), lat: D.pos && +D.pos.lat.toFixed(4), lon: D.pos && +D.pos.lon.toFixed(4) });
+  lsSet(REPOSTAJES_KEY, r); toast('Repostaje anotado');
+}
+/* Km recorridos del viaje hasta el punto actual. */
+function kmViaje(dia, kmEtapa) {
+  let acc = 0;
+  D.data.itinerario.forEach((e) => { if (e.dia < dia) acc += e.km_aprox; });
+  return acc + (kmEtapa || 0);
+}
+function kmDesdeRepostaje(dia, kmEtapa) {
+  const r = repostajes(); if (!r.length) return null;
+  const u = r[r.length - 1]; if (u.dia == null || u.km == null) return null;
+  const actual = kmViaje(dia, kmEtapa), antes = kmViaje(u.dia, u.km);
+  return actual >= antes ? actual - antes : null;
+}
+/* Elige la etapa en la que estas: la de hoy si estas cerca, si no la mas cercana de las cargadas. */
+function etapaActual(pos) {
+  const it = D.data.itinerario, today = todayISO();
+  const hoy = it.find((d) => d.fecha === today);
+  const con = (e) => { const st = D.tracks[e.dia]; return st && st.status === 'ok' ? st.data : null; };
+  if (hoy) { const t = con(hoy); if (t) { const r = posEnEtapa(t, pos); if (r.dist < 3) return { e: hoy, t, r, esHoy: true }; } }
+  let best = null;
+  it.forEach((e) => { const t = con(e); if (!t) return; const r = posEnEtapa(t, pos); if (!best || r.dist < best.r.dist) best = { e, t, r, esHoy: hoy && e.dia === hoy.dia }; });
+  return best;
+}
+function fmtRel(min) { return min < 60 ? `${Math.round(min)} min` : `${Math.floor(min / 60)} h ${String(Math.round(min % 60)).padStart(2, '0')} min`; }
+
+function viewAhora() {
+  const it = D.data.itinerario, today = todayISO(), now = ahoraMin();
+  const hoy = it.find((d) => d.fecha === today);
+  it.forEach((e) => { if (!hoy || e.dia === hoy.dia) trackLoad(e); });
+  if (hoy) meteoHorasFetch(hoy, false);
+  const cabecera = `<div class="card accent"><div class="card-title"><h1>Ahora</h1><span class="muted"><small>${fmtHM(now)}${hoy ? ` · día ${hoy.dia} de ${it.length}` : ''}</small></span></div>
+    <p class="row">${localizarBtn(hoy)}${D.pos ? '<button class="btn small" type="button" data-compartir-pos>📤 Enviar posición</button>' : ''}</p>
+    ${D.posError ? `<div class="note"><b>Sin posición:</b> ${esc(D.posError)}. Los consejos de abajo van solo por la hora.</div>` : ''}</div>`;
+  if (!hoy) {
+    const n = daysBetween(today, D.data.proyecto.fechas.inicio);
+    return cabecera + (n > 0
+      ? `<div class="card warn"><h3>Faltan ${n} día${n === 1 ? '' : 's'}</h3><p>Aún no ha empezado el viaje. <a href="#/listas">Checklist previa</a> · <a href="#/etapas/1">Día 1</a></p></div>`
+      : `<div class="card ok"><h3>Viaje terminado</h3><p><a href="#/resumen">Resumen</a></p></div>`);
+  }
+  const ctx = D.pos ? etapaActual(D.pos) : null;
+  const e = (ctx && ctx.e) || hoy, t = ctx && ctx.t, r = ctx && ctx.r;
+  const cards = [];
+  /* 1. Fuera de ruta */
+  if (r && r.dist > 1) cards.push({ p: 0, html: `<div class="card warn"><div class="card-title"><h3>⚠️ Fuera de la ruta</h3><span class="badge warn">${r.dist.toFixed(1)} km</span></div>
+    <p>Estás a ${r.dist.toFixed(1)} km del track del día ${e.dia}. Si no es a propósito, deja que Kurviger recalcule <b>hacia la ruta</b>, o vuelve al último punto: ${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'el destino'}.</p>
+    <p class="row">${kurvigerBtns(e)}</p></div>` });
+  /* 2. Progreso y llegada estimada */
+  if (r) {
+    const ritmo = t.duracion_min ? t.duracion_min / t.km : 1.1;
+    const min = r.restante * ritmo;
+    const llega = now + min;
+    const tarde = e.llegada_prevista && horaMin(e.llegada_prevista) != null && llega > horaMin(e.llegada_prevista) + 45;
+    cards.push({ p: 1, html: `<div class="card"><div class="card-title"><h3>Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</h3><span class="badge">${r.pct} %</span></div>
+      <div class="bar"><i style="width:${r.pct}%"></i></div>
+      <div class="statgrid">
+        <div class="stat"><small>Llevas</small><b>${fmtKm(Math.round(r.km))}</b><small>de ${fmtKm(t.km)}</small></div>
+        <div class="stat"><small>Quedan</small><b>${fmtKm(Math.round(r.restante))}</b><small>≈ ${fmtRel(min)} de moto</small></div>
+        <div class="stat"><small>Llegada estimada</small><b class="${tarde ? 'txt-hot' : ''}">${fmtHM(Math.min(24 * 60 - 1, Math.round(llega)))}</b><small>plan: ${esc(e.llegada_prevista.split(' ')[0])}</small></div>
+        <div class="stat"><small>Siguiente punto</small><b>${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'Destino'}</b><small>${r.next ? `en ${fmtKm(Math.round((r.next.km - r.km) * 10) / 10)}` : ''}</small></div>
+      </div>
+      ${tarde ? `<div class="note">Vas con retraso sobre el plan. Recortables de hoy: ${esc((D.data.proyecto.reglas_globales.recortables_sin_cambiar_alojamiento || []).join(' · '))}.</div>` : ''}</div>` });
+  }
+  /* 2b. Sin GPS: al menos el plan del dia */
+  if (!r) {
+    const m = meteoDia(e), v = m.verdict ? VERDICT[m.verdict] : null;
+    cards.push({ p: 1, html: `<div class="card"><div class="card-title"><h3>Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</h3><span class="badge">${fmtKm(e.km_aprox)}</span></div>
+      <div class="statgrid">
+        <div class="stat"><small>Salida</small><b>${esc(e.salida.split(' ')[0])}</b><small>${esc(e.tiempo_real_aprox)} de moto</small></div>
+        <div class="stat"><small>Llegada prevista</small><b>${esc(e.llegada_prevista.split(' ')[0])}</b><small>${esc(e.destino)}</small></div>
+        ${v ? `<div class="stat"><small>Previsión</small><b>${esc(v.txt)}</b><small>${m.tmin != null ? `${Math.round(m.tmin)}° / ${Math.round(m.tmax)}°` : ''}</small></div>` : ''}
+        <div class="stat"><small>Puntos de despiste</small><b>${((e.gpx && e.gpx.avisos) || []).length}</b><small><a href="#/etapas/${e.dia}">ver la etapa</a></small></div>
+      </div>
+      ${D.pos ? '' : '<div class="note">Dale a <b>Dónde estoy</b> para que cuente kilómetros, gasolina, despistes y llegada estimada.</div>'}
+      ${alojamientoMini(e)}</div>` });
+  }
+  /* 3. Despistes que vienen */
+  if (r) {
+    const av = ((e.gpx && e.gpx.avisos) || []).filter((a) => a.km > r.km - 1 && a.km < r.km + 25).sort((a, b) => a.km - b.km)[0];
+    if (av) cards.push({ p: 2, html: `<div class="card"><div class="card-title"><h3>🔁 ${esc(av.lugar)}</h3><span class="badge">${av.km <= r.km ? 'aquí' : `en ${fmtKm(Math.round((av.km - r.km) * 10) / 10)}`}</span></div><p>${esc(av.que)}</p></div>` });
+  }
+  /* 4. Comer, segun la hora */
+  const c = e.guia && e.guia.comer;
+  if (c) {
+    let tipo = null;
+    if (now < 10 * 60) tipo = { k: 'desayuno', t: '☕ Desayuno', v: c.desayuno };
+    else if (now < 12 * 60) tipo = { k: 'cafe', t: '🥐 Café en ruta', v: c.cafe_en_ruta };
+    else if (now < 16 * 60) tipo = { k: 'comida', t: '🍽️ Hora de comer', v: c.donde };
+    else tipo = { k: 'cena', t: now < 19 * 60 ? '🌙 Esta noche, para cenar' : '🌙 Cena', v: c.cena };
+    if (tipo && tipo.v) {
+      const sitios = tipo.k === 'comida' ? (c.sitios || []) : [];
+      cards.push({ p: tipo.k === 'comida' ? 2.5 : 4, html: `<div class="card"><h3>${tipo.t}</h3><p>${esc(tipo.v)}</p>
+        ${sitios.length ? `<div class="sitios">${sitios.map((s) => `<div class="sitio"><div class="sitio-head"><b>${esc(s.nombre)}</b><a href="${mapsSearch(`${s.nombre} ${s.donde}`)}" target="_blank" rel="noopener">mapa ↗</a></div><small>${esc(s.donde)}</small><p>${esc(s.que)}</p></div>`).join('')}</div>` : ''}
+        ${c.aviso_horarios && tipo.k === 'comida' ? `<div class="note">${esc(c.aviso_horarios)}</div>` : ''}</div>` });
+    }
+  }
+  /* 5. Que ver, lo que viene por delante */
+  if (r && t) {
+    const pois = poisConKm(e, t).filter((p) => p.km > r.km - 0.5 && p.km < r.km + 40).slice(0, 3);
+    if (pois.length) cards.push({ p: 3, html: `<div class="card"><h3>Por delante</h3><div class="poi-list">${pois.map((v) => `<div class="poi${v.opcional ? ' opcional' : ''}">
+        <span class="poi-icon" aria-hidden="true">${POI_ICON[v.tipo] || '📍'}</span>
+        <div class="poi-body"><div class="poi-head"><b>${esc(v.lugar)}</b><span class="badge">${v.km <= r.km ? 'aquí' : `en ${fmtKm(Math.round((v.km - r.km) * 10) / 10)}`}</span>${v.tiempo ? `<span class="poi-time">⏱ ${esc(v.tiempo)}</span>` : ''}</div>
+        <p>${esc(v.que)}</p><small><a href="${v.lat != null ? mapsSearch(`${v.lat},${v.lon}`) : mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small></div></div>`).join('')}</div></div>` });
+  }
+  /* 6. Horario del dia */
+  if (e.horario_orientativo) {
+    const idx = e.horario_orientativo.findIndex((h) => { const m = horaMin(h.hora); return m != null && m >= now; });
+    const h = idx >= 0 ? e.horario_orientativo[idx] : null;
+    if (h) { const m = horaMin(h.hora);
+      cards.push({ p: 3.5, html: `<div class="note info"><b>Según el horario:</b> ${esc(h.lugar)} a las ${esc(h.hora)}${m > now ? ` (en ${fmtRel(m - now)})` : ''} · ${esc(h.que)}</div>` }); }
+    else { const u = e.horario_orientativo[e.horario_orientativo.length - 1];
+      cards.push({ p: 3.5, html: `<div class="note info"><b>Horario del día cumplido.</b> Última parada prevista: ${esc(u.lugar)} (${esc(u.hora)}).</div>` }); }
+  }
+  /* 7. Tiempo */
+  const hd = D.meteoH.byDay[e.dia];
+  if (hd && hd.fecha === e.fecha) { const tt = tormentaTarde(hd);
+    if (tt && tt.h * 60 > now - 60) cards.push({ p: 1.5, html: `<div class="card warn"><h3>⛈️ Lluvia o tormenta</h3><p>Desde las ${tt.h}:00 en ${esc(tt.punto)}, ${tt.pp} % de probabilidad.${tt.h * 60 > now ? ` Faltan ${fmtRel(tt.h * 60 - now)}.` : ''} Forro impermeable puesto y guantes Sand 5 del baúl a mano.</p><p><a class="btn small" href="#/tiempo">Ver el tiempo</a></p></div>` }); }
+  /* 8. Gasolina */
+  const aut = D.data.proyecto.moto.autonomia_orientativa_km;
+  if (r) {
+    const desde = kmDesdeRepostaje(e.dia, r.km);
+    const usado = desde == null ? kmViaje(e.dia, r.km) : desde;
+    const pct = Math.min(100, Math.round(usado / aut * 100));
+    const alerta = usado > aut * 0.5;
+    cards.push({ p: alerta ? 2.2 : 6, html: `<div class="card${alerta ? ' warn' : ''}"><div class="card-title"><h3>⛽ Gasolina</h3><span class="badge${alerta ? ' warn' : ''}">${usado.toLocaleString('es-ES', { maximumFractionDigits: 0 })} km</span></div>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <p><small>${desde == null ? 'Desde la salida de Almería (marca un repostaje para que cuente bien)' : 'Desde el último repostaje'} · autonomía orientativa ${aut} km.</small></p>
+      ${alerta ? `<div class="note">${esc(D.data.proyecto.moto.regla_gasolina)}</div>` : ''}
+      <p class="row"><button class="btn small" type="button" data-repostaje="${e.dia}|${Math.round(r.km)}">⛽ He repostado aquí</button>${D.pos ? `<a class="btn small" href="https://www.google.com/maps/search/gasolinera/@${D.pos.lat},${D.pos.lon},13z" target="_blank" rel="noopener">Gasolineras cerca ↗</a>` : ''}</p></div>` });
+  }
+  /* 9. Al llegar */
+  const llegada = D.data.rutina_diaria.llegada || [];
+  if (r && r.restante < 25) cards.push({ p: 2.8, html: `<div class="card ok"><h3>Llegando: al bajarte</h3>${list(llegada)}${e.mantenimiento ? `<div class="note mant"><b>🔧 Hoy toca:</b> ${esc(e.mantenimiento.que)}</div>` : ''}${alojamientoMini(e)}</div>` });
+  else if (e.mantenimiento) cards.push({ p: 5, html: `<div class="note mant"><b>🔧 Al llegar hoy:</b> ${esc(e.mantenimiento.que)}</div>` });
+  /* 10. Posicion y accesos rapidos */
+  if (D.pos) cards.push({ p: 7, html: posHTML(e) });
+  cards.push({ p: 8, html: `<div class="card"><h3>Accesos rápidos</h3><p class="row">${kurvigerBtns(e)}<a class="btn" href="#/etapas/${e.dia}">Ficha del día</a>${avisarBtn(e)}<a class="btn" href="#/sos">🆘 Emergencia</a></p></div>` });
+  return cabecera + cards.sort((a, b) => a.p - b.p).map((x) => x.html).join('');
+}
+function alojamientoMini(e) {
+  const a = e.alojamiento, n = D.data.alojamientos_resumen.find((x) => x.fecha === e.fecha);
+  if (!a && !n) return '';
+  const nombre = a ? a.nombre : n.alojamiento, tel = a ? a.telefono : n.telefono;
+  return `<p><b>${esc(nombre)}</b>${a ? `<br><small>${esc(a.direccion)}</small>` : ''}<br>📞 ${telLink(tel)}${a ? ` · <a href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar ↗</a>` : ''}</p>`;
+}
 
 /* Panel de emergencia: llamadas grandes, posicion y datos del seguro. */
 function viewSos() {
@@ -953,7 +1136,7 @@ function viewResumen() {
       <p><a class="btn small" href="#/listas">Checklist previa</a> <a class="btn small" href="#/etapas/1">Ver día 1</a></p></div>`;
   } else if (hoy) {
     const manana = it.find((d) => d.dia === hoy.dia + 1);
-    estado = `<h2>Hoy</h2>${progresoViaje(hoy)}${etapaCard(hoy, { hoy: true })}${proximaParada(hoy)}<p class="row">${avisarBtn(hoy)}<a class="btn" href="#/etapas/${hoy.dia}">Ficha del día</a></p>${manana ? `<h4>Mañana</h4>${etapaCard(manana)}` : ''}`;
+    estado = `<p class="row"><a class="btn primary big" href="#/ahora">📍 Ahora: dónde estoy y qué toca</a></p><h2>Hoy</h2>${progresoViaje(hoy)}${etapaCard(hoy, { hoy: true })}${proximaParada(hoy)}<p class="row">${avisarBtn(hoy)}<a class="btn" href="#/etapas/${hoy.dia}">Ficha del día</a></p>${manana ? `<h4>Mañana</h4>${etapaCard(manana)}` : ''}`;
   } else if (today > p.fechas.fin) {
     estado = `<div class="card ok"><h3>Viaje terminado</h3><p>Hasta el ${fmtFecha(p.vacaciones.fin)} quedan ${p.vacaciones.margen_tras_el_viaje_dias} días de margen de vacaciones.</p></div>`;
   }
@@ -1337,7 +1520,7 @@ function viewHoja() {
 }
 
 /* ---------- router y arranque ---------- */
-const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja, sos: viewSos, buscar: viewBuscar };
+const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja, sos: viewSos, buscar: viewBuscar, ahora: viewAhora };
 
 function route() {
   const h = location.hash.replace(/^#\/?/, '');
@@ -1350,11 +1533,12 @@ function render() {
   const { view, arg } = route();
   document.getElementById('view').innerHTML = VIEWS[view](arg);
   document.querySelectorAll('.tabbar a').forEach((a) => a.classList.toggle('active', a.dataset.view === view));
-  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía', hoja: 'Hoja de ruta', sos: 'Emergencia', buscar: 'Buscar' };
+  const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía', hoja: 'Hoja de ruta', sos: 'Emergencia', buscar: 'Buscar', ahora: 'Ahora' };
   document.body.classList.toggle('vista-sos', view === 'sos');
   document.title = `${titles[view]} · Viaje NX500`;
   window.scrollTo(0, 0);
   const q = document.getElementById('buscar-q'); if (q && !arg) { try { q.focus(); } catch (e) { /* nada */ } }
+  if (view === 'ahora') seguirPos(true); else seguirPos(false);
   const chip = document.querySelector('.chip.active');
   if (chip && chip.scrollIntoView) { try { chip.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { /* navegadores antiguos */ } }
 }
@@ -1403,6 +1587,7 @@ document.addEventListener('click', (ev) => {
   const lz = ev.target.closest('[data-localizar]'); if (lz) { localizar(lz.dataset.localizar); return; }
   if (ev.target.closest('[data-compartir-pos]')) { compartirPos(); return; }
   const gb = ev.target.closest('[data-gasto-borrar]'); if (gb) { const [dia, i] = gb.dataset.gastoBorrar.split('|'); const all = lsGet(GASTOS_KEY, {}); (all[dia] || []).splice(+i, 1); lsSet(GASTOS_KEY, all); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
+  const rp = ev.target.closest('[data-repostaje]'); if (rp) { const [dia, km] = rp.dataset.repostaje.split('|'); marcarRepostaje(dia, +km); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   if (ev.target.closest('#tema')) { ciclarTema(); return; }
   if (ev.target.closest('#backup-copiar')) { backupCopiar(); return; }
   if (ev.target.closest('#backup-restaurar')) { backupRestaurar(); return; }
@@ -1432,7 +1617,7 @@ function aplicarTema() {
 function ciclarTema() { const t = lsGet(TEMA_KEY, 'auto'); lsSet(TEMA_KEY, TEMAS[(TEMAS.indexOf(t) + 1) % TEMAS.length]); aplicarTema(); }
 
 /* Copia de seguridad de todo lo local (portapapeles). */
-const LOCAL_KEYS = [STORAGE_KEY, CONTACTOS_KEY, DIARIO_KEY, GASTOS_KEY, TEMA_KEY, 'viaje-nx500-ios-hint'];
+const LOCAL_KEYS = [STORAGE_KEY, CONTACTOS_KEY, DIARIO_KEY, GASTOS_KEY, TEMA_KEY, REPOSTAJES_KEY, 'viaje-nx500-ios-hint'];
 async function backupCopiar() {
   const out = { app: 'viaje-nx500', fecha: new Date().toISOString(), datos: {} };
   LOCAL_KEYS.forEach((k) => { const v = localStorage.getItem(k); if (v != null) out.datos[k] = v; });

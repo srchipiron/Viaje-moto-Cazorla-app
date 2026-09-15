@@ -39,11 +39,17 @@ function mockMeteo(url) {
   const ctx = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES' });
   await ctx.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
   await ctx.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
+  async function nuevoCtx(geo) {
+    const c = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES', permissions: ['geolocation'], geolocation: geo });
+    await c.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
+    await c.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
+    return c;
+  }
   const page = await ctx.newPage();
   const errors = [];
   page.on('pageerror', (e) => errors.push('pageerror: ' + e.message));
   page.on('console', (m) => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
-  const views = ['#/resumen', '#/etapas', '#/etapas/1', '#/etapas/4', '#/etapas/7', '#/etapas/11', '#/noches', '#/tiempo', '#/listas', '#/equipaje', '#/guia', '#/hoja', '#/sos', '#/buscar', '#/buscar/albarrac'];
+  const views = ['#/resumen', '#/etapas', '#/etapas/1', '#/etapas/4', '#/etapas/7', '#/etapas/11', '#/noches', '#/tiempo', '#/listas', '#/equipaje', '#/guia', '#/hoja', '#/sos', '#/ahora', '#/buscar', '#/buscar/albarrac'];
   for (const v of views) {
     await page.goto(BASE + v, { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !document.querySelector('.loading'));
@@ -117,6 +123,40 @@ function mockMeteo(url) {
   const posTxt = await page.locator('.card.pos').innerText().catch(() => '');
   console.log('posicion:', posTxt.replace(/\n/g, ' | ').slice(0, 160));
   if (!/sobre la ruta/i.test(posTxt) || !/alcaraz/i.test(posTxt)) errors.push('posicion en etapa incorrecta (esperaba sobre la ruta y siguiente punto Alcaraz)');
+  // vista "Ahora": cruza posicion + hora + plan (GPS a mitad de la etapa de hoy).
+  // Contexto nuevo: el navegador cachea la ultima posicion y devolveria la del bloque anterior.
+  const ctxA = await nuevoCtx({ latitude: 38.2485, longitude: -2.72549, accuracy: 15 });
+  const pageA = await ctxA.newPage();
+  pageA.on('pageerror', (e) => errors.push('ahora pageerror: ' + e.message));
+  await pageA.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
+  await pageA.waitForFunction(() => !document.querySelector('.loading'));
+  await pageA.click('[data-localizar]');
+  await pageA.waitForFunction(() => /de moto/i.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('ahora: sin tarjeta de progreso'));
+  const ahora = await pageA.locator('#view').innerText();
+  console.log('ahora:', ahora.replace(/\n+/g, ' | ').slice(0, 260));
+  if (!/quedan/i.test(ahora)) errors.push('ahora: sin kilometros restantes');
+  if (!/llegada estimada/i.test(ahora)) errors.push('ahora: sin llegada estimada');
+  if (!/gasolina/i.test(ahora)) errors.push('ahora: sin tarjeta de gasolina');
+  if (/fuera de la ruta/i.test(ahora)) errors.push('ahora: se cree fuera de la ruta estando encima');
+  // anotar un repostaje y comprobar que el contador se reinicia
+  await pageA.click('[data-repostaje]');
+  await pageA.waitForTimeout(300);
+  const trasRepostar = await pageA.locator('#view').innerText();
+  const km0 = (trasRepostar.match(/gasolina\s*([\d.,]+) km/i) || [])[1];
+  console.log('km desde repostaje:', km0);
+  if (km0 && parseFloat(km0.replace('.', '')) > 5) errors.push(`ahora: el repostaje no reinicia el contador (${km0})`);
+  await pageA.screenshot({ path: process.env.SHOT_DIR ? process.env.SHOT_DIR + '/ahora.png' : '/dev/null', fullPage: true }).catch(() => null);
+  await ctxA.close();
+  // fuera de ruta: unos 30 km al oeste del track de hoy
+  const ctxF = await nuevoCtx({ latitude: 38.2485, longitude: -3.1, accuracy: 15 });
+  const pageF = await ctxF.newPage();
+  await pageF.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
+  await pageF.click('[data-localizar]');
+  await pageF.waitForSelector('.card.warn', { timeout: 10000 }).catch(() => errors.push('ahora: no avisa estando fuera de la ruta'));
+  const fuera = await pageF.locator('#view').innerText();
+  if (!/fuera de la ruta/i.test(fuera)) errors.push('ahora: no detecta que esta fuera de la ruta');
+  console.log('fuera de ruta:', /fuera de la ruta/i.test(fuera));
+  await ctxF.close();
   await page.goto(BASE + '#/sos', { waitUntil: 'networkidle' });
   const sos = await page.locator('#view').innerText(); if (!/112/.test(sos) || !/Emergencia/.test(sos)) errors.push('vista SOS incompleta');
   await page.screenshot({ path: process.env.SHOT_DIR ? process.env.SHOT_DIR + '/sos.png' : '/dev/null' }).catch(() => null);

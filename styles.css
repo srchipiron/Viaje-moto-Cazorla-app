@@ -126,6 +126,7 @@ button { font: inherit; }
 .brand-text small { color: rgba(255,255,255,.75); font-size: .78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .topbar-btns { display: flex; align-items: center; gap: 6px; }
 .tb-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; height: 36px; padding: 0 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff; text-decoration: none; font: 700 .85rem system-ui, sans-serif; cursor: pointer; }
+.tb-ahora { background: rgba(255,255,255,.18); }
 .tb-sos { background: #c2410c; border-color: #c2410c; letter-spacing: .04em; }
 .net { font-size: .8rem; color: #4ec27f; margin-left: 4px; }
 .net.off { color: #f0a94a; }
@@ -201,6 +202,7 @@ dd { margin: 0; }
 }
 .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn.small { padding: 5px 10px; font-size: .82rem; }
+.btn.big { padding: 13px 18px; font-size: 1rem; font-weight: 600; width: 100%; text-align: center; }
 .btn.danger { color: var(--hot); }
 .tel { font-weight: 600; white-space: nowrap; }
 .note { background: var(--warn-soft); border-radius: 10px; padding: 8px 12px; margin: 8px 0; font-size: .93rem; }

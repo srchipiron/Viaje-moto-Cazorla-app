@@ -41,8 +41,15 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 ## Estructura de la app
 
 `app.js` es un único fichero con router por hash (`#/resumen`, `#/etapas/N`, `#/noches`,
-`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`). Cada vista es
+`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`). Cada vista es
 una función `viewX()` que devuelve HTML; `render()` lo pinta. Estado en `D`. Persistencia en
-`localStorage` (marcas de listas, contactos y datos locales, diario, gastos, tema, caché de meteo).
+`localStorage` (marcas de listas, contactos y datos locales, diario, gastos, repostajes, tema,
+caché de meteo).
+
+`#/ahora` es el motor de contexto: `etapaActual()` elige la etapa (la de hoy si estás a menos de
+3 km de su track, si no la más cercana de las cargadas), `posEnEtapa()` da km, distancia a la ruta
+y siguiente punto, y `viewAhora()` monta tarjetas con una prioridad numérica y las ordena. Para
+añadir un consejo nuevo basta con empujar `{ p, html }` a `cards`. `seguirPos()` mantiene un
+`watchPosition` mientras la vista está abierta y repinta cuando te mueves más de 300 m.
 Todo lo que sea dato personal (teléfonos, póliza, matrícula, médico) va en localStorage, nunca en el JSON. Meteo: Open-Meteo, sin clave.
 Mapa: Leaflet vendorizado en `vendor/leaflet`, tiles de OpenStreetMap.
