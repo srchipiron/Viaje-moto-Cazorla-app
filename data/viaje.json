@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 72,
+    "revision": 73,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Inventario: la espaldera SeeFlex figura ya montada en la Vertical GTX",
       "La moto tiene caballete central: engrasar la cadena sobre el, mucho mas comodo. Espaldera confirmada en la Vertical GTX (aviso resuelto)",
       "Cena de cada noche en la guia: donde, con los tres avisos criticos (lunes 14 comprar en Cazorla antes de subir al camping, domingo 20 solo el camping, lunes 21 comprar la cena en Utiel para Villargordo) y la reserva del miercoles en La Cilla",
       "Guia de comer y desayunar por etapa: donde desayunar, donde parar a cafe y 2-3 sitios concretos para comer en cada dia, con aviso de horarios y dias de cierre. Fuentes: rankings y guias locales de sept 2026; confirmar por telefono los dias justos",
@@ -1669,7 +1670,7 @@
       "soporte": { "marca": "K&F Concept", "tipo": "Abrazadera de parabrisas para moto", "material": "PP66", "anclajes": "Rosca 1/4 y horquilla tipo GoPro", "montaje": "Sin herramientas, palanca", "llega": "2026-09-11" },
       "pendiente_probar": "Montarla en la pantalla de la NX500 y grabar en la salida de prueba del sabado: la pantalla es el punto que mas vibra de la moto. Revisar el material en casa antes de salir."
     },
-    "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Airwave 4" } },
+    "protecciones": { "espaldera": { "marca": "REV'IT", "modelo": "SeeFlex", "montada_en": "REV'IT Vertical GTX (pasada desde la Airwave 4 el 13 sept; probada en la salida de prueba y en la etapa 1)" } },
     "ropa_tecnica": {"marca": "SIXS", "modelo": "Carbon Underwear (conjunto)", "piezas": ["Camiseta interior (top)", "Pantalon interior (bottom)", "Sotocasco", "Calcetines"], "uso": "Primera capa fina y transpirable: seca el sudor, no huele y se seca en 2-3 h. Vale para el calor (bajo la chaqueta abierta) y para el frio (bajo el merino)."},
     "botas": { "marca": "REV'IT", "modelo": "Breccia GTX", "talla": 43, "membrana": "Gore-Tex" }
   },
