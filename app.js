@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.10.3';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.10.4';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
@@ -1210,7 +1210,23 @@ function viewResumen() {
     ${gastosResumenHTML()}
     <h2>Filosofía</h2>
     <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}${p.piloto.peso_kg ? ` · ${p.piloto.edad} años, ${p.piloto.altura_m.toLocaleString('es-ES', { minimumFractionDigits: 2 })} m, ${p.piloto.peso_kg} kg` : ''}</p>${list(p.piloto.filosofia)}${p.piloto.nota_fisica ? `<div class="note info">${esc(p.piloto.nota_fisica)} <a href="#/guia">Ajustes de la moto</a></div>` : ''}</div>
-    <p class="version">${planVersion()} · <a href="#" id="reload-plan">Actualizar plan</a> · <a href="#" id="imprimir">Imprimir</a></p>`;
+    <p class="version">${planVersion()} · <a href="#" id="reload-plan">Forzar actualización</a> · <a href="#" id="imprimir">Imprimir</a></p>`;
+}
+/* Descarta la copia guardada del codigo y lo vuelve a bajar todo. Las teselas del mapa se conservan.
+   Es el martillo para cuando el movil se queda con una version vieja de la app. */
+async function forzarActualizacion() {
+  toast('Bajando la version nueva…', 8000);
+  try {
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.filter((k) => !/tiles/.test(k)).map((k) => caches.delete(k)));
+    }
+    if (navigator.serviceWorker) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map((r) => r.unregister()));
+    }
+  } catch (err) { /* da igual: recargamos igualmente */ }
+  location.reload();
 }
 /* Instalacion como app: Android/Chrome muestra el boton; iOS recibe la indicacion. */
 function esStandalone() { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }
@@ -1356,7 +1372,9 @@ function viewListas() {
   amazon.forEach((x) => { if (x.recibido) D.checks[`amazon|${x.que}`] = true; });
   const amazonRec = amazon.filter((x) => x.recibido).length;
   const faltaKeys = d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => `falta|${t}`);
-  const confDias = d.itinerario.filter((e) => e.alojamiento && e.alojamiento.pendiente_confirmar);
+  // Confirmar cosas de una noche que ya has pasado no sirve de nada: solo las de hoy en adelante.
+  const hoyISO = todayISO();
+  const confDias = d.itinerario.filter((e) => e.alojamiento && e.alojamiento.pendiente_confirmar && e.fecha >= hoyISO);
   const confKeys = confDias.flatMap(confirmarKeys);
   const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(contacto(k)));
   const contactoKeys = contactosPend.map((k) => `contacto|${k}`);
@@ -1365,28 +1383,33 @@ function viewListas() {
   const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
   const cargaKeys = Object.keys(MALETAS).flatMap((k) => rep[k].map((t) => `carga|${k}|${t}`));
   const carga = Object.keys(MALETAS).map((k) => { const keys = rep[k].map((t) => `carga|${k}|${t}`); return `<details class="card"${keys.every((x) => D.checks[x]) ? '' : ' open'}><summary>${MALETAS[k]} ${progress(keys)}</summary>${rep[k].map((t) => checkItem(`carga|${k}|${t}`, t)).join('')}</details>`; }).join('');
-  const all = [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys, ...cargaKeys];
-  return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.</small></p></div>
-    <h2>Checklist previa</h2>${previa}
-    <h2>Compras pendientes ${progress(compraKeys)}</h2>
-    <div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, c.hecho ? 'Hecho' : [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>
-    <h2>Pedido Amazon ${progress(amazonKeys)}</h2>
-    <div class="card">${amazonRec < amazon.length ? `<p class="muted"><small>Recibidos ${amazonRec} de ${amazon.length}. Faltan: ${esc(amazon.filter((x) => !x.recibido).map((x) => x.que).join(', '))}.</small></p>` : '<p class="muted"><small>Todo recibido.</small></p>'}${amazon.map((x) => checkItem(`amazon|${x.que}`, x.que, x.recibido ? `Recibido${x.fecha ? ` el ${fmtFecha(x.fecha)}` : ''}` : 'Pendiente de llegar')).join('')}</div>
-    <h2>Ropa: falta ${progress(faltaKeys)}</h2>
-    <div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>
-    ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
-    <div class="card">${contactosPend.map((k) => { const c = contacto(k); const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
-    ${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
-    <div class="card">${nochesPendientes().map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${pg.donde}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}</div>` : ''}
-    <h2>Carga de maletas ${progress(cargaKeys)}</h2>
-    <p class="muted"><small>${esc(rep.regla)} Marca cada cosa al meterla el domingo por la tarde.</small></p>
-    ${carga}
-    <h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
-    ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
-    <h2>Copia de seguridad</h2>
-    <div class="card"><p class="muted"><small>Marcas, teléfono de casa, nº de póliza, matrícula, diario y gastos viven solo en este móvil. Cópialos al portapapeles para pegarlos en otro dispositivo o guardarlos en una nota.</small></p>
-      <p class="row"><button class="btn small" type="button" id="backup-copiar">📋 Copiar copia de seguridad</button><button class="btn small" type="button" id="backup-restaurar">📥 Restaurar desde el portapapeles</button></p></div>
-    <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;
+  /* Durante el viaje, lo de antes de salir estorba: se va al fondo y plegado. */
+  const enViaje = daysBetween(todayISO(), d.proyecto.fechas.inicio) <= 0 && daysBetween(todayISO(), d.proyecto.fechas.fin) >= 0;
+  const previoHTML = `<h2>Checklist previa</h2>${previa}
+<h2>Compras pendientes ${progress(compraKeys)}</h2>
+<div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, c.hecho ? 'Hecho' : [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>
+<h2>Pedido Amazon ${progress(amazonKeys)}</h2>
+<div class="card">${amazonRec < amazon.length ? `<p class="muted"><small>Recibidos ${amazonRec} de ${amazon.length}. Faltan: ${esc(amazon.filter((x) => !x.recibido).map((x) => x.que).join(', '))}.</small></p>` : '<p class="muted"><small>Todo recibido.</small></p>'}${amazon.map((x) => checkItem(`amazon|${x.que}`, x.que, x.recibido ? `Recibido${x.fecha ? ` el ${fmtFecha(x.fecha)}` : ''}` : 'Pendiente de llegar')).join('')}</div>
+<h2>Ropa: falta ${progress(faltaKeys)}</h2>
+<div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>`;
+  const vivoHTML = `${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
+<div class="card">${nochesPendientes().map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${pg.donde}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}</div>` : ''}
+<h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
+${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
+${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
+<div class="card">${contactosPend.map((k) => { const c = contacto(k); const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
+<h2>Carga de maletas ${progress(cargaKeys)}</h2>
+<p class="muted"><small>${esc(rep.regla)} ${enViaje ? 'Repásala cada mañana antes de cerrar las maletas.' : 'Marca cada cosa al meterla el domingo por la tarde.'}</small></p>
+${carga}`;
+  const all = enViaje ? [...pagoKeys, ...confKeys, ...contactoKeys, ...cargaKeys]
+    : [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys, ...cargaKeys];
+  return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.${enViaje ? ' Ya estás en ruta: arriba solo queda lo vivo.' : ''}</small></p></div>
+    ${enViaje ? vivoHTML : previoHTML}
+    ${enViaje ? `<details class="card"><summary>Antes de salir · ya pasado</summary>${previoHTML}</details>` : vivoHTML}
+<h2>Copia de seguridad</h2>
+<div class="card"><p class="muted"><small>Marcas, teléfono de casa, nº de póliza, matrícula, diario y gastos viven solo en este móvil. Cópialos al portapapeles para pegarlos en otro dispositivo o guardarlos en una nota.</small></p>
+  <p class="row"><button class="btn small" type="button" id="backup-copiar">📋 Copiar copia de seguridad</button><button class="btn small" type="button" id="backup-restaurar">📥 Restaurar desde el portapapeles</button></p></div>
+<p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;
 }
 
 /* Inventario de equipo en propiedad. */
@@ -1591,7 +1614,7 @@ document.addEventListener('input', (ev) => {
 });
 
 document.addEventListener('click', (ev) => {
-  if (ev.target.closest('#reload-plan')) { ev.preventDefault(); location.reload(); return; }
+  if (ev.target.closest('#reload-plan')) { ev.preventDefault(); forzarActualizacion(); return; }
   if (ev.target.closest('#meteo-refresh')) { meteoFetch(true); render(); return; }
   const del = ev.target.closest('[data-borrar]');
   if (del) { const f = del.closest('.tel-local'); setContactoLocal(f.dataset.campo === 'poliza' ? `${f.dataset.contacto}:poliza` : f.dataset.campo === 'texto' ? `${f.dataset.contacto}:texto` : f.dataset.contacto, ''); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
@@ -1665,6 +1688,12 @@ function registerSW() {
           document.getElementById('toast-btn').onclick = () => { nw.postMessage('skipWaiting'); };
         }
       });
+    });
+    reg.update().catch(() => null);
+    let ultimoCheck = Date.now();
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState !== 'visible' || Date.now() - ultimoCheck < 60000) return;
+      ultimoCheck = Date.now(); reg.update().catch(() => null);
     });
   }).catch(() => { /* sin SW (p. ej. file://) */ });
   let reloaded = false;
