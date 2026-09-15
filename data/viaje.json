@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 82,
+    "revision": 83,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Laminador (noche 2) pagado del todo el 15 sept: 35,10 EUR en el hostal sobre los 11,70 de Booking. Quedan por pagar Los Alamos (dia 6, unos 65) y Via Caprasia (dia 8, 65)",
       "Repaso del 15 sept con el viaje ya empezado: las 25 tareas de antes de salir y las 3 compras que seguian sin marcar pasan a hechas, las confirmaciones del dia 1 se vacian, la decision de Hornos del dia 2 queda cerrada, el soporte de la camara deja de estar por probar (esta roto) y se quitan las contradicciones del changelog sobre pagos, fusible, maletas y GPX del dia 4",
       "Lo dado por hecho se calla: el aviso de la espaldera desaparece de la vista de equipacion en vez de salir marcado como resuelto. La espaldera sigue en el inventario, montada en la Vertical GTX",
       "La espaldera deja de salir como aviso: un aviso que empieza por Resuelto se pinta en verde. Las dos chaquetas llevan ya la espaldera donde toca (la SeeFlex esta en la Vertical GTX, no en la Airwave)",
@@ -16,7 +17,7 @@
       "La moto tiene caballete central: engrasar la cadena sobre el, mucho mas comodo. Espaldera confirmada en la Vertical GTX (aviso resuelto)",
       "Cena de cada noche en la guia: donde, con los tres avisos criticos (lunes 14 comprar en Cazorla antes de subir al camping, domingo 20 solo el camping, lunes 21 comprar la cena en Utiel para Villargordo) y la reserva del miercoles en La Cilla",
       "Guia de comer y desayunar por etapa: donde desayunar, donde parar a cafe y 2-3 sitios concretos para comer en cada dia, con aviso de horarios y dias de cierre. Fuentes: rankings y guias locales de sept 2026; confirmar por telefono los dias justos",
-      "La Cilla (noche 10) pagada por Booking el 14 sept (56,10 EUR). Quedan por pagar en el sitio: Laminador 35,10, Los Alamos aprox. 65 y Via Caprasia 65",
+      "La Cilla (noche 10) pagada por Booking el 14 sept (56,10 EUR)",
       "Aparato para dormir en el baul, en la rutina de noche y mañana, y comprobacion de enchufe en el camping",
       "Sitios curiosos junto a la ruta añadidos a la guia: Cueva del Agua de Tiscar (1), Charco del Aceite con parada en el horario y Cerrada de Elias (2), Cascada Batida de Calomarde (4), Laguna de Bezas (6), Salinas de Arcos y Cuchillos de Contreras (8), mirador de Embarcaderos (9), Mirador del Diablo de Ayna (10), Cueva de los Letreros (11). Todos comprobados a menos de 1,5 km del track",
       "Sena listo. Aerosoles (Motul C2 y CO2) pasan a la maleta izquierda, lejos del escape; comprobacion de la distancia escape-maleta derecha y prueba de temperatura en Baza",
@@ -434,8 +435,8 @@
         "direccion": "CM-412 km 200, 02450 Riopar (Albacete)",
         "telefono": "+34 967 58 05 44",
         "precio_eur": 46.80,
-        "estado": "Reservado; pagado 11,70 EUR por adelantado, 35,10 EUR pendientes en el alojamiento",
-        "pago": { "total_eur": 46.80, "pagado_eur": 11.70, "pendiente_eur": 35.10, "donde": "En el alojamiento" },
+        "estado": "Pagado del todo (11,70 EUR por Booking + 35,10 EUR en el hostal el 15 sept)",
+        "pago": { "total_eur": 46.80, "pagado_eur": 46.80, "pendiente_eur": 0, "donde": "Pagado en el hostal el 15 sept" },
         "horario_google": "08:30-23:00 todos los dias",
         "pendiente_confirmar": ["Cena del martes", "Desayuno del miercoles y hora", "Donde dejar la moto", "Estado del acceso a los Chorros"],
         "plan_b_cena": "Restaurantes de Riopar a 5 minutos"
@@ -1518,7 +1519,7 @@
   ],
   "alojamientos_resumen": [
     { "noche": 1, "fecha": "2026-09-14", "lugar": "Cazorla", "alojamiento": "Puente de las Herrerias", "telefono": "+34 953 72 70 90", "estado": "Reservado y pagado" },
-    { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Reservado; 35,10 EUR pendientes (pagados 11,70 de 46,80)" },
+    { "noche": 2, "fecha": "2026-09-15", "lugar": "Riopar", "alojamiento": "Hostal El Laminador", "telefono": "+34 967 58 05 44", "estado": "Pagado (46,80 EUR)" },
     { "noche": 3, "fecha": "2026-09-16", "lugar": "Cuenca", "alojamiento": "Hostal Cortes + parking", "telefono": "+34 969 22 04 00", "estado": "Reservado y pagado" },
     { "noche": 4, "fecha": "2026-09-17", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado (134,19 EUR / 2 noches)" },
     { "noche": 5, "fecha": "2026-09-18", "lugar": "Albarracin", "alojamiento": "Hotel Albarracin", "telefono": "+34 978 71 00 11", "estado": "Reservado y pagado" },
