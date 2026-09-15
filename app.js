@@ -801,6 +801,16 @@ function etapaActual(pos) {
   it.forEach((e) => { const t = con(e); if (!t) return; const r = posEnEtapa(t, pos); if (!best || r.dist < best.r.dist) best = { e, t, r, esHoy: hoy && e.dia === hoy.dia }; });
   return best;
 }
+/* Que se puede recortar HOY sin tocar el alojamiento: lo de la lista global que lleve
+   "(dia N)" de este dia, mas los puntos que la guia del dia marca como opcionales. */
+function recortablesDia(e) {
+  const glob = (D.data.proyecto.reglas_globales.recortables_sin_cambiar_alojamiento || [])
+    .filter((x) => new RegExp('\\(d[ií]a ' + e.dia + '\\)', 'i').test(x))
+    .map((x) => x.replace(/\s*\(d[ií]a \d+\)\s*/i, '').trim());
+  const opc = ((e.guia && e.guia.ver) || []).filter((p) => p.opcional)
+    .map((p) => p.lugar + (p.tiempo ? ` (${p.tiempo})` : ''));
+  return [...new Set([...glob, ...opc])];
+}
 function fmtRel(min) { return min < 60 ? `${Math.round(min)} min` : `${Math.floor(min / 60)} h ${String(Math.round(min % 60)).padStart(2, '0')} min`; }
 
 function viewAhora() {
@@ -830,6 +840,7 @@ function viewAhora() {
     const min = r.restante * ritmo;
     const llega = now + min;
     const tarde = e.llegada_prevista && horaMin(e.llegada_prevista) != null && llega > horaMin(e.llegada_prevista) + 45;
+    const rec = tarde ? recortablesDia(e) : [];
     cards.push({ p: 1, html: `<div class="card"><div class="card-title"><h3>Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</h3><span class="badge">${r.pct} %</span></div>
       <div class="bar"><i style="width:${r.pct}%"></i></div>
       <div class="statgrid">
@@ -838,7 +849,7 @@ function viewAhora() {
         <div class="stat"><small>Llegada estimada</small><b class="${tarde ? 'txt-hot' : ''}">${fmtHM(Math.min(24 * 60 - 1, Math.round(llega)))}</b><small>plan: ${esc(e.llegada_prevista.split(' ')[0])}</small></div>
         <div class="stat"><small>Siguiente punto</small><b>${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'Destino'}</b><small>${r.next ? `en ${fmtKm(Math.round((r.next.km - r.km) * 10) / 10)}` : ''}</small></div>
       </div>
-      ${tarde ? `<div class="note">Vas con retraso sobre el plan. Recortables de hoy: ${esc((D.data.proyecto.reglas_globales.recortables_sin_cambiar_alojamiento || []).join(' · '))}.</div>` : ''}</div>` });
+      ${tarde ? `<div class="note">Vas con retraso sobre el plan. ${rec.length ? `Hoy puedes saltarte, sin tocar el alojamiento: ${esc(rec.join(' · '))}.` : 'Hoy no hay paradas opcionales que saltar: acorta las paradas, no alargues la comida y avisa al alojamiento si se hace de noche.'}</div>` : ''}</div>` });
   }
   /* 2b. Sin GPS: al menos el plan del dia */
   if (!r) {
