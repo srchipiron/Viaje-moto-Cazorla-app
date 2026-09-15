@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.10.2';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.10.3';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
@@ -1420,8 +1420,9 @@ function inventarioHTML(inv) {
 function viewEquipaje() {
   const d = D.data, eq = d.equipacion_moto, rep = d.reparto_equipaje, ropa = d.ropa_comprada_decathlon_2026_09_09, lav = d.ropa_y_lavanderia, mat = d.material_en_propiedad;
   const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito E09CL', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
+  const ok = eq.aviso_espaldera ? /^resuelto/i.test(eq.aviso_espaldera) : false;
   return `<h2>Equipación de moto</h2>
-    ${eq.aviso_espaldera ? `<div class="card warn"><div class="card-title"><h3>⚠️ Espaldera</h3><span class="badge warn">Antes de salir</span></div><p>${esc(eq.aviso_espaldera)}</p></div>` : ''}
+    ${eq.aviso_espaldera ? `<div class="card ${ok ? 'ok' : 'warn'}"><div class="card-title"><h3>${ok ? '✅' : '⚠️'} Espaldera</h3><span class="badge ${ok ? 'ok' : 'warn'}">${ok ? 'Resuelto' : 'Antes de salir'}</span></div><p>${esc(eq.aviso_espaldera.replace(/^resuelto:?\s*/i, ''))}</p></div>` : ''}
     <div class="card"><p><b>${esc(eq.decision)}</b></p><h4>Puesto siempre</h4>${list(eq.puesto_siempre)}${eq.lluvia ? `<h4>Si llueve</h4><p>${esc(eq.lluvia)}</p>` : ''}<h4>Tapones</h4><p>${esc(eq.tapones)}</p>${eq.sixs ? `<h4>Primera capa SIXS</h4><p>${esc(eq.sixs)}</p>` : ''}</div>
     <div class="grid">${Object.keys(eq.configuracion_por_tipo_de_dia).map((k) => { const c = eq.configuracion_por_tipo_de_dia[k]; const t = tipoInfo(k); return `<div class="card"><div class="card-title"><h3>${t.icon} ${human(k)}</h3><span class="badge ${t.cls}">Días ${c.dias.join(', ')}</span></div><dl><dt>Pantalón</dt><dd>${esc(c.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(c.chaqueta)}</dd>${c.nota ? `<dt>Nota</dt><dd>${esc(c.nota)}</dd>` : ''}</dl></div>`; }).join('')}</div>
 

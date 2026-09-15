@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 77,
+    "revision": 78,
     "actualizado": "2026-09-09",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "La espaldera deja de salir como aviso: un aviso que empieza por Resuelto se pinta en verde. Las dos chaquetas llevan ya la espaldera donde toca (la SeeFlex esta en la Vertical GTX, no en la Airwave)",
       "Corregido: la Osmo 360 monta por rosca de 1/4, no por orejetas GoPro. El recado de Cuenca pasa a buscar tornillo de 1/4 (tienda de foto o ferreteria antes que Decathlon). La linea de version de la app muestra ahora tambien la version del codigo, para saber si el movil sigue con la copia cacheada",
       "Recado del dia 3 en Cuenca: soporte para la Osmo 360 tras pasarse la rosca del K&F. Que comprar, el arreglo de ferreteria, seis tiendas de Cuenca con telefono y el orden de la tarde (cadena primero, compra mientras reposa)",
       "Calendario de engrase de la cadena: dias 3, 6 y 9 al llegar, con los km acumulados y el procedimiento completo. Aviso destacado en la ficha de esos dias",
@@ -1673,8 +1674,8 @@
       "intercomunicador": { "marca": "Sena", "modelo": "SRL3", "integrado": true }
     },
     "chaquetas": [
-      { "marca": "REV'IT", "modelo": "Vertical GTX", "uso": "touring / 3 estaciones", "forro_termico_desmontable": true, "membrana": "Gore-Tex", "espaldera": false },
-      { "marca": "REV'IT", "modelo": "Airwave 4", "uso": "verano", "espaldera": true }
+      { "marca": "REV'IT", "modelo": "Vertical GTX", "uso": "touring / 3 estaciones", "forro_termico_desmontable": true, "membrana": "Gore-Tex", "espaldera": true },
+      { "marca": "REV'IT", "modelo": "Airwave 4", "uso": "verano", "espaldera": false }
     ],
     "pantalones": [
       { "marca": "REV'IT", "modelo": "Tornado 4", "forro_impermeable_desmontable": true, "forro_termico_desmontable": true },
