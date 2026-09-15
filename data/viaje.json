@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 84,
+    "revision": 86,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Los Chorros del Rio Mundo se vieron el dia 2, de pasada: el dia 3 se salta la ida y vuelta al parking (saltar waypoint en Kurviger). De 279 km y 4h20 a 263 km y 3h55, salida a las 09:30 y llegada a Cuenca sobre las 15:05, con el horario recalculado",
       "La vista Ahora distingue ir de camino de haber llegado: a menos de 1,5 km del destino desaparecen el progreso, el aviso de retraso, los despistes y los puntos por delante, y salen la rutina de la noche y la etapa de mañana",
       "Laminador (noche 2) pagado del todo el 15 sept: 35,10 EUR en el hostal sobre los 11,70 de Booking. Quedan por pagar Los Alamos (dia 6, unos 65) y Via Caprasia (dia 8, 65)",
       "Repaso del 15 sept con el viaje ya empezado: las 25 tareas de antes de salir y las 3 compras que seguian sin marcar pasan a hechas, las confirmaciones del dia 1 se vacian, la decision de Hornos del dia 2 queda cerrada, el soporte de la camara deja de estar por probar (esta roto) y se quitan las contradicciones del changelog sobre pagos, fusible, maletas y GPX del dia 4",
@@ -408,7 +409,8 @@
         "Hornos-Segura es estrecho: hacerlo antes de comer.",
         "Segura de la Sierra se sube y baja por la misma carretera.",
         "Siles-Riopar por CM-3204 y Puerto del Arenal.",
-        "Repostar en Riopar por la tarde o en Alcaraz a primera hora del dia 3."
+        "Repostar en Riopar por la tarde o en Alcaraz a primera hora del dia 3.,
+        "Chorros del Rio Mundo vistos hoy (15 sept), de paso al llegar a Riopar. El dia 3 se salta la ida y vuelta al parking."
       ],
       "opciones": [
         {
@@ -450,23 +452,23 @@
       "tipo": "calor_y_llano",
       "origen": "Hostal El Laminador",
       "destino": "Hostal Cortes (Cuenca)",
-      "km_aprox": 279,
-      "tiempo_real_aprox": "4h20",
+      "km_aprox": 263,
+      "tiempo_real_aprox": "3h55",
       "dificultad": 2,
       "fatiga": 3,
       "perfil_kurviger": "Fast",
-      "salida": "09:00 (a los Chorros)",
-      "llegada_prevista": "16:00",
+      "salida": "09:30",
+      "llegada_prevista": "15:05",
       "meteo_puntos": [{ "nombre": "Alcaraz", "lat": 38.67, "lon": -2.49 }, { "nombre": "Cuenca", "lat": 40.07, "lon": -2.14 }],
       "mantenimiento": {"que": "Engrasar la cadena al llegar al Hostal Cortes, con la cadena caliente y la moto al caballete central. Primera vez del viaje.", "km_acumulados": 641, "desde_la_ultima": 641, "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."},
         "gpx": { "archivo": "gpx/dia-03.gpx", "track": "data/tracks/dia-03.json", "vias": ["Parking Nacimiento del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "Barrax", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar"], "nota": "Ruta Kurviger 'Dia 3 DEF' (10 sept): 279,2 km y 4h38 estimadas, incluida la ida y vuelta al aparcamiento del nacimiento del rio Mundo. Coincide con el plan; esquiva Albacete por Barrax. Es el dia con mas conduccion del viaje, todo llano salvo el principio.",
             "kurviger": {"nombre": "Día 3 · Riópar → Cuenca", "route_id": "ezw4cxqGjEfiGKE8SRbb", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/ezw4cxqGjEfiGKE8SRbb", "plan_url": "https://kurviger.com/es/plan?point=38.488754%2C-2.402244&padr.0=El+Laminador-Casa+de+la+Noguera%2C+02450%2C+Ri%C3%B3par%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=38.452115%2C-2.438084&point=38.498848%2C-2.417598&padr.2=Ri%C3%B3par%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=38.664748%2C-2.49108&padr.3=Alcaraz%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=38.88504%2C-2.152517&padr.4=Balazote%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=39.046036%2C-2.200413&padr.5=Barrax%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=39.115226%2C-1.996206&padr.6=La+Gineta%2C+02110%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=39.262803%2C-1.911155&padr.7=Tarazona+de+la+Mancha%2C+02100%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=39.342647%2C-1.929158&padr.8=Quintanar+del+Rey%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=39.563333%2C-1.911455&padr.9=Motilla+del+Palancar%2C+16200%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=39.72563%2C-1.901744&padr.10=Almod%C3%B3var+del+Pinar%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.069384%2C-2.135418&padr.11=Hostal+Cort%C3%A9s%2C+Calle+Ram%C3%B3n+y+Cajal%2C+45%2C+16004%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&weighting=fastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+3+%C2%B7+Ri%C3%B3par+%E2%86%92+Cuenca&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=ezw4cxqGjEfiGKE8SRbb", "km": 279.0, "duracion_min": 279, "subida_m": 3604, "bajada_m": 3595, "cortes_reportados": 1, "perfil": "fastest", "waypoints": 12, "exportado": "2026-09-11"},
-            "avisos": [{"km": 9, "lugar": "Parking del nacimiento del rio Mundo", "lat": 38.4554, "lon": -2.4387, "que": "Ida y vuelta de 9 km por la misma carretera. Al salir del parking, Kurviger te lleva de vuelta a Riopar: es lo previsto."}] },
+            "avisos": [{"km": 9, "lugar": "Parking del nacimiento del rio Mundo", "lat": 38.4554, "lon": -2.4387, "que": "Los Chorros se vieron el dia 2. En Kurviger, SALTAR WAYPOINT en esta via del parking: te ahorras 16 km de ida y vuelta por la misma carretera. Si decides volver a subir, la ruta ya la lleva."}] },
       "guia": {
         "resumen": "Amanecer con la cascada del río Mundo, café en la Plaza Mayor renacentista de Alcaraz y luego la llanura manchega a ritmo de enlace hasta Cuenca, donde espera una de las ciudades más singulares de España.",
         "ver": [
           {
-            "lugar": "Aparcamiento Nacimiento del Rio Mundo",
+            "lugar": "Nacimiento del Rio Mundo (visto el dia 2)",
             "tipo": "naturaleza",
             "que": "Los Chorros del río Mundo: el río nace saliendo de una cueva en una pared caliza y cae unos 80 m en cascada. Desde el aparcamiento hay un paseo corto (unos 20 min) hasta la base. En septiembre lleva poco caudal; el espectáculo del reventón es de otoño y primavera. Aforo limitado y parking de pago (~4 EUR).",
             "tiempo": "1h",
@@ -531,23 +533,21 @@
       },
       "waypoints": ["Hostal El Laminador", "Aparcamiento Nacimiento del Rio Mundo", "Riopar", "Alcaraz", "Balazote", "La Gineta", "Tarazona de la Mancha", "Quintanar del Rey", "Motilla del Palancar", "Almodovar del Pinar", "Hostal Cortes"],
       "horario_orientativo": [
-        { "hora": "09:15-10:20", "lugar": "Chorros del Rio Mundo", "que": "Solo paseo corto hasta la base de la cascada. Parking ~4 EUR, aforo limitado. Poco caudal en septiembre." },
-        { "hora": "10:35", "lugar": "Riopar", "que": "De paso (repostar si no se hizo el martes)" },
-        { "hora": "11:10-11:40", "lugar": "Alcaraz", "que": "Cafe y Plaza Mayor (no comida)" },
-        { "hora": "12:30", "lugar": "Balazote", "que": "De paso; la ruta esquiva Albacete por Barrax" },
-        { "hora": "13:05", "lugar": "La Gineta", "que": "Parada corta si toca descanso" },
-        { "hora": "13:35", "lugar": "Quintanar del Rey", "que": "De paso" },
-        { "hora": "14:05-15:00", "lugar": "Motilla del Palancar", "que": "Comida" },
-        { "hora": "15:20", "lugar": "Almodovar del Pinar", "que": "De paso" },
-        { "hora": "16:05", "lugar": "Hostal Cortes", "que": "Llegada; lavadora en openBlue24h" }
+        { "hora": "09:35", "lugar": "Riopar", "que": "De paso (repostar si no se hizo el martes). Los Chorros quedan a la izquierda: se saltan, vistos el dia 2" },
+        { "hora": "10:10-10:40", "lugar": "Alcaraz", "que": "Cafe y Plaza Mayor (no comida)" },
+        { "hora": "11:30", "lugar": "Balazote", "que": "De paso; la ruta esquiva Albacete por Barrax" },
+        { "hora": "12:05", "lugar": "La Gineta", "que": "Parada corta si toca descanso" },
+        { "hora": "12:35", "lugar": "Quintanar del Rey", "que": "De paso" },
+        { "hora": "13:05-14:00", "lugar": "Motilla del Palancar", "que": "Comida" },
+        { "hora": "14:20", "lugar": "Almodovar del Pinar", "que": "De paso" },
+        { "hora": "15:05", "lugar": "Hostal Cortes", "que": "Llegada; engrasar la cadena y luego el recado del soporte. Lavadora en openBlue24h" }
       ],
       "notas": [
-        "Horas de paso calculadas con los tiempos de Kurviger (4h38 de conduccion, con la ida y vuelta a los Chorros) mas las paradas. Es el dia con mas conduccion del viaje, aunque llano: parada cada hora aunque no apetezca. Si se va tarde, la comida en Motilla puede ser rapida.",
-        "El acceso a los Chorros estuvo cerrado en 2026 por daños en la carretera; reabierto en julio con aforo al 60%. Confirmar la noche anterior.",
-        "No usar Albacete como waypoint (arrastra al centro urbano).",
+        "Horas recalculadas el 15 sept sin la ida y vuelta a los Chorros (vistos el dia 2): 263 km y unas 3h55 de conduccion, hora y media menos que el plan original. Sigue siendo el dia con mas kilometros del viaje, aunque llano: parada cada hora aunque no apetezca. Si se va tarde, la comida en Motilla puede ser rapida.",
+                "No usar Albacete como waypoint (arrastra al centro urbano).",
         "RECADO EN CUENCA: soporte para la Osmo 360 (el K&F del parabrisas tiene la rosca pasada). Llevar el palo oficial y la pieza del K&F a la tienda para calzar la rosca. Lo que se busca es una mordaza corta y rigida de manillar o espejo con rosca de tripode de 1/4, o un soporte de menton adhesivo tipo GoPro con adaptador a 1/4. Arreglo de 3 EUR en ferreteria si la pieza del K&F tiene agujero pasante: tornillo Whitworth 1/4 de 20 hilos mas largo, arandela ancha, arandela grower y tuerca autoblocante por detras. Comprar tambien cordino o bridas para atar la camara al manillar. NO grabar en marcha con el palo de 1,5 m desplegado: vibra, se parte y la imagen sale inservible; el palo, para las paradas.",
         "Tiendas en Cuenca para el recado (confirmar por telefono antes de ir, muchas cierran de 14 a 17): Decathlon, Travesia Av. Cruz Roja Espanola s/n (abre sin cierre a mediodia, soportes de camara de accion y bridas); Foto Cuenca Video, Av. Reyes Catolicos 50, 969 213 108; La Luz Fotografia, Hermanos Becerril 14, 969 239 695 (a un paseo del hostal); Centro Digital de Imagen, Pl. de la Constitucion 7, 969 212 232; Fotografia Luis Diacha, Fermin Caballero 20, 660 259 428; P&M Motorcuenca (taller de motos), Pol. Ind. Palancares, 680 161 219.",
-        "Orden de la tarde en Cuenca: llegar sobre las 16:00, engrasar la cadena con la cadena aun caliente y dejarla reposar, y mientras tanto ir a por el soporte. Si sale un soporte de menton adhesivo, pegarlo esa noche en el hostal: el adhesivo quiere unas horas de curado.",
+        "Orden de la tarde en Cuenca: llegada sobre las 15:05 al saltarse los Chorros. Engrasar la cadena nada mas llegar, con la cadena aun caliente, y dejarla reposar; las tiendas de foto abren a las 17:00, asi que da tiempo de sobra. Si sale un soporte de menton adhesivo, pegarlo esa noche en el hostal: el adhesivo quiere unas horas de curado.",
         "CORRECCION (15 sept): la Osmo 360 se monta POR ROSCA DE 1/4, no con las tres orejetas tipo GoPro. Hace falta un soporte que acabe en TORNILLO de 1/4 macho (el de tripode), o una fijacion GoPro mas un adaptador de zapata GoPro a rosca de 1/4.",
         "DONDE MIRAR, POR ORDEN: 1) Tienda de foto (La Luz, Foto Cuenca Video, Centro Digital de Imagen): viven de la rosca de 1/4, pedir una mordaza o pinza de manillar con tornillo de 1/4, o el adaptador de zapata GoPro a 1/4 si aparece un soporte GoPro. 2) Ferreteria: el arreglo pasante del K&F, que es el plan mas seguro de todos. 3) Decathlon: el que encaja perfecto es el PGYTECH CapLock (manillares de 22 a 35 mm, anclaje de 1/4 Y GoPro), pero es de Marketplace, venta online de un tercero: no esta en la estanteria y no llega antes de salir de Cuenca. Lo mismo el pack Ksix 38 en 1 y el West Biking. De marca propia solo esta el soporte de ciclocomputador Van Rysel referencia 372259, que es fijacion GoPro: solo sirve si ademas se consigue el adaptador a rosca de 1/4. En Decathlon, coger igualmente bridas o cordino.",
         "AVISO al montar una abrazadera de bici en la moto: es de plastico y el manillar de la NX500 es de 22 mm. Aguanta, pero se afloja con la vibracion: apretar a mano firme, comprobarlo en CADA repostaje (ya esta en la rutina) y atar la camara al manillar con cordino o dos bridas."
