@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 88,
+    "revision": 89,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Dia 7: se mete el tramo bueno de la Ruta del Silencio. Desde Cantavieja, A-1702 hasta los Organos de Montoro y vuelta: +65 km y +1h20, el dia pasa de 144 km y 2h30 a 209 km y 3h50, llegada a las 16:50. Horario, vias, guia y avisos actualizados. El GPX sigue sin reexportar",
       "Enlace para apuntar en el diario desde fuera de la app: #/diario/N/<texto>. El diario vive solo en el movil, asi que era la unica forma de dictarle una entrada",
       "Los Chorros del Rio Mundo se vieron el dia 2, de pasada: el dia 3 se salta la ida y vuelta al parking (saltar waypoint en Kurviger). De 279 km y 4h20 a 263 km y 3h55, salida a las 09:30 y llegada a Cuenca sobre las 15:05, con el horario recalculado",
       "La vista Ahora distingue ir de camino de haber llegado: a menos de 1,5 km del destino desaparecen el progreso, el aviso de retraso, los despistes y los puntos por delante, y salen la rutina de la noche y la etapa de mañana",
@@ -953,20 +954,20 @@
       "tipo": "montaña_tecnica",
       "origen": "Camping Los Alamos",
       "destino": "Camping Los Alamos",
-      "km_aprox": 144,
-      "tiempo_real_aprox": "2h30",
+      "km_aprox": 209,
+      "tiempo_real_aprox": "3h50",
       "dificultad": 4,
-      "fatiga": 3,
+      "fatiga": 4,
       "perfil_kurviger": "Curvy",
       "equipaje": "Sin maletas laterales (se quedan en el bungalow). Pasar al SH58X: botiquin, Givi S450, compresor, agua extra y barrita.",
       "salida": "09:00",
-      "llegada_prevista": "15:20",
+      "llegada_prevista": "16:50",
       "meteo_puntos": [{ "nombre": "Valdelinares", "lat": 40.39, "lon": -0.61 }, { "nombre": "Cantavieja", "lat": 40.53, "lon": -0.41 }],
-      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "vias": ["Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva (vuelta)"], "nota": "Ruta Kurviger 'Dia 7 DEF' (10 sept): 144,1 km y 2h04 estimadas. OJO: en Kurviger esta ruta se llama '...- Utiel' pero es el bucle del Maestrazgo, sale y vuelve al camping. Coincide con el plan punto por punto; maximo 1.967 m subiendo de Alcala a Valdelinares, el punto mas alto del viaje.",
+      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "vias": ["Alcala de la Selva", "Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Organos de Montoro (Villarluengo)", "Cantavieja (vuelta)", "Fortanete", "Villarroya de los Pinares", "Allepuz", "Gudar", "Alcala de la Selva (vuelta)"], "nota": "PENDIENTE DE REEXPORTAR: el GPX y el track de esta carpeta siguen siendo el bucle de 144 km SIN el desvio a los Organos de Montoro, hasta que se rehaga la ruta en Kurviger y se vuelva a exportar. Los kilometros que enseñe la app sobre el mapa y el perfil son los viejos. Ruta Kurviger 'Dia 7 DEF' (10 sept): 144,1 km y 2h04 estimadas. OJO: en Kurviger esta ruta se llama '...- Utiel' pero es el bucle del Maestrazgo, sale y vuelve al camping. Coincide con el plan punto por punto; maximo 1.967 m subiendo de Alcala a Valdelinares, el punto mas alto del viaje.",
             "kurviger": {"nombre": "Día 7 · Bucle del Maestrazgo", "route_id": "49AHOUxFPoKhacptrg5B", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/49AHOUxFPoKhacptrg5B", "plan_url": "https://kurviger.com/es/plan?point=40.364074%2C-0.692946&padr.0=Camping+Los+%C3%81lamos%2C+Urbanizaci%C3%B3n+Sol+y+Nieve%2C+44431%2C+Alcal%C3%A1+de+la+Selva%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.367265%2C-0.711689&point=40.39176%2C-0.607648&point=40.327735%2C-0.570646&point=40.359663%2C-0.446396&point=40.481387%2C-0.321988&point=40.524185%2C-0.406053&point=40.503068%2C-0.518632&point=40.529759%2C-0.66811&point=40.49156%2C-0.731297&point=40.441823%2C-0.719993&padr.10=G%C3%BAdar%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.369613%2C-0.713014&point=40.364074%2C-0.692946&padr.12=Camping+Los+%C3%81lamos%2C+Urbanizaci%C3%B3n+Sol+y+Nieve%2C+44431%2C+Alcal%C3%A1+de+la+Selva%2C+Arag%C3%B3n%2C+Espa%C3%B1a&weighting=curvaturefastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+7+%C2%B7+Bucle+del+Maestrazgo&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=49AHOUxFPoKhacptrg5B&id=1", "km": 144.0, "duracion_min": 124, "subida_m": 3840, "bajada_m": 3840, "cortes_reportados": 0, "perfil": "curvaturefastest", "waypoints": 13, "exportado": "2026-09-11"},
-            "avisos": [{"km": 2, "lugar": "Alcala de la Selva", "lat": 40.3673, "lon": -0.7117, "que": "Bucle: sales por Alcala hacia Valdelinares y vuelves a entrar por el mismo sitio al final (km 140). Si el camping te pilla de camino no te confundas: la primera via es la salida."}, {"km": 69, "lugar": "La Iglesuela del Cid", "lat": 40.4814, "lon": -0.322, "que": "Punto mas lejano del bucle. A partir de aqui la ruta vuelve hacia el oeste por Cantavieja y Fortanete."}] },
+            "avisos": [{"km": 2, "lugar": "Alcala de la Selva", "lat": 40.3673, "lon": -0.7117, "que": "Bucle: sales por Alcala hacia Valdelinares y vuelves a entrar por el mismo sitio al final (km 140). Si el camping te pilla de camino no te confundas: la primera via es la salida."}, {"km": 69, "lugar": "La Iglesuela del Cid", "lat": 40.4814, "lon": -0.322, "que": "Punto mas lejano del bucle. A partir de aqui la ruta vuelve hacia el oeste por Cantavieja y Fortanete."}, {"km": 79, "lugar": "Cantavieja: desvio a la Ruta del Silencio", "lat": 40.5233, "lon": -0.4053, "que": "Aqui se sale del bucle: A-1702 hacia Villarluengo (señalizado) hasta los Organos de Montoro, unos 32 km, y vuelta por la misma carretera. Repostar en Cantavieja antes de tomarla. Si el GPX viejo insiste en llevarte a Fortanete, es porque aun no se ha reexportado."}] },
       "guia": {
-        "resumen": "El bucle del Maestrazgo: Valdelinares, el pueblo más alto de España, y una sucesión de villas medievales de piedra (Linares de Mora, Mosqueruela, La Iglesuela del Cid, Cantavieja, Fortanete) por carreteras solitarias entre 1.200 y 1.800 m.",
+        "resumen": "El bucle del Maestrazgo: Valdelinares, el pueblo más alto de España, y una sucesión de villas medievales de piedra (Linares de Mora, Mosqueruela, La Iglesuela del Cid, Cantavieja, Fortanete) por carreteras solitarias entre 1.200 y 1.800 m. Desde Cantavieja, el tramo bueno de la Ruta del Silencio: la A-1702 hasta los Órganos de Montoro y vuelta.",
         "ver": [
           {
             "lugar": "Valdelinares",
@@ -1002,6 +1003,14 @@
             "que": "Capital del Alto Maestrazgo, encaramada sobre un barranco a 1.300 m. Plaza de Cristo Rey porticada, iglesia de la Asunción, ayuntamiento gótico y el Museo de las Guerras Carlistas. Comida antes de las 14:00 (es domingo).",
             "tiempo": "1h30",
             "en_ruta": true
+          },
+          {
+            "lugar": "Organos de Montoro",
+            "tipo": "mirador",
+            "que": "Pared de roca vertical de unos 100 m sobre el barranco del Guadalope, junto a Villarluengo, en la A-1702 (la Ruta del Silencio). Mirador a pie de carretera, no hay que andar. Es lo mejor de toda la A-1702 y el motivo del desvio.",
+            "tiempo": "25 min",
+            "lat": 40.6375,
+            "lon": -0.4569
           },
           {
             "lugar": "Fortanete",
@@ -1051,11 +1060,13 @@
         { "hora": "10:00-10:15", "lugar": "Linares de Mora", "que": "Parada corta; villa amurallada sobre el barranco" },
         { "hora": "10:30-11:15", "lugar": "Mosqueruela", "que": "Cafe en la Plaza Mayor porticada" },
         { "hora": "11:40-12:20", "lugar": "La Iglesuela del Cid", "que": "Plaza gotico-renacentista; paseo corto" },
-        { "hora": "12:30-14:00", "lugar": "Cantavieja", "que": "Comida. Es domingo: sentarse antes de las 14:00" },
-        { "hora": "14:15-14:30", "lugar": "Fortanete", "que": "Parada de descanso antes del tramo mas solitario" },
-        { "hora": "14:45", "lugar": "Villarroya de los Pinares", "que": "De paso" },
-        { "hora": "15:05", "lugar": "Gudar", "que": "De paso" },
-        { "hora": "15:20", "lugar": "Camping Los Alamos", "que": "Llegada" }
+        { "hora": "12:30-13:40", "lugar": "Cantavieja", "que": "Comida, sin alargarla. Es domingo: sentarse antes de las 13:30. Repostar aqui antes del desvio" },
+        { "hora": "14:20-14:45", "lugar": "Organos de Montoro (Villarluengo)", "que": "Ruta del Silencio por la A-1702: la pared de roca vertical sobre el barranco del Guadalope. Mirador a pie de carretera" },
+        { "hora": "15:25", "lugar": "Cantavieja (vuelta)", "que": "De paso, por la misma A-1702" },
+        { "hora": "15:45-16:00", "lugar": "Fortanete", "que": "Parada de descanso antes del tramo mas solitario" },
+        { "hora": "16:15", "lugar": "Villarroya de los Pinares", "que": "De paso" },
+        { "hora": "16:35", "lugar": "Gudar", "que": "De paso" },
+        { "hora": "16:50", "lugar": "Camping Los Alamos", "que": "Llegada" }
       ],
       "paradas": ["Mosqueruela - cafe", "Cantavieja - comida", "Fortanete"],
       "notas": [
@@ -1066,7 +1077,9 @@
         "Etapa mas aislada: cobertura intermitente, el punto de ubicacion compartida se congelara.",
         "100% recortable: Alcala -> Valdelinares -> Linares -> Mosqueruela y vuelta ya es una gran mañana (unos 100 km).",
         "Segundo recorte posible: saltar La Iglesuela del Cid ahorra unos 20 km sin tocar el resto del bucle.",
-        "PARA OTRO VIAJE: la Ruta del Silencio (A-1702, Cantavieja - Cañada de Benatanduz - Villarluengo - Organos de Montoro - Ejulve, unos 65 km) empieza en Cantavieja, km 79 de este bucle; el desvio hacia Villarluengo esta señalizado. No se hace en este viaje: entera de ida y vuelta son +130 km y 2h30 (el dia pasaria de 5 h); solo hasta los Organos de Montoro y vuelta, +65 km y 1h20. Mejor como destino propio: dos noches en Cantavieja o Villarluengo, la A-1702 en los dos sentidos, Parrizal de Beceite y los puertos hacia Morella."
+        "RUTA DEL SILENCIO (decidido el 16 sept): desde Cantavieja, km 79 del bucle, se toma la A-1702 hacia Villarluengo hasta los Organos de Montoro y se vuelve por la misma carretera. Son +65 km y +1h20: el dia pasa de 144 km y 2h30 a 209 km y 3h50. Hacerla entera hasta Ejulve serian +130 km y 2h30, con el dia en 5 h: descartado. El desvio hacia Villarluengo esta señalizado en Cantavieja.",
+        "GASOLINA el dia 7: es domingo y el Maestrazgo esta vacio. Salir del camping con el deposito lleno y repostar en Cantavieja antes de meterse en la A-1702, que son 65 km de ida y vuelta sin nada.",
+        "El desvio a los Organos es opcional sobre la marcha: sale y vuelve por Cantavieja, asi que si vas cansado o el tiempo se tuerce, das la vuelta donde quieras y sigues el bucle como estaba."
       ]
     },
     {
