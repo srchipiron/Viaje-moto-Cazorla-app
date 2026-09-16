@@ -13,6 +13,19 @@ function loadPlaywright() {
   return require(path.join(g, 'playwright'));
 }
 const { chromium } = loadPlaywright();
+const fs = require('fs');
+/* Punto de GPS a mitad de la etapa de HOY, sacado del plan: si se fija a mano,
+   la prueba caduca en cuanto el viaje avanza un dia. */
+function puntoDeHoy() {
+  const plan = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'viaje.json'), 'utf8'));
+  const hoy = new Date().toISOString().slice(0, 10);
+  const e = plan.itinerario.find((d) => d.fecha === hoy) || plan.itinerario[0];
+  const t = JSON.parse(fs.readFileSync(path.join(__dirname, '..', e.gpx.track), 'utf8'));
+  const medio = t.track[Math.floor(t.track.length / 2)];
+  return { dia: e.dia, destino: e.destino, sobre: { latitude: medio[0], longitude: medio[1], accuracy: 15 },
+    fuera: { latitude: medio[0], longitude: medio[1] - 0.4, accuracy: 15 } };
+}
+const HOY = puntoDeHoy();
 const BASE = process.argv[2] || 'http://localhost:8080/';
 const PNG1x1 = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
 
@@ -125,7 +138,8 @@ function mockMeteo(url) {
   if (!/sobre la ruta/i.test(posTxt) || !/alcaraz/i.test(posTxt)) errors.push('posicion en etapa incorrecta (esperaba sobre la ruta y siguiente punto Alcaraz)');
   // vista "Ahora": cruza posicion + hora + plan (GPS a mitad de la etapa de hoy).
   // Contexto nuevo: el navegador cachea la ultima posicion y devolveria la del bloque anterior.
-  const ctxA = await nuevoCtx({ latitude: 38.2485, longitude: -2.72549, accuracy: 15 });
+  console.log(`etapa de hoy: dia ${HOY.dia} -> ${HOY.destino}`);
+  const ctxA = await nuevoCtx(HOY.sobre);
   const pageA = await ctxA.newPage();
   pageA.on('pageerror', (e) => errors.push('ahora pageerror: ' + e.message));
   await pageA.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
@@ -148,7 +162,7 @@ function mockMeteo(url) {
   await pageA.screenshot({ path: process.env.SHOT_DIR ? process.env.SHOT_DIR + '/ahora.png' : '/dev/null', fullPage: true }).catch(() => null);
   await ctxA.close();
   // fuera de ruta: unos 30 km al oeste del track de hoy
-  const ctxF = await nuevoCtx({ latitude: 38.2485, longitude: -3.1, accuracy: 15 });
+  const ctxF = await nuevoCtx(HOY.fuera);
   const pageF = await ctxF.newPage();
   await pageF.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
   await pageF.click('[data-localizar]');

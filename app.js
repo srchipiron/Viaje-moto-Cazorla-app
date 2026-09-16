@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.11.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.11.1';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes'; // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
@@ -778,7 +778,7 @@ function poisConKm(e, t) {
 }
 function repostajes() { return lsGet(REPOSTAJES_KEY, []); }
 function marcarRepostaje(dia, km) {
-  const r = repostajes(); r.push({ t: Date.now(), dia: +dia || null, km: km == null ? null : Math.round(km), lat: D.pos && +D.pos.lat.toFixed(4), lon: D.pos && +D.pos.lon.toFixed(4) });
+  const r = repostajes(); r.push({ t: Date.now(), dia: +dia || null, km: km == null ? null : Math.round(km * 10) / 10, lat: D.pos && +D.pos.lat.toFixed(4), lon: D.pos && +D.pos.lon.toFixed(4) });
   lsSet(REPOSTAJES_KEY, r); toast('Repostaje anotado');
 }
 /* Km recorridos del viaje hasta el punto actual. */
@@ -791,7 +791,7 @@ function kmDesdeRepostaje(dia, kmEtapa) {
   const r = repostajes(); if (!r.length) return null;
   const u = r[r.length - 1]; if (u.dia == null || u.km == null) return null;
   const actual = kmViaje(dia, kmEtapa), antes = kmViaje(u.dia, u.km);
-  return actual >= antes ? actual - antes : null;
+  return actual >= antes - 1 ? Math.max(0, actual - antes) : null;
 }
 /* Elige la etapa en la que estas: la de hoy si estas cerca, si no la mas cercana de las cargadas. */
 function etapaActual(pos) {
@@ -920,7 +920,7 @@ function viewAhora() {
       <div class="bar"><i style="width:${pct}%"></i></div>
       <p><small>${desde == null ? 'Desde la salida de Almería (marca un repostaje para que cuente bien)' : 'Desde el último repostaje'} · autonomía orientativa ${aut} km.</small></p>
       ${alerta ? `<div class="note">${esc(D.data.proyecto.moto.regla_gasolina)}</div>` : ''}
-      <p class="row"><button class="btn small" type="button" data-repostaje="${e.dia}|${Math.round(r.km)}">⛽ He repostado aquí</button>${D.pos ? `<a class="btn small" href="https://www.google.com/maps/search/gasolinera/@${D.pos.lat},${D.pos.lon},13z" target="_blank" rel="noopener">Gasolineras cerca ↗</a>` : ''}</p></div>` });
+      <p class="row"><button class="btn small" type="button" data-repostaje="${e.dia}|${r.km.toFixed(1)}">⛽ He repostado aquí</button>${D.pos ? `<a class="btn small" href="https://www.google.com/maps/search/gasolinera/@${D.pos.lat},${D.pos.lon},13z" target="_blank" rel="noopener">Gasolineras cerca ↗</a>` : ''}</p></div>` });
   }
   /* 9. Al llegar */
   const rut = D.data.rutina_diaria, llegada = rut.llegada || [];
