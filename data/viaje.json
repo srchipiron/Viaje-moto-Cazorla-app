@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 89,
+    "revision": 90,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Dia 4: miradores de Cuenca en moto antes de coger la ruta (Barrio del Castillo y Cerro del Socorro), al perderse el casco antiguo por la lluvia del miercoles. Unos 16 km y 1h25: salida a las 08:15 y llegada a Albarracin a las 14:40; si se saltan, 09:30 y 13:30 como estaba",
       "Dia 7: se mete el tramo bueno de la Ruta del Silencio. Desde Cantavieja, A-1702 hasta los Organos de Montoro y vuelta: +65 km y +1h20, el dia pasa de 144 km y 2h30 a 209 km y 3h50, llegada a las 16:50. Horario, vias, guia y avisos actualizados. El GPX sigue sin reexportar",
       "Enlace para apuntar en el diario desde fuera de la app: #/diario/N/<texto>. El diario vive solo en el movil, asi que era la unica forma de dictarle una entrada",
       "Los Chorros del Rio Mundo se vieron el dia 2, de pasada: el dia 3 se salta la ida y vuelta al parking (saltar waypoint en Kurviger). De 279 km y 4h20 a 263 km y 3h55, salida a las 09:30 y llegada a Cuenca sobre las 15:05, con el horario recalculado",
@@ -584,8 +585,8 @@
       "dificultad": 3,
       "fatiga": 3,
       "perfil_kurviger": "Curvy",
-      "salida": "09:00",
-      "llegada_prevista": "13:30 (con el rio Cuervo incluido)",
+      "salida": "08:15 (miradores de Cuenca antes de coger la ruta; 09:30 si se saltan)",
+      "llegada_prevista": "14:40 (con los miradores y el rio Cuervo incluidos)",
       "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
       "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo (CM-2105, bajo el pueblo)", "Tragacete", "Parking Nacimiento del Rio Cuervo", "Tragacete (vuelta)", "Nacimiento del Rio Tajo", "Calomarde", "Royuela"], "nota": "Ruta Kurviger 'Dia 4 DEF' (10 sept): 152,9 km y 2h13 estimadas, con la ida y vuelta al rio Cuervo incluida. Entre Uña y Tragacete va por la carretera de Valdemeca, no por la CM-2105 y Huelamo como decia el plan; pendiente decidir si es intencionado. Comprobado el 11 sept: el GPX guardado pasa bajo Huelamo (via 4 a 300 m del pueblo, Valdemeca queda a 3 km) y coincide punto por punto con la ruta de Kurviger Cloud.",
             "kurviger": {"nombre": "Día 4 · Cuenca → Albarracín", "route_id": "S7lRUwHg7HMChMhvG5FE", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/S7lRUwHg7HMChMhvG5FE", "plan_url": "https://kurviger.com/es/plan?point=40.069384%2C-2.135418&padr.0=Hostal+Cort%C3%A9s%2C+Calle+Ram%C3%B3n+y+Cajal%2C+45%2C+16004%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.235604%2C-2.089295&padr.1=Villalba+de+la+Sierra%2C+16140%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.236774%2C-2.071429&point=40.223109%2C-1.977556&padr.3=U%C3%B1a%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.27662%2C-1.809834&padr.4=Hu%C3%A9lamo%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.350232%2C-1.85104&padr.5=Tragacete%2C+16150%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.427628%2C-1.895558&padr.6=Bajada+del+nacimiento+r%C3%ADo+Cuervo%2C+16150%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.350232%2C-1.85104&padr.7=Tragacete%2C+16150%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.320719%2C-1.697189&padr.8=Monumento+al+Nacimiento+del+r%C3%ADo+Tajo%2C+Albarrac%C3%ADn%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.372606%2C-1.575476&padr.9=Calomarde%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.377888%2C-1.510759&point=40.407938%2C-1.442042&padr.11=Hotel+Albarrac%C3%ADn%2C+Calle+de+Azagra%2C+44100%2C+Albarrac%C3%ADn%2C+Arag%C3%B3n%2C+Espa%C3%B1a&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+4+%C2%B7+Cuenca+%E2%86%92+Albarrac%C3%ADn&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=S7lRUwHg7HMChMhvG5FE", "km": 153.0, "duracion_min": 137, "subida_m": 3566, "bajada_m": 3357, "cortes_reportados": 0, "perfil": "por defecto", "waypoints": 12, "exportado": "2026-09-11"},
@@ -593,6 +594,18 @@
       "guia": {
         "resumen": "La etapa más bella de la Serranía de Cuenca: el Ventano del Diablo, la laguna de Uña, el Júcar encajonado hasta Tragacete, el Puerto del Cubillo, el nacimiento del Tajo y la llegada a Albarracín, un pueblo de postal.",
         "ver": [
+          {
+            "lugar": "Barrio del Castillo (Cuenca)",
+            "tipo": "mirador",
+            "que": "Lo alto del casco antiguo, pasado el Arco de Bezudo. Aparcamiento gratuito y fuera de la zona de camaras. Desde alli, andando por la Ronda de Julian Romero, el mirador de Florencio Canas asoma sobre la hoz del Huecar, las Casas Colgadas y el Puente de San Pablo.",
+            "tiempo": "25 min"
+          },
+          {
+            "lugar": "Mirador del Cerro del Socorro (Cuenca)",
+            "tipo": "mirador",
+            "que": "El punto mas alto del entorno de Cuenca, 1.147 m, coronado por el Sagrado Corazon. Panoramica de 360 grados: casco antiguo, las dos hoces, la ciudad nueva y la Serrania. Por la mañana es el mejor momento para las fotos, porque el sol no da de frente a las Casas Colgadas. Se sube por una pista asfaltada estrecha que sale de la carretera de Palomera; aparcamiento gratuito arriba.",
+            "tiempo": "25 min"
+          },
           {
             "lugar": "Ventano del Diablo",
             "tipo": "mirador",
@@ -672,20 +685,27 @@
       },
       "waypoints": ["Hostal Cortes", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Nacimiento del Rio Cuervo", "Tragacete", "Puerto del Cubillo", "Nacimiento del Rio Tajo", "Frias de Albarracin", "Calomarde", "Royuela", "Hotel Albarracin"],
       "horario_orientativo": [
-        { "hora": "09:26-09:36", "lugar": "Ventano del Diablo", "que": "Parada visual" },
-        { "hora": "09:45-10:10", "lugar": "Uña", "que": "Cafe y laguna" },
-        { "hora": "10:40", "lugar": "Tragacete", "que": "De paso hacia el rio Cuervo" },
-        { "hora": "10:50-11:50", "lugar": "Nacimiento del Rio Cuervo", "que": "Sendero corto a las cascadas (1 km). Recortable: si el cielo no acompaña, saltar esta via en Kurviger" },
-        { "hora": "12:00", "lugar": "Tragacete", "que": "De vuelta; CM-2106 hacia el Puerto del Cubillo" },
-        { "hora": "12:20-12:35", "lugar": "Nacimiento del Rio Tajo", "que": "Monumento; aparcamiento junto a la carretera" },
-        { "hora": "12:50-13:05", "lugar": "Calomarde", "que": "Cascada junto al pueblo" },
-        { "hora": "13:15", "lugar": "Royuela", "que": "De paso" },
-        { "hora": "13:25", "lugar": "Hotel Albarracin", "que": "Llegada: descarga en la puerta (20 min), aparcar abajo y comer en el pueblo" }
+        { "hora": "08:15", "lugar": "Salida del Hostal Cortes", "que": "Maletas puestas y en marcha. Amanece a las 07:49, asi que ya hay luz de sobra" },
+        { "hora": "08:30-08:55", "lugar": "Barrio del Castillo", "que": "Subes en moto y aparcas arriba, gratis y fuera de la zona de camaras. Mirador del Castillo y, andando por la Ronda de Julian Romero, el mirador de Florencio Canas sobre la hoz del Huecar" },
+        { "hora": "09:15-09:40", "lugar": "Mirador del Cerro del Socorro", "que": "La panoramica de 360 grados sobre Cuenca entera, a 1.147 m. Por la mañana es el mejor momento: el sol no da de frente a las Casas Colgadas" },
+        { "hora": "09:55", "lugar": "Salida de Cuenca", "que": "Hacia el norte por la hoz del Jucar, ya en la ruta del dia" },
+        { "hora": "10:36-10:46", "lugar": "Ventano del Diablo", "que": "Parada visual" },
+        { "hora": "10:55-11:20", "lugar": "Uña", "que": "Cafe y laguna" },
+        { "hora": "11:50", "lugar": "Tragacete", "que": "De paso hacia el rio Cuervo" },
+        { "hora": "12:00-13:00", "lugar": "Nacimiento del Rio Cuervo", "que": "Sendero corto a las cascadas (1 km). Recortable: si el cielo no acompaña, saltar esta via en Kurviger" },
+        { "hora": "13:10", "lugar": "Tragacete", "que": "De vuelta; CM-2106 hacia el Puerto del Cubillo" },
+        { "hora": "13:30-13:45", "lugar": "Nacimiento del Rio Tajo", "que": "Monumento; aparcamiento junto a la carretera" },
+        { "hora": "14:00-14:15", "lugar": "Calomarde", "que": "Cascada junto al pueblo" },
+        { "hora": "14:25", "lugar": "Royuela", "que": "De paso" },
+        { "hora": "14:40", "lugar": "Hotel Albarracin", "que": "Llegada: descarga en la puerta (20 min), aparcar abajo y comer en el pueblo" }
       ],
       "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Cuervo", "Nacimiento del Rio Tajo", "Calomarde", "Albarracin - comida, paseo de tarde y noche"],
       "opcional": "El Nacimiento del Rio Cuervo ya va en la ruta (Tragacete -> parking -> Tragacete, 24 km y 20 min). Si hay tormentas a la vista o se va tarde, saltar esa via: se llega a Albarracin hacia las 12:30.",
       "notas": [
-        "Horas de paso calculadas con los tiempos de Kurviger (2h13 de conduccion) mas las paradas.",
+        "Horas de paso calculadas con los tiempos de Kurviger (2h13 de conduccion) mas las paradas, y corridas hora y cuarto por los miradores de Cuenca de primera hora.",
+        "MIRADORES DE CUENCA (decidido el 16 sept, al perderse el casco antiguo por la lluvia): antes de coger la ruta, subir en moto al Barrio del Castillo y despues al Cerro del Socorro. Unos 16 km y 1h25 en total contando las paradas. Los dos tienen aparcamiento gratuito. Si se van a saltar, salida a las 09:30 y llegada a Albarracin a las 13:30 como estaba.",
+        "El Cerro del Socorro se sube por una pista ASFALTADA pero estrecha que sale a la derecha de la carretera de Palomera (hoz del Huecar): curvas ciegas, dos vehiculos no se cruzan comodos y son unos 15 minutos de subida. Despues de la lluvia del miercoles, ir despacio: hojas, arena y manchas humedas a la sombra.",
+        "El Barrio del Castillo queda a partir del Arco de Bezudo, fuera de la zona de camaras del casco antiguo; para llegar se cruza la zona controlada, donde el limite es de 30 minutos, asi que subir sin entretenerse. A las 08:30 estara vacio.",
         "Vigilar obras o regulaciones en la CM-2105; revisar DGT la noche anterior.",
         "Llegada al hotel: parar en la puerta (carga y descarga, max 20 min), soltar las tres maletas, bajar a aparcar."
       ],
