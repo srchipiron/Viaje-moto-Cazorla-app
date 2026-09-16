@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 96,
+    "revision": 97,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Rio Cuervo: la parada baja de 1 h a 40 min. Del aparcamiento a las cascadas hay 500 m de pasarela de madera llana (10 min), no 1 km de sendero; el SL-CU 14 entero son 2 km con 70 m de desnivel, pero no hace falta. Aparcamiento y entrada gratis. Llegada a Albarracin a las 16:40",
       "Meteo en ruta: si hay que elegir una sola app, Windy, por el radar con proyeccion y las rachas de viento; AEMET como segunda por los avisos oficiales. Abrirlas solo en las paradas para no gastar bateria",
       "Dia 4: salida retrasada de 08:15 a 09:30 por la lluvia de primera hora en Cuenca (33-40 % hasta las 09:00, 15 % a las 10:00 y 0 % desde las 12:00). El resto de la etapa esta seca: Tragacete y el rio Cuervo al 0 % toda la mañana y Albarracin al 0 % todo el dia. Comida en Tragacete a las 13:15 y llegada a las 17:00",
       "Dia 7 reexportado con el desvio a los Organos de Montoro: 220,4 km y 3h10 de Kurviger, 3h50 reales y 4.635 m de subida. El desvio cuesta +76 km, mas de los +65 estimados, porque cada tramo de la A-1702 son 39,5 km. Track regenerado y horario rehecho sobre los km del GPX",
@@ -595,7 +596,7 @@
       "fatiga": 4,
       "perfil_kurviger": "Curvy",
       "salida": "09:30 (retrasada por la lluvia de primera hora en Cuenca)",
-      "llegada_prevista": "17:00 (con los miradores y el rio Cuervo incluidos)",
+      "llegada_prevista": "16:40 (con los miradores y el rio Cuervo incluidos)",
       "meteo_puntos": [{ "nombre": "Tragacete", "lat": 40.35, "lon": -1.85 }, { "nombre": "Albarracin", "lat": 40.41, "lon": -1.44 }],
       "gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Barrio del Castillo (Cuenca)", "Mirador del Cerro del Socorro", "Villalba de la Sierra", "Ventano del Diablo", "Uña", "Huelamo", "Tragacete", "Parking Nacimiento del Rio Cuervo", "Tragacete (vuelta)", "Nacimiento del Rio Tajo", "Calomarde", "Royuela"], "nota": "Ruta rehecha el 16 sept con los dos miradores de Cuenca al principio: 181,5 km y 3h16 de Kurviger (antes 152,9 km y 2h13). El desvio a los miradores cuesta 28,5 km y 63 minutos de conduccion, mas de lo estimado a ojo, porque del Castillo al Socorro hay 13 km por carretera y el Socorro deja 12 km de mas para volver a coger la ruta hacia el norte. Nombres de los puntos corregidos: iban corridos un puesto respecto al track. La ida y vuelta al rio Cuervo sigue incluida. Entre Uña y Tragacete va por la carretera de Valdemeca, no por la CM-2105 y Huelamo como decia el plan; pendiente decidir si es intencionado. Comprobado el 11 sept: el GPX guardado pasa bajo Huelamo (via 4 a 300 m del pueblo, Valdemeca queda a 3 km) y coincide punto por punto con la ruta de Kurviger Cloud.",
             "kurviger": {"nombre": "Día 4 · Cuenca → Albarracín", "route_id": "S7lRUwHg7HMChMhvG5FE", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/S7lRUwHg7HMChMhvG5FE", "plan_url": "https://kurviger.com/es/plan?point=40.069384%2C-2.135418&padr.0=Hostal+Cort%C3%A9s%2C+Calle+Ram%C3%B3n+y+Cajal%2C+45%2C+16004%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.235604%2C-2.089295&padr.1=Villalba+de+la+Sierra%2C+16140%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.236774%2C-2.071429&point=40.223109%2C-1.977556&padr.3=U%C3%B1a%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.27662%2C-1.809834&padr.4=Hu%C3%A9lamo%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.350232%2C-1.85104&padr.5=Tragacete%2C+16150%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.427628%2C-1.895558&padr.6=Bajada+del+nacimiento+r%C3%ADo+Cuervo%2C+16150%2C+Cuenca%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.350232%2C-1.85104&padr.7=Tragacete%2C+16150%2C+Castilla-La+Mancha%2C+Espa%C3%B1a&point=40.320719%2C-1.697189&padr.8=Monumento+al+Nacimiento+del+r%C3%ADo+Tajo%2C+Albarrac%C3%ADn%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.372606%2C-1.575476&padr.9=Calomarde%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.377888%2C-1.510759&point=40.407938%2C-1.442042&padr.11=Hotel+Albarrac%C3%ADn%2C+Calle+de+Azagra%2C+44100%2C+Albarrac%C3%ADn%2C+Arag%C3%B3n%2C+Espa%C3%B1a&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+4+%C2%B7+Cuenca+%E2%86%92+Albarrac%C3%ADn&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=S7lRUwHg7HMChMhvG5FE", "km": 181.5, "duracion_min": 196, "subida_m": 3566, "bajada_m": 3357, "cortes_reportados": 0, "perfil": "por defecto", "waypoints": 15, "exportado": "2026-09-16"},
@@ -639,7 +640,7 @@
           {
             "lugar": "Tragacete",
             "tipo": "pueblo",
-            "que": "Capital de la alta Serranía, a 1.280 m. Desde aquí sale el desvío opcional al Nacimiento del río Cuervo (unos 12 km, sendero corto de 1 km hasta las cascadas). Solo si se va bien de tiempo y sin tormentas a la vista.",
+            "que": "Capital de la alta Serranía, a 1.280 m. Desde aquí sale el desvío al Nacimiento del río Cuervo (unos 12 km). Solo si se va bien de tiempo y sin tormentas a la vista.",
             "tiempo": "10 min / 1h30 con el Cuervo",
             "en_ruta": true
           },
@@ -673,7 +674,7 @@
           }
         ],
         "comer": {
-          "donde": "Con la salida a las 09:30, comer en Tragacete sobre las 13:15, antes de subir al rio Cuervo: es la unica parada con sitio donde comer hasta Albarracin, y se llega alli a las 16:15. Si se prefiere tirar, bocadillo en Tragacete y comida completa al llegar.",
+          "donde": "Con la salida a las 09:30, comer en Tragacete sobre las 13:15, antes de subir al rio Cuervo: es la unica parada con sitio donde comer hasta Albarracin, y se llega alli a las 16:40. Si se prefiere tirar, bocadillo en Tragacete y comida completa al llegar.",
             "cena": "Cena en el Hotel Albarracin si esta abierto (confirmar al llegar: su calendario varia) o en el casco. La cafeteria del hotel sirve hasta las 22:00. En el pueblo, Alizia si reservaste.",
             "desayuno": "Hostal Cortes o cafeteria del centro de Cuenca antes de salir.",
             "cafe_en_ruta": "Uña (12:10), bar junto a la laguna. Segundo cafe posible en Tragacete.",
@@ -702,12 +703,12 @@
         { "hora": "12:10-12:35", "lugar": "Uña", "que": "km 64. Cafe y laguna" },
         { "hora": "13:00", "lugar": "Huelamo", "que": "km 87. Se ve entero desde la carretera; no hace falta entrar" },
         { "hora": "13:15-14:00", "lugar": "Tragacete", "que": "km 99. COMIDA. Es la unica parada con sitio donde comer hasta Albarracin" },
-        { "hora": "14:15-15:15", "lugar": "Nacimiento del Rio Cuervo", "que": "km 111. Sendero corto a las cascadas (1 km). Recortable: si se va tarde, se salta y se ahorran 24 km y 25 minutos" },
-        { "hora": "15:30", "lugar": "Tragacete (vuelta)", "que": "km 123. CM-2106 hacia el Puerto del Cubillo" },
-        { "hora": "15:55-16:10", "lugar": "Nacimiento del Rio Tajo", "que": "km 144. Monumento; aparcamiento junto a la carretera" },
-        { "hora": "16:30-16:45", "lugar": "Calomarde", "que": "km 161. Cascada junto al pueblo" },
-        { "hora": "16:50", "lugar": "Royuela", "que": "km 171. De paso" },
-        { "hora": "17:00", "lugar": "Hotel Albarracin", "que": "km 181. Llegada: descarga en la puerta (20 min), aparcar abajo. Queda tarde de sobra para las murallas: anochece a las 20:15" }
+        { "hora": "14:15-14:55", "lugar": "Nacimiento del Rio Cuervo", "que": "km 111. Del aparcamiento a las cascadas hay 500 m de PASARELA DE MADERA llana, 10 min andando: con las botas de moto vale. El sendero entero (SL-CU 14) son 2 km ida y vuelta con 70 m de desnivel y escaleras a partir de la cascada, pero no hace falta hacerlo. Aparcamiento y entrada gratis. Recortable: si se va tarde, se salta y se ahorran 24 km y 25 minutos" },
+        { "hora": "15:10", "lugar": "Tragacete (vuelta)", "que": "km 123. CM-2106 hacia el Puerto del Cubillo" },
+        { "hora": "15:35-15:50", "lugar": "Nacimiento del Rio Tajo", "que": "km 144. Monumento; aparcamiento junto a la carretera" },
+        { "hora": "16:10-16:25", "lugar": "Calomarde", "que": "km 161. Cascada junto al pueblo" },
+        { "hora": "16:30", "lugar": "Royuela", "que": "km 171. De paso" },
+        { "hora": "16:40", "lugar": "Hotel Albarracin", "que": "km 181. Llegada: descarga en la puerta (20 min), aparcar abajo. Queda tarde de sobra para las murallas: anochece a las 20:15" }
       ],
       "paradas": ["Ventano del Diablo", "Uña - cafe", "Nacimiento del Rio Cuervo", "Nacimiento del Rio Tajo", "Calomarde", "Albarracin - comida, paseo de tarde y noche"],
       "opcional": "El Nacimiento del Rio Cuervo ya va en la ruta (Tragacete -> parking -> Tragacete, 24 km y 20 min). Si hay tormentas a la vista o se va tarde, saltar esa via: se llega a Albarracin hacia las 12:30.",
@@ -746,7 +747,7 @@
           "alternativas": [
             {
               "nombre": "Hacerlo",
-              "coste": "+24 km, +20 min de moto y una hora de paseo",
+              "coste": "+24 km, +20 min de moto y 40 min de parada",
               "por_que": "Ida y vuelta desde Tragacete hasta el parking y sendero corto de 1 km hasta las cascadas.",
               "como": "Ya esta en la ruta: no hay que hacer nada"
             },
