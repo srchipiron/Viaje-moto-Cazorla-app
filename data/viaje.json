@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 95,
+    "revision": 96,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Meteo en ruta: si hay que elegir una sola app, Windy, por el radar con proyeccion y las rachas de viento; AEMET como segunda por los avisos oficiales. Abrirlas solo en las paradas para no gastar bateria",
       "Dia 4: salida retrasada de 08:15 a 09:30 por la lluvia de primera hora en Cuenca (33-40 % hasta las 09:00, 15 % a las 10:00 y 0 % desde las 12:00). El resto de la etapa esta seca: Tragacete y el rio Cuervo al 0 % toda la mañana y Albarracin al 0 % todo el dia. Comida en Tragacete a las 13:15 y llegada a las 17:00",
       "Dia 7 reexportado con el desvio a los Organos de Montoro: 220,4 km y 3h10 de Kurviger, 3h50 reales y 4.635 m de subida. El desvio cuesta +76 km, mas de los +65 estimados, porque cada tramo de la A-1702 son 39,5 km. Track regenerado y horario rehecho sobre los km del GPX",
       "Dia 4 reexportado de Kurviger con los miradores de Cuenca dentro de la ruta: 181,5 km y 3h16 de Kurviger, 3h40 reales. Track regenerado y horario rehecho sobre los km del GPX. Corregidos los nombres de los puntos de ruta, que iban corridos un puesto respecto al track",
@@ -160,6 +161,9 @@
       "audio": "Sena SRL3 integrado en el casco Shoei GT-Air 3: indicaciones de voz de Kurviger. Con los tapones Tour puestos hay que subir el volumen; ya ajustado.",
       "ubicacion_compartida": "Google Maps > Compartir ubicacion > hasta desactivar. En zonas sin cobertura el punto se congela: avisar en casa.",
       "fallback": "Si la pantalla se desconecta en un puerto: parar, mirar el telefono y seguir",
+      "meteo_en_ruta": "Si hay que quedarse con UNA app de tiempo, Windy. Lo que se decide en la gasolinera no es que tiempo hara hoy (eso ya lo da esta app con Open-Meteo por horas), sino si ponerse el forro ahora, esperar 20 minutos o tirar: eso lo contesta el radar de lluvia con proyeccion, y el de Windy es el mejor. Ademas da la RACHA de viento, no la media, que con 120 kg de piloto, tres maletas y puertos de 1.600-1.900 m es lo que importa. Y deja comparar modelos (ECMWF, ICON, GFS): si los tres coinciden, fiarse; si se contradicen, la prevision de ese valle no vale y toca mirar al cielo.",
+      "meteo_en_ruta_uso": "Abrirlo SOLO en las paradas largas y cerrarlo del todo despues: es justo el tipo de app que se queda chupando bateria en segundo plano, como Radarbot. En cada parada: radar, deslizar la linea de tiempo hasta la hora de la siguiente etapa, y listo. Nada de capas ni modelos si no hay duda.",
+      "meteo_en_ruta_segunda": "Si cabe una segunda, AEMET: es la oficial, pesa poco y sus avisos amarillo/naranja de tormenta en el Sistema Iberico son los que valen.",
       "sygic": "Pagado, con modo moto. Segundo navegador, nunca a la vez que Kurviger: para llegar a una direccion si se abandona la ruta o Kurviger se cuelga, y por sus avisos de radares y trafico (dia 11 en autovia).",
       "kurviger": {
         "extra_curvy": "Nunca",
