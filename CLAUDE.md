@@ -44,7 +44,7 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 ## Estructura de la app
 
 `app.js` es un único fichero con router por hash (`#/resumen`, `#/etapas/N`, `#/noches`,
-`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`). Cada vista es
+`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`, `#/pueblos`). Cada vista es
 una función `viewX()` que devuelve HTML; `render()` lo pinta. Estado en `D`. Persistencia en
 `localStorage` (marcas de listas, contactos y datos locales, diario, gastos, repostajes, tema,
 caché de meteo).
@@ -54,6 +54,11 @@ caché de meteo).
 y siguiente punto, y `viewAhora()` monta tarjetas con una prioridad numérica y las ordena. Para
 añadir un consejo nuevo basta con empujar `{ p, html }` a `cards`. `seguirPos()` mantiene un
 `watchPosition` mientras la vista está abierta y repinta cuando te mueves más de 300 m.
+
+`#/pueblos` geocodifica un nombre con `geocoding-api.open-meteo.com` (solo resultados de España) y
+`puebloContraRuta()` lo proyecta sobre los 11 tracks: distancia mínima, km de la etapa y estimación
+del desvío (×1,4 por carretera, ida y vuelta). Ojo con `rerender()` en vistas con formulario: repinta
+el DOM y borra lo tecleado; la vista lee el valor actual del input antes de repintar.
 El diario, los gastos y las marcas viven solo en el móvil, así que desde el repositorio no se
 pueden escribir. Para apuntar algo en el diario hay un enlace profundo:
 `#/diario/N/<texto codificado con encodeURIComponent>` añade una línea al diario del día N

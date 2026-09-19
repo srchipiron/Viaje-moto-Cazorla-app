@@ -41,10 +41,21 @@ function mockMeteo(url) {
       return { latitude: +lat, longitude: +lons[i], hourly: { time, precipitation_probability: pp, temperature_2m: t, weather_code: wc, wind_gusts_10m: g } };
     }
     const time = [], wc = [], tmax = [], tmin = [], pp = [], ps = [], gu = [];
-    const d0 = new Date(); d0.setHours(12, 0, 0, 0);
-    for (let d = 0; d < 16; d++) { const dt = new Date(d0.getTime() + d * 86400000); time.push(dt.toISOString().slice(0, 10)); wc.push([0, 2, 61, 95][d % 4]); tmax.push(24 + (d % 5)); tmin.push(8 + (d % 4)); pp.push([10, 30, 60, 85][d % 4]); ps.push([0, 0.5, 4, 12][d % 4]); gu.push(30 + (d % 3) * 15); }
+    const d0 = new Date('2026-09-14T12:00:00Z');
+    for (let d = 0; d < 20; d++) { const dt = new Date(d0.getTime() + d * 86400000); time.push(dt.toISOString().slice(0, 10)); wc.push([0, 2, 61, 95][d % 4]); tmax.push(24 + (d % 5)); tmin.push(8 + (d % 4)); pp.push([10, 30, 60, 85][d % 4]); ps.push([0, 0.5, 4, 12][d % 4]); gu.push(30 + (d % 3) * 15); }
     return { latitude: +lat, longitude: +lons[i], elevation: 900, daily: { time, weather_code: wc, temperature_2m_max: tmax, temperature_2m_min: tmin, precipitation_probability_max: pp, precipitation_sum: ps, wind_gusts_10m_max: gu } };
   });
+}
+
+/* Geocodificador simulado: Mora de Rubielos esta en la ruta del dia 8; Morella queda fuera del viaje. */
+function mockGeo(url) {
+  const q = new URL(url).searchParams.get('name').toLowerCase();
+  const all = [
+    { name: 'Mora de Rubielos', admin1: 'Aragón', admin2: 'Teruel', country_code: 'ES', latitude: 40.2508, longitude: -0.7517, population: 1500 },
+    { name: 'Morella', admin1: 'Comunidad Valenciana', admin2: 'Castellón', country_code: 'ES', latitude: 40.6197, longitude: -0.1003, population: 2400 },
+    { name: 'Mora', admin1: 'Castilla-La Mancha', admin2: 'Toledo', country_code: 'ES', latitude: 39.685, longitude: -3.774, population: 9800 },
+  ];
+  return { results: all.filter((x) => x.name.toLowerCase().includes(q)) };
 }
 
 (async () => {
@@ -52,6 +63,7 @@ function mockMeteo(url) {
   const ctx = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES' });
   await ctx.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
   await ctx.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
+  await ctx.route('https://geocoding-api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockGeo(r.request().url())) }));
   async function nuevoCtx(geo) {
     const c = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES', permissions: ['geolocation'], geolocation: geo });
     await c.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
@@ -129,6 +141,22 @@ function mockMeteo(url) {
   // tema manual
   await page.click('#tema'); const tema1 = await page.evaluate(() => document.documentElement.dataset.theme); await page.click('#tema'); const tema2 = await page.evaluate(() => document.documentElement.dataset.theme);
   if (tema1 !== 'light' || tema2 !== 'dark') errors.push(`tema: ${tema1}/${tema2}`); console.log('tema:', tema1, tema2); await page.click('#tema');
+  // buscador de pueblos: uno en la ruta, uno fuera, y uno ambiguo
+  await page.goto(BASE + '#/pueblos', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => !document.querySelector('.loading') && document.getElementById('pueblo-q'));
+  await page.fill('#pueblo-q', 'Mora de Rubielos'); await page.click('#pueblo-form button');
+  await page.waitForFunction(() => /Está en la ruta|Desvío corto|Desvío largo|Fuera del viaje/.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('pueblos: sin resultado para Mora de Rubielos'));
+  const pu1 = await page.locator('#view').innerText();
+  if (!/está en la ruta/i.test(pu1) || !/día 8/i.test(pu1)) errors.push('pueblos: Mora de Rubielos deberia estar en la ruta del dia 8');
+  console.log('pueblos (Mora de Rubielos):', (pu1.match(/Está en la ruta|Desvío corto|Desvío largo|Fuera del viaje/) || ['?'])[0], '|', (pu1.match(/Ya pasas por ahí el día \d+/) || [''])[0]);
+  await page.fill('#pueblo-q', 'Morella'); await page.click('#pueblo-form button');
+  await page.waitForFunction(() => /Morella/.test(document.getElementById('view').innerText) && /Fuera del viaje|Desvío/.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('pueblos: sin resultado para Morella'));
+  const pu2 = await page.locator('#view').innerText();
+  console.log('pueblos (Morella):', (pu2.match(/Está en la ruta|Desvío corto|Desvío largo|Fuera del viaje/) || ['?'])[0]);
+  await page.fill('#pueblo-q', 'Mora'); await page.click('#pueblo-form button');
+  await page.waitForSelector('[data-pueblo-sel]', { timeout: 10000 }).catch(() => errors.push('pueblos: no ofrece elegir entre varios'));
+  console.log('pueblos (ambiguo): opciones', await page.locator('[data-pueblo-sel]').count(), '| consultados', await page.locator('[data-pueblo-prev]').count());
+  await page.screenshot({ path: process.env.SHOT_DIR ? process.env.SHOT_DIR + '/pueblos.png' : '/dev/null', fullPage: true }).catch(() => null);
   // SOS + GPS simulado sobre la ruta del dia 3 (cerca de Alcaraz)
   await ctx.grantPermissions(['geolocation']); await ctx.setGeolocation({ latitude: 38.6648, longitude: -2.4911, accuracy: 12 });
   await page.goto(BASE + '#/etapas/3', { waitUntil: 'networkidle' });

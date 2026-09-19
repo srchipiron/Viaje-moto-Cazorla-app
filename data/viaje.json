@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 97,
+    "revision": 98,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Vista Pueblos (#/pueblos): buscador de pueblos que dice a que distancia quedan de cada etapa, que dia encaja y cuanto cuesta el desvio, para las recomendaciones de la gente. Geocodificacion de Open-Meteo, sin clave",
       "Rio Cuervo: la parada baja de 1 h a 40 min. Del aparcamiento a las cascadas hay 500 m de pasarela de madera llana (10 min), no 1 km de sendero; el SL-CU 14 entero son 2 km con 70 m de desnivel, pero no hace falta. Aparcamiento y entrada gratis. Llegada a Albarracin a las 16:40",
       "Meteo en ruta: si hay que elegir una sola app, Windy, por el radar con proyeccion y las rachas de viento; AEMET como segunda por los avisos oficiales. Abrirlas solo en las paradas para no gastar bateria",
       "Dia 4: salida retrasada de 08:15 a 09:30 por la lluvia de primera hora en Cuenca (33-40 % hasta las 09:00, 15 % a las 10:00 y 0 % desde las 12:00). El resto de la etapa esta seca: Tragacete y el rio Cuervo al 0 % toda la mañana y Albarracin al 0 % todo el dia. Comida en Tragacete a las 13:15 y llegada a las 17:00",
