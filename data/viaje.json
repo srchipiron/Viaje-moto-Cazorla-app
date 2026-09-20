@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 99,
+    "revision": 100,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Dia 7: se añade Mirambel, ida y vuelta desde Cantavieja por la A-226 (llano), con la comida alli en vez de en Cantavieja. 234,8 km y unas 4h20 reales, el unico dia que pasa de las 4 h. GPX del 20 sept comprobado",
       "Dia 7: Ruta del Silencio entera. A-1702 de Cantavieja a Ejulve y vuelta por Aliaga (A-2403) y Miravete, sin ida y vuelta: 207,9 km, 3h50 reales, 4.168 m de subida. Track del GPX del 19 sept comprobado tramo a tramo. Pitarque y Venta de la Pintada fuera a proposito",
       "Vista Pueblos (#/pueblos): buscador de pueblos que dice a que distancia quedan de cada etapa, que dia encaja y cuanto cuesta el desvio, para las recomendaciones de la gente. Geocodificacion de Open-Meteo, sin clave",
       "Rio Cuervo: la parada baja de 1 h a 40 min. Del aparcamiento a las cascadas hay 500 m de pasarela de madera llana (10 min), no 1 km de sendero; el SL-CU 14 entero son 2 km con 70 m de desnivel, pero no hace falta. Aparcamiento y entrada gratis. Llegada a Albarracin a las 16:40",
@@ -987,18 +988,18 @@
       "tipo": "montaña_tecnica",
       "origen": "Camping Los Alamos",
       "destino": "Camping Los Alamos",
-      "km_aprox": 208,
-      "tiempo_real_aprox": "3h50",
+      "km_aprox": 235,
+      "tiempo_real_aprox": "4h20",
       "dificultad": 4,
       "fatiga": 4,
       "perfil_kurviger": "Curvy",
       "equipaje": "Sin maletas laterales (se quedan en el bungalow). Pasar al SH58X: botiquin, Givi S450, compresor, agua extra y barrita.",
       "salida": "09:00",
-      "llegada_prevista": "16:35",
+      "llegada_prevista": "17:05",
       "meteo_puntos": [{ "nombre": "Valdelinares", "lat": 40.39, "lon": -0.61 }, { "nombre": "Cantavieja", "lat": 40.53, "lon": -0.41 }],
-      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "vias": ["Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Organos de Montoro", "Ejulve", "Aliaga", "Villarroya de los Pinares", "Allepuz", "Gudar"], "nota": "Ruta rehecha el 19 sept con la Ruta del Silencio entera y vuelta por Aliaga: 207,9 km y 3h10 de Kurviger. Comprobado sobre el track: A-1702 de Cantavieja a Ejulve, A-2403 a Aliaga, TE-V-8008 por Miravete a Villarroya. Version anterior (Organos ida y vuelta): 220,4 km. Comprobado sobre el track que pasa por Cañada de Benatanduz, Villarluengo, vuelta por Cantavieja, Fortanete, Villarroya, Allepuz y Gudar. Alcala de la Selva y Gudar ya no llevan punto de ruta propio, pero la carretera pasa por los dos igual. OJO: en Kurviger esta ruta se llama '...- Utiel' pero es el bucle del Maestrazgo, sale y vuelve al camping. Coincide con el plan punto por punto; maximo 1.967 m subiendo de Alcala a Valdelinares, el punto mas alto del viaje.",
-            "kurviger": {"nombre": "Día 7 · Bucle del Maestrazgo", "route_id": "49AHOUxFPoKhacptrg5B", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/49AHOUxFPoKhacptrg5B", "plan_url": "https://kurviger.com/es/plan?point=40.364074%2C-0.692946&padr.0=Camping+Los+%C3%81lamos%2C+Urbanizaci%C3%B3n+Sol+y+Nieve%2C+44431%2C+Alcal%C3%A1+de+la+Selva%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.367265%2C-0.711689&point=40.39176%2C-0.607648&point=40.327735%2C-0.570646&point=40.359663%2C-0.446396&point=40.481387%2C-0.321988&point=40.524185%2C-0.406053&point=40.503068%2C-0.518632&point=40.529759%2C-0.66811&point=40.49156%2C-0.731297&point=40.441823%2C-0.719993&padr.10=G%C3%BAdar%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.369613%2C-0.713014&point=40.364074%2C-0.692946&padr.12=Camping+Los+%C3%81lamos%2C+Urbanizaci%C3%B3n+Sol+y+Nieve%2C+44431%2C+Alcal%C3%A1+de+la+Selva%2C+Arag%C3%B3n%2C+Espa%C3%B1a&weighting=curvaturefastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+7+%C2%B7+Bucle+del+Maestrazgo&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=49AHOUxFPoKhacptrg5B&id=1", "km": 207.9, "duracion_min": 190, "subida_m": 4168, "bajada_m": 3840, "cortes_reportados": 0, "perfil": "curvaturefastest", "waypoints": 13, "exportado": "2026-09-19"},
-            "avisos": [{"km": 2, "lugar": "Alcala de la Selva", "lat": 40.3673, "lon": -0.7117, "que": "Bucle: sales por Alcala hacia Valdelinares y vuelves a entrar por el mismo sitio al final (km 140). Si el camping te pilla de camino no te confundas: la primera via es la salida."}, {"km": 69, "lugar": "La Iglesuela del Cid", "lat": 40.4814, "lon": -0.322, "que": "Punto mas lejano del bucle. A partir de aqui la ruta vuelve hacia el oeste por Cantavieja y Fortanete."}, {"km": 78, "lugar": "Cantavieja: desvio a la Ruta del Silencio", "lat": 40.5233, "lon": -0.4053, "que": "Aqui se coge la A-1702, la Ruta del Silencio, ENTERA: Cañada de Benatanduz, Villarluengo, Organos de Montoro y Ejulve, 54 km. No se vuelve por aqui: desde Ejulve se sigue por la A-2403 a Aliaga y de alli a Villarroya. REPOSTAR en Cantavieja: es la ultima gasolinera fiable y quedan 130 km."}] },
+      "gpx": { "archivo": "gpx/dia-07.gpx", "track": "data/tracks/dia-07.json", "vias": ["Valdelinares", "Linares de Mora", "Mosqueruela", "La Iglesuela del Cid", "Cantavieja", "Mirambel", "Organos de Montoro", "Ejulve", "Aliaga", "Villarroya de los Pinares", "Allepuz", "Gudar"], "nota": "Ruta rehecha el 20 sept con Mirambel (ida y vuelta por la A-226) y la Ruta del Silencio entera con vuelta por Aliaga: 234,8 km y 3h34 de Kurviger. Comprobado sobre el track: A-1702 de Cantavieja a Ejulve, A-2403 a Aliaga, TE-V-8008 por Miravete a Villarroya. Version anterior (Organos ida y vuelta): 220,4 km. Comprobado sobre el track que pasa por Cañada de Benatanduz, Villarluengo, vuelta por Cantavieja, Fortanete, Villarroya, Allepuz y Gudar. Alcala de la Selva y Gudar ya no llevan punto de ruta propio, pero la carretera pasa por los dos igual. OJO: en Kurviger esta ruta se llama '...- Utiel' pero es el bucle del Maestrazgo, sale y vuelve al camping. Coincide con el plan punto por punto; maximo 1.967 m subiendo de Alcala a Valdelinares, el punto mas alto del viaje.",
+            "kurviger": {"nombre": "Día 7 · Bucle del Maestrazgo", "route_id": "49AHOUxFPoKhacptrg5B", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/49AHOUxFPoKhacptrg5B", "plan_url": "https://kurviger.com/es/plan?point=40.364074%2C-0.692946&padr.0=Camping+Los+%C3%81lamos%2C+Urbanizaci%C3%B3n+Sol+y+Nieve%2C+44431%2C+Alcal%C3%A1+de+la+Selva%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.367265%2C-0.711689&point=40.39176%2C-0.607648&point=40.327735%2C-0.570646&point=40.359663%2C-0.446396&point=40.481387%2C-0.321988&point=40.524185%2C-0.406053&point=40.503068%2C-0.518632&point=40.529759%2C-0.66811&point=40.49156%2C-0.731297&point=40.441823%2C-0.719993&padr.10=G%C3%BAdar%2C+Arag%C3%B3n%2C+Espa%C3%B1a&point=40.369613%2C-0.713014&point=40.364074%2C-0.692946&padr.12=Camping+Los+%C3%81lamos%2C+Urbanizaci%C3%B3n+Sol+y+Nieve%2C+44431%2C+Alcal%C3%A1+de+la+Selva%2C+Arag%C3%B3n%2C+Espa%C3%B1a&weighting=curvaturefastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+7+%C2%B7+Bucle+del+Maestrazgo&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=49AHOUxFPoKhacptrg5B&id=1", "km": 234.8, "duracion_min": 214, "subida_m": 4718, "bajada_m": 3840, "cortes_reportados": 0, "perfil": "curvaturefastest", "waypoints": 14, "exportado": "2026-09-20"},
+            "avisos": [{"km": 2, "lugar": "Alcala de la Selva", "lat": 40.3673, "lon": -0.7117, "que": "Bucle: sales por Alcala hacia Valdelinares y vuelves a entrar por el mismo sitio al final (km 140). Si el camping te pilla de camino no te confundas: la primera via es la salida."}, {"km": 69, "lugar": "La Iglesuela del Cid", "lat": 40.4814, "lon": -0.322, "que": "Punto mas lejano del bucle. A partir de aqui la ruta vuelve hacia el oeste por Cantavieja y Fortanete."}, {"km": 78, "lugar": "Cantavieja: desvio a la Ruta del Silencio", "lat": 40.5233, "lon": -0.4053, "que": "Primera vez por Cantavieja: REPOSTAR (ultima gasolinera fiable, quedan 157 km) y seguir por la A-226 a Mirambel, 13 km. Se vuelve por la misma A-226 y en la segunda pasada por Cantavieja se coge la A-1702, la Ruta del Silencio entera: Cañada de Benatanduz, Villarluengo, Organos de Montoro y Ejulve. Kurviger dira de vuelta en Mirambel: es lo previsto."}] },
       "guia": {
         "resumen": "El bucle del Maestrazgo: Valdelinares, el pueblo más alto de España, y una sucesión de villas medievales de piedra (Linares de Mora, Mosqueruela, La Iglesuela del Cid, Cantavieja, Fortanete) por carreteras solitarias entre 1.200 y 1.800 m. Desde Cantavieja, la Ruta del Silencio entera: la A-1702 por Villarluengo y los Órganos de Montoro hasta Ejulve, y vuelta por el Parque Geológico de Aliaga.",
         "ver": [
@@ -1036,6 +1037,14 @@
             "que": "Capital del Alto Maestrazgo, encaramada sobre un barranco a 1.300 m. Plaza de Cristo Rey porticada, iglesia de la Asunción, ayuntamiento gótico y el Museo de las Guerras Carlistas. Comida antes de las 14:00 (es domingo).",
             "tiempo": "1h30",
             "en_ruta": true
+          },
+          {
+            "lugar": "Mirambel",
+            "tipo": "pueblo",
+            "que": "Villa amurallada del Maestrazgo, Premio Europa Nostra por su conservación: Portal de las Monjas con celosías de yeso, casas solariegas y murallas enteras. Y la excepción de la comarca: está en una vega, llano, se ve entero en 20 minutos sin subir una cuesta. Ida y vuelta de 13 km desde Cantavieja por la A-226.",
+            "tiempo": "1 h con comida",
+            "lat": 40.5878,
+            "lon": -0.3425
           },
           {
             "lugar": "Organos de Montoro",
@@ -1108,14 +1117,16 @@
         { "hora": "09:50-10:05", "lugar": "Linares de Mora", "que": "km 29. Parada corta; villa amurallada sobre el barranco" },
         { "hora": "10:20-11:05", "lugar": "Mosqueruela", "que": "km 43. Cafe en la Plaza Mayor porticada" },
         { "hora": "11:30-12:10", "lugar": "La Iglesuela del Cid", "que": "km 67. Plaza gotico-renacentista; paseo corto" },
-        { "hora": "12:20-13:30", "lugar": "Cantavieja", "que": "km 78. Comida sin alargarla; es domingo, sentarse antes de las 13:30. REPOSTAR AQUI: ultima gasolinera fiable, quedan 130 km" },
-        { "hora": "14:15-14:40", "lugar": "Organos de Montoro", "que": "km 118. Ruta del Silencio por la A-1702, pasando por Cañada de Benatanduz y Villarluengo. Mirador a pie de carretera, con paneles y bancos" },
-        { "hora": "14:55", "lugar": "Ejulve", "que": "km 132. Final del tramo bueno de la A-1702; se gira a la A-2403 hacia Aliaga" },
-        { "hora": "15:25-15:40", "lugar": "Aliaga", "que": "km 160. Parque Geologico: los estratos plegados se ven desde la carretera. Parada corta" },
-        { "hora": "16:00", "lugar": "Villarroya de los Pinares", "que": "km 180. De paso, por Miravete de la Sierra" },
-        { "hora": "16:10", "lugar": "Allepuz", "que": "km 189. De paso" },
-        { "hora": "16:20", "lugar": "Gudar", "que": "km 197. De paso" },
-        { "hora": "16:35", "lugar": "Camping Los Alamos", "que": "km 208. Llegada" }
+        { "hora": "12:20-12:30", "lugar": "Cantavieja", "que": "km 78. Solo REPOSTAR: ultima gasolinera fiable, quedan 157 km. Cantavieja es todo cuesta, la comida se hace en Mirambel" },
+        { "hora": "12:45-13:45", "lugar": "Mirambel", "que": "km 91. Comida y paseo. Pueblo amurallado y LLANO (Premio Europa Nostra): Portal de las Monjas con celosias, se ve entero en 20 minutos sin subir nada. Domingo: si no hay sitio, bocadillo" },
+        { "hora": "14:00", "lugar": "Cantavieja (de paso)", "que": "km 105. Sin parar: aqui se coge la A-1702" },
+        { "hora": "14:45-15:10", "lugar": "Organos de Montoro", "que": "km 145. Ruta del Silencio por la A-1702, pasando por Cañada de Benatanduz y Villarluengo. Mirador a pie de carretera, con paneles y bancos" },
+        { "hora": "15:25", "lugar": "Ejulve", "que": "km 159. Final del tramo bueno de la A-1702; se gira a la A-2403 hacia Aliaga" },
+        { "hora": "15:55-16:10", "lugar": "Aliaga", "que": "km 187. Parque Geologico: los estratos plegados se ven desde la carretera. Parada corta" },
+        { "hora": "16:30", "lugar": "Villarroya de los Pinares", "que": "km 207. De paso, por Miravete de la Sierra" },
+        { "hora": "16:40", "lugar": "Allepuz", "que": "km 215. De paso" },
+        { "hora": "16:50", "lugar": "Gudar", "que": "km 223. De paso" },
+        { "hora": "17:05", "lugar": "Camping Los Alamos", "que": "km 235. Llegada; anochece a las 20:05" }
       ],
       "paradas": ["Mosqueruela - cafe", "Cantavieja - comida", "Fortanete"],
       "notas": [
@@ -1126,7 +1137,7 @@
         "Etapa mas aislada: cobertura intermitente, el punto de ubicacion compartida se congelara.",
         "100% recortable: Alcala -> Valdelinares -> Linares -> Mosqueruela y vuelta ya es una gran mañana (unos 100 km).",
         "Segundo recorte posible: saltar La Iglesuela del Cid ahorra unos 20 km sin tocar el resto del bucle.",
-        "RUTA DEL SILENCIO ENTERA (decidido el 19 sept): desde Cantavieja, km 78, la A-1702 completa hasta Ejulve (km 132) pasando por Cañada de Benatanduz, Villarluengo y los Organos de Montoro (km 118). Sin ida y vuelta: de Ejulve se sigue por la A-2403 a Aliaga (km 160, Parque Geologico) y por Miravete de la Sierra (TE-V-8008) a Villarroya, Allepuz y Gudar. Medido sobre el GPX: 207,9 km y 3h10 de Kurviger, 3h50 reales, 4.168 m de subida. Mas corto que la version de ida y vuelta (220 km) y sin repetir un metro.",
+        "RUTA DEL SILENCIO ENTERA + MIRAMBEL (decidido el 20 sept): desde Cantavieja, km 78, ida y vuelta a Mirambel por la A-226 (13 km cada tramo, llano) y despues la A-1702 completa hasta Ejulve pasando por Cañada de Benatanduz, Villarluengo y los Organos de Montoro (km 145). De Ejulve, A-2403 a Aliaga (km 187) y por Miravete de la Sierra a Villarroya, Allepuz y Gudar. Medido sobre el GPX: 234,8 km y 3h34 de Kurviger, unas 4h20 reales, 4.718 m de subida. Es el unico dia del viaje que pasa de las 4 h, a proposito: el tramo extra es la A-226, buena y llana, y se llega con tres horas de luz.",
         "Pitarque (desvio de 18 km ida y vuelta desde el cruce) y Venta de la Pintada (final oficial de la A-1702, 25 km ida y vuelta desde Ejulve) quedan fuera a proposito: el tramo bueno es Cantavieja - Villarluengo - Organos - Ejulve. Si al pasar el cruce de Pitarque se va sobrado, acercarse al pueblo son 12 minutos.",
         "Tramo Aliaga - Miravete de la Sierra: es el unico que no estaba en ninguna version anterior. Kurviger lo traza por la TE-V-8008; si sobre el terreno apareciera sin asfaltar, volver a Aliaga y bajar por la A-1403 a Villarroya.",
         "GASOLINA el dia 7: es domingo y el Maestrazgo esta vacio. Salir del camping con el deposito lleno y repostar en Cantavieja antes de meterse en la A-1702, que son 65 km de ida y vuelta sin nada.",
