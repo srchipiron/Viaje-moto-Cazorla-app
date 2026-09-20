@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 100,
+    "revision": 101,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Tapones Alpine: el plan llamaba Sport a los de autovia y no decia el color. Son dos filtros: NEGRO = Tour 17 dB para ruta y montaña, ROJO = Race 20 dB solo para la autovia del dia 11",
       "Dia 7: se añade Mirambel, ida y vuelta desde Cantavieja por la A-226 (llano), con la comida alli en vez de en Cantavieja. 234,8 km y unas 4h20 reales, el unico dia que pasa de las 4 h. GPX del 20 sept comprobado",
       "Dia 7: Ruta del Silencio entera. A-1702 de Cantavieja a Ejulve y vuelta por Aliaga (A-2403) y Miravete, sin ida y vuelta: 207,9 km, 3h50 reales, 4.168 m de subida. Track del GPX del 19 sept comprobado tramo a tramo. Pitarque y Venta de la Pintada fuera a proposito",
       "Vista Pueblos (#/pueblos): buscador de pueblos que dice a que distancia quedan de cada etapa, que dia encaja y cuanto cuesta el desvio, para las recomendaciones de la gente. Geocodificacion de Open-Meteo, sin clave",
@@ -162,7 +163,7 @@
       "movil": "Google Pixel 9 Pro XL en la bolsa de deposito, conectado a una powerbank de 10.000 mAh (la toma USB-C de la moto no funciona); la segunda powerbank de reserva en la misma bolsa",
       "movil_bateria": "Medido el 13 sept: unos 15 % por hora en ruta (CPU ocupada casi todo el tiempo por Android Auto inalambrico + Kurviger + GPS). Una etapa larga gasta 60-70 %: una powerbank por dia. Para bajar el consumo: solo Kurviger abierto (Sygic y la app de la Osmo cerradas del todo), red en 4G/LTE (sin 5G) porque en la sierra buscar cobertura dispara el gasto, y el Pixel fuera del sol dentro de la bolsa. Salir cada dia al 100 %.",
       "app": "Kurviger via Android Auto",
-      "audio": "Sena SRL3 integrado en el casco Shoei GT-Air 3: indicaciones de voz de Kurviger. Con los tapones Tour puestos hay que subir el volumen; ya ajustado.",
+      "audio": "Sena SRL3 integrado en el casco Shoei GT-Air 3: indicaciones de voz de Kurviger. Con los tapones Tour (negros) puestos hay que subir el volumen; ya ajustado.",
       "ubicacion_compartida": "Google Maps > Compartir ubicacion > hasta desactivar. En zonas sin cobertura el punto se congela: avisar en casa.",
       "fallback": "Si la pantalla se desconecta en un puerto: parar, mirar el telefono y seguir",
       "meteo_en_ruta": "Si hay que quedarse con UNA app de tiempo, Windy. Lo que se decide en la gasolinera no es que tiempo hara hoy (eso ya lo da esta app con Open-Meteo por horas), sino si ponerse el forro ahora, esperar 20 minutos o tirar: eso lo contesta el radar de lluvia con proyeccion, y el de Windy es el mejor. Ademas da la RACHA de viento, no la media, que con 120 kg de piloto, tres maletas y puertos de 1.600-1.900 m es lo que importa. Y deja comparar modelos (ECMWF, ICON, GFS): si los tres coinciden, fiarse; si se contradicen, la prevision de ese valle no vale y toca mirar al cielo.",
@@ -1588,7 +1589,7 @@
       "paradas": ["Caravaca de la Cruz - basilica", "Maria - cafe", "Velez-Blanco - castillo"],
       "notas": [
         "Horas de paso calculadas con los tiempos de Kurviger (3h53 de conduccion) mas las paradas.",
-        "Desde Velez-Rubio son 120 km de autovia (A-92N hasta Puerto Lumbreras y A-7 de la costa). Tapones Sport y ritmo tranquilo: es el unico tramo largo de autovia del viaje.",
+        "Desde Velez-Rubio son 120 km de autovia (A-92N hasta Puerto Lumbreras y A-7 de la costa). Tapones ROJOS (Race, 20 dB) y ritmo tranquilo: es el unico tramo largo de autovia del viaje y el unico dia que se usan.",
         "Alternativa por secundarias (gpx/dia-11-alt-almanzora.gpx): mismos km, 25 minutos mas, por Chirivel, Macael, Uleila del Campo y Tabernas. Mas bonita pero mas exigente en el ultimo dia.",
         "Deposito lleno al salir de Moratalla o en Caravaca; ultimo repostaje comodo en Velez-Rubio."
       ]
@@ -1676,7 +1677,7 @@
   "equipacion_moto": {
     "decision": "REV'IT Vertical GTX + REV'IT Tornado 4. La Airwave 4 y los vaqueros Racered se quedan en casa.",
     "puesto_siempre": [
-      "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)","Botas REV'IT Breccia GTX (Gore-Tex)", "Guantes REV'IT Caliber 1 (verano)", "Casco Shoei GT-Air 3 con Sena SRL3", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Tour"],
+      "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)","Botas REV'IT Breccia GTX (Gore-Tex)", "Guantes REV'IT Caliber 1 (verano)", "Casco Shoei GT-Air 3 con Sena SRL3", "Braga de cuello merino", "Gafas de sol", "Tapones Alpine MotoSafe Duo Pack (filtros negros Tour 17 dB y rojos Race 20 dB)"],
     "lluvia": "Guantes REV'IT Sand 5 H2O (impermeables) en el SH58X. Las botas son Gore-Tex: no hacen falta cubrebotas.",
     "configuracion_por_tipo_de_dia": {
       "montaña": {
@@ -1691,7 +1692,7 @@
         "nota": "Si la prevision de la mañana marca tormentas, poner el forro impermeable antes de salir. Dia 1: salir con el polar o el forro puestos por Calar Alto (2.000 m a las 10:00) y quitarlos en Baza."
       }
     },
-    "tapones": "Alpine MotoSafe Duo Pack. Tour en ruta (~17 dB). Sport para el dia 11, que lleva autovia desde Velez-Rubio.",
+    "tapones": "Alpine MotoSafe Duo Pack, dos juegos de filtros que se distinguen POR COLOR: NEGRO = Tour, 17 dB, para ruta y montaña (es el de casi todo el viaje); ROJO = Race, 20 dB, mas atenuacion, para autovia y velocidad sostenida. Los rojos, solo el dia 11 desde Velez-Rubio.",
     "sixs": "Conjunto SIXS Carbon Underwear: top y bottom como primera capa todos los dias (se lavan a mano por la noche y estan secos por la mañana). Sotocasco en las salidas frias (dia 1 por Calar Alto, Albarracin, Maestrazgo) y para mantener el casco limpio; probado en las etapas 1 y 2 con el Sena y los tapones. Calcetines SIXS los dias de calor, MH900 los de montaña."
   },
   "ropa_comprada_decathlon_2026_09_09": {
