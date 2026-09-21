@@ -97,16 +97,26 @@ function mockGeo(url) {
   const compartido = await page.evaluate(() => new Promise((res) => { window.open = (u) => { res(u); return null; }; navigator.share = undefined; document.querySelector('[data-avisar]').click(); setTimeout(() => res(null), 1500); }));
   if (!compartido || !/wa\.me\/\?text=.*D%C3%ADa%203/.test(compartido)) errors.push('avisar en casa no genera el enlace de WhatsApp: ' + compartido);
   console.log('avisar en casa:', compartido ? decodeURIComponent(compartido).slice(0, 70).replace(/\n/g, ' | ') : null);
-  // radares de la DGT en la ficha de etapa (dia 3 tiene dos; el dia 5 ninguno)
+  // radares de la DGT: tabla en la ficha de etapa (dia 3 tiene dos sobre la ruta) y vista propia
   await page.goto(BASE + '#/etapas/3', { waitUntil: 'networkidle' });
-  await page.waitForFunction(() => /Radares en la ruta/i.test(document.getElementById('view').innerText), null, { timeout: 15000 })
+  await page.waitForFunction(() => /Radares/i.test(document.getElementById('view').innerText), null, { timeout: 15000 })
     .catch(() => errors.push('dia 3 sin el bloque de radares'));
-  const nrad = await page.locator('h2:text-matches("Radares en la ruta", "i") + .card tbody tr').count();
-  if (nrad !== 2) errors.push(`dia 3: ${nrad} radares en la tabla, esperados 2`);
+  const nrad = await page.locator('h2:text-matches("^Radares", "i") + .card > .tbl-wrap tbody tr').count();
+  if (nrad !== 2) errors.push(`dia 3: ${nrad} radares sobre la ruta, esperados 2`);
+  if (!(await page.locator('h2:text-matches("^Radares", "i") + .card details').count())) errors.push('dia 3 sin el desplegable de radares cerca de la ruta');
   console.log('radares dia 3:', nrad, '|', (await page.locator('#view').innerText()).match(/Fijo · [^\n]*/g));
   await page.goto(BASE + '#/etapas/5', { waitUntil: 'networkidle' });
   await page.waitForTimeout(400);
-  if (/Radares en la ruta/i.test(await page.locator('#view').innerText())) errors.push('dia 5 no deberia tener radares');
+  if (/^Radares/im.test(await page.locator('#view').innerText())) errors.push('dia 5 no deberia tener radares');
+  // vista #/radares: lista completa de Espana cargada y desglose por etapa
+  await page.goto(BASE + '#/radares', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => /puntos de radar/i.test(document.getElementById('view').innerText), null, { timeout: 15000 })
+    .catch(() => errors.push('vista de radares sin cargar'));
+  const totRad = await page.evaluate(() => (D.radares && D.radares.radares || []).length);
+  if (totRad < 700) errors.push(`la app solo tiene ${totRad} radares de toda España`);
+  const enRuta = await page.evaluate(() => D.data.itinerario.reduce((s, e) => s + radaresDia(e.dia).en_ruta.length, 0));
+  if (enRuta !== 5) errors.push(`radares en ruta: ${enRuta}, esperados 5`);
+  console.log('radares:', totRad, 'puntos en España |', enRuta, 'sobre la ruta');
   // tabla de rutas Kurviger en la guia
   await page.goto(BASE + '#/guia', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => document.querySelectorAll('table.rutas tbody tr').length >= 11 && !document.querySelector('table.rutas .muted'), null, { timeout: 15000 }).catch(() => errors.push('tabla de rutas Kurviger incompleta'));

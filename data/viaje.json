@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 102,
+    "revision": 103,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Radares: la app lleva ya los 769 puntos de radar de la DGT de toda España (690 fijos y 47 de tramo), no solo los 5 que pisan la ruta. Vista #/radares con el desglose por etapa y los mas cercanos a donde estes; en cada etapa salen ademas los que quedan a menos de 5 km del track, por si hay desvio; en Ahora, si no hay ninguno en la ruta, salen los que tengas a menos de 20 km con distancia y rumbo",
       "Radares de la DGT: data/radares.json (generado con tools/radares.py desde el fichero DATEX II del Punto de Acceso Nacional, datos de 2025-12-18). Solo 5 radares fijos caen sobre la ruta: dia 1 (A-7 pk 778 y A-92 pk 392), dia 3 (N-322 pk 316 y CM-220 pk 92) y dia 11 (A-7 pk 760). Se ven en la ficha de cada etapa, en el mapa del dia y como aviso en Ahora cuando quedan menos de 15 km.",
       "Tapones Alpine: el plan llamaba Sport a los de autovia y no decia el color. Son dos filtros: NEGRO = Tour 17 dB para ruta y montaña, ROJO = Race 20 dB solo para la autovia del dia 11",
       "Dia 7: se añade Mirambel, ida y vuelta desde Cantavieja por la A-226 (llano), con la comida alli en vez de en Cantavieja. 234,8 km y unas 4h20 reales, el unico dia que pasa de las 4 h. GPX del 20 sept comprobado",

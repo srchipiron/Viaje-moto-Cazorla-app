@@ -33,8 +33,13 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 ## Radares
 
 - `data/radares.json` lo genera `python3 tools/radares.py` desde el fichero DATEX II del
-  Punto de Acceso Nacional de la DGT (datos abiertos). Guarda solo los radares que caen a
-  menos de 250 m de alguno de los 11 tracks, con el km de la etapa.
+  Punto de Acceso Nacional de la DGT (datos abiertos). Lleva **todos** los radares de
+  España (769 puntos: 690 fijos y 47 de tramo, que aportan inicio y fin) en formato
+  columnar —`campos` + `radares`, una fila por línea— más `por_dia` con los que están
+  sobre el track (`en_ruta`, a menos de 250 m) y los que quedan cerca (`cerca`, menos de
+  5 km), con el km de la etapa. Las filas de `por_dia` son índices (`i`) a `radares`.
+- En la app: `radaresDia(n)` da `{ en_ruta, cerca }` hidratados, `radaresCerca(pos, km, n)`
+  los más próximos a una posición mire donde mire, y `#/radares` es la vista completa.
 - Cubre solo la red que gestiona la DGT: ni Cataluña ni País Vasco, ni radares autonómicos,
   municipales o móviles. No inventar radares ni copiarlos de webs de terceros.
 - Al regenerarlo, subir `VERSION` en `sw.js` no hace falta si solo cambia el JSON, pero sí
@@ -54,7 +59,7 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 ## Estructura de la app
 
 `app.js` es un único fichero con router por hash (`#/resumen`, `#/etapas/N`, `#/noches`,
-`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`, `#/pueblos`). Cada vista es
+`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`, `#/pueblos`, `#/radares`). Cada vista es
 una función `viewX()` que devuelve HTML; `render()` lo pinta. Estado en `D`. Persistencia en
 `localStorage` (marcas de listas, contactos y datos locales, diario, gastos, repostajes, tema,
 caché de meteo).

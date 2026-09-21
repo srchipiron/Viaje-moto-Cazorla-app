@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-"""Genera data/radares.json: radares fijos y de tramo de la DGT que caen sobre los
-tracks del viaje.
+"""Genera data/radares.json: TODOS los radares fijos y de tramo de la DGT, mas el
+indice de los que caen sobre los tracks del viaje.
+
+El fichero lleva la lista completa de Espana (formato columnar para que ocupe poco) y,
+por cada dia, los radares que estan sobre la ruta (a menos de 250 m del track) y los
+que quedan cerca (a menos de 5 km), con el km de la etapa. La app usa la lista completa
+para avisar de lo que tienes alrededor aunque te salgas de la ruta.
 
 Fuente: fichero DATEX II del punto de acceso nacional de la DGT (datos abiertos).
 Cubre solo la red gestionada por la DGT: no incluye Cataluna ni Pais Vasco, ni los
@@ -16,7 +21,8 @@ import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 URL = 'https://nap.dgt.es/datex2/dgt/PredefinedLocationsPublication/radares/content.xml'
-UMBRAL_M = 250.0          # a menos de esto del track, el radar esta en la ruta
+EN_RUTA_M = 250.0         # a menos de esto del track, el radar esta en la ruta
+CERCA_M = 5000.0          # a menos de esto, el radar queda cerca (desvios, vueltas por el pueblo)
 R = 6371000.0
 
 def tag(e):
@@ -114,6 +120,22 @@ def dist_a_segmento(p, a, b):
     t = 0.0 if L == 0 else max(0.0, min(1.0, -(ax * dx + ay * dy) / L))
     return math.hypot(ax + t * dx, ay + t * dy), t
 
+def radar_normalizado(r, pt):
+    """Una fila de la lista completa, en el orden de CAMPOS."""
+    pk = r['ref'].get('referencePointDistance')
+    return [
+        round(pt['lat'], 5), round(pt['lon'], 5),
+        'tramo' if r['conjunto'] == 'CinemometrosVelocidadMedia' else 'fijo',
+        r['ref'].get('roadNumber') or pt.get('linkName', ''),
+        round(float(pk) / 1000.0, 1) if pk else None,
+        {'positive': 'creciente', 'negative': 'decreciente'}.get(r['ref'].get('directionRelative'), ''),
+        bonito(pt.get('townName', '')),
+        bonito(r['ref'].get('administrativeArea', '')),
+        {'from': 'inicio', 'to': 'fin'}.get(pt['rol'], ''),
+    ]
+
+CAMPOS = ['lat', 'lon', 'tipo', 'via', 'pk', 'sentido', 'municipio', 'provincia', 'punto']
+
 def main(xml_path=None):
     os.chdir(ROOT)
     if xml_path:
@@ -125,7 +147,20 @@ def main(xml_path=None):
     fijos = sum(1 for r in rads if r['conjunto'] == 'CabinasCinemometro')
     tramo = sum(1 for r in rads if r['conjunto'] == 'CinemometrosVelocidadMedia')
 
-    por_dia, total = {}, 0
+    # lista completa: una fila por punto (los de tramo tienen inicio y fin)
+    filas, vistos = [], set()
+    for r in rads:
+        for pt in r['puntos']:
+            fila = radar_normalizado(r, pt)
+            # dos cabinas pueden compartir punto (una por calzada): solo se descartan las
+            # filas identicas en todo, que son el mismo radar repetido en el fichero
+            clave = tuple(fila)
+            if clave in vistos:
+                continue
+            vistos.add(clave)
+            filas.append(fila)
+
+    por_dia, en_ruta_total, cerca_total = {}, 0, 0
     for dia in plan['itinerario']:
         if not dia.get('gpx') or not dia['gpx'].get('track'):
             continue
@@ -136,60 +171,56 @@ def main(xml_path=None):
             cum.append(cum[-1] + hav_m(tk[i - 1], tk[i]))
         escala = t['km'] / (cum[-1] / 1000.0) if cum[-1] else 1.0
         bb = t['bbox']
-        hits, vistos = [], set()
-        for r in rads:
-            for pt in r['puntos']:
-                la, lo = pt['lat'], pt['lon']
-                if not (bb[0] - 0.02 <= la <= bb[2] + 0.02 and bb[1] - 0.02 <= lo <= bb[3] + 0.02):
-                    continue
-                mejor = (1e9, 0, 0.0)
-                for i in range(len(tk) - 1):
-                    d, u = dist_a_segmento((la, lo), tk[i], tk[i + 1])
-                    if d < mejor[0]:
-                        mejor = (d, i, u)
-                if mejor[0] > UMBRAL_M:
-                    continue
-                clave = (round(la, 5), round(lo, 5))
-                if clave in vistos:
-                    continue
-                vistos.add(clave)
-                d, i, u = mejor
-                km = (cum[i] + u * (cum[i + 1] - cum[i])) / 1000.0 * escala
-                pk = r['ref'].get('referencePointDistance')
-                hits.append({
-                    'tipo': 'tramo' if r['conjunto'] == 'CinemometrosVelocidadMedia' else 'fijo',
-                    'via': r['ref'].get('roadNumber') or pt.get('linkName', ''),
-                    'pk': round(float(pk) / 1000.0, 1) if pk else None,
-                    'sentido': {'positive': 'creciente', 'negative': 'decreciente'}.get(r['ref'].get('directionRelative'), ''),
-                    'hacia': bonito(r['ref'].get('directionNamed', '')),
-                    'municipio': bonito(pt.get('townName', '')),
-                    'provincia': bonito(r['ref'].get('administrativeArea', '')),
-                    'lat': round(la, 5), 'lon': round(lo, 5),
-                    'km': round(km, 1), 'dist_m': round(d),
-                })
-        hits.sort(key=lambda h: h['km'])
-        if hits:
-            por_dia[str(dia['dia'])] = hits
-            total += len(hits)
+        margen = CERCA_M / 111000.0 * 1.4
+        en_ruta, cerca = [], []
+        for idx, fila in enumerate(filas):
+            la, lo = fila[0], fila[1]
+            if not (bb[0] - margen <= la <= bb[2] + margen and bb[1] - margen <= lo <= bb[3] + margen):
+                continue
+            mejor = (1e9, 0, 0.0)
+            for i in range(len(tk) - 1):
+                d, u = dist_a_segmento((la, lo), tk[i], tk[i + 1])
+                if d < mejor[0]:
+                    mejor = (d, i, u)
+            d, i, u = mejor
+            if d > CERCA_M:
+                continue
+            km = (cum[i] + u * (cum[i + 1] - cum[i])) / 1000.0 * escala
+            fila = {'i': idx, 'km': round(km, 1), 'dist_m': round(d)}
+            (en_ruta if d <= EN_RUTA_M else cerca).append(fila)
+        en_ruta.sort(key=lambda h: h['km'])
+        cerca.sort(key=lambda h: h['km'])
+        if en_ruta or cerca:
+            por_dia[str(dia['dia'])] = {'en_ruta': en_ruta, 'cerca': cerca}
+            en_ruta_total += len(en_ruta)
+            cerca_total += len(cerca)
 
     out = {
         'fuente': 'DGT · Punto de Acceso Nacional (DATEX II, datos abiertos)',
         'url': URL,
         'publicado': publicado,
         'descargado': datetime.date.today().isoformat(),
-        'umbral_m': int(UMBRAL_M),
-        'totales': {'fijos': fijos, 'tramo': tramo, 'en_ruta': total},
+        'en_ruta_m': int(EN_RUTA_M),
+        'cerca_m': int(CERCA_M),
+        'totales': {'fijos': fijos, 'tramo': tramo, 'puntos': len(filas),
+                    'en_ruta': en_ruta_total, 'cerca': cerca_total},
         'aviso': ('Solo radares fijos y de tramo de la red que gestiona la DGT. No incluye '
                   'Cataluña ni País Vasco, ni radares autonómicos, municipales o móviles: '
                   'en las carreteras pequeñas del viaje los controles suelen ser móviles y '
                   'no salen aquí. El sentido es el de kilometraje del radar; puede estar en '
                   'la calzada contraria.'),
+        'campos': CAMPOS,
+        'radares': filas,
         'por_dia': por_dia,
     }
-    open('data/radares.json', 'w', encoding='utf-8').write(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
-    print(f"data/radares.json: {fijos} fijos + {tramo} de tramo en España, {total} sobre la ruta")
-    for d, hs in por_dia.items():
-        print(f"  día {d}: " + ' · '.join(f"km {h['km']} {h['via']} pk {h['pk']} ({h['dist_m']} m)" for h in hs))
+    txt = json.dumps(out, ensure_ascii=False, separators=(',', ':'))
+    # una fila de radar por linea, para que el diff sea legible
+    txt = txt.replace('],[', '],\n[').replace('"radares":[', '"radares":[\n').replace('],"por_dia"', '\n],"por_dia"')
+    open('data/radares.json', 'w', encoding='utf-8').write(txt + '\n')
+    print(f"data/radares.json: {fijos} fijos + {tramo} de tramo ({len(filas)} puntos) en España, "
+          f"{en_ruta_total} sobre la ruta y {cerca_total} a menos de {int(CERCA_M/1000)} km")
+    for d, h in sorted(por_dia.items(), key=lambda x: int(x[0])):
+        print(f"  día {d}: {len(h['en_ruta'])} en ruta, {len(h['cerca'])} cerca")
 
 if __name__ == '__main__':
     main(sys.argv[1] if len(sys.argv) > 1 else None)

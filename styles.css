@@ -400,6 +400,10 @@ details[open] > summary::after { transform: rotate(180deg); }
 .via-icon.via-noche span { background: var(--card); font-size: 13px; }
 .via-icon.via-dia span { font-size: 11px; }
 .via-icon.via-radar span { background: #7a1020; font-size: 12px; }
+.via-icon.via-radar-cerca span { background: var(--muted); opacity: .85; }
+.radar-cerca { list-style: none; padding: 0; margin: 6px 0; }
+.radar-cerca li { padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: .93rem; }
+.radar-cerca li:last-child { border-bottom: 0; }
 
 table.seguro td:first-child { font-weight: 600; width: 42%; }
 
