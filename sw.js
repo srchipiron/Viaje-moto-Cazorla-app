@@ -1,6 +1,6 @@
 /* Service worker: precarga la app y los datos para funcionar sin cobertura.
    Al cambiar cualquier fichero (sobre todo data/viaje.json), subir VERSION. */
-const VERSION = 'v3.12.0';
+const VERSION = 'v3.13.0';
 const CACHE = `viaje-nx500-${VERSION}`;
 const TILES = 'viaje-nx500-tiles'; // teselas de OpenStreetMap ya vistas (se conservan entre versiones)
 const TILES_MAX = 800;
@@ -10,6 +10,7 @@ const SHELL = [
   './styles.css',
   './app.js',
   './data/viaje.json',
+  './data/radares.json',
   './manifest.webmanifest',
   './icons/icon.svg',
   './icons/icon-maskable.svg'

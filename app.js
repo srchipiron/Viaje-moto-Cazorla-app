@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.12.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.13.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes';
 const PUEBLOS_KEY = 'viaje-nx500-pueblos';       // pueblos consultados, solo en este dispositivo // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
@@ -374,6 +374,41 @@ function pagoHTML(a) {
 function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
 function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
 
+/* ---------- radares fijos de la DGT (data/radares.json, generado con tools/radares.py) ---------- */
+D.radares = null;   // null = sin pedir todavia; {} = intentado y sin datos
+function radaresLoad() {
+  if (D.radares || D.radaresCargando) return;
+  if (window.VIAJE_RADARES) { D.radares = window.VIAJE_RADARES; return; }
+  D.radaresCargando = true;
+  fetch('data/radares.json').then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then((d) => { D.radares = d; rerender('etapas'); rerender('ahora'); })
+    .catch(() => { D.radares = { por_dia: {} }; })   // sin radares la app sigue igual
+    .then(() => { D.radaresCargando = false; });
+}
+function radaresDia(dia) {
+  radaresLoad();
+  return (D.radares && D.radares.por_dia && D.radares.por_dia[String(dia)]) || [];
+}
+function radarSitio(r) {
+  const donde = r.municipio && r.municipio !== r.provincia ? `${r.municipio} (${r.provincia})` : (r.municipio || r.provincia);
+  return `${r.via}${r.pk != null ? ` pk ${r.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}${donde ? ` · ${donde}` : ''}`;
+}
+/* Radares de la etapa: tabla con el km de la ruta al que caen. */
+function radaresHTML(e) {
+  const rs = radaresDia(e.dia); if (!rs.length) return '';
+  const meta = D.radares || {};
+  return `<h2>Radares en la ruta (${rs.length})</h2>
+    <div class="card">
+      <div class="tbl-wrap"><table class="vias"><thead><tr><th>km</th><th>Radar</th><th>Sentido</th><th></th></tr></thead><tbody>${rs.map((r) => `<tr>
+        <td>${r.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td>
+        <td>${r.tipo === 'tramo' ? '📏 Tramo · ' : '📷 Fijo · '}${esc(radarSitio(r))}</td>
+        <td><small>pk ${esc(r.sentido || '?')}</small></td>
+        <td><a href="${mapsSearch(`${r.lat},${r.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
+      ${meta.aviso ? `<p><small>${esc(meta.aviso)}</small></p>` : ''}
+      ${meta.publicado ? `<p><small>Fuente: ${esc(meta.fuente || 'DGT')}, datos de ${fmtFecha(meta.publicado)}.</small></p>` : ''}
+    </div>`;
+}
+
 /* ---------- rutas GPX (track ligero generado con tools/gpx2json.py) ---------- */
 D.tracks = {};  // dia -> { status, data }
 function trackLoad(e) {
@@ -623,6 +658,7 @@ async function openMap(dia) {
   });
   (e.meteo_puntos || []).forEach((p) => L.circleMarker([p.lat, p.lon], { radius: 6, color: '#b2600a', fillColor: '#f0a94a', fillOpacity: .9, weight: 2 }).addTo(LMAP).bindTooltip(`Previsión: ${p.nombre}`));
   (e.gpx.avisos || []).filter((a) => a.lat != null).forEach((a) => L.marker([a.lat, a.lon], { icon: L.divIcon({ className: 'via-icon via-aviso', html: '<span>🔁</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) }).addTo(LMAP).bindTooltip(`${a.lugar} (km ${a.km}): ${a.que}`));
+  radaresDia(e.dia).forEach((r) => L.marker([r.lat, r.lon], { icon: L.divIcon({ className: 'via-icon via-radar', html: '<span>\u{1F4F7}</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) }).addTo(LMAP).bindTooltip(`Radar ${r.tipo} (km ${r.km}): ${radarSitio(r)}`));
   posMarker();
   LMAP.fitBounds(line.getBounds(), { padding: [24, 24] });
   setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
@@ -873,6 +909,12 @@ function viewAhora() {
   if (r && !llegado) {
     const av = ((e.gpx && e.gpx.avisos) || []).filter((a) => a.km > r.km - 1 && a.km < r.km + 25).sort((a, b) => a.km - b.km)[0];
     if (av) cards.push({ p: 2, html: `<div class="card"><div class="card-title"><h3>🔁 ${esc(av.lugar)}</h3><span class="badge">${av.km <= r.km ? 'aquí' : `en ${fmtKm(Math.round((av.km - r.km) * 10) / 10)}`}</span></div><p>${esc(av.que)}</p></div>` });
+  }
+  /* 3b. Radar fijo por delante */
+  if (r && !llegado) {
+    const rad = radaresDia(e.dia).filter((x) => x.km > r.km - 1 && x.km < r.km + 15).sort((x, y) => x.km - y.km)[0];
+    if (rad) cards.push({ p: 1.5, html: `<div class="card"><div class="card-title"><h3>${rad.tipo === 'tramo' ? '📏 Radar de tramo' : '📷 Radar fijo'}</h3><span class="badge${rad.km - r.km < 3 ? ' warn' : ''}">${rad.km <= r.km ? 'aquí' : `en ${fmtKm(Math.round((rad.km - r.km) * 10) / 10)}`}</span></div>
+      <p>${esc(radarSitio(rad))} · sentido pk ${esc(rad.sentido || '?')} (puede estar en la calzada contraria).</p></div>` });
   }
   /* 4. Comer, segun la hora */
   const c = e.guia && e.guia.comer;
@@ -1408,6 +1450,7 @@ function viewEtapas(arg) {
     ${meteoStrip(e)}
     ${avisosNavHTML(e)}
     ${rutaHTML(e)}
+    ${radaresHTML(e)}
     <h2>Waypoints (${e.waypoints.length})</h2>
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
       <p><small>Enlaces de consulta en Google Maps. La ruta real se crea en Kurviger con estos puntos como shaping points sobre la carretera.</small></p></div>
@@ -1841,7 +1884,7 @@ async function init() {
   }
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
-  meteoLoadCache(); meteoHLoadCache();
+  meteoLoadCache(); meteoHLoadCache(); radaresLoad();
   window.addEventListener('hashchange', () => { closeMap(); if (diarioDesdeEnlace()) return; render(); });
   if (!diarioDesdeEnlace()) render();
   registerSW();

@@ -30,6 +30,16 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 - Los GPX de Kurviger llegan con numeración antigua: comprobar siempre origen y destino
   por coordenadas antes de asignar el día.
 
+## Radares
+
+- `data/radares.json` lo genera `python3 tools/radares.py` desde el fichero DATEX II del
+  Punto de Acceso Nacional de la DGT (datos abiertos). Guarda solo los radares que caen a
+  menos de 250 m de alguno de los 11 tracks, con el km de la etapa.
+- Cubre solo la red que gestiona la DGT: ni Cataluña ni País Vasco, ni radares autonómicos,
+  municipales o móviles. No inventar radares ni copiarlos de webs de terceros.
+- Al regenerarlo, subir `VERSION` en `sw.js` no hace falta si solo cambia el JSON, pero sí
+  conviene subir `meta.revision` del plan para que se note el cambio.
+
 ## Probar y publicar
 
 - Servidor local: `python3 -m http.server 8080` desde la raíz.

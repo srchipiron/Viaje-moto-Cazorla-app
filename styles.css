@@ -399,6 +399,7 @@ details[open] > summary::after { transform: rotate(180deg); }
 /* Mapa del viaje completo */
 .via-icon.via-noche span { background: var(--card); font-size: 13px; }
 .via-icon.via-dia span { font-size: 11px; }
+.via-icon.via-radar span { background: #7a1020; font-size: 12px; }
 
 table.seguro td:first-child { font-weight: 600; width: 42%; }
 

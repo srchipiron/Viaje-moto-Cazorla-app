@@ -1,0 +1,86 @@
+{
+ "fuente": "DGT · Punto de Acceso Nacional (DATEX II, datos abiertos)",
+ "url": "https://nap.dgt.es/datex2/dgt/PredefinedLocationsPublication/radares/content.xml",
+ "publicado": "2025-12-18",
+ "descargado": "2026-09-21",
+ "umbral_m": 250,
+ "totales": {
+  "fijos": 690,
+  "tramo": 47,
+  "en_ruta": 5
+ },
+ "aviso": "Solo radares fijos y de tramo de la red que gestiona la DGT. No incluye Cataluña ni País Vasco, ni radares autonómicos, municipales o móviles: en las carreteras pequeñas del viaje los controles suelen ser móviles y no salen aquí. El sentido es el de kilometraje del radar; puede estar en la calzada contraria.",
+ "por_dia": {
+  "1": [
+   {
+    "tipo": "fijo",
+    "via": "A-7",
+    "pk": 778.1,
+    "sentido": "decreciente",
+    "hacia": "",
+    "municipio": "Almería",
+    "provincia": "Almería",
+    "lat": 36.89281,
+    "lon": -2.42314,
+    "km": 10.4,
+    "dist_m": 10
+   },
+   {
+    "tipo": "fijo",
+    "via": "A-92",
+    "pk": 391.9,
+    "sentido": "creciente",
+    "hacia": "",
+    "municipio": "Almería",
+    "provincia": "Almería",
+    "lat": 36.89713,
+    "lon": -2.41683,
+    "km": 12.4,
+    "dist_m": 3
+   }
+  ],
+  "3": [
+   {
+    "tipo": "fijo",
+    "via": "N-322",
+    "pk": 316.0,
+    "sentido": "creciente",
+    "hacia": "",
+    "municipio": "Albacete",
+    "provincia": "Albacete",
+    "lat": 38.84579,
+    "lon": -2.23002,
+    "km": 97.0,
+    "dist_m": 14
+   },
+   {
+    "tipo": "fijo",
+    "via": "CM-220",
+    "pk": 92.4,
+    "sentido": "decreciente",
+    "hacia": "",
+    "municipio": "Cuenca",
+    "provincia": "Cuenca",
+    "lat": 39.73455,
+    "lon": -1.90795,
+    "km": 233.8,
+    "dist_m": 5
+   }
+  ],
+  "11": [
+   {
+    "tipo": "fijo",
+    "via": "A-7",
+    "pk": 760.3,
+    "sentido": "creciente",
+    "hacia": "",
+    "municipio": "Almería",
+    "provincia": "Almería",
+    "lat": 36.86258,
+    "lon": -2.25506,
+    "km": 241.8,
+    "dist_m": 2
+   }
+  ]
+ }
+}
