@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.14.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.15.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes';
 const PUEBLOS_KEY = 'viaje-nx500-pueblos';       // pueblos consultados, solo en este dispositivo // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
@@ -424,6 +424,40 @@ function radarSitio(r) {
   const donde = r.municipio && r.municipio !== r.provincia ? `${r.municipio} (${r.provincia})` : (r.municipio || r.provincia);
   return `${r.via}${r.pk != null ? ` pk ${r.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}${donde ? ` · ${donde}` : ''}`;
 }
+/* Los 47 radares de tramo, con inicio y fin ya hidratados, del mas cercano al viaje al mas lejano. */
+function radaresTramos() {
+  radaresLoad();
+  const d = D.radares; if (!d || !d.tramos) return [];
+  return d.tramos.map((t) => Object.assign({}, t, { ini: radarFila(t.inicio), fin: radarFila(t.fin) })).filter((t) => t.ini && t.fin);
+}
+/* Pinta en el mapa abierto todos los radares que caen dentro de unos limites (ampliados un poco):
+   los de tramo como linea entre sus dos cabinas, los fijos como punto pequeño. Los que ya estan
+   marcados de otra forma (en ruta, cerca) se saltan por coordenada. */
+function mapaRadares(bounds, saltar) {
+  if (!LMAP || !D.radares || !D.radares.radares) return { fijos: 0, tramos: 0 };
+  const b = bounds.pad(0.35);
+  const vistos = new Set((saltar || []).map((r) => `${r.lat},${r.lon}`));
+  let fijos = 0, tramos = 0;
+  radaresTramos().forEach((t) => {
+    const a = L.latLng(t.ini.lat, t.ini.lon), z = L.latLng(t.fin.lat, t.fin.lon);
+    if (!b.contains(a) && !b.contains(z)) return;
+    tramos++;
+    const txt = `Radar de tramo · ${radarSitio(t.ini)} · ${t.largo_km} km · a ${t.dist_km} km de la ruta (día ${t.dia})`;
+    L.polyline([a, z], { color: '#b91c1c', weight: 6, opacity: .8, dashArray: '10 8' }).addTo(LMAP).bindTooltip(txt, { sticky: true });
+    [a, z].forEach((p) => L.circleMarker(p, { radius: 5, color: '#fff', weight: 2, fillColor: '#b91c1c', fillOpacity: 1 }).addTo(LMAP).bindTooltip(txt));
+    vistos.add(`${t.ini.lat},${t.ini.lon}`); vistos.add(`${t.fin.lat},${t.fin.lon}`);
+  });
+  D.radares.radares.forEach((f, i) => {
+    if (f[2] === 'tramo' || vistos.has(`${f[0]},${f[1]}`)) return;
+    const p = L.latLng(f[0], f[1]); if (!b.contains(p)) return;
+    fijos++;
+    const r = radarFila(i);
+    L.circleMarker(p, { radius: 5, color: '#fff', weight: 1.5, fillColor: '#6b7280', fillOpacity: .95 }).addTo(LMAP).bindTooltip(`Radar fijo · ${radarSitio(r)} (fuera de la ruta)`);
+  });
+  const ley = document.getElementById('mapa-leyenda');
+  if (ley) ley.textContent = `📷 rojo = en la ruta · gris = fijo fuera · ━ ━ = tramo${fijos + tramos ? '' : ' (ninguno en esta zona)'}`;
+  return { fijos, tramos };
+}
 function radarFuente() {
   const m = D.radares || {};
   return `${m.aviso ? `<p><small>${esc(m.aviso)}</small></p>` : ''}${m.publicado ? `<p><small>Fuente: ${esc(m.fuente || 'DGT')}, datos de ${fmtFecha(m.publicado)} de ${m.publicado.slice(0, 4)}${m.totales ? ` · ${m.totales.fijos} fijos y ${m.totales.tramo} de tramo en toda España` : ''}.</small></p>` : ''}`;
@@ -655,6 +689,7 @@ function mapaBase() {
 function mapaAbrirCaja(titulo) {
   const box = document.getElementById('mapa'); box.hidden = false; document.body.classList.add('mapa-abierto');
   document.getElementById('mapa-titulo').textContent = titulo;
+  const ley = document.getElementById('mapa-leyenda'); if (ley) ley.textContent = '';
 }
 /* Mapa del viaje completo: los 11 tracks, cada dia de un color, con las noches marcadas. */
 async function openMapTodos() {
@@ -680,6 +715,8 @@ async function openMapTodos() {
       L.marker(fin, { zIndexOffset: 500, icon: L.divIcon({ className: 'via-icon via-noche', html: '<span>🛏️</span>', iconSize: [24, 24], iconAnchor: [-4, 28] }) }).addTo(LMAP).bindTooltip(`Noche ${noche.noche} · ${esc(noche.lugar)}: ${esc(noche.alojamiento)}`);
     }
   });
+  it.forEach((e) => { const rd = radaresDia(e.dia); rd.en_ruta.forEach((r) => L.marker([r.lat, r.lon], { zIndexOffset: 300, icon: L.divIcon({ className: 'via-icon via-radar', html: `<span>${radarIcono(r)}</span>`, iconSize: [24, 24], iconAnchor: [12, 12] }) }).addTo(LMAP).bindTooltip(`Día ${e.dia} km ${r.km} · ${radarTipo(r)} · ${radarSitio(r)}`)); });
+  if (bounds.length) mapaRadares(bounds.reduce((a, b) => a.extend(b)), it.flatMap((e) => radaresDia(e.dia).en_ruta));
   posMarker();
   document.getElementById('mapa-titulo').textContent = `Viaje completo · ${it.length} etapas · ${D.data.proyecto.distancia_total_aprox_km} km`;
   if (bounds.length) LMAP.fitBounds(bounds.reduce((a, b) => a.extend(b)), { padding: [24, 24] });
@@ -689,7 +726,7 @@ async function openMap(dia) {
   if (dia === 'todos') return openMapTodos();
   const e = D.data.itinerario.find((d) => String(d.dia) === String(dia)); const st = e && D.tracks[e.dia]; if (!st || st.status !== 'ok') return;
   const t = st.data;
-  mapaAbrirCaja(`Día ${e.dia} · ${t.nombre}`);
+  mapaAbrirCaja(/^d[ií]a\s*\d/i.test(t.nombre) ? t.nombre : `Día ${e.dia} · ${t.nombre}`);
   try { await loadLeaflet(); } catch (err) { closeMap(); alert(err.message); return; }
   mapaBase();
   const line = L.polyline(t.track, { color: '#1d5fa5', weight: 4, opacity: .9 }).addTo(LMAP);
@@ -704,6 +741,7 @@ async function openMap(dia) {
   const radMarca = (r, clase) => L.marker([r.lat, r.lon], { icon: L.divIcon({ className: `via-icon ${clase}`, html: `<span>${radarIcono(r)}</span>`, iconSize: [24, 24], iconAnchor: [12, 12] }) }).addTo(LMAP).bindTooltip(`${radarTipo(r)} · ${radarSitio(r)} (km ${r.km})`);
   radDia.en_ruta.forEach((r) => radMarca(r, 'via-radar'));
   radDia.cerca.forEach((r) => radMarca(r, 'via-radar via-radar-cerca'));
+  mapaRadares(line.getBounds(), radDia.en_ruta.concat(radDia.cerca));
   posMarker();
   LMAP.fitBounds(line.getBounds(), { padding: [24, 24] });
   setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
@@ -1763,6 +1801,7 @@ function viewRadares() {
   const it = D.data.itinerario, today = todayISO();
   const tot = m.totales || {};
   const cerca = D.pos ? radaresCerca(D.pos, 25, 6) : [];
+  const tramos = radaresTramos();
   const dias = it.map((e) => {
     const rs = radaresDia(e.dia);
     if (!rs.en_ruta.length && !rs.cerca.length) return '';
@@ -1783,6 +1822,15 @@ function viewRadares() {
       <div class="card">${cerca.length
         ? `<ul class="radar-cerca">${cerca.map((x) => `<li><b>${fmtKm(Math.round(x.dist_km * 10) / 10)} al ${esc(x.rumbo)}</b> · ${radarIcono(x)} ${esc(radarTipo(x))} · ${esc(radarSitio(x))} <a href="${mapsSearch(`${x.lat},${x.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></li>`).join('')}</ul>`
         : '<p class="muted">Ningún radar de la DGT en 25 km a la redonda.</p>'}</div>` : ''}
+    <h2>Radares de tramo</h2>
+    <div class="card">
+      <p>${tramos.length ? `Ninguno de los ${tramos.length} radares de tramo de la DGT pisa la ruta. El más cercano queda a <b>${tramos[0].dist_km} km</b> del día ${tramos[0].dia}. Los de la zona del viaje salen en el mapa como línea roja discontinua entre sus dos cabinas.` : 'Sin datos de tramos.'}</p>
+      ${tramos.length ? `<div class="tbl-wrap"><table class="vias"><thead><tr><th>De la ruta</th><th>Tramo</th><th>Largo</th><th></th></tr></thead><tbody>${tramos.slice(0, 10).map((t) => `<tr>
+        <td>${fmtKm(t.dist_km)}<br><small>día ${t.dia}, km ${t.km}</small></td>
+        <td>📏 ${esc(radarSitio(t.ini))}${t.fin.pk != null && t.fin.pk !== t.ini.pk ? ` → pk ${t.fin.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}<br><small>pk ${esc(t.ini.sentido || '?')}</small></td>
+        <td>${fmtKm(t.largo_km)}</td>
+        <td><a href="${mapsSearch(`${t.ini.lat},${t.ini.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div><p><small>Los 10 más cercanos al viaje de los ${tramos.length} que hay en España.</small></p>` : ''}
+    </div>
     <h2>Por etapa</h2>
     ${dias || '<div class="card"><p class="muted">Ningún radar cerca de las etapas.</p></div>'}
     ${sinRadar.length ? `<div class="card ok"><p>Sin ningún radar de la DGT ni cerca: días ${sinRadar.join(', ')}.</p></div>` : ''}`;

@@ -116,7 +116,10 @@ function mockGeo(url) {
   if (totRad < 700) errors.push(`la app solo tiene ${totRad} radares de toda España`);
   const enRuta = await page.evaluate(() => D.data.itinerario.reduce((s, e) => s + radaresDia(e.dia).en_ruta.length, 0));
   if (enRuta !== 5) errors.push(`radares en ruta: ${enRuta}, esperados 5`);
-  console.log('radares:', totRad, 'puntos en España |', enRuta, 'sobre la ruta');
+  const nTramos = await page.evaluate(() => radaresTramos().length);
+  if (nTramos !== 47) errors.push(`radares de tramo: ${nTramos}, esperados 47`);
+  if (!/Radares de tramo/i.test(await page.locator('#view').innerText())) errors.push('vista de radares sin la seccion de tramos');
+  console.log('radares:', totRad, 'puntos en España |', enRuta, 'sobre la ruta |', nTramos, 'tramos');
   // tabla de rutas Kurviger en la guia
   await page.goto(BASE + '#/guia', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => document.querySelectorAll('table.rutas tbody tr').length >= 11 && !document.querySelector('table.rutas .muted'), null, { timeout: 15000 }).catch(() => errors.push('tabla de rutas Kurviger incompleta'));
@@ -125,7 +128,11 @@ function mockGeo(url) {
   if (await page.locator('[data-mapa="todos"]').count()) {
     await page.locator('[data-mapa="todos"]').first().click();
     await page.waitForFunction(() => window.L && document.querySelectorAll('.leaflet-overlay-pane path').length >= 11, null, { timeout: 20000 }).catch(() => errors.push('mapa completo sin las 11 lineas'));
-    console.log('mapa completo: lineas', await page.locator('.leaflet-overlay-pane path').count(), 'noches', await page.locator('.via-noche').count());
+    const tramosMapa = await page.locator('.leaflet-overlay-pane path[stroke-dasharray]').count();
+    if (!tramosMapa) errors.push('mapa completo sin radares de tramo (lineas discontinuas)');
+    const leyenda = await page.locator('#mapa-leyenda').innerText();
+    if (!/tramo/i.test(leyenda)) errors.push('mapa sin leyenda de radares');
+    console.log('mapa completo: lineas', await page.locator('.leaflet-overlay-pane path').count(), 'noches', await page.locator('.via-noche').count(), '| tramos', tramosMapa, '| leyenda:', leyenda);
     await page.locator('#mapa-cerrar').click();
   }
   // durante el viaje (reloj simulado): progreso, proxima parada y meteo por horas
