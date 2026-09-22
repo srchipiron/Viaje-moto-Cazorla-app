@@ -406,6 +406,10 @@ details[open] > summary::after { transform: rotate(180deg); }
 .radar-cerca { list-style: none; padding: 0; margin: 6px 0; }
 .radar-cerca li { padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: .93rem; }
 .radar-cerca li:last-child { border-bottom: 0; }
+table.gas tr.barata td { background: var(--ok-soft); }
+table.gas tr.barata td:first-child { border-left: 3px solid var(--ok); padding-left: 6px; }
+table.gas td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.card.pasado { opacity: .7; }
 
 table.seguro td:first-child { font-weight: 600; width: 42%; }
 

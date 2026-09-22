@@ -7,7 +7,7 @@ const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en 
 const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
 const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.15.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v3.16.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 const REPOSTAJES_KEY = 'viaje-nx500-repostajes';
 const PUEBLOS_KEY = 'viaje-nx500-pueblos';       // pueblos consultados, solo en este dispositivo // marcas de repostaje, solo en este dispositivo
 const D = { data: null, checks: loadChecks(), pos: null };
@@ -373,6 +373,120 @@ function pagoHTML(a) {
 }
 function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
 function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
+
+/* ---------- gasolineras sobre la ruta (data/gasolineras.json, tools/gasolineras.py) + precios en vivo ---------- */
+/* El fichero lleva las gasolineras a menos de 400 m de cada track, sin precio. El precio del dia se
+   pide al Ministerio (datos abiertos, CORS abierto) por provincia y producto (95 E5), unos 50 KB por
+   provincia, y se guarda en localStorage hasta que cambia el dia. Sin red, salen sin precio. */
+const GASOLINA_KEY = 'viaje-nx500-gasolina';
+D.gasolineras = null;
+D.precios = lsGet(GASOLINA_KEY, { fecha: null, provincias: {}, precios: {} });
+function gasolinerasLoad() {
+  if (D.gasolineras || D.gasolinerasCargando) return;
+  if (window.VIAJE_GASOLINERAS) { D.gasolineras = window.VIAJE_GASOLINERAS; return; }
+  D.gasolinerasCargando = true;
+  fetch('data/gasolineras.json').then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then((d) => { D.gasolineras = d; rerender('etapas'); rerender('ahora'); rerender('gasolina'); })
+    .catch(() => { D.gasolineras = { por_dia: {}, provincias_por_dia: {} }; })
+    .then(() => { D.gasolinerasCargando = false; });
+}
+/* Precios de hoy de las provincias de una etapa. Una peticion por provincia y dia natural. */
+function preciosFetch(dia, force) {
+  gasolinerasLoad();
+  const g = D.gasolineras; if (!g || !g.api || !navigator.onLine) return Promise.resolve(false);
+  const hoy = todayISO();
+  if (D.precios.fecha !== hoy) D.precios = { fecha: hoy, provincias: {}, precios: {} };
+  /* Una provincia fallida no se vuelve a pedir sola hasta pasados 10 min: si no, cada repintado lanzaria otra peticion. */
+  D.preciosIntento = D.preciosIntento || {};
+  const provs = (g.provincias_por_dia[String(dia)] || []).filter((p) => force || (!D.precios.provincias[p] && !(D.preciosIntento[p] && Date.now() - D.preciosIntento[p] < 600000)));
+  if (!provs.length) return Promise.resolve(false);
+  provs.forEach((p) => { D.preciosIntento[p] = Date.now(); });
+  D.preciosCargando = (D.preciosCargando || 0) + 1;
+  return Promise.all(provs.map((p) => fetch(`${g.api}FiltroProvinciaProducto/${p}/${g.producto.id}`, { cache: 'no-store' })
+    .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then((d) => {
+      (d.ListaEESSPrecio || []).forEach((e) => { const v = parseFloat(String(e.PrecioProducto || '').replace(',', '.')); if (v) D.precios.precios[e.IDEESS] = v; });
+      D.precios.provincias[p] = (d.Fecha || hoy);
+    }).catch(() => null)))
+    .then(() => { lsSet(GASOLINA_KEY, D.precios); D.preciosCargando--; rerender('etapas', dia); rerender('ahora'); rerender('gasolina'); return true; });
+}
+/* Gasolineras de una etapa por km, con el precio de hoy si lo hay. */
+function gasolinerasDia(dia) {
+  gasolinerasLoad();
+  const g = D.gasolineras; if (!g) return [];
+  const hoy = todayISO(), conPrecio = D.precios.fecha === hoy;
+  return (g.por_dia[String(dia)] || []).map((s) => Object.assign({}, s, { precio: conPrecio ? (D.precios.precios[s.id] || null) : null }));
+}
+function gasMasBarata(lista) { return lista.filter((s) => s.precio).sort((a, b) => a.precio - b.precio)[0] || null; }
+function fmtPrecio(p) { return p == null ? '–' : `${p.toLocaleString('es-ES', { minimumFractionDigits: 3, maximumFractionDigits: 3 })} €`; }
+function gasHorario(h) { return (h || '').replace(/^L-D: /, '').replace(/24H/i, '24 h'); }
+function gasEstadoPrecios(dia) {
+  const g = D.gasolineras; if (!g) return '';
+  const provs = g.provincias_por_dia[String(dia)] || [];
+  const hoy = todayISO();
+  const tengo = D.precios.fecha === hoy && provs.every((p) => D.precios.provincias[p]);
+  if (D.preciosCargando) return '<span class="muted"><small>Pidiendo los precios de hoy…</small></span>';
+  return `<button class="btn small" type="button" data-precios="${dia}">${tengo ? '🔄 Precios de hoy (actualizar)' : '⛽ Pedir los precios de hoy'}</button>${tengo ? '' : '<small class="muted"> · sin precio hasta que haya red</small>'}`;
+}
+function gasolinerasTabla(lista, kmActual) {
+  const barata = gasMasBarata(lista);
+  return `<div class="tbl-wrap"><table class="vias gas"><thead><tr><th>km</th><th>Gasolinera</th><th>Horario</th><th>95</th><th></th></tr></thead><tbody>${lista.map((s) => `<tr class="${barata && s.id === barata.id ? 'barata' : ''}${kmActual != null && s.km < kmActual - 0.5 ? ' past' : ''}">
+    <td>${s.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td>
+    <td><b>${esc(s.rotulo)}</b><br><small>${esc(s.municipio)}</small></td>
+    <td><small>${esc(gasHorario(s.horario))}</small></td>
+    <td class="num">${s.precio ? `<b>${fmtPrecio(s.precio)}</b>` : '<span class="muted">–</span>'}</td>
+    <td><a href="${mapsSearch(`${s.lat},${s.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>`;
+}
+/* Bloque de la ficha de etapa. */
+function gasolinerasHTML(e) {
+  const lista = gasolinerasDia(e.dia);
+  if (!lista.length) return D.gasolineras ? '' : '';
+  const barata = gasMasBarata(lista);
+  if (!D.preciosCargando && navigator.onLine) preciosFetch(e.dia, false);
+  return `<h2>Gasolineras en la ruta (${lista.length})</h2>
+    <div class="card">
+      ${barata ? `<div class="note info"><b>⛽ La más barata hoy:</b> ${esc(barata.rotulo)} en ${esc(barata.municipio)}, km ${barata.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}, <b>${fmtPrecio(barata.precio)}</b> · ${esc(gasHorario(barata.horario))}</div>` : ''}
+      ${gasolinerasTabla(lista, null)}
+      <p class="row">${gasEstadoPrecios(e.dia)}</p>
+      <p><small>${esc((D.gasolineras && D.gasolineras.aviso) || '')} Fuente: ${esc((D.gasolineras && D.gasolineras.fuente) || 'Ministerio')}.</small></p>
+    </div>`;
+}
+/* En Ahora: la mas barata que queda por delante en la etapa, y la siguiente si es distinta. */
+function gasPorDelanteHTML(e, r, llegado) {
+  if (llegado) return '';
+  const delante = gasolinerasDia(e.dia).filter((s) => s.km > r.km - 0.3);
+  if (!delante.length) return '';
+  if (navigator.onLine && !D.preciosCargando) preciosFetch(e.dia, false);
+  const barata = gasMasBarata(delante), sig = delante[0];
+  const linea = (s, t) => `<b>${t}:</b> ${esc(s.rotulo)} (${esc(s.municipio)}) en ${fmtKm(Math.round((s.km - r.km) * 10) / 10)}${s.precio ? ` · <b>${fmtPrecio(s.precio)}</b>` : ''} · ${esc(gasHorario(s.horario))} <a href="${mapsSearch(`${s.lat},${s.lon}`)}" target="_blank" rel="noopener">mapa ↗</a>`;
+  return `<p>${barata ? linea(barata, 'Más barata por delante') : linea(sig, 'Siguiente')}${barata && sig.id !== barata.id ? `<br><small>${linea(sig, 'Siguiente')}</small>` : ''}${!barata ? '<br><small class="muted">Sin precios de hoy todavía.</small>' : ''}</p>`;
+}
+/* #/gasolina: la mas barata de cada etapa. */
+function viewGasolina() {
+  gasolinerasLoad();
+  const g = D.gasolineras;
+  if (!g) return '<div class="card"><p class="muted">Cargando las gasolineras…</p></div>';
+  const it = D.data.itinerario, today = todayISO();
+  const hoy = it.find((d) => d.fecha === today);
+  const pendientes = it.filter((d) => d.fecha >= today);
+  if (navigator.onLine && !D.preciosCargando) pendientes.slice(0, 2).forEach((d) => preciosFetch(d.dia, false));
+  const filas = it.map((e) => {
+    const lista = gasolinerasDia(e.dia); if (!lista.length) return '';
+    const barata = gasMasBarata(lista);
+    const pasado = e.fecha < today;
+    return `<div class="card${e.fecha === today ? ' accent' : ''}${pasado ? ' pasado' : ''}">
+      <div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</a></h3><span class="badge">${lista.length} en ruta</span></div>
+      ${barata ? `<p><b>⛽ Más barata:</b> ${esc(barata.rotulo)} (${esc(barata.municipio)}), km ${barata.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })} · <b>${fmtPrecio(barata.precio)}</b> · ${esc(gasHorario(barata.horario))}</p>` : `<p class="muted">Sin precios de hoy${pasado ? '' : ': ' + (navigator.onLine ? 'pídelos abajo' : 'sin red')}.</p>`}
+      <details><summary>Las ${lista.length} de la etapa</summary>${gasolinerasTabla(lista, null)}</details>
+      ${pasado ? '' : `<p class="row">${gasEstadoPrecios(e.dia)}</p>`}
+    </div>`;
+  }).join('');
+  return `<div class="card accent"><div class="card-title"><h1>Gasolina</h1><span class="badge">95 E5</span></div>
+      <p>Gasolineras a menos de 400 m de cada track con el precio que declaran hoy al Ministerio. La app pide los precios de las provincias de la etapa (unos 50 KB por provincia) y los guarda hasta mañana.</p>
+      ${hoy ? `<p><a class="btn" href="#/etapas/${hoy.dia}">Ir a la etapa de hoy</a></p>` : ''}
+      <p><small>${esc(g.aviso || '')}</small></p></div>
+    ${filas}`;
+}
 
 /* ---------- radares de la DGT (data/radares.json, generado con tools/radares.py) ---------- */
 /* El fichero lleva los 769 puntos de radar de toda Espana en formato columnar (campos +
@@ -1055,6 +1169,7 @@ function viewAhora() {
       <div class="bar"><i style="width:${pct}%"></i></div>
       <p><small>${desde == null ? 'Desde la salida de Almería (marca un repostaje para que cuente bien)' : 'Desde el último repostaje'} · autonomía orientativa ${aut} km.</small></p>
       ${alerta ? `<div class="note">${esc(D.data.proyecto.moto.regla_gasolina)}</div>` : ''}
+      ${gasPorDelanteHTML(e, r, llegado)}
       <p class="row"><button class="btn small" type="button" data-repostaje="${e.dia}|${r.km.toFixed(1)}">⛽ He repostado aquí</button>${D.pos ? `<a class="btn small" href="https://www.google.com/maps/search/gasolinera/@${D.pos.lat},${D.pos.lon},13z" target="_blank" rel="noopener">Gasolineras cerca ↗</a>` : ''}</p></div>` });
   }
   /* 9. Al llegar */
@@ -1543,6 +1658,7 @@ function viewEtapas(arg) {
     ${avisosNavHTML(e)}
     ${rutaHTML(e)}
     ${radaresHTML(e)}
+    ${gasolinerasHTML(e)}
     <h2>Waypoints (${e.waypoints.length})</h2>
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
       <p><small>Enlaces de consulta en Google Maps. La ruta real se crea en Kurviger con estos puntos como shaping points sobre la carretera.</small></p></div>
@@ -1712,7 +1828,7 @@ function viewGuia() {
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
-    <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares de la DGT</a></p>
+    <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares de la DGT</a> <a class="btn" href="#/gasolina">⛽ Gasolina más barata</a></p>
     <h2>Navegación</h2>
     <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd>${nav.sygic ? `<dt>Sygic</dt><dd>${esc(nav.sygic)}</dd>` : ''}</dl></div>
     <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>
@@ -1836,7 +1952,7 @@ function viewRadares() {
     ${sinRadar.length ? `<div class="card ok"><p>Sin ningún radar de la DGT ni cerca: días ${sinRadar.join(', ')}.</p></div>` : ''}`;
 }
 
-const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja, sos: viewSos, buscar: viewBuscar, ahora: viewAhora, pueblos: viewPueblos, radares: viewRadares };
+const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja, sos: viewSos, buscar: viewBuscar, ahora: viewAhora, pueblos: viewPueblos, radares: viewRadares, gasolina: viewGasolina };
 
 function route() {
   const h = location.hash.replace(/^#\/?/, '');
@@ -1926,6 +2042,7 @@ document.addEventListener('click', (ev) => {
   const ps = ev.target.closest('[data-pueblo-sel]'); if (ps) { ev.preventDefault(); D.pueblo.sel = D.pueblo.hits[+ps.dataset.puebloSel]; puebloGuardar(D.pueblo.sel); tracksLoadAll().then(() => render()); return; }
   const pp = ev.target.closest('[data-pueblo-prev]'); if (pp) { const p = lsGet(PUEBLOS_KEY, [])[+pp.dataset.puebloPrev]; if (p) { D.pueblo = { q: p.nombre, status: 'ok', hits: [p], sel: p, error: null }; tracksLoadAll().then(() => render()); } return; }
   if (ev.target.closest('[data-pueblo-borrar]')) { lsSet(PUEBLOS_KEY, []); render(); return; }
+  const pr = ev.target.closest('[data-precios]'); if (pr) { preciosFetch(pr.dataset.precios, true).then(() => { const y = window.scrollY; render(); window.scrollTo(0, y); }); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   const rp = ev.target.closest('[data-repostaje]'); if (rp) { const [dia, km] = rp.dataset.repostaje.split('|'); marcarRepostaje(dia, +km); const y = window.scrollY; render(); window.scrollTo(0, y); return; }
   if (ev.target.closest('#tema')) { ciclarTema(); return; }
   if (ev.target.closest('#backup-copiar')) { backupCopiar(); return; }
@@ -2020,7 +2137,7 @@ async function init() {
   }
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
-  meteoLoadCache(); meteoHLoadCache(); radaresLoad();
+  meteoLoadCache(); meteoHLoadCache(); radaresLoad(); gasolinerasLoad();
   window.addEventListener('hashchange', () => { closeMap(); if (diarioDesdeEnlace()) return; render(); });
   if (!diarioDesdeEnlace()) render();
   registerSW();

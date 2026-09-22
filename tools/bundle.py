@@ -23,9 +23,10 @@ def main(out_path):
     plan = json.loads(plan_txt)
     tracks = {str(d['dia']): json.load(open(d['gpx']['track'], encoding='utf-8')) for d in plan['itinerario'] if d.get('gpx')}
     radares = open('data/radares.json', encoding='utf-8').read().strip() if os.path.exists('data/radares.json') else 'null'
+    gasolineras = open('data/gasolineras.json', encoding='utf-8').read().strip() if os.path.exists('data/gasolineras.json') else 'null'
     js = open('app.js', encoding='utf-8').read()
     out = (f"<title>Viaje NX500</title>\n<style>\n{css}\n</style>\n{body}\n"
-           f"<script>window.VIAJE_DATA = {plan_txt};\nwindow.VIAJE_TRACKS = {json.dumps(tracks, ensure_ascii=False, separators=(',', ':'))};\nwindow.VIAJE_RADARES = {radares};</script>\n"
+           f"<script>window.VIAJE_DATA = {plan_txt};\nwindow.VIAJE_TRACKS = {json.dumps(tracks, ensure_ascii=False, separators=(',', ':'))};\nwindow.VIAJE_RADARES = {radares};\nwindow.VIAJE_GASOLINERAS = {gasolineras};</script>\n"
            f"<script>\n{js}\n</script>\n")
     os.makedirs(os.path.dirname(out_path) or '.', exist_ok=True)
     open(out_path, 'w', encoding='utf-8').write(out)

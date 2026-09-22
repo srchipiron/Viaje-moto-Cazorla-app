@@ -60,13 +60,22 @@ function mockGeo(url) {
 
 (async () => {
   const browser = await chromium.launch();
+  /* Precios del Ministerio simulados: cada gasolinera de la ruta con un precio distinto y estable. */
+  const GAS = require('../data/gasolineras.json');
+  const mockGas = (c) => c.route('https://sedeaplicaciones.minetur.gob.es/**', (r) => {
+    const prov = r.request().url().match(/FiltroProvinciaProducto\/(\d+)\//);
+    const lista = [].concat(...Object.values(GAS.por_dia)).filter((s) => !prov || s.prov === prov[1]).map((s, i) => ({ IDEESS: s.id, PrecioProducto: (1.8 + (i % 7) / 100).toFixed(3).replace('.', ',') }));
+    r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ Fecha: '22/09/2026 8:00:00', ListaEESSPrecio: lista }) });
+  });
   const ctx = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES' });
   await ctx.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
+  await mockGas(ctx);
   await ctx.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
   await ctx.route('https://geocoding-api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockGeo(r.request().url())) }));
   async function nuevoCtx(geo) {
     const c = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES', permissions: ['geolocation'], geolocation: geo });
     await c.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
+    await mockGas(c);
     await c.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
     return c;
   }
@@ -97,6 +106,19 @@ function mockGeo(url) {
   const compartido = await page.evaluate(() => new Promise((res) => { window.open = (u) => { res(u); return null; }; navigator.share = undefined; document.querySelector('[data-avisar]').click(); setTimeout(() => res(null), 1500); }));
   if (!compartido || !/wa\.me\/\?text=.*D%C3%ADa%203/.test(compartido)) errors.push('avisar en casa no genera el enlace de WhatsApp: ' + compartido);
   console.log('avisar en casa:', compartido ? decodeURIComponent(compartido).slice(0, 70).replace(/\n/g, ' | ') : null);
+  // gasolineras: bloque en la etapa 10 con precios simulados del Ministerio y vista #/gasolina
+  await page.goto(BASE + '#/etapas/10', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('table.gas tr.barata').length === 1, null, { timeout: 15000 })
+    .catch(() => errors.push('etapa 10 sin la gasolinera mas barata resaltada'));
+  const gasFilas = await page.locator('table.gas tbody tr').count();
+  if (gasFilas !== 8) errors.push(`etapa 10: ${gasFilas} gasolineras, esperadas 8`);
+  const gasTxt = await page.locator('#view').innerText();
+  console.log('gasolineras dia 10:', gasFilas, '|', (gasTxt.match(/barata hoy:[^\n]*/i) || [''])[0].slice(0, 90), '|', await page.locator('table.gas tr.barata').innerText().catch(() => 'sin fila'));
+  await page.goto(BASE + '#/gasolina', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(500);
+  const gasVista = await page.locator('#view').innerText();
+  if (!/Más barata:/.test(gasVista)) errors.push('vista de gasolina sin la mas barata');
+  console.log('vista gasolina:', (gasVista.match(/Más barata:/g) || []).length, 'etapas con precio');
   // radares de la DGT: tabla en la ficha de etapa (dia 3 tiene dos sobre la ruta) y vista propia
   await page.goto(BASE + '#/etapas/3', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => /Radares/i.test(document.getElementById('view').innerText), null, { timeout: 15000 })
@@ -138,6 +160,7 @@ function mockGeo(url) {
   // durante el viaje (reloj simulado): progreso, proxima parada y meteo por horas
   const ctx2 = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES', timezoneId: 'Europe/Madrid' });
   await ctx2.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
+  await mockGas(ctx2);
   const p2 = await ctx2.newPage();
   p2.on('pageerror', (e) => errors.push('pageerror(viaje): ' + e.message));
   await p2.clock.install({ time: new Date('2026-09-16T11:05:00+02:00') });

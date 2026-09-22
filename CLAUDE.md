@@ -45,6 +45,16 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 - Al regenerarlo, subir `VERSION` en `sw.js` no hace falta si solo cambia el JSON, pero sí
   conviene subir `meta.revision` del plan para que se note el cambio.
 
+## Gasolineras
+
+- `data/gasolineras.json` lo genera `python3 tools/gasolineras.py` desde el listado completo del
+  Ministerio (Geoportal de hidrocarburos, datos abiertos, 12 MB): solo las gasolineras a menos de
+  400 m de cada track, con el km de la etapa, sin precio, y las provincias que toca cada día.
+- Los precios los pide la app en vivo (`preciosFetch`) al endpoint
+  `FiltroProvinciaProducto/{provincia}/1` (95 E5, ~50 KB por provincia, CORS abierto) y los guarda
+  en `localStorage` (`viaje-nx500-gasolina`) hasta que cambia el día. `gasolinerasDia(n)` devuelve
+  la lista con precio, `gasMasBarata()` la más barata. Sin red, salen sin precio.
+
 ## Probar y publicar
 
 - Servidor local: `python3 -m http.server 8080` desde la raíz.
@@ -59,7 +69,7 @@ dependencias de npm, sin CDN. Se publica en GitHub Pages desde la raíz de la ra
 ## Estructura de la app
 
 `app.js` es un único fichero con router por hash (`#/resumen`, `#/etapas/N`, `#/noches`,
-`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`, `#/pueblos`, `#/radares`). Cada vista es
+`#/tiempo`, `#/listas`, `#/equipaje`, `#/guia`, `#/hoja`, `#/sos`, `#/buscar`, `#/ahora`, `#/pueblos`, `#/radares`, `#/gasolina`). Cada vista es
 una función `viewX()` que devuelve HTML; `render()` lo pinta. Estado en `D`. Persistencia en
 `localStorage` (marcas de listas, contactos y datos locales, diario, gastos, repostajes, tema,
 caché de meteo).
