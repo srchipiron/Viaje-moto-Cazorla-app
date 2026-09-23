@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 106,
+    "revision": 107,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Dia 11: track sustituido por el GPX definitivo de Kurviger hecho por Javier el 23 sept con los 17 puntos (263,5 km, 3h58, todos los puntos como vias). Coincide con el plan: sin autovia hasta Tabernas. Llegada 15:00",
       "Dia 11 rehecho (23 sept): en vez de 120 km de autovia desde Velez-Rubio, vuelta por la Sierra de las Estancias (A-1178 Chirivel-Oria-Cantoria), Macael, la A-349 por Tahal sobre los Filabres y el desierto de Tabernas. 263 km, 3h55 reales, llegada 14:55. Track cambiado al GPX de la variante Almanzora (gpx/dia-11.gpx); la version por autovia queda en gpx/dia-11-alt-autovia.gpx. Horario, guia, avisos, radares y gasolineras rehechos",
       "Gasolina: data/gasolineras.json (tools/gasolineras.py) con las 113 gasolineras a menos de 400 m de los tracks y el km de cada etapa; la app pide los precios del dia de la 95 al Ministerio (datos abiertos) por provincia y resalta la mas barata de la etapa, en la ficha del dia, en Ahora (la mas barata por delante) y en la vista #/gasolina. Para lo que queda: dia 10 Valero 24H de Peñas de San Pedro (km 111) y dia 11 Las Pepas de Velez-Rubio (km 108), las dos 24 h",
       "Radares de tramo en el mapa: los 47 de la DGT van emparejados (inicio y fin) y se pintan como linea roja discontinua entre sus dos cabinas en el mapa del dia y en el del viaje completo, esten o no en la ruta; los fijos fuera de ruta salen como punto gris y hay leyenda. Ninguno de tramo pisa la ruta: el mas cercano queda a 15 km del dia 11 (A-7 en Lorca). Vista #/radares con la tabla de los 10 tramos mas cercanos",
@@ -1509,7 +1510,7 @@
       "fatiga": 2,
       "perfil_kurviger": "Fast & Curvy todo el dia; solo 20 km de A-92 entre Tabernas y Rioja",
       "salida": "09:30",
-      "llegada_prevista": "14:55",
+      "llegada_prevista": "15:00",
       "meteo_puntos": [
   {
     "nombre": "Velez-Blanco",
@@ -1527,15 +1528,7 @@
     "lon": -2.46
   }
 ],
-      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "vias": [
-  "Salida de Moratalla",
-  "Caravaca de la Cruz",
-  "Barranda",
-  "AL-9100 hacia Maria",
-  "Maria",
-  "Velez-Blanco",
-  "Velez-Rubio"
-], "nota": "Ruta Kurviger 'Dia 10 Hermita de Casa Cristo' (variante Almanzora): 263,0 km y 3h53 estimadas, +3.411 m. Sierra hasta Velez-Rubio y vuelta por Chirivel, Oria, Cantoria, Macael, la A-349 por Tahal y Tabernas. Los puntos de despues de Velez-Rubio son shaping points y no salen en la tabla. La version por autovia esta en gpx/dia-11-alt-autovia.gpx.",
+      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "vias": ["Salida de Moratalla", "Entrada a Caravaca", "Caravaca de la Cruz", "Barranda", "Campo de San Juan", "AL-9100 hacia Maria", "Maria", "Velez-Blanco", "Velez-Rubio", "A-1178 Sierra de las Estancias", "Cantoria", "A-349 desde Macael", "Puerto de los Filabres (Tahal)", "Rioja, salida de la A-92", "Benahadux"], "nota": "Ruta Kurviger 'ruta 11 final bien' (23 sept, hecha por Javier con los 17 puntos): 263,5 km y 3h58 estimadas, +3.331 m. Sierra hasta Velez-Rubio y vuelta por Chirivel, Oria, Cantoria, la A-349 por Tahal y Tabernas; todos los puntos son vias. La version por autovia esta en gpx/dia-11-alt-autovia.gpx.",
             "avisos": [
   {
     "km": 46,
@@ -1545,21 +1538,21 @@
     "que": "Dos vias muy cerca, una en la carretera y otra en el pueblo. Sigue las indicaciones sin desviarte."
   },
   {
-    "km": 109,
+    "km": 111,
     "lugar": "Velez-Rubio",
     "lat": 37.6482,
     "lon": -2.0745,
     "que": "NO cojas la A-92N. La ruta sigue por la carretera vieja hacia Chirivel y luego la A-1178 a Oria. Si Kurviger te manda a la autovia, es que vas con el GPX antiguo."
   },
   {
-    "km": 197,
+    "km": 199,
     "lugar": "Macael",
     "lat": 37.3406,
     "lon": -2.3003,
     "que": "En Macael coge la A-349 direccion Tabernas, la carretera que sube entre las canteras. No sigas por el valle hacia Olula ni hacia Fines."
   },
   {
-    "km": 232,
+    "km": 234,
     "lugar": "Tabernas",
     "lat": 37.0503,
     "lon": -2.3908,
@@ -1671,12 +1664,12 @@
     },
     {
       "nombre": "Tapa en Velez-Rubio",
-      "donde": "Velez-Rubio, km 109, al repostar",
+      "donde": "Velez-Rubio, km 111, al repostar",
       "que": "Si aprieta el hambre. Despues quedan 155 km de sierra y desierto con pocos sitios"
     },
     {
       "nombre": "Tabernas",
-      "donde": "Tabernas, km 232",
+      "donde": "Tabernas, km 234",
       "que": "Bares en la travesia para agua o una tapa rapida a las 14:20"
     }
   ],
@@ -1721,7 +1714,7 @@
     "que": "Castillo de los Fajardo; ultima parada turistica de sierra"
   },
   {
-    "hora": "12:10-12:20",
+    "hora": "12:12-12:22",
     "lugar": "Velez-Rubio",
     "que": "REPOSTAR en Las Pepas (24 h, Avenida de Andalucia 2, 500 m de desvio dentro del pueblo; o en Anroroil de Velez-Blanco 5 km antes). NO cojas la A-92N: sigue hacia Chirivel"
   },
@@ -1751,12 +1744,12 @@
     "que": "Alto de la A-349 (1.260 m); el desierto se abre abajo"
   },
   {
-    "hora": "14:19-14:29",
+    "hora": "14:22-14:32",
     "lugar": "Tabernas",
     "que": "Desierto; agua y foto. A-92 direccion Almeria"
   },
   {
-    "hora": "14:55",
+    "hora": "15:00",
     "lugar": "Almeria",
     "que": "Llegada a casa por Rioja y Benahadux (N-340a)"
   }
