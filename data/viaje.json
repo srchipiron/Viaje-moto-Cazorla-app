@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 3,
-    "revision": 105,
+    "revision": 106,
     "actualizado": "2026-09-15",
     "sustituye_a": "Contexto (JSON v2 del 2026-09-09)",
     "uso": "Fuente de verdad del viaje. Pensado para ser consumido por una app web estatica (GitHub Pages / PWA offline). Al retomar la conversacion con Claude, actualizar estados en vez de rehacer el plan.",
     "cambios_v3": [
+      "Dia 11 rehecho (23 sept): en vez de 120 km de autovia desde Velez-Rubio, vuelta por la Sierra de las Estancias (A-1178 Chirivel-Oria-Cantoria), Macael, la A-349 por Tahal sobre los Filabres y el desierto de Tabernas. 263 km, 3h55 reales, llegada 14:55. Track cambiado al GPX de la variante Almanzora (gpx/dia-11.gpx); la version por autovia queda en gpx/dia-11-alt-autovia.gpx. Horario, guia, avisos, radares y gasolineras rehechos",
       "Gasolina: data/gasolineras.json (tools/gasolineras.py) con las 113 gasolineras a menos de 400 m de los tracks y el km de cada etapa; la app pide los precios del dia de la 95 al Ministerio (datos abiertos) por provincia y resalta la mas barata de la etapa, en la ficha del dia, en Ahora (la mas barata por delante) y en la vista #/gasolina. Para lo que queda: dia 10 Valero 24H de Peñas de San Pedro (km 111) y dia 11 Las Pepas de Velez-Rubio (km 108), las dos 24 h",
       "Radares de tramo en el mapa: los 47 de la DGT van emparejados (inicio y fin) y se pintan como linea roja discontinua entre sus dos cabinas en el mapa del dia y en el del viaje completo, esten o no en la ruta; los fijos fuera de ruta salen como punto gris y hay leyenda. Ninguno de tramo pisa la ruta: el mas cercano queda a 15 km del dia 11 (A-7 en Lorca). Vista #/radares con la tabla de los 10 tramos mas cercanos",
       "Radares: la app lleva ya los 769 puntos de radar de la DGT de toda España (690 fijos y 47 de tramo), no solo los 5 que pisan la ruta. Vista #/radares con el desglose por etapa y los mas cercanos a donde estes; en cada etapa salen ademas los que quedan a menos de 5 km del track, por si hay desvio; en Ahora, si no hay ninguno en la ruta, salen los que tengas a menos de 20 km con distancia y rumbo",
@@ -1499,104 +1500,281 @@
       "dia": 11,
       "fecha": "2026-09-24",
       "dia_semana": "jueves",
-      "tipo": "calor_y_llano",
+      "tipo": "calor_y_sierra",
       "origen": "La Cilla (Moratalla)",
       "destino": "Almeria",
-      "km_aprox": 264,
-      "tiempo_real_aprox": "3h30",
+      "km_aprox": 263,
+      "tiempo_real_aprox": "3h55",
       "dificultad": 2,
       "fatiga": 2,
-      "perfil_kurviger": "Fast & Curvy hasta Velez-Rubio, autovia despues",
+      "perfil_kurviger": "Fast & Curvy todo el dia; solo 20 km de A-92 entre Tabernas y Rioja",
       "salida": "09:30",
-      "llegada_prevista": "14:20",
-      "meteo_puntos": [{ "nombre": "Velez-Blanco", "lat": 37.69, "lon": -2.10 }, { "nombre": "Almeria", "lat": 36.84, "lon": -2.46 }],
-      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "vias": ["Moratalla", "Salida de Moratalla", "Caravaca de la Cruz", "Barranda", "C-330 Campo de San Juan", "Campo de San Juan", "Maria", "Velez-Blanco", "Velez-Rubio"], "nota": "Ruta Kurviger 'Dia 11' (10 sept): 263,6 km y 3h28 estimadas. Hasta Velez-Rubio va por carreteras de sierra; despues coge la autovia por Puerto Lumbreras y la A-7 de la costa hasta Almeria. Alternativa guardada en gpx/dia-11-alt-almanzora.gpx: mismos km pero 25 minutos mas, volviendo por Chirivel, el valle del Almanzora, Uleila y Tabernas.",
-            "kurviger": {"nombre": "Día 11 · Moratalla → Almería", "route_id": "9YZntUmi0mkQpZl2jyEo", "cloud_url": "https://kurviger.com/es/plan/cloud/routes/X613LdBd5AxsDuN3X7q8/9YZntUmi0mkQpZl2jyEo", "plan_url": "https://kurviger.com/es/plan?point=38.1783%2C-1.9229&point=38.186754%2C-1.891421&point=38.1236%2C-1.8703&point=38.1046%2C-1.8612&point=38.0476%2C-1.9642&point=38.0027%2C-2.0898&point=37.8709%2C-2.2223&point=37.711297%2C-2.158496&point=37.6914%2C-2.0959&point=37.6482%2C-2.0745&point=36.842068%2C-2.446131&weight.10=fastest&padr.10=04006%2C+Almer%C3%ADa%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&weighting=curvaturefastest&avoid_ferries=true&avoid_unpaved_roads=true&document_title=D%C3%ADa+11+%C2%B7+Moratalla+%E2%86%92+Almer%C3%ADa&route_collection_id=X613LdBd5AxsDuN3X7q8&route_id=9YZntUmi0mkQpZl2jyEo&id=1", "km": 264.0, "duracion_min": 209, "subida_m": 3372, "bajada_m": 4353, "cortes_reportados": 1, "perfil": "curvaturefastest", "waypoints": 11, "exportado": "2026-09-11"},
-            "avisos": [{"km": 46, "lugar": "Campo de San Juan (C-330)", "lat": 38.0027, "lon": -2.0898, "que": "Dos vias muy cerca, una en la carretera y otra en el pueblo. Sigue las indicaciones sin desviarte."}, {"km": 106, "lugar": "Velez-Rubio", "lat": 37.6482, "lon": -2.0745, "que": "Ultima via. Desde aqui todo es autovia: A-91 a Puerto Lumbreras y A-7 por Huercal-Overa y Vera hasta Almeria. Ya no hay puntos que seguir, solo gasolina y descansos."}] },
+      "llegada_prevista": "14:55",
+      "meteo_puntos": [
+  {
+    "nombre": "Velez-Blanco",
+    "lat": 37.69,
+    "lon": -2.1
+  },
+  {
+    "nombre": "Tabernas",
+    "lat": 37.05,
+    "lon": -2.39
+  },
+  {
+    "nombre": "Almeria",
+    "lat": 36.84,
+    "lon": -2.46
+  }
+],
+      "gpx": { "archivo": "gpx/dia-11.gpx", "track": "data/tracks/dia-11.json", "vias": [
+  "Salida de Moratalla",
+  "Caravaca de la Cruz",
+  "Barranda",
+  "AL-9100 hacia Maria",
+  "Maria",
+  "Velez-Blanco",
+  "Velez-Rubio"
+], "nota": "Ruta Kurviger 'Dia 10 Hermita de Casa Cristo' (variante Almanzora): 263,0 km y 3h53 estimadas, +3.411 m. Sierra hasta Velez-Rubio y vuelta por Chirivel, Oria, Cantoria, Macael, la A-349 por Tahal y Tabernas. Los puntos de despues de Velez-Rubio son shaping points y no salen en la tabla. La version por autovia esta en gpx/dia-11-alt-autovia.gpx.",
+            "avisos": [
+  {
+    "km": 46,
+    "lugar": "Campo de San Juan (C-330)",
+    "lat": 38.0027,
+    "lon": -2.0898,
+    "que": "Dos vias muy cerca, una en la carretera y otra en el pueblo. Sigue las indicaciones sin desviarte."
+  },
+  {
+    "km": 109,
+    "lugar": "Velez-Rubio",
+    "lat": 37.6482,
+    "lon": -2.0745,
+    "que": "NO cojas la A-92N. La ruta sigue por la carretera vieja hacia Chirivel y luego la A-1178 a Oria. Si Kurviger te manda a la autovia, es que vas con el GPX antiguo."
+  },
+  {
+    "km": 197,
+    "lugar": "Macael",
+    "lat": 37.3406,
+    "lon": -2.3003,
+    "que": "En Macael coge la A-349 direccion Tabernas, la carretera que sube entre las canteras. No sigas por el valle hacia Olula ni hacia Fines."
+  },
+  {
+    "km": 232,
+    "lugar": "Tabernas",
+    "lat": 37.0503,
+    "lon": -2.3908,
+    "que": "Desde Tabernas, A-92 direccion Almeria 20 km hasta Rioja y salida a la N-340a por Benahadux. Unico tramo de autovia del dia."
+  }
+] },
       "guia": {
-        "resumen": "Vuelta a casa por el noroeste murciano y la comarca de Los Vélez: Caravaca de la Cruz, la sierra de María, el castillo renacentista de Vélez-Blanco, y desde Vélez-Rubio la autovía hasta Almería.",
+        "resumen": "Vuelta a casa por el noroeste murciano y la comarca de Los Vélez (Caravaca, la sierra de María, el castillo de Vélez-Blanco) y, en vez de autovía, la Sierra de las Estancias, las canteras de mármol de Macael, el puerto de los Filabres por la A-349 y el desierto de Tabernas. El final de viaje más bonito posible sin pasar de 4 horas.",
         "ver": [
-          {
-            "lugar": "Caravaca de la Cruz",
-            "tipo": "monumento",
-            "que": "Una de las cinco ciudades santas del mundo. La Basílica-Santuario de la Vera Cruz dentro del castillo, en lo alto, domina la ciudad. Parada solo de foto desde abajo o café rápido en el casco; no es día de visitas largas.",
-            "tiempo": "0 / 30 min",
-            "en_ruta": true,
-            "opcional": true
-          },
-          {
-            "lugar": "Barranda",
-            "tipo": "pueblo",
-            "que": "Pedanía de Caravaca conocida por su fiesta de las Cuadrillas y el Museo de Música Étnica. De paso.",
-            "tiempo": "0 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Puebla de Don Fadrique",
-            "tipo": "pueblo",
-            "que": "Ya en Granada, a los pies de La Sagra (2.380 m). Pueblo de paso, buen sitio para repostar si hace falta.",
-            "tiempo": "5 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Maria",
-            "tipo": "cafe",
-            "que": "Pueblo blanco del Parque Natural Sierra de María-Los Vélez, a 1.200 m. Café en la plaza.",
-            "tiempo": "20 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Velez-Blanco",
-            "tipo": "monumento",
-            "que": "Castillo de los Fajardo, renacentista, sobre el pueblo: su patio de mármol se vendió y hoy está en el Museo Metropolitano de Nueva York. Cerca, la Cueva de los Letreros, con las pinturas rupestres del Indalo (el símbolo de Almería). Parada de 20 minutos en el pueblo.",
-            "tiempo": "30 min",
-            "en_ruta": true
-          }, {"lugar": "Cueva de los Letreros", "tipo": "monumento", "que": "Pinturas rupestres Patrimonio de la Humanidad (de aqui sale el Indalo), justo en el punto de ruta bajo Velez-Blanco. Se visita solo con guia y reserva; sin reserva, la boca de la cueva y el mirador.", "tiempo": "20 min", "opcional": true, "lat": 37.6935, "lon": -2.0965},
-          {
-            "lugar": "Velez-Rubio",
-            "tipo": "pueblo",
-            "que": "Iglesia de la Encarnación, barroca y enorme, en la plaza. Último pueblo de sierra; desde aquí, autovía A-92N y A-7 a casa.",
-            "tiempo": "10 min",
-            "en_ruta": true
-          }
-        ],
+  {
+    "lugar": "Caravaca de la Cruz",
+    "tipo": "monumento",
+    "que": "Una de las cinco ciudades santas del mundo. La Basílica-Santuario de la Vera Cruz dentro del castillo, en lo alto, domina la ciudad. Parada solo de foto desde abajo o café rápido en el casco; no es día de visitas largas.",
+    "tiempo": "0 / 30 min",
+    "en_ruta": true,
+    "opcional": true
+  },
+  {
+    "lugar": "Barranda",
+    "tipo": "pueblo",
+    "que": "Pedanía de Caravaca conocida por su fiesta de las Cuadrillas y el Museo de Música Étnica. De paso.",
+    "tiempo": "0 min",
+    "en_ruta": true
+  },
+  {
+    "lugar": "Puebla de Don Fadrique",
+    "tipo": "pueblo",
+    "que": "Ya en Granada, a los pies de La Sagra (2.380 m). Pueblo de paso, buen sitio para repostar si hace falta.",
+    "tiempo": "5 min",
+    "en_ruta": true
+  },
+  {
+    "lugar": "Maria",
+    "tipo": "cafe",
+    "que": "Pueblo blanco del Parque Natural Sierra de María-Los Vélez, a 1.200 m. Café en la plaza.",
+    "tiempo": "20 min",
+    "en_ruta": true
+  },
+  {
+    "lugar": "Velez-Blanco",
+    "tipo": "monumento",
+    "que": "Castillo de los Fajardo, renacentista, sobre el pueblo: su patio de mármol se vendió y hoy está en el Museo Metropolitano de Nueva York. Cerca, la Cueva de los Letreros, con las pinturas rupestres del Indalo (el símbolo de Almería). Parada de 20 minutos en el pueblo.",
+    "tiempo": "30 min",
+    "en_ruta": true
+  },
+  {
+    "lugar": "Cueva de los Letreros",
+    "tipo": "monumento",
+    "que": "Pinturas rupestres Patrimonio de la Humanidad (de aqui sale el Indalo), justo en el punto de ruta bajo Velez-Blanco. Se visita solo con guia y reserva; sin reserva, la boca de la cueva y el mirador.",
+    "tiempo": "20 min",
+    "opcional": true,
+    "lat": 37.6935,
+    "lon": -2.0965
+  },
+  {
+    "lugar": "Velez-Rubio",
+    "tipo": "pueblo",
+    "que": "Iglesia de la Encarnación, barroca y enorme, en la plaza. Repostar aquí (Las Pepas, 24 h, Avenida de Andalucía 2, a 500 m de la ruta). Último pueblo de Los Vélez; desde aquí la carretera vieja a Chirivel, no la autovía.",
+    "tiempo": "10 min",
+    "en_ruta": true
+  },
+  {
+    "lugar": "A-1178 Chirivel - Oria - Cantoria",
+    "tipo": "mirador",
+    "que": "Sierra de las Estancias: 45 km de carretera vacía con curvas amplias, pinar arriba y el valle del Almanzora abriéndose al bajar. Oria colgado en la ladera con su iglesia enorme. Sin parar, es para rodar.",
+    "tiempo": "0 min",
+    "en_ruta": true,
+    "lat": 37.5153,
+    "lon": -2.2929
+  },
+  {
+    "lugar": "Macael",
+    "tipo": "mirador",
+    "que": "Capital del mármol: la montaña entera está cortada en bancales blancos. Foto desde la carretera al salir hacia la A-349. Hay bar en el pueblo si hace falta agua.",
+    "tiempo": "10 min",
+    "en_ruta": true,
+    "lat": 37.3406,
+    "lon": -2.3003
+  },
+  {
+    "lugar": "Puerto de los Filabres (A-349)",
+    "tipo": "mirador",
+    "que": "De Macael a Tabernas por Tahal: sube a 1.260 m entre encinas y baja en balcón sobre el desierto, con curvas de todo tipo y casi sin tráfico. La mejor carretera del día. Asfalto viejo en tramos: ritmo tranquilo.",
+    "tiempo": "0 min",
+    "en_ruta": true,
+    "lat": 37.1783,
+    "lon": -2.2785
+  },
+  {
+    "lugar": "Tabernas",
+    "tipo": "naturaleza",
+    "que": "El único desierto de Europa: cárcavas y badlands donde se rodaron los westerns. Parada corta para agua y foto; a esta hora aprieta el sol. Los poblados del oeste (Oasys, Fort Bravo) quedan al lado si algún día vuelves con calma.",
+    "tiempo": "10 min",
+    "en_ruta": true,
+    "lat": 37.0503,
+    "lon": -2.3908
+  }
+],
         "comer": {
-          "donde": "Comida en casa en Almería, llegando a las 14:30. Si aprieta el hambre, tapa en Vélez-Blanco o Vélez-Rubio.",
-            "cena": "En casa.",
-            "desayuno": "La Cilla (confirmar hora al llegar el miercoles). Si no hay, cafe en Moratalla al bajar.",
-            "cafe_en_ruta": "Caravaca de la Cruz (09:54) para un cafe rapido bajo la basilica, o Maria (11:20) en la plaza, ya en Almeria.",
-            "sitios": [{"nombre": "Comida en casa", "donde": "Almeria, 14:20-14:30", "que": "Lo previsto: llegas a comer a casa"}, {"nombre": "Tapa en Velez-Blanco o Velez-Rubio", "donde": "Velez-Blanco / Velez-Rubio, km 100", "que": "Si aprieta el hambre antes de la autovia. Ultimo sitio con encanto antes de 160 km de A-7"}],
-            "aviso_horarios": "Desde Velez-Rubio todo es autovia: come antes o aguanta a casa.",
-          "platos": [
-            "Gurullos con conejo (pasta de la comarca)",
-            "Olla de trigo",
-            "Migas de sémola con tropezones",
-            "Tortas de chicharrones",
-            "Jamón y embutidos de Los Vélez"
-          ],
-          "nota": "Última etapa: no hay prisa por comer en ruta; mejor llegar y cerrar el viaje con calma."
-        },
+  "donde": "Comida en casa en Almería, llegando sobre las 15:00. Si aprieta el hambre, tapa en Vélez-Rubio antes de repostar o en Tabernas al final.",
+  "cena": "En casa.",
+  "desayuno": "La Cilla (confirmar hora al llegar el miercoles). Si no hay, cafe en Moratalla al bajar.",
+  "cafe_en_ruta": "Caravaca de la Cruz (09:50) para un cafe rapido bajo la basilica, o Maria (11:15) en la plaza, ya en Almeria.",
+  "sitios": [
+    {
+      "nombre": "Comida en casa",
+      "donde": "Almeria, 15:00",
+      "que": "Lo previsto: llegas a comer a casa, un poco mas tarde que con la autovia"
+    },
+    {
+      "nombre": "Tapa en Velez-Rubio",
+      "donde": "Velez-Rubio, km 109, al repostar",
+      "que": "Si aprieta el hambre. Despues quedan 155 km de sierra y desierto con pocos sitios"
+    },
+    {
+      "nombre": "Tabernas",
+      "donde": "Tabernas, km 232",
+      "que": "Bares en la travesia para agua o una tapa rapida a las 14:20"
+    }
+  ],
+  "aviso_horarios": "Desde Velez-Rubio hasta Tabernas (120 km) hay pueblos pero poco donde comer bien: come algo en Velez-Rubio o aguanta a casa.",
+  "platos": [
+    "Gurullos con conejo (pasta de la comarca)",
+    "Olla de trigo",
+    "Migas de sémola con tropezones",
+    "Tortas de chicharrones",
+    "Jamón y embutidos de Los Vélez"
+  ],
+  "nota": "Última etapa: no hay prisa por comer en ruta; mejor llegar y cerrar el viaje con calma."
+},
         "tarde": "En casa: descargar maletas, foto de la moto con el cuentakilómetros y anotar los km reales del viaje. Cadena limpia y engrasada antes de que se enfríe la satisfacción.",
-        "consejo": "No usar Puerto Lumbreras como waypoint. Desde Vélez-Rubio, autovía sin dudarlo: el cansancio acumulado de once días no se nota hasta que se nota."
+        "consejo": "Ultimo dia y el mas caluroso: agua en cada parada. La A-349 tiene asfalto viejo y gravilla en alguna curva: ritmo de paseo. Si en Tabernas hace mas de 33 grados o vas cansado al llegar a Velez-Rubio, coge la autovia (gpx/dia-11-alt-autovia.gpx) y llegas 25 minutos antes."
       },
       "waypoints": ["La Cilla", "Moratalla", "Caravaca de la Cruz", "Barranda", "Campo de San Juan", "Maria", "Velez-Blanco", "Velez-Rubio", "Puerto Lumbreras", "A-7 por Huercal-Overa y Vera", "Almeria"],
       "horario_orientativo": [
-        { "hora": "09:54-10:15", "lugar": "Caravaca de la Cruz", "que": "Basilica de la Vera Cruz sobre el castillo; parada de foto o cafe rapido" },
-        { "hora": "10:20", "lugar": "Barranda", "que": "De paso" },
-        { "hora": "11:20-11:40", "lugar": "Maria", "que": "Cafe en la plaza; Parque Natural Sierra de Maria-Los Velez" },
-        { "hora": "11:48-12:15", "lugar": "Velez-Blanco", "que": "Castillo de los Fajardo; ultima parada turistica del viaje" },
-        { "hora": "12:20-12:30", "lugar": "Velez-Rubio", "que": "REPOSTAR. Aqui acaba la sierra y empieza la autovia" },
-        { "hora": "12:45", "lugar": "Puerto Lumbreras", "que": "Entrada a la A-7" },
-        { "hora": "13:20", "lugar": "Huercal-Overa / Vera", "que": "De paso por la A-7" },
-        { "hora": "14:20", "lugar": "Almeria", "que": "Llegada a casa" }
-      ],
-      "paradas": ["Caravaca de la Cruz - basilica", "Maria - cafe", "Velez-Blanco - castillo"],
+  {
+    "hora": "09:48-10:08",
+    "lugar": "Caravaca de la Cruz",
+    "que": "Basilica de la Vera Cruz sobre el castillo; parada de foto o cafe rapido"
+  },
+  {
+    "hora": "10:20",
+    "lugar": "Barranda",
+    "que": "De paso"
+  },
+  {
+    "hora": "10:31",
+    "lugar": "Campo de San Juan",
+    "que": "De paso; dos vias muy juntas, sigue las indicaciones"
+  },
+  {
+    "hora": "11:13-11:33",
+    "lugar": "Maria",
+    "que": "Cafe en la plaza; Parque Natural Sierra de Maria-Los Velez"
+  },
+  {
+    "hora": "11:41-12:05",
+    "lugar": "Velez-Blanco",
+    "que": "Castillo de los Fajardo; ultima parada turistica de sierra"
+  },
+  {
+    "hora": "12:10-12:20",
+    "lugar": "Velez-Rubio",
+    "que": "REPOSTAR en Las Pepas (24 h, Avenida de Andalucia 2, 500 m de desvio dentro del pueblo; o en Anroroil de Velez-Blanco 5 km antes). NO cojas la A-92N: sigue hacia Chirivel"
+  },
+  {
+    "hora": "12:34",
+    "lugar": "Chirivel",
+    "que": "De paso; empieza la A-1178 por la Sierra de las Estancias"
+  },
+  {
+    "hora": "12:44",
+    "lugar": "Oria",
+    "que": "De paso, pueblo colgado; la carretera baja al Almanzora"
+  },
+  {
+    "hora": "13:15",
+    "lugar": "Cantoria",
+    "que": "De paso por el valle del Almanzora"
+  },
+  {
+    "hora": "13:38-13:48",
+    "lugar": "Macael",
+    "que": "Canteras de marmol: foto. Coge la A-349 hacia Tabernas, la que sube"
+  },
+  {
+    "hora": "14:02",
+    "lugar": "Puerto de los Filabres (Tahal)",
+    "que": "Alto de la A-349 (1.260 m); el desierto se abre abajo"
+  },
+  {
+    "hora": "14:19-14:29",
+    "lugar": "Tabernas",
+    "que": "Desierto; agua y foto. A-92 direccion Almeria"
+  },
+  {
+    "hora": "14:55",
+    "lugar": "Almeria",
+    "que": "Llegada a casa por Rioja y Benahadux (N-340a)"
+  }
+],
+      "paradas": [
+  "Caravaca de la Cruz - basilica",
+  "Maria - cafe",
+  "Velez-Blanco - castillo",
+  "Velez-Rubio - repostar",
+  "Macael - canteras de marmol",
+  "Tabernas - desierto, foto y agua"
+],
       "notas": [
-        "Horas de paso calculadas con los tiempos de Kurviger (3h53 de conduccion) mas las paradas.",
-        "Desde Velez-Rubio son 120 km de autovia (A-92N hasta Puerto Lumbreras y A-7 de la costa). Tapones ROJOS (Race, 20 dB) y ritmo tranquilo: es el unico tramo largo de autovia del viaje y el unico dia que se usan.",
-        "Alternativa por secundarias (gpx/dia-11-alt-almanzora.gpx): mismos km, 25 minutos mas, por Chirivel, Macael, Uleila del Campo y Tabernas. Mas bonita pero mas exigente en el ultimo dia.",
-        "Deposito lleno al salir de Moratalla o en Caravaca; ultimo repostaje comodo en Velez-Rubio."
-      ]
+  "Horas de paso calculadas con los tiempos de Kurviger (3h53 de conduccion) mas las paradas.",
+  "Ruta cambiada el 23 sept: en vez de los 120 km de autovia desde Velez-Rubio, vuelta por la Sierra de las Estancias (A-1178 Chirivel-Oria-Cantoria), Macael y la A-349 por Tahal sobre los Filabres hasta Tabernas. Mismos km, 25 minutos mas y 1.300 m mas de subida. Solo 20 km de A-92 entre Tabernas y Rioja.",
+  "La version por autovia (A-92N a Puerto Lumbreras y A-7 por Huercal-Overa) queda guardada en gpx/dia-11-alt-autovia.gpx: 264 km y 3h28. Si hace mas de 33 grados en Tabernas o vas cansado, es la que toca. Tapones ROJOS (Race) solo si la coges.",
+  "Deposito lleno en Velez-Rubio (Las Pepas, 24 h, la mas barata de la zona: esta en la Avenida de Andalucia 2, a 500 m de la ruta, por eso no sale en la tabla de gasolineras del dia; alternativa sin desvio, Anroroil en Velez-Blanco): desde ahi 155 km de sierra y desierto hasta casa, con gasolineras en Albox, Macael y Tabernas por si acaso."
+]
     }
   ],
   "alojamientos_resumen": [

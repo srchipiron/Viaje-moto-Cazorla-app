@@ -5,7 +5,7 @@
   "id": 1,
   "nombre": "Gasolina 95 E5"
  },
- "generado": "2026-09-22",
+ "generado": "2026-09-23",
  "umbral_m": 400,
  "aviso": "Precios del día que publica cada gasolinera al Ministerio; pueden cambiar a lo largo del día. Solo gasolineras a menos de 400 m del track: las del pueblo de al lado no salen. El horario es el declarado; en pueblos pequeños, comprobarlo.",
  "por_dia": {
@@ -987,7 +987,7 @@
     "horario": "L-D: 24H",
     "lat": 38.18364,
     "lon": -1.89042,
-    "km": 7.5,
+    "km": 7.9,
     "dist_m": 32
    },
    {
@@ -999,7 +999,7 @@
     "horario": "L-S: 06:30-22:00",
     "lat": 38.11069,
     "lon": -1.86586,
-    "km": 19.1,
+    "km": 19.6,
     "dist_m": 28
    },
    {
@@ -1011,7 +1011,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 38.09972,
     "lon": -1.86614,
-    "km": 21.1,
+    "km": 21.5,
     "dist_m": 116
    },
    {
@@ -1023,7 +1023,7 @@
     "horario": "L-D: 24H",
     "lat": 38.09008,
     "lon": -1.86831,
-    "km": 22.1,
+    "km": 22.6,
     "dist_m": 13
    },
    {
@@ -1035,7 +1035,7 @@
     "horario": "L-D: 08:00-22:00",
     "lat": 38.08664,
     "lon": -1.86969,
-    "km": 22.5,
+    "km": 23.0,
     "dist_m": 55
    },
    {
@@ -1047,7 +1047,7 @@
     "horario": "L-D: 24H",
     "lat": 38.05103,
     "lon": -1.89661,
-    "km": 27.3,
+    "km": 27.8,
     "dist_m": 91
    },
    {
@@ -1059,7 +1059,7 @@
     "horario": "L-V: 08:00-20:00; S: 08:00-15:00",
     "lat": 38.04931,
     "lon": -1.89733,
-    "km": 27.4,
+    "km": 27.9,
     "dist_m": 279
    },
    {
@@ -1071,7 +1071,7 @@
     "horario": "L-V: 08:00-20:00; S: 09:00-14:00",
     "lat": 38.05486,
     "lon": -1.90269,
-    "km": 27.8,
+    "km": 28.3,
     "dist_m": 361
    },
    {
@@ -1083,7 +1083,7 @@
     "horario": "L-S: 06:00-22:00; D: 08:00-22:00",
     "lat": 38.04419,
     "lon": -1.97322,
-    "km": 34.6,
+    "km": 35.1,
     "dist_m": 124
    },
    {
@@ -1095,7 +1095,7 @@
     "horario": "L-D: 08:00-22:00",
     "lat": 37.85964,
     "lon": -2.22675,
-    "km": 70.5,
+    "km": 71.2,
     "dist_m": 113
    },
    {
@@ -1107,7 +1107,7 @@
     "horario": "L: 07:00-22:00",
     "lat": 37.68186,
     "lon": -2.09589,
-    "km": 102.0,
+    "km": 104.0,
     "dist_m": 10
    },
    {
@@ -1119,236 +1119,176 @@
     "horario": "L-D: 24H",
     "lat": 37.64675,
     "lon": -2.07039,
-    "km": 107.7,
-    "dist_m": 136
+    "km": 109.0,
+    "dist_m": 396
    },
    {
-    "id": "16040",
-    "prov": "04",
-    "rotulo": "Las Pepas",
-    "municipio": "Vélez-Rubio",
-    "direccion": "Avenida De Andalucia, 2",
-    "horario": "L-D: 24H",
-    "lat": 37.64531,
-    "lon": -2.06953,
-    "km": 107.8,
-    "dist_m": 40
-   },
-   {
-    "id": "10899",
-    "prov": "30",
-    "rotulo": "Venta La Petra",
-    "municipio": "Lorca",
-    "direccion": "Carretera A-91 Km. 3,5",
-    "horario": "L-D: 24H",
-    "lat": 37.61992,
-    "lon": -1.946,
-    "km": 119.9,
-    "dist_m": 82
-   },
-   {
-    "id": "6535",
-    "prov": "04",
-    "rotulo": "Andamur \"el Limite\"",
-    "municipio": "Huércal-Overa",
-    "direccion": "Cr Autovia Del Mediterraneo Km",
-    "horario": "L-D: 24H",
-    "lat": 37.48119,
-    "lon": -1.87011,
-    "km": 144.9,
-    "dist_m": 89
-   },
-   {
-    "id": "6869",
+    "id": "11569",
     "prov": "04",
     "rotulo": "Repsol",
-    "municipio": "Huércal-Overa",
-    "direccion": "Autovia Murcia - Almeria E15 Salida 682 Km.",
-    "horario": "L-D: 24H",
-    "lat": 37.35206,
-    "lon": -1.97092,
-    "km": 163.4,
-    "dist_m": 82
+    "municipio": "Chirivel",
+    "direccion": "Autovia A-92 Km. 385",
+    "horario": "L-D: 06:30-22:30",
+    "lat": 37.59578,
+    "lon": -2.28103,
+    "km": 130.1,
+    "dist_m": 187
    },
    {
-    "id": "5634",
+    "id": "5633",
     "prov": "04",
     "rotulo": "Cepsa",
-    "municipio": "Huércal-Overa",
-    "direccion": "Carretera N-340 Km. 542,4",
-    "horario": "L-D: 06:00-23:00",
-    "lat": 37.31583,
-    "lon": -1.96375,
-    "km": 167.8,
-    "dist_m": 75
+    "municipio": "Oria",
+    "direccion": "Avenida Andalucia, 62",
+    "horario": "L-D: 07:00-23:00",
+    "lat": 37.485,
+    "lon": -2.28753,
+    "km": 145.7,
+    "dist_m": 9
    },
    {
-    "id": "6438",
+    "id": "6673",
     "prov": "04",
-    "rotulo": "Bp",
-    "municipio": "Antas",
-    "direccion": "Autovia Murcia-almeria Salida 537 Km. 537",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 37.28583,
-    "lon": -1.93456,
-    "km": 172.0,
-    "dist_m": 96
-   },
-   {
-    "id": "9462",
-    "prov": "04",
-    "rotulo": "Cepsa-moeve",
-    "municipio": "Antas",
-    "direccion": "Poligono P.i. El Real, S/n",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 37.26031,
-    "lon": -1.90031,
-    "km": 176.5,
-    "dist_m": 193
-   },
-   {
-    "id": "12261",
-    "prov": "04",
-    "rotulo": "Shell",
-    "municipio": "Antas",
-    "direccion": "Autovia Autovia Del Mediterraneo Km. 529",
-    "horario": "L-D: 24H",
-    "lat": 37.21375,
-    "lon": -1.89803,
-    "km": 181.9,
-    "dist_m": 124
-   },
-   {
-    "id": "10574",
-    "prov": "04",
-    "rotulo": "Shell",
-    "municipio": "Níjar",
-    "direccion": "N-341 (nijar-carboneras) Km 0,5",
-    "horario": "L-D: 05:30-23:30",
-    "lat": 36.992,
-    "lon": -2.06294,
-    "km": 216.5,
-    "dist_m": 318
-   },
-   {
-    "id": "9494",
-    "prov": "04",
-    "rotulo": "Bp Venta Del Pobre",
-    "municipio": "Níjar",
-    "direccion": "Autovia Almeria Murcia Salida 494 Km.",
-    "horario": "L: 06:00-00:00",
-    "lat": 36.99386,
-    "lon": -2.06706,
-    "km": 216.6,
-    "dist_m": 96
-   },
-   {
-    "id": "5798",
-    "prov": "04",
-    "rotulo": "Repsol",
-    "municipio": "Níjar",
-    "direccion": "Autovia A7 E15 Salida 742 Nijar Km. 742",
-    "horario": "L-D: 24H",
-    "lat": 36.95564,
-    "lon": -2.12781,
-    "km": 223.6,
-    "dist_m": 100
-   },
-   {
-    "id": "5613",
-    "prov": "04",
-    "rotulo": "Bp Estacion De Servicio El 21",
-    "municipio": "Níjar",
-    "direccion": "Autovia Autovia Del Mediterraneo Sal.471 Km. 471",
+    "rotulo": "Carburantes Filabres",
+    "municipio": "Albánchez",
+    "direccion": "Carretera Al-3325, 15,2 Km. 15,2",
     "horario": "L: 07:00-22:00",
-    "lat": 36.86908,
-    "lon": -2.22956,
-    "km": 239.4,
-    "dist_m": 120
+    "lat": 37.29267,
+    "lon": -2.18119,
+    "km": 177.1,
+    "dist_m": 132
    },
    {
-    "id": "9665",
+    "id": "5637",
     "prov": "04",
-    "rotulo": "Jcarrion",
-    "municipio": "Almería",
-    "direccion": "Carretera E-15/n-340 Km. 471",
-    "horario": "L-D: 24H",
-    "lat": 36.86839,
-    "lon": -2.23,
-    "km": 239.5,
-    "dist_m": 148
+    "rotulo": "Cepsa",
+    "municipio": "Tahal",
+    "direccion": "Carretera A-349 Km. 26,6",
+    "horario": "L-D: 07:00-22:00",
+    "lat": 37.23111,
+    "lon": -2.29619,
+    "km": 203.3,
+    "dist_m": 28
    },
    {
-    "id": "12687",
+    "id": "6839",
+    "prov": "04",
+    "rotulo": "Bp La Era Tabernas",
+    "municipio": "Tabernas",
+    "direccion": "Avenida Ricardo Fabrega, 81",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 37.05728,
+    "lon": -2.38756,
+    "km": 230.3,
+    "dist_m": 290
+   },
+   {
+    "id": "5647",
     "prov": "04",
     "rotulo": "Repsol",
-    "municipio": "Almería",
-    "direccion": "Autovia A7 Km. 460,000",
-    "horario": "L-D: 24H",
-    "lat": 36.87503,
-    "lon": -2.33644,
-    "km": 249.5,
-    "dist_m": 147
+    "municipio": "Tabernas",
+    "direccion": "Autovia Cr A 92 Km. 379",
+    "horario": "L-D: 06:00-21:30",
+    "lat": 37.01642,
+    "lon": -2.44606,
+    "km": 238.0,
+    "dist_m": 54
    },
    {
-    "id": "5618",
+    "id": "5769",
     "prov": "04",
-    "rotulo": "Moeve",
-    "municipio": "Almería",
-    "direccion": "Carretera Nijar (alquian) Km. 6,9",
-    "horario": "L-D: 06:00-23:00",
-    "lat": 36.845,
-    "lon": -2.39094,
-    "km": 258.3,
-    "dist_m": 98
+    "rotulo": "Repsol",
+    "municipio": "Rioja",
+    "direccion": "Cr A-92, 386",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 36.96075,
+    "lon": -2.46658,
+    "km": 244.9,
+    "dist_m": 46
    },
    {
-    "id": "12615",
+    "id": "13892",
     "prov": "04",
-    "rotulo": "Moeve",
-    "municipio": "Almería",
-    "direccion": "Carretera Al-12 Km. 3.6",
-    "horario": "L-D: 00:00-23:59",
-    "lat": 36.84308,
-    "lon": -2.42297,
-    "km": 261.3,
-    "dist_m": 62
+    "rotulo": "Cepsa",
+    "municipio": "Huércal de Almería",
+    "direccion": "Carretera Nacional 340, Paraje Zamarula Km. 449",
+    "horario": "L-V: 06:00-22:00; S-D: 07:00-21:30",
+    "lat": 36.89897,
+    "lon": -2.44517,
+    "km": 254.3,
+    "dist_m": 55
    },
    {
-    "id": "14598",
+    "id": "15821",
     "prov": "04",
     "rotulo": "Plenergy",
     "municipio": "Almería",
-    "direccion": "Carretera Nijar Los Molinos Km. 396",
+    "direccion": "Camino Los Almendros, 18",
     "horario": "L-D: 24H",
-    "lat": 36.84356,
-    "lon": -2.43633,
-    "km": 262.6,
-    "dist_m": 121
+    "lat": 36.86514,
+    "lon": -2.44947,
+    "km": 259.6,
+    "dist_m": 28
    },
    {
-    "id": "14241",
+    "id": "10829",
     "prov": "04",
-    "rotulo": "La Torre",
+    "rotulo": "Bp Rambla Iniesta",
     "municipio": "Almería",
-    "direccion": "Avenida Sierra Alhamilla, 310",
+    "direccion": "Calle Cuesta De Los Callejones, 0",
     "horario": "L-D: 24H",
-    "lat": 36.84197,
-    "lon": -2.43906,
-    "km": 262.8,
-    "dist_m": 142
+    "lat": 36.86553,
+    "lon": -2.44864,
+    "km": 259.6,
+    "dist_m": 58
    },
    {
-    "id": "12812",
+    "id": "15729",
     "prov": "04",
-    "rotulo": "Carrefour",
+    "rotulo": "Plenergy",
     "municipio": "Almería",
-    "direccion": "Calle Jorge Guillen, S/n",
-    "horario": "L-D: 06:00-23:00",
-    "lat": 36.84217,
-    "lon": -2.44297,
-    "km": 263.2,
-    "dist_m": 107
+    "direccion": "Carretera De Granada, 2 Tramos 55.57 Km. S/n",
+    "horario": "L-D: 24H",
+    "lat": 36.86383,
+    "lon": -2.44892,
+    "km": 259.8,
+    "dist_m": 18
+   },
+   {
+    "id": "5620",
+    "prov": "04",
+    "rotulo": "Cepsa",
+    "municipio": "Almería",
+    "direccion": "Carretera N-340a Km. 444",
+    "horario": "L-D: 06:00-23:30",
+    "lat": 36.85778,
+    "lon": -2.44728,
+    "km": 260.5,
+    "dist_m": 50
+   },
+   {
+    "id": "9131",
+    "prov": "04",
+    "rotulo": "Alcampo",
+    "municipio": "Almería",
+    "direccion": "Avenida Del Mediterraneo, S/n",
+    "horario": "L-D: 24H",
+    "lat": 36.85244,
+    "lon": -2.44681,
+    "km": 261.6,
+    "dist_m": 37
+   },
+   {
+    "id": "10168",
+    "prov": "04",
+    "rotulo": "Cepsa",
+    "municipio": "Almería",
+    "direccion": "Calle Carretera De Nijar, S/n",
+    "horario": "L: 06:00-00:00",
+    "lat": 36.84586,
+    "lon": -2.45011,
+    "km": 262.4,
+    "dist_m": 226
    },
    {
     "id": "15858",
@@ -1359,7 +1299,7 @@
     "horario": "L-D: 24H",
     "lat": 36.83869,
     "lon": -2.44453,
-    "km": 263.5,
+    "km": 262.9,
     "dist_m": 383
    },
    {
@@ -1371,8 +1311,20 @@
     "horario": "L-D: 24H",
     "lat": 36.84003,
     "lon": -2.44561,
-    "km": 263.5,
+    "km": 262.9,
     "dist_m": 229
+   },
+   {
+    "id": "12812",
+    "prov": "04",
+    "rotulo": "Carrefour",
+    "municipio": "Almería",
+    "direccion": "Calle Jorge Guillen, S/n",
+    "horario": "L-D: 06:00-23:00",
+    "lat": 36.84217,
+    "lon": -2.44297,
+    "km": 262.9,
+    "dist_m": 210
    },
    {
     "id": "6826",
@@ -1383,7 +1335,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.83944,
     "lon": -2.44672,
-    "km": 263.6,
+    "km": 263.0,
     "dist_m": 302
    }
   ]

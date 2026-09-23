@@ -137,7 +137,7 @@ function mockGeo(url) {
   const totRad = await page.evaluate(() => (D.radares && D.radares.radares || []).length);
   if (totRad < 700) errors.push(`la app solo tiene ${totRad} radares de toda España`);
   const enRuta = await page.evaluate(() => D.data.itinerario.reduce((s, e) => s + radaresDia(e.dia).en_ruta.length, 0));
-  if (enRuta !== 5) errors.push(`radares en ruta: ${enRuta}, esperados 5`);
+  if (enRuta !== 4) errors.push(`radares en ruta: ${enRuta}, esperados 4`);
   const nTramos = await page.evaluate(() => radaresTramos().length);
   if (nTramos !== 47) errors.push(`radares de tramo: ${nTramos}, esperados 47`);
   if (!/Radares de tramo/i.test(await page.locator('#view').innerText())) errors.push('vista de radares sin la seccion de tramos');
