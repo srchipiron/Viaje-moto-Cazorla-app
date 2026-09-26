@@ -1,0 +1,85 @@
+{
+ "fuente": "Ministerio para la Transición Ecológica · Geoportal de hidrocarburos (datos abiertos)",
+ "api": "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/",
+ "producto": {
+  "id": 1,
+  "nombre": "Gasolina 95 E5"
+ },
+ "generado": "2026-09-26",
+ "umbral_m": 400,
+ "aviso": "Precios del día que publica cada gasolinera al Ministerio; pueden cambiar a lo largo del día. Solo gasolineras a menos de 400 m del track: las del pueblo de al lado no salen. El horario es el declarado; en pueblos pequeños, comprobarlo.",
+ "por_dia": {
+  "1": [
+   {
+    "id": "1395",
+    "prov": "44",
+    "rotulo": "E.s.orihuela Del Tremedal",
+    "municipio": "Orihuela del Tremedal",
+    "direccion": "Carretera Cr A Albarracin Km. 13",
+    "horario": "L-D: 07:00-23:00",
+    "lat": 40.54764,
+    "lon": -1.65194,
+    "km": 39.7,
+    "dist_m": 8
+   }
+  ],
+  "2": [
+   {
+    "id": "1419",
+    "prov": "44",
+    "rotulo": "Repsol",
+    "municipio": "Teruel",
+    "direccion": "Avenida Sagunto, 5",
+    "horario": "L-D: 07:00-22:00",
+    "lat": 40.33661,
+    "lon": -1.10494,
+    "km": 42.6,
+    "dist_m": 357
+   },
+   {
+    "id": "1257",
+    "prov": "44",
+    "rotulo": "Civera",
+    "municipio": "Teruel",
+    "direccion": "C.n 420 A Km 583,2",
+    "horario": "L: 07:00-22:00",
+    "lat": 40.36047,
+    "lon": -1.10792,
+    "km": 45.2,
+    "dist_m": 24
+   },
+   {
+    "id": "1412",
+    "prov": "44",
+    "rotulo": "Cepsa",
+    "municipio": "Cedrillas",
+    "direccion": "Carretera A-226 Km. 27,900",
+    "horario": "L-V: 08:00-16:30; S: 08:00-14:00",
+    "lat": 40.43808,
+    "lon": -0.84886,
+    "km": 74.1,
+    "dist_m": 298
+   },
+   {
+    "id": "1442",
+    "prov": "44",
+    "rotulo": "Galp",
+    "municipio": "Alcalá de la Selva",
+    "direccion": "Carretera A-228 Km. 33,500",
+    "horario": "L-D: 24H",
+    "lat": 40.36586,
+    "lon": -0.70608,
+    "km": 90.6,
+    "dist_m": 48
+   }
+  ]
+ },
+ "provincias_por_dia": {
+  "1": [
+   "44"
+  ],
+  "2": [
+   "44"
+  ]
+ }
+}

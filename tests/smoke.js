@@ -14,18 +14,23 @@ function loadPlaywright() {
 }
 const { chromium } = loadPlaywright();
 const fs = require('fs');
+/* Carpeta del viaje activo (viajes/<id>/), la que abre la app sin ?viaje=. */
+const INDICE = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'viajes', 'index.json'), 'utf8'));
+const VIAJE_DIR = path.join(__dirname, '..', 'viajes', INDICE.activo);
 /* Punto de GPS a mitad de la etapa de HOY, sacado del plan: si se fija a mano,
-   la prueba caduca en cuanto el viaje avanza un dia. */
+   la prueba caduca en cuanto el viaje avanza un dia. Fuera de las fechas del viaje se usa el dia 1
+   con el reloj simulado en esa fecha (relojEtapa). */
 function puntoDeHoy() {
-  const plan = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'viaje.json'), 'utf8'));
+  const plan = JSON.parse(fs.readFileSync(path.join(VIAJE_DIR, 'viaje.json'), 'utf8'));
   const hoy = new Date().toISOString().slice(0, 10);
   const e = plan.itinerario.find((d) => d.fecha === hoy) || plan.itinerario[0];
-  const t = JSON.parse(fs.readFileSync(path.join(__dirname, '..', e.gpx.track), 'utf8'));
+  const t = JSON.parse(fs.readFileSync(path.join(VIAJE_DIR, e.gpx.track), 'utf8'));
   const medio = t.track[Math.floor(t.track.length / 2)];
-  return { dia: e.dia, destino: e.destino, sobre: { latitude: medio[0], longitude: medio[1], accuracy: 15 },
+  return { dia: e.dia, fecha: e.fecha, destino: e.destino, sobre: { latitude: medio[0], longitude: medio[1], accuracy: 15 },
     fuera: { latitude: medio[0], longitude: medio[1] - 0.4, accuracy: 15 } };
 }
 const HOY = puntoDeHoy();
+const relojEtapa = (pagina) => pagina.clock.install({ time: new Date(`${HOY.fecha}T11:00:00+02:00`) });
 const BASE = process.argv[2] || 'http://localhost:8080/';
 const PNG1x1 = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
 
@@ -61,7 +66,7 @@ function mockGeo(url) {
 (async () => {
   const browser = await chromium.launch();
   /* Precios del Ministerio simulados: cada gasolinera de la ruta con un precio distinto y estable. */
-  const GAS = require('../data/gasolineras.json');
+  const GAS = JSON.parse(fs.readFileSync(path.join(VIAJE_DIR, 'gasolineras.json'), 'utf8'));
   const mockGas = (c) => c.route('https://sedeaplicaciones.minetur.gob.es/**', (r) => {
     const prov = r.request().url().match(/FiltroProvinciaProducto\/(\d+)\//);
     const lista = [].concat(...Object.values(GAS.por_dia)).filter((s) => !prov || s.prov === prov[1]).map((s, i) => ({ IDEESS: s.id, PrecioProducto: (1.8 + (i % 7) / 100).toFixed(3).replace('.', ',') }));
@@ -87,8 +92,10 @@ function mockGeo(url) {
   for (const v of views) {
     await page.goto(BASE + v, { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !document.querySelector('.loading'));
-    const n = (await page.locator('#view').innerText()).length;
-    if (n < 200 && v !== '#/buscar') errors.push(`vista ${v} casi vacia (${n} chars)`);
+    const txtV = await page.locator('#view').innerText(); const n = txtV.length;
+    // Ahora, fuera de las fechas del viaje, solo dice que falta o que ya termino: es corta a proposito
+    const cortaAdrede = v === '#/buscar' || (v === '#/ahora' && /Viaje terminado|Faltan \d+ d/.test(txtV));
+    if (n < 200 && !cortaAdrede) errors.push(`vista ${v} casi vacia (${n} chars)`);
     console.log(`${v.padEnd(12)} ${n} chars`);
   }
   // marcas persistentes
@@ -220,6 +227,7 @@ function mockGeo(url) {
   const ctxA = await nuevoCtx(HOY.sobre);
   const pageA = await ctxA.newPage();
   pageA.on('pageerror', (e) => errors.push('ahora pageerror: ' + e.message));
+  await relojEtapa(pageA);
   await pageA.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
   await pageA.waitForFunction(() => !document.querySelector('.loading'));
   await pageA.click('[data-localizar]');
@@ -242,6 +250,7 @@ function mockGeo(url) {
   // fuera de ruta: unos 30 km al oeste del track de hoy
   const ctxF = await nuevoCtx(HOY.fuera);
   const pageF = await ctxF.newPage();
+  await relojEtapa(pageF);
   await pageF.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
   await pageF.click('[data-localizar]');
   await pageF.waitForSelector('.card.warn', { timeout: 10000 }).catch(() => errors.push('ahora: no avisa estando fuera de la ruta'));
@@ -271,6 +280,30 @@ function mockGeo(url) {
     await page.waitForFunction(() => !document.querySelector('.loading'), null, { timeout: 8000 }).catch(() => errors.push('offline: la vista no renderiza'));
     console.log('offline:', (await page.locator('#view').innerText()).slice(0, 40).replace(/\n/g, ' '));
     await ctx.setOffline(false);
+  }
+  // plantilla: el viaje minimo de viajes/ejemplo (tools/nuevo_viaje.py) abre todas las vistas sin errores
+  // y lo que se apunta en el guarda aparte, sin mezclarse con el viaje activo
+  if (fs.existsSync(path.join(__dirname, '..', 'viajes', 'ejemplo', 'viaje.json'))) {
+    const ctxE = await nuevoCtx({ latitude: 40.407, longitude: -1.44, accuracy: 15 });
+    const pe = await ctxE.newPage();
+    pe.on('pageerror', (e) => errors.push('pageerror(ejemplo): ' + e.message));
+    const vistas = ['resumen', 'etapas', 'etapas/1', 'etapas/2', 'noches', 'tiempo', 'listas', 'equipaje', 'guia', 'hoja', 'sos', 'buscar/alba', 'ahora', 'pueblos', 'radares', 'gasolina'];
+    for (const v of vistas) {
+      await pe.goto(BASE + `?viaje=ejemplo#/${v}`, { waitUntil: 'networkidle' });
+      const t = await pe.locator('#view').innerText();
+      if (/undefined|NaN|\[object |No se pudo cargar/.test(t)) errors.push(`ejemplo #/${v}: ${(t.match(/.{0,40}(undefined|NaN|\[object |No se pudo cargar).{0,30}/) || [''])[0]}`);
+    }
+    const marca = await pe.locator('.brand-text strong').innerText();
+    if (!/ejemplo/i.test(marca)) errors.push('ejemplo: la cabecera no lleva el nombre del viaje: ' + marca);
+    await pe.goto(BASE + '?viaje=ejemplo#/etapas/1', { waitUntil: 'networkidle' });
+    await pe.fill('[data-diario="1"]', 'Nota del viaje de ejemplo'); await pe.waitForTimeout(600);
+    const claveE = await pe.evaluate(() => Object.keys(localStorage).filter((k) => /diario/.test(k)));
+    if (!claveE.includes('viaje-nx500-diario@ejemplo')) errors.push('ejemplo: el diario no se guarda con su sufijo: ' + claveE.join(','));
+    await pe.goto(BASE + '#/etapas/1', { waitUntil: 'networkidle' });
+    const diarioActivo = await pe.locator('[data-diario="1"]').inputValue().catch(() => '');
+    if (/ejemplo/.test(diarioActivo)) errors.push('el diario del viaje de ejemplo aparece en el viaje activo');
+    console.log('plantilla (viajes/ejemplo):', vistas.length, 'vistas · cabecera', marca, '· claves', claveE.join(','));
+    await ctxE.close();
   }
   await browser.close();
   const real = errors.filter((e) => !/open-meteo|tile\.openstreetmap/.test(e));

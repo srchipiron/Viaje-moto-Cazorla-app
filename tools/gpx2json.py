@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convierte un GPX de Kurviger en un JSON ligero para la app.
 
-Uso: python3 tools/gpx2json.py gpx/dia-01.gpx data/tracks/dia-01.json
+Uso: python3 tools/gpx2json.py viajes/<id>/gpx/dia-01.gpx viajes/<id>/tracks/dia-01.json
 
 Genera: track simplificado (Douglas-Peucker ~25 m), perfil de altitud
 (200 muestras por distancia), distancia, desnivel, altitudes, duracion

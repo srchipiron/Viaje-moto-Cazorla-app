@@ -1,0 +1,25 @@
+{
+ "activo": "2026-09-cazorla",
+ "viajes": [
+  {
+   "id": "2026-09-cazorla",
+   "nombre": "Viaje en moto Almeria - Cazorla - Cuenca - Albarracin - Gudar/Maestrazgo - Jucar - Segura - Almeria",
+   "corto": "Viaje NX500",
+   "inicio": "2026-09-14",
+   "fin": "2026-09-24",
+   "dias": 11,
+   "km": 1940,
+   "moto": "Honda NX500"
+  },
+  {
+   "id": "ejemplo",
+   "nombre": "Ejemplo: dos días por Albarracín",
+   "inicio": "2027-05-15",
+   "fin": "2027-05-16",
+   "dias": 2,
+   "km": 172,
+   "moto": "Honda NX500",
+   "oculto": true
+  }
+ ]
+}

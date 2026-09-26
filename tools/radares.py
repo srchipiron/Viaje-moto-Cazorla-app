@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genera data/radares.json: TODOS los radares fijos y de tramo de la DGT, mas el
+"""Genera viajes/<id>/radares.json: TODOS los radares fijos y de tramo de la DGT, mas el
 indice de los que caen sobre los tracks del viaje.
 
 El fichero lleva la lista completa de Espana (formato columnar para que ocupe poco) y,
@@ -12,12 +12,15 @@ Cubre solo la red gestionada por la DGT: no incluye Cataluna ni Pais Vasco, ni l
 radares autonomicos o municipales, ni los moviles.
 
 Uso:
-    python3 tools/radares.py            # descarga y regenera data/radares.json
-    python3 tools/radares.py fichero.xml  # usa un XML ya descargado
+    python3 tools/radares.py                        # descarga y regenera el radares.json del viaje activo
+    python3 tools/radares.py fichero.xml            # usa un XML ya descargado
+    python3 tools/radares.py --viaje <id> [xml]     # otro viaje de viajes/
 """
 import json, math, os, sys, datetime
 import urllib.request
 import xml.etree.ElementTree as ET
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from comun import dir_viaje, argv_viaje
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 URL = 'https://nap.dgt.es/datex2/dgt/PredefinedLocationsPublication/radares/content.xml'
@@ -137,14 +140,15 @@ def radar_normalizado(r, pt, grupo):
 
 CAMPOS = ['lat', 'lon', 'tipo', 'via', 'pk', 'sentido', 'municipio', 'provincia', 'punto', 'grupo']
 
-def main(xml_path=None):
-    os.chdir(ROOT)
+def main(xml_path=None, vid=None):
+    vid, carpeta = dir_viaje(vid)
     if xml_path:
-        xml_txt = open(xml_path, encoding='utf-8').read()
+        xml_txt = open(os.path.abspath(xml_path), encoding='utf-8').read()
     else:
         xml_txt = urllib.request.urlopen(URL, timeout=120).read().decode('utf-8')
     publicado, rads = parse(xml_txt)
-    plan = json.load(open('data/viaje.json', encoding='utf-8'))
+    os.chdir(carpeta)   # las rutas de los tracks en viaje.json son relativas a la carpeta del viaje
+    plan = json.load(open('viaje.json', encoding='utf-8'))
     fijos = sum(1 for r in rads if r['conjunto'] == 'CabinasCinemometro')
     tramo = sum(1 for r in rads if r['conjunto'] == 'CinemometrosVelocidadMedia')
 
@@ -253,12 +257,13 @@ def main(xml_path=None):
     txt = json.dumps(out, ensure_ascii=False, separators=(',', ':'))
     # una fila de radar por linea, para que el diff sea legible
     txt = txt.replace('],[', '],\n[').replace('"radares":[', '"radares":[\n').replace('],"tramos"', '\n],"tramos"')
-    open('data/radares.json', 'w', encoding='utf-8').write(txt + '\n')
-    print(f"data/radares.json: {fijos} fijos + {tramo} de tramo ({len(filas)} puntos) en España, "
+    open('radares.json', 'w', encoding='utf-8').write(txt + '\n')
+    print(f"viajes/{vid}/radares.json: {fijos} fijos + {tramo} de tramo ({len(filas)} puntos) en España, "
           f"{en_ruta_total} sobre la ruta y {cerca_total} a menos de {int(CERCA_M/1000)} km")
     print(f"  tramo mas cercano al viaje: {lista_tramos[0]['dist_km']} km (dia {lista_tramos[0]['dia']})" if lista_tramos else '  sin tramos')
     for d, h in sorted(por_dia.items(), key=lambda x: int(x[0])):
         print(f"  día {d}: {len(h['en_ruta'])} en ruta, {len(h['cerca'])} cerca")
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else None)
+    vid, resto = argv_viaje()
+    main(resto[0] if resto else None, vid)

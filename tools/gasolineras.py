@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genera data/gasolineras.json: las gasolineras que estan sobre los tracks del viaje
+"""Genera viajes/<id>/gasolineras.json: las gasolineras que estan sobre los tracks del viaje
 (a menos de 400 m), con el km de la etapa. Sin precios: los precios cambian a diario
 y la app los pide en vivo al Ministerio (Geoportal de hidrocarburos, datos abiertos)
 por provincia y producto, y los cruza por IDEESS.
@@ -7,11 +7,14 @@ por provincia y producto, y los cruza por IDEESS.
 Fuente: https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/
 
 Uso:
-    python3 tools/gasolineras.py              # descarga el listado completo (12 MB) y regenera
-    python3 tools/gasolineras.py fichero.json # usa un listado ya descargado
+    python3 tools/gasolineras.py                     # descarga el listado completo (12 MB) y regenera el viaje activo
+    python3 tools/gasolineras.py fichero.json        # usa un listado ya descargado
+    python3 tools/gasolineras.py --viaje <id> [json] # otro viaje de viajes/
 """
 import json, math, os, sys, datetime
 import urllib.request
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from comun import dir_viaje, argv_viaje
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = 'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/'
@@ -43,13 +46,14 @@ def bonito(s):
     ps = (s or '').strip().split()
     return ' '.join(p.capitalize() for p in ps)
 
-def main(path=None):
-    os.chdir(ROOT)
+def main(path=None, vid=None):
+    vid, carpeta = dir_viaje(vid)
     if path:
-        datos = json.load(open(path, encoding='utf-8'))
+        datos = json.load(open(os.path.abspath(path), encoding='utf-8'))
     else:
         datos = json.loads(urllib.request.urlopen(API, timeout=180).read().decode('utf-8'))
-    plan = json.load(open('data/viaje.json', encoding='utf-8'))
+    os.chdir(carpeta)   # las rutas de los tracks en viaje.json son relativas a la carpeta del viaje
+    plan = json.load(open('viaje.json', encoding='utf-8'))
     est = []
     for e in datos['ListaEESSPrecio']:
         la, lo = num(e['Latitud']), num(e['Longitud (WGS84)'])
@@ -105,10 +109,11 @@ def main(path=None):
         'por_dia': por_dia,
         'provincias_por_dia': provincias,
     }
-    open('data/gasolineras.json', 'w', encoding='utf-8').write(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
-    print(f"data/gasolineras.json: {total} gasolineras sobre la ruta ({len(datos['ListaEESSPrecio'])} en España, listado del {datos['Fecha']})")
+    open('gasolineras.json', 'w', encoding='utf-8').write(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
+    print(f"viajes/{vid}/gasolineras.json: {total} gasolineras sobre la ruta ({len(datos['ListaEESSPrecio'])} en España, listado del {datos['Fecha']})")
     for d, hs in sorted(por_dia.items(), key=lambda x: int(x[0])):
         print(f"  día {d}: {len(hs)} · provincias {','.join(provincias[d])}")
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else None)
+    vid, resto = argv_viaje()
+    main(resto[0] if resto else None, vid)

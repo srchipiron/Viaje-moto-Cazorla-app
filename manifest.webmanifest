@@ -1,7 +1,7 @@
 {
-  "name": "Viaje NX500 · Almería–Cazorla–Cuenca–Albarracín",
+  "name": "Viaje NX500 · viajes en moto",
   "short_name": "Viaje NX500",
-  "description": "Plan del viaje en moto de 11 días. Funciona sin conexión.",
+  "description": "Viajes en moto: etapas, tiempo, radares y gasolineras. Funciona sin conexión.",
   "lang": "es",
   "start_url": "./",
   "scope": "./",

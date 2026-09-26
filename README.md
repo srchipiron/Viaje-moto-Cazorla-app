@@ -1,17 +1,49 @@
-# Viaje NX500 · Almería – Cazorla – Cuenca – Albarracín – Gúdar/Maestrazgo – Júcar – Segura – Almería
+# Viajes en moto · app de ruta
 
-App web estática (PWA, funciona sin cobertura) con el plan del viaje en moto de 11 días / 10 noches
-(14–24 septiembre 2026) en Honda NX500.
+App web estática (PWA, funciona sin cobertura) para llevar un viaje en moto en el móvil: etapas
+con su GPX de Kurviger, tiempo, radares, gasolineras con precio, alojamientos, listas y un modo
+«Ahora» que cruza el GPS con el plan.
+
+Nació con el viaje de 11 días de septiembre de 2026 (Almería – Cazorla – Cuenca – Albarracín –
+Gúdar/Maestrazgo – Júcar – Segura – Almería, Honda NX500), que sigue en `viajes/2026-09-cazorla/`,
+y ahora sirve de plantilla para los siguientes.
+
+## Crear un viaje nuevo
+
+1. Monta las rutas en Kurviger, una por día, y expórtalas como GPX **con la ruta calculada**
+   (que lleven track, no solo los puntos).
+2. Genera el viaje:
+
+   ```bash
+   python3 tools/nuevo_viaje.py 2027-06-pirineo --nombre "Pirineo 2027" --corto "Pirineo" \
+       --inicio 2027-06-10 --activar dia1.gpx dia2.gpx dia3.gpx ...
+   ```
+
+   Crea `viajes/2027-06-pirineo/` con los GPX, los tracks, un `viaje.json` mínimo (fechas, km,
+   tiempo real estimado, horario de salida y llegada, dificultad y fatiga orientativas, salida y
+   llegada de cada día con su nombre, puntos de meteo), los radares de la DGT y las gasolineras de
+   la ruta, y lo apunta en `viajes/index.json`. Con `--activar` pasa a ser el que abre la app.
+   Opciones en la cabecera del script (`--moto`, `--autonomia`, `--salida`, `--sin-red`...).
+3. `python3 tools/validar.py` y commit. La app ya funciona con eso.
+4. Se va completando `viaje.json` a mano o con Claude: alojamientos, guía, equipaje, listas,
+   seguro... Cada sección sale en la app solo si existe; `viajes/2026-09-cazorla/viaje.json` es el
+   modelo completo y `viajes/ejemplo/` el mínimo (dos días generados con el script, oculto en la
+   lista de viajes).
+
+Los viajes anteriores se siguen abriendo desde la Guía (o con `?viaje=<id>` en la URL). Lo que se
+apunta en el móvil (marcas, diario, gastos, repostajes) se guarda aparte para cada viaje; el
+teléfono de casa, la póliza y el tema son del dispositivo y valen para todos.
 
 ## Datos personales
 
 El repositorio no contiene teléfonos ni datos de personas privadas. El contacto en casa se
-marca en `data/viaje.json` con `"local": true` y sin número; la app pide el teléfono una vez y
+marca en el `viaje.json` con `"local": true` y sin número (`tools/validar.py` da error si alguien
+pone uno); la app pide el teléfono una vez y
 lo guarda en `localStorage` del dispositivo, así que nunca sale del móvil.
 
 ## Fuente de verdad
 
-Todo el contenido sale de **`data/viaje.json`** (JSON v3). La app no tiene datos propios:
+Todo el contenido de cada viaje sale de su **`viajes/<id>/viaje.json`**. La app no tiene datos propios:
 para cambiar un horario, un teléfono o un estado se edita ese fichero y se sube.
 
 Al retomar el plan con Claude: actualizar estados en el JSON, no rehacer el plan
@@ -58,14 +90,16 @@ OpenStreetMap (Leaflet, incluido en `vendor/`; los mapas necesitan conexión, el
 Para añadir la ruta de un día:
 
 ```bash
-cp "Dia 4 Cuenca - Albarracin.gpx" gpx/dia-04.gpx
-python3 tools/gpx2json.py gpx/dia-04.gpx data/tracks/dia-04.json
+V=viajes/2026-09-cazorla
+cp "Dia 4 Cuenca - Albarracin.gpx" $V/gpx/dia-04.gpx
+python3 tools/gpx2json.py $V/gpx/dia-04.gpx $V/tracks/dia-04.json
+python3 tools/radares.py && python3 tools/gasolineras.py     # recalcular sobre el track nuevo
 ```
 
-y en `data/viaje.json`, dentro del día 4:
+y en el `viaje.json` de ese viaje, dentro del día 4 (rutas relativas a la carpeta del viaje):
 
 ```json
-"gpx": { "archivo": "gpx/dia-04.gpx", "track": "data/tracks/dia-04.json", "vias": ["Uña", "Tragacete", "..."] }
+"gpx": { "archivo": "gpx/dia-04.gpx", "track": "tracks/dia-04.json", "vias": ["Uña", "Tragacete", "..."] }
 ```
 
 Cada día admite además un campo `opciones` con las decisiones abiertas (título, estado,
@@ -91,7 +125,7 @@ plan, así que funcionan sin cobertura.
 
 ## Actualizar el plan
 
-1. Editar `data/viaje.json` (validar que sigue siendo JSON válido) y subir `meta.revision`.
+1. Editar `viajes/<id>/viaje.json`, pasar `python3 tools/validar.py` y subir `meta.revision`.
 2. Commit y push. GitHub Pages publica en uno o dos minutos.
 3. La app descarga el JSON de la red cada vez que se abre (y con el enlace «Actualizar plan»
    al final de Resumen), así que el cambio se ve al instante. Sin cobertura usa la última
@@ -122,8 +156,12 @@ el botón de avisar, la lista de carga, la tabla de rutas, los dos mapas, la met
 reloj simulado en mitad del viaje, el service worker y el modo sin conexión. Open-Meteo y las
 teselas se simulan.
 
-Versión en un solo fichero (para compartir o abrir sin servidor): `python3 tools/bundle.py`
-genera `dist/viaje-nx500.html` con el plan y los tracks incrustados.
+La prueba abre además `viajes/ejemplo/` con todas las vistas, para asegurar que un viaje mínimo
+recién generado funciona, y comprueba que lo apuntado en un viaje no aparece en otro.
+
+Versión en un solo fichero (para compartir o abrir sin servidor): `python3 tools/bundle.py
+[--viaje <id>]` genera `dist/viaje-nx500.html` con el plan, los tracks, los radares y las
+gasolineras incrustados.
 
 ## Ficheros
 
@@ -133,12 +171,17 @@ styles.css            estilos (claro/oscuro según el sistema)
 app.js                render de vistas, router por hash, checklists persistentes, registro del SW
 sw.js                 service worker: precarga, caché stale-while-revalidate y teselas del mapa
 manifest.webmanifest  manifiesto PWA
-data/viaje.json       fuente de verdad (JSON v3)
-data/tracks/          tracks ligeros generados a partir de los GPX
-gpx/                  rutas GPX originales exportadas de Kurviger
+viajes/index.json     lista de viajes y cuál es el activo
+viajes/<id>/          un viaje: viaje.json (fuente de verdad), gpx/ (originales de Kurviger),
+                      tracks/ (tracks ligeros), radares.json y gasolineras.json
+tools/nuevo_viaje.py  crea un viaje a partir de los GPX de cada día
+tools/validar.py      comprueba todos los viajes (lo usa el gancho de pre-commit)
 tools/gpx2json.py     conversor GPX -> track ligero
 tools/gpxsplit.py     parte un GPX en dos por un punto de ruta
-tools/bundle.py       genera dist/viaje-nx500.html (app + datos + tracks en un solo fichero)
+tools/radares.py      radares de la DGT sobre la ruta (datos abiertos)
+tools/gasolineras.py  gasolineras sobre la ruta (datos abiertos del Ministerio)
+tools/comun.py        dónde está cada viaje (lo usan las demás herramientas)
+tools/bundle.py       genera dist/viaje-nx500.html (app + un viaje en un solo fichero)
 tests/smoke.js        prueba de humo con Playwright
 CLAUDE.md             convenciones para trabajar en el repositorio
 vendor/leaflet/       Leaflet 1.9.4 (BSD-2) para el mapa interactivo
@@ -150,5 +193,5 @@ Sin dependencias, sin build, sin CDN: todo va en el repositorio. La única llama
 a `api.open-meteo.com` para la previsión; si no responde, la app sigue funcionando con la última
 previsión guardada o sin ella.
 
-Los puntos de previsión están en `data/viaje.json`, en `meteo_puntos` de cada día
+Los puntos de previsión están en el `viaje.json`, en `meteo_puntos` de cada día
 (nombre, latitud y longitud aproximadas).

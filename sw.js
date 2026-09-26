@@ -1,6 +1,7 @@
-/* Service worker: precarga la app y los datos para funcionar sin cobertura.
-   Al cambiar cualquier fichero (sobre todo data/viaje.json), subir VERSION. */
-const VERSION = 'v3.16.2';
+/* Service worker: precarga la app y el viaje activo para funcionar sin cobertura.
+   Al cambiar app.js, styles.css, index.html o este fichero, subir VERSION. Los viaje.json y
+   viajes/index.json van siempre por red primero, asi que cambiar el plan no necesita VERSION. */
+const VERSION = 'v4.0.0';
 const CACHE = `viaje-nx500-${VERSION}`;
 const TILES = 'viaje-nx500-tiles'; // teselas de OpenStreetMap ya vistas (se conservan entre versiones)
 const TILES_MAX = 800;
@@ -9,9 +10,7 @@ const SHELL = [
   './index.html',
   './styles.css',
   './app.js',
-  './data/viaje.json',
-  './data/radares.json',
-  './data/gasolineras.json',
+  './viajes/index.json',
   './manifest.webmanifest',
   './icons/icon.svg',
   './icons/icon-maskable.svg'
@@ -21,11 +20,15 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE).then(async (cache) => {
       await cache.addAll(SHELL);
-      // Tracks GPX ligeros y Leaflet: se precachean si el plan los lista (sin bloquear la instalacion si fallan).
+      // El viaje activo (plan, tracks, radares, gasolineras) y Leaflet: se precachean sin bloquear
+      // la instalacion si algo falla. Otros viajes se cachean al abrirlos.
       try {
-        const plan = await (await fetch('./data/viaje.json', { cache: 'no-store' })).json();
-        const extra = plan.itinerario.filter((d) => d.gpx && d.gpx.track).map((d) => './' + d.gpx.track);
-        if (extra.length) extra.push('./vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css');
+        const indice = await (await fetch('./viajes/index.json', { cache: 'no-store' })).json();
+        const base = `./viajes/${indice.activo}/`;
+        const plan = await (await fetch(base + 'viaje.json', { cache: 'no-store' })).json();
+        const extra = [base + 'viaje.json', base + 'radares.json', base + 'gasolineras.json',
+          './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
+          ...plan.itinerario.filter((d) => d.gpx && d.gpx.track).map((d) => base + d.gpx.track)];
         await Promise.all(extra.map((u) => cache.add(u).catch(() => null)));
       } catch (e) { /* sin plan accesible: solo el shell */ }
     }).then(() => self.skipWaiting())
@@ -63,7 +66,7 @@ self.addEventListener('fetch', (event) => {
 
   // El plan (JSON) va siempre por red primero: asi cualquier cambio subido al
   // repositorio se ve al abrir la app. Sin cobertura se sirve la ultima copia.
-  if (url.pathname.endsWith('/data/viaje.json')) {
+  if (url.pathname.endsWith('/viaje.json') || url.pathname.endsWith('/viajes/index.json')) {
     event.respondWith(
       caches.open(CACHE).then(async (cache) => {
         try {

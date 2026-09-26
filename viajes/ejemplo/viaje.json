@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "version": 1,
+    "revision": 1,
+    "actualizado": "2026-09-26",
+    "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
+    "cambios": [
+      "Viaje creado con tools/nuevo_viaje.py a partir de 2 GPX"
+    ]
+  },
+  "proyecto": {
+    "nombre": "Ejemplo: dos días por Albarracín",
+    "nombre_corto": "Viaje de ejemplo",
+    "fechas": {
+      "inicio": "2027-05-15",
+      "fin": "2027-05-16",
+      "dias": 2,
+      "noches": 1
+    },
+    "distancia_total_aprox_km": 172,
+    "moto": {
+      "modelo": "Honda NX500",
+      "autonomia_orientativa_km": 380,
+      "regla_gasolina": "En sierra, llenar cada vez que se baje de medio deposito."
+    }
+  },
+  "itinerario": [
+    {
+      "dia": 1,
+      "fecha": "2027-05-15",
+      "dia_semana": "sabado",
+      "tipo": "montaña",
+      "origen": "Albarracín",
+      "destino": "Albarracín",
+      "km_aprox": 80,
+      "tiempo_real_aprox": "1h30",
+      "dificultad": 3,
+      "fatiga": 1,
+      "perfil_kurviger": "Por definir",
+      "salida": "09:30",
+      "llegada_prevista": "11:22",
+      "meteo_puntos": [
+        {
+          "nombre": "Mitad del dia 1",
+          "lat": 40.53,
+          "lon": -1.66
+        },
+        {
+          "nombre": "Albarracín",
+          "lat": 40.41,
+          "lon": -1.44
+        }
+      ],
+      "waypoints": [
+        "Albarracín",
+        "Albarracín"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-01.gpx",
+        "track": "tracks/dia-01.json",
+        "vias": [],
+        "nota": "Generado con tools/nuevo_viaje.py desde dia-05.gpx (79.7 km, 80 min de Kurviger). Poner nombre a las vias en \"vias\"."
+      },
+      "notas": [
+        "Horario orientativo: 1h20 de Kurviger mas un 15 % y 20 min de paradas."
+      ]
+    },
+    {
+      "dia": 2,
+      "fecha": "2027-05-16",
+      "dia_semana": "domingo",
+      "tipo": "montaña",
+      "origen": "Albarracín",
+      "destino": "Alcalá de la Selva",
+      "km_aprox": 92,
+      "tiempo_real_aprox": "1h55",
+      "dificultad": 3,
+      "fatiga": 1,
+      "perfil_kurviger": "Por definir",
+      "salida": "09:30",
+      "llegada_prevista": "11:44",
+      "meteo_puntos": [
+        {
+          "nombre": "Mitad del dia 2",
+          "lat": 40.34,
+          "lon": -1.1
+        },
+        {
+          "nombre": "Alcalá de la Selva",
+          "lat": 40.36,
+          "lon": -0.69
+        }
+      ],
+      "waypoints": [
+        "Albarracín",
+        "Alcalá de la Selva"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-02.gpx",
+        "track": "tracks/dia-02.json",
+        "vias": [],
+        "nota": "Generado con tools/nuevo_viaje.py desde dia-06.gpx (92.1 km, 99 min de Kurviger). Poner nombre a las vias en \"vias\"."
+      },
+      "notas": [
+        "Horario orientativo: 1h40 de Kurviger mas un 15 % y 20 min de paradas."
+      ]
+    }
+  ],
+  "alojamientos_resumen": [],
+  "contactos": {
+    "emergencias": "112",
+    "en_casa": {
+      "nombre": "Contacto en casa",
+      "telefono": null,
+      "local": true,
+      "nota": "El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil."
+    }
+  },
+  "principios_para_claude": [
+    "No cambiar destinos ni bases sin una razon fuerte y explicita.",
+    "No añadir turismo por añadir.",
+    "Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.",
+    "No proponer jornadas reales de conduccion superiores a 4h.",
+    "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
+    "No inventar disponibilidad, horarios ni precios; verificar antes.",
+    "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan."
+  ]
+}

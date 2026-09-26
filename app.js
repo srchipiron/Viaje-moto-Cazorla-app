@@ -1,16 +1,31 @@
-/* Viaje NX500 · app estática. Lee data/viaje.json (fuente de verdad) y guarda
-   las marcas de checklist en localStorage. Sin dependencias ni build. */
+/* App de viaje en moto · estática. Cada viaje vive en viajes/<id>/ (viaje.json es la fuente de
+   verdad, mas tracks/, gpx/, radares.json y gasolineras.json); viajes/index.json dice cual es el
+   activo y ?viaje=<id> abre otro. Lo que el usuario apunta se guarda en localStorage. Sin build. */
 'use strict';
 
-const STORAGE_KEY = 'viaje-nx500-v3-checks';
-const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales: solo en este dispositivo
-const DIARIO_KEY = 'viaje-nx500-diario';     // notas por dia, solo en este dispositivo
-const GASTOS_KEY = 'viaje-nx500-gastos';     // gastos por dia, solo en este dispositivo
-const TEMA_KEY = 'viaje-nx500-tema';         // auto | light | dark
-const APP_VERSION = 'v3.16.2';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
-const REPOSTAJES_KEY = 'viaje-nx500-repostajes';
-const PUEBLOS_KEY = 'viaje-nx500-pueblos';       // pueblos consultados, solo en este dispositivo // marcas de repostaje, solo en este dispositivo
-const D = { data: null, checks: loadChecks(), pos: null };
+const APP_VERSION = 'v4.0.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+/* Del dispositivo, comunes a todos los viajes */
+const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales y poliza: solo en este dispositivo
+const TEMA_KEY = 'viaje-nx500-tema';           // auto | light | dark
+const IOS_HINT_KEY = 'viaje-nx500-ios-hint';
+/* De cada viaje: claves() les pone el sufijo @<id>. El primer viaje las conserva sin sufijo,
+   que es como estan guardadas en el movil desde antes de que hubiera varios viajes. */
+const LEGADO = '2026-09-cazorla';
+const CLAVES_BASE = { STORAGE_KEY: 'viaje-nx500-v3-checks', DIARIO_KEY: 'viaje-nx500-diario', GASTOS_KEY: 'viaje-nx500-gastos',
+  REPOSTAJES_KEY: 'viaje-nx500-repostajes', PUEBLOS_KEY: 'viaje-nx500-pueblos', METEO_KEY: 'viaje-nx500-meteo',
+  METEO_H_KEY: 'viaje-nx500-meteo-horas', GASOLINA_KEY: 'viaje-nx500-gasolina' };
+let STORAGE_KEY, DIARIO_KEY, GASTOS_KEY, REPOSTAJES_KEY, PUEBLOS_KEY, METEO_KEY, METEO_H_KEY, GASOLINA_KEY;
+function claves() {
+  const suf = V.id && V.id !== LEGADO ? `@${V.id}` : '';
+  ({ STORAGE_KEY, DIARIO_KEY, GASTOS_KEY, REPOSTAJES_KEY, PUEBLOS_KEY, METEO_KEY, METEO_H_KEY, GASOLINA_KEY } =
+    Object.fromEntries(Object.entries(CLAVES_BASE).map(([k, v]) => [k, v + suf])));
+}
+const V = { id: null, base: '', indice: null };   // viaje abierto: id, carpeta ('viajes/<id>/') e indice
+/* Ruta de un fichero del viaje (track, gpx, radares...) a partir de lo que pone el JSON. */
+function rutaViaje(p) { return !p || /^(https?:)?\/\//.test(p) ? p : V.base + p; }
+function nombreCorto() { return (D.data && D.data.proyecto && (D.data.proyecto.nombre_corto || D.data.proyecto.nombre)) || 'Viaje en moto'; }
+claves();
+const D = { data: null, checks: {}, pos: null };
 function lsGet(k, def) { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch (e) { return def; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sin almacenamiento */ } }
 function norm(s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
@@ -143,7 +158,6 @@ function quickCalls() {
 }
 
 /* ---------- meteo (Open-Meteo, sin clave) ---------- */
-const METEO_KEY = 'viaje-nx500-meteo';
 const METEO_TTL_MS = 3 * 60 * 60 * 1000; // refresco automatico cada 3 h
 const METEO_API = 'https://api.open-meteo.com/v1/forecast';
 const METEO_DAILY = ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_probability_max', 'precipitation_sum', 'wind_gusts_10m_max'];
@@ -270,7 +284,6 @@ function meteoStrip(e) {
 }
 
 /* Prevision por horas de una etapa (solo cuando la fecha esta a menos de 16 dias). */
-const METEO_H_KEY = 'viaje-nx500-meteo-horas';
 const METEO_HOURLY = ['precipitation_probability', 'temperature_2m', 'weather_code', 'wind_gusts_10m'];
 const HORA_INI = 7, HORA_FIN = 20; // franja que se pinta
 D.meteoH = { byDay: {}, loading: {} };
@@ -354,7 +367,7 @@ function viewTiempo() {
     </div>
     <div class="note info"><b>Regla:</b> ${esc(mt.regla)}</div>
     ${dias}
-    <details class="card"><summary>Cómo se califica cada día</summary><dl><dt>🔴 Mal tiempo</dt><dd>${esc(mt.criterio.malo)}</dd><dt>🟠 Regular</dt><dd>${esc(mt.criterio.regular)}</dd><dt>🟢 Buen tiempo</dt><dd>${esc(mt.criterio.bueno)}</dd></dl><p><small>${esc(mt.nota_coordenadas)}</small></p></details>`;
+    <details class="card"><summary>Cómo se califica cada día</summary><dl><dt>🔴 Mal tiempo</dt><dd>${esc(mt.criterio.malo)}</dd><dt>🟠 Regular</dt><dd>${esc(mt.criterio.regular)}</dd><dt>🟢 Buen tiempo</dt><dd>${esc(mt.criterio.bueno)}</dd></dl>${mt.nota_coordenadas ? `<p><small>${esc(mt.nota_coordenadas)}</small></p>` : ''}</details>`;
 }
 
 /* Pago de un alojamiento: { total_eur, pagado_eur, pendiente_eur, donde } */
@@ -374,18 +387,17 @@ function pagoHTML(a) {
 function pagoKey(dia) { return `pago|${dia.dia}|${dia.alojamiento.nombre}`; }
 function nochesPendientes() { return D.data.itinerario.filter((e) => { const pg = pagoInfo(e.alojamiento); return pg && pg.pendiente; }); }
 
-/* ---------- gasolineras sobre la ruta (data/gasolineras.json, tools/gasolineras.py) + precios en vivo ---------- */
+/* ---------- gasolineras sobre la ruta (viajes/<id>/gasolineras.json, tools/gasolineras.py) + precios en vivo ---------- */
 /* El fichero lleva las gasolineras a menos de 400 m de cada track, sin precio. El precio del dia se
    pide al Ministerio (datos abiertos, CORS abierto) por provincia y producto (95 E5), unos 50 KB por
    provincia, y se guarda en localStorage hasta que cambia el dia. Sin red, salen sin precio. */
-const GASOLINA_KEY = 'viaje-nx500-gasolina';
 D.gasolineras = null;
-D.precios = lsGet(GASOLINA_KEY, { fecha: null, provincias: {}, precios: {} });
+D.precios = { fecha: null, provincias: {}, precios: {} };   // se lee de localStorage en init(), ya con el viaje elegido
 function gasolinerasLoad() {
   if (D.gasolineras || D.gasolinerasCargando) return;
   if (window.VIAJE_GASOLINERAS) { D.gasolineras = window.VIAJE_GASOLINERAS; return; }
   D.gasolinerasCargando = true;
-  fetch('data/gasolineras.json').then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+  fetch(rutaViaje('gasolineras.json')).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then((d) => { D.gasolineras = d; rerender('etapas'); rerender('ahora'); rerender('gasolina'); })
     .catch(() => { D.gasolineras = { por_dia: {}, provincias_por_dia: {} }; })
     .then(() => { D.gasolinerasCargando = false; });
@@ -488,7 +500,7 @@ function viewGasolina() {
     ${filas}`;
 }
 
-/* ---------- radares de la DGT (data/radares.json, generado con tools/radares.py) ---------- */
+/* ---------- radares de la DGT (viajes/<id>/radares.json, generado con tools/radares.py) ---------- */
 /* El fichero lleva los 769 puntos de radar de toda Espana en formato columnar (campos +
    filas) y, por dia, los que estan sobre la ruta y los que quedan a menos de 5 km. */
 D.radares = null;   // null = sin pedir todavia; objeto vacio = intentado y sin datos
@@ -496,7 +508,7 @@ function radaresLoad() {
   if (D.radares || D.radaresCargando) return;
   if (window.VIAJE_RADARES) { D.radares = window.VIAJE_RADARES; return; }
   D.radaresCargando = true;
-  fetch('data/radares.json').then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+  fetch(rutaViaje('radares.json')).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then((d) => { D.radares = d; rerender('etapas'); rerender('ahora'); rerender('radares'); })
     .catch(() => { D.radares = { campos: [], radares: [], por_dia: {} }; })   // sin radares la app sigue igual
     .then(() => { D.radaresCargando = false; });
@@ -607,7 +619,7 @@ function trackLoad(e) {
   if (t && (t.status === 'ok' || t.status === 'loading')) return;
   if (window.VIAJE_TRACKS && window.VIAJE_TRACKS[e.dia]) { D.tracks[e.dia] = { status: 'ok', data: window.VIAJE_TRACKS[e.dia] }; return; }
   D.tracks[e.dia] = { status: 'loading' };
-  fetch(e.gpx.track).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+  fetch(rutaViaje(e.gpx.track)).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then((data) => { D.tracks[e.dia] = { status: 'ok', data }; })
     .catch((err) => { D.tracks[e.dia] = { status: 'error', error: err.message }; })
     .then(() => { rerender('etapas', e.dia); rerender('guia'); rerender('hoja'); });
@@ -621,7 +633,7 @@ function trackLoadP(e) {
   return new Promise((resolve) => {
     const wait = () => { const s = D.tracks[e.dia]; if (s && s.status !== 'loading') resolve(s.status === 'ok' ? s.data : null); else setTimeout(wait, 80); };
     if (!t || t.status !== 'loading') {
-      fetch(e.gpx.track).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+      fetch(rutaViaje(e.gpx.track)).then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
         .then((data) => { D.tracks[e.dia] = { status: 'ok', data }; })
         .catch((err) => { D.tracks[e.dia] = { status: 'error', error: err.message }; })
         .then(wait);
@@ -755,7 +767,7 @@ function rutaHTML(e) {
   if (!e.gpx) return '';
   const st = D.tracks[e.dia];
   if (!st || st.status === 'loading') { trackLoad(e); return `<h2>Ruta GPX</h2><div class="card"><p class="muted">Cargando la ruta…</p></div>`; }
-  if (st.status === 'error') return `<h2>Ruta GPX</h2><div class="card warn"><p>No se pudo cargar el track (${esc(st.error)}).</p><p class="row">${kurvigerBtns(e)} <a class="btn small" href="${esc(e.gpx.archivo)}" download>Descargar GPX</a></p></div>`;
+  if (st.status === 'error') return `<h2>Ruta GPX</h2><div class="card warn"><p>No se pudo cargar el track (${esc(st.error)}).</p><p class="row">${kurvigerBtns(e)} <a class="btn small" href="${esc(rutaViaje(e.gpx.archivo))}" download>Descargar GPX</a></p></div>`;
   const t = st.data;
   const vias = t.vias.filter((v) => v.tipo !== 'shaping');
   const diffKm = t.km - e.km_aprox;
@@ -777,7 +789,7 @@ function rutaHTML(e) {
       <div class="tbl-wrap"><table class="vias"><thead><tr><th>#</th><th>Punto</th><th>km</th><th></th></tr></thead><tbody>${vias.map((v, i) => `<tr><td>${v.tipo === 'start' ? 'S' : v.tipo === 'destination' ? 'F' : i}</td><td>${esc(viaNombre(e, v, i))}</td><td>${v.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td><td><a href="${mapsSearch(`${v.lat},${v.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>
       <p class="row">
         ${window.VIAJE_DATA ? '' : `<button class="btn${e.gpx.kurviger ? '' : ' primary'}" type="button" data-mapa="${e.dia}">🗺️ Mapa interactivo</button>`}
-        <a class="btn" href="${esc(e.gpx.archivo)}" download>⬇️ Descargar GPX</a>
+        <a class="btn" href="${esc(rutaViaje(e.gpx.archivo))}" download>⬇️ Descargar GPX</a>
         <a class="btn" href="${mapsSearch(`${t.track[0][0]},${t.track[0][1]}`)}" target="_blank" rel="noopener">Inicio en Maps ↗</a>
       </p>
       ${e.gpx.nota ? `<p><small>${esc(e.gpx.nota)}</small></p>` : ''}
@@ -1167,7 +1179,7 @@ function viewAhora() {
     const alerta = usado > aut * 0.5 && !llegado;
     cards.push({ p: alerta ? 2.2 : 6, html: `<div class="card${alerta ? ' warn' : ''}"><div class="card-title"><h3>⛽ Gasolina</h3><span class="badge${alerta ? ' warn' : ''}">${usado.toLocaleString('es-ES', { maximumFractionDigits: 0 })} km</span></div>
       <div class="bar"><i style="width:${pct}%"></i></div>
-      <p><small>${desde == null ? 'Desde la salida de Almería (marca un repostaje para que cuente bien)' : 'Desde el último repostaje'} · autonomía orientativa ${aut} km.</small></p>
+      <p><small>${desde == null ? `Desde la salida de ${esc(D.data.itinerario[0].origen)} (marca un repostaje para que cuente bien)` : 'Desde el último repostaje'} · autonomía orientativa ${aut} km.</small></p>
       ${alerta ? `<div class="note">${esc(D.data.proyecto.moto.regla_gasolina)}</div>` : ''}
       ${gasPorDelanteHTML(e, r, llegado)}
       <p class="row"><button class="btn small" type="button" data-repostaje="${e.dia}|${r.km.toFixed(1)}">⛽ He repostado aquí</button>${D.pos ? `<a class="btn small" href="https://www.google.com/maps/search/gasolinera/@${D.pos.lat},${D.pos.lon},13z" target="_blank" rel="noopener">Gasolineras cerca ↗</a>` : ''}</p></div>` });
@@ -1256,7 +1268,7 @@ function avisarBtn(e) {
 async function avisarCasa(dia) {
   const e = D.data.itinerario.find((d) => String(d.dia) === String(dia)); if (!e) return;
   const text = resumenDiaTexto(e);
-  if (navigator.share) { try { await navigator.share({ title: `Día ${e.dia} · Viaje NX500`, text }); return; } catch (err) { if (err && err.name === 'AbortError') return; } }
+  if (navigator.share) { try { await navigator.share({ title: `Día ${e.dia} · ${nombreCorto()}`, text }); return; } catch (err) { if (err && err.name === 'AbortError') return; } }
   const casa = contacto('en_casa'); const tel = casa && typeof casa === 'object' && casa.telefono ? String(casa.telefono).replace(/\D/g, '') : '';
   const num = tel ? (tel.length === 9 ? '34' + tel : tel) : '';
   window.open(`https://wa.me/${num}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
@@ -1453,10 +1465,10 @@ function viewBuscar(arg) {
       ((e.gpx && e.gpx.avisos) || []).forEach((a) => add(base, pre + `Despiste: ${a.lugar}`, a.que));
       if (e.lavanderia) add(base, pre + e.lavanderia.nombre, `lavandería ${e.lavanderia.direccion} ${e.lavanderia.plan}`);
     });
-    const rep = D.data.reparto_equipaje; Object.keys(rep).forEach((k) => { if (Array.isArray(rep[k])) rep[k].forEach((t) => add('#/equipaje', `Equipaje · ${human(k)}`, t)); });
+    const rep = D.data.reparto_equipaje || {}; Object.keys(rep).forEach((k) => { if (Array.isArray(rep[k])) rep[k].forEach((t) => add('#/equipaje', `Equipaje · ${human(k)}`, t)); });
     Object.keys(D.data.checklist_previa).forEach((k) => D.data.checklist_previa[k].forEach((t) => add('#/listas', `Checklist · ${human(k)}`, t)));
     D.data.compras_pendientes.forEach((c) => add('#/listas', 'Compra pendiente', `${c.que} ${c.donde}`));
-    const mat = D.data.material_en_propiedad; ['compresor', 'antirrobo', 'powerbank'].forEach((k) => add('#/equipaje', `Material · ${human(k)}`, `${mat[k].modelo} ${mat[k].nota}`));
+    const mat = D.data.material_en_propiedad || {}; Object.keys(mat).filter((k) => mat[k] && mat[k].modelo).forEach((k) => add('#/equipaje', `Material · ${human(k)}`, `${mat[k].modelo} ${mat[k].nota || ''}`));
     if (D.data.seguro) { D.data.seguro.coberturas.forEach((c) => add('#/guia', `Seguro · ${c.nombre}`, c.limite)); D.data.seguro.exclusiones_relevantes.forEach((x) => add('#/guia', 'Seguro · no cubre', x)); }
     const mark = (s) => { const i = norm(s).indexOf(nq); if (i < 0) return esc(s); return `${esc(s.slice(0, i))}<mark>${esc(s.slice(i, i + q.length))}</mark>${esc(s.slice(i + q.length))}`; };
     res = hits.length ? `<p class="muted">${hits.length} resultado${hits.length === 1 ? '' : 's'}</p><div class="card"><div class="guia-index">${hits.slice(0, 80).map((h) => `<a class="guia-link" href="${h.href}"><span class="badge">→</span><span>${mark(h.titulo)}</span><small>${mark(h.texto.length > 160 ? h.texto.slice(0, 160) + '…' : h.texto)}</small></a>`).join('')}</div></div>` : '<div class="card"><p class="muted">Nada con ese texto.</p></div>';
@@ -1493,13 +1505,13 @@ function viewResumen() {
     const n = daysBetween(today, p.fechas.inicio);
     marcarHechos(); const keys = previaKeys();
     estado = `<div class="card warn"><div class="card-title"><h3>Faltan ${n} día${n === 1 ? '' : 's'} para la salida</h3>${progress(keys)}</div>
-      <p>Salida el lunes ${fmtFecha(p.fechas.inicio)} a las ${esc(it[0].salida)} hacia ${esc(it[0].destino)}.</p>${bar(keys)}
+      <p>Salida el ${esc(it[0].dia_semana)} ${fmtFecha(p.fechas.inicio)}${it[0].salida ? ` a las ${esc(it[0].salida)}` : ''} hacia ${esc(it[0].destino)}.</p>${keys.length ? bar(keys) : ''}
       <p><a class="btn small" href="#/listas">Checklist previa</a> <a class="btn small" href="#/etapas/1">Ver día 1</a></p></div>`;
   } else if (hoy) {
     const manana = it.find((d) => d.dia === hoy.dia + 1);
     estado = `<p class="row"><a class="btn primary big" href="#/ahora">📍 Ahora: dónde estoy y qué toca</a></p><h2>Hoy</h2>${progresoViaje(hoy)}${etapaCard(hoy, { hoy: true })}${proximaParada(hoy)}<p class="row">${avisarBtn(hoy)}<a class="btn" href="#/etapas/${hoy.dia}">Ficha del día</a></p>${manana ? `<h4>Mañana</h4>${etapaCard(manana)}` : ''}`;
   } else if (today > p.fechas.fin) {
-    estado = `<div class="card ok"><h3>Viaje terminado</h3><p>Hasta el ${fmtFecha(p.vacaciones.fin)} quedan ${p.vacaciones.margen_tras_el_viaje_dias} días de margen de vacaciones.</p></div>`;
+    estado = `<div class="card ok"><h3>Viaje terminado</h3>${p.vacaciones ? `<p>Hasta el ${fmtFecha(p.vacaciones.fin)} quedan ${p.vacaciones.margen_tras_el_viaje_dias} días de margen de vacaciones.</p>` : `<p>${it.length} etapas y ${p.distancia_total_aprox_km} km. <a href="#/etapas">Repasar las etapas</a></p>`}</div>`;
   }
   const r = p.reglas_globales, m = p.moto, c = D.data.contactos, rd = D.data.rutina_diaria;
   const contactoRow = (label, val) => `<dt>${label}</dt><dd>${contactoHTML(val)}</dd>`;
@@ -1520,12 +1532,12 @@ function viewResumen() {
   return `
     <div class="card accent">
       <h1>${esc(p.nombre)}</h1>
-      <p class="muted">${esc(p.objetivo)}</p>
+      ${p.objetivo ? `<p class="muted">${esc(p.objetivo)}</p>` : ''}
       <div class="statgrid">
         <div class="stat"><small>Fechas</small><b>${fmtFecha(p.fechas.inicio)} – ${fmtFecha(p.fechas.fin)}</b></div>
         <div class="stat"><small>Duración</small><b>${p.fechas.dias} días · ${p.fechas.noches} noches</b></div>
         <div class="stat"><small>Distancia aprox.</small><b>${p.distancia_total_aprox_km} km</b></div>
-        <div class="stat"><small>Moto</small><b>${esc(m.modelo)}</b></div>
+        ${m.modelo ? `<div class="stat"><small>Moto</small><b>${esc(m.modelo)}</b></div>` : ''}
       </div>
       <p class="row">${window.VIAJE_DATA ? '' : '<button class="btn primary" type="button" data-mapa="todos">🗺️ Mapa del viaje completo</button>'}<a class="btn" href="#/hoja">📄 Hoja de ruta</a></p>
     </div>
@@ -1542,23 +1554,24 @@ function viewResumen() {
     <h2>Reglas del viaje</h2>
     <div class="card">
       <dl>
-        <dt>Conducción real</dt><dd>Objetivo <b>${esc(r.conduccion_real_objetivo)}</b>, máximo <b>${esc(r.conduccion_real_maximo)}</b></dd>
-        <dt>Superficie</dt><dd>${esc(r.superficie)}</dd>
-        <dt>Horario</dt><dd>${esc(r.horario)}</dd>
-        <dt>Paradas</dt><dd>${esc(r.paradas)}</dd>
-        <dt>Gasolina</dt><dd>${esc(m.regla_gasolina)} Autonomía orientativa: ${m.autonomia_orientativa_km} km.</dd>
+        ${r.conduccion_real_objetivo ? `<dt>Conducción real</dt><dd>Objetivo <b>${esc(r.conduccion_real_objetivo)}</b>, máximo <b>${esc(r.conduccion_real_maximo)}</b></dd>` : ''}
+        ${r.superficie ? `<dt>Superficie</dt><dd>${esc(r.superficie)}</dd>` : ''}
+        ${r.horario ? `<dt>Horario</dt><dd>${esc(r.horario)}</dd>` : ''}
+        ${r.paradas ? `<dt>Paradas</dt><dd>${esc(r.paradas)}</dd>` : ''}
+        <dt>Gasolina</dt><dd>${esc(m.regla_gasolina || '')}${m.autonomia_orientativa_km ? ` Autonomía orientativa: ${m.autonomia_orientativa_km} km.` : ''}</dd>
         ${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m, true)} · <a href="#/guia">detalle</a></dd>` : ''}
         ${m.precarga_trasera ? `<dt>Precarga</dt><dd>Trasera en posición <b>${esc(m.precarga_trasera.recomendada.split(' ')[0])}</b> de ${m.precarga_trasera.posiciones} con maletas</dd>` : ''}
-        <dt>Recortable</dt><dd>${esc(r.recortables_sin_cambiar_alojamiento.join(' · '))}</dd>
+        ${(r.recortables_sin_cambiar_alojamiento || []).length ? `<dt>Recortable</dt><dd>${esc(r.recortables_sin_cambiar_alojamiento.join(' · '))}</dd>` : ''}
       </dl>
     </div>
-    <h2>Rutina diaria</h2>
+    ${Object.keys(rd).length ? `<h2>Rutina diaria</h2>
     <div class="card">
       ${Object.keys(rd).map((k) => `<details${k === 'mañana' || k === 'en_ruta' ? ' open' : ''}><summary>${human(k)}</summary>${list(rd[k])}</details>`).join('')}
-    </div>
+    </div>` : ''}
     ${gastosResumenHTML()}
-    <h2>Filosofía</h2>
-    <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}${p.piloto.peso_kg ? ` · ${p.piloto.edad} años, ${p.piloto.altura_m.toLocaleString('es-ES', { minimumFractionDigits: 2 })} m, ${p.piloto.peso_kg} kg` : ''}</p>${list(p.piloto.filosofia)}${p.piloto.nota_fisica ? `<div class="note info">${esc(p.piloto.nota_fisica)} <a href="#/guia">Ajustes de la moto</a></div>` : ''}</div>
+    ${p.piloto.nombre || p.piloto.filosofia.length ? `<h2>Filosofía</h2>
+    <div class="card"><p class="muted">${esc(p.piloto.nombre)} · ${esc(p.piloto.nivel)}${p.piloto.peso_kg ? ` · ${p.piloto.edad} años, ${p.piloto.altura_m.toLocaleString('es-ES', { minimumFractionDigits: 2 })} m, ${p.piloto.peso_kg} kg` : ''}</p>${list(p.piloto.filosofia)}${p.piloto.nota_fisica ? `<div class="note info">${esc(p.piloto.nota_fisica)} <a href="#/guia">Ajustes de la moto</a></div>` : ''}</div>` : ''}
+    ${viajesHTML()}
     <p class="version">${planVersion()} · <a href="#" id="reload-plan">Forzar actualización</a> · <a href="#" id="imprimir">Imprimir</a></p>`;
 }
 /* Descarta la copia guardada del codigo y lo vuelve a bajar todo. Las teselas del mapa se conservan.
@@ -1582,7 +1595,7 @@ function esStandalone() { return window.matchMedia('(display-mode: standalone)')
 function instalarHTML() {
   if (esStandalone() || window.VIAJE_DATA) return '';
   if (D.installEvt) return `<div class="card ok"><div class="card-title"><h3>📲 Instalar en el móvil</h3><button class="btn small primary" type="button" id="instalar">Instalar</button></div><p class="muted"><small>Se abre a pantalla completa y funciona sin cobertura.</small></p></div>`;
-  if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !localStorage.getItem('viaje-nx500-ios-hint')) return `<div class="card"><div class="card-title"><h3>📲 Añadir a la pantalla de inicio</h3><button class="btn small" type="button" id="ios-hint-ok">Entendido</button></div><p class="muted"><small>En Safari: botón Compartir → «Añadir a pantalla de inicio». Así funciona sin cobertura.</small></p></div>`;
+  if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !localStorage.getItem(IOS_HINT_KEY)) return `<div class="card"><div class="card-title"><h3>📲 Añadir a la pantalla de inicio</h3><button class="btn small" type="button" id="ios-hint-ok">Entendido</button></div><p class="muted"><small>En Safari: botón Compartir → «Añadir a pantalla de inicio». Así funciona sin cobertura.</small></p></div>`;
   return '';
 }
 function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · App ${APP_VERSION} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
@@ -1624,7 +1637,7 @@ function viewEtapas(arg) {
   const equipCfg = D.data.equipacion_moto.configuracion_por_tipo_de_dia;
   const cfgKey = Object.keys(equipCfg).find((k) => equipCfg[k].dias.includes(n));
   const cfg = cfgKey ? equipCfg[cfgKey] : null;
-  const sinLat = D.data.reparto_equipaje.dias_sin_laterales;
+  const sinLat = D.data.reparto_equipaje.dias_sin_laterales;   // completar() garantiza { dias: [] }
   return `${chips}
     <div class="card accent">
       <div class="etapa-head">
@@ -1670,7 +1683,7 @@ function viewEtapas(arg) {
     ${e.notas ? `<h2>Notas</h2><div class="card">${list(e.notas)}</div>` : ''}
 
     ${cfg ? `<h2>Equipación del día</h2><div class="card"><p class="muted">Configuración «${human(cfgKey)}»</p><dl><dt>Pantalón</dt><dd>${esc(cfg.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(cfg.chaqueta)}</dd>${cfg.nota ? `<dt>Nota</dt><dd>${esc(cfg.nota)}</dd>` : ''}</dl>
-      ${sinLat.dias.includes(n) ? `<div class="note"><b>Sin maletas laterales.</b> Pasar al SH58X: ${esc(sinLat.pasar_al_sh58x.join(', '))}.</div>` : ''}</div>` : ''}
+      ${sinLat.dias.includes(n) ? `<div class="note"><b>Sin maletas laterales.</b> Pasar al SH58X: ${esc((sinLat.pasar_al_sh58x || []).join(', '))}.</div>` : ''}</div>` : ''}
 
     ${alojamientoCard(e)}
     ${diarioHTML(e)}
@@ -1712,17 +1725,18 @@ function viewListas() {
   const d = D.data;
   const grupos = { jueves_10: 'Jueves 10', viernes_11: 'Viernes 11 (lo que quede, sábado)', sabado_12_o_domingo_13: 'Domingo 13 por la mañana · salida de prueba', domingo_13_tarde: 'Domingo 13 por la tarde' };
   marcarHechos();
-  const previa = Object.keys(d.checklist_previa).map((g) => {
+  const previa = Object.keys(d.checklist_previa).filter((g) => (d.checklist_previa[g] || []).length).map((g) => {
     const items = previaItems(g); const keys = items.map((t) => `previa|${g}|${t.que}`);
     return `<div class="card"><div class="card-title"><h3>${grupos[g] || human(g)}</h3>${progress(keys)}</div>${items.map((t) => checkItem(`previa|${g}|${t.que}`, t.que, t.hecho ? 'Hecho' : '')).join('')}</div>`;
   }).join('');
   const compraKeys = d.compras_pendientes.map((c) => `compra|${c.que}`);
   // Pedido Amazon: cada articulo puede ser un texto o { que, recibido, fecha }. Los recibidos cuentan como hechos.
-  const amazon = d.pedido_amazon_llega_2026_09_10.map((x) => typeof x === 'string' ? { que: x } : x);
+  const amazon = d.pedidos.map((x) => typeof x === 'string' ? { que: x } : x);
   const amazonKeys = amazon.map((x) => `amazon|${x.que}`);
   amazon.forEach((x) => { if (x.recibido) D.checks[`amazon|${x.que}`] = true; });
   const amazonRec = amazon.filter((x) => x.recibido).length;
-  const faltaKeys = d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => `falta|${t}`);
+  const falta = (d.ropa_comprada && d.ropa_comprada.falta) || [];
+  const faltaKeys = falta.map((t) => `falta|${t}`);
   // Confirmar cosas de una noche que ya has pasado no sirve de nada: solo las de hoy en adelante.
   const hoyISO = todayISO();
   const confDias = d.itinerario.filter((e) => e.alojamiento && e.alojamiento.pendiente_confirmar && e.fecha >= hoyISO);
@@ -1730,37 +1744,46 @@ function viewListas() {
   const contactosPend = ['seguro_asistencia', 'en_casa'].filter((k) => contactoPendiente(contacto(k)));
   const contactoKeys = contactosPend.map((k) => `contacto|${k}`);
   const pagoKeys = nochesPendientes().map(pagoKey);
-  const rep = d.reparto_equipaje;
-  const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
-  const cargaKeys = Object.keys(MALETAS).flatMap((k) => rep[k].map((t) => `carga|${k}|${t}`));
-  const carga = Object.keys(MALETAS).map((k) => { const keys = rep[k].map((t) => `carga|${k}|${t}`); return `<details class="card"${keys.every((x) => D.checks[x]) ? '' : ' open'}><summary>${MALETAS[k]} ${progress(keys)}</summary>${rep[k].map((t) => checkItem(`carga|${k}|${t}`, t)).join('')}</details>`; }).join('');
+  const rep = d.reparto_equipaje, mal = maletas();
+  const cargaKeys = mal.flatMap(([k]) => rep[k].map((t) => `carga|${k}|${t}`));
+  const carga = mal.map(([k, etiqueta]) => { const keys = rep[k].map((t) => `carga|${k}|${t}`); return `<details class="card"${keys.every((x) => D.checks[x]) ? '' : ' open'}><summary>${etiqueta.replace(' E09CL', '')} ${progress(keys)}</summary>${rep[k].map((t) => checkItem(`carga|${k}|${t}`, t)).join('')}</details>`; }).join('');
   /* Durante el viaje, lo de antes de salir estorba: se va al fondo y plegado. */
   const enViaje = daysBetween(todayISO(), d.proyecto.fechas.inicio) <= 0 && daysBetween(todayISO(), d.proyecto.fechas.fin) >= 0;
-  const previoHTML = `<h2>Checklist previa</h2>${previa}
-<h2>Compras pendientes ${progress(compraKeys)}</h2>
-<div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, c.hecho ? 'Hecho' : [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>
-<h2>Pedido Amazon ${progress(amazonKeys)}</h2>
-<div class="card">${amazonRec < amazon.length ? `<p class="muted"><small>Recibidos ${amazonRec} de ${amazon.length}. Faltan: ${esc(amazon.filter((x) => !x.recibido).map((x) => x.que).join(', '))}.</small></p>` : '<p class="muted"><small>Todo recibido.</small></p>'}${amazon.map((x) => checkItem(`amazon|${x.que}`, x.que, x.recibido ? `Recibido${x.fecha ? ` el ${fmtFecha(x.fecha)}` : ''}` : 'Pendiente de llegar')).join('')}</div>
-<h2>Ropa: falta ${progress(faltaKeys)}</h2>
-<div class="card">${d.ropa_comprada_decathlon_2026_09_09.falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>`;
+  const previoHTML = `${previa ? `<h2>Checklist previa</h2>${previa}` : ''}
+${compraKeys.length ? `<h2>Compras pendientes ${progress(compraKeys)}</h2>
+<div class="card">${d.compras_pendientes.map((c) => checkItem(`compra|${c.que}`, c.que, c.hecho ? 'Hecho' : [c.donde, c.cuando].filter((x) => x && x !== '-').join(' · '))).join('')}</div>` : ''}
+${amazon.length ? `<h2>${d.pedido_amazon_llega_2026_09_10 ? 'Pedido Amazon' : 'Pedidos'} ${progress(amazonKeys)}</h2>
+<div class="card">${amazonRec < amazon.length ? `<p class="muted"><small>Recibidos ${amazonRec} de ${amazon.length}. Faltan: ${esc(amazon.filter((x) => !x.recibido).map((x) => x.que).join(', '))}.</small></p>` : '<p class="muted"><small>Todo recibido.</small></p>'}${amazon.map((x) => checkItem(`amazon|${x.que}`, x.que, x.recibido ? `Recibido${x.fecha ? ` el ${fmtFecha(x.fecha)}` : ''}` : 'Pendiente de llegar')).join('')}</div>` : ''}
+${falta.length ? `<h2>Ropa: falta ${progress(faltaKeys)}</h2>
+<div class="card">${falta.map((t) => checkItem(`falta|${t}`, t)).join('')}</div>` : ''}`;
   const vivoHTML = `${pagoKeys.length ? `<h2>Pagos en los alojamientos ${progress(pagoKeys)}</h2>
 <div class="card">${nochesPendientes().map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)} · ${pg.donde}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}</div>` : ''}
-<h2>Confirmar con alojamientos ${progress(confKeys)}</h2>
+${confDias.length ? `<h2>Confirmar con alojamientos ${progress(confKeys)}</h2>` : ''}
 ${confDias.map((e) => `<div class="card"><div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.alojamiento.nombre)}</a></h3>${progress(confirmarKeys(e))}</div><p>📞 ${telLink(e.alojamiento.telefono)}</p>${e.alojamiento.pendiente_confirmar.map((t) => checkItem(`confirmar|${e.dia}|${t}`, t)).join('')}</div>`).join('')}
 ${contactosPend.length ? `<h2>Contactos pendientes ${progress(contactoKeys)}</h2>
 <div class="card">${contactosPend.map((k) => { const c = contacto(k); const txt = typeof c === 'string' ? c : (c.nota || ''); return checkItem(`contacto|${k}`, k === 'en_casa' ? 'Contacto en casa' : 'Seguro / asistencia', txt.replace(/^PENDIENTE:\s*/i, '')); }).join('')}</div>` : ''}
-<h2>Carga de maletas ${progress(cargaKeys)}</h2>
-<p class="muted"><small>${esc(rep.regla)} ${enViaje ? 'Repásala cada mañana antes de cerrar las maletas.' : 'Marca cada cosa al meterla el domingo por la tarde.'}</small></p>
-${carga}`;
+${cargaKeys.length ? `<h2>Carga de maletas ${progress(cargaKeys)}</h2>
+<p class="muted"><small>${esc(rep.regla || '')} ${enViaje ? 'Repásala cada mañana antes de cerrar las maletas.' : 'Marca cada cosa al meterla la víspera.'}</small></p>
+${carga}` : ''}`;
   const all = enViaje ? [...pagoKeys, ...confKeys, ...contactoKeys, ...cargaKeys]
     : [...previaKeys(), ...compraKeys, ...amazonKeys, ...faltaKeys, ...confKeys, ...contactoKeys, ...pagoKeys, ...cargaKeys];
-  return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${progress(all)}</div>${bar(all)}<p><small>Las marcas se guardan en este dispositivo.${enViaje ? ' Ya estás en ruta: arriba solo queda lo vivo.' : ''}</small></p></div>
+  const vacias = !all.length && !previoHTML.trim() && !vivoHTML.trim();
+  return `<div class="card accent"><div class="card-title"><h1>Listas</h1>${all.length ? progress(all) : ''}</div>${all.length ? bar(all) : ''}<p><small>Las marcas se guardan en este dispositivo.${enViaje ? ' Ya estás en ruta: arriba solo queda lo vivo.' : ''}</small></p></div>
+    ${vacias ? `<div class="card"><p class="muted">Este viaje aún no tiene listas. Se crean en <code>viaje.json</code>: <code>checklist_previa</code> (grupos de tareas), <code>compras_pendientes</code>, <code>pedidos</code> y <code>reparto_equipaje</code> (una lista por maleta, que da la carga de maletas).</p></div>` : ''}
     ${enViaje ? vivoHTML : previoHTML}
-    ${enViaje ? `<details class="card"><summary>Antes de salir · ya pasado</summary>${previoHTML}</details>` : vivoHTML}
+    ${enViaje ? (previoHTML.trim() ? `<details class="card"><summary>Antes de salir · ya pasado</summary>${previoHTML}</details>` : '') : vivoHTML}
 <h2>Copia de seguridad</h2>
 <div class="card"><p class="muted"><small>Marcas, teléfono de casa, nº de póliza, matrícula, diario y gastos viven solo en este móvil. Cópialos al portapapeles para pegarlos en otro dispositivo o guardarlos en una nota.</small></p>
   <p class="row"><button class="btn small" type="button" id="backup-copiar">📋 Copiar copia de seguridad</button><button class="btn small" type="button" id="backup-restaurar">📥 Restaurar desde el portapapeles</button></p></div>
 <p style="margin-top:20px"><button class="btn small danger" type="button" id="reset-checks">Borrar todas las marcas</button></p>`;
+}
+
+/* Maletas del reparto: las del primer viaje con su etiqueta, y cualquier otra lista de reparto_equipaje
+   con su nombre. Devuelve [[clave, etiqueta], ...] solo de las que existen. */
+const MALETAS_ETIQUETA = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito E09CL', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
+function maletas() {
+  const rep = D.data.reparto_equipaje || {};
+  return Object.keys(rep).filter((k) => Array.isArray(rep[k]) && rep[k].length).map((k) => [k, MALETAS_ETIQUETA[k] || `🧳 ${human(k)}`]);
 }
 
 /* Inventario de equipo en propiedad. */
@@ -1792,59 +1815,62 @@ function inventarioHTML(inv) {
 }
 
 function viewEquipaje() {
-  const d = D.data, eq = d.equipacion_moto, rep = d.reparto_equipaje, ropa = d.ropa_comprada_decathlon_2026_09_09, lav = d.ropa_y_lavanderia, mat = d.material_en_propiedad;
-  const MALETAS = { bolsa_deposito_e09cl: '🧳 Bolsa de depósito E09CL', sh38x_izquierda_ropa: '⬅️ SH38X izquierda · ropa', sh38x_derecha_taller_y_aseo: '➡️ SH38X derecha · taller y aseo', sh58x_capas_y_lluvia: '⬆️ SH58X · capas y lluvia' };
+  const d = D.data, eq = d.equipacion_moto, rep = d.reparto_equipaje, ropa = d.ropa_comprada, lav = d.ropa_y_lavanderia, mat = d.material_en_propiedad;
   const avisoVivo = eq.aviso_espaldera && !/^resuelto/i.test(eq.aviso_espaldera) ? eq.aviso_espaldera : null;
-  return `<h2>Equipación de moto</h2>
+  const cfg = eq.configuracion_por_tipo_de_dia, mal = maletas(), sinLat = rep.dias_sin_laterales;
+  const bloques = [
+    eq.decision || Object.keys(cfg).length ? `<h2>Equipación de moto</h2>
     ${avisoVivo ? `<div class="card warn"><div class="card-title"><h3>⚠️ Espaldera</h3><span class="badge warn">Antes de salir</span></div><p>${esc(avisoVivo)}</p></div>` : ''}
-    <div class="card"><p><b>${esc(eq.decision)}</b></p><h4>Puesto siempre</h4>${list(eq.puesto_siempre)}${eq.lluvia ? `<h4>Si llueve</h4><p>${esc(eq.lluvia)}</p>` : ''}<h4>Tapones</h4><p>${esc(eq.tapones)}</p>${eq.sixs ? `<h4>Primera capa SIXS</h4><p>${esc(eq.sixs)}</p>` : ''}</div>
-    <div class="grid">${Object.keys(eq.configuracion_por_tipo_de_dia).map((k) => { const c = eq.configuracion_por_tipo_de_dia[k]; const t = tipoInfo(k); return `<div class="card"><div class="card-title"><h3>${t.icon} ${human(k)}</h3><span class="badge ${t.cls}">Días ${c.dias.join(', ')}</span></div><dl><dt>Pantalón</dt><dd>${esc(c.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(c.chaqueta)}</dd>${c.nota ? `<dt>Nota</dt><dd>${esc(c.nota)}</dd>` : ''}</dl></div>`; }).join('')}</div>
-
-    <h2>Reparto del equipaje</h2>
-    <p class="muted">${esc(rep.regla)}</p>
-    ${Object.keys(MALETAS).map((k) => `<div class="card"><h3>${MALETAS[k]}</h3>${list(rep[k])}</div>`).join('')}
-    <div class="card warn"><h3>Días sin maletas laterales: ${rep.dias_sin_laterales.dias.map((n) => `<a href="#/etapas/${n}">día ${n}</a>`).join(' y ')}</h3><p>Pasar al SH58X:</p>${list(rep.dias_sin_laterales.pasar_al_sh58x)}</div>
-    <div class="card"><h3>🔑 Llaves</h3><p>${esc(rep.llaves)}</p></div>
-
-    <h2>Material en propiedad</h2>
-    <div class="card"><dl>${['compresor', 'antirrobo', 'powerbank'].map((k) => `<dt>${human(k)}</dt><dd><b>${esc(mat[k].modelo)}</b><br><small>${esc(mat[k].nota)}</small>${k === 'compresor' && d.proyecto.moto.presiones ? `<br><small>Presiones NX500: ${presionesHTML(d.proyecto.moto, true)}</small>` : ''}</dd>`).join('')}<dt>Otros</dt><dd>${esc(mat.otros.join(', '))}</dd></dl></div>
-
-    <h2>Ropa y lavandería</h2>
-    <div class="card"><p>${esc(lav.filosofia)}</p>
-      <div class="tbl-wrap"><table><thead><tr><th>Noche</th><th>Lugar</th><th>Cómo</th></tr></thead><tbody>${lav.lavados.map((l) => `<tr><td><b>${l.noche}</b></td><td>${esc(l.lugar)}</td><td>${esc(l.como)}</td></tr>`).join('')}</tbody></table></div>
-      <div class="note info"><b>Merino:</b> ${esc(lav.cuidado_merino)}</div></div>
-    ${inventarioHTML(d.inventario)}
-    <details class="card"><summary>Compra Decathlon del 9 sept (${ropa.total_eur.toFixed(2)} €)</summary>
+    ${eq.decision ? `<div class="card"><p><b>${esc(eq.decision)}</b></p>${eq.puesto_siempre ? `<h4>Puesto siempre</h4>${list(eq.puesto_siempre)}` : ''}${eq.lluvia ? `<h4>Si llueve</h4><p>${esc(eq.lluvia)}</p>` : ''}${eq.tapones ? `<h4>Tapones</h4><p>${esc(eq.tapones)}</p>` : ''}${eq.sixs ? `<h4>Primera capa SIXS</h4><p>${esc(eq.sixs)}</p>` : ''}</div>` : ''}
+    <div class="grid">${Object.keys(cfg).map((k) => { const c = cfg[k]; const t = tipoInfo(k); return `<div class="card"><div class="card-title"><h3>${t.icon} ${human(k)}</h3><span class="badge ${t.cls}">Días ${(c.dias || []).join(', ')}</span></div><dl><dt>Pantalón</dt><dd>${esc(c.pantalon)}</dd><dt>Chaqueta</dt><dd>${esc(c.chaqueta)}</dd>${c.nota ? `<dt>Nota</dt><dd>${esc(c.nota)}</dd>` : ''}</dl></div>`; }).join('')}</div>` : '',
+    mal.length ? `<h2>Reparto del equipaje</h2>
+    ${rep.regla ? `<p class="muted">${esc(rep.regla)}</p>` : ''}
+    ${mal.map(([k, etiqueta]) => `<div class="card"><h3>${etiqueta}</h3>${list(rep[k])}</div>`).join('')}
+    ${sinLat.dias.length ? `<div class="card warn"><h3>Días sin maletas laterales: ${sinLat.dias.map((n) => `<a href="#/etapas/${n}">día ${n}</a>`).join(' y ')}</h3><p>Pasar al SH58X:</p>${list(sinLat.pasar_al_sh58x || [])}</div>` : ''}
+    ${rep.llaves ? `<div class="card"><h3>🔑 Llaves</h3><p>${esc(rep.llaves)}</p></div>` : ''}` : '',
+    mat ? `<h2>Material en propiedad</h2>
+    <div class="card"><dl>${Object.keys(mat).filter((k) => mat[k] && mat[k].modelo).map((k) => `<dt>${human(k)}</dt><dd><b>${esc(mat[k].modelo)}</b><br><small>${esc(mat[k].nota || '')}</small>${k === 'compresor' && d.proyecto.moto.presiones ? `<br><small>Presiones ${esc(d.proyecto.moto.modelo || '')}: ${presionesHTML(d.proyecto.moto, true)}</small>` : ''}</dd>`).join('')}${(mat.otros || []).length ? `<dt>Otros</dt><dd>${esc(mat.otros.join(', '))}</dd>` : ''}</dl></div>` : '',
+    lav ? `<h2>Ropa y lavandería</h2>
+    <div class="card">${lav.filosofia ? `<p>${esc(lav.filosofia)}</p>` : ''}
+      ${(lav.lavados || []).length ? `<div class="tbl-wrap"><table><thead><tr><th>Noche</th><th>Lugar</th><th>Cómo</th></tr></thead><tbody>${lav.lavados.map((l) => `<tr><td><b>${l.noche}</b></td><td>${esc(l.lugar)}</td><td>${esc(l.como)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+      ${lav.cuidado_merino ? `<div class="note info"><b>Merino:</b> ${esc(lav.cuidado_merino)}</div>` : ''}</div>` : '',
+    inventarioHTML(d.inventario),
+    ropa && (ropa.articulos || []).length ? `<details class="card"><summary>Compra de ropa${ropa.total_eur ? ` (${ropa.total_eur.toFixed(2)} €)` : ''}</summary>
       <div class="tbl-wrap"><table><thead><tr><th>Artículo</th><th>Talla</th><th>Ud.</th></tr></thead><tbody>${ropa.articulos.map((a) => `<tr><td>${esc(a.articulo)}${a.nota ? `<br><small>${esc(a.nota)}</small>` : ''}</td><td>${esc(a.talla)}</td><td>${a.cantidad}${a.pares_total ? ` <small>(${a.pares_total} pares)</small>` : ''}</td></tr>`).join('')}</tbody></table></div>
-      ${ropa.boxers ? `<h4>Boxers</h4><p>${esc(ropa.boxers)}</p>` : ''}<h4>Falta</h4>${list(ropa.falta)}</details>`;
+      ${ropa.boxers ? `<h4>Boxers</h4><p>${esc(ropa.boxers)}</p>` : ''}${(ropa.falta || []).length ? `<h4>Falta</h4>${list(ropa.falta)}` : ''}</details>` : '',
+  ].filter((x) => x && x.trim());
+  if (!bloques.length) return `<h2>Equipaje</h2><div class="card"><p class="muted">Este viaje aún no tiene equipaje apuntado. Se añade en <code>viaje.json</code>: <code>equipacion_moto</code> (con <code>configuracion_por_tipo_de_dia</code>), <code>reparto_equipaje</code> (una lista por maleta), <code>material_en_propiedad</code>, <code>ropa_y_lavanderia</code> e <code>inventario</code>. Mira el viaje de 2026 como modelo.</p></div>`;
+  return bloques.join('\n');
 }
 
+/* Filas <dt>/<dd> de una lista de [etiqueta, valor], saltando las vacias. */
+function dlPares(pares) { return pares.filter(([, v]) => v != null && v !== '').map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join(''); }
 function viewGuia() {
   const d = D.data, nav = d.proyecto.navegacion, k = nav.kurviger, m = d.proyecto.moto, meta = d.meta;
   const KV = { extra_curvy: 'Extra Curvy', fast: 'Fast', fast_and_curvy: 'Fast & Curvy', curvy: 'Curvy', shaping_points: 'Shaping points', control: 'Control' };
   const conGuia = d.itinerario.filter((e) => e.guia);
-  return `${conGuia.length ? `<h2>Guía turística por etapa</h2>
+  return `${viajesHTML()}${conGuia.length ? `<h2>Guía turística por etapa</h2>
     <div class="card"><p class="muted">Qué ver, dónde parar, qué comer y qué hacer por la tarde. Está en la ficha de cada día.</p>
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
     <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares de la DGT</a> <a class="btn" href="#/gasolina">⛽ Gasolina más barata</a></p>
-    <h2>Navegación</h2>
-    <div class="card"><dl><dt>Pantalla</dt><dd>${esc(nav.pantalla)}</dd><dt>Móvil</dt><dd>${esc(nav.movil)}</dd><dt>App</dt><dd>${esc(nav.app)}</dd><dt>Ubicación</dt><dd>${esc(nav.ubicacion_compartida)}</dd><dt>Si falla</dt><dd>${esc(nav.fallback)}</dd>${nav.sygic ? `<dt>Sygic</dt><dd>${esc(nav.sygic)}</dd>` : ''}</dl></div>
-    <div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd><dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd></dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>
+    ${nav.pantalla || nav.app ? `<h2>Navegación</h2>
+    <div class="card"><dl>${dlPares([['Pantalla', nav.pantalla], ['Móvil', nav.movil], ['App', nav.app], ['Ubicación', nav.ubicacion_compartida], ['Si falla', nav.fallback], ['Sygic', nav.sygic]])}</dl></div>` : ''}
+    ${Object.keys(KV).some((key) => k[key]) ? `<div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}${k.mapas_offline ? `<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd>` : ''}${k.rutas_a_crear ? `<dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd>` : ''}</dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>` : ''}
 
     ${d.seguro ? `<h2>Seguro</h2><div class="card">${seguroHTML(true)}</div>` : ''}
     <h2>La moto</h2>
-    <div class="card"><dl><dt>Modelo</dt><dd>${esc(m.modelo)}</dd><dt>Rueda delantera</dt><dd>${esc(m.rueda_delantera)}</dd><dt>Neumáticos</dt><dd>${esc(m.neumaticos)}</dd><dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd><dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd><dt>Gasolina</dt><dd>${esc(m.regla_gasolina)}</dd>${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}${m.cadena ? `<dt>Cadena</dt><dd><b>${esc(m.cadena.dias_previstos)}</b><br><small>${esc(m.cadena.cuando)} ${esc(m.cadena.regla_extra)}<br>Producto: ${esc(m.cadena.producto)}<br>Tensión: ${esc(m.cadena.tension)}</small></dd>` : ''}${m.precarga_trasera ? `<dt>Precarga trasera</dt><dd><b>Posición ${esc(m.precarga_trasera.recomendada)}</b> (de serie: ${esc(m.precarga_trasera.de_serie)}; ${m.precarga_trasera.posiciones} posiciones)<br><small>${esc(m.precarga_trasera.como)} ${esc(m.precarga_trasera.por_que)}</small></dd>` : ''}${m.carga ? `<dt>Carga</dt><dd>Estimación del viaje: <b>${m.carga.estimacion_viaje.total_kg} kg</b> (piloto ${m.carga.estimacion_viaje.piloto_kg} + equipación ${m.carga.estimacion_viaje.equipacion_puesta_kg} + maletas ${m.carga.estimacion_viaje.maletas_vacias_kg} + contenido ${m.carga.estimacion_viaje.contenido_kg}) frente a unos ${m.carga.carga_maxima_kg_aprox} kg de carga máxima.<br><small>${esc(m.carga.regla)} ${esc(m.carga.carga_maxima_nota)}</small></dd>` : ''}<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd></dl></div>
+    <div class="card"><dl>${dlPares([['Modelo', m.modelo], ['Rueda delantera', m.rueda_delantera], ['Neumáticos', m.neumaticos]])}${m.toma_usb_c != null ? `<dt>Toma USB-C</dt><dd>${m.toma_usb_c ? 'Sí' : 'No'}</dd>` : ''}${m.autonomia_orientativa_km ? `<dt>Autonomía</dt><dd>${m.autonomia_orientativa_km} km orientativos</dd>` : ''}${dlPares([['Gasolina', m.regla_gasolina]])}${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m)}</dd>` : ''}${m.cadena ? `<dt>Cadena</dt><dd><b>${esc(m.cadena.dias_previstos)}</b><br><small>${esc(m.cadena.cuando)} ${esc(m.cadena.regla_extra)}<br>Producto: ${esc(m.cadena.producto)}<br>Tensión: ${esc(m.cadena.tension)}</small></dd>` : ''}${m.precarga_trasera ? `<dt>Precarga trasera</dt><dd><b>Posición ${esc(m.precarga_trasera.recomendada)}</b> (de serie: ${esc(m.precarga_trasera.de_serie)}; ${m.precarga_trasera.posiciones} posiciones)<br><small>${esc(m.precarga_trasera.como)} ${esc(m.precarga_trasera.por_que)}</small></dd>` : ''}${m.carga ? `<dt>Carga</dt><dd>Estimación del viaje: <b>${m.carga.estimacion_viaje.total_kg} kg</b> (piloto ${m.carga.estimacion_viaje.piloto_kg} + equipación ${m.carga.estimacion_viaje.equipacion_puesta_kg} + maletas ${m.carga.estimacion_viaje.maletas_vacias_kg} + contenido ${m.carga.estimacion_viaje.contenido_kg}) frente a unos ${m.carga.carga_maxima_kg_aprox} kg de carga máxima.<br><small>${esc(m.carga.regla)} ${esc(m.carga.carga_maxima_nota)}</small></dd>` : ''}${m.equipaje.length ? `<dt>Equipaje</dt><dd>${esc(m.equipaje.join(', '))}</dd>` : ''}</dl></div>
 
-    <h2>Vacaciones</h2>
-    <div class="card"><p>Del ${fmtFecha(d.proyecto.vacaciones.inicio)} al ${fmtFecha(d.proyecto.vacaciones.fin)}. Margen tras el viaje: ${d.proyecto.vacaciones.margen_tras_el_viaje_dias} días.</p></div>
+    ${d.proyecto.vacaciones ? `<h2>Vacaciones</h2>
+    <div class="card"><p>Del ${fmtFecha(d.proyecto.vacaciones.inicio)} al ${fmtFecha(d.proyecto.vacaciones.fin)}. Margen tras el viaje: ${d.proyecto.vacaciones.margen_tras_el_viaje_dias} días.</p></div>` : ''}
 
-    <h2>Principios del plan</h2>
-    <div class="card">${list(d.principios_para_claude)}</div>
+    ${d.principios_para_claude.length ? `<h2>Principios del plan</h2>
+    <div class="card">${list(d.principios_para_claude)}</div>` : ''}
 
     <h2>Versión del plan</h2>
-    <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}<br><small>${esc(meta.sustituye_a)}</small></p><p><small>${esc(meta.uso)}</small></p><details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios_v3)}</details></div>`;
+    <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}${meta.sustituye_a ? `<br><small>${esc(meta.sustituye_a)}</small>` : ''}</p>${meta.uso ? `<p><small>${esc(meta.uso)}</small></p>` : ''}${meta.cambios.length ? `<details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios)}</details>` : ''}<p><small>Viaje <code>${esc(V.id || '')}</code>: <code>${esc(V.base || '')}viaje.json</code></small></p></div>`;
 }
 
 /* Resumen de la poliza (sin datos personales). full=true: version completa para la Guia. */
@@ -1876,7 +1902,7 @@ function rutasKurvigerHTML() {
   con.forEach(trackLoad);
   const col = D.data.proyecto.navegacion.kurviger.coleccion;
   const info = (e) => { const k = e.gpx.kurviger; const t = D.tracks[e.dia] && D.tracks[e.dia].data; return k ? { nombre: k.nombre, km: k.km, min: k.duracion_min, url: k.cloud_url, cortes: k.cortes_reportados } : t ? { nombre: t.nombre, km: t.km, min: t.duracion_min } : null; };
-  const rows = con.map((e) => { const i = info(e); return `<tr><td><a href="#/etapas/${e.dia}">Día ${e.dia}</a></td><td>${i ? (i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.nombre.replace(/^Día \d+ · /, ''))}</a>` : esc(i.nombre)) : '<span class="muted">cargando…</span>'}${i && i.cortes ? ` <span class="badge warn" title="Cortes de carretera reportados">🚧 ${i.cortes}</span>` : ''}</td><td>${i ? fmtKm(i.km) : `${e.km_aprox} km`}</td><td>${i ? fmtMin(i.min) : '–'}</td><td><a href="${esc(e.gpx.archivo)}" download title="Descargar GPX">⬇️</a></td></tr>`; }).join('');
+  const rows = con.map((e) => { const i = info(e); return `<tr><td><a href="#/etapas/${e.dia}">Día ${e.dia}</a></td><td>${i ? (i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.nombre.replace(/^Día \d+ · /, ''))}</a>` : esc(i.nombre)) : '<span class="muted">cargando…</span>'}${i && i.cortes ? ` <span class="badge warn" title="Cortes de carretera reportados">🚧 ${i.cortes}</span>` : ''}</td><td>${i ? fmtKm(i.km) : `${e.km_aprox} km`}</td><td>${i ? fmtMin(i.min) : '–'}</td><td><a href="${esc(rutaViaje(e.gpx.archivo))}" download title="Descargar GPX">⬇️</a></td></tr>`; }).join('');
   const tot = con.reduce((s, e) => { const i = info(e); return s + (i ? i.km : e.km_aprox); }, 0);
   const min = con.reduce((s, e) => { const i = info(e); return s + (i && i.min ? i.min : 0); }, 0);
   return `<div class="card">${col ? `<p><b>Colección «${esc(col.nombre)}»</b> en Kurviger Cloud · ${col.rutas} rutas · ${fmtKm(Math.round(col.km_total))} · ${fmtMin(col.duracion_min)} · +${fmtM(col.desnivel_subida_m)}<br><a class="btn small primary" href="${esc(col.url)}" target="_blank" rel="noopener">🧭 Abrir la colección en Kurviger</a></p><p class="muted"><small>Toca el nombre de una ruta para abrirla en Kurviger (app o web). Comprueba que en el móvil tienes estas ${con.length} rutas descargadas.</small></p>` : `<p class="muted"><small>Nombre exacto de cada ruta en Kurviger, según el GPX guardado. Comprueba que en el móvil tienes estas ${con.length} rutas.</small></p>`}
@@ -1894,16 +1920,16 @@ function viewHoja() {
     const t = D.tracks[e.dia] && D.tracks[e.dia].data;
     return `<tr><td><b>${e.dia}</b><br><small>${cap(e.dia_semana).slice(0, 3)} ${fmtFecha(e.fecha)}</small></td>
       <td><b>${esc(e.origen)} → ${esc(e.destino)}</b><br><small>${esc(e.waypoints.join(' · '))}</small>${e.gpx && e.gpx.kurviger ? `<br><small class="muted">Kurviger: ${esc(e.gpx.kurviger.nombre)}</small>` : t ? `<br><small class="muted">Kurviger: ${esc(t.nombre)}</small>` : ''}</td>
-      <td class="num">${e.km_aprox} km<br><small>${esc(e.tiempo_real_aprox)}</small><br><small>${esc(e.salida.split(' ')[0])} → ${esc(e.llegada_prevista.split(' ')[0])}</small></td>
+      <td class="num">${e.km_aprox} km<br><small>${esc(e.tiempo_real_aprox)}</small>${e.salida ? `<br><small>${esc(e.salida.split(' ')[0])} → ${esc(e.llegada_prevista.split(' ')[0])}</small>` : ''}</td>
       <td>${a ? `<b>${esc(a.nombre)}</b><br><small>${esc(a.direccion)}</small><br>${telLink(a.telefono)}${pagoInfo(a) && pagoInfo(a).pendiente ? `<br><small>Por pagar: ${fmtEur(a.pago.pendiente_eur, a.pago.aproximado)}</small>` : ''}` : n ? `<b>${esc(n.alojamiento)}</b><br><small>${esc(n.lugar)}</small><br>${telLink(n.telefono)}` : '<small>Casa</small>'}</td></tr>`;
   }).join('');
   it.forEach(trackLoad);
   return `<div class="card accent hoja"><div class="card-title"><h1>Hoja de ruta · ${esc(p.nombre)}</h1><button class="btn small" type="button" id="imprimir">🖨️ Imprimir</button></div>
-      <p class="muted">${fmtFecha(p.fechas.inicio)} – ${fmtFecha(p.fechas.fin)} ${p.fechas.inicio.slice(0, 4)} · ${it.length} etapas · ${p.distancia_total_aprox_km} km · ${esc(p.moto.modelo)} · ${esc(p.piloto.nombre)}</p>
+      <p class="muted">${fmtFecha(p.fechas.inicio)} – ${fmtFecha(p.fechas.fin)} ${p.fechas.inicio.slice(0, 4)} · ${it.length} etapas · ${p.distancia_total_aprox_km} km ${p.moto.modelo ? ` · ${esc(p.moto.modelo)}` : ''}${p.piloto.nombre ? ` · ${esc(p.piloto.nombre)}` : ''}</p>
       <p><b>Emergencias ${telLink(c.emergencias)}</b> · Seguro ${typeof seg === 'object' ? esc(seg.compania) + ' ' : ''}${telLink(telTxt(seg))}${typeof seg === 'object' && seg.telefonos_alternativos ? ` / ${seg.telefonos_alternativos.map(telLink).join(' / ')}` : ''} · En casa ${typeof casa === 'object' && casa.telefono ? telLink(casa.telefono) : '<small>(número en el móvil)</small>'}</p>
     </div>
     <div class="card hoja"><div class="tbl-wrap"><table class="hoja-tabla"><thead><tr><th>Día</th><th>Etapa y puntos de paso</th><th>km</th><th>Noche</th></tr></thead><tbody>${rows}</tbody></table></div></div>
-    <div class="card hoja"><h3>Reglas</h3><ul><li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li><li>${esc(p.reglas_globales.horario)}</li><li>${esc(p.moto.regla_gasolina)}</li>${p.moto.presiones ? `<li>Presiones: ${presionesHTML(p.moto, true)}.</li>` : ''}<li>${esc(d.meteo.regla)}</li>${d.seguro ? `<li>Seguro ${esc(d.seguro.compania)}, ${esc(d.seguro.producto.split(' (')[0])}: en avería o accidente llamar a asistencia ANTES de pedir grúa o taller.${contactosLocales()['seguro_asistencia:poliza'] ? ` Póliza nº ${esc(contactosLocales()['seguro_asistencia:poliza'])}.` : ''}</li>` : ''}</ul></div>
+    <div class="card hoja"><h3>Reglas</h3><ul>${p.reglas_globales.conduccion_real_objetivo ? `<li>Conducción real: objetivo ${esc(p.reglas_globales.conduccion_real_objetivo)}, máximo ${esc(p.reglas_globales.conduccion_real_maximo)}.</li>` : ''}${p.reglas_globales.horario ? `<li>${esc(p.reglas_globales.horario)}</li>` : ''}${p.moto.regla_gasolina ? `<li>${esc(p.moto.regla_gasolina)}</li>` : ''}${p.moto.presiones ? `<li>Presiones: ${presionesHTML(p.moto, true)}.</li>` : ''}<li>${esc(d.meteo.regla)}</li>${d.seguro ? `<li>Seguro ${esc(d.seguro.compania)}, ${esc(d.seguro.producto.split(' (')[0])}: en avería o accidente llamar a asistencia ANTES de pedir grúa o taller.${contactosLocales()['seguro_asistencia:poliza'] ? ` Póliza nº ${esc(contactosLocales()['seguro_asistencia:poliza'])}.` : ''}</li>` : ''}</ul></div>
     <p class="version no-print"><a href="#/resumen">← Resumen</a></p>`;
 }
 
@@ -1913,7 +1939,7 @@ function viewRadares() {
   radaresLoad();
   const m = D.radares;
   if (!m) return '<div class="card"><p class="muted">Cargando los radares…</p></div>';
-  if (!m.radares || !m.radares.length) return '<div class="card warn"><h3>Sin datos de radares</h3><p>No se pudo cargar <code>data/radares.json</code>. Con conexión, abre la app otra vez.</p></div>';
+  if (!m.radares || !m.radares.length) return '<div class="card warn"><h3>Sin datos de radares</h3><p>No se pudo cargar <code>radares.json</code> del viaje. Con conexión, abre la app otra vez.</p></div>';
   const it = D.data.itinerario, today = todayISO();
   const tot = m.totales || {};
   const cerca = D.pos ? radaresCerca(D.pos, 25, 6) : [];
@@ -1985,7 +2011,7 @@ function render() {
   document.querySelectorAll('.tabbar a').forEach((a) => a.classList.toggle('active', a.dataset.view === view));
   const titles = { resumen: 'Resumen', etapas: arg ? `Día ${arg}` : 'Etapas', noches: 'Noches', tiempo: 'Tiempo', listas: 'Listas', equipaje: 'Equipaje', guia: 'Guía', hoja: 'Hoja de ruta', sos: 'Emergencia', buscar: 'Buscar', ahora: 'Ahora', pueblos: 'Pueblos' };
   document.body.classList.toggle('vista-sos', view === 'sos');
-  document.title = `${titles[view]} · Viaje NX500`;
+  document.title = `${titles[view]} · ${nombreCorto()}`;
   window.scrollTo(0, 0);
   const q = document.getElementById('buscar-q'); if (q && !arg) { try { q.focus(); } catch (e) { /* nada */ } }
   if (view === 'ahora') seguirPos(true); else seguirPos(false);
@@ -2049,7 +2075,7 @@ document.addEventListener('click', (ev) => {
   if (ev.target.closest('#backup-restaurar')) { backupRestaurar(); return; }
   if (ev.target.closest('#imprimir')) { ev.preventDefault(); window.print(); return; }
   if (ev.target.closest('#instalar')) { const p = D.installEvt; if (!p) return; D.installEvt = null; p.prompt(); p.userChoice.then(() => render()).catch(() => render()); return; }
-  if (ev.target.closest('#ios-hint-ok')) { try { localStorage.setItem('viaje-nx500-ios-hint', '1'); } catch (e) { /* nada */ } render(); return; }
+  if (ev.target.closest('#ios-hint-ok')) { try { localStorage.setItem(IOS_HINT_KEY, '1'); } catch (e) { /* nada */ } render(); return; }
   if (ev.target.closest('#mapa-cerrar')) { closeMap(); return; }
   const btn = ev.target.closest('#reset-checks');
   if (!btn) return;
@@ -2073,10 +2099,11 @@ function aplicarTema() {
 function ciclarTema() { const t = lsGet(TEMA_KEY, 'auto'); lsSet(TEMA_KEY, TEMAS[(TEMAS.indexOf(t) + 1) % TEMAS.length]); aplicarTema(); }
 
 /* Copia de seguridad de todo lo local (portapapeles). */
-const LOCAL_KEYS = [STORAGE_KEY, CONTACTOS_KEY, DIARIO_KEY, GASTOS_KEY, TEMA_KEY, REPOSTAJES_KEY, PUEBLOS_KEY, 'viaje-nx500-ios-hint'];
+/* Lo que entra en la copia de seguridad: lo del dispositivo y lo del viaje abierto. */
+function localKeys() { return [STORAGE_KEY, CONTACTOS_KEY, DIARIO_KEY, GASTOS_KEY, TEMA_KEY, REPOSTAJES_KEY, PUEBLOS_KEY, IOS_HINT_KEY]; }
 async function backupCopiar() {
   const out = { app: 'viaje-nx500', fecha: new Date().toISOString(), datos: {} };
-  LOCAL_KEYS.forEach((k) => { const v = localStorage.getItem(k); if (v != null) out.datos[k] = v; });
+  localKeys().forEach((k) => { const v = localStorage.getItem(k); if (v != null) out.datos[k] = v; });
   const txt = JSON.stringify(out);
   try { await navigator.clipboard.writeText(txt); toast('Copia de seguridad copiada al portapapeles'); }
   catch (e) { prompt('Copia este texto y guárdalo:', txt); }
@@ -2087,7 +2114,7 @@ async function backupRestaurar() {
   let obj; try { obj = JSON.parse(txt); } catch (e) { toast('Eso no es una copia de seguridad válida'); return; }
   if (!obj || obj.app !== 'viaje-nx500' || !obj.datos) { toast('Eso no es una copia de seguridad válida'); return; }
   if (!confirm(`Restaurar la copia del ${new Date(obj.fecha).toLocaleString('es-ES')}? Sustituye las marcas y datos locales de este móvil.`)) return;
-  Object.keys(obj.datos).forEach((k) => { if (LOCAL_KEYS.includes(k)) localStorage.setItem(k, obj.datos[k]); });
+  Object.keys(obj.datos).forEach((k) => { if (localKeys().includes(k)) localStorage.setItem(k, obj.datos[k]); });
   D.checks = loadChecks(); aplicarTema(); render(); toast('Copia restaurada');
 }
 
@@ -2120,23 +2147,95 @@ function registerSW() {
   navigator.serviceWorker.addEventListener('controllerchange', () => { if (reloaded) return; reloaded = true; location.reload(); });
 }
 
+/* Rellena lo que falte del plan con valores vacios del tipo correcto: un viaje recien creado con
+   tools/nuevo_viaje.py solo trae fechas e itinerario, y cada vista enseña una seccion solo si tiene
+   contenido. Tambien da nombre generico a dos claves que en el primer viaje llevaban fecha. */
+function completar(d) {
+  const obj = (x) => (x && typeof x === 'object' && !Array.isArray(x) ? x : {});
+  const arr = (x) => (Array.isArray(x) ? x : []);
+  d.meta = obj(d.meta);
+  d.meta.cambios = arr(d.meta.cambios || d.meta.cambios_v3);
+  const it = d.itinerario = arr(d.itinerario);
+  const p = d.proyecto = obj(d.proyecto);
+  p.fechas = obj(p.fechas);
+  if (!p.fechas.inicio && it.length) p.fechas.inicio = it[0].fecha;
+  if (!p.fechas.fin && it.length) p.fechas.fin = it[it.length - 1].fecha;
+  if (!p.distancia_total_aprox_km) p.distancia_total_aprox_km = Math.round(it.reduce((n, e) => n + (e.km_aprox || 0), 0));
+  p.moto = obj(p.moto); p.moto.equipaje = arr(p.moto.equipaje);
+  p.navegacion = obj(p.navegacion); p.navegacion.kurviger = obj(p.navegacion.kurviger);
+  p.reglas_globales = obj(p.reglas_globales);
+  d.meteo = obj(d.meteo);
+  if (!d.meteo.zona_horaria) d.meteo.zona_horaria = 'Europe/Madrid';
+  if (!d.meteo.proveedor) d.meteo.proveedor = 'Open-Meteo (api.open-meteo.com), gratuito, sin clave, previsión diaria a 16 días';
+  if (!d.meteo.regla) d.meteo.regla = 'Mirar la previsión la noche anterior y por la mañana antes de salir.';
+  if (!d.meteo.criterio) d.meteo.criterio = { malo: 'Tormenta, probabilidad de lluvia >= 70%, >= 8 mm o rachas >= 70 km/h', regular: 'Probabilidad de lluvia >= 40%, >= 2 mm, chubascos o rachas >= 50 km/h', bueno: 'Todo lo demás' };
+  d.meteo.enlaces = Object.assign({ aemet: 'https://www.aemet.es/es/eltiempo/prediccion/municipios', windy: 'https://www.windy.com/' }, obj(d.meteo.enlaces));
+  p.piloto = obj(p.piloto); p.piloto.filosofia = arr(p.piloto.filosofia);
+  d.equipacion_moto = obj(d.equipacion_moto); d.equipacion_moto.configuracion_por_tipo_de_dia = obj(d.equipacion_moto.configuracion_por_tipo_de_dia);
+  d.reparto_equipaje = obj(d.reparto_equipaje); d.reparto_equipaje.dias_sin_laterales = obj(d.reparto_equipaje.dias_sin_laterales);
+  d.reparto_equipaje.dias_sin_laterales.dias = arr(d.reparto_equipaje.dias_sin_laterales.dias);
+  d.alojamientos_resumen = arr(d.alojamientos_resumen);
+  d.contactos = obj(d.contactos);
+  if (!d.contactos.emergencias) d.contactos.emergencias = '112';
+  if (!d.contactos.en_casa) d.contactos.en_casa = { nombre: 'En casa', telefono: null, local: true };
+  if (!d.contactos.seguro_asistencia) d.contactos.seguro_asistencia = { compania: 'Seguro', telefono: null, nota: 'Añade la asistencia en carretera en contactos.seguro_asistencia.' };
+  d.rutina_diaria = obj(d.rutina_diaria);
+  d.checklist_previa = obj(d.checklist_previa);
+  d.compras_pendientes = arr(d.compras_pendientes);
+  d.pedidos = arr(d.pedidos || d.pedido_amazon_llega_2026_09_10);
+  const rc = Object.keys(d).find((k) => /^ropa_comprada/.test(k));
+  d.ropa_comprada = rc ? obj(d[rc]) : null;
+  d.principios_para_claude = arr(d.principios_para_claude);
+  it.forEach((e) => {
+    e.waypoints = arr(e.waypoints); e.meteo_puntos = arr(e.meteo_puntos);
+    if (!e.dia_semana && e.fecha) e.dia_semana = new Date(e.fecha + 'T12:00:00').toLocaleDateString('es-ES', { weekday: 'long' });
+    ['salida', 'llegada_prevista', 'tiempo_real_aprox', 'perfil_kurviger', 'tipo'].forEach((k) => { if (e[k] == null) e[k] = ''; });
+  });
+  return d;
+}
+/* Que viaje abrir: ?viaje=<id> en la URL, si no el activo del indice. Sin indice (copia antigua
+   en cache, o sin red la primera vez) se abre el primer viaje. */
+async function viajeElegir() {
+  try {
+    const r = await fetch('viajes/index.json', { cache: 'no-store' });
+    if (r.ok) V.indice = await r.json();
+  } catch (e) { /* sin indice */ }
+  const pedido = new URLSearchParams(location.search).get('viaje');
+  const lista = (V.indice && V.indice.viajes) || [];
+  V.id = (pedido && /^[\w.-]+$/.test(pedido) && (lista.some((v) => v.id === pedido) || !lista.length) ? pedido : null)
+    || (V.indice && V.indice.activo) || LEGADO;
+  V.base = `viajes/${V.id}/`;
+}
+/* Otros viajes del indice, para la Guia. El activo va sin ?viaje= para que la URL quede limpia. */
+function viajesHTML() {
+  const lista = ((V.indice && V.indice.viajes) || []).filter((v) => !v.oculto);
+  if (lista.length < 2) return '';
+  const activo = V.indice.activo;
+  return `<h2>Viajes</h2><div class="card"><div class="guia-index">${lista.map((v) => `<a class="guia-link" href="${v.id === activo ? './' : `?viaje=${encodeURIComponent(v.id)}`}#/resumen"><span class="badge${v.id === V.id ? ' ok' : ''}">${v.id === V.id ? 'Abierto' : fmtFecha(v.inicio)}</span><span>${esc(v.nombre)}</span><small>${fmtFecha(v.inicio)} – ${fmtFecha(v.fin)} ${esc(String(v.inicio).slice(0, 4))} · ${v.dias} días${v.km ? ` · ${v.km} km` : ''}${v.id === activo ? ' · el activo' : ''}</small></a>`).join('')}</div></div>`;
+}
 async function init() {
   updateNet(); aplicarTema();
   try {
     if (window.VIAJE_DATA) {
       D.data = window.VIAJE_DATA; // version empaquetada en un solo fichero
+      V.id = window.VIAJE_ID || LEGADO;
     } else {
-      const res = await fetch('data/viaje.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      await viajeElegir();
+      const res = await fetch(rutaViaje('viaje.json'), { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status} en ${rutaViaje('viaje.json')}`);
       D.fromCache = res.headers.get('X-Viaje-Cache') === 'offline';
       D.data = await res.json();
     }
+    completar(D.data);
   } catch (err) {
     document.getElementById('view').innerHTML = `<div class="card warn"><h3>No se pudo cargar el plan</h3><p>${esc(err.message)}</p><p><small>Si abres el archivo directamente (file://), sirve la carpeta con un servidor local o usa la versión publicada.</small></p></div>`;
     return;
   }
   const f = D.data.proyecto.fechas;
   document.getElementById('brand-sub').textContent = `${fmtFecha(f.inicio)} – ${fmtFecha(f.fin)} ${f.inicio.slice(0, 4)} · ${planVersion()}`;
+  claves(); D.checks = loadChecks(); D.precios = lsGet(GASOLINA_KEY, D.precios);
+  document.title = nombreCorto();
+  const marca = document.querySelector('.brand-text strong'); if (marca) marca.textContent = nombreCorto();
   meteoLoadCache(); meteoHLoadCache(); radaresLoad(); gasolinerasLoad();
   window.addEventListener('hashchange', () => { closeMap(); if (diarioDesdeEnlace()) return; render(); });
   if (!diarioDesdeEnlace()) render();
