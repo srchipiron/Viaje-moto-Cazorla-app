@@ -18,6 +18,7 @@ Opciones:
   --corto "Pirineo"        nombre corto para la cabecera (por defecto, el nombre)
   --moto "Honda NX500"     modelo de moto;  --autonomia 380   km de autonomia orientativa
   --salida 09:30           hora de salida de cada dia
+  --max-horas 4            jornada maxima de conduccion real (principios_para_claude y reglas_globales)
   --activar                deja este viaje como el que abre la app
   --oculto                 no sale en la lista de viajes de la app (plantillas, pruebas)
   --sin-red                no geocodifica ni descarga radares y gasolineras
@@ -34,7 +35,7 @@ PRINCIPIOS = [
     'No cambiar destinos ni bases sin una razon fuerte y explicita.',
     'No añadir turismo por añadir.',
     'Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.',
-    'No proponer jornadas reales de conduccion superiores a 4h.',
+    'No proponer jornadas reales de conduccion superiores a {max_horas}h.',
     'Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.',
     'No inventar disponibilidad, horarios ni precios; verificar antes.',
     'Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan.',
@@ -76,6 +77,7 @@ def main():
     ap.add_argument('--moto', default='Honda NX500')
     ap.add_argument('--autonomia', type=int, default=380)
     ap.add_argument('--salida', default='09:30')
+    ap.add_argument('--max-horas', type=int, default=4)
     ap.add_argument('--activar', action='store_true')
     ap.add_argument('--oculto', action='store_true')
     ap.add_argument('--sin-red', action='store_true')
@@ -159,6 +161,7 @@ def main():
             'fechas': {'inicio': inicio.isoformat(), 'fin': fin_viaje.isoformat(),
                        'dias': len(itinerario), 'noches': max(0, len(itinerario) - 1)},
             'distancia_total_aprox_km': km_total,
+            'reglas_globales': {'conduccion_real_maximo': f'{a.max_horas}h'},
             'moto': {'modelo': a.moto, 'autonomia_orientativa_km': a.autonomia,
                      'regla_gasolina': 'En sierra, llenar cada vez que se baje de medio deposito.'},
         },
@@ -169,7 +172,7 @@ def main():
             'en_casa': {'nombre': 'Contacto en casa', 'telefono': None, 'local': True,
                         'nota': 'El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil.'},
         },
-        'principios_para_claude': PRINCIPIOS,
+        'principios_para_claude': [p.format(max_horas=a.max_horas) for p in PRINCIPIOS],
     }
     with open(os.path.join(carpeta, 'viaje.json'), 'w', encoding='utf-8') as f:
         f.write(json.dumps(plan, ensure_ascii=False, indent=2) + '\n')

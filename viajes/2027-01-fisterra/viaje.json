@@ -1,91 +1,262 @@
 {
   "meta": {
     "version": 1,
-    "revision": 1,
-    "actualizado": "2026-10-14",
+    "revision": 2,
+    "actualizado": "2026-10-15",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
-      "Plan cargado del fichero 'viaje-fisterra-2027.json' (2026-10-14): 12 etapas con sus waypoints, km y tiempos de Google, carreteras, alojamientos y rutas de Google Maps. Tracks aproximados con OSRM. Fecha de salida provisional: 2027-01-09"
+      "Plan cargado del fichero 'viaje-fisterra-2027.json' (2026-10-14): 12 etapas con sus waypoints, km y tiempos de Google, carreteras, alojamientos y rutas de Google Maps. Tracks aproximados con OSRM. Fecha de salida provisional: 2027-01-09",
+      "Revisión 2 (2026-10-14): plan completo de la guía con salida el sábado 16 de enero de 2027. GPX nuevos (Valhalla y OSRM sobre OpenStreetMap, con altitud y hora), horario por día en hora local (portuguesa en Portugal), guía, puntos de despiste, días de margen y planes B, alojamientos sin reservar con lo pendiente, información general (Portugal, peajes, documentación, equipo de invierno, emergencias, fuentes), equipo y listas de invierno, y gasolineras de Portugal."
     ]
   },
   "proyecto": {
-    "nombre": "Almería–Fisterra por Portugal (enero 2027)",
     "nombre_corto": "Fisterra 2027",
+    "nombre": "Almería – Fisterra por Portugal",
+    "objetivo": "12 días en Honda NX500 en enero: Cádiz, el Algarve y la costa de Portugal hasta Fisterra, y vuelta por el Douro, la N2 y el Alentejo. Sin autopistas de peaje (solo el puente 25 de Abril, 2,25 €) ni pistas, jornadas de 4 a 5 horas y media de moto y siempre de día.",
     "fechas": {
-      "inicio": "2027-01-09",
-      "fin": "2027-01-20",
+      "inicio": "2027-01-16",
+      "fin": "2027-01-27",
       "dias": 12,
-      "noches": 11,
-      "provisionales": true
+      "noches": 11
     },
-    "distancia_total_aprox_km": 3688,
+    "margen": {
+      "dias": 2,
+      "nota": "De los 15 días de vacaciones, 12 son de viaje y 2 quedan de margen sin asignar: para partir una etapa o esperar a que pase un temporal."
+    },
+    "paises": [
+      "ES",
+      "PT"
+    ],
+    "distancia_total_aprox_km": 3690,
+    "distancia_nota": "Suma de las 12 etapas según los GPX (Valhalla y OSRM sobre OpenStreetMap).",
+    "piloto": {
+      "nombre": "Javier",
+      "nivel": "Carnet A2 desde septiembre de 2026; primer viaje largo en septiembre (Cazorla, Cuenca y Maestrazgo, 1.940 km)",
+      "filosofia": [
+        "Disfrutar de la conducción y el paisaje",
+        "No demostrar nada",
+        "Terminar cada jornada con la sensación de que podría haber conducido más",
+        "Ganar experiencia progresivamente",
+        "Acortar sin remordimiento si el cuerpo, el frío o el tiempo no acompañan",
+        "En invierno cansa más el frío que los kilómetros: parar cada hora a calentar las manos"
+      ]
+    },
+    "navegacion": {
+      "pantalla": "AOOCCI D6A (Android Auto inalámbrico), cableada a la batería sin pasar por contacto: se queda encendida con la moto parada. DESENCHUFARLA cada vez que se deja la moto; con frío la batería aguanta menos.",
+      "movil": "Google Pixel 9 Pro XL en la bolsa de depósito, conectado a una powerbank de 10.000 mAh; la segunda, de reserva en la misma bolsa. Con frío las baterías se vacían antes: salir cada día al 100 %.",
+      "app": "Kurviger vía Android Auto, con los 12 GPX importados",
+      "audio": "Sena SRL3 integrado en el Shoei GT-Air 3. En Portugal el intercomunicador está en zona gris: volumen bajo.",
+      "ubicacion_compartida": "Google Maps > Compartir ubicación > hasta desactivar. En zonas sin cobertura el punto se congela: avisar en casa.",
+      "fallback": "Si la pantalla se desconecta: parar en sitio seguro, mirar el teléfono y seguir. Los enlaces de Google Maps de cada etapa están en su ficha.",
+      "sygic": "Segundo navegador, nunca a la vez que Kurviger: para llegar a una dirección si se abandona la ruta o Kurviger se cuelga.",
+      "kurviger": {
+        "fast": "Días de autovía: 1, 2 y 12, con «Evitar peajes»",
+        "fast_and_curvy": "Día 8 (Santiago–Chaves por AG-53 y A-52)",
+        "curvy": "El resto, con «Evitar autopistas» y «Evitar peajes»",
+        "extra_curvy": "Nunca",
+        "shaping_points": "Sobre la carretera, no en plazas ni centros urbanos",
+        "control": "Comparar cada ruta con el track importado: que no invente pistas ni autopistas de peaje electrónico",
+        "mapas_offline": [
+          "Almería",
+          "Granada",
+          "Málaga",
+          "Cádiz",
+          "Sevilla",
+          "Huelva",
+          "Pontevedra",
+          "A Coruña",
+          "Ourense",
+          "Portugal (todo el país)"
+        ],
+        "rutas_a_crear": 12,
+        "en_ruta": [
+          "Importar los 12 GPX (Importar → GPX) y comprobar que cada ruta sigue el track antes de salir de casa",
+          "Si te sales de la ruta: recalcular hacia la ruta, nunca hacia el destino",
+          "Día 3: permitir ferris (Tróia–Setúbal). Día 4: permitir autopista y peaje en el puente 25 de Abril",
+          "Días 8 y 9: permitir autovías (AG-53, A-52 y A24 son gratuitas)",
+          "Las idas y vueltas (Ponta da Piedade, Cabo de São Vicente, Portinho, Cabo da Roca, Nazaré, Fisterra, Ponte Maceira, Casal de Loivos) son intencionadas"
+        ]
+      }
+    },
+    "reglas_globales": {
+      "conduccion_real_objetivo": "4h-5h30",
+      "conduccion_real_maximo": "6h",
+      "superficie": "100 % asfalto",
+      "horario": "Nunca de noche: llegar al menos una hora antes de la puesta de sol (entre las 17:30 y las 18:40 según el día y el país). En el interior, con escarcha, salir a partir de las 10:00.",
+      "paradas": "Cada hora como mucho: con frío, calentar las manos y beber algo caliente",
+      "recortables_sin_cambiar_alojamiento": [
+        "Ponta da Piedade (día 2)",
+        "Boca do Inferno (día 4)",
+        "Mafra (día 4)",
+        "Foz do Arelho (día 5)",
+        "Monte de Santa Trega (día 6)",
+        "Arcade (día 7)",
+        "Ponte Maceira (día 8)",
+        "Palacio de Mateus (día 9)",
+        "Presa del Cabril (día 10)",
+        "Jabugo (día 11)",
+        "Guadix (día 12)"
+      ]
+    },
     "moto": {
       "modelo": "Honda NX500",
+      "rueda_delantera": "19 pulgadas",
+      "neumaticos": "Tubeless; kit de mechas Givi S450. Salir con más de 3 mm de dibujo",
       "autonomia_orientativa_km": 380,
-      "regla_gasolina": "En Portugal y en la costa gallega hay gasolineras de sobra; en el interior (N2, Alentejo) llenar al bajar de medio depósito. Los precios del Ministerio solo cubren España."
-    },
-    "objetivo": "12 días en enero por la costa de Portugal hasta Fisterra y vuelta por el interior (Douro, N2, Alentejo, Sierra de Aracena), durmiendo en campings con bungalow abiertos en invierno.",
-    "reglas_globales": {
-      "horario": "Enero: salir media hora después de amanecer y estar en el alojamiento antes de que anochezca. Portugal va una hora por detrás de España.",
-      "superficie": "100% asfalto",
-      "paradas": "Cada 60-90 minutos, con algo caliente: en enero el frío cansa más que los kilómetros."
+      "regla_gasolina": "Llenar cada vez que se baje de medio depósito en la Costa Vicentina, el Alentejo, Trás-os-Montes y la Costa da Morte. La gasolina es más barata en España: llenar antes de cruzar.",
+      "consejo_lluvia": "Traje de agua puesto y los Sand 5 H2O a mano en el baúl.",
+      "presiones": {
+        "delantera_bar": 2.0,
+        "trasera_bar": 2.5,
+        "delantera_psi": 29,
+        "trasera_psi": 36,
+        "en_frio": true,
+        "con_carga": "Mismos valores solo o con carga: el manual no distingue.",
+        "comprobar": "En frío, antes de arrancar, cada 2-3 días con el compresor Xiaomi. Con el frío de enero bajan: comprobarlas la primera mañana fría.",
+        "fuente": "Manual de usuario Honda NX500 2024: 200 kPa / 250 kPa (29 / 36 psi)."
+      },
+      "cadena": {
+        "producto": "Motul C2 Road",
+        "cuando": "Cada 400-600 km y SIEMPRE después de lluvia, al llegar (cadena caliente), nunca antes de salir.",
+        "dias_previstos": "Días 1 (El Puerto), 2 (Sagres), 4 (Peniche), 6 (A Guarda), 8 (Chaves), 10 (Évora) y 11 (Aracena), y cualquier noche después de lluvia.",
+        "regla_extra": "Con lluvia y sal en la carretera se seca en un día: mírala cada noche.",
+        "tension": "Juego de 25-35 mm en el punto medio del ramal inferior, sin peso encima. El valor exacto, en la pegatina del basculante."
+      },
+      "precarga_trasera": {
+        "posiciones": 5,
+        "de_serie": "2 (de fábrica)",
+        "recomendada": "4 con maletas cargadas; 5 si toca fondo",
+        "como": "Anillo escalonado del amortiguador trasero, con la llave de gancho del kit bajo el asiento.",
+        "por_que": "Con piloto y maletas, en la posición de serie el amortiguador va muy hundido: la moto entra lenta en curva y toca fondo en baches."
+      },
+      "equipaje": [
+        "SHAD SH58X (top)",
+        "SHAD SH38X izquierda",
+        "SHAD SH38X derecha",
+        "Bolsa depósito SHAD E09CL"
+      ]
     }
   },
   "itinerario": [
     {
       "dia": 1,
-      "fecha": "2027-01-09",
-      "dia_semana": "sabado",
-      "tipo": "llano",
+      "fecha": "2027-01-16",
+      "dia_semana": "sábado",
+      "tipo": "autovía",
       "origen": "Almería",
       "destino": "El Puerto de Santa María",
-      "km_aprox": 459,
-      "tiempo_real_aprox": "5h24",
+      "km_aprox": 458,
+      "tiempo_real_aprox": "5h25",
       "dificultad": 2,
       "fatiga": 4,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "perfil_kurviger": "Fast",
       "salida": "09:00",
-      "llegada_prevista": "16:09",
+      "llegada_prevista": "15:45",
+      "zona_horaria": "Europe/Madrid",
+      "paises": [
+        "ES"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "San Roque",
+          "nombre": "Estrecho (San Roque)",
           "lat": 36.21,
           "lon": -5.39
         },
         {
           "nombre": "El Puerto de Santa María",
-          "lat": 36.59,
+          "lat": 36.6,
           "lon": -6.24
         }
       ],
-      "waypoints": [
-        "Almería 04006",
-        "Motril",
-        "San Roque",
-        "Jerez de la Frontera",
-        "Camping Las Dunas (El Puerto)"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente. Primera vez del viaje.",
+        "km_acumulados": 458,
+        "desde_la_ultima": 458,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-01.gpx",
         "track": "tracks/dia-01.json",
         "vias": [
           "Motril",
-          "San Roque",
+          "San Roque (A-7 → A-381)",
           "Jerez de la Frontera"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho. En la Costa del Sol lleva puntos de forma por la A-7 de la costa (Fuengirola, Marbella, Estepona, Sabinillas) para no meterse en la AP-7 de peaje."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 337,
+            "lugar": "San Roque · A-7 → A-381",
+            "lat": 36.2079,
+            "lon": -5.386,
+            "que": "En la rotonda de San Roque deja la A-7 y coge la A-381 hacia Los Barrios y Jerez. Con «Evitar peajes» Kurviger no se mete en la AP-7."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: A-7 · A-381 · A-4. 356 km de autovía de 459.",
-        "Tiempo de conducción de Google (5h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:22) y llegada con 105 min de paradas: anochece a las 18:25 en El Puerto de Santa María, margen de 2h16.",
-        "Pasa de 4 h de conducción (5h24): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "Día de aproximación por autovía. Vas por la costa (A-7) y no por la A-92 de Granada para no subir a 1.390 m en el Puerto de la Mora. Llegas con luz para ver Cádiz por la tarde.",
+        "ver": [
+          {
+            "lugar": "Balcón de Europa (Nerja)",
+            "tipo": "mirador",
+            "que": "Mirador sobre el mar en pleno centro de Nerja, a 5 minutos de la A-7. Buen sitio para el primer café.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 36.74427,
+            "lon": -3.8754
+          },
+          {
+            "lugar": "Viaductos de la A-7 entre Motril y Nerja",
+            "tipo": "mirador",
+            "que": "La autovía va colgada sobre los acantilados de la costa granadina, con el mar a la izquierda. Se disfruta sin parar.",
+            "en_ruta": true,
+            "lat": 36.74,
+            "lon": -3.8
+          },
+          {
+            "lugar": "Alcalá de los Gazules",
+            "tipo": "pueblo",
+            "que": "Pueblo blanco en lo alto de un cerro, junto a la A-381 que cruza el Parque Natural de Los Alcornocales.",
+            "tiempo": "50 min con comida",
+            "en_ruta": true,
+            "lat": 36.46188,
+            "lon": -5.72389
+          },
+          {
+            "lugar": "Cádiz",
+            "tipo": "paseo",
+            "que": "Por la tarde, en el catamarán metropolitano desde El Puerto (unos 30 min), sin meter la moto en la ciudad: Catedral, Barrio de la Viña y La Caleta al atardecer.",
+            "tiempo": "3 h",
+            "opcional": true,
+            "lat": 36.52895,
+            "lon": -6.29532
+          }
+        ],
+        "comer": {
+          "desayuno": "En casa antes de salir.",
+          "cafe_en_ruta": "Nerja, junto al Balcón de Europa (hacia las 10:45).",
+          "donde": "Alcalá de los Gazules o una venta de la A-381, hacia las 14:05.",
+          "cena": "Cádiz: pescaíto frito y tortillitas de camarones. Si no cruzas, en El Puerto, la Ribera del Marisco.",
+          "aviso_horarios": "Sábado: en la costa hay de todo abierto; en Alcalá, las ventas de la carretera dan comidas a cualquier hora.",
+          "platos": [
+            "Pescaíto frito",
+            "Tortillitas de camarones",
+            "Atún de almadraba",
+            "Vino de Jerez"
+          ]
+        },
+        "tarde": "Cádiz en catamarán desde El Puerto: sale del muelle junto al río Guadalete y tarda unos 30 minutos. Catedral, Barrio de la Viña y La Caleta para ver el atardecer (hacia las 18:35). Vuelta en catamarán: comprueba la hora del último.",
+        "consejo": "Costa del Sol: la A-7 libre entre Málaga y Estepona tiene muchas incorporaciones y tráfico. Carril derecho y calma. En el Estrecho y la A-381, el levante empuja de lado con la moto cargada."
+      },
+      "waypoints": [
+        "Almería",
+        "Motril",
+        "Nerja",
+        "San Roque",
+        "Alcalá de los Gazules",
+        "Jerez de la Frontera",
+        "TAIGA Puerto Santa María, El Puerto de Santa María"
       ],
-      "carreteras": [
-        "A-7",
-        "A-381",
-        "A-4"
-      ],
-      "autovia_km": 356,
       "google_maps": [
         {
           "tramo": "Almería → El Puerto",
@@ -93,68 +264,223 @@
           "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
         }
       ],
+      "carreteras": [
+        "A-7",
+        "A-381",
+        "A-4"
+      ],
+      "autovia_km": 356,
+      "horario_orientativo": [
+        {
+          "hora": "09:00",
+          "lugar": "Almería",
+          "que": "Salida por la A-7 hacia Motril (no por la A-92 de Granada)",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "10:45-11:15",
+          "lugar": "Nerja · Balcón de Europa",
+          "que": "Café, estirar las piernas y llenar el depósito: con eso llegas a El Puerto",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "14:05-14:55",
+          "lugar": "Alcalá de los Gazules",
+          "que": "Comida y descanso junto a la A-381",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "15:45",
+          "lugar": "TAIGA Puerto Santa María",
+          "que": "Llegada, bungalow y ducha · anochece a las 18:34",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "17:00",
+          "lugar": "Cádiz",
+          "que": "Catamarán desde El Puerto (unos 30 min): Catedral, Barrio de la Viña y La Caleta al atardecer (18:35)",
+          "zona_horaria": "Europe/Madrid"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 5h25 de moto y 80 min de paradas. Llegada hacia las 15:45, 169 min antes de que anochezca (18:34).",
+        "En Kurviger: perfil Fast, evitar peajes.",
+        "Carreteras: A-7 por la costa (Motril, Málaga, Marbella, Estepona) → A-381 Los Barrios–Jerez, que cruza Los Alcornocales → A-4 hasta El Puerto. Activa «Evitar peajes» para no meterte en la AP-7.",
+        "Vas por la costa y no por la A-92 de Granada para no subir a 1.390 m en el Puerto de la Mora.",
+        "Lo mejor: los viaductos de la A-7 sobre los acantilados entre Motril y Nerja, y la A-381 entre alcornocales, casi sin tráfico.",
+        "Gasolina: 36 km sin gasolinera entre Los Barrios y Alcalá de los Gazules. Llenando en Nerja llegas sobrado.",
+        "Tapones rojos (Race) en la autovía."
+      ],
       "alojamiento": {
         "nombre": "TAIGA Puerto Santa María (antes Camping Playa Las Dunas)",
-        "direccion": "El Puerto de Santa María, a 1 km del centro",
+        "direccion": "El Puerto de Santa María (Cádiz), a 1 km del centro",
+        "lat": 36.58735,
+        "lon": -6.24086,
         "telefono": "+34 951 204 531",
-        "estado": "Abierto todo el año (ACSI 2026, PiNCAMP)",
         "email": "hola.puerto@taigaresorts.com",
+        "estado": "Sin reservar · abierto todo el año",
+        "tipo": "Bungalow de 2 a 5 plazas con aire acondicionado; un portal indica calefacción",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
+          "Reservar bungalow",
+          "Pedir que tenga calefacción",
+          "Hora de llegada y recepción"
+        ],
+        "plan_b": "Camping & Bungalows Roche (Conil, N-340 km 19,5), abierto todo el año · +34 956 442 216"
       }
     },
     {
       "dia": 2,
-      "fecha": "2027-01-10",
+      "fecha": "2027-01-17",
       "dia_semana": "domingo",
-      "tipo": "llano",
+      "tipo": "autovía",
       "origen": "El Puerto de Santa María",
       "destino": "Sagres",
-      "km_aprox": 440,
+      "km_aprox": 439,
       "tiempo_real_aprox": "4h35",
-      "dificultad": 1,
+      "dificultad": 2,
       "fatiga": 4,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:15",
-      "llegada_prevista": "14:35",
+      "perfil_kurviger": "Fast",
+      "salida": "09:30 (hora española)",
+      "llegada_prevista": "15:20 (hora portuguesa)",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "ES",
+        "PT"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Sagres",
-          "lat": 37.01,
-          "lon": -8.94
+          "nombre": "Ayamonte",
+          "lat": 37.22,
+          "lon": -7.41
         },
         {
           "nombre": "Sagres",
-          "lat": 37.02,
-          "lon": -8.95
+          "lat": 37.01,
+          "lon": -8.94,
+          "zona_horaria": "Europe/Lisbon"
         }
       ],
-      "waypoints": [
-        "Camping Las Dunas (El Puerto)",
-        "Lagos",
-        "Ponta da Piedade",
-        "Sagres",
-        "Cabo de São Vicente",
-        "Orbitur Sagres"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente.",
+        "km_acumulados": 897,
+        "desde_la_ultima": 439,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-02.gpx",
         "track": "tracks/dia-02.json",
         "vias": [
           "Lagos",
-          "Ponta da Piedade",
+          "Ponta da Piedade (ida y vuelta)",
           "Sagres",
-          "Cabo de São Vicente"
+          "Cabo de São Vicente (ida y vuelta)"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 255,
+            "lugar": "Puente del Guadiana",
+            "lat": 37.2373,
+            "lon": -7.4337,
+            "que": "Entras en Portugal: atrasa el reloj una hora. La A22 del Algarve es gratuita desde el 1 de enero de 2025."
+          },
+          {
+            "km": 393,
+            "lugar": "Ponta da Piedade",
+            "lat": 37.0811,
+            "lon": -8.6696,
+            "que": "Ida y vuelta desde Lagos hasta el faro: cuando Kurviger diga «de vuelta», es lo previsto."
+          },
+          {
+            "km": 434,
+            "lugar": "Cabo de São Vicente",
+            "lat": 37.0236,
+            "lon": -8.9951,
+            "que": "Callejón: entras y sales por la misma N268. Después, al camping."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: A-4 · A-49 · A22 · N125 · N268. 372 km de autovía de 440.",
-        "Tiempo de conducción de Google (4h35); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:37) y llegada con 105 min de paradas: anochece a las 17:35 en Sagres, margen de 3h00.",
-        "Cambio de hora: Portugal va una hora por detrás de España. Al entrar en Portugal se gana una hora (horas de llegada en hora portuguesa).",
-        "Pasa de 4 h de conducción (4h35): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "Otro día rápido hasta Portugal. La A22 del Algarve ya no tiene peaje desde enero de 2025. Al cruzar el Guadiana atrasa el reloj una hora. Acabas viendo el atardecer en el Cabo de São Vicente, la esquina suroeste de Europa.",
+        "ver": [
+          {
+            "lugar": "Ayamonte",
+            "tipo": "cafe",
+            "que": "Última parada en España: gasolina barata (Q8 junto a la A-49, abierta 24 h) y café antes del puente del Guadiana.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 37.23983,
+            "lon": -7.38186
+          },
+          {
+            "lugar": "Lagos",
+            "tipo": "pueblo",
+            "que": "Ciudad amurallada del Algarve con casco viejo animado incluso en invierno. Buen sitio para comer.",
+            "tiempo": "1 h",
+            "en_ruta": true,
+            "lat": 37.1028,
+            "lon": -8.67287
+          },
+          {
+            "lugar": "Ponta da Piedade",
+            "tipo": "mirador",
+            "que": "Arcos, columnas y grutas de roca dorada desde el mirador del faro. Lo mejor del Algarve en poco tiempo.",
+            "tiempo": "30 min",
+            "en_ruta": true,
+            "lat": 37.0813,
+            "lon": -8.6685
+          },
+          {
+            "lugar": "Fortaleza de Sagres",
+            "tipo": "monumento",
+            "que": "La «escuela» de Enrique el Navegante, sobre la punta de Sagres. El mejor sitio para el atardecer: a 2 km del camping.",
+            "tiempo": "45 min",
+            "opcional": true,
+            "lat": 37.00061,
+            "lon": -8.9482
+          },
+          {
+            "lugar": "Cabo de São Vicente",
+            "tipo": "mirador",
+            "que": "Faro y acantilados de 70 m en la esquina suroeste de Europa. Pasas a primera hora de la tarde; el sol se pone a las 17:44.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 37.02265,
+            "lon": -8.99666
+          }
+        ],
+        "comer": {
+          "desayuno": "En el camping o en El Puerto antes de salir.",
+          "cafe_en_ruta": "Ayamonte, con la última gasolina barata (hacia las 11:55, hora española).",
+          "donde": "Lagos, hacia las 12:40 (hora portuguesa). Domingo: en el centro hay sitios abiertos.",
+          "cena": "Sagres: percebes de la Costa Vicentina o cataplana. En el puerto de la Baleeira hay sitios sencillos de pescado.",
+          "aviso_horarios": "En Portugal se come antes: de 12:30 a 15:00. Domingo de invierno en Sagres: puede haber cosas cerradas.",
+          "platos": [
+            "Cataplana",
+            "Percebes",
+            "Sardinas y pescado a la brasa",
+            "Pastel de nata"
+          ]
+        },
+        "tarde": "Atardecer (17:44) desde la Fortaleza de Sagres, a 2 km del camping. Cena de pescado en Sagres.",
+        "consejo": "Viento fuerte en Sagres y en el cabo: aparca la moto de cara al viento y con una marcha metida. El cabo es un callejón: entras y sales por la misma carretera."
+      },
+      "waypoints": [
+        "TAIGA Puerto Santa María, El Puerto de Santa María",
+        "Ayamonte",
+        "Lagos, Portugal",
+        "Ponta da Piedade, Lagos",
+        "Sagres, Portugal",
+        "Cabo de São Vicente",
+        "Orbitur Sagres"
+      ],
+      "google_maps": [
+        {
+          "tramo": "El Puerto → Sagres",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.58735,-6.24086&destination=37.02444,-8.94618&travelmode=driving&waypoints=37.21580,-7.40602%7C37.10280,-8.67287%7C37.08130,-8.66850%7C37.00783,-8.94192%7C37.02265,-8.99666",
+          "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
+        }
       ],
       "carreteras": [
         "A-4",
@@ -164,66 +490,119 @@
         "N268"
       ],
       "autovia_km": 372,
-      "google_maps": [
+      "horario_orientativo": [
         {
-          "tramo": "El Puerto → Sagres",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=36.58735,-6.24086&destination=37.02444,-8.94618&travelmode=driving&waypoints=37.21580,-7.40602%7C37.10280,-8.67287%7C37.08130,-8.66850%7C37.00783,-8.94192%7C37.02265,-8.99666",
-          "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
+          "hora": "09:30",
+          "lugar": "El Puerto de Santa María",
+          "que": "Salida hacia Sevilla por la A-4",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "11:55-12:15",
+          "lugar": "Ayamonte (km 251)",
+          "que": "Gasolina: la última barata (en Portugal, unos 0,35 €/l más) y café",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "11:20",
+          "lugar": "Puente del Guadiana",
+          "que": "Portugal: atrasa el reloj una hora (las 12:20 pasan a ser las 11:20)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:40-13:40",
+          "lugar": "Lagos",
+          "que": "Comida en el centro",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "13:40-14:10",
+          "lugar": "Ponta da Piedade",
+          "que": "Mirador del faro: arcos y grutas",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:45",
+          "lugar": "Sagres",
+          "que": "De paso: la Fortaleza está a 1,5 km al sur del pueblo",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:50-15:15",
+          "lugar": "Cabo de São Vicente",
+          "que": "Faro y acantilados, la esquina suroeste de Europa",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:20",
+          "lugar": "Orbitur Sagres",
+          "que": "Llegada y mobile home · anochece a las 17:44",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "17:00",
+          "lugar": "Fortaleza de Sagres",
+          "que": "Atardecer a las 17:44, a 2 km del camping. Al cabo (6 km) solo si vuelves en cuanto se ponga el sol: nada de carretera de noche",
+          "zona_horaria": "Europe/Lisbon"
         }
+      ],
+      "notas": [
+        "Horario orientativo: 4h35 de moto y 135 min de paradas. Llegada hacia las 15:20, 144 min antes de que anochezca (17:44, hora portuguesa).",
+        "En Kurviger: perfil Fast, evitar peajes.",
+        "Carreteras: AP-4/A-4 hasta Sevilla → SE-30/SE-40 → A-49 hasta el puente internacional del Guadiana → A22 (gratis) hasta Lagos → N125 y N268 hasta Sagres y el cabo.",
+        "Gasolina: llena en Ayamonte. En Portugal cuesta unos 0,35 €/l más.",
+        "Al cruzar el Guadiana atrasa el reloj una hora. Las horas del horario después del puente son portuguesas.",
+        "Tapones rojos (Race) en la autovía."
       ],
       "alojamiento": {
         "nombre": "Orbitur Sagres",
         "direccion": "Cerro das Moitas, a 2 km de Sagres",
+        "lat": 37.02444,
+        "lon": -8.94618,
         "telefono": "+351 282 624 371",
-        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "email": "sagres@orbitur.pt",
+        "estado": "Sin reservar · abierto todo el año",
+        "tipo": "Mobile home con calefacción",
+        "precio_referencia_eur_noche": 50,
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      },
-      "zona_horaria": "Europe/Lisbon"
+          "Reservar mobile home con calefacción",
+          "Hora de cierre de la recepción (domingo)"
+        ],
+        "plan_b": "Orbitur Valverde (Praia da Luz, Lagos), abierto todo el año · +351 282 789 211"
+      }
     },
     {
       "dia": 3,
-      "fecha": "2027-01-11",
+      "fecha": "2027-01-18",
       "dia_semana": "lunes",
-      "tipo": "llano",
+      "tipo": "costa",
       "origen": "Sagres",
       "destino": "Setúbal",
-      "km_aprox": 223,
+      "km_aprox": 231,
       "tiempo_real_aprox": "4h05",
-      "dificultad": 1,
+      "dificultad": 3,
       "fatiga": 3,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "perfil_kurviger": "Curvy",
       "salida": "09:00",
-      "llegada_prevista": "14:30",
+      "llegada_prevista": "15:30",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "PT"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Porto Covo",
-          "lat": 37.85,
-          "lon": -8.79
+          "nombre": "Aljezur",
+          "lat": 37.32,
+          "lon": -8.8,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
           "nombre": "Setúbal",
-          "lat": 38.49,
-          "lon": -8.93
+          "lat": 38.52,
+          "lon": -8.89,
+          "zona_horaria": "Europe/Lisbon"
         }
-      ],
-      "waypoints": [
-        "Orbitur Sagres",
-        "Vila do Bispo",
-        "Carrapateira",
-        "Aljezur",
-        "Odeceixe",
-        "Vila Nova de Milfontes",
-        "Porto Covo",
-        "Sines",
-        "Melides",
-        "Comporta",
-        "Tróia (cais do ferry)",
-        "Setúbal (cais do ferry)",
-        "EcoParque do Outão"
       ],
       "gpx": {
         "archivo": "gpx/dia-03.gpx",
@@ -238,26 +617,124 @@
           "Sines",
           "Melides",
           "Comporta",
-          "Tróia (cais do ferry)",
-          "Setúbal (cais do ferry)"
+          "Tróia · muelle del ferry",
+          "Setúbal · muelle del ferry"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 217,
+            "lugar": "Tróia · ferry a Setúbal",
+            "lat": 38.4673,
+            "lon": -8.8631,
+            "que": "La ruta cruza el Sado en barco. En Kurviger, permite los ferris en este día: si no, te manda a rodear el estuario por Alcácer do Sal."
+          },
+          {
+            "km": 224,
+            "lugar": "Setúbal · desembarque",
+            "lat": 38.5214,
+            "lon": -8.8852,
+            "que": "Al bajar del ferry, sigue hacia el oeste por la costa (N10-4) hasta el camping de Outão."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N268 · N120 · N393 · N261 · N253-1 · Ferry. 0 km de autovía de 223.",
-        "Tiempo de conducción de Google (4h05); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:48) y llegada con 85 min de paradas: anochece a las 17:32 en Setúbal, margen de 3h02.",
-        "Pasa de 4 h de conducción (4h05): por encima del límite que se marcó en el viaje de 2026.",
-        "Ferry Tróia–Setúbal al final del día (unos 25 min de travesía según OSRM): comprobar los horarios de invierno antes de salir de Sagres para no llegar con el último ya ido."
+      "guia": {
+        "resumen": "Primer día de verdad sin autovía: acantilados, brezo y pueblos blancos del Alentejo litoral. Terminas cruzando el estuario del Sado en ferry. Desde el barco a veces se ven los delfines que viven en el río.",
+        "ver": [
+          {
+            "lugar": "Praia da Bordeira (Carrapateira)",
+            "tipo": "mirador",
+            "que": "Playa enorme con dunas, vista desde la carretera de los miradores junto a Carrapateira.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 37.19944,
+            "lon": -8.90039
+          },
+          {
+            "lugar": "Aljezur",
+            "tipo": "pueblo",
+            "que": "Pueblo blanco con castillo árabe en lo alto. Café en la parte baja.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 37.31627,
+            "lon": -8.80555
+          },
+          {
+            "lugar": "Odeceixe",
+            "tipo": "mirador",
+            "que": "Frontera entre el Algarve y el Alentejo; mirador sobre la desembocadura del Seixe hacia la playa.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 37.43323,
+            "lon": -8.7702
+          },
+          {
+            "lugar": "Vila Nova de Milfontes",
+            "tipo": "pueblo",
+            "que": "Desembocadura del Mira con el fuerte de São Clemente.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 37.72274,
+            "lon": -8.78288
+          },
+          {
+            "lugar": "Porto Covo",
+            "tipo": "pueblo",
+            "que": "Pueblo de pescadores con plaza blanca y azul, y la isla del Pessegueiro con su fuerte enfrente.",
+            "tiempo": "1 h con comida",
+            "en_ruta": true,
+            "lat": 37.85173,
+            "lon": -8.79184
+          },
+          {
+            "lugar": "Comporta",
+            "tipo": "naturaleza",
+            "que": "Arrozales, cigüeñas y pinares entre la carretera y el estuario del Sado.",
+            "en_ruta": true,
+            "lat": 38.38038,
+            "lon": -8.786
+          },
+          {
+            "lugar": "Ferry Tróia–Setúbal",
+            "tipo": "paseo",
+            "que": "Unos 25 minutos por el estuario del Sado. A veces se ven los delfines que viven en el río.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 38.46733,
+            "lon": -8.86307
+          }
+        ],
+        "comer": {
+          "desayuno": "En Sagres antes de salir o café en Vila do Bispo con la gasolina.",
+          "cafe_en_ruta": "Aljezur (hacia las 10:05).",
+          "donde": "Porto Covo, hacia las 12:15: arroz de marisco o pescado a la brasa. Si quieres comer antes, Vila Nova de Milfontes (hacia las 11:40).",
+          "cena": "Setúbal: choco frito, el plato de la ciudad.",
+          "aviso_horarios": "Lunes de invierno en la costa: algunos restaurantes cierran. Milfontes tiene más opciones que Porto Covo.",
+          "platos": [
+            "Arroz de marisco",
+            "Pescado a la brasa",
+            "Choco frito (Setúbal)",
+            "Moscatel de Setúbal"
+          ]
+        },
+        "tarde": "Setúbal: el centro y la Avenida Luísa Todi. Cena de choco frito.",
+        "consejo": "Carreteras estrechas y con viento en la Costa Vicentina, y arena en las curvas cerca de las playas. Si pierdes el ferry de las 15:00, el siguiente sale a las 16:00 y sigues llegando con luz."
+      },
+      "waypoints": [
+        "Orbitur Sagres",
+        "Vila do Bispo",
+        "Carrapateira",
+        "Aljezur",
+        "Odeceixe",
+        "Vila Nova de Milfontes",
+        "Porto Covo",
+        "Sines",
+        "Melides",
+        "Comporta",
+        "Atlantic Ferries Tróia",
+        "Setúbal",
+        "EcoParque do Outão"
       ],
-      "carreteras": [
-        "N268",
-        "N120",
-        "N393",
-        "N261",
-        "N253-1",
-        "Ferry"
-      ],
-      "autovia_km": 0,
       "google_maps": [
         {
           "tramo": "Sagres → muelle de Tróia",
@@ -270,97 +747,336 @@
           "opciones": ""
         }
       ],
+      "carreteras": [
+        "N268",
+        "N120",
+        "N393",
+        "N261",
+        "N253-1",
+        "Ferry"
+      ],
+      "autovia_km": 0,
+      "horario_orientativo": [
+        {
+          "hora": "09:00",
+          "lugar": "Orbitur Sagres",
+          "que": "Salida por la N268",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "09:15",
+          "lugar": "Vila do Bispo",
+          "que": "Llenar el depósito: luego 35 km sin gasolinera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "09:40",
+          "lugar": "Carrapateira · Bordeira",
+          "que": "Mirador sobre la playa, junto a la carretera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:05-10:30",
+          "lugar": "Aljezur",
+          "que": "Café en el pueblo; el castillo, arriba (opcional)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:50",
+          "lugar": "Odeceixe",
+          "que": "Frontera entre el Algarve y el Alentejo",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:40",
+          "lugar": "Vila Nova de Milfontes",
+          "que": "Gasolina y vista de la desembocadura del Mira",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:15-13:10",
+          "lugar": "Porto Covo",
+          "que": "Comida: arroz de marisco o pescado",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:35",
+          "lugar": "Comporta",
+          "que": "Arrozales y cigüeñas (de paso)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:50-15:00",
+          "lugar": "Tróia · ferry",
+          "que": "Billete en la taquilla (moto con piloto, 12,50 €) y ferry de las 15:00 (espera unos 10 min)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:25",
+          "lugar": "Setúbal",
+          "que": "Desembarque",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:30",
+          "lugar": "EcoParque do Outão",
+          "que": "Llegada · anochece a las 17:42",
+          "zona_horaria": "Europe/Lisbon"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 4h05 de moto más el ferry y 120 min de paradas. Llegada hacia las 15:30, 132 min antes de que anochezca (17:42).",
+        "En Kurviger: perfil Curvy, evitar autopistas y peajes, ferris permitidos.",
+        "Carreteras: N268 (Vila do Bispo–Aljezur) → N120 (Odeceixe) → N393 a Vila Nova de Milfontes → carretera costera a Porto Covo → Sines → N261 por los pinares (Melides, Comporta) → N253-1 hasta el muelle de Tróia → ferry Atlantic Ferries a Setúbal (unos 25 min).",
+        "Lo mejor: N268 entre Vila do Bispo y Aljezur; el mirador sobre el Seixe en Odeceixe; la costera Milfontes–Porto Covo; el ferry por el Sado.",
+        "Ferry en invierno (horario 2026): sale de Tróia cada hora en punto de 08:00 a 20:00. Moto con piloto, 12,50 €, billete en la taquilla.",
+        "Pocas gasolineras: llena en Vila do Bispo y otra vez en Milfontes o Sines.",
+        "El tiempo del GPX incluye los 25 minutos del ferry; no la espera en el muelle."
+      ],
       "alojamiento": {
         "nombre": "EcoParque do Outão",
-        "direccion": "EN10-4 km 4, a 3 km de Setúbal",
+        "direccion": "EN10-4 km 4, Outão, a 3 km de Setúbal",
+        "lat": 38.493,
+        "lon": -8.929,
         "telefono": "+351 265 238 318",
-        "estado": "Abierto en enero (cierra todo febrero)",
         "email": "parquecampismooutao@gmail.com",
+        "estado": "Llamar: abierto en enero (cierra en febrero), bungalows sin confirmar",
+        "tipo": "Pequeños bungalows (sin confirmar que los alquilen en enero ni que tengan calefacción)",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      },
-      "zona_horaria": "Europe/Lisbon"
+          "Llamar: ¿alquilan bungalow en enero?",
+          "¿Tiene calefacción?",
+          "Si no, reservar el plan B"
+        ],
+        "plan_b": "Casa do Largo, albergue municipal en el centro de Setúbal · +351 265 421 080 (o el camping de Picheleiros, en Azeitão · +351 212 189 056)"
+      }
     },
     {
       "dia": 4,
-      "fecha": "2027-01-12",
+      "fecha": "2027-01-19",
       "dia_semana": "martes",
-      "tipo": "llano",
+      "tipo": "costa",
       "origen": "Setúbal",
       "destino": "Peniche",
-      "km_aprox": 224,
-      "tiempo_real_aprox": "4h22",
-      "dificultad": 2,
-      "fatiga": 3,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "km_aprox": 223,
+      "tiempo_real_aprox": "4h20",
+      "dificultad": 4,
+      "fatiga": 4,
+      "perfil_kurviger": "Curvy",
       "salida": "09:00",
-      "llegada_prevista": "14:47",
+      "llegada_prevista": "16:25",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "PT"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Praia do Guincho",
-          "lat": 38.73,
-          "lon": -9.47
+          "nombre": "Cabo da Roca",
+          "lat": 38.78,
+          "lon": -9.5,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
           "nombre": "Peniche",
-          "lat": 39.37,
-          "lon": -9.39
+          "lat": 39.36,
+          "lon": -9.38,
+          "zona_horaria": "Europe/Lisbon"
         }
       ],
-      "waypoints": [
-        "EcoParque do Outão",
-        "Portinho da Arrábida",
-        "Vila Nogueira de Azeitão",
-        "Fogueteiro",
-        "Lisboa (Alcântara)",
-        "Torre de Belém",
-        "Cascais",
-        "Praia do Guincho",
-        "Cabo da Roca",
-        "Colares",
-        "Sintra",
-        "Mafra",
-        "Ericeira",
-        "Lourinhã",
-        "PenichePraia"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente.",
+        "km_acumulados": 1351,
+        "desde_la_ultima": 454,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-04.gpx",
         "track": "tracks/dia-04.json",
         "vias": [
-          "Portinho da Arrábida",
-          "Vila Nogueira de Azeitão",
+          "Portinho da Arrábida (ida y vuelta)",
+          "Azeitão",
           "Fogueteiro",
           "Lisboa (Alcântara)",
           "Torre de Belém",
           "Cascais",
           "Praia do Guincho",
-          "Cabo da Roca",
+          "Cabo da Roca (ida y vuelta)",
           "Colares",
           "Sintra",
           "Mafra",
           "Ericeira",
           "Lourinhã"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 18,
+            "lugar": "Portinho da Arrábida",
+            "lat": 38.4757,
+            "lon": -8.9872,
+            "que": "Bajada a la cala y vuelta a subir por la misma carretera: es lo previsto."
+          },
+          {
+            "km": 58,
+            "lugar": "Puente 25 de Abril",
+            "lat": 38.6655,
+            "lon": -9.1745,
+            "que": "Autopista con peaje (2,25 € hacia Lisboa, cabina manual, efectivo o tarjeta). En Kurviger, permite autopistas y peajes en este tramo o te manda por Vila Franca de Xira. EasyToll y Tollcard no valen aquí."
+          },
+          {
+            "km": 112,
+            "lugar": "Cabo da Roca",
+            "lat": 38.7817,
+            "lon": -9.4953,
+            "que": "Ida y vuelta al faro: entras y sales por la misma carretera."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N379-1 · A2 · N6 · N247 · N9. 14 km de autovía de 224.",
-        "Tiempo de conducción de Google (4h22); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 85 min de paradas: anochece a las 17:33 en Peniche, margen de 2h46.",
-        "Pasa de 4 h de conducción (4h22): por encima del límite que se marcó en el viaje de 2026.",
-        "El Puente 25 de Abril es autopista con peaje (se paga entrando en Lisboa): no se puede evitar en esta ruta."
+      "guia": {
+        "resumen": "El día más variado del viaje. Sierra de la Arrábida, el puente 25 de Abril con Lisboa delante, la Marginal junto al Tajo, el Cabo da Roca (el punto más occidental de la Europa continental) y la sierra de Sintra.",
+        "ver": [
+          {
+            "lugar": "Portinho da Arrábida",
+            "tipo": "naturaleza",
+            "que": "Cala de agua turquesa y fuerte al pie de la sierra. Se baja y se vuelve a subir por la misma carretera.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 38.47535,
+            "lon": -8.98436
+          },
+          {
+            "lugar": "Cresta de la Arrábida (N379-1)",
+            "tipo": "mirador",
+            "que": "La carretera va por la cresta de la sierra con el Sado y Tróia abajo. Hay apartaderos para la foto.",
+            "tiempo": "5 min",
+            "en_ruta": true,
+            "lat": 38.484,
+            "lon": -8.9884
+          },
+          {
+            "lugar": "Azeitão",
+            "tipo": "cafe",
+            "que": "Tortas de Azeitão y queso de Azeitão.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 38.51868,
+            "lon": -9.01386
+          },
+          {
+            "lugar": "Mosteiro dos Jerónimos",
+            "tipo": "monumento",
+            "que": "Manuelino, Patrimonio Mundial. Por fuera de paso; por dentro pide más de una hora.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 38.69776,
+            "lon": -9.20662
+          },
+          {
+            "lugar": "Pastéis de Belém",
+            "tipo": "cafe",
+            "que": "Pastel de nata en la casa que los hace desde 1837, junto a los Jerónimos.",
+            "tiempo": "30 min",
+            "en_ruta": true,
+            "lat": 38.69748,
+            "lon": -9.20332
+          },
+          {
+            "lugar": "Torre de Belém",
+            "tipo": "monumento",
+            "que": "Torre manuelina sobre el Tajo, junto a la Marginal.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 38.69159,
+            "lon": -9.21593
+          },
+          {
+            "lugar": "Boca do Inferno (Cascais)",
+            "tipo": "mirador",
+            "que": "Acantilado con un arco donde rompe el mar, a pie de carretera.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 38.69112,
+            "lon": -9.43082
+          },
+          {
+            "lugar": "Cabo da Roca",
+            "tipo": "mirador",
+            "que": "«Onde a terra se acaba e o mar começa»: el punto más occidental de la Europa continental. Rachas fuertes.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 38.7819,
+            "lon": -9.49732
+          },
+          {
+            "lugar": "Sintra",
+            "tipo": "monumento",
+            "que": "Palacio Nacional en el centro. La Pena y la Regaleira piden medio día: déjalas para un día de margen.",
+            "tiempo": "1 h con comida",
+            "en_ruta": true,
+            "lat": 38.79777,
+            "lon": -9.39083
+          },
+          {
+            "lugar": "Palacio Nacional de Mafra",
+            "tipo": "monumento",
+            "que": "Palacio-convento barroco, Patrimonio Mundial.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 38.93689,
+            "lon": -9.32577
+          },
+          {
+            "lugar": "Ericeira",
+            "tipo": "pueblo",
+            "que": "Pueblo de pescadores y surf.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 38.96324,
+            "lon": -9.41708
+          }
+        ],
+        "comer": {
+          "desayuno": "Café en Azeitão (hacia las 09:50) o pastel de nata en Belém.",
+          "cafe_en_ruta": "Pastéis de Belém (hacia las 10:45).",
+          "donde": "Sintra, hacia las 13:10.",
+          "cena": "Peniche: caldeirada o pescado en el puerto.",
+          "sitios": [
+            {
+              "nombre": "Pastéis de Belém",
+              "donde": "Rua de Belém 84-92, Lisboa",
+              "que": "Pastel de nata desde 1837. Abre todos los días; a primera hora hay menos cola."
+            },
+            {
+              "nombre": "Piriquita",
+              "donde": "Rua das Padarias 1, Sintra",
+              "que": "Travesseiros y queijadas desde 1862."
+            }
+          ],
+          "platos": [
+            "Pastel de nata",
+            "Tortas de Azeitão",
+            "Travesseiros y queijadas de Sintra",
+            "Caldeirada de Peniche"
+          ]
+        },
+        "tarde": "Peniche: la fortaleza y el puerto. Si te sobra un día de margen, parte esta etapa en dos y duerme en Lisboa.",
+        "consejo": "Puente 25 de Abril: los carriles centrales son de rejilla metálica y la moto «baila»; ve por el de la derecha. En Belém, Cascais y Sintra hay adoquín y raíles de tranvía, muy resbaladizos mojados."
+      },
+      "waypoints": [
+        "EcoParque do Outão",
+        "Portinho da Arrábida",
+        "Vila Nogueira de Azeitão",
+        "Ponte 25 de Abril",
+        "Torre de Belém",
+        "Cascais",
+        "Praia do Guincho",
+        "Cabo da Roca",
+        "Sintra",
+        "Mafra",
+        "Ericeira",
+        "Lourinhã",
+        "PenichePraia"
       ],
-      "carreteras": [
-        "N379-1",
-        "A2",
-        "N6",
-        "N247",
-        "N9",
-        "N247"
-      ],
-      "autovia_km": 14,
       "google_maps": [
         {
           "tramo": "Setúbal → Fogueteiro (Arrábida)",
@@ -378,58 +1094,161 @@
           "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
         }
       ],
+      "carreteras": [
+        "N379-1",
+        "A2",
+        "N6",
+        "N247",
+        "N9",
+        "N247"
+      ],
+      "autovia_km": 14,
+      "horario_orientativo": [
+        {
+          "hora": "09:00",
+          "lugar": "EcoParque do Outão",
+          "que": "Salida hacia la Arrábida por la N379-1",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "09:20",
+          "lugar": "Portinho da Arrábida",
+          "que": "Bajada a la cala, foto y vuelta a subir",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "09:50-10:10",
+          "lugar": "Azeitão",
+          "que": "Café con torta de Azeitão",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:35",
+          "lugar": "Puente 25 de Abril",
+          "que": "Peaje de 2,25 € en cabina manual; carril derecho del puente",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:45-11:25",
+          "lugar": "Belém",
+          "que": "Jerónimos por fuera, Torre de Belém y pastel de nata en Pastéis de Belém",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:55",
+          "lugar": "Boca do Inferno",
+          "que": "Acantilado junto a la carretera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:25-12:50",
+          "lugar": "Cabo da Roca",
+          "que": "El punto más occidental de la Europa continental",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "13:10-14:10",
+          "lugar": "Sintra",
+          "que": "Comida; Palacio Nacional por fuera y travesseiros en Piriquita",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:35",
+          "lugar": "Mafra",
+          "que": "Palacio-convento, foto desde la explanada",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:00-15:15",
+          "lugar": "Ericeira",
+          "que": "Café junto al mar",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:25",
+          "lugar": "PenichePraia",
+          "que": "Llegada · anochece a las 17:43",
+          "zona_horaria": "Europe/Lisbon"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 4h20 de moto y 185 min de paradas. Llegada hacia las 16:25, 78 min antes de que anochezca (17:43).",
+        "En Kurviger: perfil Curvy, evitar autopistas, salvo el puente 25 de Abril.",
+        "Carreteras: N379-1 por la cresta de la Arrábida, con bajada a Portinho → Azeitão → N10 → A2 y puente 25 de Abril → Belém → N6 Marginal hasta Cascais → N247 por Guincho, Cabo da Roca y Colares → Sintra → N9 Mafra → Ericeira → N247 hasta Peniche.",
+        "Haz Belém antes de las 11:00: hay menos tráfico.",
+        "Con viento, en el puente bajan el límite a 60 km/h. Rachas fuertes en Guincho y Cabo da Roca.",
+        "Gasolina: 32 km sin gasolinera desde el camping hasta Azeitão y 27 km entre Cascais y Colares."
+      ],
+      "opciones": [
+        {
+          "titulo": "¿Día de margen en Lisboa?",
+          "estado": "Por decidir",
+          "cuando": "Decidir en Setúbal la víspera, con la previsión.",
+          "alternativas": [
+            {
+              "nombre": "Seguir el plan",
+              "coste": "0 días",
+              "por_que": "Belém de paso y Lisboa para otro viaje.",
+              "como": "Ruta del día tal cual."
+            },
+            {
+              "nombre": "Partir el día en dos",
+              "coste": "1 día de margen",
+              "por_que": "Setúbal → Lisboa (65 km, 1 h 25 min) y tarde en Lisboa; al día siguiente, Lisboa → Peniche (158 km, 3 h 10 min). Alfama, Baixa y Chiado en transporte público.",
+              "como": "Lisboa Camping & Bungalows (Monsanto, abierto todo el año, +351 217 628 200)."
+            }
+          ]
+        }
+      ],
       "alojamiento": {
         "nombre": "PenichePraia",
         "direccion": "Estrada Marginal Norte, Peniche",
+        "lat": 39.36874,
+        "lon": -9.39213,
         "telefono": "+351 262 783 460",
-        "estado": "Abierto todo el año (PiNCAMP 2026, Alan Rogers)",
         "email": "geral@penichepraia.pt",
+        "estado": "Sin reservar · abierto todo el año",
+        "tipo": "Bungalow o habitación con calefacción",
+        "precio_referencia_eur_noche": 47,
+        "parking": "Descubierto",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      },
-      "zona_horaria": "Europe/Lisbon"
+          "Reservar bungalow con calefacción"
+        ],
+        "plan_b": "Orbitur Foz do Arelho (laguna de Óbidos), abierto todo el año"
+      }
     },
     {
       "dia": 5,
-      "fecha": "2027-01-13",
-      "dia_semana": "miercoles",
-      "tipo": "llano",
+      "fecha": "2027-01-20",
+      "dia_semana": "miércoles",
+      "tipo": "costa",
       "origen": "Peniche",
       "destino": "Aveiro (Praia da Barra)",
-      "km_aprox": 217,
-      "tiempo_real_aprox": "4h24",
-      "dificultad": 1,
+      "km_aprox": 216,
+      "tiempo_real_aprox": "4h25",
+      "dificultad": 2,
       "fatiga": 3,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "perfil_kurviger": "Curvy",
       "salida": "09:00",
-      "llegada_prevista": "14:49",
+      "llegada_prevista": "16:20",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "PT"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "São Pedro de Moel",
-          "lat": 39.76,
-          "lon": -9.03
+          "nombre": "Nazaré",
+          "lat": 39.6,
+          "lon": -9.07,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
-          "nombre": "Aveiro (Praia da Barra)",
+          "nombre": "Aveiro (Barra)",
           "lat": 40.64,
-          "lon": -8.74
+          "lon": -8.74,
+          "zona_horaria": "Europe/Lisbon"
         }
-      ],
-      "waypoints": [
-        "PenichePraia",
-        "Óbidos",
-        "Foz do Arelho",
-        "São Martinho do Porto",
-        "Nazaré",
-        "Nazaré (Forte de São Miguel)",
-        "São Pedro de Moel",
-        "Praia da Vieira",
-        "Figueira da Foz",
-        "Praia de Mira",
-        "Costa Nova",
-        "Barra Camping"
       ],
       "gpx": {
         "archivo": "gpx/dia-05.gpx",
@@ -439,19 +1258,139 @@
           "Foz do Arelho",
           "São Martinho do Porto",
           "Nazaré",
-          "Nazaré (Forte de São Miguel)",
+          "Nazaré · Forte de São Miguel (ida y vuelta)",
           "São Pedro de Moel",
           "Praia da Vieira",
           "Figueira da Foz",
           "Praia de Mira",
           "Costa Nova"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 68,
+            "lugar": "Nazaré · Forte de São Miguel",
+            "lat": 39.6055,
+            "lon": -9.0762,
+            "que": "Bajada al fuerte y vuelta por la misma calle hasta el Sítio: es lo previsto."
+          },
+          {
+            "km": 186,
+            "lugar": "A17 Mira–Aveiro",
+            "lat": 40.4,
+            "lon": -8.79,
+            "que": "Ni te acerques a la A17: tiene peaje electrónico. La ruta va por la N109 y Costa Nova."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N114 · N8 · N242 · N109. 0 km de autovía de 217.",
-        "Tiempo de conducción de Google (4h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:56) y llegada con 85 min de paradas: anochece a las 17:28 en Aveiro (Praia da Barra), margen de 2h39.",
-        "Pasa de 4 h de conducción (4h24): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "Óbidos amurallado, Nazaré en plena temporada de olas grandes y una carretera larga entre pinares junto al mar hasta las casas de rayas de Costa Nova.",
+        "ver": [
+          {
+            "lugar": "Óbidos",
+            "tipo": "pueblo",
+            "que": "Villa amurallada intacta. Aparca fuera, entra por la Porta da Vila y pide una ginjinha en vaso de chocolate.",
+            "tiempo": "45 min",
+            "en_ruta": true,
+            "lat": 39.35953,
+            "lon": -9.15788
+          },
+          {
+            "lugar": "Foz do Arelho",
+            "tipo": "naturaleza",
+            "que": "La laguna de Óbidos se abre al mar.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 39.43296,
+            "lon": -9.21739
+          },
+          {
+            "lugar": "São Martinho do Porto",
+            "tipo": "mirador",
+            "que": "Bahía en forma de concha.",
+            "en_ruta": true,
+            "lat": 39.51353,
+            "lon": -9.13359
+          },
+          {
+            "lugar": "Nazaré · Forte de São Miguel",
+            "tipo": "mirador",
+            "que": "Las olas más grandes del mundo rompen en la Praia do Norte, justo en temporada: con temporal, más de 20 m. Faro y museo del surf en el fuerte.",
+            "tiempo": "40 min",
+            "en_ruta": true,
+            "lat": 39.60449,
+            "lon": -9.0852
+          },
+          {
+            "lugar": "Miradouro do Suberco",
+            "tipo": "mirador",
+            "que": "En el Sítio, sobre la playa y el pueblo de Nazaré.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 39.6043,
+            "lon": -9.0738
+          },
+          {
+            "lugar": "São Pedro de Moel",
+            "tipo": "naturaleza",
+            "que": "Faro y el Pinhal de Leiria, el pinar del rey Dinis.",
+            "tiempo": "5 min",
+            "en_ruta": true,
+            "lat": 39.764,
+            "lon": -9.0312
+          },
+          {
+            "lugar": "Costa Nova",
+            "tipo": "pueblo",
+            "que": "Casas de madera pintadas a rayas frente a la ría.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 40.61258,
+            "lon": -8.74954
+          },
+          {
+            "lugar": "Farol da Barra",
+            "tipo": "monumento",
+            "que": "El faro más alto de Portugal, junto al camping.",
+            "opcional": true,
+            "lat": 40.64283,
+            "lon": -8.74788
+          }
+        ],
+        "comer": {
+          "desayuno": "En Peniche o café en Óbidos.",
+          "cafe_en_ruta": "Óbidos (hacia las 09:30).",
+          "donde": "Nazaré, hacia las 12:00: caldeirada o pescado seco. Es pronto para Portugal, pero así llegas a Aveiro con luz.",
+          "cena": "Aveiro o Barra: de postre, ovos moles.",
+          "platos": [
+            "Caldeirada",
+            "Pescado seco de Nazaré",
+            "Ovos moles (Aveiro)",
+            "Ginjinha (Óbidos)"
+          ]
+        },
+        "tarde": "Costa Nova y el Farol da Barra. Si llegas con fuerzas, Aveiro está a 10 km: canales y moliceiros (o mañana a primera hora, que es de camino).",
+        "consejo": "Es el tramo más largo sin gasolineras del viaje: unos 65 km entre Nazaré y Carriço. Sal de Nazaré con el depósito lleno. Arena y agujas de pino en la calzada tras los temporales."
+      },
+      "waypoints": [
+        "PenichePraia",
+        "Óbidos",
+        "Foz do Arelho",
+        "São Martinho do Porto",
+        "Forte de São Miguel Arcanjo, Nazaré",
+        "São Pedro de Moel",
+        "Praia da Vieira",
+        "Figueira da Foz",
+        "Praia de Mira",
+        "Costa Nova",
+        "Barra Camping"
+      ],
+      "google_maps": [
+        {
+          "tramo": "Peniche → Barra (Aveiro)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=39.36874,-9.39213&destination=40.63902,-8.74369&travelmode=driving&waypoints=39.36195,-9.15715%7C39.43296,-9.21739%7C39.51353,-9.13359%7C39.60449,-9.08520%7C39.75793,-9.02940%7C39.87452,-8.97297%7C40.14858,-8.85566%7C40.45564,-8.80262%7C40.61258,-8.74954",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
       ],
       "carreteras": [
         "N114",
@@ -460,68 +1399,124 @@
         "N109"
       ],
       "autovia_km": 0,
-      "google_maps": [
+      "horario_orientativo": [
         {
-          "tramo": "Peniche → Barra (Aveiro)",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=39.36874,-9.39213&destination=40.63902,-8.74369&travelmode=driving&waypoints=39.36195,-9.15715%7C39.43296,-9.21739%7C39.51353,-9.13359%7C39.60449,-9.08520%7C39.75793,-9.02940%7C39.87452,-8.97297%7C40.14858,-8.85566%7C40.45564,-8.80262%7C40.61258,-8.74954",
-          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+          "hora": "09:00",
+          "lugar": "PenichePraia",
+          "que": "Salida por la N114",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "09:30-10:15",
+          "lugar": "Óbidos",
+          "que": "Aparca fuera de la muralla; paseo por la Rua Direita",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:30",
+          "lugar": "Foz do Arelho",
+          "que": "Donde la laguna se junta con el mar",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:20-12:00",
+          "lugar": "Nazaré · fuerte",
+          "que": "Las olas grandes de la Praia do Norte y el mirador del Suberco",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:00-12:50",
+          "lugar": "Nazaré",
+          "que": "Comida (temprana, para llegar con luz) y llenar el depósito: luego 65 km sin gasolinera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "13:10",
+          "lugar": "São Pedro de Moel",
+          "que": "Faro y pinar",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:35-14:50",
+          "lugar": "Figueira da Foz",
+          "que": "Café",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:05",
+          "lugar": "Costa Nova",
+          "que": "Casas de rayas",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:20",
+          "lugar": "Barra Camping",
+          "que": "Llegada. El Farol da Barra está al lado · anochece a las 17:38",
+          "zona_horaria": "Europe/Lisbon"
         }
+      ],
+      "notas": [
+        "Horario orientativo: 4h25 de moto y 175 min de paradas. Llegada hacia las 16:20, 78 min antes de que anochezca (17:38).",
+        "En Kurviger: perfil Curvy, evitar autopistas y peajes.",
+        "Carreteras: N114 a Óbidos → Foz do Arelho → São Martinho → N242 a Nazaré → N242 por el Pinhal de Leiria hasta São Pedro de Moel → carretera atlántica a Praia da Vieira → N109 a Figueira da Foz y Mira → Costa Nova y Barra.",
+        "Lo mejor: la bajada al Sítio de Nazaré y el fuerte sobre la Praia do Norte; los pinares de São Pedro de Moel; Costa Nova a última hora."
       ],
       "alojamiento": {
         "nombre": "Barra Camping & Bungalows",
         "direccion": "Praia da Barra, a 10 km de Aveiro",
+        "lat": 40.63902,
+        "lon": -8.74369,
         "telefono": "+351 234 369 425",
-        "estado": "Abierto todo 2026 (CampingCard ACSI)",
         "email": "info@campingbarra.com",
+        "estado": "Sin reservar · abierto todo 2026 (confirmar enero de 2027)",
+        "tipo": "Bungalow para 4 (no indica calefacción)",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      },
-      "zona_horaria": "Europe/Lisbon"
+          "Confirmar que abre en enero de 2027",
+          "Reservar bungalow",
+          "Preguntar si tiene calefacción"
+        ],
+        "plan_b": "Orbitur Vagueira (mobile homes con calefacción, desde unos 49 €) · +351 234 797 526"
+      }
     },
     {
       "dia": 6,
-      "fecha": "2027-01-14",
+      "fecha": "2027-01-21",
       "dia_semana": "jueves",
-      "tipo": "llano",
+      "tipo": "costa",
       "origen": "Aveiro",
       "destino": "A Guarda",
       "km_aprox": 218,
       "tiempo_real_aprox": "4h05",
-      "dificultad": 1,
+      "dificultad": 3,
       "fatiga": 3,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "15:30",
+      "perfil_kurviger": "Curvy",
+      "salida": "09:00 (hora portuguesa)",
+      "llegada_prevista": "16:40 (hora española)",
+      "zona_horaria": "Europe/Madrid",
+      "paises": [
+        "PT",
+        "ES"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Póvoa de Varzim",
-          "lat": 41.38,
-          "lon": -8.76
+          "nombre": "Oporto",
+          "lat": 41.14,
+          "lon": -8.61,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
           "nombre": "A Guarda",
           "lat": 41.9,
-          "lon": -8.85
+          "lon": -8.87
         }
       ],
-      "waypoints": [
-        "Barra Camping",
-        "Aveiro",
-        "Ovar",
-        "Espinho",
-        "Vila Nova de Gaia",
-        "Porto (Ponte D. Luís I)",
-        "Vila do Conde",
-        "Póvoa de Varzim",
-        "Esposende",
-        "Viana do Castelo",
-        "Caminha",
-        "Vila Nova de Cerveira",
-        "Goián (puente)",
-        "Camping Santa Tecla"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente.",
+        "km_acumulados": 1785,
+        "desde_la_ultima": 434,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-06.gpx",
         "track": "tracks/dia-06.json",
@@ -530,7 +1525,7 @@
           "Ovar",
           "Espinho",
           "Vila Nova de Gaia",
-          "Porto (Ponte D. Luís I)",
+          "Oporto · puente D. Luís I (tablero bajo)",
           "Vila do Conde",
           "Póvoa de Varzim",
           "Esposende",
@@ -539,20 +1534,122 @@
           "Vila Nova de Cerveira",
           "Goián (puente)"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 82,
+            "lugar": "Oporto · puente D. Luís I",
+            "lat": 41.1408,
+            "lon": -8.6097,
+            "que": "Se cruza por el tablero bajo, a la altura de la Ribeira. Calles de adoquín y raíles de tranvía."
+          },
+          {
+            "km": 102,
+            "lugar": "A28 · peaje electrónico",
+            "lat": 41.25,
+            "lon": -8.71,
+            "que": "Entre Oporto y Esposende, la A28 tiene pórticos electrónicos: sigue la N13 aunque el navegador te tiente."
+          },
+          {
+            "km": 206,
+            "lugar": "Puente de la Amistad (Cerveira–Goián)",
+            "lat": 41.9489,
+            "lon": -8.7696,
+            "que": "Vuelves a España: adelanta el reloj una hora."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N109 · N13 · PO-552. 0 km de autovía de 218.",
-        "Tiempo de conducción de Google (4h05); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:57) y llegada con 85 min de paradas: anochece a las 18:26 en A Guarda, margen de 2h56.",
-        "Cambio de hora: Portugal va una hora por detrás de España. Al volver a España se pierde una hora (horas de llegada en hora española).",
-        "Pasa de 4 h de conducción (4h05): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "Canales de Aveiro por la mañana, Oporto cruzando el Duero por el tablero bajo del puente D. Luís I y la costa del Minho hasta el río Miño. Vuelves a España por el puente de Cerveira–Goián.",
+        "ver": [
+          {
+            "lugar": "Aveiro",
+            "tipo": "paseo",
+            "que": "Canales y moliceiros, las barcas de proa pintada.",
+            "tiempo": "30 min",
+            "en_ruta": true,
+            "lat": 40.64134,
+            "lon": -8.65482
+          },
+          {
+            "lugar": "Oporto · Ribeira",
+            "tipo": "monumento",
+            "que": "Cruzas el Duero por el tablero bajo del puente D. Luís I con la Ribeira delante. Para la foto, el muelle de Gaia.",
+            "tiempo": "40 min",
+            "en_ruta": true,
+            "lat": 41.14035,
+            "lon": -8.61305
+          },
+          {
+            "lugar": "Mirador de la Serra do Pilar (Gaia)",
+            "tipo": "mirador",
+            "que": "La mejor vista de Oporto y del puente, sobre el tablero alto.",
+            "tiempo": "15 min",
+            "opcional": true,
+            "lat": 41.13828,
+            "lon": -8.60775
+          },
+          {
+            "lugar": "Santa Luzia (Viana do Castelo)",
+            "tipo": "mirador",
+            "que": "Basílica sobre el monte con la mejor vista del Minho y la desembocadura del Lima.",
+            "tiempo": "45 min",
+            "en_ruta": true,
+            "lat": 41.70153,
+            "lon": -8.83511
+          },
+          {
+            "lugar": "Caminha",
+            "tipo": "pueblo",
+            "que": "Torre do Relógio y plaza medieval frente al Miño.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 41.8761,
+            "lon": -8.83882
+          },
+          {
+            "lugar": "Monte de Santa Trega (A Guarda)",
+            "tipo": "mirador",
+            "que": "Castro celta y vista de la desembocadura del Miño. Sube y baja con luz: anochece a las 18:36.",
+            "tiempo": "45 min",
+            "opcional": true,
+            "lat": 41.88806,
+            "lon": -8.87149
+          }
+        ],
+        "comer": {
+          "desayuno": "Café en Aveiro, entre los canales.",
+          "cafe_en_ruta": "Oporto, en la Ribeira o en el muelle de Gaia (hacia las 11:00).",
+          "donde": "Viana do Castelo, hacia las 13:15.",
+          "cena": "A Guarda: marisco; el bogavante es la especialidad del pueblo.",
+          "aviso_horarios": "Al cruzar a España cambia la hora y el horario de las cocinas: en A Guarda se cena a partir de las 20:30.",
+          "platos": [
+            "Francesinha (Oporto)",
+            "Bifana",
+            "Bacalhau",
+            "Vinho verde",
+            "Bogavante de A Guarda"
+          ]
+        },
+        "tarde": "A Guarda: subida al Monte de Santa Trega si llegas con tiempo (abajo antes de las 18:36) y cena de marisco en el puerto.",
+        "consejo": "Oporto: adoquín y raíles de tranvía, muy resbaladizos con lluvia. Cruza y sal del centro sin entretenerte. Alrededor de Oporto hay autopistas con peaje solo electrónico: la N13 te las evita."
+      },
+      "waypoints": [
+        "Barra Camping",
+        "Aveiro",
+        "Ovar",
+        "Espinho",
+        "Vila Nova de Gaia",
+        "Ponte Luís I, Porto",
+        "Vila do Conde",
+        "Póvoa de Varzim",
+        "Esposende",
+        "Viana do Castelo",
+        "Caminha",
+        "Vila Nova de Cerveira",
+        "Goián",
+        "Camping Santa Tecla, A Guarda"
       ],
-      "carreteras": [
-        "N109",
-        "N13",
-        "PO-552"
-      ],
-      "autovia_km": 0,
       "google_maps": [
         {
           "tramo": "Barra → Oporto",
@@ -565,36 +1662,129 @@
           "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
         }
       ],
+      "carreteras": [
+        "N109",
+        "N13",
+        "PO-552"
+      ],
+      "autovia_km": 0,
+      "horario_orientativo": [
+        {
+          "hora": "09:00",
+          "lugar": "Barra Camping",
+          "que": "Salida hacia Aveiro",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "09:10-09:40",
+          "lugar": "Aveiro",
+          "que": "Canales y moliceiros",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:00-11:40",
+          "lugar": "Oporto",
+          "que": "Ribeira desde el tablero bajo del puente D. Luís I; mirador en Gaia",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "13:15-14:30",
+          "lugar": "Viana do Castelo",
+          "que": "Comida y subida a Santa Luzia",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:00",
+          "lugar": "Caminha",
+          "que": "Torre do Relógio",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:25",
+          "lugar": "Puente Cerveira–Goián",
+          "que": "España: adelanta el reloj una hora (las 15:25 pasan a ser las 16:25)",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "16:40",
+          "lugar": "Camping Santa Tecla",
+          "que": "Llegada · anochece a las 18:36",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "17:00",
+          "lugar": "Monte de Santa Trega",
+          "que": "Si te apetece: castro celta y vista del Miño. Abajo antes de que anochezca (18:36)",
+          "zona_horaria": "Europe/Madrid"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 4h05 de moto y 155 min de paradas. Llegada hacia las 16:40, 116 min antes de que anochezca (18:36, hora española).",
+        "En Kurviger: perfil Curvy, evitar autopistas y peajes.",
+        "Carreteras: Aveiro → N109 y la costa (Ovar, Espinho) → Gaia → puente D. Luís I → N13 por Vila do Conde, Póvoa, Esposende, Viana do Castelo y Caminha → Vila Nova de Cerveira → Puente de la Amistad → Goián → PO-552 por la orilla del Miño hasta A Guarda.",
+        "El ferry Caminha–A Guarda está parado desde 2020: se cruza por el puente de Cerveira–Goián.",
+        "Lo mejor: cruzar el Duero con la Ribeira delante; la N13 entre Esposende y Caminha; la vista del Miño desde Santa Trega, con luz."
+      ],
+      "opciones": [
+        {
+          "titulo": "¿Día de margen en Oporto?",
+          "estado": "Por decidir",
+          "cuando": "Decidir en Barra la víspera.",
+          "alternativas": [
+            {
+              "nombre": "Seguir el plan",
+              "coste": "0 días",
+              "por_que": "Oporto de paso por la Ribeira.",
+              "como": "Ruta del día tal cual."
+            },
+            {
+              "nombre": "Partir el día en dos",
+              "coste": "1 día de margen",
+              "por_que": "Barra → Oporto (82 km, 1 h 40 min) y tarde en la Ribeira y las bodegas de Gaia; al día siguiente, Oporto → A Guarda (136 km, 2 h 35 min).",
+              "como": "Orbitur Angeiras (abierto todo el año, +351 22 927 0571)."
+            }
+          ]
+        }
+      ],
       "alojamiento": {
         "nombre": "Camping Santa Tecla",
-        "direccion": "A Guarda, en la desembocadura del Miño",
+        "direccion": "A Guarda (Pontevedra), en la desembocadura del Miño",
+        "lat": 41.89878,
+        "lon": -8.84788,
         "telefono": "+34 986 61 30 11",
-        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
+        "estado": "Sin reservar · abierto todo el año",
+        "tipo": "Bungalow o habitación (no indica calefacción)",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
+          "Reservar bungalow",
+          "Preguntar si tiene calefacción"
+        ],
+        "plan_b": "Hostal Santa Marta Playa (Baiona), con calefacción · +34 986 357 358 · confirmar que abre en enero. En Baiona no abre ningún camping en invierno."
       }
     },
     {
       "dia": 7,
-      "fecha": "2027-01-15",
+      "fecha": "2027-01-22",
       "dia_semana": "viernes",
-      "tipo": "llano",
+      "tipo": "costa",
       "origen": "A Guarda",
       "destino": "Fisterra",
       "km_aprox": 251,
       "tiempo_real_aprox": "4h50",
-      "dificultad": 1,
-      "fatiga": 3,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:45",
-      "llegada_prevista": "16:20",
+      "dificultad": 3,
+      "fatiga": 4,
+      "perfil_kurviger": "Curvy",
+      "salida": "09:30",
+      "llegada_prevista": "17:20",
+      "zona_horaria": "Europe/Madrid",
+      "paises": [
+        "ES"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Padrón",
-          "lat": 42.74,
-          "lon": -8.66
+          "nombre": "Pontevedra",
+          "lat": 42.43,
+          "lon": -8.64
         },
         {
           "nombre": "Fisterra",
@@ -602,33 +1792,12 @@
           "lon": -9.26
         }
       ],
-      "waypoints": [
-        "Camping Santa Tecla",
-        "A Guarda",
-        "Oia (mosteiro)",
-        "Baiona",
-        "Vigo",
-        "Redondela",
-        "Arcade",
-        "Pontevedra",
-        "Caldas de Reis",
-        "Padrón",
-        "Noia",
-        "Muros",
-        "Carnota",
-        "O Pindo",
-        "O Ézaro",
-        "Cee",
-        "Fisterra",
-        "Faro de Fisterra",
-        "Fisterra (O Encontro)"
-      ],
       "gpx": {
         "archivo": "gpx/dia-07.gpx",
         "track": "tracks/dia-07.json",
         "vias": [
           "A Guarda",
-          "Oia (mosteiro)",
+          "Monasterio de Oia",
           "Baiona",
           "Vigo",
           "Redondela",
@@ -643,22 +1812,137 @@
           "O Ézaro",
           "Cee",
           "Fisterra",
-          "Faro de Fisterra"
+          "Faro de Fisterra (ida y vuelta)"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho. Lleva puntos de forma en Chapela, Cesantes y Barro para ir por la N-552 y la N-550 y no por la AP-9 de peaje."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 248,
+            "lugar": "Faro de Fisterra",
+            "lat": 42.885,
+            "lon": -9.2717,
+            "que": "Subida al faro y vuelta al pueblo por la misma carretera: es lo previsto."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: PO-552 · N-550 · AC-543 · AC-550. 0 km de autovía de 251.",
-        "Tiempo de conducción de Google (4h50); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:00) y llegada con 105 min de paradas: anochece a las 18:26 en Fisterra, margen de 2h06.",
-        "Pasa de 4 h de conducción (4h50): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "El destino. Carretera del mar entre A Guarda y Baiona, la ría de Vigo, Pontevedra y Padrón, y la AC-550 por Noia, Muros, Carnota y el Ézaro hasta el faro de Fisterra para ver el atardecer.",
+        "ver": [
+          {
+            "lugar": "Monasterio de Oia",
+            "tipo": "monumento",
+            "que": "Monasterio cisterciense al borde del mar en la PO-552.",
+            "tiempo": "5 min",
+            "en_ruta": true,
+            "lat": 42.0005,
+            "lon": -8.8772
+          },
+          {
+            "lugar": "Baiona · Monterreal",
+            "tipo": "monumento",
+            "que": "Fortaleza de Monterreal (hoy Parador) y la réplica de la carabela Pinta en el puerto.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 42.12488,
+            "lon": -8.84934
+          },
+          {
+            "lugar": "Arcade",
+            "tipo": "comida",
+            "que": "El pueblo de las ostras, en el fondo de la ría de Vigo.",
+            "tiempo": "30 min",
+            "en_ruta": true,
+            "lat": 42.3366,
+            "lon": -8.6015
+          },
+          {
+            "lugar": "Pontevedra",
+            "tipo": "pueblo",
+            "que": "Casco histórico peatonal con la Peregrina. De paso hoy.",
+            "en_ruta": true,
+            "opcional": true,
+            "lat": 42.4316,
+            "lon": -8.6461
+          },
+          {
+            "lugar": "Noia",
+            "tipo": "pueblo",
+            "que": "Villa marinera medieval con la iglesia de Santa María a Nova.",
+            "tiempo": "1 h con comida",
+            "en_ruta": true,
+            "lat": 42.78508,
+            "lon": -8.88774
+          },
+          {
+            "lugar": "Muros",
+            "tipo": "pueblo",
+            "que": "Soportales y puerto, villa marinera medieval.",
+            "en_ruta": true,
+            "lat": 42.7756,
+            "lon": -9.0601
+          },
+          {
+            "lugar": "Hórreo de Carnota",
+            "tipo": "monumento",
+            "que": "Uno de los hórreos más largos de Galicia, junto a la iglesia.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 42.82248,
+            "lon": -9.09057
+          },
+          {
+            "lugar": "Fervenza do Ézaro",
+            "tipo": "naturaleza",
+            "que": "El río Xallas cae directamente al mar al pie del Monte Pindo. El caudal depende de la central hidroeléctrica.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 42.91288,
+            "lon": -9.11644
+          },
+          {
+            "lugar": "Faro de Fisterra",
+            "tipo": "mirador",
+            "que": "El fin de la tierra: mojón del km 0,000 del Camino. Atardecer a las 18:36.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 42.88242,
+            "lon": -9.27199
+          }
+        ],
+        "comer": {
+          "desayuno": "Café en A Guarda antes de salir (amanece hacia las 09:00).",
+          "cafe_en_ruta": "Baiona (hacia las 10:15) y ostras en Arcade (hacia las 11:30).",
+          "donde": "Noia, hacia las 13:35.",
+          "cena": "Fisterra: pulpo, centolla o percebes.",
+          "platos": [
+            "Ostras de Arcade",
+            "Pulpo á feira",
+            "Centolla y percebes de la Costa da Morte",
+            "Empanada"
+          ]
+        },
+        "tarde": "Atardecer en el faro de Fisterra: sube andando (unos 3 km por la carretera del faro) y baja a pie. Cena de marisco en el puerto.",
+        "consejo": "Galicia mojada: pintura de los pasos de cebra, tapas de alcantarilla y gasoil en las rotondas. Si llueve fuerte o vas tarde, la AP-9 entre Vigo y Padrón te ahorra solo unos 25 minutos y cuesta unos 10 €: casi no compensa."
+      },
+      "waypoints": [
+        "Camping Santa Tecla, A Guarda",
+        "Monasterio de Oia",
+        "Baiona",
+        "Vigo",
+        "Redondela",
+        "Arcade",
+        "Pontevedra",
+        "Caldas de Reis",
+        "Padrón",
+        "Noia",
+        "Muros",
+        "Carnota",
+        "O Pindo",
+        "O Ézaro",
+        "Cee",
+        "Faro de Fisterra",
+        "O Encontro, Fisterra"
       ],
-      "carreteras": [
-        "PO-552",
-        "N-550",
-        "AC-543",
-        "AC-550"
-      ],
-      "autovia_km": 0,
       "google_maps": [
         {
           "tramo": "A Guarda → Padrón",
@@ -671,32 +1955,142 @@
           "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
         }
       ],
+      "carreteras": [
+        "PO-552",
+        "N-550",
+        "AC-543",
+        "AC-550"
+      ],
+      "autovia_km": 0,
+      "horario_orientativo": [
+        {
+          "hora": "09:30",
+          "lugar": "Camping Santa Tecla",
+          "que": "Salida por la PO-552, pegada al mar",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "09:45",
+          "lugar": "Monasterio de Oia",
+          "que": "Foto desde la carretera",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "10:15-10:40",
+          "lugar": "Baiona",
+          "que": "Café junto a la fortaleza de Monterreal",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "11:30-12:00",
+          "lugar": "Arcade",
+          "que": "Ostras a media mañana",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "13:35-14:45",
+          "lugar": "Noia",
+          "que": "Comida y gasolina: después solo hay en Muros y en Carnota",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "15:40",
+          "lugar": "Carnota",
+          "que": "El hórreo",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "16:05-16:25",
+          "lugar": "Fervenza do Ézaro",
+          "que": "El río cae al mar",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "16:55-17:15",
+          "lugar": "Faro de Fisterra",
+          "que": "Mojón del km 0,000 del Camino",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "17:20",
+          "lugar": "O Encontro (Fisterra)",
+          "que": "Llegada · anochece a las 18:36",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "17:45",
+          "lugar": "Faro de Fisterra",
+          "que": "Atardecer a las 18:36: sube andando (unos 3 km) y vuelve a pie, sin moto de noche",
+          "zona_horaria": "Europe/Madrid"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 4h50 de moto y 180 min de paradas. Llegada hacia las 17:20, 76 min antes de que anochezca (18:36).",
+        "En Kurviger: perfil Curvy, evitar autopistas y peajes.",
+        "Carreteras: PO-552 por Oia y Cabo Silleiro hasta Baiona → Vigo → N-552/N-550 por Redondela y Arcade → Pontevedra → N-550 a Caldas y Padrón → AC-543 a Noia → AC-550 por Muros, Carnota, O Pindo y Ézaro → Cee → Fisterra y el faro.",
+        "Lo mejor: la PO-552 A Guarda–Baiona pegada al Atlántico; la ría de Vigo desde Redondela y Arcade; la AC-550 Muros–Carnota–Ézaro al pie del Monte Pindo; la llegada al faro.",
+        "Gasolina: llena en Noia, con la comida. Después solo hay en Muros y en Carnota (km 205): entre Carnota y Fisterra no hay ninguna junto a la ruta.",
+        "Es el día más largo de la costa: llegar al faro antes de las 18:00 y al pueblo con luz."
+      ],
+      "opciones": [
+        {
+          "titulo": "¿Partir la etapa de Galicia?",
+          "estado": "Por decidir",
+          "cuando": "Si llueve fuerte o el día 6 llegas cansado.",
+          "alternativas": [
+            {
+              "nombre": "Seguir el plan",
+              "coste": "0 días",
+              "por_que": "Fisterra en el día, con atardecer en el faro.",
+              "como": "Ruta del día tal cual."
+            },
+            {
+              "nombre": "Partir el día en dos",
+              "coste": "1 día de margen",
+              "por_que": "A Guarda → Pontevedra (92 km, 1 h 55 min) y Pontevedra → Fisterra (160 km, 3 h).",
+              "como": "Noche en Pontevedra (casco histórico peatonal)."
+            }
+          ]
+        }
+      ],
       "alojamiento": {
         "nombre": "Albergue-Pensión O Encontro",
-        "direccion": "Fisterra",
-        "telefono": null,
-        "estado": "Abierto todo el año (Gronze)",
-        "reserva": "Ficha y reservas en gronze.com (Fisterra)",
+        "direccion": "Rúa Fonte Vella 22, 15155 Fisterra",
+        "lat": 42.9059,
+        "lon": -9.26385,
+        "telefono": "+34 981 740 369",
+        "estado": "Sin reservar · abierto todo el año (Gronze)",
+        "tipo": "Habitación doble con baño, desde unos 48 €",
+        "precio_referencia_eur_noche": 48,
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      }
+          "Reservar habitación doble",
+          "Preguntar dónde dejar la moto"
+        ],
+        "plan_b": "Campings con bungalow abiertos todo el año en Muxía (a unos 30 km): O Paraíso (981 750 790) y Playa de Leis (981 730 304). En Cee, el Albergue-Pensión Tequerón.",
+        "nota": "No hay ningún camping abierto en enero a menos de 30 km. Para ver el atardecer en el faro, duerme en el pueblo."
+      },
+      "objetivo": "Llegar a Fisterra con luz y ver el atardecer en el faro."
     },
     {
       "dia": 8,
-      "fecha": "2027-01-16",
-      "dia_semana": "sabado",
-      "tipo": "montaña",
+      "fecha": "2027-01-23",
+      "dia_semana": "sábado",
+      "tipo": "interior",
       "origen": "Fisterra",
       "destino": "Chaves",
       "km_aprox": 302,
-      "tiempo_real_aprox": "4h24",
+      "tiempo_real_aprox": "4h25",
       "dificultad": 2,
       "fatiga": 4,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:45",
-      "llegada_prevista": "14:34",
+      "perfil_kurviger": "Fast & Curvy",
+      "salida": "09:30 (hora española)",
+      "llegada_prevista": "15:50 (hora portuguesa)",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "ES",
+        "PT"
+      ],
       "meteo_puntos": [
         {
           "nombre": "Santiago de Compostela",
@@ -704,22 +2098,23 @@
           "lon": -8.54
         },
         {
+          "nombre": "A-52 (835 m)",
+          "lat": 41.99,
+          "lon": -7.56
+        },
+        {
           "nombre": "Chaves",
-          "lat": 41.7,
-          "lon": -7.5
+          "lat": 41.74,
+          "lon": -7.47,
+          "zona_horaria": "Europe/Lisbon"
         }
       ],
-      "waypoints": [
-        "Fisterra (O Encontro)",
-        "Cee",
-        "Negreira",
-        "Ponte Maceira",
-        "Santiago de Compostela",
-        "Ourense",
-        "Verín",
-        "Chaves",
-        "Quinta do Rebentão"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente.",
+        "km_acumulados": 2338,
+        "desde_la_ultima": 553,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-08.gpx",
         "track": "tracks/dia-08.json",
@@ -732,22 +2127,129 @@
           "Verín",
           "Chaves"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho. Lleva puntos de forma por la N-525 (Ponte Ulla, Bandeira, Silleda, Lalín, Dozón) para no meterse en la AP-53 de peaje; el punto de la ruta de Google en Bandeira caía sobre la AP-53 y se ha quitado."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 70,
+            "lugar": "Ponte Maceira",
+            "lat": 42.8995,
+            "lon": -8.6946,
+            "que": "Pequeño desvío de ida y vuelta al puente: es lo previsto."
+          },
+          {
+            "km": 88,
+            "lugar": "Santiago",
+            "lat": 42.8761,
+            "lon": -8.5445,
+            "que": "No metas la moto en el casco viejo: es peatonal y de piedra. Aparca en la zona de la Praza de Galicia."
+          },
+          {
+            "km": 135,
+            "lugar": "Lalín · entrada a la autopista",
+            "lat": 42.6709,
+            "lon": -8.1538,
+            "que": "La ruta deja la N-525 y entra en la AP-53 hacia Ourense. Ese tramo no paga: en la tarifa, Lalín cuenta como el Alto de Santo Domingo, donde empieza la AG-53, gratuita. En Kurviger, permite autovías este día."
+          },
+          {
+            "km": 284,
+            "lugar": "Frontera Feces–Vila Verde da Raia",
+            "lat": 41.8317,
+            "lon": -7.4574,
+            "que": "Entras en Portugal: atrasa el reloj una hora. En Chaves anochece hacia las 17:30."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: AC-552 · N-525 · AG-53 · A-52 · N-532. 122 km de autovía de 302.",
-        "Tiempo de conducción de Google (4h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:04) y llegada con 85 min de paradas: anochece a las 17:23 en Chaves, margen de 2h49.",
-        "Cambio de hora: Portugal va una hora por detrás de España. Al entrar en Portugal se gana una hora (horas de llegada en hora portuguesa).",
-        "Pasa de 4 h de conducción (4h24): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "Empiezas la vuelta como acaban muchos peregrinos, pero al revés: Ponte Maceira y Santiago. Después, autovía gratuita (AG-53 y A-52) por la Galicia interior hasta Verín, y Chaves, que es el km 0 de la N2.",
+        "ver": [
+          {
+            "lugar": "Ponte Maceira",
+            "tipo": "monumento",
+            "que": "Puente medieval sobre el Tambre, con su aldea y el molino. Pequeño desvío, muy bonito.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 42.90539,
+            "lon": -8.69513
+          },
+          {
+            "lugar": "Praza do Obradoiro",
+            "tipo": "monumento",
+            "que": "La fachada de la catedral de Santiago. El casco es peatonal y de piedra: la moto se queda fuera.",
+            "tiempo": "1 h",
+            "en_ruta": true,
+            "lat": 42.88028,
+            "lon": -8.54552
+          },
+          {
+            "lugar": "Mercado de Abastos",
+            "tipo": "comida",
+            "que": "Mercado de Santiago con barras para comer. Abre por la mañana de lunes a sábado: el sábado vienes bien.",
+            "tiempo": "45 min",
+            "en_ruta": true,
+            "lat": 42.87997,
+            "lon": -8.54119
+          },
+          {
+            "lugar": "As Burgas (Ourense)",
+            "tipo": "naturaleza",
+            "que": "Aguas termales en pleno centro de Ourense.",
+            "tiempo": "30 min",
+            "opcional": true,
+            "lat": 42.33461,
+            "lon": -7.86493
+          },
+          {
+            "lugar": "Castelo de Monterrei",
+            "tipo": "monumento",
+            "que": "Fortaleza en un cerro sobre el valle de Verín.",
+            "tiempo": "30 min",
+            "opcional": true,
+            "lat": 41.94698,
+            "lon": -7.44932
+          },
+          {
+            "lugar": "Chaves · puente de Trajano",
+            "tipo": "monumento",
+            "que": "Puente romano sobre el Támega y el mojón del km 0 de la N2.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 41.73826,
+            "lon": -7.46708
+          }
+        ],
+        "comer": {
+          "desayuno": "En Fisterra antes de salir.",
+          "cafe_en_ruta": "Ponte Maceira o Santiago.",
+          "donde": "Santiago, en el Mercado de Abastos o en las calles de alrededor (llegas hacia las 11:30). De postre, tarta de Santiago.",
+          "cena": "Chaves: pastel de Chaves y presunto.",
+          "sitios": [
+            {
+              "nombre": "Mercado de Abastos",
+              "donde": "Rúa das Ameas, Santiago de Compostela",
+              "que": "Barras para comer producto del mercado. Sábado por la mañana, abierto."
+            }
+          ],
+          "platos": [
+            "Tarta de Santiago",
+            "Pulpo",
+            "Pastel de Chaves",
+            "Presunto de Chaves"
+          ]
+        },
+        "tarde": "Chaves: el puente romano, el castillo y el km 0 de la N2 (la «ruta 66» portuguesa que mañana empiezas).",
+        "consejo": "A-52 y la Limia: niebla y escarcha frecuentes en enero, con unos 10 km por encima de 700 m. Si hay aviso, sal más tarde y alarga Santiago."
+      },
+      "waypoints": [
+        "O Encontro, Fisterra",
+        "Cee",
+        "Negreira",
+        "Ponte Maceira",
+        "Santiago de Compostela",
+        "Ourense",
+        "Verín",
+        "Chaves, Portugal",
+        "Quinta do Rebentão, Chaves"
       ],
-      "carreteras": [
-        "AC-552",
-        "N-525",
-        "AG-53",
-        "A-52",
-        "N-532"
-      ],
-      "autovia_km": 122,
       "google_maps": [
         {
           "tramo": "Fisterra → Santiago",
@@ -760,61 +2262,132 @@
           "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
         }
       ],
+      "carreteras": [
+        "AC-552",
+        "N-525",
+        "AG-53",
+        "A-52",
+        "N-532"
+      ],
+      "autovia_km": 122,
+      "horario_orientativo": [
+        {
+          "hora": "09:30",
+          "lugar": "O Encontro (Fisterra)",
+          "que": "Salida hacia Cee",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "09:45",
+          "lugar": "Cee",
+          "que": "Gasolina",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "10:55-11:10",
+          "lugar": "Ponte Maceira",
+          "que": "Puente medieval sobre el Tambre",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "11:30-13:15",
+          "lugar": "Santiago",
+          "que": "Aparca en la zona de la Praza de Galicia: Obradoiro, catedral y comida en el Mercado de Abastos",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "14:40",
+          "lugar": "Ourense",
+          "que": "De paso por la A-52",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "15:25-15:45",
+          "lugar": "Verín",
+          "que": "Gasolina (más barata que en Portugal) y café",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "15:05",
+          "lugar": "Frontera Feces–Vila Verde da Raia",
+          "que": "Portugal: atrasa el reloj una hora (las 16:05 pasan a ser las 15:05)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:15-15:40",
+          "lugar": "Chaves",
+          "que": "Puente romano de Trajano y km 0 de la N2",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:50",
+          "lugar": "Quinta do Rebentão",
+          "que": "Llegada (recepción hasta las 20:00) · anochece a las 17:34",
+          "zona_horaria": "Europe/Lisbon"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 4h25 de moto y 175 min de paradas. Llegada hacia las 15:50, 104 min antes de que anochezca (17:34, hora portuguesa).",
+        "En Kurviger: perfil Fast & Curvy, evitar peajes (AG-53 y A-52 sí).",
+        "Carreteras: Fisterra → Cee → Negreira → Ponte Maceira → Santiago → N-525 hasta Lalín → AP-53 hasta el Alto de Santo Domingo y AG-53 → Ourense → A-52 hasta Verín → N-532 → frontera → Chaves.",
+        "Sin peajes: hasta Lalín, la N-525. De Lalín al Alto de Santo Domingo la AP-53 no cobra (Lalín cuenta como el Alto de Santo Domingo; Real Decreto 276/2025) y después la AG-53 es gratuita. Entrar en la AP-53 en Santiago costaría 7,25 € (2026).",
+        "Quinta do Rebentão: en diciembre y enero, solo con reserva. Recepción hasta las 20:00."
+      ],
       "alojamiento": {
         "nombre": "Parque de Campismo Quinta do Rebentão",
         "direccion": "Vila Nova de Veiga, a unos 5 km al sur de Chaves",
+        "lat": 41.70094,
+        "lon": -7.50144,
         "telefono": "+351 276 322 733",
-        "estado": "Abierto todo el año. En diciembre y enero, solo con reserva (ACSI)",
         "email": "parquedecampismo@chaves.pt",
+        "estado": "Sin reservar · en enero, solo con reserva",
+        "tipo": "Bungalow (8) o caravana; calefacción sin dato",
+        "recepcion": "Hasta las 20:00",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      },
-      "zona_horaria": "Europe/Lisbon"
+          "Reservar (en diciembre y enero, solo con reserva)",
+          "Preguntar si el bungalow tiene calefacción"
+        ],
+        "plan_b": "Residencial Bem Estar (Chaves), con garaje y calefacción según el anuncio · confirmar que abre en enero"
+      }
     },
     {
       "dia": 9,
-      "fecha": "2027-01-17",
+      "fecha": "2027-01-24",
       "dia_semana": "domingo",
       "tipo": "montaña",
       "origen": "Chaves",
       "destino": "Coimbra",
-      "km_aprox": 301,
-      "tiempo_real_aprox": "4h58",
-      "dificultad": 2,
-      "fatiga": 4,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "15:43",
+      "km_aprox": 300,
+      "tiempo_real_aprox": "5h00",
+      "dificultad": 4,
+      "fatiga": 5,
+      "perfil_kurviger": "Curvy",
+      "salida": "10:00",
+      "llegada_prevista": "16:40",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "PT"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Folgosa (N222)",
-          "lat": 41.15,
-          "lon": -7.68
+          "nombre": "N2 Vila Pouca–Vila Real (783 m)",
+          "lat": 41.4,
+          "lon": -7.7,
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "nombre": "A24 Lamego–Viseu (986 m)",
+          "lat": 41.01,
+          "lon": -7.88,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
           "nombre": "Coimbra",
           "lat": 40.19,
-          "lon": -8.4
+          "lon": -8.4,
+          "zona_horaria": "Europe/Lisbon"
         }
-      ],
-      "waypoints": [
-        "Quinta do Rebentão",
-        "Vidago",
-        "Vila Pouca de Aguiar",
-        "Vila Real",
-        "Sabrosa",
-        "Casal de Loivos (miradouro)",
-        "Pinhão",
-        "Folgosa (N222)",
-        "Peso da Régua",
-        "Lamego",
-        "Viseu",
-        "Tondela",
-        "Santa Comba Dão",
-        "Penacova",
-        "Coimbra Camping"
       ],
       "gpx": {
         "archivo": "gpx/dia-09.gpx",
@@ -824,33 +2397,143 @@
           "Vila Pouca de Aguiar",
           "Vila Real",
           "Sabrosa",
-          "Casal de Loivos (miradouro)",
+          "Casal de Loivos (ida y vuelta)",
           "Pinhão",
           "Folgosa (N222)",
           "Peso da Régua",
-          "Lamego",
+          "Lamego (entrada a la A24)",
           "Viseu",
           "Tondela",
           "Santa Comba Dão",
           "Penacova"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 99,
+            "lugar": "Casal de Loivos",
+            "lat": 41.2004,
+            "lon": -7.5338,
+            "que": "Subida al mirador por una carretera estrecha y empinada y bajada a Pinhão: es lo previsto."
+          },
+          {
+            "km": 147,
+            "lugar": "Lamego · A24",
+            "lat": 41.0982,
+            "lon": -7.8106,
+            "que": "Entra en la A24 hacia Viseu: no tiene peaje desde 2025. En Kurviger, permite autovías en este tramo."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N2 · N322 · N323 · N222 · A24 · N110. 49 km de autovía de 301.",
-        "Tiempo de conducción de Google (4h58); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:53) y llegada con 105 min de paradas: anochece a las 17:32 en Coimbra, margen de 1h49.",
-        "Pasa de 4 h de conducción (4h58): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "El mejor día de carreteras. La N2 desde su km 0, la bajada entre viñedos en terraza de Sabrosa a Pinhão y la N222 entre Pinhão y Régua. Es la que un estudio de Avis eligió como «la mejor carretera del mundo para conducir». Luego, la N2 hasta el Mondego y Coimbra.",
+        "ver": [
+          {
+            "lugar": "Vidago Palace",
+            "tipo": "cafe",
+            "que": "Balneario de 1910 con su parque. Café en el hotel.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 41.63286,
+            "lon": -7.57573
+          },
+          {
+            "lugar": "Palacio de Mateus",
+            "tipo": "monumento",
+            "que": "El palacio barroco de la etiqueta del Mateus Rosé, junto a Vila Real.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 41.29685,
+            "lon": -7.71221
+          },
+          {
+            "lugar": "Miradouro de Casal de Loivos",
+            "tipo": "mirador",
+            "que": "El mirador más famoso del Douro: el meandro de Pinhão entre viñedos en terraza.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 41.20046,
+            "lon": -7.53376
+          },
+          {
+            "lugar": "Pinhão",
+            "tipo": "pueblo",
+            "que": "Estación con azulejos de la vendimia y el río.",
+            "tiempo": "50 min con comida",
+            "en_ruta": true,
+            "lat": 41.1904,
+            "lon": -7.54513
+          },
+          {
+            "lugar": "N222 Pinhão–Régua",
+            "tipo": "naturaleza",
+            "que": "La carretera junto al río que un estudio de Avis eligió como «la mejor carretera del mundo para conducir».",
+            "en_ruta": true,
+            "lat": 41.165,
+            "lon": -7.66
+          },
+          {
+            "lugar": "Lamego · Remédios",
+            "tipo": "monumento",
+            "que": "Escalinata barroca del santuario de Nossa Senhora dos Remédios.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "opcional": true,
+            "lat": 41.09167,
+            "lon": -7.81663
+          },
+          {
+            "lugar": "Penacova",
+            "tipo": "mirador",
+            "que": "Mirador sobre el valle del Mondego. En enero es temporada de lamprea.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "opcional": true,
+            "lat": 40.27021,
+            "lon": -8.28107
+          },
+          {
+            "lugar": "Coimbra · Universidad",
+            "tipo": "monumento",
+            "que": "Universidad y Biblioteca Joanina (reserva la entrada) y la Sé Velha. De noche, fado de Coimbra.",
+            "tiempo": "2 h",
+            "opcional": true,
+            "lat": 40.20712,
+            "lon": -8.42652
+          }
+        ],
+        "comer": {
+          "desayuno": "En Chaves o en Vidago (café en el Vidago Palace).",
+          "cafe_en_ruta": "Vidago (hacia las 10:15).",
+          "donde": "Pinhão, hacia las 12:35: cocina del Douro. Domingo: si algo está cerrado, Peso da Régua, media hora después, tiene más opciones.",
+          "cena": "Coimbra: chanfana o leitão da Bairrada. El oporto, mejor por la noche.",
+          "platos": [
+            "Cabrito y posta del Douro",
+            "Leitão da Bairrada",
+            "Chanfana",
+            "Lamprea (Penacova, en temporada)",
+            "Vino de Oporto"
+          ]
+        },
+        "tarde": "Coimbra: la Universidad, la Sé Velha y, de noche, fado de Coimbra. Camping en Alto do Areeiro, a las afueras: al centro, mejor en taxi o autobús.",
+        "consejo": "Riesgo de hielo: entre Vila Pouca y Vila Real la N2 roza los 800 m, y entre Lamego y Viseu se sube a unos 980 m. Si a las 10:00 hay menos de 3 °C, espera, pero hoy la luz va justa: por cada media hora de retraso quita una parada (Palacio de Mateus, Penacova, el café de Vidago) y, si no puedes salir antes de las 10:30, parte la etapa con un día de margen (noche en Régua). N222: curvas cerradas, gravilla en las bodegas y tractores."
+      },
+      "waypoints": [
+        "Quinta do Rebentão, Chaves",
+        "Vidago",
+        "Vila Pouca de Aguiar",
+        "Vila Real, Portugal",
+        "Sabrosa",
+        "Miradouro de Casal de Loivos",
+        "Pinhão",
+        "Peso da Régua",
+        "Lamego",
+        "Viseu",
+        "Tondela",
+        "Santa Comba Dão",
+        "Penacova",
+        "Coimbra Camping"
       ],
-      "carreteras": [
-        "N2",
-        "N322",
-        "N323",
-        "N222",
-        "A24",
-        "N2",
-        "N110"
-      ],
-      "autovia_km": 49,
       "google_maps": [
         {
           "tramo": "Chaves → Peso da Régua (N2 y Douro)",
@@ -863,59 +2546,164 @@
           "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO (A24 Lamego–Viseu)"
         }
       ],
+      "carreteras": [
+        "N2",
+        "N322",
+        "N323",
+        "N222",
+        "A24",
+        "N2",
+        "N110"
+      ],
+      "autovia_km": 49,
+      "horario_orientativo": [
+        {
+          "hora": "10:00",
+          "lugar": "Quinta do Rebentão",
+          "que": "Salida a las 10:00 por la escarcha: con menos de 3 °C, espera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:15-10:30",
+          "lugar": "Vidago",
+          "que": "Café en el Vidago Palace",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:25",
+          "lugar": "Palacio de Mateus",
+          "que": "Foto desde la entrada",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:10-12:25",
+          "lugar": "Casal de Loivos",
+          "que": "El mirador del meandro de Pinhão",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:35-13:25",
+          "lugar": "Pinhão",
+          "que": "Comida; la estación de los azulejos",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:10",
+          "lugar": "Lamego",
+          "que": "Los Remédios desde la carretera; entrada a la A24 hacia Viseu",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "15:35",
+          "lugar": "Santa Comba Dão",
+          "que": "Gasolina: luego 30 km sin gasolinera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:20",
+          "lugar": "Penacova",
+          "que": "Mirador sobre el Mondego (de paso)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:40",
+          "lugar": "Coimbra Camping",
+          "que": "Llegada · anochece a las 17:42",
+          "zona_horaria": "Europe/Lisbon"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 5h00 de moto y 100 min de paradas. Llegada hacia las 16:40, 62 min antes de que anochezca (17:42).",
+        "En Kurviger: perfil Curvy, evitar peajes (la A24 es gratis).",
+        "Carreteras: N2 por Vidago y Vila Pouca de Aguiar → Vila Real → N322 por el Palacio de Mateus → N323 de Sabrosa a Pinhão (mirador de Casal de Loivos) → N222 Pinhão–Régua → N2 a Lamego → A24 hasta Viseu → N2 por Tondela y Santa Comba Dão → Penacova → N110 junto al Mondego hasta Coimbra.",
+        "Lo mejor del viaje en carreteras: N323 Sabrosa–Pinhão entre viñedos patrimonio de la UNESCO, N222 Pinhão–Régua junto al río y N110 Penacova–Coimbra por el valle del Mondego.",
+        "Plan B con helada fuerte: A24 desde Chaves hasta Vila Real (sin peaje). Variante N2 por Castro Daire en vez de la A24, solo con el asfalto seco: +26 min.",
+        "Gasolina: llena en Chaves o Vidago; hay tramos de 30 km sin gasolinera.",
+        "Es el día más exigente: si el tiempo no acompaña, parte la etapa con un día de margen (noche en Régua)."
+      ],
+      "opciones": [
+        {
+          "titulo": "Douro: ¿en un día o en dos?",
+          "estado": "Por decidir",
+          "cuando": "Mirar la previsión de helada en Vila Real y Viseu la víspera en Chaves.",
+          "alternativas": [
+            {
+              "nombre": "En un día",
+              "coste": "0 días",
+              "por_que": "5 h de moto con salida a las 10:00; llegada a Coimbra hacia las 16:40, 62 min antes de que anochezca. Sin margen para esperar a que se vaya la helada.",
+              "como": "Ruta del día tal cual."
+            },
+            {
+              "nombre": "Partir en dos con noche en Régua",
+              "coste": "1 día de margen",
+              "por_que": "Chaves → Peso da Régua (134 km, 2 h 30 min) y Régua → Coimbra (167 km, 2 h 30 min). Es la mejor opción si quieres etapas cortas en la zona con más riesgo de helada.",
+              "como": "Noche en el valle del Douro."
+            },
+            {
+              "nombre": "Helada fuerte",
+              "coste": "Menos curvas",
+              "por_que": "A24 desde Chaves hasta Vila Real, sin peaje: la autovía suele estar tratada con sal en las heladas y no tiene curvas a la sombra. Desde Vila Real, el plan.",
+              "como": "En Kurviger, permitir autovías hasta Vila Real."
+            }
+          ]
+        }
+      ],
       "alojamiento": {
         "nombre": "Coimbra Camping & Bungalows",
         "direccion": "Alto do Areeiro, Coimbra",
+        "lat": 40.18793,
+        "lon": -8.399,
         "telefono": "+351 239 086 902",
-        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "email": "geral@coimbracamping.com",
+        "estado": "Sin reservar · abierto todo el año",
+        "tipo": "Bungalow con calefacción (según huéspedes de 2023)",
+        "parking": "Gratuito",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
+          "Reservar bungalow con calefacción"
+        ],
+        "plan_b": "Parque FCMP de Penacova · +351 239 477 464 · enero sin confirmar: el invierno pasado cerró hasta el 2 de enero"
       },
-      "zona_horaria": "Europe/Lisbon"
+      "objetivo": "El mejor día de carreteras (N2, N323 y N222 por el Douro), con cuidado con la helada."
     },
     {
       "dia": 10,
-      "fecha": "2027-01-18",
+      "fecha": "2027-01-25",
       "dia_semana": "lunes",
-      "tipo": "llano",
+      "tipo": "interior",
       "origen": "Coimbra",
       "destino": "Évora",
-      "km_aprox": 313,
+      "km_aprox": 312,
       "tiempo_real_aprox": "5h00",
-      "dificultad": 2,
+      "dificultad": 3,
       "fatiga": 4,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "15:45",
+      "perfil_kurviger": "Curvy",
+      "salida": "10:00",
+      "llegada_prevista": "16:40",
+      "zona_horaria": "Europe/Lisbon",
+      "paises": [
+        "PT"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Abrantes",
-          "lat": 39.46,
-          "lon": -8.2
+          "nombre": "N2 Góis–Pedrógão (772 m)",
+          "lat": 40.08,
+          "lon": -8.07,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
           "nombre": "Évora",
           "lat": 38.56,
-          "lon": -7.93
+          "lon": -7.93,
+          "zona_horaria": "Europe/Lisbon"
         }
       ],
-      "waypoints": [
-        "Coimbra Camping",
-        "Vila Nova de Poiares",
-        "Góis",
-        "Pedrógão Grande",
-        "Sertã",
-        "Vila de Rei",
-        "Abrantes",
-        "Ponte de Sor",
-        "Montargil",
-        "Mora",
-        "Montemor-o-Novo",
-        "Orbitur Évora"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente.",
+        "km_acumulados": 2950,
+        "desde_la_ultima": 612,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-10.gpx",
         "track": "tracks/dia-10.json",
@@ -931,20 +2719,113 @@
           "Mora",
           "Montemor-o-Novo"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": []
       },
-      "notas": [
-        "Carreteras: N17 · N2 · N114. 0 km de autovía de 313.",
-        "Tiempo de conducción de Google (5h00); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 105 min de paradas: anochece a las 17:35 en Évora, margen de 1h50.",
-        "Pasa de 4 h de conducción (5h00): por encima del límite que se marcó en el viaje de 2026."
+      "guia": {
+        "resumen": "La parte más curvada de la N2 central (Góis, Pedrógão Grande, la presa del Cabril sobre el Zêzere) y después las llanuras de alcornoques del Alentejo hasta Évora, ciudad Patrimonio Mundial.",
+        "ver": [
+          {
+            "lugar": "Vila Nova de Poiares",
+            "tipo": "comida",
+            "que": "«Capital de la chanfana».",
+            "en_ruta": true,
+            "lat": 40.21058,
+            "lon": -8.25889
+          },
+          {
+            "lugar": "Góis",
+            "tipo": "pueblo",
+            "que": "Puente del siglo XVI y playa fluvial. Pueblo motero.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "lat": 40.15491,
+            "lon": -8.11209
+          },
+          {
+            "lugar": "N2 Góis–Pedrógão Grande",
+            "tipo": "naturaleza",
+            "que": "La parte más curvada de la N2 central, curva tras curva por los valles del Ceira y el Zêzere.",
+            "en_ruta": true,
+            "lat": 40.08,
+            "lon": -8.073
+          },
+          {
+            "lugar": "Presa del Cabril",
+            "tipo": "mirador",
+            "que": "Presa sobre el Zêzere en Pedrógão Grande, con la N2 encima.",
+            "tiempo": "10 min",
+            "en_ruta": true,
+            "lat": 39.91738,
+            "lon": -8.13138
+          },
+          {
+            "lugar": "Centro Geodésico de Portugal",
+            "tipo": "mirador",
+            "que": "El Picoto da Melriça, centro geográfico del país. Desvío corto desde Vila de Rei.",
+            "tiempo": "30 min",
+            "opcional": true,
+            "lat": 39.69444,
+            "lon": -8.13051
+          },
+          {
+            "lugar": "Abrantes",
+            "tipo": "monumento",
+            "que": "Castillo sobre el Tajo.",
+            "tiempo": "1 h con comida",
+            "en_ruta": true,
+            "lat": 39.4644,
+            "lon": -8.19469
+          },
+          {
+            "lugar": "Montado alentejano",
+            "tipo": "naturaleza",
+            "que": "Llanuras de alcornoques entre Ponte de Sor y Montemor.",
+            "en_ruta": true,
+            "lat": 39.05675,
+            "lon": -8.17859
+          },
+          {
+            "lugar": "Évora",
+            "tipo": "monumento",
+            "que": "Templo romano, Sé, Capela dos Ossos y Praça do Giraldo: toda la ciudad es Patrimonio Mundial.",
+            "tiempo": "2 h",
+            "opcional": true,
+            "lat": 38.57263,
+            "lon": -7.90734
+          }
+        ],
+        "comer": {
+          "desayuno": "En Coimbra o café en Góis.",
+          "cafe_en_ruta": "Góis (hacia las 10:40).",
+          "donde": "Abrantes, hacia las 13:05. Si prefieres antes, Sertã (maranho).",
+          "cena": "Évora: migas, porco preto o açorda alentejana, y de postre sericaia.",
+          "platos": [
+            "Chanfana",
+            "Maranho (Sertã)",
+            "Migas",
+            "Porco preto",
+            "Açorda alentejana",
+            "Sericaia"
+          ]
+        },
+        "tarde": "Évora: Templo romano, Sé, Capela dos Ossos y Praça do Giraldo. El camping está a 2 km del centro.",
+        "consejo": "Escarcha en los valles a la sombra entre Góis y Pedrógão: se sube a unos 770 m. Ramas y hojas de eucalipto en la calzada tras los temporales."
+      },
+      "waypoints": [
+        "Coimbra Camping",
+        "Vila Nova de Poiares",
+        "Góis",
+        "Pedrógão Grande",
+        "Sertã",
+        "Vila de Rei",
+        "Abrantes",
+        "Ponte de Sor",
+        "Montargil",
+        "Mora, Portugal",
+        "Montemor-o-Novo",
+        "Orbitur Évora"
       ],
-      "carreteras": [
-        "N17",
-        "N2",
-        "N2",
-        "N114"
-      ],
-      "autovia_km": 0,
       "google_maps": [
         {
           "tramo": "Coimbra → Abrantes (N2)",
@@ -957,57 +2838,119 @@
           "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
         }
       ],
+      "carreteras": [
+        "N17",
+        "N2",
+        "N2",
+        "N114"
+      ],
+      "autovia_km": 0,
+      "horario_orientativo": [
+        {
+          "hora": "10:00",
+          "lugar": "Coimbra Camping",
+          "que": "Salida por la N17",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "10:40-11:00",
+          "lugar": "Góis",
+          "que": "Café junto al puente del siglo XVI",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:45",
+          "lugar": "Presa del Cabril",
+          "que": "Foto desde la presa sobre el Zêzere",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "13:05-14:05",
+          "lugar": "Abrantes",
+          "que": "Comida",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:40",
+          "lugar": "Ponte de Sor",
+          "que": "Gasolina: luego 24 km sin gasolinera",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "16:40",
+          "lugar": "Orbitur Évora",
+          "que": "Llegada · anochece a las 17:45",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "17:00",
+          "lugar": "Évora",
+          "que": "Templo romano y Praça do Giraldo al atardecer (17:45), a 2 km del camping en taxi o autobús",
+          "zona_horaria": "Europe/Lisbon"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 5h00 de moto y 100 min de paradas. Llegada hacia las 16:40, 65 min antes de que anochezca (17:45).",
+        "En Kurviger: perfil Curvy, evitar autopistas y peajes.",
+        "Carreteras: N17 a Vila Nova de Poiares → N2 por Góis, Pedrógão Grande, Sertã, Vila de Rei, Abrantes, Ponte de Sor, Montargil y Mora → Montemor-o-Novo → N114 hasta Évora.",
+        "Niebla matinal en el Alentejo y animales sueltos al anochecer.",
+        "Si te sobra un hueco: el Convento de Cristo de Tomar está a 30 km de Abrantes."
+      ],
       "alojamiento": {
         "nombre": "Orbitur Évora",
-        "direccion": "Estrada das Alcáçovas, a 2 km del centro",
+        "direccion": "Estrada das Alcáçovas, a 2 km del centro de Évora",
+        "lat": 38.55759,
+        "lon": -7.92675,
         "telefono": "+351 266 705 190",
-        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "email": "evora@orbitur.pt",
+        "estado": "Sin reservar · abierto todo el año",
+        "tipo": "Estudio o mobile home con calefacción; estudio desde unos 36 €",
+        "precio_referencia_eur_noche": 36,
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      },
-      "zona_horaria": "Europe/Lisbon"
+          "Reservar estudio o mobile home con calefacción"
+        ],
+        "plan_b": "Camping Alentejo (Évora Monte, a 30 km), abierto en enero, con solo 2 bungalows"
+      }
     },
     {
       "dia": 11,
-      "fecha": "2027-01-19",
+      "fecha": "2027-01-26",
       "dia_semana": "martes",
-      "tipo": "llano",
+      "tipo": "interior",
       "origen": "Évora",
       "destino": "Aracena",
       "km_aprox": 229,
-      "tiempo_real_aprox": "3h47",
-      "dificultad": 1,
+      "tiempo_real_aprox": "3h45",
+      "dificultad": 2,
       "fatiga": 3,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "14:27",
+      "perfil_kurviger": "Curvy",
+      "salida": "10:00 (hora portuguesa)",
+      "llegada_prevista": "16:35 (hora española)",
+      "zona_horaria": "Europe/Madrid",
+      "paises": [
+        "PT",
+        "ES"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Aroche",
+          "nombre": "Serpa",
           "lat": 37.94,
-          "lon": -6.95
+          "lon": -7.6,
+          "zona_horaria": "Europe/Lisbon"
         },
         {
-          "nombre": "Aracena",
-          "lat": 37.89,
-          "lon": -6.56
+          "nombre": "Sierra de Aracena (750 m)",
+          "lat": 37.9,
+          "lon": -6.63
         }
       ],
-      "waypoints": [
-        "Orbitur Évora",
-        "Beja",
-        "Serpa",
-        "Vila Verde de Ficalho",
-        "Rosal de la Frontera",
-        "Aroche",
-        "Cortegana",
-        "El Repilado (Jabugo)",
-        "Fuenteheridos",
-        "Aracena (Los Castaños)"
-      ],
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (Motul C2 Road), con la cadena caliente.",
+        "km_acumulados": 3179,
+        "desde_la_ultima": 229,
+        "detalle": "Motor apagado y llave fuera, punto muerto. Girar la rueda hacia atrás. Spray en la cara interior del ramal inferior y en las dos caras laterales, una vuelta completa y un poco más. Trapo para el exceso; ni una gota en el disco ni en el neumático. Reposo toda la noche. Mirar la tensión: 25-35 mm de juego. Si ha llovido otro día, engrasar también esa noche."
+      },
       "gpx": {
         "archivo": "gpx/dia-11.gpx",
         "track": "tracks/dia-11.json",
@@ -1021,13 +2964,106 @@
           "El Repilado (Jabugo)",
           "Fuenteheridos"
         ],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 149,
+            "lugar": "Frontera Vila Verde de Ficalho–Rosal",
+            "lat": 37.9572,
+            "lon": -7.2654,
+            "que": "Vuelves a España: adelanta el reloj una hora."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N380 · N258 · IP8 · N-433. 0 km de autovía de 229.",
-        "Tiempo de conducción de Google (3h47); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:46) y llegada con 40 min de paradas: anochece a las 18:33 en Aracena, margen de 4h06.",
-        "Cambio de hora: Portugal va una hora por detrás de España. Al volver a España se pierde una hora (horas de llegada en hora española).",
-        "Sin camping con bungalow confirmado abierto en enero en Aracena: por eso el hotel."
+      "guia": {
+        "resumen": "Día corto y tranquilo para descansar del ritmo. Campo alentejano hasta Beja y Serpa, frontera en Rosal y la N-433 entre castaños y alcornoques hasta Aracena.",
+        "ver": [
+          {
+            "lugar": "Beja",
+            "tipo": "monumento",
+            "que": "Torre del homenaje del castillo, de las más altas de Portugal.",
+            "tiempo": "25 min",
+            "en_ruta": true,
+            "lat": 38.01725,
+            "lon": -7.86528
+          },
+          {
+            "lugar": "Serpa",
+            "tipo": "pueblo",
+            "que": "Muralla, acueducto y queso de Serpa.",
+            "tiempo": "1 h con comida",
+            "en_ruta": true,
+            "lat": 37.94368,
+            "lon": -7.59969
+          },
+          {
+            "lugar": "Aroche",
+            "tipo": "monumento",
+            "que": "Castillo de la frontera.",
+            "en_ruta": true,
+            "lat": 37.94594,
+            "lon": -6.95445
+          },
+          {
+            "lugar": "Cortegana",
+            "tipo": "monumento",
+            "que": "Castillo de la frontera sobre el pueblo.",
+            "en_ruta": true,
+            "lat": 37.91036,
+            "lon": -6.81675
+          },
+          {
+            "lugar": "Jabugo",
+            "tipo": "pueblo",
+            "que": "El pueblo del jamón.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 37.91681,
+            "lon": -6.72916
+          },
+          {
+            "lugar": "Gruta de las Maravillas (Aracena)",
+            "tipo": "naturaleza",
+            "que": "Cueva con lagos bajo el castillo de Aracena. Comprueba el horario de pases.",
+            "tiempo": "1 h",
+            "opcional": true,
+            "lat": 37.8911,
+            "lon": -6.56584
+          }
+        ],
+        "comer": {
+          "desayuno": "En Évora antes de salir.",
+          "cafe_en_ruta": "Beja (hacia las 11:25).",
+          "donde": "Serpa, hacia las 12:20.",
+          "cena": "Aracena: ibéricos de la sierra.",
+          "platos": [
+            "Migas alentejanas",
+            "Queijo de Serpa",
+            "Jamón de Jabugo",
+            "Setas y castañas de la sierra"
+          ]
+        },
+        "tarde": "Aracena: Gruta de las Maravillas (comprueba el último pase) y el castillo.",
+        "consejo": "Sierra de Aracena (unos 750 m): escarcha y hojas mojadas en las curvas a primera hora. Hoy sales tarde y llegas pronto: es un día para descansar del ritmo."
+      },
+      "waypoints": [
+        "Orbitur Évora",
+        "Beja",
+        "Serpa",
+        "Vila Verde de Ficalho",
+        "Rosal de la Frontera",
+        "Aroche",
+        "Cortegana",
+        "Jabugo",
+        "Fuenteheridos",
+        "Hotel Los Castaños, Aracena"
+      ],
+      "google_maps": [
+        {
+          "tramo": "Évora → Aracena",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=38.55759,-7.92675&destination=37.89249,-6.56389&travelmode=driving&waypoints=38.01545,-7.86504%7C37.94365,-7.59669%7C37.94460,-7.30170%7C37.96791,-7.22047%7C37.94362,-6.95396%7C37.90930,-6.81962%7C37.91050,-6.71550%7C37.90500,-6.66000",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
       ],
       "carreteras": [
         "N380",
@@ -1036,44 +3072,110 @@
         "N-433"
       ],
       "autovia_km": 0,
-      "google_maps": [
+      "horario_orientativo": [
         {
-          "tramo": "Évora → Aracena",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=38.55759,-7.92675&destination=37.89249,-6.56389&travelmode=driving&waypoints=38.01545,-7.86504%7C37.94365,-7.59669%7C37.94460,-7.30170%7C37.96791,-7.22047%7C37.94362,-6.95396%7C37.90930,-6.81962%7C37.91050,-6.71550%7C37.90500,-6.66000",
-          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+          "hora": "10:00",
+          "lugar": "Orbitur Évora",
+          "que": "Salida (llena el depósito en Évora la víspera: 37 km sin gasolinera al empezar)",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "11:25-11:50",
+          "lugar": "Beja",
+          "que": "Torre del homenaje del castillo",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "12:20-13:20",
+          "lugar": "Serpa",
+          "que": "Comida: migas y queso de Serpa",
+          "zona_horaria": "Europe/Lisbon"
+        },
+        {
+          "hora": "14:55",
+          "lugar": "Frontera Ficalho–Rosal",
+          "que": "España: adelanta el reloj una hora (las 13:55 pasan a ser las 14:55)",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "14:55",
+          "lugar": "Rosal de la Frontera",
+          "que": "Gasolina española",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "15:35",
+          "lugar": "Aroche",
+          "que": "Castillo (de paso)",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "16:00-16:15",
+          "lugar": "Jabugo",
+          "que": "El pueblo del jamón",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "16:35",
+          "lugar": "Hotel Los Castaños (Aracena)",
+          "que": "Llegada · anochece a las 18:43",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "Gruta de las Maravillas",
+          "que": "Si llegas con tiempo (comprueba el último pase)",
+          "zona_horaria": "Europe/Madrid"
         }
+      ],
+      "notas": [
+        "Horario orientativo: 3h45 de moto y 110 min de paradas. Llegada hacia las 16:35, 128 min antes de que anochezca (18:43, hora española).",
+        "En Kurviger: perfil Curvy, evitar autopistas y peajes.",
+        "Carreteras: Évora → Viana do Alentejo → Beja → IP8/N260 por Serpa hasta Vila Verde de Ficalho → frontera → Rosal de la Frontera → N-433 por Aroche, Cortegana y Jabugo → Aracena.",
+        "Gasolina: llena en Rosal, vuelves a la gasolina española."
       ],
       "alojamiento": {
         "nombre": "Hotel Los Castaños",
-        "direccion": "Av. de Huelva 5, Aracena",
-        "telefono": null,
-        "estado": "No hay camping con bungalow confirmado abierto en enero",
-        "reserva": "Reserva directa o por portales",
+        "direccion": "Avenida de Huelva 5, 21200 Aracena (Huelva)",
+        "lat": 37.89249,
+        "lon": -6.56389,
+        "telefono": "+34 606 344 392",
+        "estado": "Llamar: confirmar apertura y precio en enero",
+        "tipo": "Hotel con calefacción",
+        "moto": "Garaje cubierto, 10 € al día, con reserva",
+        "noches": 1,
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
-          "Dónde dejar la moto"
-        ]
-      }
+          "Confirmar que abre en enero y el precio",
+          "Reservar plaza de garaje para la moto"
+        ],
+        "plan_b": "Camping Ribera del Chanza (Cortegana, a 25 km): llamar, aparece en listados de invierno · +34 601 222 434 / +34 639 02 68 56",
+        "nota": "No hay camping con bungalow confirmado abierto en enero en la sierra."
+      },
+      "objetivo": "Día corto para descansar del ritmo antes de la vuelta."
     },
     {
       "dia": 12,
-      "fecha": "2027-01-20",
-      "dia_semana": "miercoles",
-      "tipo": "montaña",
+      "fecha": "2027-01-27",
+      "dia_semana": "miércoles",
+      "tipo": "autovía",
       "origen": "Aracena",
       "destino": "Almería",
       "km_aprox": 511,
-      "tiempo_real_aprox": "5h19",
-      "dificultad": 1,
+      "tiempo_real_aprox": "5h20",
+      "dificultad": 2,
       "fatiga": 4,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:15",
-      "llegada_prevista": "16:19",
+      "perfil_kurviger": "Fast",
+      "salida": "10:00",
+      "llegada_prevista": "16:50",
+      "zona_horaria": "Europe/Madrid",
+      "paises": [
+        "ES"
+      ],
       "meteo_puntos": [
         {
-          "nombre": "Almería 04006",
-          "lat": 36.84,
-          "lon": -2.45
+          "nombre": "A-92 · Puerto de la Mora (1.390 m)",
+          "lat": 37.27,
+          "lon": -3.46
         },
         {
           "nombre": "Almería",
@@ -1081,28 +3183,79 @@
           "lon": -2.45
         }
       ],
-      "waypoints": [
-        "Aracena (Los Castaños)",
-        "Almería 04006"
-      ],
       "gpx": {
         "archivo": "gpx/dia-12.gpx",
         "track": "tracks/dia-12.json",
         "vias": [],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+        "nota": "Ruta de la guía calculada con Valhalla (perfil moto) y OSRM sobre OpenStreetMap, con horas de moto en movimiento. Al importarla en Kurviger, comprobar que la ruta sigue el track.",
+        "avisos": [
+          {
+            "km": 351,
+            "lugar": "Granada · plan B",
+            "lat": 37.13,
+            "lon": -3.615,
+            "que": "Con aviso de nieve o hielo en la A-92, aquí se coge la A-44 hacia Motril y se vuelve por la A-7 de la costa (539 km, unas 6 h)."
+          }
+        ]
       },
-      "notas": [
-        "Carreteras: N-433 · A-66 · A-92. 443 km de autovía de 511.",
-        "Tiempo de conducción de Google (5h19); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:38) y llegada con 105 min de paradas: anochece a las 18:20 en Almería, margen de 2h01.",
-        "Pasa de 4 h de conducción (5h19): por encima del límite que se marcó en el viaje de 2026.",
-        "Plan B por la costa (A-44 y A-7) en los enlaces de Google Maps, por si hay nieve o hielo en la A-92, que sube hasta 1.369 m."
+      "guia": {
+        "resumen": "Regreso por autovía: N-433 y A-66 hasta Sevilla y la A-92 por Antequera, Granada y Guadix. Mira el parte antes de salir, porque el Puerto de la Mora está a 1.390 m.",
+        "ver": [
+          {
+            "lugar": "Sierra de Aracena",
+            "tipo": "naturaleza",
+            "que": "Castaños y alcornoques a primera hora por la N-433.",
+            "en_ruta": true,
+            "lat": 37.85332,
+            "lon": -6.48054
+          },
+          {
+            "lugar": "Dólmenes de Antequera",
+            "tipo": "monumento",
+            "que": "Menga y Viera, Patrimonio Mundial, a unos 10 minutos de la A-92.",
+            "tiempo": "45 min",
+            "lat": 37.02419,
+            "lon": -4.54825
+          },
+          {
+            "lugar": "Granada por el norte",
+            "tipo": "mirador",
+            "que": "La A-92 rodea Granada por el norte: Sierra Nevada y la Alhambra, a lo lejos.",
+            "en_ruta": true,
+            "lat": 37.23298,
+            "lon": -3.59923
+          },
+          {
+            "lugar": "Guadix",
+            "tipo": "pueblo",
+            "que": "Barrio de casas cueva junto a la autovía.",
+            "tiempo": "15 min",
+            "en_ruta": true,
+            "lat": 37.296,
+            "lon": -3.132
+          }
+        ],
+        "comer": {
+          "desayuno": "En Aracena.",
+          "donde": "Antequera, hacia las 12:50: porra antequerana. O Granada, de tapas.",
+          "cena": "En casa.",
+          "platos": [
+            "Porra antequerana",
+            "Mollete de Antequera",
+            "Tapas de Granada"
+          ]
+        },
+        "tarde": "En casa. Engrasa la cadena y lava la moto: la sal de la costa y la de las carreteras de montaña se comen el aluminio.",
+        "consejo": "A-92 por Guadix: unos 75 km por encima de 900 m y el Puerto de la Mora a 1.390 m. Con aviso de AEMET por nieve o hielo, usa el plan B por la costa. Aunque el día sea bueno, por la tarde en la Hoya de Guadix puede haber 2–5 °C."
+      },
+      "waypoints": [
+        "Hotel Los Castaños, Aracena",
+        "Sevilla",
+        "Antequera",
+        "Granada",
+        "Guadix",
+        "Almería"
       ],
-      "carreteras": [
-        "N-433",
-        "A-66",
-        "A-92"
-      ],
-      "autovia_km": 443,
       "google_maps": [
         {
           "tramo": "Aracena → Almería (A-92)",
@@ -1114,113 +3267,766 @@
           "url": "https://www.google.com/maps/dir/?api=1&origin=37.89249,-6.56389&destination=36.84172,-2.44688&travelmode=driving&waypoints=37.13000,-3.61500%7C36.74509,-3.52077",
           "opciones": "Evitar peajes: SÍ"
         }
+      ],
+      "carreteras": [
+        "N-433",
+        "A-66",
+        "A-92"
+      ],
+      "autovia_km": 443,
+      "horario_orientativo": [
+        {
+          "hora": "10:00",
+          "lugar": "Hotel Los Castaños (Aracena)",
+          "que": "Salida a las 10:00 por la escarcha de la sierra",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "12:50-14:05",
+          "lugar": "Antequera",
+          "que": "Dólmenes (a unos 10 min de la A-92) y comida: porra antequerana. Gasolina en Antequera o en Archidona (km 264, abierta 24 h)",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "15:30-15:45",
+          "lugar": "Guadix",
+          "que": "Barrio de cuevas junto a la autovía",
+          "zona_horaria": "Europe/Madrid"
+        },
+        {
+          "hora": "16:50",
+          "lugar": "Almería",
+          "que": "En casa · anochece a las 18:29",
+          "zona_horaria": "Europe/Madrid"
+        }
+      ],
+      "notas": [
+        "Horario orientativo: 5h20 de moto y 90 min de paradas. Llegada hacia las 16:50, 99 min antes de que anochezca (18:29).",
+        "En Kurviger: perfil Fast, evitar peajes.",
+        "Carreteras: N-433 → N-630/A-66 → SE-40 → A-92 (Sevilla, Antequera, Granada, Guadix) → Almería.",
+        "Plan B con aviso de nieve o hielo: en Granada, A-44 hacia Motril y vuelta por la A-7 de la costa (539 km, unas 6 h).",
+        "Tapones rojos (Race) en la autovía."
+      ],
+      "opciones": [
+        {
+          "titulo": "Nieve o hielo en la A-92",
+          "estado": "Por decidir",
+          "cuando": "Mirar los avisos de AEMET (Granada y Almería) la noche antes y por la mañana.",
+          "alternativas": [
+            {
+              "nombre": "A-92 por Guadix",
+              "coste": "511 km, 5 h 20 min",
+              "por_que": "El plan: el camino más corto.",
+              "como": "Ruta del día tal cual."
+            },
+            {
+              "nombre": "Plan B por la costa",
+              "coste": "539 km, unas 6 h",
+              "por_que": "En Granada, A-44 hacia Motril y A-7 por la costa: no pasa de unos 840 m.",
+              "como": "En Kurviger, mover el destino intermedio a Motril."
+            }
+          ]
+        }
       ]
     }
   ],
   "alojamientos_resumen": [
     {
       "noche": 1,
-      "fecha": "2027-01-09",
+      "fecha": "2027-01-16",
       "lugar": "El Puerto de Santa María",
       "alojamiento": "TAIGA Puerto Santa María (antes Camping Playa Las Dunas)",
       "telefono": "+34 951 204 531",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo el año"
     },
     {
       "noche": 2,
-      "fecha": "2027-01-10",
+      "fecha": "2027-01-17",
       "lugar": "Sagres",
       "alojamiento": "Orbitur Sagres",
       "telefono": "+351 282 624 371",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo el año"
     },
     {
       "noche": 3,
-      "fecha": "2027-01-11",
+      "fecha": "2027-01-18",
       "lugar": "Setúbal",
       "alojamiento": "EcoParque do Outão",
       "telefono": "+351 265 238 318",
-      "estado": "Sin reservar"
+      "estado": "Llamar: abierto en enero (cierra en febrero), bungalows sin confirmar"
     },
     {
       "noche": 4,
-      "fecha": "2027-01-12",
+      "fecha": "2027-01-19",
       "lugar": "Peniche",
       "alojamiento": "PenichePraia",
       "telefono": "+351 262 783 460",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo el año"
     },
     {
       "noche": 5,
-      "fecha": "2027-01-13",
+      "fecha": "2027-01-20",
       "lugar": "Aveiro (Praia da Barra)",
       "alojamiento": "Barra Camping & Bungalows",
       "telefono": "+351 234 369 425",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo 2026 (confirmar enero de 2027)"
     },
     {
       "noche": 6,
-      "fecha": "2027-01-14",
+      "fecha": "2027-01-21",
       "lugar": "A Guarda",
       "alojamiento": "Camping Santa Tecla",
       "telefono": "+34 986 61 30 11",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo el año"
     },
     {
       "noche": 7,
-      "fecha": "2027-01-15",
+      "fecha": "2027-01-22",
       "lugar": "Fisterra",
       "alojamiento": "Albergue-Pensión O Encontro",
-      "telefono": null,
-      "estado": "Sin reservar"
+      "telefono": "+34 981 740 369",
+      "estado": "Sin reservar · abierto todo el año (Gronze)"
     },
     {
       "noche": 8,
-      "fecha": "2027-01-16",
+      "fecha": "2027-01-23",
       "lugar": "Chaves",
       "alojamiento": "Parque de Campismo Quinta do Rebentão",
       "telefono": "+351 276 322 733",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · en enero, solo con reserva"
     },
     {
       "noche": 9,
-      "fecha": "2027-01-17",
+      "fecha": "2027-01-24",
       "lugar": "Coimbra",
       "alojamiento": "Coimbra Camping & Bungalows",
       "telefono": "+351 239 086 902",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo el año"
     },
     {
       "noche": 10,
-      "fecha": "2027-01-18",
+      "fecha": "2027-01-25",
       "lugar": "Évora",
       "alojamiento": "Orbitur Évora",
       "telefono": "+351 266 705 190",
-      "estado": "Sin reservar"
+      "estado": "Sin reservar · abierto todo el año"
     },
     {
       "noche": 11,
-      "fecha": "2027-01-19",
+      "fecha": "2027-01-26",
       "lugar": "Aracena",
       "alojamiento": "Hotel Los Castaños",
-      "telefono": null,
-      "estado": "Sin reservar"
+      "telefono": "+34 606 344 392",
+      "estado": "Llamar: confirmar apertura y precio en enero"
     }
   ],
   "contactos": {
     "emergencias": "112",
+    "seguro_asistencia": {
+      "compania": "Mapfre",
+      "telefono": "+34 918 365 365",
+      "poliza_local": true,
+      "nota": "Asistencia en viaje 24 h. Llamar SIEMPRE antes de pedir grúa o taller. El +34 918 365 365 vale desde España y desde Portugal; el 900 822 822 solo desde España. El número de póliza se guarda solo en el móvil."
+    },
     "en_casa": {
-      "nombre": "Contacto en casa",
+      "nombre": "En casa",
       "telefono": null,
       "local": true,
-      "nota": "El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil."
+      "nota": "Contacto con la ubicación compartida en Google Maps. El número no se guarda en el repositorio: se introduce en la app y queda solo en el móvil."
     }
   },
+  "seguro": {
+    "compania": "Mapfre España",
+    "producto": "Automóviles particulares - Terceros Ampliado (motocicleta Honda NX500, uso particular)",
+    "vigencia": {
+      "desde": "2026-09-01",
+      "hasta": "2027-09-01"
+    },
+    "documento": "Póliza y resguardo del pago en la app de Mapfre del móvil, el PDF en Archivos y una copia en papel en la bolsa estanca. En Portugal no vale la documentación digital: lleva el papel.",
+    "coberturas": [
+      {
+        "nombre": "Responsabilidad civil obligatoria",
+        "limite": "Incluida (también en Portugal)"
+      },
+      {
+        "nombre": "Responsabilidad civil suplementaria",
+        "limite": "Hasta 50.000.000 EUR por siniestro"
+      },
+      {
+        "nombre": "Asistencia en viaje",
+        "limite": "Incluida, 24 h. Los límites (km, grúa, hotel, vuelta a casa) están en las condiciones generales: confirmar antes de salir que cubre Portugal"
+      },
+      {
+        "nombre": "Seguro del conductor (accidentes personales)",
+        "limite": "Fallecimiento 8.000 EUR; invalidez hasta 8.000 EUR según baremo; asistencia sanitaria 8.000 EUR"
+      },
+      {
+        "nombre": "Defensa jurídica",
+        "limite": "3.000 EUR"
+      },
+      {
+        "nombre": "Defensa en multas y asesoramiento",
+        "limite": "Incluida"
+      },
+      {
+        "nombre": "Incendio del vehículo",
+        "limite": "Incluido"
+      },
+      {
+        "nombre": "Robo del vehículo",
+        "limite": "Incluido con franquicia de 150 EUR. Solo robo de la moto completa"
+      }
+    ],
+    "no_incluye": "No es a todo riesgo: los daños propios de la moto por caída o accidente sin tercero responsable NO están cubiertos.",
+    "exclusiones_relevantes": [
+      "Equipos extraíbles de telefonía y navegación (Pixel, cámara) no cubiertos",
+      "Robo parcial (maletas, piezas o accesorios sueltos) no cubierto: solo la moto completa, y los accesorios solo si están declarados",
+      "Asistencia: no se reembolsa ningún servicio (grúa, taller) contratado sin avisar antes a Mapfre",
+      "Alcohol o drogas por encima de la tasa: sin cobertura (en Portugal, 0,2 g/l los tres primeros años de carné)",
+      "Carga o pasajeros fuera de lo reglamentario como causa del accidente: sin cobertura"
+    ],
+    "en_caso_de": {
+      "averia_o_accidente": [
+        "Ponerse a salvo con el chaleco puesto; 112 si hay heridos (vale en España y en Portugal)",
+        "Llamar a Mapfre asistencia antes de nada: desde Portugal, +34 918 365 365. Dar póliza, matrícula, lugar (compartir ubicación) y que es una moto con maletas",
+        "Si hay otro vehículo: parte amistoso europeo con fotos de todo. Nunca reconocer la culpa por escrito",
+        "Fotos de la moto, la vía y las señales; datos de testigos",
+        "Avisar en casa y al alojamiento de esa noche si se va a llegar tarde"
+      ],
+      "robo": [
+        "Denuncia en la Guardia Civil o la Policía (en Portugal, GNR o PSP): es necesaria para la cobertura",
+        "Llamar a Mapfre con el número de denuncia",
+        "Las maletas y su contenido no están cubiertos: el móvil y los documentos, siempre encima"
+      ]
+    },
+    "aviso": "Antes de salir, confirmar con Mapfre que la asistencia en viaje cubre Portugal y el número para llamar desde el extranjero. La póliza declaraba las defensas como Motoguard SG67 y el inventario dice HG44: comprobar cuál es el modelo real."
+  },
+  "meteo": {
+    "proveedor": "Open-Meteo (api.open-meteo.com), gratuito, sin clave, previsión diaria a 16 días",
+    "zona_horaria": "Europe/Madrid",
+    "regla": "Mirar la previsión la noche antes y a las 08:00. Con aviso naranja o rojo de viento o lluvia (AEMET, MeteoGalicia, IPMA), con nieve o con riesgo de hielo, usar un día de margen y no salir.",
+    "criterio": {
+      "malo": "Tormenta, nieve, lluvia helada, probabilidad de lluvia >= 70%, >= 8 mm o rachas >= 70 km/h",
+      "regular": "Probabilidad de lluvia >= 40%, >= 2 mm, chubascos, rachas >= 50 km/h o mínima de 1 °C o menos (hielo)",
+      "bueno": "Todo lo demás"
+    },
+    "nota_coordenadas": "Coordenadas aproximadas (2 decimales). En los puntos de Portugal la previsión va en hora portuguesa.",
+    "enlaces": {
+      "aemet": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "meteogalicia": "https://www.meteogalicia.gal/",
+      "ipma": "https://www.ipma.pt/",
+      "windy": "https://www.windy.com/?40.0,-8.0,6",
+      "dgt": "https://infocar.dgt.es/etraffic/"
+    }
+  },
+  "informacion": [
+    {
+      "id": "portugal",
+      "titulo": "Portugal: lo imprescindible",
+      "icono": "🇵🇹",
+      "intro": "Lo que no hay que perderse y en qué día cae.",
+      "items": [
+        {
+          "titulo": "Cabo de São Vicente y Sagres (día 2)",
+          "texto": "La esquina suroeste de Europa, con la fortaleza de Enrique el Navegante."
+        },
+        {
+          "titulo": "Ponta da Piedade (día 2)",
+          "texto": "Arcos y grutas de roca dorada en Lagos."
+        },
+        {
+          "titulo": "Costa Vicentina (día 3)",
+          "texto": "La costa salvaje mejor conservada del sur de Europa."
+        },
+        {
+          "titulo": "Ferry de Tróia y Arrábida (días 3 y 4)",
+          "texto": "El estuario del Sado con delfines y la sierra que cae al mar."
+        },
+        {
+          "titulo": "Lisboa (día 4 + margen)",
+          "texto": "Belém de paso. Alfama, Baixa y Chiado, mejor en un día de margen y en transporte público."
+        },
+        {
+          "titulo": "Cabo da Roca y Sintra (día 4)",
+          "texto": "El punto más occidental del continente. Pena y Regaleira, en un día de margen."
+        },
+        {
+          "titulo": "Óbidos (día 5)",
+          "texto": "Villa amurallada intacta."
+        },
+        {
+          "titulo": "Nazaré (día 5)",
+          "texto": "Las olas más grandes del mundo, justo en temporada."
+        },
+        {
+          "titulo": "Aveiro y Costa Nova (días 5 y 6)",
+          "texto": "Canales, moliceiros y casas de rayas."
+        },
+        {
+          "titulo": "Oporto (día 6 + margen)",
+          "texto": "Ribeira, puente D. Luís I y bodegas de Gaia."
+        },
+        {
+          "titulo": "Viana do Castelo (día 6)",
+          "texto": "Santa Luzia y la desembocadura del Lima."
+        },
+        {
+          "titulo": "Douro: N222 y Pinhão (día 9)",
+          "texto": "Viñedos en terraza patrimonio de la UNESCO y la «mejor carretera del mundo»."
+        },
+        {
+          "titulo": "La N2 (días 9 y 10)",
+          "texto": "La «ruta 66» portuguesa, de Chaves (km 0) al Alentejo."
+        },
+        {
+          "titulo": "Coimbra (día 9)",
+          "texto": "Universidad, Biblioteca Joanina y fado."
+        },
+        {
+          "titulo": "Évora (día 10)",
+          "texto": "Templo romano y Capela dos Ossos, todo Patrimonio Mundial."
+        },
+        {
+          "titulo": "Fuera de la ruta",
+          "texto": "Si te sobra un día o tienes un hueco: el monasterio de Alcobaça (a 13 km de Nazaré), el Convento de Cristo de Tomar (a 30 km de Abrantes), Batalha, Guimarães o Monsaraz."
+        },
+        {
+          "titulo": "Para comer en Portugal",
+          "texto": "Pastel de nata, bacalhau, francesinha (Oporto), choco frito (Setúbal), arroz de marisco, ovos moles (Aveiro), leitão da Bairrada, chanfana, migas y porco preto (Alentejo), queijadas y travesseiros (Sintra), vino de Oporto y vinho verde, ginjinha (Óbidos)."
+        }
+      ]
+    },
+    {
+      "id": "peajes",
+      "titulo": "Peajes",
+      "icono": "💶",
+      "intro": "Cómo funcionan los peajes electrónicos de Portugal con matrícula española y cómo evitarlos.",
+      "items": [
+        {
+          "titulo": "En esta ruta",
+          "texto": "No pasas por ningún pórtico de peaje electrónico. El único peaje en Portugal es el puente 25 de Abril: 2,25 € en 2026, solo hacia Lisboa, en cabina manual con efectivo o tarjeta. La A22 del Algarve (día 2) y la A24 Lamego–Viseu (día 9) son gratuitas desde el 1-1-2025 (Lei 37/2024)."
+        },
+        {
+          "titulo": "Cómo funcionan",
+          "texto": "En muchas autopistas portuguesas no hay cabinas: un pórtico lee la matrícula. Con matrícula española tienes que asociar un medio de pago antes de pasar por el pórtico. Una moto paga clase 1 (el descuento de clase 5 solo se aplica con Via Verde)."
+        },
+        {
+          "titulo": "Si quieres usarlas",
+          "texto": "1) Vía-T española activada para Portugal: es lo más cómodo y sin recargo. La aceptan la mayoría de bancos, Bip&Drive, Solred y otros, pero confírmalo con tu emisor. 2) EasyToll: asocias tu tarjeta bancaria a la matrícula en línea o en las áreas de frontera de la A22, A24, A25 y A28. Cuesta unos 0,74–1 € de alta más 0,32 € por paso y vale 30 días. 3) Tollcard prepago (5–40 €) en tiendas CTT. 4) Via Verde Visitors en línea. EasyToll y Tollcard no valen en los puentes de Lisboa."
+        },
+        {
+          "titulo": "Si pasas uno sin querer",
+          "texto": "Con matrícula extranjera no puedes pagar en CTT ni Payshop. Entra en pagamentodeportagens.pt, busca por matrícula (el paso aparece unas semanas después) y paga. Si no pagas, hay recargo y multa de como mínimo 25 €."
+        },
+        {
+          "titulo": "Autopistas que debes evitar",
+          "texto": "Con peaje electrónico: A28 entre Oporto y Esposende, A4 en Matosinhos, A41, A42, A29 (Angeja–Gaia), A17 (Mira–Aveiro), A19 (Leiria) y A33. En Google Maps y Kurviger activa «Evitar peajes»."
+        },
+        {
+          "titulo": "En España",
+          "texto": "Esta ruta no paga peajes en España. El día 8, entre Santiago y Ourense, se va por la N-525 hasta Lalín y allí se entra en la AP-53: de Lalín al Alto de Santo Domingo no se paga (en la tarifa, Lalín cuenta como el Alto de Santo Domingo) y después sigue la AG-53, gratuita. Entrar en la AP-53 en Santiago costaría 7,25 € (tarifa de ligeros 2026, la misma que pagan las motos)."
+        }
+      ]
+    },
+    {
+      "id": "papeles",
+      "titulo": "Documentación y normas en Portugal",
+      "icono": "📄",
+      "items": [
+        {
+          "texto": "Documentos en papel: el permiso digital de miDGT no vale fuera de España. Lleva DNI o pasaporte, carné de conducir, permiso de circulación, tarjeta ITV con la inspección en vigor y el recibo o certificado del seguro."
+        },
+        {
+          "texto": "La carta verde no hace falta. Lleva un parte amistoso europeo y el teléfono de asistencia de tu seguro, y comprueba que cubre el remolque en Portugal."
+        },
+        {
+          "texto": "Tarjeta Sanitaria Europea para el médico en Portugal."
+        },
+        {
+          "texto": "En moto en Portugal: casco homologado y abrochado, y luz de cruce siempre encendida. El chaleco y los triángulos no son obligatorios en moto, aunque llevar el chaleco cuesta poco."
+        },
+        {
+          "texto": "Límites para motos en Portugal: 50 km/h en población, 90 en carretera, 100 en vías reservadas y 120 en autopista (mínimo 50)."
+        },
+        {
+          "texto": "Alcohol en Portugal: 0,5 g/l, o 0,2 g/l en los tres primeros años de carné. Lo sensato es 0."
+        },
+        {
+          "texto": "El intercomunicador está en zona gris: el código portugués prohíbe los auriculares salvo los de un solo oído. Llévalo a volumen bajo."
+        },
+        {
+          "texto": "Carné reciente: Portugal tiene normas para conductores noveles (periodo de prueba, con límites de velocidad más bajos según la fuente). Si tu primer carné, de cualquier clase, es de hace menos de un año, compruébalo antes de ir; con un carné de coche de hace años, el A2 nuevo no te convierte en novel."
+        }
+      ]
+    },
+    {
+      "id": "equipo",
+      "titulo": "Frío y lluvia: equipo",
+      "icono": "🧤",
+      "intro": "Ya llevas buena base: chaqueta Vertical GTX con forro térmico, pantalón Tornado 4 con forros impermeable y térmico, botas Breccia GTX, guantes Sand 5 H2O y el Shoei GT-Air 3 con Sena.",
+      "items": [
+        {
+          "titulo": "Guantes de invierno",
+          "texto": "Los Sand 5 H2O son de entretiempo. Lleva unos de invierno impermeables y aislados (o calefactables) y los Sand como segundo par para cuando unos estén mojados."
+        },
+        {
+          "titulo": "Puños calefactables y paramanos",
+          "texto": "Es la mejora de confort más grande en enero. Honda vende puños calefactables oficiales para la NX500, y hay paramanos específicos (Barkbusters, por ejemplo) que cortan el viento en los dedos."
+        },
+        {
+          "titulo": "Capa base térmica",
+          "texto": "Camiseta y malla de merino o sintéticas, y un forro polar fino debajo de la chaqueta para el interior de Portugal."
+        },
+        {
+          "titulo": "Cuello y sotocasco",
+          "texto": "Braga de cuello cortaviento y un sotocasco fino. Por el cuello se va casi todo el calor."
+        },
+        {
+          "titulo": "Traje de agua",
+          "texto": "Un mono o conjunto de lluvia por encima, para los días seguidos de lluvia en Galicia y el norte. Mantiene la ropa GTX seca y abriga."
+        },
+        {
+          "titulo": "Pinlock y antilluvia",
+          "texto": "Comprueba que el GT-Air 3 lleva el Pinlock puesto, y trata la pantalla con antilluvia."
+        },
+        {
+          "titulo": "Bolsas estancas",
+          "texto": "Bolsas estancas dentro de las maletas y la funda de lluvia de la bolsa de depósito, que es donde va el móvil."
+        },
+        {
+          "titulo": "Visibilidad",
+          "texto": "Un chaleco o una capa de color vivo encima, para la lluvia y la niebla."
+        },
+        {
+          "titulo": "Mantenimiento",
+          "texto": "Engrasa la cadena cada noche después de lluvia, mira la presión en frío y sal con más de 3 mm de dibujo en los neumáticos."
+        }
+      ]
+    },
+    {
+      "id": "reglas",
+      "titulo": "Reglas de invierno",
+      "icono": "❄️",
+      "items": [
+        {
+          "texto": "Nunca de noche. Ponte como objetivo llegar una hora antes de la puesta de sol."
+        },
+        {
+          "texto": "Con menos de 3 °C y el asfalto húmedo a la sombra, espera. En el interior, sal a partir de las 10:00."
+        },
+        {
+          "texto": "Con aviso naranja o rojo de viento o lluvia (AEMET, MeteoGalicia o IPMA), usa un día de margen y no salgas."
+        },
+        {
+          "texto": "Antes de salir, mira el estado de las carreteras (DGT en España, Infraestruturas de Portugal) y los avisos de IPMA."
+        },
+        {
+          "texto": "Puentes y cabos tienen rachas laterales: agárrate con las rodillas y suelta los brazos."
+        },
+        {
+          "texto": "En ciudad, adoquín, raíles de tranvía y pintura blanca mojada: frena en recto y sin brusquedad."
+        }
+      ]
+    },
+    {
+      "id": "margen",
+      "titulo": "Días de margen",
+      "icono": "🗓️",
+      "intro": "Hay 2 días de margen sin asignar. Dónde rinden más (cada uno está también como decisión en la ficha de su día):",
+      "items": [
+        {
+          "titulo": "Lisboa",
+          "texto": "Parte el día 4: Setúbal → Lisboa (65 km, 1 h 25 min) y tarde en Lisboa; al día siguiente, Lisboa → Peniche (158 km, 3 h 10 min). Duerme en Lisboa Camping & Bungalows (Monsanto, abierto todo el año, +351 217 628 200) y muévete en autobús o metro."
+        },
+        {
+          "titulo": "Oporto",
+          "texto": "Parte el día 6: Barra → Oporto (82 km, 1 h 40 min) y tarde en la Ribeira; al día siguiente, Oporto → A Guarda (136 km, 2 h 35 min). Duerme en Orbitur Angeiras (abierto todo el año, +351 22 927 0571)."
+        },
+        {
+          "titulo": "Galicia",
+          "texto": "Parte el día 7: A Guarda → Pontevedra (92 km, 1 h 55 min) y Pontevedra → Fisterra (160 km, 3 h)."
+        },
+        {
+          "titulo": "Douro",
+          "texto": "Parte el día 9: Chaves → Peso da Régua (134 km, 2 h 30 min), noche en el valle, y Régua → Coimbra (167 km, 2 h 30 min). Es la mejor opción si quieres etapas cortas en la zona con más riesgo de helada."
+        }
+      ]
+    },
+    {
+      "id": "emergencias",
+      "titulo": "Emergencias y asistencia",
+      "icono": "🆘",
+      "items": [
+        {
+          "texto": "112 en España y en Portugal."
+        },
+        {
+          "texto": "Línea de salud de Portugal SNS 24: 808 24 24 24."
+        },
+        {
+          "texto": "Via Verde, asistencia e información de tráfico 24 h: +351 210 730 300."
+        },
+        {
+          "texto": "Apunta el teléfono de asistencia en viaje de tu seguro."
+        }
+      ]
+    },
+    {
+      "id": "fuentes",
+      "titulo": "Fuentes",
+      "icono": "🔗",
+      "intro": "Datos comprobados en octubre de 2026. Las tarifas de 2027 de peajes, ferry y campings pueden subir algo.",
+      "items": [
+        {
+          "texto": "Rutas, distancias y tiempos: Valhalla (perfil moto) y OSRM sobre OpenStreetMap; altitudes con el servicio de elevación de Valhalla",
+          "url": "https://valhalla1.openstreetmap.de"
+        },
+        {
+          "texto": "Peajes eliminados en las ex-SCUT (Lei 37/2024)",
+          "url": "https://postal.pt/sociedade/publicada-lei-que-elimina-portagens-nas-ex-scut-conheca-as-autoestradas-em-causa/"
+        },
+        {
+          "texto": "Peajes electrónicos para matrículas extranjeras (Infraestruturas de Portugal)",
+          "url": "https://www.pttolls.com/en/faq-frequently-asked-questions"
+        },
+        {
+          "texto": "Pago de peajes por matrícula",
+          "url": "https://www.pagamentodeportagens.pt/PPP_Portal/PPPHome.aspx"
+        },
+        {
+          "texto": "Tarifas 2026 del puente 25 de Abril (IMT)",
+          "url": "https://www.imt-ip.pt/rodoviario/infraestruturas-rodoviarias/rede-rodoviaria/taxas-de-portagem/"
+        },
+        {
+          "texto": "Ferry Setúbal–Tróia: horario de temporada baja 2026",
+          "url": "https://www.atlanticferries.pt/wp-content/uploads/2025/12/Ferries_EpocaBaixa_2026.pdf"
+        },
+        {
+          "texto": "Ferry Caminha–A Guarda parado desde 2020",
+          "url": "https://observador.pt/2025/07/25/oposicao-acusa-autarca-de-caminha-de-contradicao-no-caso-do-ferry-parado-desde-2020/"
+        },
+        {
+          "texto": "Peaje AP-53 Santiago–Alto de Santo Domingo (2026)",
+          "url": "https://blog.mundo-r.com/es/peaje-ourense-santiago/"
+        },
+        {
+          "texto": "Peajes AP-9 (2026)",
+          "url": "https://blog.mundo-r.com/es/peajes-galicia/"
+        },
+        {
+          "texto": "Documentos digitales de la DGT en el extranjero",
+          "url": "https://www.dgt.es/comunicacion/notas-de-prensa/ya-se-puede-llevar-el-permiso-de-conducir-en-el-movil"
+        },
+        {
+          "texto": "Código da Estrada consolidado",
+          "url": "https://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?nid=349&tabela=leis"
+        },
+        {
+          "texto": "Precios de carburante: Ministerio (España) y DGEG (Portugal), 14-10-2026",
+          "url": "https://precoscombustiveis.dgeg.gov.pt"
+        },
+        {
+          "texto": "Normales climáticas 1991-2020 (Meteostat)",
+          "url": "https://meteostat.net"
+        },
+        {
+          "texto": "Campings: fichas ACSI/Eurocampings, Alan Rogers, PiNCAMP y webs oficiales (consultadas en octubre de 2026)",
+          "url": "https://www.eurocampings.co.uk"
+        },
+        {
+          "texto": "Importar GPX en Kurviger",
+          "url": "https://docs.kurviger.com/route_transfer/import"
+        },
+        {
+          "texto": "Real Decreto 276/2025 (AP-53: los viajes con entrada o salida en Lalín cuentan como Alto de Santo Domingo)",
+          "url": "https://boe.es/boe/dias/2025/04/09/pdfs/BOE-A-2025-7166.pdf"
+        }
+      ]
+    }
+  ],
+  "equipacion_moto": {
+    "decision": "REV'IT Vertical GTX con forro térmico + REV'IT Tornado 4 con forros térmico e impermeable. Encima, traje de agua los días de lluvia.",
+    "puesto_siempre": [
+      "Botas REV'IT Breccia GTX (Gore-Tex)",
+      "Guantes de invierno impermeables (los Sand 5 H2O, de segundo par en el baúl)",
+      "Casco Shoei GT-Air 3 con Pinlock y Sena SRL3",
+      "SIXS Carbon Underwear (top, bottom y sotocasco) como primera capa",
+      "Braga de cuello merino",
+      "Tapones Alpine MotoSafe: negros (Tour) en carretera, rojos (Race) en autovía",
+      "Powerbank pequeña en el bolsillo de la chaqueta"
+    ],
+    "lluvia": "Traje de agua por encima y los Sand 5 H2O cuando los de invierno se mojen. Bolsas estancas dentro de las maletas y funda de lluvia en la bolsa de depósito, que es donde va el móvil.",
+    "tapones": "Alpine MotoSafe: NEGRO = Tour (17 dB) para carretera; ROJO = Race (20 dB) para autovía: días 1, 2, 8 (AG-53 y A-52) y 12.",
+    "sixs": "SIXS top, bottom y sotocasco todos los días; encima, merino manga larga. Con frío y humedad tardan en secar: lavarlos en las noches con calefacción.",
+    "configuracion_por_tipo_de_dia": {
+      "autovía": {
+        "dias": [
+          1,
+          2,
+          12
+        ],
+        "pantalon": "Tornado con forros térmico e impermeable puestos y SIXS bottom debajo",
+        "chaqueta": "Vertical GTX con forro térmico, SIXS top y merino; todo cerrado: a 110 km/h la sensación térmica baja mucho",
+        "nota": "Día 12: la A-92 pasa de 1.300 m. Polar debajo y guantes de invierno aunque el día amanezca bueno."
+      },
+      "costa": {
+        "dias": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "pantalon": "Tornado con forro impermeable siempre; el térmico si al salir hay menos de 10 °C",
+        "chaqueta": "Vertical GTX con forro térmico por la mañana; ventilaciones cerradas",
+        "nota": "Humedad y viento del Atlántico: el traje de agua, arriba del todo en el baúl. Galicia (días 6 y 7) es la zona más lluviosa del viaje."
+      },
+      "interior": {
+        "dias": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "pantalon": "Tornado con forros térmico e impermeable, SIXS bottom y mallas si hay helada",
+        "chaqueta": "Vertical GTX con forro térmico, SIXS top, merino y polar a primera hora",
+        "nota": "Las mañanas más frías del viaje (Chaves, el Douro y la N2, cerca de 0 °C). Con menos de 3 °C, esperar. Parar cada hora a calentar las manos."
+      }
+    }
+  },
+  "compras_pendientes": [
+    {
+      "que": "Guantes de invierno impermeables y aislados (o calefactables)",
+      "donde": "Tienda de moto",
+      "cuando": "Antes de diciembre"
+    },
+    {
+      "que": "Puños calefactables y paramanos para la NX500",
+      "donde": "Concesionario Honda o tienda de moto",
+      "cuando": "Montarlos y probarlos antes de salir"
+    },
+    {
+      "que": "Traje de agua (mono o conjunto) para llevar encima",
+      "donde": "Tienda de moto",
+      "cuando": "Antes de diciembre"
+    },
+    {
+      "que": "Antilluvia para la pantalla del casco",
+      "donde": "-",
+      "cuando": "-"
+    }
+  ],
+  "reparto_equipaje": {
+    "regla": "Cada cosa vive siempre en la misma maleta. Bolsas estancas dentro de las tres.",
+    "bolsa_deposito_e09cl": [
+      "Pixel conectado a la powerbank 1, con la funda de lluvia de la bolsa puesta",
+      "Powerbank 2 de reserva",
+      "Abus 8008 + cable recordatorio",
+      "Bolsa estanca: DNI, carné, permiso de circulación, tarjeta ITV, seguro, parte amistoso europeo y Tarjeta Sanitaria Europea (en papel)",
+      "Efectivo y tarjeta para el peaje del puente 25 de Abril y el ferry de Tróia",
+      "Microfibra para la visera y bálsamo labial",
+      "Termo pequeño o botella de agua"
+    ],
+    "sh38x_izquierda_ropa": [
+      "Organizador grande: SIXS (top, bottom, sotocasco, calcetines), merino manga larga x2, mallas, boxers, calcetines de invierno",
+      "Ropa de calle de abrigo y zapatillas ligeras",
+      "Al fondo: spray Motul C2 Road y cápsulas de CO2 del kit de mechas (lejos del escape)",
+      "Organizador vacío para ropa sucia + detergente"
+    ],
+    "sh38x_derecha_taller_y_aseo": [
+      "Fondo: compresor Xiaomi y herramienta del Givi S450",
+      "Multiherramienta con cinta americana, bridas, guantes de nitrilo y microfibras",
+      "Botiquín",
+      "Neceser con medicación (+1 día)",
+      "Un cargador de pared de varias tomas + cables"
+    ],
+    "sh58x_capas_y_lluvia": [
+      "Traje de agua, arriba del todo",
+      "Guantes REV'IT Sand 5 H2O (segundo par)",
+      "Polar MH100 y el forro que no se lleve puesto",
+      "Aparato para dormir con su bolsa (imprescindible)",
+      "Chaleco reflectante",
+      "Casco y chaqueta al bajar a comer o pasear"
+    ],
+    "llaves": "Llave de repuesto de la moto y de las maletas SHAD guardada aparte de la principal."
+  },
+  "checklist_previa": {
+    "reservas": [
+      "Reservar los 11 alojamientos (lo pendiente de cada uno está en Listas → Confirmar con alojamientos)",
+      "Llamar a EcoParque do Outão (día 3) y al Hotel Los Castaños (día 11): son los dos sin confirmar",
+      "Quinta do Rebentão (día 8): en enero solo abre con reserva"
+    ],
+    "papeles": [
+      "DNI o pasaporte, carné de conducir, permiso de circulación, tarjeta ITV en vigor y recibo del seguro, en papel: miDGT no vale fuera de España",
+      "Parte amistoso europeo",
+      "Tarjeta Sanitaria Europea",
+      "Mapfre: confirmar que la asistencia cubre Portugal y el número desde el extranjero",
+      "Vía-T: solo si se va a usar alguna autopista portuguesa, activarla para Portugal con el emisor (esta ruta no la necesita)"
+    ],
+    "moto": [
+      "Revisión antes del viaje: aceite si toca, pastillas y luces",
+      "Neumáticos con más de 3 mm de dibujo",
+      "Cadena: tensión y estado del kit",
+      "Batería: con el frío sufre; desenchufar la D6A en cada parada larga",
+      "Puños calefactables montados y probados (si se compran)",
+      "Presiones en frío: 2,0 / 2,5 bar"
+    ],
+    "equipo": [
+      "Probar el equipo completo de invierno en una salida de una hora",
+      "Pinlock puesto y antilluvia en la pantalla del casco",
+      "Bolsas estancas en las tres maletas y funda de lluvia de la bolsa de depósito"
+    ],
+    "navegación": [
+      "Importar los 12 GPX en Kurviger y comparar cada ruta con su track",
+      "Mapas offline de Kurviger: las provincias españolas de la ruta y Portugal",
+      "Abrir esta app con red y pasar por las 12 etapas para que se queden guardadas en el móvil"
+    ],
+    "la_víspera": [
+      "Cargar Pixel, powerbanks, D6A y Sena",
+      "Previsión y avisos del día 1 (AEMET, Estrecho)",
+      "Avisar en casa del plan y compartir la ubicación"
+    ]
+  },
+  "rutina_diaria": {
+    "noche_anterior": [
+      "Previsión y avisos de la etapa siguiente: AEMET y MeteoGalicia en España, IPMA en Portugal",
+      "Estado de las carreteras: DGT en España; en Portugal, Infraestruturas de Portugal",
+      "Cargar Pixel, las dos powerbanks, D6A y Sena (el Pixel al 100 % antes de salir)",
+      "Aparato para dormir montado y enchufado antes de acostarse",
+      "Cadena: los días 1, 2, 4, 6, 8, 10 y 11, y cualquier noche después de lluvia (la app lo avisa)",
+      "Guantes, botas y casco a secar cerca de la calefacción, nunca encima",
+      "Repasar la ruta del día en Kurviger y decidir la hora de salida según la helada"
+    ],
+    "mañana": [
+      "Mirar la temperatura: con menos de 3 °C y asfalto húmedo a la sombra, esperar",
+      "Presiones en frío si toca (cada 2-3 días): 2,0 delante / 2,5 detrás",
+      "Cargar maletas en 5 minutos (cada cosa en su sitio)",
+      "Cable recordatorio del Abus fuera antes de arrancar",
+      "Enchufar la D6A; Pixel al 100 % y conectado a la powerbank 1; solo Kurviger abierto",
+      "Luz de cruce siempre encendida (obligatoria en Portugal)"
+    ],
+    "en_ruta": [
+      "Parada cada hora como mucho: calentar las manos y beber algo caliente",
+      "Gasolina por debajo de medio depósito en las zonas rurales",
+      "Sombras húmedas, hojas y adoquín: frenar en recto y sin brusquedad",
+      "En paradas largas (comida): desenchufar la D6A"
+    ],
+    "llegada": [
+      "Desenchufar la D6A (se queda encendida y vacía la batería)",
+      "Antirrobo de disco puesto",
+      "Avisar en casa",
+      "Confirmar cena y desayuno; en invierno hay recepciones que cierran pronto",
+      "Ropa mojada a secar y lavado a mano si toca"
+    ]
+  },
   "principios_para_claude": [
-    "No cambiar destinos ni bases sin una razon fuerte y explicita.",
+    "No cambiar destinos ni bases sin una razón fuerte y explícita.",
     "No añadir turismo por añadir.",
     "Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.",
-    "No proponer jornadas reales de conduccion superiores a 4h.",
+    "No proponer jornadas reales de conducción superiores a 6h; mejor más cortas.",
+    "Nunca de noche: llegar al menos una hora antes del ocaso.",
+    "Evitar autovías y autopistas salvo para ganar tiempo o seguridad, y nunca peajes electrónicos de Portugal.",
+    "Evitar puertos con riesgo de hielo o nieve; con aviso, usar un día de margen o el plan B.",
     "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
     "No inventar disponibilidad, horarios ni precios; verificar antes.",
     "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan."

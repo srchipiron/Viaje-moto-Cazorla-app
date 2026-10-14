@@ -12,20 +12,23 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
 - Viaje nuevo: `python3 tools/nuevo_viaje.py <id> --nombre ... --inicio AAAA-MM-DD [--activar] dia1.gpx ...`
   genera un `viaje.json` mínimo, tracks, radares y gasolineras. Luego se completa a mano.
 - `viajes/2026-09-cazorla/` es el primer viaje (terminado) y el modelo completo de todas las
-  secciones. `viajes/ejemplo/` es el mínimo generado por el script; está `oculto` en el índice y
-  lo usa la prueba de humo: no borrarlo.
+  secciones. `viajes/2027-01-fisterra/` es el segundo (enero de 2027, el activo): el primero que
+  pasa por Portugal y el modelo de los campos de zona horaria, países e `informacion` (ver README,
+  «Viajes por Portugal»). `viajes/ejemplo/` es el mínimo generado por el script; está `oculto` en
+  el índice y lo usa la prueba de humo: no borrarlo.
 - La app normaliza el plan al cargarlo (`completar()` en `app.js`): lo único obligatorio es
   `proyecto.nombre` y el itinerario con `dia`, `fecha`, `origen`, `destino`, `km_aprox`. Cada
   sección opcional se ve solo si existe. Si una vista nueva lee una sección del plan, que no
   rompa cuando falta: darle valor por defecto en `completar()` o comprobarla antes.
 - Campos opcionales por día que la app entiende además de los del primer viaje: `google_maps`
-  (`[{ tramo, url, opciones }]`, botones para navegar con Google), `zona_horaria` (p. ej.
-  `Europe/Lisbon` para la hora del ocaso en Portugal), `carreteras` y `autovia_km`. Sin
-  `gpx.avisos` la app no dice nada de puntos de despiste; con `[]` dice que la ruta es lineal.
-- `viajes/2027-01-fisterra/` (activo) vino de un JSON con waypoints y rutas de Google, sin GPX:
-  sus tracks son aproximados (OSRM por esos puntos, altitudes EU-DEM) y llevan
-  `fuente: "OSRM (aproximado)"`. Cuando lleguen los GPX de Kurviger, sustituirlos y regenerar
-  radares y gasolineras. Fechas provisionales (`proyecto.fechas.provisionales`).
+  (`[{ tramo, url, opciones }]`, botones para navegar con Google), `zona_horaria` (la del destino:
+  `Europe/Lisbon` en Portugal), `paises`, `carreteras` y `autovia_km`. Sin `gpx.avisos` la app no
+  dice nada de puntos de despiste; con `[]` dice que la ruta es lineal. Más en el README,
+  «Viajes por Portugal».
+- `viajes/2027-01-fisterra/` (activo): salida el sábado 16 de enero de 2027. Sus GPX no son de
+  Kurviger: son las rutas de la guía calculadas con Valhalla (perfil moto) y OSRM sobre
+  OpenStreetMap, con altitud y hora en cada punto (`fuente` = creador del GPX). Si se rehacen en
+  Kurviger, sustituirlos y regenerar tracks, radares y gasolineras. Alojamientos sin reservar.
 - localStorage: lo de cada viaje (marcas, diario, gastos, repostajes, meteo, precios, pueblos)
   lleva el sufijo `@<id>` (ver `claves()`); el primer viaje conserva las claves sin sufijo porque
   así están en el móvil. Contactos personales, póliza y tema son del dispositivo, sin sufijo.
@@ -37,7 +40,8 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
   viaje se llama `meta.cambios_v3`; la app acepta las dos).
 - Los principios de planificación están en `principios_para_claude` dentro del JSON:
   no cambiar destinos ni bases sin razón fuerte, no añadir turismo por añadir,
-  no proponer jornadas de más de 4 h reales, no inventar horarios ni precios.
+  no proponer jornadas reales más largas de lo que diga cada viaje (4 h en el primero, 6 h en el
+  de Portugal), no inventar horarios ni precios.
 - Datos personales: el repositorio es público. No guardar teléfonos ni datos de
   personas privadas. Un contacto con `"local": true` y `telefono: null` pide el
   número en la app y lo guarda solo en el dispositivo.
@@ -79,15 +83,21 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
 - `viajes/<id>/gasolineras.json` lo genera `python3 tools/gasolineras.py [--viaje <id>]` desde el listado completo del
   Ministerio (Geoportal de hidrocarburos, datos abiertos, 12 MB): solo las gasolineras a menos de
   400 m de cada track, con el km de la etapa, sin precio, y las provincias que toca cada día.
+  Si algún track pisa Portugal añade las de la DGEG (`precoscombustiveis.dgeg.gov.pt`, distrito a
+  distrito, con el horario de cada una): id `PT-<Id>`, provincia `PT-<distrito>` y el bloque `pt`
+  con la API y el producto (3201, gasolina simples 95).
 - Los precios los pide la app en vivo (`preciosFetch`) al endpoint
   `FiltroProvinciaProducto/{provincia}/1` (95 E5, ~50 KB por provincia, CORS abierto) y los guarda
-  en `localStorage` (`viaje-nx500-gasolina`) hasta que cambia el día. `gasolinerasDia(n)` devuelve
+  en `localStorage` (`viaje-nx500-gasolina`) hasta que cambia el día; las `PT-` las pide a la DGEG por
+  distrito (`PesquisarPostos`, CORS abierto). `gasolinerasDia(n)` devuelve
   la lista con precio, `gasMasBarata()` la más barata. Sin red, salen sin precio.
 
 ## Probar y publicar
 
 - Servidor local: `python3 -m http.server 8080` desde la raíz.
-- Prueba de humo: `node tests/smoke.js` (Playwright global o local, Chromium).
+- Prueba de humo: `node tests/smoke.js` (Playwright global o local, Chromium). La parte principal va
+  contra `?viaje=2026-09-cazorla` (sus comprobaciones dependen de esos datos); después prueba
+  `viajes/ejemplo/` y el viaje por Portugal.
 - Antes de nada, comprobar que el JSON sigue siendo valido: nunca commitear sin
   `python3 tools/validar.py` (índice, cada viaje, campos mínimos, ficheros que existen y ningún
   teléfono personal). Hay un gancho en `.githooks/pre-commit` que lo hace solo: activarlo con
@@ -110,8 +120,8 @@ y siguiente punto, y `viewAhora()` monta tarjetas con una prioridad numérica y 
 añadir un consejo nuevo basta con empujar `{ p, html }` a `cards`. `seguirPos()` mantiene un
 `watchPosition` mientras la vista está abierta y repinta cuando te mueves más de 300 m.
 
-`#/pueblos` geocodifica un nombre con `geocoding-api.open-meteo.com` (solo resultados de España) y
-`puebloContraRuta()` lo proyecta sobre los 11 tracks: distancia mínima, km de la etapa y estimación
+`#/pueblos` geocodifica un nombre con `geocoding-api.open-meteo.com` (solo resultados de los países
+de `proyecto.paises`, por defecto España) y `puebloContraRuta()` lo proyecta sobre los tracks: distancia mínima, km de la etapa y estimación
 del desvío (×1,4 por carretera, ida y vuelta). Ojo con `rerender()` en vistas con formulario: repinta
 el DOM y borra lo tecleado; la vista lee el valor actual del input antes de repintar.
 El diario, los gastos y las marcas viven solo en el móvil, así que desde el repositorio no se
@@ -120,4 +130,11 @@ pueden escribir. Para apuntar algo en el diario hay un enlace profundo:
 (no pisa lo escrito) y abre su ficha.
 
 Todo lo que sea dato personal (teléfonos, póliza, matrícula, médico) va en localStorage, nunca en el JSON. Meteo: Open-Meteo, sin clave.
+
+Horas: las del plan van en hora local de cada sitio. `zonaDia(e)`, `zonaPunto(pt)` y `ahoraMinEn(tz)`
+usan `zona_horaria` del día, del punto de meteo o de la fila del horario (si no hay, la del viaje,
+`meteo.zona_horaria`). La salida y la llegada del día van en la zona de la primera y la última fila
+del horario (`zonaSalida(e)`, `zonaLlegada(e)`; `horaZonaHTML` les pone la marca ES/PT cuando hace
+falta). La meteo se pide agrupando los puntos por zona (`meteoPorZona`) y la de horas guarda la zona
+de cada punto.
 Mapa: Leaflet vendorizado en `vendor/leaflet`, tiles de OpenStreetMap.
