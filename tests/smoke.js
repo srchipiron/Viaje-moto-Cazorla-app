@@ -1,6 +1,9 @@
 /* Prueba de humo con Playwright (Chromium). Recorre todas las vistas, comprueba que no hay
    errores de JavaScript, que las marcas persisten, que el service worker cachea y que la app
-   sigue funcionando sin conexion. Las llamadas a Open-Meteo y a los mapas se simulan.
+   sigue funcionando sin conexion. Las llamadas a Open-Meteo, a los precios y a los mapas se simulan.
+   La prueba principal va contra el primer viaje (2026-09-cazorla, con ?viaje=), que es el que tiene los
+   datos que se comprueban; despues, el viaje minimo de viajes/ejemplo y el viaje por Portugal
+   (2027-01-fisterra): horas de Portugal, gasolineras de la DGEG y pueblos de los dos paises.
 
    Uso:  python3 -m http.server 8080 &   (desde la raiz del repositorio)
          node tests/smoke.js [http://localhost:8080/]
@@ -84,6 +87,7 @@ function mockGeo(url) {
     const c = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES', permissions: ['geolocation'], geolocation: geo });
     await c.route('https://api.open-meteo.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }));
     await mockGas(c);
+    await c.route('https://precoscombustiveis.dgeg.gov.pt/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ status: true, resultado: [] }) }));
     await c.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
     return c;
   }
@@ -234,7 +238,8 @@ function mockGeo(url) {
   await pageA.goto(BASE + '#/ahora', { waitUntil: 'networkidle' });
   await pageA.waitForFunction(() => !document.querySelector('.loading'));
   await pageA.click('[data-localizar]');
-  await pageA.waitForFunction(() => /de moto/i.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('ahora: sin tarjeta de progreso'));
+  // "Quedan" solo sale con posicion: "de moto" y "llegada estimada" tambien estan en la tarjeta sin GPS.
+  await pageA.waitForFunction(() => /quedan/i.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('ahora: sin tarjeta de progreso'));
   const ahora = await pageA.locator('#view').innerText();
   console.log('ahora:', ahora.replace(/\n+/g, ' | ').slice(0, 260));
   if (!/quedan/i.test(ahora)) errors.push('ahora: sin kilometros restantes');
@@ -316,6 +321,95 @@ function mockGeo(url) {
     }
     console.log('plantilla (viajes/ejemplo):', vistas.length, 'vistas · cabecera', marca, '· claves', claveE.join(','));
     await ctxE.close();
+  }
+  // viaje por España y Portugal: horas de Portugal, gasolineras de la DGEG, pueblos de los dos paises,
+  // informacion general en la Guia y radares solo en España. Y la raiz abre el viaje activo.
+  const VF = '2027-01-fisterra', dirF = path.join(__dirname, '..', 'viajes', VF);
+  if (fs.existsSync(path.join(dirF, 'viaje.json'))) {
+    const planF = JSON.parse(fs.readFileSync(path.join(dirF, 'viaje.json'), 'utf8'));
+    const gasF = JSON.parse(fs.readFileSync(path.join(dirF, 'gasolineras.json'), 'utf8'));
+    const todasF = [].concat(...Object.values(gasF.por_dia));
+    const d9 = planF.itinerario.find((d) => d.dia === 9);
+    const t9 = JSON.parse(fs.readFileSync(path.join(dirF, d9.gpx.track), 'utf8'));
+    const medio9 = t9.track[Math.floor(t9.track.length / 2)];
+    const meteoUrls = [];
+    const ctxP = await browser.newContext({ viewport: { width: 412, height: 915 }, isMobile: true, locale: 'es-ES', timezoneId: 'Europe/Lisbon',
+      permissions: ['geolocation'], geolocation: { latitude: medio9[0], longitude: medio9[1], accuracy: 15 } });
+    await ctxP.route('https://api.open-meteo.com/**', (r) => { meteoUrls.push(r.request().url()); r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockMeteo(r.request().url())) }); });
+    await ctxP.route('https://tile.openstreetmap.org/**', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG1x1 }));
+    await ctxP.route('https://sedeaplicaciones.minetur.gob.es/**', (r) => {
+      const prov = r.request().url().match(/FiltroProvinciaProducto\/(\d+)\//);
+      const lista = todasF.filter((s) => !/^PT-/.test(s.id) && (!prov || s.prov === prov[1])).map((s, i) => ({ IDEESS: s.id, PrecioProducto: (1.6 + (i % 7) / 100).toFixed(3).replace('.', ',') }));
+      r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ Fecha: '24/01/2027 8:00:00', ListaEESSPrecio: lista }) });
+    });
+    await ctxP.route('https://precoscombustiveis.dgeg.gov.pt/**', (r) => {
+      const dist = new URL(r.request().url()).searchParams.get('idDistrito');
+      const lista = todasF.filter((s) => s.prov === `PT-${dist}`).map((s, i) => ({ Id: +s.id.slice(3), Preco: `${(1.9 + (i % 5) / 100).toFixed(3).replace('.', ',')} €` }));
+      r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ status: true, mensagem: 'sucesso', resultado: lista }) });
+    });
+    await ctxP.route('https://geocoding-api.open-meteo.com/**', (r) => {
+      const q = new URL(r.request().url()).searchParams.get('name').toLowerCase();
+      const all = [
+        { name: 'Nazaré', admin1: 'Leiria', admin2: 'Nazaré', country_code: 'PT', latitude: 39.60289, longitude: -9.06836, population: 8993 },
+        { name: 'Nazaré', admin1: 'Bahia', admin2: 'Nazaré', country_code: 'BR', latitude: -13.035, longitude: -39.015, population: 27000 },
+        { name: 'Monsaraz', admin1: 'Évora', admin2: 'Reguengos de Monsaraz', country_code: 'PT', latitude: 38.4430, longitude: -7.3810, population: 800 },
+      ];
+      r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ results: all.filter((x) => x.name.toLowerCase().includes(q)) }) });
+    });
+    const pf = await ctxP.newPage();
+    pf.on('pageerror', (e) => errors.push('pageerror(portugal): ' + e.message));
+    const URLF = `${RAIZ}?viaje=${VF}`;
+    const vistasF = ['resumen', 'etapas', ...planF.itinerario.map((d) => `etapas/${d.dia}`), 'noches', 'tiempo', 'listas', 'equipaje', 'guia', 'hoja', 'sos', 'buscar/peaje', 'ahora', 'pueblos', 'radares', 'gasolina'];
+    for (const v of vistasF) {
+      await pf.goto(`${URLF}#/${v}`, { waitUntil: 'networkidle' });
+      const t = await pf.locator('#view').innerText();
+      if (/undefined|NaN|\[object |No se pudo cargar/.test(t)) errors.push(`portugal #/${v}: ${(t.match(/.{0,40}(undefined|NaN|\[object |No se pudo cargar).{0,30}/) || [''])[0]}`);
+    }
+    const marcaF = await pf.locator('.brand-text strong').innerText();
+    if (marcaF !== planF.proyecto.nombre_corto) errors.push('portugal: la cabecera no lleva el nombre del viaje: ' + marcaF);
+    if (!meteoUrls.some((u) => /timezone=Europe%2FLisbon/.test(u)) || !meteoUrls.some((u) => /timezone=Europe%2FMadrid/.test(u))) errors.push('portugal: la meteo no se pide en hora de Portugal y de España');
+    await pf.goto(`${URLF}#/etapas/2`, { waitUntil: 'networkidle' });
+    const e2 = await pf.locator('#view').innerText();
+    if (!/Cambias de hora/.test(e2) || !/\bPT\b/.test(e2)) errors.push('portugal: el día 2 no avisa del cambio de hora');
+    if (!/Anochece a las \d\d:\d\d \(hora de Portugal\)/.test(e2)) errors.push('portugal: el ocaso del día 2 no va en hora de Portugal');
+    const avisoD2 = await pf.evaluate(() => resumenDiaTexto(D.data.itinerario[1]));
+    if (!/Salida \d\d:\d\d \(hora de España\) · llegada prevista \d\d:\d\d \(hora de Portugal\)/.test(avisoD2)) errors.push('portugal: el aviso a casa del día 2 no dice la hora de cada país: ' + avisoD2.split('\n')[2]);
+    await pf.goto(`${URLF}#/etapas/3`, { waitUntil: 'networkidle' });
+    await pf.waitForFunction(() => document.querySelectorAll('table.gas tr.barata').length === 1, null, { timeout: 15000 })
+      .catch(() => errors.push('portugal: día 3 sin la gasolinera más barata (precios de la DGEG)'));
+    const precioPT = await pf.evaluate(() => Object.keys(D.precios.precios).filter((k) => /^PT-/.test(k)).length);
+    if (!precioPT) errors.push('portugal: sin precios de la DGEG');
+    await pf.goto(`${URLF}#/etapas/5`, { waitUntil: 'networkidle' });
+    await pf.waitForFunction(() => /En Portugal la app no tiene radares/.test(document.getElementById('view').innerText), null, { timeout: 10000 })
+      .catch(() => errors.push('portugal: el día 5 no explica que no hay radares de Portugal'));
+    await pf.goto(`${URLF}#/guia`, { waitUntil: 'networkidle' });
+    const guiaF = await pf.locator('#view').innerText();
+    if (!/Información del viaje/.test(guiaF) || !/Peajes/.test(guiaF)) errors.push('portugal: la Guía no trae la información del viaje');
+    await pf.goto(`${URLF}#/noches`, { waitUntil: 'networkidle' });
+    if (!/Ninguna reservada/.test(await pf.locator('#view').innerText())) errors.push('portugal: las noches se dan por reservadas');
+    await pf.goto(`${URLF}#/pueblos`, { waitUntil: 'networkidle' });
+    await pf.waitForFunction(() => !document.querySelector('.loading') && document.getElementById('pueblo-q'));
+    await pf.fill('#pueblo-q', 'Nazaré'); await pf.click('#pueblo-form button');
+    await pf.waitForFunction(() => /Está en la ruta|Desvío corto|Desvío largo|Fuera del viaje/.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('portugal: sin resultado para Nazaré'));
+    const puF = await pf.locator('#view').innerText();
+    if (!/está en la ruta/i.test(puF) || !/día 5/i.test(puF)) errors.push('portugal: Nazaré debería estar en la ruta del día 5');
+    console.log('portugal:', vistasF.length, 'vistas · cabecera', marcaF, '· meteo', meteoUrls.length, 'peticiones · precios PT', precioPT, '· Nazaré', (puF.match(/Está en la ruta|Desvío corto/) || ['?'])[0]);
+    // Ahora en un dia de Portugal, a mitad de etapa: llegada en hora portuguesa
+    const pa = await ctxP.newPage();
+    pa.on('pageerror', (e) => errors.push('pageerror(portugal ahora): ' + e.message));
+    await pa.clock.install({ time: new Date(`${d9.fecha}T11:00:00Z`) });
+    await pa.goto(`${URLF}#/ahora`, { waitUntil: 'networkidle' });
+    await pa.click('[data-localizar]');
+    await pa.waitForFunction(() => /quedan/i.test(document.getElementById('view').innerText), null, { timeout: 10000 }).catch(() => errors.push('portugal: Ahora sin llegada estimada'));
+    const ahF = await pa.locator('#view').innerText();
+    if (/fuera de la ruta/i.test(ahF)) errors.push('portugal: Ahora se cree fuera de la ruta');
+    console.log('portugal ahora:', (ahF.match(/Llegada estimada[^\n]*\n[^\n]*\n[^\n]*/i) || [''])[0].replace(/\n/g, ' | '));
+    // La raiz, sin ?viaje=, abre el viaje activo del indice
+    await pf.goto(RAIZ + '#/resumen', { waitUntil: 'networkidle' });
+    const activo = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'viajes', INDICE.activo, 'viaje.json'), 'utf8'));
+    const marcaA = await pf.locator('.brand-text strong').innerText();
+    if (marcaA !== (activo.proyecto.nombre_corto || activo.proyecto.nombre)) errors.push('la raíz no abre el viaje activo: ' + marcaA);
+    await ctxP.close();
   }
   await browser.close();
   const real = errors.filter((e) => !/open-meteo|tile\.openstreetmap/.test(e));

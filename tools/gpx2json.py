@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Convierte un GPX de Kurviger en un JSON ligero para la app.
+"""Convierte un GPX de Kurviger (o de otro planificador) en un JSON ligero para la app.
 
 Uso: python3 tools/gpx2json.py viajes/<id>/gpx/dia-01.gpx viajes/<id>/tracks/dia-01.json
 
 Genera: track simplificado (Douglas-Peucker ~25 m), perfil de altitud
 (200 muestras por distancia), distancia, desnivel, altitudes, duracion
-estimada por Kurviger y puntos de via con su km.
+estimada (la de las horas del track: <time> del primer y del ultimo punto)
+y puntos de via con su km. Sin <ele> no hay perfil; sin <time>, no hay duracion.
+'fuente' es 'Kurviger GPX' o el creador del GPX.
 """
 import json, math, sys, xml.etree.ElementTree as ET
 from datetime import datetime
@@ -47,6 +49,14 @@ def dp(points, eps):
             keep[bi] = True
             stack.append((i, bi)); stack.append((bi, j))
     return [k for k in range(len(points)) if keep[k]]
+
+def fuente_gpx(root):
+    """Quien hizo el GPX: 'Kurviger GPX' para los de Kurviger (o sin creador), si no el creador
+    hasta el primer ' · ' (p. ej. 'Valhalla + OSRM (OpenStreetMap)')."""
+    creador = (root.get('creator') or '').strip()
+    if not creador or 'kurviger' in creador.lower():
+        return 'Kurviger GPX'
+    return creador.split(' · ')[0]
 
 def main(src, dst):
     root = ET.parse(src).getroot()
@@ -111,7 +121,7 @@ def main(src, dst):
     lats = [p[0] for p in pts]; lons = [p[1] for p in pts]
     out = {
         'nombre': name,
-        'fuente': 'Kurviger GPX',
+        'fuente': fuente_gpx(root),
         'km': round(total / 1000, 1),
         'duracion_min': dur,
         'subida_m': round(up) if up is not None else None,

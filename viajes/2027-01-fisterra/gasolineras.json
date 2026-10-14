@@ -1,13 +1,21 @@
 {
- "fuente": "Ministerio para la Transición Ecológica · Geoportal de hidrocarburos (datos abiertos)",
+ "fuente": "Ministerio para la Transición Ecológica · Geoportal de hidrocarburos (datos abiertos) y DGEG · Preços dos combustíveis (Portugal)",
  "api": "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/",
  "producto": {
   "id": 1,
   "nombre": "Gasolina 95 E5"
  },
+ "pt": {
+  "fuente": "DGEG · Preços dos combustíveis (datos abiertos)",
+  "api": "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/",
+  "producto": {
+   "id": 3201,
+   "nombre": "Gasolina simples 95"
+  }
+ },
  "generado": "2026-10-14",
  "umbral_m": 400,
- "aviso": "Precios del día que publica cada gasolinera al Ministerio; pueden cambiar a lo largo del día. Solo gasolineras a menos de 400 m del track: las del pueblo de al lado no salen. El horario es el declarado; en pueblos pequeños, comprobarlo.",
+ "aviso": "Precios del día que publica cada gasolinera al Ministerio (en Portugal, a la DGEG); pueden cambiar a lo largo del día. Solo gasolineras a menos de 400 m del track: las del pueblo de al lado no salen. El horario es el declarado; en pueblos pequeños, comprobarlo.",
  "por_dia": {
   "1": [
    {
@@ -23,6 +31,18 @@
     "dist_m": 382
    },
    {
+    "id": "10168",
+    "prov": "04",
+    "rotulo": "Cepsa",
+    "municipio": "Almería",
+    "direccion": "Calle Carretera De Nijar, S/n",
+    "horario": "L: 06:00-00:00",
+    "lat": 36.84586,
+    "lon": -2.45011,
+    "km": 0.2,
+    "dist_m": 371
+   },
+   {
     "id": "10433",
     "prov": "04",
     "rotulo": "Bp Montserrat Almeria",
@@ -31,8 +51,8 @@
     "horario": "L-D: 24H",
     "lat": 36.84003,
     "lon": -2.44561,
-    "km": 0.0,
-    "dist_m": 238
+    "km": 0.6,
+    "dist_m": 166
    },
    {
     "id": "6826",
@@ -43,44 +63,56 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.83944,
     "lon": -2.44672,
-    "km": 0.0,
-    "dist_m": 258
+    "km": 0.6,
+    "dist_m": 70
    },
    {
-    "id": "10168",
+    "id": "15858",
     "prov": "04",
-    "rotulo": "Cepsa",
+    "rotulo": "Petroprix",
     "municipio": "Almería",
-    "direccion": "Calle Carretera De Nijar, S/n",
-    "horario": "L: 06:00-00:00",
-    "lat": 36.84586,
-    "lon": -2.45011,
-    "km": 0.4,
-    "dist_m": 301
-   },
-   {
-    "id": "6964",
-    "prov": "04",
-    "rotulo": "Repsol",
-    "municipio": "Almería",
-    "direccion": "Avenida Federico Garcia Lorca, S/n",
+    "direccion": "Avenida Nuestra Señora De Montserrat, 160",
     "horario": "L-D: 24H",
-    "lat": 36.85208,
-    "lon": -2.46733,
-    "km": 2.6,
-    "dist_m": 5
+    "lat": 36.83869,
+    "lon": -2.44453,
+    "km": 0.7,
+    "dist_m": 268
    },
    {
-    "id": "16019",
+    "id": "14879",
     "prov": "04",
     "rotulo": "Plenergy",
     "municipio": "Almería",
-    "direccion": "Zona Norte De La Rambla Calle José Manuel Gómez Angulo, S/n",
+    "direccion": "Avenida Mediterraneo, 184",
     "horario": "L-D: 24H",
-    "lat": 36.85461,
-    "lon": -2.46969,
-    "km": 2.9,
-    "dist_m": 185
+    "lat": 36.83778,
+    "lon": -2.44714,
+    "km": 0.8,
+    "dist_m": 45
+   },
+   {
+    "id": "14876",
+    "prov": "04",
+    "rotulo": "Plenergy",
+    "municipio": "Almería",
+    "direccion": "Calle Olula Del Rio, 1",
+    "horario": "L-D: 24H",
+    "lat": 36.83622,
+    "lon": -2.44836,
+    "km": 0.9,
+    "dist_m": 162
+   },
+   {
+    "id": "5619",
+    "prov": "04",
+    "rotulo": "Moeve",
+    "municipio": "Almería",
+    "direccion": "Avenida Cabo De Gata, 4",
+    "horario": "L-D: 06:00-23:00",
+    "lat": 36.8335,
+    "lon": -2.46253,
+    "km": 2.2,
+    "dist_m": 23
    },
    {
     "id": "5641",
@@ -91,8 +123,8 @@
     "horario": "L-D: 24H",
     "lat": 36.82944,
     "lon": -2.49267,
-    "km": 6.8,
-    "dist_m": 326
+    "km": 5.3,
+    "dist_m": 137
    },
    {
     "id": "11946",
@@ -103,7 +135,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.82269,
     "lon": -2.58256,
-    "km": 14.9,
+    "km": 13.9,
     "dist_m": 370
    },
    {
@@ -115,8 +147,8 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.81992,
     "lon": -2.59717,
-    "km": 16.9,
-    "dist_m": 117
+    "km": 15.8,
+    "dist_m": 116
    },
    {
     "id": "6966",
@@ -127,7 +159,7 @@
     "horario": "L-D: 24H",
     "lat": 36.79606,
     "lon": -2.68692,
-    "km": 25.9,
+    "km": 24.8,
     "dist_m": 106
    },
    {
@@ -139,7 +171,7 @@
     "horario": "L-D: 24H",
     "lat": 36.79625,
     "lon": -2.68792,
-    "km": 26.0,
+    "km": 24.9,
     "dist_m": 173
    },
    {
@@ -151,7 +183,7 @@
     "horario": "L-S: 06:00-22:00",
     "lat": 36.79078,
     "lon": -2.70636,
-    "km": 27.8,
+    "km": 26.7,
     "dist_m": 60
    },
    {
@@ -163,7 +195,7 @@
     "horario": "L-D: 05:30-23:30",
     "lat": 36.79167,
     "lon": -2.70686,
-    "km": 27.8,
+    "km": 26.7,
     "dist_m": 46
    },
    {
@@ -175,8 +207,8 @@
     "horario": "L-S: 07:30-23:30",
     "lat": 36.78544,
     "lon": -2.74297,
-    "km": 31.1,
-    "dist_m": 31
+    "km": 30.0,
+    "dist_m": 30
    },
    {
     "id": "9742",
@@ -187,7 +219,7 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 36.78292,
     "lon": -2.75622,
-    "km": 32.3,
+    "km": 31.3,
     "dist_m": 53
    },
    {
@@ -199,7 +231,7 @@
     "horario": "L-D: 24H",
     "lat": 36.77817,
     "lon": -2.77264,
-    "km": 33.9,
+    "km": 32.8,
     "dist_m": 299
    },
    {
@@ -211,8 +243,8 @@
     "horario": "L-D: 24H",
     "lat": 36.75808,
     "lon": -2.80039,
-    "km": 37.2,
-    "dist_m": 76
+    "km": 36.1,
+    "dist_m": 73
    },
    {
     "id": "11807",
@@ -223,8 +255,8 @@
     "horario": "L-S: 08:00-22:00",
     "lat": 36.75803,
     "lon": -2.80117,
-    "km": 37.3,
-    "dist_m": 95
+    "km": 36.2,
+    "dist_m": 91
    },
    {
     "id": "5795",
@@ -235,8 +267,8 @@
     "horario": "L-D: 06:00-23:00",
     "lat": 36.75856,
     "lon": -2.80544,
-    "km": 37.7,
-    "dist_m": 184
+    "km": 36.6,
+    "dist_m": 186
    },
    {
     "id": "6872",
@@ -247,8 +279,8 @@
     "horario": "L-D: 24H",
     "lat": 36.75406,
     "lon": -2.80606,
-    "km": 37.7,
-    "dist_m": 318
+    "km": 36.7,
+    "dist_m": 317
    },
    {
     "id": "16199",
@@ -259,7 +291,7 @@
     "horario": "L-D: 24H",
     "lat": 36.75928,
     "lon": -2.80644,
-    "km": 37.9,
+    "km": 36.8,
     "dist_m": 243
    },
    {
@@ -271,7 +303,7 @@
     "horario": "L-D: 24H",
     "lat": 36.76928,
     "lon": -2.82758,
-    "km": 40.1,
+    "km": 39.1,
     "dist_m": 280
    },
    {
@@ -283,7 +315,7 @@
     "horario": "L-D: 24H",
     "lat": 36.76831,
     "lon": -2.82856,
-    "km": 40.2,
+    "km": 39.1,
     "dist_m": 145
    },
    {
@@ -295,7 +327,7 @@
     "horario": "L-D: 24H",
     "lat": 36.76892,
     "lon": -2.83186,
-    "km": 40.5,
+    "km": 39.4,
     "dist_m": 79
    },
    {
@@ -307,7 +339,7 @@
     "horario": "L-D: 24H",
     "lat": 36.76544,
     "lon": -2.98578,
-    "km": 55.1,
+    "km": 54.0,
     "dist_m": 125
    },
    {
@@ -319,7 +351,7 @@
     "horario": "L-D: 24H",
     "lat": 36.75614,
     "lon": -3.00189,
-    "km": 56.7,
+    "km": 55.6,
     "dist_m": 328
    },
    {
@@ -331,7 +363,7 @@
     "horario": "L: 06:00-21:00",
     "lat": 36.75183,
     "lon": -3.16936,
-    "km": 72.6,
+    "km": 71.4,
     "dist_m": 133
    },
    {
@@ -343,44 +375,44 @@
     "horario": "L-S: 08:00-14:00 y 16:00-19:00",
     "lat": 36.72614,
     "lon": -3.47528,
-    "km": 105.4,
+    "km": 104.2,
     "dist_m": 385
    },
    {
-    "id": "14622",
+    "id": "16348",
     "prov": "18",
-    "rotulo": "Asc Carburantes",
+    "rotulo": "Gm Oil",
     "municipio": "Motril",
-    "direccion": "Carretera Almeria-motril Km. 31",
+    "direccion": "Calle Santo Domingo, 23",
     "horario": "L-D: 24H",
-    "lat": 36.74008,
-    "lon": -3.51328,
-    "km": 110.0,
-    "dist_m": 360
+    "lat": 36.73347,
+    "lon": -3.50903,
+    "km": 108.7,
+    "dist_m": 335
    },
    {
-    "id": "6580",
+    "id": "15999",
     "prov": "18",
-    "rotulo": "Cepsa",
+    "rotulo": "Petroprix",
     "municipio": "Motril",
-    "direccion": "Calle Puente Toledano, S/n",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.74356,
-    "lon": -3.51383,
-    "km": 110.2,
-    "dist_m": 52
+    "direccion": "Carretera Almeria-motril Km. 107",
+    "horario": "L-D: 24H",
+    "lat": 36.73192,
+    "lon": -3.509,
+    "km": 108.7,
+    "dist_m": 174
    },
    {
-    "id": "6862",
+    "id": "16485",
     "prov": "18",
-    "rotulo": "E.s. Campsa",
+    "rotulo": "Agla Playa Motril",
     "municipio": "Motril",
-    "direccion": "Calle Avenida Andalucia, 11",
-    "horario": "L-D: 06:30-22:30",
-    "lat": 36.74375,
-    "lon": -3.51747,
-    "km": 110.7,
-    "dist_m": 31
+    "direccion": "Avenida Nuestra Señora De La Cabeza, S/n",
+    "horario": "L-D: 24H",
+    "lat": 36.73144,
+    "lon": -3.52381,
+    "km": 109.9,
+    "dist_m": 336
    },
    {
     "id": "12360",
@@ -391,8 +423,8 @@
     "horario": "L-D: 24H",
     "lat": 36.74242,
     "lon": -3.52786,
-    "km": 112.0,
-    "dist_m": 105
+    "km": 111.2,
+    "dist_m": 85
    },
    {
     "id": "8361",
@@ -403,8 +435,44 @@
     "horario": "L-D: 24H",
     "lat": 36.74203,
     "lon": -3.53081,
-    "km": 112.2,
-    "dist_m": 49
+    "km": 113.0,
+    "dist_m": 50
+   },
+   {
+    "id": "13395",
+    "prov": "18",
+    "rotulo": "Petroprix",
+    "municipio": "Salobreña",
+    "direccion": "Poligono La Gasolinera, 51",
+    "horario": "L-D: 24H",
+    "lat": 36.74717,
+    "lon": -3.58317,
+    "km": 117.8,
+    "dist_m": 87
+   },
+   {
+    "id": "10544",
+    "prov": "18",
+    "rotulo": "Asc Carburantes",
+    "municipio": "Salobreña",
+    "direccion": "Poligono Calle E, S/n",
+    "horario": "L-D: 06:30-22:30",
+    "lat": 36.74775,
+    "lon": -3.58425,
+    "km": 117.9,
+    "dist_m": 103
+   },
+   {
+    "id": "6828",
+    "prov": "18",
+    "rotulo": "Plenergy",
+    "municipio": "Salobreña",
+    "direccion": "Carretera Carretera N-340, Km. 327 Km. 327",
+    "horario": "L-D: 24H",
+    "lat": 36.74825,
+    "lon": -3.58697,
+    "km": 118.2,
+    "dist_m": 45
    },
    {
     "id": "11978",
@@ -415,7 +483,7 @@
     "horario": "L-D: 24H",
     "lat": 36.76208,
     "lon": -3.88819,
-    "km": 149.7,
+    "km": 150.3,
     "dist_m": 92
    },
    {
@@ -427,7 +495,7 @@
     "horario": "L-D: 24H",
     "lat": 36.75264,
     "lon": -3.9605,
-    "km": 156.3,
+    "km": 157.0,
     "dist_m": 99
    },
    {
@@ -439,7 +507,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.76019,
     "lon": -4.05056,
-    "km": 165.1,
+    "km": 165.7,
     "dist_m": 61
    },
    {
@@ -451,7 +519,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.75917,
     "lon": -4.05139,
-    "km": 165.1,
+    "km": 165.7,
     "dist_m": 75
    },
    {
@@ -463,7 +531,7 @@
     "horario": "L-D: 24H",
     "lat": 36.76211,
     "lon": -4.04972,
-    "km": 165.1,
+    "km": 165.7,
     "dist_m": 281
    },
    {
@@ -475,7 +543,7 @@
     "horario": "L-D: 24H",
     "lat": 36.75517,
     "lon": -4.10347,
-    "km": 170.0,
+    "km": 170.6,
     "dist_m": 163
    },
    {
@@ -487,7 +555,7 @@
     "horario": "L-D: 24H",
     "lat": 36.7445,
     "lon": -4.17908,
-    "km": 177.3,
+    "km": 177.9,
     "dist_m": 113
    },
    {
@@ -499,7 +567,7 @@
     "horario": "L-D: 24H",
     "lat": 36.74331,
     "lon": -4.18,
-    "km": 177.5,
+    "km": 178.1,
     "dist_m": 197
    },
    {
@@ -511,7 +579,7 @@
     "horario": "L-D: 24H",
     "lat": 36.72533,
     "lon": -4.25572,
-    "km": 185.3,
+    "km": 185.9,
     "dist_m": 63
    },
    {
@@ -523,7 +591,7 @@
     "horario": "L-D: 24H",
     "lat": 36.72531,
     "lon": -4.27453,
-    "km": 187.1,
+    "km": 187.6,
     "dist_m": 72
    },
    {
@@ -535,7 +603,7 @@
     "horario": "L-D: 24H",
     "lat": 36.72319,
     "lon": -4.29689,
-    "km": 189.2,
+    "km": 189.7,
     "dist_m": 109
    },
    {
@@ -547,7 +615,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.72706,
     "lon": -4.31461,
-    "km": 190.8,
+    "km": 191.3,
     "dist_m": 172
    },
    {
@@ -559,7 +627,7 @@
     "horario": "L-D: 24H",
     "lat": 36.73989,
     "lon": -4.39411,
-    "km": 199.1,
+    "km": 199.7,
     "dist_m": 118
    },
    {
@@ -571,212 +639,32 @@
     "horario": "L: 06:00-23:59; M-D: 06:00-00:00",
     "lat": 36.75311,
     "lon": -4.4255,
-    "km": 203.3,
-    "dist_m": 389
+    "km": 203.8,
+    "dist_m": 397
    },
    {
-    "id": "7144",
-    "prov": "29",
-    "rotulo": "Repsol",
-    "municipio": "Málaga",
-    "direccion": "Cl Avenida Carlos Haya, 78",
-    "horario": "L-D: 24H",
-    "lat": 36.72294,
-    "lon": -4.45108,
-    "km": 207.9,
-    "dist_m": 373
-   },
-   {
-    "id": "7219",
-    "prov": "29",
-    "rotulo": "Moeve",
-    "municipio": "Málaga",
-    "direccion": "Prosper Merimee, 21",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.71489,
-    "lon": -4.45778,
-    "km": 209.0,
-    "dist_m": 27
-   },
-   {
-    "id": "13224",
-    "prov": "29",
-    "rotulo": "Carrefour",
-    "municipio": "Málaga",
-    "direccion": "Calle Sain Exupery, S/n",
-    "horario": "L-D: 24H",
-    "lat": 36.71489,
-    "lon": -4.45656,
-    "km": 209.0,
-    "dist_m": 136
-   },
-   {
-    "id": "7437",
-    "prov": "29",
-    "rotulo": "Repsol",
-    "municipio": "Málaga",
-    "direccion": "Cl Hermanos Lumiere, Sn",
-    "horario": "L-V: 06:15-21:45; S: 09:00-17:45",
-    "lat": 36.69431,
-    "lon": -4.46181,
-    "km": 211.3,
-    "dist_m": 140
-   },
-   {
-    "id": "13313",
-    "prov": "29",
-    "rotulo": "Petroprix",
-    "municipio": "Málaga",
-    "direccion": "Calle Licurgo, 2",
-    "horario": "L-D: 24H",
-    "lat": 36.69356,
-    "lon": -4.46236,
-    "km": 211.4,
-    "dist_m": 162
-   },
-   {
-    "id": "9789",
-    "prov": "29",
-    "rotulo": "Moeve",
-    "municipio": "Málaga",
-    "direccion": "Avenida Isaac Peral, 39",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.69258,
-    "lon": -4.45958,
-    "km": 211.5,
-    "dist_m": 107
-   },
-   {
-    "id": "7408",
-    "prov": "29",
-    "rotulo": "Repsol",
-    "municipio": "Málaga",
-    "direccion": "Avenida Velazquez, 104",
-    "horario": "L-D: 24H",
-    "lat": 36.69131,
-    "lon": -4.457,
-    "km": 211.5,
-    "dist_m": 370
-   },
-   {
-    "id": "7064",
-    "prov": "29",
-    "rotulo": "Galp",
-    "municipio": "Málaga",
-    "direccion": "Calle Tuicides, 14",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.69161,
-    "lon": -4.46192,
-    "km": 211.6,
-    "dist_m": 58
-   },
-   {
-    "id": "9825",
-    "prov": "29",
-    "rotulo": "Ballenoil",
-    "municipio": "Málaga",
-    "direccion": "Avenida Velazquez, 113",
-    "horario": "L-D: 24H",
-    "lat": 36.6885,
-    "lon": -4.45958,
-    "km": 212.0,
-    "dist_m": 225
-   },
-   {
-    "id": "12179",
-    "prov": "29",
-    "rotulo": "Carrefour",
-    "municipio": "Málaga",
-    "direccion": "Carretera Cadiz Km. 241",
-    "horario": "L-D: 24H",
-    "lat": 36.68842,
-    "lon": -4.45875,
-    "km": 212.0,
-    "dist_m": 300
-   },
-   {
-    "id": "10173",
-    "prov": "29",
-    "rotulo": "Shell",
-    "municipio": "Málaga",
-    "direccion": "Avenida Velazquez, S/n",
-    "horario": "L-D: 24H",
-    "lat": 36.68397,
-    "lon": -4.46672,
-    "km": 212.5,
-    "dist_m": 354
-   },
-   {
-    "id": "8470",
-    "prov": "29",
-    "rotulo": "Shell",
-    "municipio": "Málaga",
-    "direccion": "Avenida Alfonso Ponce De Leon, 3",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 36.65447,
-    "lon": -4.47997,
-    "km": 216.2,
-    "dist_m": 169
-   },
-   {
-    "id": "7167",
-    "prov": "29",
-    "rotulo": "Repsol",
-    "municipio": "Torremolinos",
-    "direccion": "Cl Avda. Manuel Fraga Iribarne,14",
-    "horario": "L-D: 24H",
-    "lat": 36.64458,
-    "lon": -4.48978,
-    "km": 217.8,
-    "dist_m": 212
-   },
-   {
-    "id": "7457",
+    "id": "7220",
     "prov": "29",
     "rotulo": "Cepsa",
-    "municipio": "Torremolinos",
-    "direccion": "Avenida Manuel Fraga Iribarne, 10",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 36.64339,
-    "lon": -4.49097,
-    "km": 218.0,
-    "dist_m": 195
+    "municipio": "Málaga",
+    "direccion": "Calle Poligono Industrial Trevelez - C/offenbach, S/n",
+    "horario": "L-D: 24H",
+    "lat": 36.71283,
+    "lon": -4.51192,
+    "km": 215.7,
+    "dist_m": 188
    },
    {
-    "id": "12618",
+    "id": "11856",
     "prov": "29",
-    "rotulo": "Coloso",
-    "municipio": "Torremolinos",
-    "direccion": "Avenida Manuel Fraga Iribarne, 17",
-    "horario": "L-D: 24H",
-    "lat": 36.64342,
-    "lon": -4.49264,
-    "km": 218.1,
-    "dist_m": 100
-   },
-   {
-    "id": "10719",
-    "prov": "29",
-    "rotulo": "Repsol",
-    "municipio": "Torremolinos",
-    "direccion": "Avda Manuel Fraga Iribarne, 9",
-    "horario": "L-D: 24H",
-    "lat": 36.64139,
-    "lon": -4.49481,
-    "km": 218.3,
-    "dist_m": 206
-   },
-   {
-    "id": "7421",
-    "prov": "29",
-    "rotulo": "Repsol",
-    "municipio": "Torremolinos",
-    "direccion": "Au Ap-7 224,00 I",
-    "horario": "L-D: 24H",
-    "lat": 36.61361,
-    "lon": -4.52725,
-    "km": 223.2,
-    "dist_m": 31
+    "rotulo": "Shell",
+    "municipio": "Alhaurín de la Torre",
+    "direccion": "Avenida Malaga, S/n",
+    "horario": "L-D: 06:00-00:00",
+    "lat": 36.6605,
+    "lon": -4.52953,
+    "km": 221.9,
+    "dist_m": 268
    },
    {
     "id": "7420",
@@ -787,8 +675,20 @@
     "horario": "L-D: 24H",
     "lat": 36.61325,
     "lon": -4.52692,
-    "km": 223.2,
-    "dist_m": 19
+    "km": 228.4,
+    "dist_m": 18
+   },
+   {
+    "id": "7421",
+    "prov": "29",
+    "rotulo": "Repsol",
+    "municipio": "Torremolinos",
+    "direccion": "Au Ap-7 224,00 I",
+    "horario": "L-D: 24H",
+    "lat": 36.61361,
+    "lon": -4.52725,
+    "km": 228.4,
+    "dist_m": 32
    },
    {
     "id": "7066",
@@ -799,7 +699,7 @@
     "horario": "L-D: 24H",
     "lat": 36.60758,
     "lon": -4.53989,
-    "km": 224.5,
+    "km": 229.7,
     "dist_m": 114
    },
    {
@@ -811,7 +711,7 @@
     "horario": "L-D: 00:00-23:59",
     "lat": 36.58603,
     "lon": -4.59339,
-    "km": 230.2,
+    "km": 235.4,
     "dist_m": 146
    },
    {
@@ -823,7 +723,7 @@
     "horario": "L-D: 06:30-22:30",
     "lat": 36.58714,
     "lon": -4.59897,
-    "km": 230.7,
+    "km": 235.8,
     "dist_m": 75
    },
    {
@@ -835,8 +735,8 @@
     "horario": "L-D: 24H",
     "lat": 36.56425,
     "lon": -4.62114,
-    "km": 234.5,
-    "dist_m": 70
+    "km": 239.7,
+    "dist_m": 80
    },
    {
     "id": "7111",
@@ -847,7 +747,7 @@
     "horario": "L-D: 24H",
     "lat": 36.55222,
     "lon": -4.62778,
-    "km": 236.2,
+    "km": 241.4,
     "dist_m": 149
    },
    {
@@ -859,20 +759,8 @@
     "horario": "L-D: 24H",
     "lat": 36.54836,
     "lon": -4.62644,
-    "km": 236.4,
+    "km": 241.6,
     "dist_m": 251
-   },
-   {
-    "id": "14111",
-    "prov": "29",
-    "rotulo": "Ballenoil",
-    "municipio": "Fuengirola",
-    "direccion": "Avenida Alcalde Clemente Diaz Ruiz, 38",
-    "horario": "L-D: 24H",
-    "lat": 36.549,
-    "lon": -4.62689,
-    "km": 236.4,
-    "dist_m": 171
    },
    {
     "id": "15172",
@@ -883,8 +771,20 @@
     "horario": "L-D: 24H",
     "lat": 36.54867,
     "lon": -4.62678,
-    "km": 236.4,
+    "km": 241.6,
     "dist_m": 206
+   },
+   {
+    "id": "14111",
+    "prov": "29",
+    "rotulo": "Ballenoil",
+    "municipio": "Fuengirola",
+    "direccion": "Avenida Alcalde Clemente Diaz Ruiz, 38",
+    "horario": "L-D: 24H",
+    "lat": 36.549,
+    "lon": -4.62689,
+    "km": 241.6,
+    "dist_m": 171
    },
    {
     "id": "13319",
@@ -895,8 +795,8 @@
     "horario": "L-D: 24H",
     "lat": 36.54469,
     "lon": -4.63492,
-    "km": 237.2,
-    "dist_m": 95
+    "km": 242.4,
+    "dist_m": 89
    },
    {
     "id": "15266",
@@ -907,8 +807,8 @@
     "horario": "L-D: 24H",
     "lat": 36.53903,
     "lon": -4.63631,
-    "km": 240.2,
-    "dist_m": 80
+    "km": 243.0,
+    "dist_m": 125
    },
    {
     "id": "13325",
@@ -919,8 +819,8 @@
     "horario": "L-D: 24H",
     "lat": 36.53903,
     "lon": -4.63672,
-    "km": 240.2,
-    "dist_m": 114
+    "km": 243.0,
+    "dist_m": 162
    },
    {
     "id": "10019",
@@ -931,8 +831,8 @@
     "horario": "L-D: 24H",
     "lat": 36.535,
     "lon": -4.63361,
-    "km": 240.8,
-    "dist_m": 45
+    "km": 243.5,
+    "dist_m": 44
    },
    {
     "id": "8114",
@@ -943,8 +843,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.53439,
     "lon": -4.63414,
-    "km": 240.8,
-    "dist_m": 116
+    "km": 243.5,
+    "dist_m": 115
    },
    {
     "id": "9137",
@@ -955,8 +855,8 @@
     "horario": "L-D: 24H",
     "lat": 36.52011,
     "lon": -4.63044,
-    "km": 242.6,
-    "dist_m": 19
+    "km": 245.3,
+    "dist_m": 20
    },
    {
     "id": "16184",
@@ -967,7 +867,7 @@
     "horario": "L-D: 24H",
     "lat": 36.508,
     "lon": -4.65906,
-    "km": 246.1,
+    "km": 248.9,
     "dist_m": 98
    },
    {
@@ -979,7 +879,7 @@
     "horario": "L-D: 24H",
     "lat": 36.50189,
     "lon": -4.68283,
-    "km": 248.7,
+    "km": 251.4,
     "dist_m": 111
    },
    {
@@ -991,8 +891,8 @@
     "horario": "L-D: 06:00-23:00",
     "lat": 36.49022,
     "lon": -4.70953,
-    "km": 251.7,
-    "dist_m": 7
+    "km": 254.4,
+    "dist_m": 9
    },
    {
     "id": "7456",
@@ -1003,8 +903,8 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 36.48797,
     "lon": -4.74117,
-    "km": 255.4,
-    "dist_m": 14
+    "km": 257.2,
+    "dist_m": 18
    },
    {
     "id": "7146",
@@ -1015,7 +915,7 @@
     "horario": "L-D: 24H",
     "lat": 36.49353,
     "lon": -4.76433,
-    "km": 257.7,
+    "km": 259.5,
     "dist_m": 31
    },
    {
@@ -1027,7 +927,7 @@
     "horario": "L-D: 24H",
     "lat": 36.49431,
     "lon": -4.76603,
-    "km": 257.9,
+    "km": 259.7,
     "dist_m": 34
    },
    {
@@ -1039,8 +939,8 @@
     "horario": "L-D: 24H",
     "lat": 36.50017,
     "lon": -4.79883,
-    "km": 262.4,
-    "dist_m": 28
+    "km": 262.7,
+    "dist_m": 30
    },
    {
     "id": "7216",
@@ -1051,8 +951,8 @@
     "horario": "L-D: 00:00-23:59",
     "lat": 36.50856,
     "lon": -4.86458,
-    "km": 268.6,
-    "dist_m": 55
+    "km": 268.7,
+    "dist_m": 294
    },
    {
     "id": "10605",
@@ -1063,8 +963,8 @@
     "horario": "L-D: 24H",
     "lat": 36.50944,
     "lon": -4.86417,
-    "km": 268.6,
-    "dist_m": 44
+    "km": 268.7,
+    "dist_m": 202
    },
    {
     "id": "15949",
@@ -1075,68 +975,32 @@
     "horario": "L-D: 24H",
     "lat": 36.51206,
     "lon": -4.86689,
-    "km": 268.8,
-    "dist_m": 334
+    "km": 269.0,
+    "dist_m": 298
    },
    {
-    "id": "15712",
+    "id": "7227",
     "prov": "29",
-    "rotulo": "Estacion De Servicio Coloso Marbella",
+    "rotulo": "Bp Ojen",
     "municipio": "Marbella",
-    "direccion": "Calle Madera-pg La Ermita, 1",
+    "direccion": "Carretera Ojen C.c. La Cañada Km. 0",
     "horario": "L-D: 24H",
-    "lat": 36.50956,
-    "lon": -4.86772,
-    "km": 268.9,
-    "dist_m": 56
+    "lat": 36.52214,
+    "lon": -4.87875,
+    "km": 270.9,
+    "dist_m": 165
    },
    {
-    "id": "7222",
+    "id": "9589",
     "prov": "29",
-    "rotulo": "Moeve",
+    "rotulo": "Shell",
     "municipio": "Marbella",
-    "direccion": "Avenida Severo Ochoa, 55",
-    "horario": "L-D: 06:00-23:59",
-    "lat": 36.50931,
-    "lon": -4.87378,
-    "km": 269.4,
-    "dist_m": 28
-   },
-   {
-    "id": "11316",
-    "prov": "29",
-    "rotulo": "Galp",
-    "municipio": "Marbella",
-    "direccion": "Avenida Ricardo Soriano, 51",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.51008,
-    "lon": -4.89669,
-    "km": 271.7,
-    "dist_m": 39
-   },
-   {
-    "id": "7181",
-    "prov": "29",
-    "rotulo": "Bp Joy Marbella",
-    "municipio": "Marbella",
-    "direccion": "Carretera N-340 Km. 178,875",
+    "direccion": "Avenida Trapiche, S/n",
     "horario": "L-D: 24H",
-    "lat": 36.51039,
-    "lon": -4.90392,
-    "km": 272.3,
-    "dist_m": 2
-   },
-   {
-    "id": "7173",
-    "prov": "29",
-    "rotulo": "Agla El Rocio De Nagueles",
-    "municipio": "Marbella",
-    "direccion": "Carretera Nacional 340 Km. 179",
-    "horario": "L-D: 24H",
-    "lat": 36.50928,
-    "lon": -4.91186,
-    "km": 273.1,
-    "dist_m": 36
+    "lat": 36.52,
+    "lon": -4.89186,
+    "km": 272.1,
+    "dist_m": 115
    },
    {
     "id": "8472",
@@ -1147,8 +1011,8 @@
     "horario": "L-D: 24H",
     "lat": 36.49461,
     "lon": -4.95142,
-    "km": 277.0,
-    "dist_m": 54
+    "km": 279.4,
+    "dist_m": 33
    },
    {
     "id": "7163",
@@ -1159,8 +1023,8 @@
     "horario": "L-D: 24H",
     "lat": 36.48689,
     "lon": -4.95514,
-    "km": 277.8,
-    "dist_m": 303
+    "km": 280.2,
+    "dist_m": 297
    },
    {
     "id": "7071",
@@ -1171,8 +1035,8 @@
     "horario": "L-D: 24H",
     "lat": 36.48683,
     "lon": -4.96625,
-    "km": 278.7,
-    "dist_m": 74
+    "km": 281.0,
+    "dist_m": 68
    },
    {
     "id": "7209",
@@ -1183,8 +1047,8 @@
     "horario": "L-D: 24H",
     "lat": 36.48022,
     "lon": -4.99261,
-    "km": 283.4,
-    "dist_m": 28
+    "km": 283.6,
+    "dist_m": 31
    },
    {
     "id": "7418",
@@ -1195,8 +1059,8 @@
     "horario": "L-D: 24H",
     "lat": 36.47333,
     "lon": -5.01097,
-    "km": 285.3,
-    "dist_m": 134
+    "km": 285.4,
+    "dist_m": 132
    },
    {
     "id": "7248",
@@ -1207,8 +1071,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.46361,
     "lon": -5.03886,
-    "km": 288.1,
-    "dist_m": 34
+    "km": 288.2,
+    "dist_m": 41
    },
    {
     "id": "9892",
@@ -1219,8 +1083,8 @@
     "horario": "L-D: 24H",
     "lat": 36.46206,
     "lon": -5.04203,
-    "km": 288.4,
-    "dist_m": 50
+    "km": 288.5,
+    "dist_m": 43
    },
    {
     "id": "7435",
@@ -1231,8 +1095,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.45311,
     "lon": -5.07519,
-    "km": 292.4,
-    "dist_m": 61
+    "km": 291.7,
+    "dist_m": 37
    },
    {
     "id": "12346",
@@ -1243,7 +1107,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.43889,
     "lon": -5.105,
-    "km": 295.6,
+    "km": 294.9,
     "dist_m": 31
    },
    {
@@ -1255,7 +1119,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.43156,
     "lon": -5.1235,
-    "km": 297.4,
+    "km": 296.7,
     "dist_m": 150
    },
    {
@@ -1267,32 +1131,44 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.43436,
     "lon": -5.16047,
-    "km": 301.0,
-    "dist_m": 51
+    "km": 300.3,
+    "dist_m": 76
    },
    {
-    "id": "10411",
+    "id": "12357",
     "prov": "29",
-    "rotulo": "Bp Avenida Juan Carlos I",
+    "rotulo": "Cepsa",
     "municipio": "Estepona",
-    "direccion": "Avenida Juan Carlos I, 139",
-    "horario": "L-D: 24H",
-    "lat": 36.42819,
-    "lon": -5.15661,
-    "km": 302.0,
-    "dist_m": 26
+    "direccion": "Glorieta Acceso Poligono Industrial, Sn",
+    "horario": "L-D: 07:00-23:00",
+    "lat": 36.43214,
+    "lon": -5.17403,
+    "km": 301.6,
+    "dist_m": 45
    },
    {
-    "id": "12886",
+    "id": "8468",
     "prov": "29",
-    "rotulo": "Galp",
+    "rotulo": "Shell",
     "municipio": "Estepona",
-    "direccion": "Calle Doctor Cristobal Ruiz Mendez, 75",
+    "direccion": "Avenida Jose Martin Mendez, S/n",
+    "horario": "L-D: 06:00-00:00",
+    "lat": 36.43183,
+    "lon": -5.17139,
+    "km": 301.7,
+    "dist_m": 151
+   },
+   {
+    "id": "14843",
+    "prov": "29",
+    "rotulo": "Ballenoil",
+    "municipio": "Estepona",
+    "direccion": "Calle Graham Bell, 13",
     "horario": "L-D: 24H",
-    "lat": 36.42308,
-    "lon": -5.15575,
-    "km": 304.6,
-    "dist_m": 85
+    "lat": 36.42967,
+    "lon": -5.17131,
+    "km": 301.8,
+    "dist_m": 157
    },
    {
     "id": "8469",
@@ -1303,8 +1179,8 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 36.41719,
     "lon": -5.17589,
-    "km": 307.2,
-    "dist_m": 27
+    "km": 303.2,
+    "dist_m": 149
    },
    {
     "id": "13583",
@@ -1315,8 +1191,8 @@
     "horario": "L-D: 24H",
     "lat": 36.40775,
     "lon": -5.18956,
-    "km": 308.9,
-    "dist_m": 59
+    "km": 304.8,
+    "dist_m": 54
    },
    {
     "id": "12270",
@@ -1327,8 +1203,8 @@
     "horario": "L-D: 24H",
     "lat": 36.39325,
     "lon": -5.20278,
-    "km": 311.1,
-    "dist_m": 2
+    "km": 307.0,
+    "dist_m": 3
    },
    {
     "id": "7143",
@@ -1339,8 +1215,8 @@
     "horario": "L-D: 24H",
     "lat": 36.38867,
     "lon": -5.20597,
-    "km": 311.7,
-    "dist_m": 41
+    "km": 307.6,
+    "dist_m": 33
    },
    {
     "id": "9335",
@@ -1351,8 +1227,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.38108,
     "lon": -5.21761,
-    "km": 313.1,
-    "dist_m": 75
+    "km": 309.0,
+    "dist_m": 76
    },
    {
     "id": "7416",
@@ -1363,7 +1239,7 @@
     "horario": "L-D: 24H",
     "lat": 36.36772,
     "lon": -5.22789,
-    "km": 315.9,
+    "km": 310.8,
     "dist_m": 25
    },
    {
@@ -1375,8 +1251,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 36.34172,
     "lon": -5.23869,
-    "km": 319.0,
-    "dist_m": 23
+    "km": 313.9,
+    "dist_m": 24
    },
    {
     "id": "12915",
@@ -1387,7 +1263,7 @@
     "horario": "L-D: 07:30-22:30",
     "lat": 36.29631,
     "lon": -5.27511,
-    "km": 326.2,
+    "km": 321.1,
     "dist_m": 392
    },
    {
@@ -1399,8 +1275,8 @@
     "horario": "L-D: 24H",
     "lat": 36.29667,
     "lon": -5.28178,
-    "km": 326.6,
-    "dist_m": 19
+    "km": 321.4,
+    "dist_m": 21
    },
    {
     "id": "6836",
@@ -1411,7 +1287,7 @@
     "horario": "L-D: 05:00-23:00",
     "lat": 36.23075,
     "lon": -5.35161,
-    "km": 337.5,
+    "km": 332.4,
     "dist_m": 85
    },
    {
@@ -1423,8 +1299,8 @@
     "horario": "L-D: 24H",
     "lat": 36.21047,
     "lon": -5.39797,
-    "km": 342.9,
-    "dist_m": 8
+    "km": 338.1,
+    "dist_m": 347
    },
    {
     "id": "6674",
@@ -1435,7 +1311,7 @@
     "horario": "L-D: 24H",
     "lat": 36.20722,
     "lon": -5.41014,
-    "km": 344.1,
+    "km": 339.2,
     "dist_m": 31
    },
    {
@@ -1447,7 +1323,7 @@
     "horario": "L-D: 24H",
     "lat": 36.20439,
     "lon": -5.41197,
-    "km": 344.4,
+    "km": 339.5,
     "dist_m": 201
    },
    {
@@ -1459,20 +1335,8 @@
     "horario": "L-D: 24H",
     "lat": 36.18994,
     "lon": -5.43122,
-    "km": 347.0,
+    "km": 342.1,
     "dist_m": 246
-   },
-   {
-    "id": "5579",
-    "prov": "11",
-    "rotulo": "Carrefour",
-    "municipio": "Barrios (Los)",
-    "direccion": "Carretera Cadiz-malaga Km. 112,9",
-    "horario": "L-D: 24H",
-    "lat": 36.18175,
-    "lon": -5.44089,
-    "km": 348.2,
-    "dist_m": 154
    },
    {
     "id": "14994",
@@ -1483,20 +1347,20 @@
     "horario": "L-D: 24H",
     "lat": 36.18069,
     "lon": -5.43908,
-    "km": 348.2,
+    "km": 343.2,
     "dist_m": 345
    },
    {
-    "id": "5706",
+    "id": "5579",
     "prov": "11",
-    "rotulo": "Moeve",
+    "rotulo": "Carrefour",
     "municipio": "Barrios (Los)",
-    "direccion": "Carretera N-340 Km. 110,8",
+    "direccion": "Carretera Cadiz-malaga Km. 112,9",
     "horario": "L-D: 24H",
-    "lat": 36.17728,
-    "lon": -5.45192,
-    "km": 349.3,
-    "dist_m": 46
+    "lat": 36.18175,
+    "lon": -5.44089,
+    "km": 343.3,
+    "dist_m": 154
    },
    {
     "id": "5705",
@@ -1507,8 +1371,20 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.17661,
     "lon": -5.45142,
-    "km": 349.3,
+    "km": 344.4,
     "dist_m": 41
+   },
+   {
+    "id": "5706",
+    "prov": "11",
+    "rotulo": "Moeve",
+    "municipio": "Barrios (Los)",
+    "direccion": "Carretera N-340 Km. 110,8",
+    "horario": "L-D: 24H",
+    "lat": 36.17728,
+    "lon": -5.45192,
+    "km": 344.4,
+    "dist_m": 46
    },
    {
     "id": "12258",
@@ -1519,8 +1395,8 @@
     "horario": "L-D: 24H",
     "lat": 36.17169,
     "lon": -5.4615,
-    "km": 350.4,
-    "dist_m": 129
+    "km": 345.5,
+    "dist_m": 133
    },
    {
     "id": "6993",
@@ -1531,8 +1407,8 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 36.17783,
     "lon": -5.48972,
-    "km": 353.4,
-    "dist_m": 391
+    "km": 348.4,
+    "dist_m": 394
    },
    {
     "id": "10861",
@@ -1543,8 +1419,8 @@
     "horario": "L-D: 24H",
     "lat": 36.2,
     "lon": -5.51494,
-    "km": 357.0,
-    "dist_m": 93
+    "km": 352.1,
+    "dist_m": 96
    },
    {
     "id": "5693",
@@ -1555,7 +1431,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.43775,
     "lon": -5.71614,
-    "km": 392.8,
+    "km": 387.8,
     "dist_m": 138
    },
    {
@@ -1567,7 +1443,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.44642,
     "lon": -5.74906,
-    "km": 396.0,
+    "km": 391.0,
     "dist_m": 242
    },
    {
@@ -1579,7 +1455,7 @@
     "horario": "L-D: 24H",
     "lat": 36.52469,
     "lon": -5.98169,
-    "km": 420.3,
+    "km": 415.2,
     "dist_m": 175
    },
    {
@@ -1591,7 +1467,7 @@
     "horario": "L-D: 24H",
     "lat": 36.56894,
     "lon": -6.02356,
-    "km": 426.9,
+    "km": 421.8,
     "dist_m": 162
    },
    {
@@ -1603,8 +1479,8 @@
     "horario": "L-V: 06:00-22:00; S-D: 07:00-22:00",
     "lat": 36.63483,
     "lon": -6.07414,
-    "km": 435.9,
-    "dist_m": 39
+    "km": 430.8,
+    "dist_m": 35
    },
    {
     "id": "6699",
@@ -1615,7 +1491,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.67111,
     "lon": -6.12194,
-    "km": 442.2,
+    "km": 437.1,
     "dist_m": 42
    },
    {
@@ -1627,7 +1503,7 @@
     "horario": "L-D: 24H",
     "lat": 36.67161,
     "lon": -6.12211,
-    "km": 442.3,
+    "km": 437.2,
     "dist_m": 21
    },
    {
@@ -1639,7 +1515,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.67717,
     "lon": -6.12394,
-    "km": 442.9,
+    "km": 437.8,
     "dist_m": 325
    },
    {
@@ -1651,7 +1527,7 @@
     "horario": "L-V: 06:00-22:00; S: 08:00-16:00; D: 00:00-00:01",
     "lat": 36.67789,
     "lon": -6.14494,
-    "km": 445.3,
+    "km": 440.4,
     "dist_m": 2
    },
    {
@@ -1663,7 +1539,7 @@
     "horario": "L-D: 24H",
     "lat": 36.67931,
     "lon": -6.14733,
-    "km": 445.3,
+    "km": 440.5,
     "dist_m": 255
    },
    {
@@ -1675,8 +1551,8 @@
     "horario": "L-D: 24H",
     "lat": 36.67342,
     "lon": -6.15131,
-    "km": 446.1,
-    "dist_m": 92
+    "km": 441.2,
+    "dist_m": 93
    },
    {
     "id": "14439",
@@ -1687,7 +1563,7 @@
     "horario": "L-D: 24H",
     "lat": 36.6115,
     "lon": -6.19536,
-    "km": 454.9,
+    "km": 450.0,
     "dist_m": 90
    },
    {
@@ -1699,8 +1575,8 @@
     "horario": "L-D: 00:00-23:59",
     "lat": 36.61314,
     "lon": -6.19569,
-    "km": 455.0,
-    "dist_m": 80
+    "km": 450.1,
+    "dist_m": 77
    },
    {
     "id": "13567",
@@ -1711,7 +1587,7 @@
     "horario": "L-D: 24H",
     "lat": 36.61131,
     "lon": -6.19642,
-    "km": 455.1,
+    "km": 450.2,
     "dist_m": 125
    },
    {
@@ -1723,7 +1599,7 @@
     "horario": "L-D: 24H",
     "lat": 36.61111,
     "lon": -6.20008,
-    "km": 455.4,
+    "km": 450.5,
     "dist_m": 89
    },
    {
@@ -1735,8 +1611,8 @@
     "horario": "L-D: 24H",
     "lat": 36.61531,
     "lon": -6.21069,
-    "km": 456.5,
-    "dist_m": 130
+    "km": 451.7,
+    "dist_m": 132
    },
    {
     "id": "14753",
@@ -1747,20 +1623,8 @@
     "horario": "L-D: 24H",
     "lat": 36.61675,
     "lon": -6.20956,
-    "km": 456.5,
-    "dist_m": 320
-   },
-   {
-    "id": "5578",
-    "prov": "11",
-    "rotulo": "Carrefour",
-    "municipio": "Puerto de Santa María (El)",
-    "direccion": "Carretera Madrid Cadiz Km. 653",
-    "horario": "L-D: 24H",
-    "lat": 36.61508,
-    "lon": -6.21206,
-    "km": 456.6,
-    "dist_m": 42
+    "km": 451.7,
+    "dist_m": 321
    },
    {
     "id": "14907",
@@ -1771,8 +1635,20 @@
     "horario": "L: 24H",
     "lat": 36.61261,
     "lon": -6.21339,
-    "km": 456.6,
-    "dist_m": 252
+    "km": 451.7,
+    "dist_m": 251
+   },
+   {
+    "id": "5578",
+    "prov": "11",
+    "rotulo": "Carrefour",
+    "municipio": "Puerto de Santa María (El)",
+    "direccion": "Carretera Madrid Cadiz Km. 653",
+    "horario": "L-D: 24H",
+    "lat": 36.61508,
+    "lon": -6.21206,
+    "km": 451.8,
+    "dist_m": 43
    }
   ],
   "2": [
@@ -1786,7 +1662,7 @@
     "lat": 36.59958,
     "lon": -6.24022,
     "km": 2.1,
-    "dist_m": 400
+    "dist_m": 384
    },
    {
     "id": "5578",
@@ -1798,7 +1674,19 @@
     "lat": 36.61508,
     "lon": -6.21206,
     "km": 6.3,
-    "dist_m": 45
+    "dist_m": 49
+   },
+   {
+    "id": "14753",
+    "prov": "11",
+    "rotulo": "Gm Oil",
+    "municipio": "Puerto de Santa María (El)",
+    "direccion": "Carrer El Palmar, 11",
+    "horario": "L-D: 24H",
+    "lat": 36.61675,
+    "lon": -6.20956,
+    "km": 6.3,
+    "dist_m": 329
    },
    {
     "id": "14907",
@@ -1810,7 +1698,7 @@
     "lat": 36.61261,
     "lon": -6.21339,
     "km": 6.3,
-    "dist_m": 249
+    "dist_m": 244
    },
    {
     "id": "14299",
@@ -1822,19 +1710,7 @@
     "lat": 36.61531,
     "lon": -6.21069,
     "km": 6.4,
-    "dist_m": 134
-   },
-   {
-    "id": "14753",
-    "prov": "11",
-    "rotulo": "Gm Oil",
-    "municipio": "Puerto de Santa María (El)",
-    "direccion": "Carrer El Palmar, 11",
-    "horario": "L-D: 24H",
-    "lat": 36.61675,
-    "lon": -6.20956,
-    "km": 6.4,
-    "dist_m": 323
+    "dist_m": 139
    },
    {
     "id": "14242",
@@ -1893,8 +1769,8 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 36.69872,
     "lon": -6.16275,
-    "km": 19.6,
-    "dist_m": 374
+    "km": 19.5,
+    "dist_m": 368
    },
    {
     "id": "14496",
@@ -1918,7 +1794,19 @@
     "lat": 36.72697,
     "lon": -6.09519,
     "km": 27.0,
-    "dist_m": 31
+    "dist_m": 16
+   },
+   {
+    "id": "6988",
+    "prov": "11",
+    "rotulo": "Bp Ap4 Cuadrejon Sevilla",
+    "municipio": "Jerez de la Frontera",
+    "direccion": "Ap-4 (mrg.dcho.) Km 70",
+    "horario": "L-D: 24H",
+    "lat": 36.7815,
+    "lon": -6.04472,
+    "km": 41.1,
+    "dist_m": 124
    },
    {
     "id": "6989",
@@ -1933,18 +1821,6 @@
     "dist_m": 11
    },
    {
-    "id": "6988",
-    "prov": "11",
-    "rotulo": "Bp Ap4 Cuadrejon Sevilla",
-    "municipio": "Jerez de la Frontera",
-    "direccion": "Ap-4 (mrg.dcho.) Km 70",
-    "horario": "L-D: 24H",
-    "lat": 36.7815,
-    "lon": -6.04472,
-    "km": 41.2,
-    "dist_m": 124
-   },
-   {
     "id": "12655",
     "prov": "41",
     "rotulo": "Estaciones De Servicio Gasolivia",
@@ -1953,7 +1829,7 @@
     "horario": "L-D: 24H",
     "lat": 36.97631,
     "lon": -5.94894,
-    "km": 65.6,
+    "km": 65.5,
     "dist_m": 377
    },
    {
@@ -1989,7 +1865,7 @@
     "horario": "L-D: 24H",
     "lat": 37.16261,
     "lon": -5.91014,
-    "km": 87.1,
+    "km": 87.0,
     "dist_m": 106
    },
    {
@@ -2001,8 +1877,8 @@
     "horario": "L-D: 24H",
     "lat": 37.19625,
     "lon": -5.91119,
-    "km": 90.9,
-    "dist_m": 79
+    "km": 90.8,
+    "dist_m": 85
    },
    {
     "id": "14936",
@@ -2013,8 +1889,32 @@
     "horario": "L-V: 07:00-22:00; S: 08:00-22:00",
     "lat": 37.33933,
     "lon": -5.98525,
-    "km": 110.8,
-    "dist_m": 168
+    "km": 110.7,
+    "dist_m": 169
+   },
+   {
+    "id": "7229",
+    "prov": "41",
+    "rotulo": "Bp Oil",
+    "municipio": "Sevilla",
+    "direccion": "Carretera N-iv Km. 536,7",
+    "horario": "L-D: 06:00-23:00",
+    "lat": 37.33728,
+    "lon": -5.97247,
+    "km": 111.7,
+    "dist_m": 352
+   },
+   {
+    "id": "7393",
+    "prov": "41",
+    "rotulo": "Repsol",
+    "municipio": "Sevilla",
+    "direccion": "Avenida Jerez, 24",
+    "horario": "L-D: 24H",
+    "lat": 37.33833,
+    "lon": -5.97119,
+    "km": 111.8,
+    "dist_m": 283
    },
    {
     "id": "8522",
@@ -2025,8 +1925,8 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.37106,
     "lon": -6.02794,
-    "km": 117.4,
-    "dist_m": 238
+    "km": 118.9,
+    "dist_m": 245
    },
    {
     "id": "16026",
@@ -2037,8 +1937,8 @@
     "horario": "L-D: 24H",
     "lat": 37.37467,
     "lon": -6.03053,
-    "km": 117.6,
-    "dist_m": 292
+    "km": 119.1,
+    "dist_m": 293
    },
    {
     "id": "13172",
@@ -2049,7 +1949,7 @@
     "horario": "L-D: 24H",
     "lat": 37.37808,
     "lon": -6.02931,
-    "km": 118.0,
+    "km": 119.4,
     "dist_m": 243
    },
    {
@@ -2061,7 +1961,7 @@
     "horario": "L-D: 24H",
     "lat": 37.37925,
     "lon": -6.02742,
-    "km": 118.1,
+    "km": 119.6,
     "dist_m": 98
    },
    {
@@ -2073,7 +1973,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.38172,
     "lon": -6.02633,
-    "km": 118.4,
+    "km": 119.9,
     "dist_m": 41
    },
    {
@@ -2085,8 +1985,8 @@
     "horario": "L-D: 24H",
     "lat": 37.39078,
     "lon": -6.03072,
-    "km": 120.0,
-    "dist_m": 90
+    "km": 121.4,
+    "dist_m": 87
    },
    {
     "id": "12132",
@@ -2097,7 +1997,7 @@
     "horario": "L-D: 06:30-22:30",
     "lat": 37.38558,
     "lon": -6.03144,
-    "km": 120.6,
+    "km": 122.1,
     "dist_m": 261
    },
    {
@@ -2109,7 +2009,7 @@
     "horario": "L-D: 24H",
     "lat": 37.38572,
     "lon": -6.04636,
-    "km": 122.1,
+    "km": 123.6,
     "dist_m": 385
    },
    {
@@ -2121,7 +2021,7 @@
     "horario": "L-D: 24H",
     "lat": 37.38361,
     "lon": -6.05067,
-    "km": 122.5,
+    "km": 123.9,
     "dist_m": 68
    },
    {
@@ -2133,20 +2033,8 @@
     "horario": "L-D: 24H",
     "lat": 37.38119,
     "lon": -6.06431,
-    "km": 123.7,
+    "km": 125.2,
     "dist_m": 221
-   },
-   {
-    "id": "13894",
-    "prov": "41",
-    "rotulo": "Agla",
-    "municipio": "Bormujos",
-    "direccion": "Calle Francisco Tomas Y Valiente, 46",
-    "horario": "L-D: 24H",
-    "lat": 37.38111,
-    "lon": -6.06497,
-    "km": 123.8,
-    "dist_m": 210
    },
    {
     "id": "8517",
@@ -2157,32 +2045,20 @@
     "horario": "L-D: 24H",
     "lat": 37.38422,
     "lon": -6.06619,
-    "km": 123.8,
+    "km": 125.2,
     "dist_m": 152
    },
    {
-    "id": "7433",
+    "id": "13894",
     "prov": "41",
-    "rotulo": "Repsol",
+    "rotulo": "Agla",
     "municipio": "Bormujos",
-    "direccion": "Carretera Se-625 Km. 1,150",
+    "direccion": "Calle Francisco Tomas Y Valiente, 46",
     "horario": "L-D: 24H",
-    "lat": 37.37467,
-    "lon": -6.08047,
-    "km": 125.4,
-    "dist_m": 154
-   },
-   {
-    "id": "12740",
-    "prov": "41",
-    "rotulo": "Agla, Es Agroenergetica Lg",
-    "municipio": "Bormujos",
-    "direccion": "Avenida Juan Diego, 68",
-    "horario": "L-D: 24H",
-    "lat": 37.37347,
-    "lon": -6.08011,
-    "km": 125.4,
-    "dist_m": 286
+    "lat": 37.38111,
+    "lon": -6.06497,
+    "km": 125.3,
+    "dist_m": 210
    },
    {
     "id": "15982",
@@ -2193,7 +2069,7 @@
     "horario": "L-D: 24H",
     "lat": 37.37811,
     "lon": -6.08269,
-    "km": 125.4,
+    "km": 126.8,
     "dist_m": 277
    },
    {
@@ -2205,8 +2081,32 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.37772,
     "lon": -6.08203,
-    "km": 125.4,
+    "km": 126.8,
     "dist_m": 211
+   },
+   {
+    "id": "7433",
+    "prov": "41",
+    "rotulo": "Repsol",
+    "municipio": "Bormujos",
+    "direccion": "Carretera Se-625 Km. 1,150",
+    "horario": "L-D: 24H",
+    "lat": 37.37467,
+    "lon": -6.08047,
+    "km": 126.9,
+    "dist_m": 154
+   },
+   {
+    "id": "12740",
+    "prov": "41",
+    "rotulo": "Agla, Es Agroenergetica Lg",
+    "municipio": "Bormujos",
+    "direccion": "Avenida Juan Diego, 68",
+    "horario": "L-D: 24H",
+    "lat": 37.37347,
+    "lon": -6.08011,
+    "km": 126.9,
+    "dist_m": 286
    },
    {
     "id": "8155",
@@ -2217,7 +2117,7 @@
     "horario": "L-D: 24H",
     "lat": 37.36258,
     "lon": -6.14439,
-    "km": 131.2,
+    "km": 132.7,
     "dist_m": 337
    },
    {
@@ -2229,7 +2129,7 @@
     "horario": "L-D: 24H",
     "lat": 37.36206,
     "lon": -6.2005,
-    "km": 136.4,
+    "km": 137.8,
     "dist_m": 86
    },
    {
@@ -2241,7 +2141,7 @@
     "horario": "L-V: 07:00-21:00; S: 08:00-15:00; D: 09:00-14:00",
     "lat": 37.36331,
     "lon": -6.27022,
-    "km": 143.0,
+    "km": 144.4,
     "dist_m": 158
    },
    {
@@ -2253,20 +2153,8 @@
     "horario": "L-D: 24H",
     "lat": 37.35819,
     "lon": -6.32378,
-    "km": 147.8,
+    "km": 149.2,
     "dist_m": 142
-   },
-   {
-    "id": "6973",
-    "prov": "21",
-    "rotulo": "Repsol",
-    "municipio": "Chucena",
-    "direccion": "Carretera A-49 Km. 37",
-    "horario": "L-D: 24H",
-    "lat": 37.34686,
-    "lon": -6.42319,
-    "km": 156.8,
-    "dist_m": 92
    },
    {
     "id": "6972",
@@ -2277,8 +2165,20 @@
     "horario": "L-D: 24H",
     "lat": 37.34828,
     "lon": -6.42319,
-    "km": 156.8,
+    "km": 158.2,
     "dist_m": 54
+   },
+   {
+    "id": "6973",
+    "prov": "21",
+    "rotulo": "Repsol",
+    "municipio": "Chucena",
+    "direccion": "Carretera A-49 Km. 37",
+    "horario": "L-D: 24H",
+    "lat": 37.34686,
+    "lon": -6.42319,
+    "km": 158.2,
+    "dist_m": 92
    },
    {
     "id": "10774",
@@ -2289,7 +2189,7 @@
     "horario": "L-D: 24H",
     "lat": 37.35889,
     "lon": -6.53806,
-    "km": 167.3,
+    "km": 168.7,
     "dist_m": 65
    },
    {
@@ -2301,7 +2201,7 @@
     "horario": "L-D: 24H",
     "lat": 37.35522,
     "lon": -6.54086,
-    "km": 167.6,
+    "km": 169.0,
     "dist_m": 313
    },
    {
@@ -2313,7 +2213,7 @@
     "horario": "L-S: 06:00-21:00; D: 07:00-21:00",
     "lat": 37.35111,
     "lon": -6.59822,
-    "km": 172.8,
+    "km": 174.2,
     "dist_m": 156
    },
    {
@@ -2325,7 +2225,7 @@
     "horario": "L-D: 24H",
     "lat": 37.33411,
     "lon": -6.78894,
-    "km": 190.0,
+    "km": 191.4,
     "dist_m": 36
    },
    {
@@ -2337,7 +2237,7 @@
     "horario": "L-D: 24H",
     "lat": 37.33161,
     "lon": -6.80286,
-    "km": 191.2,
+    "km": 192.6,
     "dist_m": 79
    },
    {
@@ -2349,7 +2249,7 @@
     "horario": "L-D: 24H",
     "lat": 37.32583,
     "lon": -6.83917,
-    "km": 194.5,
+    "km": 195.9,
     "dist_m": 170
    },
    {
@@ -2361,7 +2261,7 @@
     "horario": "L-D: 24H",
     "lat": 37.32333,
     "lon": -7.11417,
-    "km": 222.3,
+    "km": 223.6,
     "dist_m": 10
    },
    {
@@ -2373,7 +2273,7 @@
     "horario": "L-D: 24H",
     "lat": 37.32269,
     "lon": -7.11447,
-    "km": 222.3,
+    "km": 223.6,
     "dist_m": 65
    },
    {
@@ -2385,8 +2285,8 @@
     "horario": "L-D: 24H",
     "lat": 37.23983,
     "lon": -7.38186,
-    "km": 249.5,
-    "dist_m": 77
+    "km": 250.8,
+    "dist_m": 75
    },
    {
     "id": "12712",
@@ -2397,35 +2297,3033 @@
     "horario": "L-D: 24H",
     "lat": 37.23822,
     "lon": -7.38531,
-    "km": 249.8,
-    "dist_m": 88
+    "km": 251.1,
+    "dist_m": 90
    },
    {
-    "id": "6609",
-    "prov": "21",
-    "rotulo": "Bp",
-    "municipio": "Ayamonte",
-    "direccion": "Avenida Constitucion, S/n",
+    "id": "PT-69052",
+    "prov": "PT-8",
+    "rotulo": "Moeve",
+    "municipio": "Olhão",
+    "direccion": "A22, VIA DO INFANTE DE SAGRES, SUB-LANÇO OLHÃO-TAVIRA, KM 97,",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.12614,
+    "lon": -7.7706,
+    "km": 290.0,
+    "dist_m": 86
+   },
+   {
+    "id": "PT-69051",
+    "prov": "PT-8",
+    "rotulo": "Moeve",
+    "municipio": "Olhão",
+    "direccion": "A22, VIA DO INFANTE DE SAGRES, SUB-LANÇO OLHÃO-TAVIRA, KM 97,",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.12454,
+    "lon": -7.77111,
+    "km": 290.1,
+    "dist_m": 72
+   },
+   {
+    "id": "PT-65283",
+    "prov": "PT-8",
+    "rotulo": "Galp",
+    "municipio": "Estoi-Coiro da Burra",
+    "direccion": "EN 2 Km 729,7",
     "horario": "L-D: 06:00-00:00",
-    "lat": 37.22069,
-    "lon": -7.39856,
-    "km": 253.9,
-    "dist_m": 286
+    "pais": "PT",
+    "lat": 37.09745,
+    "lon": -7.90605,
+    "km": 304.2,
+    "dist_m": 226
    },
    {
-    "id": "12509",
-    "prov": "21",
-    "rotulo": "Btp",
-    "municipio": "Ayamonte",
-    "direccion": "Calle Lavanda, 2",
-    "horario": "L: 07:00-23:00",
-    "lat": 37.22297,
-    "lon": -7.40114,
-    "km": 255.7,
+    "id": "PT-93108",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "FARO",
+    "direccion": "MARF- Guilhim - Estrada Municipal 520 - 2",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.08972,
+    "lon": -7.92798,
+    "km": 306.3,
+    "dist_m": 368
+   },
+   {
+    "id": "PT-65379",
+    "prov": "PT-8",
+    "rotulo": "Galp",
+    "municipio": "Franqueada",
+    "direccion": "A22 – Km 62,500 - Sublanço Guia-Loulé 1 (Loulé/Faro)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.13618,
+    "lon": -8.11088,
+    "km": 324.2,
+    "dist_m": 64
+   },
+   {
+    "id": "PT-65380",
+    "prov": "PT-8",
+    "rotulo": "Galp",
+    "municipio": "Loulé",
+    "direccion": "A. E. 22 Km 62.5 Sublanço Guia / Loulé_Aparta",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.13697,
+    "lon": -8.11004,
+    "km": 324.2,
+    "dist_m": 51
+   },
+   {
+    "id": "PT-70915",
+    "prov": "PT-8",
+    "rotulo": "Bp",
+    "municipio": "Boliqueime-Sítio Matos da Picota",
+    "direccion": "Posto BP Boliqueime Sitio Matos da Picota N270",
+    "horario": "L-D: 06:30-21:00",
+    "pais": "PT",
+    "lat": 37.1499,
+    "lon": -8.12591,
+    "km": 326.2,
+    "dist_m": 186
+   },
+   {
+    "id": "PT-69053",
+    "prov": "PT-8",
+    "rotulo": "Moeve",
+    "municipio": "Lagoa",
+    "direccion": "A 22, VIA DO INFANTE SAGRES, APARTADO 328",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.15181,
+    "lon": -8.4259,
+    "km": 355.3,
+    "dist_m": 67
+   },
+   {
+    "id": "PT-69054",
+    "prov": "PT-8",
+    "rotulo": "Moeve",
+    "municipio": "Silves",
+    "direccion": "A 22, VIA DO INFANTE SAGRES, APARTADO 328",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.15134,
+    "lon": -8.42837,
+    "km": 355.4,
+    "dist_m": 71
+   },
+   {
+    "id": "PT-67869",
+    "prov": "PT-8",
+    "rotulo": "Bp",
+    "municipio": "Telheiro",
+    "direccion": "EN 125",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.11993,
+    "lon": -8.67299,
+    "km": 386.8,
+    "dist_m": 9
+   },
+   {
+    "id": "PT-67880",
+    "prov": "PT-8",
+    "rotulo": "Bp",
+    "municipio": "Lagos",
+    "direccion": "EN125  Telheiro",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.11979,
+    "lon": -8.67342,
+    "km": 386.8,
+    "dist_m": 28
+   },
+   {
+    "id": "PT-65337",
+    "prov": "PT-8",
+    "rotulo": "Galp",
+    "municipio": "Lagos",
+    "direccion": "EN 120 Km 174",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.11122,
+    "lon": -8.67956,
+    "km": 388.5,
+    "dist_m": 33
+   },
+   {
+    "id": "PT-65338",
+    "prov": "PT-8",
+    "rotulo": "Galp",
+    "municipio": "Lagos",
+    "direccion": "EN 120 Km 174",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.11079,
+    "lon": -8.67965,
+    "km": 388.5,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-66323",
+    "prov": "PT-8",
+    "rotulo": "Cepsa",
+    "municipio": "Lagos",
+    "direccion": "Av. dos Descobrimentos",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 37.10997,
+    "lon": -8.67668,
+    "km": 388.8,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-66536",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "Lagos",
+    "direccion": "Av. dos Descobrimentos",
+    "horario": "L-D: 07:30-00:00",
+    "pais": "PT",
+    "lat": 37.105,
+    "lon": -8.67349,
+    "km": 389.4,
+    "dist_m": 4
+   },
+   {
+    "id": "PT-67942",
+    "prov": "PT-8",
+    "rotulo": "Bp",
+    "municipio": "Lagos",
+    "direccion": "Av. dos Descobrimentos",
+    "horario": "L-V: 07:00-22:00; S: 07:00-22:00; D: 08:00-22:00",
+    "pais": "PT",
+    "lat": 37.10054,
+    "lon": -8.66948,
+    "km": 390.0,
+    "dist_m": 41
+   },
+   {
+    "id": "PT-80997",
+    "prov": "PT-8",
+    "rotulo": "Intermarché",
+    "municipio": "Lagos",
+    "direccion": "AMEIJEIRA VERDE- PEDRA ALÇADA",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.09996,
+    "lon": -8.68213,
+    "km": 395.9,
+    "dist_m": 53
+   },
+   {
+    "id": "PT-94917",
+    "prov": "PT-8",
+    "rotulo": "Cepsa",
+    "municipio": "Lagos",
+    "direccion": "Urbanização Pedra Alçada, Lote 17",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.10181,
+    "lon": -8.69289,
+    "km": 396.9,
+    "dist_m": 3
+   },
+   {
+    "id": "PT-67450",
+    "prov": "PT-8",
+    "rotulo": "Intermarché",
+    "municipio": "Budens",
+    "direccion": "AREIAS DE CIMA",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.08632,
+    "lon": -8.82787,
+    "km": 409.9,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-67821",
+    "prov": "PT-8",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Vila do Bispo",
+    "direccion": "EN 268 (Rua Senhora do Amparo, junto aos Bombeiros Vila do Bispo)",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.08147,
+    "lon": -8.91056,
+    "km": 418.3,
+    "dist_m": 87
+   },
+   {
+    "id": "PT-81066",
+    "prov": "PT-8",
+    "rotulo": "Intermarché",
+    "municipio": "Sagres",
+    "direccion": "Cercas velhas",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.01533,
+    "lon": -8.94097,
+    "km": 426.3,
+    "dist_m": 30
+   },
+   {
+    "id": "PT-67525",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "Sagres",
+    "direccion": "EN 268 Km 36,100",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 37.01334,
+    "lon": -8.94237,
+    "km": 426.6,
+    "dist_m": 4
+   },
+   {
+    "id": "PT-65720",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "Sagres",
+    "direccion": "EN 268 Km 36,65Sítio do Tonel",
+    "horario": "L-D: 08:00-21:00",
+    "pais": "PT",
+    "lat": 37.00872,
+    "lon": -8.94419,
+    "km": 427.1,
+    "dist_m": 35
+   }
+  ],
+  "3": [
+   {
+    "id": "PT-65720",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "Sagres",
+    "direccion": "EN 268 Km 36,65Sítio do Tonel",
+    "horario": "L-D: 08:00-21:00",
+    "pais": "PT",
+    "lat": 37.00872,
+    "lon": -8.94419,
+    "km": 2.7,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-67525",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "Sagres",
+    "direccion": "EN 268 Km 36,100",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 37.01334,
+    "lon": -8.94237,
+    "km": 3.3,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-81066",
+    "prov": "PT-8",
+    "rotulo": "Intermarché",
+    "municipio": "Sagres",
+    "direccion": "Cercas velhas",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.01533,
+    "lon": -8.94097,
+    "km": 3.5,
+    "dist_m": 21
+   },
+   {
+    "id": "PT-67821",
+    "prov": "PT-8",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Vila do Bispo",
+    "direccion": "EN 268 (Rua Senhora do Amparo, junto aos Bombeiros Vila do Bispo)",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.08147,
+    "lon": -8.91056,
+    "km": 12.0,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-65064",
+    "prov": "PT-8",
+    "rotulo": "Galp",
+    "municipio": "Quartel dos Bombeiros",
+    "direccion": "EN 120",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 37.31869,
+    "lon": -8.79843,
+    "km": 47.5,
+    "dist_m": 25
+   },
+   {
+    "id": "PT-66547",
+    "prov": "PT-8",
+    "rotulo": "Repsol",
+    "municipio": "Rogil",
+    "direccion": "Av. 16 de Junho nº 81",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 37.3717,
+    "lon": -8.79994,
+    "km": 54.1,
+    "dist_m": 16
+   },
+   {
+    "id": "PT-93474",
+    "prov": "PT-8",
+    "rotulo": "OZ Energia",
+    "municipio": "Odeceixe",
+    "direccion": "EN 120 - KM 130+340",
+    "horario": "",
+    "pais": "PT",
+    "lat": 37.4189,
+    "lon": -8.76646,
+    "km": 60.3,
+    "dist_m": 22
+   },
+   {
+    "id": "PT-95263",
+    "prov": "PT-2",
+    "rotulo": "Cepsa",
+    "municipio": "São Teotónio",
+    "direccion": "LOTEAMENTO INDUSTRIAL DA BEMPOSTA, LOTE 7",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 37.50998,
+    "lon": -8.71566,
+    "km": 75.3,
+    "dist_m": 133
+   },
+   {
+    "id": "PT-65471",
+    "prov": "PT-2",
+    "rotulo": "Galp",
+    "municipio": "Odemira",
+    "direccion": "EN 120 Km 115,4",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 37.51512,
+    "lon": -8.71074,
+    "km": 76.1,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-65473",
+    "prov": "PT-2",
+    "rotulo": "Galp",
+    "municipio": "Vila Nova de Milfontes",
+    "direccion": "EN 390 Km 39,4",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 37.73887,
+    "lon": -8.76712,
+    "km": 107.6,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-65652",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Porto Côvo",
+    "direccion": "EM",
+    "horario": "L-D: 08:00-21:00",
+    "pais": "PT",
+    "lat": 37.85379,
+    "lon": -8.78562,
+    "km": 125.1,
+    "dist_m": 11
+   },
+   {
+    "id": "PT-66804",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Sines",
+    "direccion": "Av. General Humberto Delgado M-N-O",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.95812,
+    "lon": -8.86573,
+    "km": 146.5,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-65653",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Sines",
+    "direccion": "AV.GENERAL HUMBERTO DELGADO",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.95935,
+    "lon": -8.85914,
+    "km": 147.0,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-93309",
+    "prov": "PT-15",
+    "rotulo": "Intermarché",
+    "municipio": "Sines",
+    "direccion": "Nó rodoviário de Sines",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.96528,
+    "lon": -8.8591,
+    "km": 147.6,
+    "dist_m": 294
+   },
+   {
+    "id": "PT-91950",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Sines",
+    "direccion": "Loteamento Municipal da R52 - Lote 8",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.96635,
+    "lon": -8.85722,
+    "km": 148.2,
+    "dist_m": 112
+   },
+   {
+    "id": "PT-66778",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Stº André",
+    "direccion": "Zona Industrial Ligeira Lt. 27 A",
+    "horario": "L-D: 06:30-22:00",
+    "pais": "PT",
+    "lat": 38.05402,
+    "lon": -8.78824,
+    "km": 161.6,
+    "dist_m": 172
+   },
+   {
+    "id": "PT-65603",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Santo André",
+    "direccion": "EN 261-5 (Azinhal Santo André)",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.05885,
+    "lon": -8.7898,
+    "km": 162.1,
+    "dist_m": 52
+   },
+   {
+    "id": "PT-77676",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Melides",
+    "direccion": "CRUZAMENTO VALE FIGUEIRA",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.14144,
+    "lon": -8.73605,
+    "km": 174.5,
+    "dist_m": 66
+   },
+   {
+    "id": "PT-93280",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Comporta",
+    "direccion": "Av. 18 de dezembro",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.30784,
+    "lon": -8.74364,
+    "km": 195.5,
+    "dist_m": 214
+   },
+   {
+    "id": "PT-93279",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Carvalhal",
+    "direccion": "EN 261, km 8.3 Carvalhal",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.30993,
+    "lon": -8.74283,
+    "km": 195.6,
+    "dist_m": 40
+   },
+   {
+    "id": "PT-93296",
+    "prov": "PT-15",
+    "rotulo": "Moeve",
+    "municipio": "Comporta",
+    "direccion": "EN 261, km 10,20 - Alcácer do Sal",
+    "horario": "L-D: 07:30-21:30",
+    "pais": "PT",
+    "lat": 38.36591,
+    "lon": -8.78285,
+    "km": 203.0,
+    "dist_m": 30
+   },
+   {
+    "id": "PT-66797",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Setúbal",
+    "direccion": "Av. Luisa Todi - Junto Ao Ferry",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.52249,
+    "lon": -8.88618,
+    "km": 224.2,
+    "dist_m": 87
+   },
+   {
+    "id": "PT-91815",
+    "prov": "PT-15",
+    "rotulo": "Prio",
+    "municipio": "São Julião",
+    "direccion": "Av. Combatentes da Grande Guerra, N 16-18",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.52494,
+    "lon": -8.8958,
+    "km": 225.0,
+    "dist_m": 184
+   }
+  ],
+  "4": [
+   {
+    "id": "PT-66781",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Azeitão",
+    "direccion": "EN 10 - Km24 - Norte-Sul",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 38.53039,
+    "lon": -9.02109,
+    "km": 31.6,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-66782",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Azeitão",
+    "direccion": "EN 10 - Km24 - Sul-Norte",
+    "horario": "L-D: 06:00-00:00",
+    "pais": "PT",
+    "lat": 38.53066,
+    "lon": -9.02078,
+    "km": 35.0,
+    "dist_m": 9
+   },
+   {
+    "id": "PT-65633",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Zambujal de Cima",
+    "direccion": "Avenida Principal 1",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.57204,
+    "lon": -9.03758,
+    "km": 40.0,
+    "dist_m": 41
+   },
+   {
+    "id": "PT-79645",
+    "prov": "PT-15",
+    "rotulo": "Pingo Doce",
+    "municipio": "Quinta do Conde",
+    "direccion": "EN 10, Km 19",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.57365,
+    "lon": -9.03701,
+    "km": 40.2,
+    "dist_m": 66
+   },
+   {
+    "id": "PT-76183",
+    "prov": "PT-15",
+    "rotulo": "Auchan",
+    "municipio": "Coina",
+    "direccion": "EN 10  Km 18,5",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.58063,
+    "lon": -9.04166,
+    "km": 41.1,
+    "dist_m": 63
+   },
+   {
+    "id": "PT-94453",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Coina",
+    "direccion": "Estrada Nacional 10",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 38.59271,
+    "lon": -9.04667,
+    "km": 42.5,
+    "dist_m": 26
+   },
+   {
+    "id": "PT-93270",
+    "prov": "PT-15",
+    "rotulo": "Socrabine, CRL",
+    "municipio": "Coina",
+    "direccion": "Estrada Nacional 10, Fonte da Talha",
+    "horario": "L-D: 07:00-20:00",
+    "pais": "PT",
+    "lat": 38.59346,
+    "lon": -9.04722,
+    "km": 42.7,
+    "dist_m": 32
+   },
+   {
+    "id": "PT-66312",
+    "prov": "PT-15",
+    "rotulo": "Moeve",
+    "municipio": "Foros da Catrapona",
+    "direccion": "ESTRADA NACIONAL 10, KM 15",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.60477,
+    "lon": -9.06722,
+    "km": 44.9,
+    "dist_m": 23
+   },
+   {
+    "id": "PT-66313",
+    "prov": "PT-15",
+    "rotulo": "Moeve",
+    "municipio": "Foros da Catrapona",
+    "direccion": "ESTRADA NACIONAL 10, KM 15",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.60521,
+    "lon": -9.06709,
+    "km": 44.9,
+    "dist_m": 23
+   },
+   {
+    "id": "PT-93237",
+    "prov": "PT-15",
+    "rotulo": "Shell",
+    "municipio": "Paio Pires",
+    "direccion": "Travessa Quinta da Galega nº 1",
+    "horario": "L-D: 06:30-22:30",
+    "pais": "PT",
+    "lat": 38.60893,
+    "lon": -9.0801,
+    "km": 46.1,
+    "dist_m": 26
+   },
+   {
+    "id": "PT-65881",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Arrentela",
+    "direccion": "EN 10 Km 11,735",
+    "horario": "L-D: 06:00-23:59",
+    "pais": "PT",
+    "lat": 38.60798,
+    "lon": -9.09921,
+    "km": 47.8,
+    "dist_m": 246
+   },
+   {
+    "id": "PT-65882",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Arrentela - Casal do Marco",
+    "direccion": "EN 10 Km 11.735",
+    "horario": "L-D: 06:30-23:59",
+    "pais": "PT",
+    "lat": 38.60756,
+    "lon": -9.09905,
+    "km": 47.8,
+    "dist_m": 285
+   },
+   {
+    "id": "PT-66968",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Casal do Marco - Fogueteiro",
+    "direccion": "Interface Seixal",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.60971,
+    "lon": -9.09919,
+    "km": 47.9,
+    "dist_m": 67
+   },
+   {
+    "id": "PT-95181",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Fogueteiro",
+    "direccion": "Av. 1º Maio - Estrada Nacional 10 Km 10.7 - Lado Esq.",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 38.61353,
+    "lon": -9.10817,
+    "km": 48.9,
+    "dist_m": 149
+   },
+   {
+    "id": "PT-65625",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Torre da Marinha",
+    "direccion": "A. E. 2 Km 12 Sublanço Almada - Fogueteiro",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.62281,
+    "lon": -9.13417,
+    "km": 51.8,
+    "dist_m": 85
+   },
+   {
+    "id": "PT-95298",
+    "prov": "PT-15",
+    "rotulo": "Galp",
+    "municipio": "Amora",
+    "direccion": "EN 10, km 7,250 - Vale de Gatos - Santa Marta de Corroios",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.63191,
+    "lon": -9.13924,
+    "km": 52.8,
+    "dist_m": 375
+   },
+   {
+    "id": "PT-89328",
+    "prov": "PT-15",
+    "rotulo": "Prio",
+    "municipio": "Corroios",
+    "direccion": "Rua Bento Gonçalves nº 7",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.63595,
+    "lon": -9.14691,
+    "km": 53.6,
+    "dist_m": 265
+   },
+   {
+    "id": "PT-66776",
+    "prov": "PT-15",
+    "rotulo": "Repsol",
+    "municipio": "Stª Marta do Pinhal",
+    "direccion": "Av. Rui Gracio",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.63312,
+    "lon": -9.14958,
+    "km": 53.6,
+    "dist_m": 125
+   },
+   {
+    "id": "PT-65892",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Corroios",
+    "direccion": "EN 10 Km 5,9",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.63939,
+    "lon": -9.15016,
+    "km": 54.1,
+    "dist_m": 361
+   },
+   {
+    "id": "PT-65829",
+    "prov": "PT-15",
+    "rotulo": "Bp",
+    "municipio": "Almada",
+    "direccion": "Qtª da  Alembrança Varante E.N 10",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.64863,
+    "lon": -9.16318,
+    "km": 55.8,
+    "dist_m": 312
+   },
+   {
+    "id": "PT-67264",
+    "prov": "PT-15",
+    "rotulo": "Auchan",
+    "municipio": "Almada",
+    "direccion": "Estrada Vale Mourelos nº 20 Qta. Espadeiros",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.65686,
+    "lon": -9.17222,
+    "km": 56.9,
+    "dist_m": 212
+   },
+   {
+    "id": "PT-66650",
+    "prov": "PT-11",
+    "rotulo": "Repsol",
+    "municipio": "Lisboa",
+    "direccion": "Av.Ceuta,nº 61",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.7133,
+    "lon": -9.17601,
+    "km": 63.1,
+    "dist_m": 300
+   },
+   {
+    "id": "PT-65360",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Belém",
+    "direccion": "Av. de Brasília",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.6949,
+    "lon": -9.20418,
+    "km": 67.8,
+    "dist_m": 39
+   },
+   {
+    "id": "PT-65945",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Lisboa",
+    "direccion": "Av. de Brasília",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 38.69376,
+    "lon": -9.2122,
+    "km": 68.5,
+    "dist_m": 37
+   },
+   {
+    "id": "PT-94384",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Lisboa",
+    "direccion": "Avª da Índia e Rua Fernão Mendes Pinto",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.69382,
+    "lon": -9.21766,
+    "km": 69.0,
+    "dist_m": 16
+   },
+   {
+    "id": "PT-93231",
+    "prov": "PT-11",
+    "rotulo": "Shell",
+    "municipio": "Algés",
+    "direccion": "Largo 25 de Abril (Largo da Estação)",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.69899,
+    "lon": -9.22987,
+    "km": 71.6,
+    "dist_m": 48
+   },
+   {
+    "id": "PT-94821",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Caxias",
+    "direccion": "EN 6-3, km 0,200",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.70245,
+    "lon": -9.26052,
+    "km": 74.4,
+    "dist_m": 245
+   },
+   {
+    "id": "PT-65992",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Paço de Arcos",
+    "direccion": "Av. Bonneville Franco",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.69382,
+    "lon": -9.2971,
+    "km": 77.8,
+    "dist_m": 279
+   },
+   {
+    "id": "PT-67563",
+    "prov": "PT-11",
+    "rotulo": "Prio",
+    "municipio": "Jardim de St.Amaro de Oeiras",
+    "direccion": "Av. Marginal (EN 6 Km 8,200)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.68486,
+    "lon": -9.31341,
+    "km": 79.6,
+    "dist_m": 20
+   },
+   {
+    "id": "PT-93324",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Oeiras - Alto da Barra",
+    "direccion": "Estrada Marginal",
+    "horario": "L-D: 07:00-23:59",
+    "pais": "PT",
+    "lat": 38.68116,
+    "lon": -9.31607,
+    "km": 80.1,
+    "dist_m": 43
+   },
+   {
+    "id": "PT-93267",
+    "prov": "PT-11",
+    "rotulo": "Prio",
+    "municipio": "Parede",
+    "direccion": "Rua Sampaio Bruno nº 2",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.68559,
+    "lon": -9.35202,
+    "km": 83.8,
+    "dist_m": 36
+   },
+   {
+    "id": "PT-65211",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Parede",
+    "direccion": "Largo da Igreja",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 38.6871,
+    "lon": -9.35271,
+    "km": 83.9,
+    "dist_m": 138
+   },
+   {
+    "id": "PT-66097",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "S. Pedro Estoril",
+    "direccion": "Estrada Marginal EN 6 Km 14",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.69357,
+    "lon": -9.36751,
+    "km": 85.5,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-65904",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Estoril",
+    "direccion": "Estrada Marginal",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.70334,
+    "lon": -9.39822,
+    "km": 88.5,
+    "dist_m": 23
+   },
+   {
+    "id": "PT-65905",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Estoril",
+    "direccion": "Estrada Marginal",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.70381,
+    "lon": -9.40008,
+    "km": 88.7,
+    "dist_m": 24
+   },
+   {
+    "id": "PT-95213",
+    "prov": "PT-11",
+    "rotulo": "Repsol",
+    "municipio": "Cascais",
+    "direccion": "Repsol - Estrada do Guincho",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.6962,
+    "lon": -9.44785,
+    "km": 94.8,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-65890",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Várzea de Colares",
+    "direccion": "Av. Bombeiros Voluntários",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.80313,
+    "lon": -9.44938,
+    "km": 121.1,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-88424",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Sintra",
+    "direccion": "Av. D. Francisco de Almeida, 47",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.79963,
+    "lon": -9.38177,
+    "km": 130.4,
+    "dist_m": 11
+   },
+   {
+    "id": "PT-86721",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Lourel",
+    "direccion": "E.N. 9 KM 16.7 RAL\nSanta Maria - Posto BP Este",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.82315,
+    "lon": -9.35839,
+    "km": 135.2,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-86722",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Lourel",
+    "direccion": "E.N. 9 KM 16.7 RAL\nSanta Maria - Posto BP Oeste",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 38.82404,
+    "lon": -9.35872,
+    "km": 135.2,
+    "dist_m": 32
+   },
+   {
+    "id": "PT-66005",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Pero Pinheiro",
+    "direccion": "Av. 19 de Maio, 22",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.85265,
+    "lon": -9.32648,
+    "km": 140.2,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-92971",
+    "prov": "PT-11",
+    "rotulo": "Auto Julio",
+    "municipio": "Igreja Nova",
+    "direccion": "estrada nacional, nº9",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.91523,
+    "lon": -9.32381,
+    "km": 148.3,
+    "dist_m": 11
+   },
+   {
+    "id": "PT-68430",
+    "prov": "PT-11",
+    "rotulo": "Intermarché",
+    "municipio": "Mafra",
+    "direccion": "Rua Almirante Gago Coutinho nº 7",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.93241,
+    "lon": -9.33026,
+    "km": 152.8,
+    "dist_m": 256
+   },
+   {
+    "id": "PT-65397",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Mafra",
+    "direccion": "EN 116 (Av. 25 de Abril) Km 35,65",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.94156,
+    "lon": -9.33038,
+    "km": 153.9,
+    "dist_m": 7
+   },
+   {
+    "id": "PT-93055",
+    "prov": "PT-11",
+    "rotulo": "Moeve",
+    "municipio": "Qta da Mougueta",
+    "direccion": "EN 116 Km 7,7",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 38.95503,
+    "lon": -9.34075,
+    "km": 155.9,
+    "dist_m": 21
+   },
+   {
+    "id": "PT-88867",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Sobreiro",
+    "direccion": "EN 116, Km 7\nLugar Casal Mourão, Posto BP",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.95843,
+    "lon": -9.34738,
+    "km": 156.6,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-87398",
+    "prov": "PT-11",
+    "rotulo": "Intermarché",
+    "municipio": "Ericeira",
+    "direccion": "Estrada Nacional 116, Km 1, Edifício INTERMARCHÉ",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.96593,
+    "lon": -9.40785,
+    "km": 163.0,
+    "dist_m": 70
+   },
+   {
+    "id": "PT-65896",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Ericeira",
+    "direccion": "EN 247, Mil Regos",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.98239,
+    "lon": -9.41769,
+    "km": 166.3,
+    "dist_m": 41
+   },
+   {
+    "id": "PT-65395",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Encarnação-Barril",
+    "direccion": "EN 247 Km 39,542",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 39.04713,
+    "lon": -9.39924,
+    "km": 175.7,
+    "dist_m": 25
+   },
+   {
+    "id": "PT-68455",
+    "prov": "PT-11",
+    "rotulo": "Petrin",
+    "municipio": "Azenha Velha",
+    "direccion": "Rua do Aranha nº8",
+    "horario": "L-D: 07:00-21:30",
+    "pais": "PT",
+    "lat": 39.07885,
+    "lon": -9.37506,
+    "km": 180.6,
+    "dist_m": 113
+   },
+   {
+    "id": "PT-94616",
+    "prov": "PT-11",
+    "rotulo": "Nova",
+    "municipio": "Casal Alto dos Moinhos",
+    "direccion": "Estrada Municipal Silveira - Coutada",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 39.10602,
+    "lon": -9.36589,
+    "km": 184.1,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-93151",
+    "prov": "PT-11",
+    "rotulo": "Intermarché",
+    "municipio": "Silveira",
+    "direccion": "Rua Antonino Gomes",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.10673,
+    "lon": -9.3656,
+    "km": 184.2,
+    "dist_m": 38
+   },
+   {
+    "id": "PT-66371",
+    "prov": "PT-11",
+    "rotulo": "Moeve",
+    "municipio": "Silveira",
+    "direccion": "RUA INÁCIO NUNES DA COSTA, Nº 19",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.1139,
+    "lon": -9.3681,
+    "km": 185.3,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-93205",
+    "prov": "PT-11",
+    "rotulo": "Prio",
+    "municipio": "Casais de Santa Bárbara",
+    "direccion": "EN 247, nº 19",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 39.2135,
+    "lon": -9.3201,
+    "km": 200.3,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-65959",
+    "prov": "PT-11",
+    "rotulo": "Bp",
+    "municipio": "Lourinhã",
+    "direccion": "Av. Dr. Catanho Menezes",
+    "horario": "L-D: 06:30-00:00",
+    "pais": "PT",
+    "lat": 39.24488,
+    "lon": -9.3114,
+    "km": 204.6,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-67843",
+    "prov": "PT-11",
+    "rotulo": "GAO PA Lourinhã",
+    "municipio": "Lourinhã",
+    "direccion": "Av. António José de Almeida, 21",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.2448,
+    "lon": -9.31341,
+    "km": 204.7,
+    "dist_m": 159
+   },
+   {
+    "id": "PT-68009",
+    "prov": "PT-11",
+    "rotulo": "Galp",
+    "municipio": "Lourinhã",
+    "direccion": "Alameda Nossa Senhora dos Anjos",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.24535,
+    "lon": -9.3148,
+    "km": 204.8,
+    "dist_m": 206
+   },
+   {
+    "id": "PT-66615",
+    "prov": "PT-11",
+    "rotulo": "Repsol",
+    "municipio": "Lourinhã",
+    "direccion": "EN 24 Km 12,2",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 39.24994,
+    "lon": -9.31278,
+    "km": 205.2,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-93554",
+    "prov": "PT-11",
+    "rotulo": "Intermarché",
+    "municipio": "Lourinha",
+    "direccion": "Rua Ildo Hermogenes da Silva Marques,1",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.25118,
+    "lon": -9.31306,
+    "km": 205.3,
+    "dist_m": 69
+   },
+   {
+    "id": "PT-84367",
+    "prov": "PT-11",
+    "rotulo": "Repsol",
+    "municipio": "Lourinhã",
+    "direccion": "Quinta Maria Gil - Seixal",
+    "horario": "L-D: 07:00-20:00",
+    "pais": "PT",
+    "lat": 39.25376,
+    "lon": -9.3177,
+    "km": 205.8,
     "dist_m": 19
+   },
+   {
+    "id": "PT-94313",
+    "prov": "PT-10",
+    "rotulo": "Galp",
+    "municipio": "Alto Veríssimo",
+    "direccion": "E.N. 247 Km 5,250",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.30259,
+    "lon": -9.31913,
+    "km": 212.0,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-66002",
+    "prov": "PT-10",
+    "rotulo": "Bp",
+    "municipio": "Peniche",
+    "direccion": "Av. Monsenhor Bastos",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.3533,
+    "lon": -9.3624,
+    "km": 219.5,
+    "dist_m": 32
+   },
+   {
+    "id": "PT-65540",
+    "prov": "PT-10",
+    "rotulo": "Galp",
+    "municipio": "Peniche",
+    "direccion": "Av. do Porto de Pesca",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.35849,
+    "lon": -9.37095,
+    "km": 220.5,
+    "dist_m": 300
+   }
+  ],
+  "5": [
+   {
+    "id": "PT-65540",
+    "prov": "PT-10",
+    "rotulo": "Galp",
+    "municipio": "Peniche",
+    "direccion": "Av. do Porto de Pesca",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.35849,
+    "lon": -9.37095,
+    "km": 2.5,
+    "dist_m": 278
+   },
+   {
+    "id": "PT-66002",
+    "prov": "PT-10",
+    "rotulo": "Bp",
+    "municipio": "Peniche",
+    "direccion": "Av. Monsenhor Bastos",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.3533,
+    "lon": -9.3624,
+    "km": 3.5,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-94585",
+    "prov": "PT-10",
+    "rotulo": "Intermarché",
+    "municipio": "Porto Lobos",
+    "direccion": "EN 114 KM 7,600",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.34556,
+    "lon": -9.34062,
+    "km": 5.8,
+    "dist_m": 2
+   },
+   {
+    "id": "PT-65541",
+    "prov": "PT-10",
+    "rotulo": "Galp",
+    "municipio": "Atouguia da Baleia",
+    "direccion": "Largo de São José nº 11",
+    "horario": "L-D: 08:00-22:00",
+    "pais": "PT",
+    "lat": 39.3401,
+    "lon": -9.32717,
+    "km": 7.1,
+    "dist_m": 51
+   },
+   {
+    "id": "PT-66212",
+    "prov": "PT-10",
+    "rotulo": "Cepsa",
+    "municipio": "Serra d'el Rei",
+    "direccion": "EN 114 (Av. da Liberdade nº 115)",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 39.32999,
+    "lon": -9.27818,
+    "km": 11.7,
+    "dist_m": 11
+   },
+   {
+    "id": "PT-77822",
+    "prov": "PT-10",
+    "rotulo": "Prio",
+    "municipio": "Óbidos",
+    "direccion": "EN 8 - Entre Rotunda da Memória e Rotunda das Piscinas",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 39.35487,
+    "lon": -9.15908,
+    "km": 23.8,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-66369",
+    "prov": "PT-10",
+    "rotulo": "Cepsa",
+    "municipio": "São Martinho do Porto",
+    "direccion": "RUA CONDE DE AVELAR",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.50601,
+    "lon": -9.13132,
+    "km": 50.8,
+    "dist_m": 246
+   },
+   {
+    "id": "PT-93440",
+    "prov": "PT-10",
+    "rotulo": "Intermarché",
+    "municipio": "São Martinho do Porto",
+    "direccion": "Lugar de Relvinhas - Edificio Intermarché",
+    "horario": "L-D: 09:00-21:00",
+    "pais": "PT",
+    "lat": 39.51538,
+    "lon": -9.12587,
+    "km": 52.2,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-93233",
+    "prov": "PT-10",
+    "rotulo": "Shell",
+    "municipio": "Nazaré - Porto de Abrigo",
+    "direccion": "Av. Manuel Remígio, EN242Porto da Nazaré",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 39.58669,
+    "lon": -9.07176,
+    "km": 63.4,
+    "dist_m": 78
+   },
+   {
+    "id": "PT-67913",
+    "prov": "PT-10",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Carriço",
+    "direccion": "ESTRADA NACIONAL Nº109",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.99012,
+    "lon": -8.80171,
+    "km": 128.2,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-94523",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Marinha das Ondas",
+    "direccion": "EN 109 - nº 176",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 40.01803,
+    "lon": -8.81396,
+    "km": 131.6,
+    "dist_m": 63
+   },
+   {
+    "id": "PT-66512",
+    "prov": "PT-6",
+    "rotulo": "Repsol",
+    "municipio": "Marinha das Ondas",
+    "direccion": "Variante da EN 109",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.03005,
+    "lon": -8.8342,
+    "km": 133.9,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-66513",
+    "prov": "PT-6",
+    "rotulo": "Repsol",
+    "municipio": "Marinha das Ondas",
+    "direccion": "Variante da EN 109",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.02982,
+    "lon": -8.83434,
+    "km": 133.9,
+    "dist_m": 21
+   },
+   {
+    "id": "PT-93306",
+    "prov": "PT-6",
+    "rotulo": "Bp",
+    "municipio": "Gala - Figueira da Foz",
+    "direccion": "Rua das Olaias, 27",
+    "horario": "L-D: 07:00-21:30",
+    "pais": "PT",
+    "lat": 40.12184,
+    "lon": -8.85278,
+    "km": 145.9,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-93560",
+    "prov": "PT-6",
+    "rotulo": "Chamagás",
+    "municipio": "Cova",
+    "direccion": "Rua Major Humberto Cruz - Morraceira",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 40.13671,
+    "lon": -8.84794,
+    "km": 148.2,
+    "dist_m": 51
+   },
+   {
+    "id": "PT-65918",
+    "prov": "PT-6",
+    "rotulo": "Bp",
+    "municipio": "Figueira da Foz",
+    "direccion": "Av. Saraiva de Carvalho, 16",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.14816,
+    "lon": -8.85024,
+    "km": 152.5,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-66514",
+    "prov": "PT-6",
+    "rotulo": "Repsol",
+    "municipio": "Figueira da Foz",
+    "direccion": "Bairro da Estação",
+    "horario": "L-V: 07:00-22:00; S: 07:00-22:00; D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.14918,
+    "lon": -8.84704,
+    "km": 152.8,
+    "dist_m": 37
+   },
+   {
+    "id": "PT-94508",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Casal da Robala",
+    "direccion": "EN 109, Km 117,250 - Estrada de Mira - Casal da Robala",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.1559,
+    "lon": -8.84331,
+    "km": 154.4,
+    "dist_m": 174
+   },
+   {
+    "id": "PT-80467",
+    "prov": "PT-6",
+    "rotulo": "Auchan",
+    "municipio": "Chã",
+    "direccion": "Av. Dr. Francisco de Sá Carneiro, Vila Robim",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.16361,
+    "lon": -8.84151,
+    "km": 155.3,
+    "dist_m": 97
+   },
+   {
+    "id": "PT-88999",
+    "prov": "PT-6",
+    "rotulo": "Intermarché",
+    "municipio": "Figueira da Foz",
+    "direccion": "EN 109, Châ Tavarede",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.16683,
+    "lon": -8.83749,
+    "km": 155.7,
+    "dist_m": 125
+   },
+   {
+    "id": "PT-65292",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Ferrugenta-Tavarede",
+    "direccion": "EN 109 Km 114,15",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.17948,
+    "lon": -8.82893,
+    "km": 157.4,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-65289",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Tavarede",
+    "direccion": "EN 109 - Estrada de Aveiro-Ferrugenta",
+    "horario": "L-D: 08:00-23:00",
+    "pais": "PT",
+    "lat": 40.17934,
+    "lon": -8.82836,
+    "km": 157.4,
+    "dist_m": 41
+   },
+   {
+    "id": "PT-71490",
+    "prov": "PT-6",
+    "rotulo": "Repsol",
+    "municipio": "Ervedal",
+    "direccion": "A 17,  Sublanço Quiaios / A 14, Km 62",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.21348,
+    "lon": -8.8111,
+    "km": 162.2,
+    "dist_m": 327
+   },
+   {
+    "id": "PT-93566",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Casal Novo",
+    "direccion": "Estrada Nacional 109, Km 107.900 E",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.2296,
+    "lon": -8.80043,
+    "km": 164.2,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-72153",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Bom Sucesso",
+    "direccion": "Rua da Antena nº 32",
+    "horario": "L-V: 07:00-21:00; S: 07:00-21:00; D: 07:00-14:00",
+    "pais": "PT",
+    "lat": 40.26399,
+    "lon": -8.77887,
+    "km": 168.5,
+    "dist_m": 60
+   },
+   {
+    "id": "PT-66509",
+    "prov": "PT-6",
+    "rotulo": "Repsol",
+    "municipio": "Inácios",
+    "direccion": "EN 109",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 40.30328,
+    "lon": -8.75867,
+    "km": 173.2,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-66510",
+    "prov": "PT-6",
+    "rotulo": "Repsol",
+    "municipio": "Tocha",
+    "direccion": "EN 109 KM 98,5 LUGAR DE INÁCIOS",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 40.30343,
+    "lon": -8.75902,
+    "km": 173.2,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-95252",
+    "prov": "PT-6",
+    "rotulo": "Intermarché",
+    "municipio": "Tocha",
+    "direccion": "AVENIDA DOM JOÃO GARCIA BACELAR, Nº1296, EDIFÍCIO INTERMARCHÉ",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.30857,
+    "lon": -8.75542,
+    "km": 173.9,
+    "dist_m": 43
+   },
+   {
+    "id": "PT-65199",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Tocha",
+    "direccion": "EN 109",
+    "horario": "L-D: 06:00-00:00",
+    "pais": "PT",
+    "lat": 40.31169,
+    "lon": -8.75411,
+    "km": 174.2,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-65201",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Tocha",
+    "direccion": "EN 109 Km 97,46",
+    "horario": "L-D: 06:00-00:00",
+    "pais": "PT",
+    "lat": 40.31181,
+    "lon": -8.75441,
+    "km": 174.2,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-68493",
+    "prov": "PT-6",
+    "rotulo": "Coop.Agríc.Tocha",
+    "municipio": "Andrades-Tocha",
+    "direccion": "Rua Manuel Rodrigues Batata",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.31897,
+    "lon": -8.75116,
+    "km": 175.1,
+    "dist_m": 127
+   },
+   {
+    "id": "PT-65439",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Praia de Mira",
+    "direccion": "EN 334 Km 0,25",
+    "horario": "L-D: 08:00-00:00",
+    "pais": "PT",
+    "lat": 40.45561,
+    "lon": -8.80012,
+    "km": 193.1,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-66319",
+    "prov": "PT-1",
+    "rotulo": "Nova",
+    "municipio": "Gafanha da Boa Hora",
+    "direccion": "Rua Ponte da Vagueira",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.55971,
+    "lon": -8.75413,
+    "km": 207.0,
+    "dist_m": 14
    }
   ],
   "6": [
+   {
+    "id": "PT-65330",
+    "prov": "PT-1",
+    "rotulo": "Prio",
+    "municipio": "Gafanha da Nazaré",
+    "direccion": "Av. dos Bacalhoeiros",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.63408,
+    "lon": -8.69147,
+    "km": 6.5,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-66442",
+    "prov": "PT-1",
+    "rotulo": "Bxpress",
+    "municipio": "Aveiro",
+    "direccion": "Av. 5 de Outubro nº 18",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.64041,
+    "lon": -8.64898,
+    "km": 11.5,
+    "dist_m": 29
+   },
+   {
+    "id": "PT-91972",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Aveiro",
+    "direccion": "Av. Francisco Sá Carneiro Forca",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.63749,
+    "lon": -8.63978,
+    "km": 12.3,
+    "dist_m": 335
+   },
+   {
+    "id": "PT-94519",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Aveiro",
+    "direccion": "ESTRADA NACIONAL 109",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.64548,
+    "lon": -8.62697,
+    "km": 13.7,
+    "dist_m": 1
+   },
+   {
+    "id": "PT-94485",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Aveiro",
+    "direccion": "ESTRADA NACIONAL 109",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.64579,
+    "lon": -8.62726,
+    "km": 13.7,
+    "dist_m": 38
+   },
+   {
+    "id": "PT-66867",
+    "prov": "PT-1",
+    "rotulo": "Pingo Doce",
+    "municipio": "Aveiro",
+    "direccion": "Estrada Nacional 109",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.6516,
+    "lon": -8.62083,
+    "km": 14.6,
+    "dist_m": 50
+   },
+   {
+    "id": "PT-65148",
+    "prov": "PT-1",
+    "rotulo": "Bxpress",
+    "municipio": "Aveiro",
+    "direccion": "EN 16 KM 3",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.66147,
+    "lon": -8.61276,
+    "km": 15.9,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-94367",
+    "prov": "PT-1",
+    "rotulo": "Galp",
+    "municipio": "Cacia",
+    "direccion": "AV EUROPA, 393",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 40.66597,
+    "lon": -8.60951,
+    "km": 16.5,
+    "dist_m": 1
+   },
+   {
+    "id": "PT-67983",
+    "prov": "PT-1",
+    "rotulo": "Prio",
+    "municipio": "Estarreja",
+    "direccion": "Rua Visconde Valdemouro",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.75166,
+    "lon": -8.57149,
+    "km": 29.6,
+    "dist_m": 93
+   },
+   {
+    "id": "PT-65265",
+    "prov": "PT-1",
+    "rotulo": "Galp",
+    "municipio": "Estarreja",
+    "direccion": "Av. 25 de Abril",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 40.75123,
+    "lon": -8.56912,
+    "km": 29.8,
+    "dist_m": 26
+   },
+   {
+    "id": "PT-66469",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Estarreja",
+    "direccion": "R DR SOUTO ALVES-134",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.75404,
+    "lon": -8.56898,
+    "km": 30.2,
+    "dist_m": 19
+   },
+   {
+    "id": "PT-67098",
+    "prov": "PT-1",
+    "rotulo": "Intermarché",
+    "municipio": "Beduido",
+    "direccion": "Estrada Nacional, 109",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.75987,
+    "lon": -8.57149,
+    "km": 30.9,
+    "dist_m": 40
+   },
+   {
+    "id": "PT-77740",
+    "prov": "PT-1",
+    "rotulo": "Pingo Doce",
+    "municipio": "Estarreja",
+    "direccion": "Rua Dr. Tavares da Silva",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.76239,
+    "lon": -8.57014,
+    "km": 31.2,
+    "dist_m": 95
+   },
+   {
+    "id": "PT-69113",
+    "prov": "PT-1",
+    "rotulo": "Bxpress",
+    "municipio": "Estarreja- Arrotinha ",
+    "direccion": "Rua Dr. Manuel Ferreira da SilvaEN 109 - Arrotinha",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.76481,
+    "lon": -8.57134,
+    "km": 31.5,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-94527",
+    "prov": "PT-1",
+    "rotulo": "Petroprix",
+    "municipio": "Estarreja",
+    "direccion": "Tv. da Arrotinha 109",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.76962,
+    "lon": -8.56994,
+    "km": 32.0,
+    "dist_m": 22
+   },
+   {
+    "id": "PT-94888",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Estarreja",
+    "direccion": "R. Dr. Manuel Ferreira da Silva, nº 1 F",
+    "horario": "L-D: 06:30-22:30",
+    "pais": "PT",
+    "lat": 40.77141,
+    "lon": -8.56964,
+    "km": 32.2,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-94583",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Avanca",
+    "direccion": "RUA DO FALCÃO - EN109 - 44.3KM",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.78546,
+    "lon": -8.56634,
+    "km": 33.9,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-94588",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Avanca",
+    "direccion": "R. do Falcão, E.N. 109 - Km 44.3",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.78539,
+    "lon": -8.56602,
+    "km": 33.9,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-67977",
+    "prov": "PT-1",
+    "rotulo": "Prio",
+    "municipio": "Avanca",
+    "direccion": "E.N. 109 KM 41,6 - Valada - Avanca",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.8091,
+    "lon": -8.57279,
+    "km": 36.6,
+    "dist_m": 39
+   },
+   {
+    "id": "PT-66448",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Areeiro - Válega - Ovar",
+    "direccion": "EN 109 Km 39,5",
+    "horario": "L-V: 06:00-22:00; S: 06:00-22:00; D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 40.82515,
+    "lon": -8.57979,
+    "km": 38.7,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-66449",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Areeiro - Válega - Ovar",
+    "direccion": "EN 109 Km 39,5",
+    "horario": "L-V: 06:00-20:00; S: 06:00-20:00; D: 07:00-20:00",
+    "pais": "PT",
+    "lat": 40.82543,
+    "lon": -8.57965,
+    "km": 38.8,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-92984",
+    "prov": "PT-1",
+    "rotulo": "Prio",
+    "municipio": "Válega",
+    "direccion": "Av. Dona Maria, 172",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.84869,
+    "lon": -8.59888,
+    "km": 42.2,
+    "dist_m": 134
+   },
+   {
+    "id": "PT-92985",
+    "prov": "PT-1",
+    "rotulo": "Prio",
+    "municipio": "Válega",
+    "direccion": "Av. Dona Maria II, 171",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.84895,
+    "lon": -8.59907,
+    "km": 42.2,
+    "dist_m": 124
+   },
+   {
+    "id": "PT-69160",
+    "prov": "PT-1",
+    "rotulo": "Cepsa",
+    "municipio": "Ovar",
+    "direccion": "Rua Aquilino Ribeiro s/nº.",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.86021,
+    "lon": -8.62328,
+    "km": 45.0,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-65990",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Ovar",
+    "direccion": "Avenida DR. Francisco Sá Carneiro",
+    "horario": "L-D: 07:00-23:59",
+    "pais": "PT",
+    "lat": 40.86791,
+    "lon": -8.6191,
+    "km": 46.9,
+    "dist_m": 0
+   },
+   {
+    "id": "PT-94606",
+    "prov": "PT-1",
+    "rotulo": "Cepsa",
+    "municipio": "Ovar",
+    "direccion": "Estrada Nacional nº. 109 - Lugar da Pardala",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.89263,
+    "lon": -8.61511,
+    "km": 50.0,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-94681",
+    "prov": "PT-1",
+    "rotulo": "Gestroil Energy",
+    "municipio": "São Vicente de Pereira Jusã",
+    "direccion": "EN 109 - Km 39,800 - Lugar da Pardala",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.89364,
+    "lon": -8.61537,
+    "km": 50.1,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-66970",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Arada",
+    "direccion": "EN 109 – KM 29,90 – Olho Marinho",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.9049,
+    "lon": -8.61276,
+    "km": 51.4,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-67825",
+    "prov": "PT-1",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Maceda",
+    "direccion": "RUA DE S.PEDRO - LUGAR DE ESTRADA",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.92938,
+    "lon": -8.6164,
+    "km": 54.2,
+    "dist_m": 20
+   },
+   {
+    "id": "PT-66307",
+    "prov": "PT-1",
+    "rotulo": "Cepsa",
+    "municipio": "Cortegaça",
+    "direccion": "Rua 13 de Maio, 1142-1146",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.94547,
+    "lon": -8.62251,
+    "km": 56.2,
+    "dist_m": 9
+   },
+   {
+    "id": "PT-65898",
+    "prov": "PT-1",
+    "rotulo": "Bp",
+    "municipio": "Esmoriz",
+    "direccion": "AV 29 DE MARÇO Nº667",
+    "horario": "L-V: 07:00-23:00; S: 07:00-23:00; D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 40.95611,
+    "lon": -8.62637,
+    "km": 57.4,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-66445",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Esmoriz",
+    "direccion": "Av. 29 de Março, 667",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.96196,
+    "lon": -8.6281,
+    "km": 58.1,
+    "dist_m": 11
+   },
+   {
+    "id": "PT-66444",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Silvade",
+    "direccion": "EN 109 Km 19,5 (Saída Sul de Espinho)",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.99221,
+    "lon": -8.63026,
+    "km": 61.7,
+    "dist_m": 7
+   },
+   {
+    "id": "PT-65260",
+    "prov": "PT-1",
+    "rotulo": "Galp",
+    "municipio": "Espinho",
+    "direccion": "Av. 24, nº 1314",
+    "horario": "L-D: 06:30-23:30",
+    "pais": "PT",
+    "lat": 41.00194,
+    "lon": -8.63829,
+    "km": 63.0,
+    "dist_m": 24
+   },
+   {
+    "id": "PT-66468",
+    "prov": "PT-1",
+    "rotulo": "Repsol",
+    "municipio": "Espinho",
+    "direccion": "Av. 24 nº 316",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.0108,
+    "lon": -8.63813,
+    "km": 64.7,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-93359",
+    "prov": "PT-13",
+    "rotulo": "Prio",
+    "municipio": "São Félix Da Marinha",
+    "direccion": "Estrada de Brito, Lugar de Brito",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.02714,
+    "lon": -8.63472,
+    "km": 66.9,
+    "dist_m": 375
+   },
+   {
+    "id": "PT-92041",
+    "prov": "PT-13",
+    "rotulo": "Intermarché",
+    "municipio": "Arcozelo",
+    "direccion": "Rua da Corga, nº 15",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.04204,
+    "lon": -8.63157,
+    "km": 68.5,
+    "dist_m": 237
+   },
+   {
+    "id": "PT-66728",
+    "prov": "PT-13",
+    "rotulo": "Repsol",
+    "municipio": "Arcozelo",
+    "direccion": "Rua do Corvo - 719",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.04796,
+    "lon": -8.62815,
+    "km": 69.3,
+    "dist_m": 7
+   },
+   {
+    "id": "PT-94563",
+    "prov": "PT-13",
+    "rotulo": "Cepsa",
+    "municipio": "Vila Nova de Gaia",
+    "direccion": "RUA SALVADOR BRANDÃO, GULPILHARES",
+    "horario": "L-D: 07:00-22:30",
+    "pais": "PT",
+    "lat": 41.07038,
+    "lon": -8.62525,
+    "km": 71.9,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-94886",
+    "prov": "PT-13",
+    "rotulo": "Plenergy",
+    "municipio": "Vila Nova de Gaia",
+    "direccion": "Travessa Particular da Azenha, n.º 24",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.07227,
+    "lon": -8.62521,
+    "km": 72.1,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-65754",
+    "prov": "PT-13",
+    "rotulo": "Q8",
+    "municipio": "Vila Nova de Gaia",
+    "direccion": "Rua do Jardim,1463",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.1017,
+    "lon": -8.61885,
+    "km": 75.8,
+    "dist_m": 20
+   },
+   {
+    "id": "PT-66730",
+    "prov": "PT-13",
+    "rotulo": "Repsol",
+    "municipio": "Vila Nova de Gaia",
+    "direccion": "Av. Infante D. Henrique nº 955",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.1145,
+    "lon": -8.61447,
+    "km": 77.4,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-66060",
+    "prov": "PT-13",
+    "rotulo": "Bp",
+    "municipio": "Vila Nova de Gaia",
+    "direccion": "Av. da República nº 1510",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.1251,
+    "lon": -8.6059,
+    "km": 79.1,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-91838",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Porto",
+    "direccion": "R. Gólgota nº 390 e 428",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.15143,
+    "lon": -8.63428,
+    "km": 84.2,
+    "dist_m": 394
+   },
+   {
+    "id": "PT-93014",
+    "prov": "PT-13",
+    "rotulo": "Bp",
+    "municipio": "Porto",
+    "direccion": "Rua Diogo Botelho, 671",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.15165,
+    "lon": -8.6553,
+    "km": 85.8,
+    "dist_m": 350
+   },
+   {
+    "id": "PT-67045",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Matosinhos",
+    "direccion": "Rua Brito Capelo nº 951",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 41.17951,
+    "lon": -8.68926,
+    "km": 91.5,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-67827",
+    "prov": "PT-13",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Leça da Palmeira",
+    "direccion": "Av. Dr. Antunes Guimarães, Nº.433",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.1891,
+    "lon": -8.69737,
+    "km": 93.3,
+    "dist_m": 173
+   },
+   {
+    "id": "PT-65422",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Leça da Palmeira",
+    "direccion": "Av. Dr. Fernando Aroso nº 299",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 41.19307,
+    "lon": -8.69699,
+    "km": 93.5,
+    "dist_m": 224
+   },
+   {
+    "id": "PT-74546",
+    "prov": "PT-13",
+    "rotulo": "Bp",
+    "municipio": "Lavra",
+    "direccion": "Rua Manuel Francisco Correia",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.24543,
+    "lon": -8.72196,
+    "km": 101.0,
+    "dist_m": 68
+   },
+   {
+    "id": "PT-95277",
+    "prov": "PT-13",
+    "rotulo": "Prio",
+    "municipio": "Modivas",
+    "direccion": "R. da Aldeia Nova 424",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.29798,
+    "lon": -8.69579,
+    "km": 109.6,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-84629",
+    "prov": "PT-13",
+    "rotulo": "Bp",
+    "municipio": "Mindelo",
+    "direccion": "EN 13, KM16.5",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.3067,
+    "lon": -8.70315,
+    "km": 110.8,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-65724",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Vilar do Pinheiro - Mindelo",
+    "direccion": "EN 13 - E Km 17,4",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.31323,
+    "lon": -8.708,
+    "km": 111.6,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-65722",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Mindelo",
+    "direccion": "Av.ª 1.º de Maio, 131",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.32013,
+    "lon": -8.71287,
+    "km": 112.5,
+    "dist_m": 33
+   },
+   {
+    "id": "PT-68990",
+    "prov": "PT-13",
+    "rotulo": "Freitas",
+    "municipio": "Árvore",
+    "direccion": "Rua da Estrada Velha",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.33707,
+    "lon": -8.73338,
+    "km": 115.3,
+    "dist_m": 375
+   },
+   {
+    "id": "PT-69185",
+    "prov": "PT-13",
+    "rotulo": "Moeve",
+    "municipio": "Vila do Conde",
+    "direccion": "EN13, LUGAR DO PINDELO, ARVORE",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.34132,
+    "lon": -8.73373,
+    "km": 115.6,
+    "dist_m": 30
+   },
+   {
+    "id": "PT-93318",
+    "prov": "PT-13",
+    "rotulo": "Repsol",
+    "municipio": "Vila do Conde",
+    "direccion": "Avenida Mouzinho de Albuquerque, n.º 92",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.34553,
+    "lon": -8.73735,
+    "km": 116.1,
+    "dist_m": 1
+   },
+   {
+    "id": "PT-67625",
+    "prov": "PT-13",
+    "rotulo": "Pa De Vila Do Conde - Cooperativa Agrícola De Vila Do Conde",
+    "municipio": "Vila do Conde",
+    "direccion": "RUA DA LAPA, 293",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.36048,
+    "lon": -8.73905,
+    "km": 118.1,
+    "dist_m": 399
+   },
+   {
+    "id": "PT-65721",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Vila do Conde",
+    "direccion": "Gaveto Rua 5 Out. c/Av.Saúl Dias",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.36007,
+    "lon": -8.74472,
+    "km": 118.3,
+    "dist_m": 42
+   },
+   {
+    "id": "PT-93519",
+    "prov": "PT-13",
+    "rotulo": "Auchan",
+    "municipio": "Vila do Conde",
+    "direccion": "Rua Aristides Sousa Mendes, Lote 2 4480-732  Vila do Conde",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.36259,
+    "lon": -8.7444,
+    "km": 118.5,
+    "dist_m": 149
+   },
+   {
+    "id": "PT-66725",
+    "prov": "PT-13",
+    "rotulo": "Prio",
+    "municipio": "Caxinas",
+    "direccion": "Rua Agra Longa, nº 253",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.36079,
+    "lon": -8.75045,
+    "km": 118.6,
+    "dist_m": 386
+   },
+   {
+    "id": "PT-65726",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Vila do Conde",
+    "direccion": "Rua Alto da Pêga",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.36322,
+    "lon": -8.7468,
+    "km": 118.7,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-66025",
+    "prov": "PT-13",
+    "rotulo": "Bp",
+    "municipio": "Póvoa de Varzim",
+    "direccion": "Praça Marquês de Pombal",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.38059,
+    "lon": -8.76103,
+    "km": 121.0,
+    "dist_m": 3
+   },
+   {
+    "id": "PT-66026",
+    "prov": "PT-13",
+    "rotulo": "Bp",
+    "municipio": "Póvoa de Varzim",
+    "direccion": "Rua Gomes de Amorim",
+    "horario": "L-V: 05:30-01:00; S: 05:30-02:00; D: 05:30-01:00",
+    "pais": "PT",
+    "lat": 41.38439,
+    "lon": -8.76438,
+    "km": 121.5,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-65579",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Póvoa de Varzim",
+    "direccion": "Avenida do Mar",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.38898,
+    "lon": -8.76348,
+    "km": 122.0,
+    "dist_m": 179
+   },
+   {
+    "id": "PT-94514",
+    "prov": "PT-13",
+    "rotulo": "Plenergy",
+    "municipio": "Póvoa de Varzim",
+    "direccion": "Rua Gomes Amorim (EN 13) n.º 1865",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.39857,
+    "lon": -8.76706,
+    "km": 123.1,
+    "dist_m": 26
+   },
+   {
+    "id": "PT-95220",
+    "prov": "PT-13",
+    "rotulo": "Repsol",
+    "municipio": "Póvoa de Varzim",
+    "direccion": "Rua Gomes de Amorim nº 3194",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.40672,
+    "lon": -8.76726,
+    "km": 124.0,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-65578",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Estela",
+    "direccion": "Rua da Estela nº 1022",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.44603,
+    "lon": -8.75391,
+    "km": 128.6,
+    "dist_m": 20
+   },
+   {
+    "id": "PT-65577",
+    "prov": "PT-13",
+    "rotulo": "Galp",
+    "municipio": "Estela",
+    "direccion": "EN 13 Km 33,8",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 41.44602,
+    "lon": -8.7536,
+    "km": 128.7,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-66096",
+    "prov": "PT-3",
+    "rotulo": "Bp",
+    "municipio": "Fão",
+    "direccion": "EN 13 Km 40,5 (Av. S. Cristóvão)",
+    "horario": "L-D: 06:00-23:59",
+    "pais": "PT",
+    "lat": 41.50421,
+    "lon": -8.76234,
+    "km": 135.6,
+    "dist_m": 23
+   },
+   {
+    "id": "PT-67505",
+    "prov": "PT-3",
+    "rotulo": "Prio",
+    "municipio": "Fão",
+    "direccion": "EN 13 Km 40,6 Fão",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.50495,
+    "lon": -8.76339,
+    "km": 135.7,
+    "dist_m": 4
+   },
+   {
+    "id": "PT-65262",
+    "prov": "PT-3",
+    "rotulo": "Galp",
+    "municipio": "Gandra",
+    "direccion": "EN 13 Km 43,15",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.52204,
+    "lon": -8.7748,
+    "km": 138.4,
+    "dist_m": 13
+   },
+   {
+    "id": "PT-93597",
+    "prov": "PT-3",
+    "rotulo": "Shell",
+    "municipio": "Esposende",
+    "direccion": "avenida 19 agosto estrada nacional 13",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.56852,
+    "lon": -8.78852,
+    "km": 144.6,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-68254",
+    "prov": "PT-3",
+    "rotulo": "Repsol",
+    "municipio": "Marinhas",
+    "direccion": "EN 13 Km 48.65 - Lg.Rio de Moinho",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 41.56863,
+    "lon": -8.78885,
+    "km": 144.6,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-94136",
+    "prov": "PT-3",
+    "rotulo": "Gestroil Energy",
+    "municipio": "Belinho",
+    "direccion": "Avenida de Belinho, nº64 - E.N. 13 - KM 52",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 41.5994,
+    "lon": -8.78508,
+    "km": 148.2,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-94712",
+    "prov": "PT-16",
+    "rotulo": "Galp",
+    "municipio": "Neiva",
+    "direccion": "E.N. 13 - Km 57,700 - Zona Industrial do Neiva 1ª Fase",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.64291,
+    "lon": -8.77059,
+    "km": 153.6,
+    "dist_m": 29
+   },
+   {
+    "id": "PT-94752",
+    "prov": "PT-16",
+    "rotulo": "REPSOL Neiva A (Porto-Viana)",
+    "municipio": "Chafé",
+    "direccion": "Lugar da Queimada",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.6457,
+    "lon": -8.77184,
+    "km": 154.0,
+    "dist_m": 22
+   },
+   {
+    "id": "PT-94751",
+    "prov": "PT-16",
+    "rotulo": "REPSOL Neiva B (Viana-Porto)",
+    "municipio": "Chafé",
+    "direccion": "LUGAR DE QUEIMADA",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.64555,
+    "lon": -8.77214,
+    "km": 154.0,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-69065",
+    "prov": "PT-16",
+    "rotulo": "Cepsa",
+    "municipio": "Barroselas",
+    "direccion": "A28 (ANTIGO IC 1), KM 372, VILA NOVA DE ANHA, APT. 52",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.66004,
+    "lon": -8.77702,
+    "km": 155.6,
+    "dist_m": 375
+   },
+   {
+    "id": "PT-94898",
+    "prov": "PT-16",
+    "rotulo": "Leclerc",
+    "municipio": "Viana do Castelo",
+    "direccion": "Lugar de Santoinho - Quinta S. Brás",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.67799,
+    "lon": -8.7842,
+    "km": 158.1,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-92158",
+    "prov": "PT-16",
+    "rotulo": "Bp",
+    "municipio": "Darque",
+    "direccion": "Av. 1º Maio, EN 13, Km 64\nDarque",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.68177,
+    "lon": -8.8084,
+    "km": 160.6,
+    "dist_m": 19
+   },
+   {
+    "id": "PT-94767",
+    "prov": "PT-16",
+    "rotulo": "Galp",
+    "municipio": "Viana do Castelo",
+    "direccion": "Av. Paulo VI, nº 203 - Cais Novo - Darque",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.68177,
+    "lon": -8.80839,
+    "km": 160.6,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-65716",
+    "prov": "PT-16",
+    "rotulo": "Galp",
+    "municipio": "Viana do Castelo",
+    "direccion": "EN 13, Km 68,926",
+    "horario": "L-D: 06:00-23:59",
+    "pais": "PT",
+    "lat": 41.69666,
+    "lon": -8.84352,
+    "km": 165.5,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-76462",
+    "prov": "PT-16",
+    "rotulo": "Intermarché",
+    "municipio": "Areosa - Bouça do Empaio",
+    "direccion": "Av. Além Rio",
+    "horario": "L-V: 07:30-20:00; S: 07:30-20:00; D: 09:00-20:00",
+    "pais": "PT",
+    "lat": 41.72409,
+    "lon": -8.85911,
+    "km": 168.9,
+    "dist_m": 29
+   },
+   {
+    "id": "PT-71584",
+    "prov": "PT-16",
+    "rotulo": "Repsol",
+    "municipio": "Afife",
+    "direccion": "Estrada Nacional 13, Km 91",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.76837,
+    "lon": -8.86244,
+    "km": 174.0,
+    "dist_m": 35
+   },
+   {
+    "id": "PT-67027",
+    "prov": "PT-16",
+    "rotulo": "Intermarché",
+    "municipio": "ANCORA",
+    "direccion": "POÇO LINHO - EN 13",
+    "horario": "L-V: 07:30-20:00; S: 07:30-20:00; D: 09:00-20:00",
+    "pais": "PT",
+    "lat": 41.80161,
+    "lon": -8.85725,
+    "km": 178.2,
+    "dist_m": 42
+   },
+   {
+    "id": "PT-66806",
+    "prov": "PT-16",
+    "rotulo": "Repsol",
+    "municipio": "Vila Praia de Âncora",
+    "direccion": "Rua 31 de Janeiro",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 41.81052,
+    "lon": -8.85879,
+    "km": 179.3,
+    "dist_m": 173
+   },
+   {
+    "id": "PT-65196",
+    "prov": "PT-16",
+    "rotulo": "Galp",
+    "municipio": "Mata Camarido",
+    "direccion": "EN 13, Km 89,02",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.86046,
+    "lon": -8.8541,
+    "km": 185.6,
+    "dist_m": 32
+   },
+   {
+    "id": "PT-94766",
+    "prov": "PT-16",
+    "rotulo": "Repsol",
+    "municipio": "Vilarelho",
+    "direccion": "EN 301,Km 0,749/0,812 - Rua do Corga, 854",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.87197,
+    "lon": -8.83505,
+    "km": 189.1,
+    "dist_m": 68
+   },
+   {
+    "id": "PT-93361",
+    "prov": "PT-16",
+    "rotulo": "Bp",
+    "municipio": "Seixas",
+    "direccion": "Avenida Joaquim Maria Portela - EN 13 (IC1), Km 94,060",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.89328,
+    "lon": -8.82044,
+    "km": 192.4,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-93431",
+    "prov": "PT-16",
+    "rotulo": "Gasolar",
+    "municipio": "LANHELAS",
+    "direccion": "Estrada Nacional 13 , 1248",
+    "horario": "L-V: 07:00-21:00; S: 07:00-21:00; D: 08:00-21:00",
+    "pais": "PT",
+    "lat": 41.90873,
+    "lon": -8.79339,
+    "km": 195.5,
+    "dist_m": 19
+   },
    {
     "id": "326",
     "prov": "36",
@@ -2435,7 +5333,7 @@
     "horario": "L-D: 24H",
     "lat": 41.91078,
     "lon": -8.85261,
-    "km": 237.0,
+    "km": 215.9,
     "dist_m": 71
    }
   ],
@@ -2449,7 +5347,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 41.91719,
     "lon": -8.87964,
-    "km": 5.8,
+    "km": 5.1,
     "dist_m": 17
    },
    {
@@ -2461,7 +5359,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.03194,
     "lon": -8.88358,
-    "km": 19.8,
+    "km": 19.1,
     "dist_m": 84
    },
    {
@@ -2473,7 +5371,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.11411,
     "lon": -8.84006,
-    "km": 35.9,
+    "km": 35.7,
     "dist_m": 7
    },
    {
@@ -2485,7 +5383,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.16231,
     "lon": -8.80144,
-    "km": 44.2,
+    "km": 43.9,
     "dist_m": 5
    },
    {
@@ -2497,7 +5395,7 @@
     "horario": "L-D: 24H",
     "lat": 42.19547,
     "lon": -8.77472,
-    "km": 49.3,
+    "km": 49.0,
     "dist_m": 287
    },
    {
@@ -2509,7 +5407,7 @@
     "horario": "L-D: 24H",
     "lat": 42.19556,
     "lon": -8.77386,
-    "km": 49.4,
+    "km": 49.1,
     "dist_m": 251
    },
    {
@@ -2521,20 +5419,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.19908,
     "lon": -8.76028,
-    "km": 50.5,
+    "km": 50.2,
     "dist_m": 51
-   },
-   {
-    "id": "761",
-    "prov": "36",
-    "rotulo": "Repsol",
-    "municipio": "Vigo",
-    "direccion": "Calle San Andres De Comesaña, 16",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.20253,
-    "lon": -8.75478,
-    "km": 51.1,
-    "dist_m": 19
    },
    {
     "id": "14764",
@@ -2545,8 +5431,20 @@
     "horario": "L-D: 24H",
     "lat": 42.20228,
     "lon": -8.75478,
-    "km": 51.1,
-    "dist_m": 2
+    "km": 50.8,
+    "dist_m": 13
+   },
+   {
+    "id": "761",
+    "prov": "36",
+    "rotulo": "Repsol",
+    "municipio": "Vigo",
+    "direccion": "Calle San Andres De Comesaña, 16",
+    "horario": "L-D: 07:00-23:00",
+    "lat": 42.20253,
+    "lon": -8.75478,
+    "km": 50.8,
+    "dist_m": 33
    },
    {
     "id": "15818",
@@ -2557,8 +5455,8 @@
     "horario": "L-D: 24H",
     "lat": 42.20675,
     "lon": -8.75153,
-    "km": 51.7,
-    "dist_m": 21
+    "km": 51.3,
+    "dist_m": 123
    },
    {
     "id": "15684",
@@ -2569,8 +5467,20 @@
     "horario": "L-D: 24H",
     "lat": 42.21311,
     "lon": -8.74356,
-    "km": 52.7,
-    "dist_m": 19
+    "km": 52.2,
+    "dist_m": 351
+   },
+   {
+    "id": "762",
+    "prov": "36",
+    "rotulo": "Repsol",
+    "municipio": "Vigo",
+    "direccion": "Avenida Beiramar, 53",
+    "horario": "L-D: 24H",
+    "lat": 42.23361,
+    "lon": -8.73328,
+    "km": 55.7,
+    "dist_m": 356
    },
    {
     "id": "8498",
@@ -2581,20 +5491,20 @@
     "horario": "L-D: 24H",
     "lat": 42.22889,
     "lon": -8.71997,
-    "km": 55.4,
-    "dist_m": 40
+    "km": 56.8,
+    "dist_m": 375
    },
    {
-    "id": "722",
+    "id": "744",
     "prov": "36",
     "rotulo": "Repsol",
     "municipio": "Vigo",
-    "direccion": "Calle Republica Argentina, 8",
-    "horario": "L-S: 07:30-22:30; D: 07:30-15:00",
-    "lat": 42.23847,
-    "lon": -8.71792,
-    "km": 57.6,
-    "dist_m": 4
+    "direccion": "Rua Travesia De Vigo, 239",
+    "horario": "L-D: 24H",
+    "lat": 42.24631,
+    "lon": -8.69364,
+    "km": 59.9,
+    "dist_m": 32
    },
    {
     "id": "11461",
@@ -2605,7 +5515,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.25586,
     "lon": -8.68189,
-    "km": 61.4,
+    "km": 61.9,
     "dist_m": 96
    },
    {
@@ -2617,8 +5527,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.28314,
     "lon": -8.65778,
-    "km": 65.9,
-    "dist_m": 27
+    "km": 65.8,
+    "dist_m": 383
    },
    {
     "id": "742",
@@ -2629,7 +5539,7 @@
     "horario": "L-D: 07:00-00:00",
     "lat": 42.29036,
     "lon": -8.60772,
-    "km": 72.0,
+    "km": 71.5,
     "dist_m": 348
    },
    {
@@ -2641,128 +5551,20 @@
     "horario": "L-V: 06:00-22:00",
     "lat": 42.29039,
     "lon": -8.60775,
-    "km": 72.0,
+    "km": 71.5,
     "dist_m": 347
    },
    {
-    "id": "8177",
-    "prov": "36",
-    "rotulo": "Bp Blanco (md)",
-    "municipio": "Vilaboa",
-    "direccion": "Lugar Paredes, 32,33",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.34978,
-    "lon": -8.61878,
-    "km": 84.4,
-    "dist_m": 15
-   },
-   {
-    "id": "10748",
-    "prov": "36",
-    "rotulo": "Bp Blanco (mi)",
-    "municipio": "Vilaboa",
-    "direccion": "Lugar Paredes, 32,33",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.35006,
-    "lon": -8.61853,
-    "km": 84.4,
-    "dist_m": 21
-   },
-   {
-    "id": "342",
-    "prov": "36",
-    "rotulo": "Cepsa",
-    "municipio": "Vilaboa",
-    "direccion": "Carretera Nacional 550 Km. 131",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.35861,
-    "lon": -8.62889,
-    "km": 85.8,
-    "dist_m": 7
-   },
-   {
-    "id": "754",
+    "id": "842",
     "prov": "36",
     "rotulo": "Repsol",
     "municipio": "Pontevedra",
-    "direccion": "Cr N-550, 126,4",
+    "direccion": "Avenida Domingo Fontan, S/n",
     "horario": "L-D: 07:00-23:00",
-    "lat": 42.39842,
-    "lon": -8.63636,
-    "km": 90.4,
-    "dist_m": 10
-   },
-   {
-    "id": "781",
-    "prov": "36",
-    "rotulo": "Repsol",
-    "municipio": "Pontevedra",
-    "direccion": "Cr N-550, 126,4",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.39858,
-    "lon": -8.63644,
-    "km": 90.5,
-    "dist_m": 10
-   },
-   {
-    "id": "699",
-    "prov": "36",
-    "rotulo": "Carrefour",
-    "municipio": "Pontevedra",
-    "direccion": "Rua San Blas,",
-    "horario": "L-S: 06:30-22:30",
-    "lat": 42.41717,
-    "lon": -8.64489,
-    "km": 93.5,
-    "dist_m": 68
-   },
-   {
-    "id": "16365",
-    "prov": "36",
-    "rotulo": "Staroil Poio",
-    "municipio": "Poio",
-    "direccion": "Camino Das Bocas, 18",
-    "horario": "L-D: 24H",
-    "lat": 42.43122,
-    "lon": -8.65994,
-    "km": 96.0,
-    "dist_m": 324
-   },
-   {
-    "id": "701",
-    "prov": "36",
-    "rotulo": "Galp",
-    "municipio": "Poio",
-    "direccion": "Avenida Domingo Fontan, 4",
-    "horario": "L-S: 09:00-21:00",
-    "lat": 42.43436,
-    "lon": -8.65344,
-    "km": 96.5,
-    "dist_m": 73
-   },
-   {
-    "id": "282",
-    "prov": "36",
-    "rotulo": "Gvoil",
-    "municipio": "Pontevedra",
-    "direccion": "C-531 Pontevedra-villagarcía Km 3,5",
-    "horario": "L-S: 07:00-23:00; D: 08:00-23:00",
-    "lat": 42.46406,
-    "lon": -8.65325,
-    "km": 100.4,
-    "dist_m": 26
-   },
-   {
-    "id": "257",
-    "prov": "36",
-    "rotulo": "Gvoil",
-    "municipio": "Pontevedra",
-    "direccion": "C-531 Pontevedra-villagarcía Km 3,5",
-    "horario": "L-S: 07:00-23:00; D: 08:00-23:00",
-    "lat": 42.46392,
-    "lon": -8.65272,
-    "km": 100.4,
-    "dist_m": 19
+    "lat": 42.43644,
+    "lon": -8.64397,
+    "km": 94.4,
+    "dist_m": 325
    },
    {
     "id": "330",
@@ -2773,8 +5575,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.48867,
     "lon": -8.64131,
-    "km": 106.9,
-    "dist_m": 159
+    "km": 101.0,
+    "dist_m": 0
    },
    {
     "id": "10817",
@@ -2785,7 +5587,7 @@
     "horario": "L-V: 07:00-22:30; S-D: 09:00-21:00",
     "lat": 42.52886,
     "lon": -8.63803,
-    "km": 111.6,
+    "km": 105.9,
     "dist_m": 41
    },
    {
@@ -2797,7 +5599,7 @@
     "horario": "L-V: 07:00-23:00; S-D: 07:30-22:30",
     "lat": 42.635,
     "lon": -8.64833,
-    "km": 124.2,
+    "km": 118.4,
     "dist_m": 21
    },
    {
@@ -2809,7 +5611,7 @@
     "horario": "L-V: 07:00-23:00; S-D: 07:30-22:30",
     "lat": 42.64003,
     "lon": -8.64992,
-    "km": 124.8,
+    "km": 119.0,
     "dist_m": 9
    },
    {
@@ -2821,7 +5623,7 @@
     "horario": "L: 06:00-23:00",
     "lat": 42.71242,
     "lon": -8.65114,
-    "km": 133.6,
+    "km": 127.8,
     "dist_m": 6
    },
    {
@@ -2833,8 +5635,8 @@
     "horario": "L-D: 07:00-20:00",
     "lat": 42.72575,
     "lon": -8.65286,
-    "km": 135.2,
-    "dist_m": 24
+    "km": 129.4,
+    "dist_m": 26
    },
    {
     "id": "11443",
@@ -2845,7 +5647,7 @@
     "horario": "L-V: 07:00-23:00; S-D: 09:00-21:00",
     "lat": 42.81244,
     "lon": -8.77617,
-    "km": 154.0,
+    "km": 147.1,
     "dist_m": 38
    },
    {
@@ -2857,7 +5659,7 @@
     "horario": "L-J: 06:30-22:30; V: 06:30-23:00; S-D: 07:00-22:30",
     "lat": 42.80006,
     "lon": -8.85606,
-    "km": 161.7,
+    "km": 154.8,
     "dist_m": 41
    },
    {
@@ -2869,7 +5671,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.78756,
     "lon": -8.88033,
-    "km": 164.7,
+    "km": 157.8,
     "dist_m": 38
    },
    {
@@ -2881,7 +5683,7 @@
     "horario": "L-S: 08:00-22:00",
     "lat": 42.79817,
     "lon": -8.88811,
-    "km": 167.0,
+    "km": 160.1,
     "dist_m": 134
    },
    {
@@ -2893,8 +5695,20 @@
     "horario": "L: 07:00-23:00",
     "lat": 42.78736,
     "lon": -9.05581,
-    "km": 191.2,
+    "km": 184.2,
     "dist_m": 40
+   },
+   {
+    "id": "12072",
+    "prov": "15",
+    "rotulo": "Repsol",
+    "municipio": "Muros",
+    "direccion": "Poligono De Muros - Ventin, S/n",
+    "horario": "L: 07:00-23:00",
+    "lat": 42.78528,
+    "lon": -9.07203,
+    "km": 189.2,
+    "dist_m": 354
    },
    {
     "id": "513",
@@ -2905,8 +5719,8 @@
     "horario": "L-V: 07:00-23:00; S-D: 08:00-23:00",
     "lat": 42.77167,
     "lon": -9.04917,
-    "km": 196.2,
-    "dist_m": 16
+    "km": 191.6,
+    "dist_m": 12
    },
    {
     "id": "529",
@@ -2917,44 +5731,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.81136,
     "lon": -9.10633,
-    "km": 209.6,
+    "km": 205.0,
     "dist_m": 5
-   },
-   {
-    "id": "519",
-    "prov": "15",
-    "rotulo": "Repsol",
-    "municipio": "Cee",
-    "direccion": "Carretera C-552 Coruña-finisterre Km. 94",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.96606,
-    "lon": -9.19361,
-    "km": 237.2,
-    "dist_m": 17
-   },
-   {
-    "id": "14425",
-    "prov": "15",
-    "rotulo": "Low Cost Repost",
-    "municipio": "Cee",
-    "direccion": "Parque Parque Empresarial De Cee, 19",
-    "horario": "L-D: 24H",
-    "lat": 42.97769,
-    "lon": -9.191,
-    "km": 238.8,
-    "dist_m": 96
-   },
-   {
-    "id": "14460",
-    "prov": "15",
-    "rotulo": "Carbugal Cee",
-    "municipio": "Cee",
-    "direccion": "Poligono Parcela 38-39 Del Parque Empresarial De Cee (a Coruña), S/n",
-    "horario": "L-D: 07:00-22:00",
-    "lat": 42.97292,
-    "lon": -9.19317,
-    "km": 239.3,
-    "dist_m": 193
    },
    {
     "id": "482",
@@ -2965,7 +5743,7 @@
     "horario": "L-D: 07:00-22:00",
     "lat": 42.91772,
     "lon": -9.26517,
-    "km": 249.3,
+    "km": 243.6,
     "dist_m": 179
    }
   ],
@@ -2979,32 +5757,8 @@
     "horario": "L-D: 07:00-22:00",
     "lat": 42.91772,
     "lon": -9.26517,
-    "km": 1.7,
+    "km": 1.6,
     "dist_m": 179
-   },
-   {
-    "id": "14460",
-    "prov": "15",
-    "rotulo": "Carbugal Cee",
-    "municipio": "Cee",
-    "direccion": "Poligono Parcela 38-39 Del Parque Empresarial De Cee (a Coruña), S/n",
-    "horario": "L-D: 07:00-22:00",
-    "lat": 42.97292,
-    "lon": -9.19317,
-    "km": 11.7,
-    "dist_m": 193
-   },
-   {
-    "id": "14425",
-    "prov": "15",
-    "rotulo": "Low Cost Repost",
-    "municipio": "Cee",
-    "direccion": "Parque Parque Empresarial De Cee, 19",
-    "horario": "L-D: 24H",
-    "lat": 42.97769,
-    "lon": -9.191,
-    "km": 12.2,
-    "dist_m": 108
    },
    {
     "id": "519",
@@ -3015,8 +5769,32 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.96606,
     "lon": -9.19361,
-    "km": 15.8,
+    "km": 15.7,
     "dist_m": 17
+   },
+   {
+    "id": "14460",
+    "prov": "15",
+    "rotulo": "Carbugal Cee",
+    "municipio": "Cee",
+    "direccion": "Poligono Parcela 38-39 Del Parque Empresarial De Cee (a Coruña), S/n",
+    "horario": "L-D: 07:00-22:00",
+    "lat": 42.97292,
+    "lon": -9.19317,
+    "km": 16.4,
+    "dist_m": 245
+   },
+   {
+    "id": "14425",
+    "prov": "15",
+    "rotulo": "Low Cost Repost",
+    "municipio": "Cee",
+    "direccion": "Parque Parque Empresarial De Cee, 19",
+    "horario": "L-D: 24H",
+    "lat": 42.97769,
+    "lon": -9.191,
+    "km": 17.0,
+    "dist_m": 193
    },
    {
     "id": "484",
@@ -3027,7 +5805,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 43.03261,
     "lon": -9.11297,
-    "km": 27.5,
+    "km": 27.4,
     "dist_m": 17
    },
    {
@@ -3039,8 +5817,8 @@
     "horario": "L-S: 07:00-22:00; D: 08:00-22:00",
     "lat": 42.99594,
     "lon": -8.91161,
-    "km": 46.8,
-    "dist_m": 17
+    "km": 46.6,
+    "dist_m": 19
    },
    {
     "id": "11726",
@@ -3051,7 +5829,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.92664,
     "lon": -8.75964,
-    "km": 62.5,
+    "km": 62.4,
     "dist_m": 59
    },
    {
@@ -3063,7 +5841,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.91,
     "lon": -8.73067,
-    "km": 66.1,
+    "km": 66.5,
     "dist_m": 2
    },
    {
@@ -3075,8 +5853,8 @@
     "horario": "L-V: 07:00-21:00; S: 09:00-14:00",
     "lat": 42.89528,
     "lon": -8.7025,
-    "km": 69.1,
-    "dist_m": 309
+    "km": 69.5,
+    "dist_m": 311
    },
    {
     "id": "9321",
@@ -3087,20 +5865,20 @@
     "horario": "L-V: 07:00-23:00; S-D: 07:30-23:00",
     "lat": 42.86436,
     "lon": -8.62917,
-    "km": 78.0,
-    "dist_m": 243
+    "km": 78.7,
+    "dist_m": 26
    },
    {
-    "id": "606",
+    "id": "466",
     "prov": "15",
     "rotulo": "Repsol",
     "municipio": "Santiago de Compostela",
-    "direccion": "Avenida Pontevedra, 6",
+    "direccion": "Carretera C-543 Km. 6,400",
     "horario": "L-D: 07:00-23:00",
-    "lat": 42.85525,
-    "lon": -8.57117,
-    "km": 83.3,
-    "dist_m": 20
+    "lat": 42.87317,
+    "lon": -8.62261,
+    "km": 79.9,
+    "dist_m": 15
    },
    {
     "id": "9322",
@@ -3111,7 +5889,7 @@
     "horario": "L-V: 07:00-23:00; S: 07:30-23:00; D: 09:00-22:00",
     "lat": 42.87611,
     "lon": -8.54867,
-    "km": 87.5,
+    "km": 87.8,
     "dist_m": 316
    },
    {
@@ -3123,8 +5901,8 @@
     "horario": "L-D: 24H",
     "lat": 42.87,
     "lon": -8.54817,
-    "km": 88.2,
-    "dist_m": 21
+    "km": 88.6,
+    "dist_m": 18
    },
    {
     "id": "649",
@@ -3135,7 +5913,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.86189,
     "lon": -8.54189,
-    "km": 89.3,
+    "km": 89.7,
     "dist_m": 29
    },
    {
@@ -3147,7 +5925,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.84325,
     "lon": -8.52261,
-    "km": 92.2,
+    "km": 92.7,
     "dist_m": 40
    },
    {
@@ -3159,8 +5937,8 @@
     "horario": "L-V: 07:00-23:00; S-D: 09:00-23:00",
     "lat": 42.77694,
     "lon": -8.40661,
-    "km": 108.9,
-    "dist_m": 22
+    "km": 106.9,
+    "dist_m": 36
    },
    {
     "id": "599",
@@ -3171,8 +5949,8 @@
     "horario": "L-D: 24H",
     "lat": 42.77753,
     "lon": -8.40644,
-    "km": 108.9,
-    "dist_m": 41
+    "km": 107.0,
+    "dist_m": 25
    },
    {
     "id": "708",
@@ -3183,7 +5961,7 @@
     "horario": "L-V: 08:00-22:00; S-D: 09:00-22:00",
     "lat": 42.75675,
     "lon": -8.36581,
-    "km": 114.5,
+    "km": 112.5,
     "dist_m": 1
    },
    {
@@ -3195,8 +5973,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.72819,
     "lon": -8.30169,
-    "km": 124.0,
-    "dist_m": 32
+    "km": 119.3,
+    "dist_m": 18
    },
    {
     "id": "16135",
@@ -3207,8 +5985,8 @@
     "horario": "L-D: 24H",
     "lat": 42.69456,
     "lon": -8.24067,
-    "km": 130.9,
-    "dist_m": 119
+    "km": 126.0,
+    "dist_m": 118
    },
    {
     "id": "829",
@@ -3219,8 +5997,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.68281,
     "lon": -8.16842,
-    "km": 137.6,
-    "dist_m": 39
+    "km": 132.5,
+    "dist_m": 56
    },
    {
     "id": "254",
@@ -3231,44 +6009,8 @@
     "horario": "L-V: 07:00-23:00; S: 09:00-15:00",
     "lat": 42.67542,
     "lon": -8.15911,
-    "km": 139.0,
-    "dist_m": 223
-   },
-   {
-    "id": "8273",
-    "prov": "36",
-    "rotulo": "Fervi Cc Pontiñas",
-    "municipio": "Lalín",
-    "direccion": "Calle C.c. Pontiñas (carballeria Da Botica, S/n), S/n",
-    "horario": "L-D: 24H",
-    "lat": 42.66403,
-    "lon": -8.121,
-    "km": 142.6,
-    "dist_m": 117
-   },
-   {
-    "id": "840",
-    "prov": "36",
-    "rotulo": "Repsol",
-    "municipio": "Lalín",
-    "direccion": "Calle Corredoira, 33",
-    "horario": "L-D: 24H",
-    "lat": 42.66506,
-    "lon": -8.12158,
-    "km": 142.6,
-    "dist_m": 22
-   },
-   {
-    "id": "788",
-    "prov": "36",
-    "rotulo": "Repsol",
-    "municipio": "Lalín",
-    "direccion": "Avenida Buenos Aires, 0",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.65506,
-    "lon": -8.11172,
-    "km": 145.2,
-    "dist_m": 129
+    "km": 133.7,
+    "dist_m": 279
    },
    {
     "id": "728",
@@ -3279,8 +6021,8 @@
     "horario": "L-V: 07:00-22:30; S-D: 09:00-22:30",
     "lat": 42.56622,
     "lon": -8.04606,
-    "km": 158.6,
-    "dist_m": 236
+    "km": 150.6,
+    "dist_m": 116
    },
    {
     "id": "729",
@@ -3291,92 +6033,32 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 42.51303,
     "lon": -8.01742,
-    "km": 171.3,
-    "dist_m": 32
+    "km": 157.9,
+    "dist_m": 282
    },
    {
-    "id": "776",
+    "id": "8221",
     "prov": "32",
-    "rotulo": "Repsol",
-    "municipio": "San Cristovo de Cea",
-    "direccion": "Carretera N-525, Km 261 Km. 261",
-    "horario": "L-V: 07:00-23:00; S: 07:00-22:00",
-    "lat": 42.46758,
-    "lon": -7.98825,
-    "km": 178.1,
-    "dist_m": 37
-   },
-   {
-    "id": "11397",
-    "prov": "32",
-    "rotulo": "Galp",
-    "municipio": "Vilamarín",
-    "direccion": "Poligono N525, 245",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.42306,
-    "lon": -7.88808,
-    "km": 188.7,
-    "dist_m": 36
-   },
-   {
-    "id": "845",
-    "prov": "32",
-    "rotulo": "Repsol",
-    "municipio": "Coles",
-    "direccion": "Carretera Carretera Nacinal Km. 249",
-    "horario": "L-V: 07:00-21:30; S-D: 07:30-15:00",
-    "lat": 42.41711,
-    "lon": -7.87356,
-    "km": 190.1,
-    "dist_m": 23
-   },
-   {
-    "id": "772",
-    "prov": "32",
-    "rotulo": "Cepsa",
-    "municipio": "Coles",
-    "direccion": "N-525 Km 254,3",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.38369,
-    "lon": -7.85175,
-    "km": 194.9,
-    "dist_m": 83
-   },
-   {
-    "id": "256",
-    "prov": "32",
-    "rotulo": "E.s. O Viso",
-    "municipio": "Ourense",
-    "direccion": "Carretera N-525 Km. 242,400",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.36983,
-    "lon": -7.85378,
-    "km": 196.8,
-    "dist_m": 31
-   },
-   {
-    "id": "269",
-    "prov": "32",
-    "rotulo": "Cepsa V21",
-    "municipio": "Ourense",
-    "direccion": "Avenida Santiago, 132",
+    "rotulo": "Avia",
+    "municipio": "Carballiño (O)",
+    "direccion": "Ctra. Ou-504 (carballiño-cea) Km 4,5",
     "horario": "L-D: 24H",
-    "lat": 42.35806,
-    "lon": -7.86533,
-    "km": 198.7,
-    "dist_m": 20
+    "lat": 42.4535,
+    "lon": -8.02664,
+    "km": 165.1,
+    "dist_m": 172
    },
    {
-    "id": "340",
+    "id": "355",
     "prov": "32",
     "rotulo": "Repsol",
-    "municipio": "San Cibrao das Viñas",
-    "direccion": "Cr A-52 Enlace P.k. 217",
-    "horario": "L-D: 07:00-23:00",
-    "lat": 42.25106,
-    "lon": -7.86472,
-    "km": 216.2,
-    "dist_m": 83
+    "municipio": "Ourense",
+    "direccion": "Calle Pena Do Vado, 59",
+    "horario": "L: 07:00-23:00",
+    "lat": 42.35131,
+    "lon": -7.89478,
+    "km": 188.3,
+    "dist_m": 342
    },
    {
     "id": "337",
@@ -3387,8 +6069,20 @@
     "horario": "L-D: 24H",
     "lat": 42.25072,
     "lon": -7.86456,
-    "km": 216.3,
+    "km": 207.2,
     "dist_m": 66
+   },
+   {
+    "id": "340",
+    "prov": "32",
+    "rotulo": "Repsol",
+    "municipio": "San Cibrao das Viñas",
+    "direccion": "Cr A-52 Enlace P.k. 217",
+    "horario": "L-D: 07:00-23:00",
+    "lat": 42.25106,
+    "lon": -7.86472,
+    "km": 207.2,
+    "dist_m": 83
    },
    {
     "id": "10617",
@@ -3399,7 +6093,7 @@
     "horario": "L-D: 24H",
     "lat": 42.07792,
     "lon": -7.71458,
-    "km": 241.4,
+    "km": 232.3,
     "dist_m": 243
    },
    {
@@ -3411,7 +6105,7 @@
     "horario": "L-D: 07:00-23:59",
     "lat": 42.05858,
     "lon": -7.66561,
-    "km": 246.1,
+    "km": 237.0,
     "dist_m": 350
    },
    {
@@ -3423,35 +6117,1380 @@
     "horario": "L-D: 24H",
     "lat": 41.98325,
     "lon": -7.54197,
-    "km": 261.0,
-    "dist_m": 144
+    "km": 251.6,
+    "dist_m": 195
    },
    {
-    "id": "7756",
-    "prov": "32",
+    "id": "PT-66822",
+    "prov": "PT-17",
     "rotulo": "Repsol",
-    "municipio": "Verín",
-    "direccion": "Calle San Lazaro, 83",
+    "municipio": "Chaves",
+    "direccion": "Av. 5 de Outubro nº 16",
+    "horario": "L-V: 07:00-23:00; S: 07:00-23:00; D: 09:00-19:00",
+    "pais": "PT",
+    "lat": 41.74178,
+    "lon": -7.46683,
+    "km": 294.9,
+    "dist_m": 1
+   },
+   {
+    "id": "PT-66818",
+    "prov": "PT-17",
+    "rotulo": "Repsol",
+    "municipio": "Chaves",
+    "direccion": "Av. Santo Amaro, S/N",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 41.7395,
+    "lon": -7.4761,
+    "km": 296.1,
+    "dist_m": 163
+   },
+   {
+    "id": "PT-93381",
+    "prov": "PT-17",
+    "rotulo": "Leclerc",
+    "municipio": "Chaves",
+    "direccion": "Rotunda Raio X",
+    "horario": "L-D: 08:00-21:30",
+    "pais": "PT",
+    "lat": 41.7332,
+    "lon": -7.46877,
+    "km": 296.9,
+    "dist_m": 106
+   },
+   {
+    "id": "PT-65236",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Lombo",
+    "direccion": "EN 2",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.72866,
+    "lon": -7.47115,
+    "km": 297.4,
+    "dist_m": 14
+   }
+  ],
+  "9": [
+   {
+    "id": "PT-65238",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Vidago",
+    "direccion": "EN 2",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 41.63902,
+    "lon": -7.57012,
+    "km": 13.2,
+    "dist_m": 21
+   },
+   {
+    "id": "PT-65757",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Pedras Salgadas",
+    "direccion": "Rua Henrique Maia",
+    "horario": "L-D: 07:00-23:59",
+    "pais": "PT",
+    "lat": 41.53989,
+    "lon": -7.60493,
+    "km": 25.5,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-66823",
+    "prov": "PT-17",
+    "rotulo": "Repsol",
+    "municipio": "Lugar de Lavadouros",
+    "direccion": "EN 2",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 41.50276,
+    "lon": -7.63833,
+    "km": 30.8,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-95304",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Chão Grande",
+    "direccion": "RUA ANTÓNIO JOSÉ D'AVILA",
+    "horario": "",
+    "pais": "PT",
+    "lat": 41.50109,
+    "lon": -7.64341,
+    "km": 32.0,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-80260",
+    "prov": "PT-17",
+    "rotulo": "Gaspe",
+    "municipio": "Vila Pouca de Aguiar",
+    "direccion": "Largo do Toural",
+    "horario": "L-V: 07:00-21:00; S: 07:00-21:00; D: Fechado",
+    "pais": "PT",
+    "lat": 41.49443,
+    "lon": -7.64438,
+    "km": 33.0,
+    "dist_m": 1
+   },
+   {
+    "id": "PT-67033",
+    "prov": "PT-17",
+    "rotulo": "Intermarché",
+    "municipio": "Vila Pouca de Aguiar- Lugar dos Lameirões",
+    "direccion": "Av. Abílio Ribeiro",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.49274,
+    "lon": -7.64557,
+    "km": 33.2,
+    "dist_m": 34
+   },
+   {
+    "id": "PT-66974",
+    "prov": "PT-17",
+    "rotulo": "Bp",
+    "municipio": "Tourencinho",
+    "direccion": "EN 2 Km 44,8",
     "horario": "L-D: 06:00-22:00",
-    "lat": 41.93947,
-    "lon": -7.44594,
-    "km": 271.4,
+    "pais": "PT",
+    "lat": 41.43512,
+    "lon": -7.67793,
+    "km": 40.4,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-80777",
+    "prov": "PT-17",
+    "rotulo": "Repsol",
+    "municipio": "Vilarinho da Samardã",
+    "direccion": "EN 2, Vilarinho da Samardã",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.389,
+    "lon": -7.70284,
+    "km": 46.4,
+    "dist_m": 4
+   },
+   {
+    "id": "PT-69190",
+    "prov": "PT-17",
+    "rotulo": "Moeve",
+    "municipio": "Vila Real",
+    "direccion": "QUINTA DO ENTRONCAMENTO, LOTE 16",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.30915,
+    "lon": -7.73555,
+    "km": 58.2,
+    "dist_m": 25
+   },
+   {
+    "id": "PT-66075",
+    "prov": "PT-17",
+    "rotulo": "Bp",
+    "municipio": "Vila Real - Timpeira",
+    "direccion": "Av. 25 de Abril",
+    "horario": "L-D: 06:30-23:30",
+    "pais": "PT",
+    "lat": 41.30887,
+    "lon": -7.73407,
+    "km": 58.2,
+    "dist_m": 90
+   },
+   {
+    "id": "PT-66817",
+    "prov": "PT-17",
+    "rotulo": "Repsol",
+    "municipio": "Vila Real",
+    "direccion": "Av. Aureliano Barrigas",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 41.30255,
+    "lon": -7.74116,
+    "km": 59.2,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-65759",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Vila Real",
+    "direccion": "Praceta da Carreira",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 41.30092,
+    "lon": -7.74066,
+    "km": 59.3,
     "dist_m": 13
    },
    {
-    "id": "16243",
-    "prov": "32",
-    "rotulo": "Cepsa",
-    "municipio": "Verín",
-    "direccion": "Autovia A-75 Verin- Portugal Km. 10,5",
+    "id": "PT-69186",
+    "prov": "PT-17",
+    "rotulo": "Prio",
+    "municipio": "Vila Real",
+    "direccion": "Avenida 1º Maio Nº 325A",
+    "horario": "L-V: 07:00-22:00; S: 07:00-22:00; D: Fechado",
+    "pais": "PT",
+    "lat": 41.30008,
+    "lon": -7.74108,
+    "km": 59.4,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-76106",
+    "prov": "PT-17",
+    "rotulo": "Auchan",
+    "municipio": "Vila Real",
+    "direccion": "Rua Dr. Otílio Figueiredo",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.29717,
+    "lon": -7.73654,
+    "km": 61.1,
+    "dist_m": 289
+   },
+   {
+    "id": "PT-65760",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Vila Real",
+    "direccion": "Rua Visconde Carnaxide nº 26",
+    "horario": "L-V: 07:00-22:00; S: 08:00-21:00; D: 09:00-19:00",
+    "pais": "PT",
+    "lat": 41.29383,
+    "lon": -7.73606,
+    "km": 61.2,
+    "dist_m": 105
+   },
+   {
+    "id": "PT-66076",
+    "prov": "PT-17",
+    "rotulo": "Bp",
+    "municipio": "Constantim",
+    "direccion": "Zona Industrial de Constantim - Fte ao Aeródromo Constantim",
+    "horario": "L-V: 07:00-22:00; S: 08:00-22:00; D: 08:00-22:00",
+    "pais": "PT",
+    "lat": 41.27612,
+    "lon": -7.71689,
+    "km": 64.6,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-90541",
+    "prov": "PT-17",
+    "rotulo": "Prio",
+    "municipio": "Constantim",
+    "direccion": "Lugar da Mata do Ramalhão - Zona Industrial - Constantim",
+    "horario": "L-V: 07:00-21:00; S: 07:00-21:00; D: 08:00-21:00",
+    "pais": "PT",
+    "lat": 41.27549,
+    "lon": -7.71501,
+    "km": 64.8,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-69557",
+    "prov": "PT-17",
+    "rotulo": "Fhs Combustíveis, Lda.",
+    "municipio": "São Martinho de Antas",
+    "direccion": "ESTRADA NACIONAL 322",
+    "horario": "L-D: 06:45-22:45",
+    "pais": "PT",
+    "lat": 41.26789,
+    "lon": -7.63188,
+    "km": 73.2,
+    "dist_m": 308
+   },
+   {
+    "id": "PT-89848",
+    "prov": "PT-17",
+    "rotulo": "Bp",
+    "municipio": "Paços",
+    "direccion": "Zona Industrial de Sabrosa, Lote 20B",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.26472,
+    "lon": -7.58991,
+    "km": 76.9,
+    "dist_m": 128
+   },
+   {
+    "id": "PT-67766",
+    "prov": "PT-17",
+    "rotulo": "Gaspe",
+    "municipio": "Passos - Marãozinho",
+    "direccion": "Rua Ermo",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.26371,
+    "lon": -7.58986,
+    "km": 77.0,
+    "dist_m": 28
+   },
+   {
+    "id": "PT-65588",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Sabrosa",
+    "direccion": "Av. dos Combatentes da Grande Guerra, 17",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 41.2658,
+    "lon": -7.57667,
+    "km": 78.3,
+    "dist_m": 0
+   },
+   {
+    "id": "PT-65063",
+    "prov": "PT-17",
+    "rotulo": "Galp",
+    "municipio": "Pinhão",
+    "direccion": "Rua António Manuel Saraiva,5",
+    "horario": "L-V: 07:00-20:00; S: 07:00-20:00; D: 08:00-20:00",
+    "pais": "PT",
+    "lat": 41.18977,
+    "lon": -7.54245,
+    "km": 105.1,
+    "dist_m": 9
+   },
+   {
+    "id": "PT-66816",
+    "prov": "PT-17",
+    "rotulo": "Repsol",
+    "municipio": "Peso da Régua",
+    "direccion": "Rua da Ferreirinha",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 41.15877,
+    "lon": -7.78453,
+    "km": 131.7,
+    "dist_m": 334
+   },
+   {
+    "id": "PT-65339",
+    "prov": "PT-18",
+    "rotulo": "Galp",
+    "municipio": "Cidade de Lamego",
+    "direccion": "EN 2 (Rua Infantaria nº9)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 41.09896,
+    "lon": -7.80726,
+    "km": 146.5,
+    "dist_m": 196
+   },
+   {
+    "id": "PT-65340",
+    "prov": "PT-18",
+    "rotulo": "Galp",
+    "municipio": "Largo do Desterro",
+    "direccion": "Desterro, Estrada Nova, Sé",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 41.09254,
+    "lon": -7.80468,
+    "km": 148.6,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-93397",
+    "prov": "PT-18",
+    "rotulo": "Leclerc",
+    "municipio": "Lamego",
+    "direccion": "Quinta dos Prados de Baixo - Lugar da Rina",
+    "horario": "L-V: 07:30-21:00; S: 07:30-21:00; D: ?",
+    "pais": "PT",
+    "lat": 41.08775,
+    "lon": -7.79857,
+    "km": 150.1,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-93410",
+    "prov": "PT-18",
+    "rotulo": "Shell",
+    "municipio": "VISEU",
+    "direccion": "AVª. ALTO DE ABRAVESES - EN16",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 40.69303,
+    "lon": -7.92934,
+    "km": 204.0,
+    "dist_m": 44
+   },
+   {
+    "id": "PT-93094",
+    "prov": "PT-18",
+    "rotulo": "Barreirinho - Pascoal",
+    "municipio": "Pascoal",
+    "direccion": "Avenida do alto de Abraveses - EN 16  Pascoal",
     "horario": "L-D: 07:00-23:00",
-    "lat": 41.83597,
-    "lon": -7.42036,
-    "km": 286.5,
-    "dist_m": 64
+    "pais": "PT",
+    "lat": 40.68811,
+    "lon": -7.92712,
+    "km": 204.6,
+    "dist_m": 39
+   },
+   {
+    "id": "PT-84891",
+    "prov": "PT-18",
+    "rotulo": "Bp",
+    "municipio": "Viseu",
+    "direccion": "RIBEIRA DE MIDE - VISEU",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.68089,
+    "lon": -7.92688,
+    "km": 205.5,
+    "dist_m": 53
+   },
+   {
+    "id": "PT-66831",
+    "prov": "PT-18",
+    "rotulo": "Repsol",
+    "municipio": "Viseu",
+    "direccion": "Av. de Bélgica",
+    "horario": "L-D: 00:00-00:00",
+    "pais": "PT",
+    "lat": 40.67246,
+    "lon": -7.92052,
+    "km": 206.8,
+    "dist_m": 115
+   },
+   {
+    "id": "PT-69194",
+    "prov": "PT-18",
+    "rotulo": "Moeve",
+    "municipio": "Viseu",
+    "direccion": "Av. da Bélgica, São José",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.66863,
+    "lon": -7.91582,
+    "km": 207.3,
+    "dist_m": 30
+   },
+   {
+    "id": "PT-65778",
+    "prov": "PT-18",
+    "rotulo": "Galp",
+    "municipio": "Viseu",
+    "direccion": "Rua de Arrabalde (Estrada da Circunvalação - EN2)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.66333,
+    "lon": -7.90585,
+    "km": 208.3,
+    "dist_m": 330
+   },
+   {
+    "id": "PT-66080",
+    "prov": "PT-18",
+    "rotulo": "Bp",
+    "municipio": "Viseu",
+    "direccion": "Rua Cónego Barreiros nº 270",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.65552,
+    "lon": -7.90273,
+    "km": 209.5,
+    "dist_m": 313
+   },
+   {
+    "id": "PT-66843",
+    "prov": "PT-18",
+    "rotulo": "Repsol",
+    "municipio": "Viseu",
+    "direccion": "Av. Regimento de Infantaria nº 14",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.64829,
+    "lon": -7.92049,
+    "km": 211.3,
+    "dist_m": 12
+   },
+   {
+    "id": "PT-94622",
+    "prov": "PT-18",
+    "rotulo": "Galp",
+    "municipio": "Viseu",
+    "direccion": "Posto Galp, Estr. Nac. N.2, KM 178,Repeses",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.62839,
+    "lon": -7.94025,
+    "km": 214.2,
+    "dist_m": 30
+   },
+   {
+    "id": "PT-68664",
+    "prov": "PT-18",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Tondela",
+    "direccion": "Av. da Igreja - Canas Santa Maria - Tondela",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.55441,
+    "lon": -8.03513,
+    "km": 227.6,
+    "dist_m": 26
+   },
+   {
+    "id": "PT-69222",
+    "prov": "PT-18",
+    "rotulo": "Prio",
+    "municipio": "Póvoa do Arcediago",
+    "direccion": "EN2 - Lugar de Naia",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.53786,
+    "lon": -8.05248,
+    "km": 230.0,
+    "dist_m": 129
+   },
+   {
+    "id": "PT-68713",
+    "prov": "PT-18",
+    "rotulo": "Bp",
+    "municipio": "Tondela",
+    "direccion": "Av. Eng. Adelino Amaro da Costa, 1095",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 40.52366,
+    "lon": -8.07253,
+    "km": 232.6,
+    "dist_m": 29
+   },
+   {
+    "id": "PT-94506",
+    "prov": "PT-18",
+    "rotulo": "Galp",
+    "municipio": "Tondela",
+    "direccion": "Av. Visconde de Tondela",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.51734,
+    "lon": -8.08178,
+    "km": 233.8,
+    "dist_m": 2
+   },
+   {
+    "id": "PT-66239",
+    "prov": "PT-18",
+    "rotulo": "Cepsa",
+    "municipio": "Tondela",
+    "direccion": "Av. Dr. Francisco Sá Carneiro, 600",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 40.50756,
+    "lon": -8.08057,
+    "km": 235.2,
+    "dist_m": 9
+   },
+   {
+    "id": "PT-77175",
+    "prov": "PT-18",
+    "rotulo": "Intermarché",
+    "municipio": "Santa Comba Dão",
+    "direccion": "Av. Santo Estevão nº20",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.40342,
+    "lon": -8.12875,
+    "km": 248.5,
+    "dist_m": 76
+   },
+   {
+    "id": "PT-66367",
+    "prov": "PT-18",
+    "rotulo": "Moeve",
+    "municipio": "Santa Comba Dão",
+    "direccion": "Av Santo Estêvão",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.40221,
+    "lon": -8.13046,
+    "km": 248.7,
+    "dist_m": 1
+   },
+   {
+    "id": "PT-94507",
+    "prov": "PT-18",
+    "rotulo": "Galp",
+    "municipio": "Santa Comba Dão",
+    "direccion": "P. Galp-Av General Humberto Delgado",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.39754,
+    "lon": -8.12958,
+    "km": 249.2,
+    "dist_m": 11
+   },
+   {
+    "id": "PT-92253",
+    "prov": "PT-18",
+    "rotulo": "Repsol",
+    "municipio": "Santa Comba Dão",
+    "direccion": "R. Miguel Neves",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 40.39775,
+    "lon": -8.12854,
+    "km": 249.2,
+    "dist_m": 99
+   },
+   {
+    "id": "PT-93298",
+    "prov": "PT-6",
+    "rotulo": "Freitas",
+    "municipio": "Azenha do Rio",
+    "direccion": "Estrada Nacional nº 2",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 40.26973,
+    "lon": -8.27232,
+    "km": 279.6,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-88739",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Penacova",
+    "direccion": "Largo Dona Amélia",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.27405,
+    "lon": -8.28388,
+    "km": 280.8,
+    "dist_m": 16
+   },
+   {
+    "id": "PT-73601",
+    "prov": "PT-6",
+    "rotulo": "Auchan",
+    "municipio": "Coimbra",
+    "direccion": "Rua Ferrer Correia (Estrada das Beiras)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.18996,
+    "lon": -8.401,
+    "km": 300.1,
+    "dist_m": 273
+   }
+  ],
+  "10": [
+   {
+    "id": "PT-73601",
+    "prov": "PT-6",
+    "rotulo": "Auchan",
+    "municipio": "Coimbra",
+    "direccion": "Rua Ferrer Correia (Estrada das Beiras)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 40.18996,
+    "lon": -8.401,
+    "km": 0.4,
+    "dist_m": 42
+   },
+   {
+    "id": "PT-68693",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Ceira",
+    "direccion": "Estrada da Beira - EN17",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.1737,
+    "lon": -8.38567,
+    "km": 3.2,
+    "dist_m": 2
+   },
+   {
+    "id": "PT-68428",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Ceira",
+    "direccion": "ESTRADA DA BEIRA",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.17422,
+    "lon": -8.38556,
+    "km": 3.3,
+    "dist_m": 37
+   },
+   {
+    "id": "PT-68663",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Vila Nova de Poiares",
+    "direccion": "Av. Manuel Carvalho Coelho",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.20674,
+    "lon": -8.24983,
+    "km": 20.1,
+    "dist_m": 20
+   },
+   {
+    "id": "PT-65756",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Santo André",
+    "direccion": "Av. Manuel Carvalho Coelho",
+    "horario": "L-D: 07:00-00:00",
+    "pais": "PT",
+    "lat": 40.20563,
+    "lon": -8.24812,
+    "km": 20.3,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-87136",
+    "prov": "PT-6",
+    "rotulo": "Galp",
+    "municipio": "Vila Nova do Ceira",
+    "direccion": "Largo do Adro da Igreja, nº 22",
+    "horario": "",
+    "pais": "PT",
+    "lat": 40.18164,
+    "lon": -8.15237,
+    "km": 33.2,
+    "dist_m": 180
+   },
+   {
+    "id": "PT-68534",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Góis",
+    "direccion": "Estrada da Beira - Bairro S. Paulo",
+    "horario": "L-V: 07:00-21:00; S: 08:00-20:00; D: 08:00-20:00",
+    "pais": "PT",
+    "lat": 40.15536,
+    "lon": -8.11415,
+    "km": 41.5,
+    "dist_m": 8
+   },
+   {
+    "id": "PT-78132",
+    "prov": "PT-6",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Esporão",
+    "direccion": "Esporão",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 40.12405,
+    "lon": -8.12273,
+    "km": 50.1,
+    "dist_m": 28
+   },
+   {
+    "id": "PT-66585",
+    "prov": "PT-10",
+    "rotulo": "Repsol",
+    "municipio": "Horta",
+    "direccion": "Lugar Picha",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.97154,
+    "lon": -8.14697,
+    "km": 77.7,
+    "dist_m": 22
+   },
+   {
+    "id": "PT-93015",
+    "prov": "PT-10",
+    "rotulo": "Repsol",
+    "municipio": "Pedrogão Grande",
+    "direccion": "Rua Dom Joaquim Jacinto",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.91284,
+    "lon": -8.1494,
+    "km": 85.5,
+    "dist_m": 87
+   },
+   {
+    "id": "PT-94824",
+    "prov": "PT-10",
+    "rotulo": "Repsol",
+    "municipio": "Pedrógão Grande",
+    "direccion": "Rua Dr. Joaquim nº 19",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 39.91283,
+    "lon": -8.14941,
+    "km": 85.5,
+    "dist_m": 88
+   },
+   {
+    "id": "PT-91028",
+    "prov": "PT-10",
+    "rotulo": "Galp",
+    "municipio": "Pedrógão Grande",
+    "direccion": "R. Manuel Nunes David, n.º 24",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.91274,
+    "lon": -8.14781,
+    "km": 85.6,
+    "dist_m": 15
+   },
+   {
+    "id": "PT-65628",
+    "prov": "PT-5",
+    "rotulo": "Galp",
+    "municipio": "Pedrogão Pequeno",
+    "direccion": "EN 2 Km 327,58",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.90387,
+    "lon": -8.13116,
+    "km": 89.6,
+    "dist_m": 22
+   },
+   {
+    "id": "PT-68287",
+    "prov": "PT-5",
+    "rotulo": "Galp",
+    "municipio": "Sertã",
+    "direccion": "Paque Industrial, Lote 15Ap. 10",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.81495,
+    "lon": -8.10892,
+    "km": 103.8,
+    "dist_m": 9
+   },
+   {
+    "id": "PT-78617",
+    "prov": "PT-5",
+    "rotulo": "Intermarché",
+    "municipio": "Sertã-São João do Couto",
+    "direccion": "EN 2",
+    "horario": "L-D: 09:00-20:00",
+    "pais": "PT",
+    "lat": 39.81238,
+    "lon": -8.10804,
+    "km": 104.1,
+    "dist_m": 25
+   },
+   {
+    "id": "PT-65630",
+    "prov": "PT-5",
+    "rotulo": "Galp",
+    "municipio": "Sertã",
+    "direccion": "EN 238 (Lugar de Santo Amaro)",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 39.80363,
+    "lon": -8.10136,
+    "km": 105.8,
+    "dist_m": 27
+   },
+   {
+    "id": "PT-69011",
+    "prov": "PT-5",
+    "rotulo": "Bp",
+    "municipio": "Sertã",
+    "direccion": "RUA DE PROÊNÇA-A-NOVA",
+    "horario": "",
+    "pais": "PT",
+    "lat": 39.79967,
+    "lon": -8.09258,
+    "km": 108.1,
+    "dist_m": 317
+   },
+   {
+    "id": "PT-66502",
+    "prov": "PT-5",
+    "rotulo": "Repsol",
+    "municipio": "Sertã - Cumeada",
+    "direccion": "Estrada Vila de Rei",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.77366,
+    "lon": -8.10969,
+    "km": 113.9,
+    "dist_m": 49
+   },
+   {
+    "id": "PT-65719",
+    "prov": "PT-5",
+    "rotulo": "Galp",
+    "municipio": "Vila de Rei",
+    "direccion": "EN 2 Km 365,9",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.67869,
+    "lon": -8.14244,
+    "km": 129.0,
+    "dist_m": 17
+   },
+   {
+    "id": "PT-68346",
+    "prov": "PT-14",
+    "rotulo": "Galp",
+    "municipio": "Sardoal",
+    "direccion": "Ribeiro Barato",
+    "horario": "L-D: 06:00-23:00",
+    "pais": "PT",
+    "lat": 39.52578,
+    "lon": -8.15618,
+    "km": 149.3,
+    "dist_m": 108
+   },
+   {
+    "id": "PT-65790",
+    "prov": "PT-14",
+    "rotulo": "Galp",
+    "municipio": "Alferrarede",
+    "direccion": "EN 244-3 (Av. António Farinha Pereira) Km 24,2",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.48271,
+    "lon": -8.18671,
+    "km": 155.0,
+    "dist_m": 19
+   },
+   {
+    "id": "PT-93098",
+    "prov": "PT-14",
+    "rotulo": "Bp",
+    "municipio": "Alferrarede",
+    "direccion": "Av. António Farinha Pereira, Nº 1212",
+    "horario": "L-D: 06:00-22:00",
+    "pais": "PT",
+    "lat": 39.48167,
+    "lon": -8.18716,
+    "km": 155.1,
+    "dist_m": 19
+   },
+   {
+    "id": "PT-67126",
+    "prov": "PT-14",
+    "rotulo": "Intermarché",
+    "municipio": "Alferrarede",
+    "direccion": "Av. António Farinha Pereira\nEN nº 244 ao Km 25.31  lado direito",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.47474,
+    "lon": -8.19203,
+    "km": 156.0,
+    "dist_m": 56
+   },
+   {
+    "id": "PT-94684",
+    "prov": "PT-14",
+    "rotulo": "Plenergy",
+    "municipio": "Abrantes",
+    "direccion": "Avenida Dom João I",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.47246,
+    "lon": -8.19324,
+    "km": 156.3,
+    "dist_m": 88
+   },
+   {
+    "id": "PT-93358",
+    "prov": "PT-14",
+    "rotulo": "Repsol",
+    "municipio": "ABRANTES",
+    "direccion": "AV. D. JOÃO I 3",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 39.47208,
+    "lon": -8.19545,
+    "km": 156.4,
+    "dist_m": 92
+   },
+   {
+    "id": "PT-66765",
+    "prov": "PT-14",
+    "rotulo": "Repsol",
+    "municipio": "Bemposta - Leste",
+    "direccion": "Rua Dr. Manuel Rodrigues",
+    "horario": "L-V: 07:00-20:00; S: 07:00-20:00; D: Fechado",
+    "pais": "PT",
+    "lat": 39.35264,
+    "lon": -8.1393,
+    "km": 173.7,
+    "dist_m": 5
+   },
+   {
+    "id": "PT-72916",
+    "prov": "PT-12",
+    "rotulo": "Intermarché",
+    "municipio": "Hortas Novas do Domingão",
+    "direccion": "EN 119",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 39.24392,
+    "lon": -8.02221,
+    "km": 192.9,
+    "dist_m": 79
+   },
+   {
+    "id": "PT-66354",
+    "prov": "PT-12",
+    "rotulo": "Moeve",
+    "municipio": "Ponte de Sor",
+    "direccion": "Estrada de Abrantes, Nº23 A",
+    "horario": "L-D: 07:00-20:00",
+    "pais": "PT",
+    "lat": 39.24549,
+    "lon": -8.01707,
+    "km": 193.4,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-93751",
+    "prov": "PT-12",
+    "rotulo": "PA CAPSOR Montargil",
+    "municipio": "Montargil",
+    "direccion": "RUA HEROIS DO ULTRAMAR",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.08246,
+    "lon": -8.17404,
+    "km": 220.2,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-66679",
+    "prov": "PT-12",
+    "rotulo": "Repsol",
+    "municipio": "Montargil",
+    "direccion": "EN 2 - Km 462",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 39.05117,
+    "lon": -8.17153,
+    "km": 225.5,
+    "dist_m": 6
+   },
+   {
+    "id": "PT-65460",
+    "prov": "PT-7",
+    "rotulo": "Galp",
+    "municipio": "Mora",
+    "direccion": "EN 2 Km 478,493",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 38.94337,
+    "lon": -8.1575,
+    "km": 240.6,
+    "dist_m": 25
+   },
+   {
+    "id": "PT-66916",
+    "prov": "PT-7",
+    "rotulo": "Avia",
+    "municipio": "Ciborro",
+    "direccion": "Estrada do Lavre Lote 3",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 38.7954,
+    "lon": -8.2289,
+    "km": 263.7,
+    "dist_m": 43
+   },
+   {
+    "id": "PT-65458",
+    "prov": "PT-7",
+    "rotulo": "Galp",
+    "municipio": "Montemor-o-Novo",
+    "direccion": "EN 4 (Av. Gago Coutinho nº 25)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.64958,
+    "lon": -8.21676,
+    "km": 282.6,
+    "dist_m": 245
+   },
+   {
+    "id": "PT-65980",
+    "prov": "PT-7",
+    "rotulo": "Bp",
+    "municipio": "Montemor-o-Novo",
+    "direccion": "Av. Gago Coutinho nº 74",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.64686,
+    "lon": -8.20708,
+    "km": 283.2,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-67363",
+    "prov": "PT-7",
+    "rotulo": "Intermarché",
+    "municipio": "MONTEMOR-O-NOVO",
+    "direccion": "AV.GAGO COUTINHO",
+    "horario": "L-V: 08:00-21:00; S: 08:00-21:00; D: 08:00-13:00",
+    "pais": "PT",
+    "lat": 38.64632,
+    "lon": -8.20562,
+    "km": 283.4,
+    "dist_m": 37
+   },
+   {
+    "id": "PT-67049",
+    "prov": "PT-7",
+    "rotulo": "Galp",
+    "municipio": "Montemor-O-Novo",
+    "direccion": "A6 - Km 55,4 (Marateca/Caia)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.6178,
+    "lon": -8.08188,
+    "km": 295.1,
+    "dist_m": 70
+   },
+   {
+    "id": "PT-67048",
+    "prov": "PT-7",
+    "rotulo": "Galp",
+    "municipio": "Santa Sofia",
+    "direccion": "A6 Marateca Caia, Km 55,4 - EN 114",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.61773,
+    "lon": -8.07789,
+    "km": 295.4,
+    "dist_m": 272
+   },
+   {
+    "id": "PT-94607",
+    "prov": "PT-7",
+    "rotulo": "Auto Julio",
+    "municipio": "Nossa Senhora Graça do Divor",
+    "direccion": "EN 114, Km 182,5 (sentido Norte-Sul)",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.57847,
+    "lon": -7.98649,
+    "km": 305.0,
+    "dist_m": 53
+   },
+   {
+    "id": "PT-65271",
+    "prov": "PT-7",
+    "rotulo": "Galp",
+    "municipio": "Graça do Divor",
+    "direccion": "EN 114 Km 182",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 38.57512,
+    "lon": -7.98264,
+    "km": 305.5,
+    "dist_m": 43
    }
   ],
   "11": [
+   {
+    "id": "PT-65712",
+    "prov": "PT-7",
+    "rotulo": "Galp",
+    "municipio": "Viana do Alentejo",
+    "direccion": "Zona Industrial",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.3317,
+    "lon": -7.99525,
+    "km": 36.5,
+    "dist_m": 276
+   },
+   {
+    "id": "PT-67137",
+    "prov": "PT-7",
+    "rotulo": "Intermarché",
+    "municipio": "Viana do Alentejo",
+    "direccion": "Zona Industrial",
+    "horario": "L-V: 08:00-20:00; S: 09:00-20:00; D: 09:00-20:00",
+    "pais": "PT",
+    "lat": 38.3311,
+    "lon": -7.9954,
+    "km": 36.6,
+    "dist_m": 269
+   },
+   {
+    "id": "PT-93105",
+    "prov": "PT-2",
+    "rotulo": "Intermarché",
+    "municipio": "Cuba",
+    "direccion": "Estrada Nacional 258-1, Edifício Intermarché",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.17056,
+    "lon": -7.89402,
+    "km": 62.9,
+    "dist_m": 18
+   },
+   {
+    "id": "PT-93127",
+    "prov": "PT-2",
+    "rotulo": "Bp",
+    "municipio": "Cuba",
+    "direccion": "Alameda Bento de Jesus Caraça S/N",
+    "horario": "L-D: 07:00-21:00",
+    "pais": "PT",
+    "lat": 38.16078,
+    "lon": -7.89581,
+    "km": 64.3,
+    "dist_m": 274
+   },
+   {
+    "id": "PT-94683",
+    "prov": "PT-2",
+    "rotulo": "Galp",
+    "municipio": "Beringel",
+    "direccion": "EN 121 Km 73,069 ao Km 73,069",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.02695,
+    "lon": -7.8832,
+    "km": 84.5,
+    "dist_m": 22
+   },
+   {
+    "id": "PT-65803",
+    "prov": "PT-2",
+    "rotulo": "Galp",
+    "municipio": "Beja",
+    "direccion": "Rua de Lisboa",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.02075,
+    "lon": -7.87145,
+    "km": 86.0,
+    "dist_m": 2
+   },
+   {
+    "id": "PT-91857",
+    "prov": "PT-2",
+    "rotulo": "Repsol",
+    "municipio": "Beja",
+    "direccion": "Largo Escritor Manuel Ribeiro nº 12",
+    "horario": "L-D: 08:00-22:00",
+    "pais": "PT",
+    "lat": 38.0116,
+    "lon": -7.86429,
+    "km": 87.4,
+    "dist_m": 39
+   },
+   {
+    "id": "PT-65850",
+    "prov": "PT-2",
+    "rotulo": "Bp",
+    "municipio": "Beja",
+    "direccion": "Av. Fialho de Almeida",
+    "horario": "L-D: 06:30-22:00",
+    "pais": "PT",
+    "lat": 38.01028,
+    "lon": -7.86433,
+    "km": 87.4,
+    "dist_m": 162
+   },
+   {
+    "id": "PT-65851",
+    "prov": "PT-2",
+    "rotulo": "Bp",
+    "municipio": "Beja",
+    "direccion": "Rua D. Afonso III nº 43",
+    "horario": "L-D: 07:00-23:00",
+    "pais": "PT",
+    "lat": 38.01913,
+    "lon": -7.8532,
+    "km": 89.3,
+    "dist_m": 10
+   },
+   {
+    "id": "PT-85869",
+    "prov": "PT-2",
+    "rotulo": "Repsol",
+    "municipio": "Beja",
+    "direccion": "Estrada de Acesso ao Bairro da Esperança S/N",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 38.0226,
+    "lon": -7.8493,
+    "km": 89.7,
+    "dist_m": 287
+   },
+   {
+    "id": "PT-72519",
+    "prov": "PT-2",
+    "rotulo": "Prio",
+    "municipio": "Beja",
+    "direccion": "Rua D.Afonso III",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 38.02016,
+    "lon": -7.84903,
+    "km": 89.7,
+    "dist_m": 14
+   },
+   {
+    "id": "PT-89780",
+    "prov": "PT-2",
+    "rotulo": "Cepsa",
+    "municipio": "Monte das Lameiras",
+    "direccion": "Estrada das Apolinárias/EN260; União das Freguesias de Salvador e Santa Maria da Feira",
+    "horario": "",
+    "pais": "PT",
+    "lat": 38.02084,
+    "lon": -7.84732,
+    "km": 89.9,
+    "dist_m": 74
+   },
+   {
+    "id": "PT-65627",
+    "prov": "PT-2",
+    "rotulo": "Galp",
+    "municipio": "Serpa",
+    "direccion": "EN 260 Km 26,66",
+    "horario": "L-D: 24 h",
+    "pais": "PT",
+    "lat": 37.95297,
+    "lon": -7.60284,
+    "km": 114.5,
+    "dist_m": 38
+   },
+   {
+    "id": "PT-73550",
+    "prov": "PT-2",
+    "rotulo": "Tfuel",
+    "municipio": "Vila Nova São Bento",
+    "direccion": "Rua de Paimogo",
+    "horario": "L-D: 07:00-22:00",
+    "pais": "PT",
+    "lat": 37.92147,
+    "lon": -7.40571,
+    "km": 135.9,
+    "dist_m": 47
+   },
+   {
+    "id": "PT-93824",
+    "prov": "PT-2",
+    "rotulo": "Alves Bandeira",
+    "municipio": "Vila Verde de Ficalho",
+    "direccion": "Rua do Outeiro nº 54",
+    "horario": "L-V: 07:00-22:00; S: 07:00-22:00; D: Fechado",
+    "pais": "PT",
+    "lat": 37.94649,
+    "lon": -7.30725,
+    "km": 145.1,
+    "dist_m": 18
+   },
    {
     "id": "6740",
     "prov": "21",
@@ -3461,7 +7500,7 @@
     "horario": "L-D: 24H",
     "lat": 37.963,
     "lon": -7.23911,
-    "km": 143.9,
+    "km": 151.5,
     "dist_m": 28
    },
    {
@@ -3473,7 +7512,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 37.96875,
     "lon": -7.21631,
-    "km": 146.0,
+    "km": 153.6,
     "dist_m": 16
    },
    {
@@ -3485,7 +7524,7 @@
     "horario": "L: 07:00-22:00",
     "lat": 37.95547,
     "lon": -6.95419,
-    "km": 170.5,
+    "km": 178.1,
     "dist_m": 29
    },
    {
@@ -3497,8 +7536,8 @@
     "horario": "L-D: 24H",
     "lat": 37.91903,
     "lon": -6.83494,
-    "km": 185.8,
-    "dist_m": 78
+    "km": 193.3,
+    "dist_m": 80
    },
    {
     "id": "6451",
@@ -3509,7 +7548,7 @@
     "horario": "L-D: 24H",
     "lat": 37.92883,
     "lon": -6.73708,
-    "km": 197.6,
+    "km": 205.2,
     "dist_m": 36
    },
    {
@@ -3521,7 +7560,7 @@
     "horario": "L-D: 24H",
     "lat": 37.89739,
     "lon": -6.57133,
-    "km": 222.7,
+    "km": 227.1,
     "dist_m": 43
    },
    {
@@ -3533,7 +7572,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.89697,
     "lon": -6.56947,
-    "km": 222.9,
+    "km": 227.3,
     "dist_m": 28
    }
   ],
@@ -3547,8 +7586,8 @@
     "horario": "L-D: 24H",
     "lat": 37.88867,
     "lon": -6.55875,
-    "km": 0.8,
-    "dist_m": 67
+    "km": 1.3,
+    "dist_m": 211
    },
    {
     "id": "12406",
@@ -3559,7 +7598,7 @@
     "horario": "L-D: 24H",
     "lat": 37.82475,
     "lon": -6.44408,
-    "km": 14.4,
+    "km": 14.7,
     "dist_m": 302
    },
    {
@@ -3571,7 +7610,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.706,
     "lon": -6.29994,
-    "km": 34.2,
+    "km": 34.5,
     "dist_m": 69
    },
    {
@@ -3583,7 +7622,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.67825,
     "lon": -6.25353,
-    "km": 39.5,
+    "km": 39.7,
     "dist_m": 45
    },
    {
@@ -3595,7 +7634,7 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 37.63614,
     "lon": -6.14775,
-    "km": 52.2,
+    "km": 52.5,
     "dist_m": 15
    },
    {
@@ -3607,7 +7646,7 @@
     "horario": "L-D: 24H",
     "lat": 37.57178,
     "lon": -6.10794,
-    "km": 61.3,
+    "km": 61.5,
     "dist_m": 115
    },
    {
@@ -3619,20 +7658,8 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.50742,
     "lon": -6.07458,
-    "km": 69.5,
+    "km": 69.8,
     "dist_m": 353
-   },
-   {
-    "id": "15209",
-    "prov": "41",
-    "rotulo": "Ballenoil",
-    "municipio": "Camas",
-    "direccion": "Calle Santa Cruz, 4",
-    "horario": "L-D: 24H",
-    "lat": 37.418,
-    "lon": -6.03639,
-    "km": 81.1,
-    "dist_m": 396
    },
    {
     "id": "9186",
@@ -3643,152 +7670,140 @@
     "horario": "L-D: 24H",
     "lat": 37.41519,
     "lon": -6.03597,
-    "km": 81.2,
-    "dist_m": 133
-   },
-   {
-    "id": "7228",
-    "prov": "41",
-    "rotulo": "Moeve",
-    "municipio": "Sevilla",
-    "direccion": "Calle Efeso, 4",
-    "horario": "L-V: 06:00-00:00; S-D: 00:00-02:00 y 07:00-00:00",
-    "lat": 37.39419,
-    "lon": -5.96336,
-    "km": 89.2,
-    "dist_m": 18
-   },
-   {
-    "id": "9427",
-    "prov": "41",
-    "rotulo": "Petroprix",
-    "municipio": "Sevilla",
-    "direccion": "Avda. Montesierra, 7",
-    "horario": "L-D: 24H",
-    "lat": 37.39161,
-    "lon": -5.95667,
-    "km": 89.7,
-    "dist_m": 270
-   },
-   {
-    "id": "13969",
-    "prov": "41",
-    "rotulo": "Q8 Easy",
-    "municipio": "Sevilla",
-    "direccion": "Avenida De La Prensa, 1",
-    "horario": "L-D: 24H",
-    "lat": 37.39039,
-    "lon": -5.95769,
-    "km": 89.8,
-    "dist_m": 142
-   },
-   {
-    "id": "7450",
-    "prov": "41",
-    "rotulo": "Galp",
-    "municipio": "Sevilla",
-    "direccion": "Calle Antonio Peña Y Lopez, 5",
-    "horario": "L-D: 24H",
-    "lat": 37.38767,
-    "lon": -5.95431,
-    "km": 90.6,
-    "dist_m": 87
-   },
-   {
-    "id": "13126",
-    "prov": "41",
-    "rotulo": "Petroamarilla",
-    "municipio": "Sevilla",
-    "direccion": "Avenida Prensa (la), 30",
-    "horario": "L-D: 24H",
-    "lat": 37.3895,
-    "lon": -5.95064,
-    "km": 90.9,
-    "dist_m": 314
-   },
-   {
-    "id": "7471",
-    "prov": "41",
-    "rotulo": "Galp",
-    "municipio": "Sevilla",
-    "direccion": "Avenida Andalucia, 44",
-    "horario": "L-D: 24H",
-    "lat": 37.38647,
-    "lon": -5.94733,
-    "km": 91.2,
-    "dist_m": 2
-   },
-   {
-    "id": "13282",
-    "prov": "41",
-    "rotulo": "Naturgy",
-    "municipio": "Sevilla",
-    "direccion": "Avenida Andalucia, 11",
-    "horario": "L-D: 24H",
-    "lat": 37.38692,
-    "lon": -5.94689,
-    "km": 91.2,
-    "dist_m": 51
-   },
-   {
-    "id": "7249",
-    "prov": "41",
-    "rotulo": "Repsol",
-    "municipio": "Sevilla",
-    "direccion": "Autovia A-92 Km. 2",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 37.38697,
-    "lon": -5.93503,
-    "km": 92.3,
-    "dist_m": 99
-   },
-   {
-    "id": "15011",
-    "prov": "41",
-    "rotulo": "Tamoil",
-    "municipio": "Sevilla",
-    "direccion": "Calle Pino Central, 14",
-    "horario": "L-D: 24H",
-    "lat": 37.38389,
-    "lon": -5.92389,
-    "km": 93.3,
+    "km": 81.4,
     "dist_m": 216
    },
    {
-    "id": "7063",
+    "id": "7050",
     "prov": "41",
-    "rotulo": "Galp",
-    "municipio": "Alcalá de Guadaíra",
-    "direccion": "Carretera A-92 Km. 4",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 37.37936,
-    "lon": -5.89581,
-    "km": 95.9,
-    "dist_m": 46
-   },
-   {
-    "id": "10897",
-    "prov": "41",
-    "rotulo": "Bp",
-    "municipio": "Alcalá de Guadaíra",
-    "direccion": "Carretera Sevilla Malaga Km. 4",
+    "rotulo": "Carrefour",
+    "municipio": "Camas",
+    "direccion": "Calle C/ Poeta Muñoz San Román,",
     "horario": "L-D: 24H",
-    "lat": 37.37642,
-    "lon": -5.89028,
-    "km": 96.5,
-    "dist_m": 60
+    "lat": 37.39078,
+    "lon": -6.03072,
+    "km": 84.3,
+    "dist_m": 338
    },
    {
-    "id": "10615",
+    "id": "7129",
     "prov": "41",
-    "rotulo": "Shell",
-    "municipio": "Alcalá de Guadaíra",
-    "direccion": "A-92 Sevilla-malaga Km 5.900",
-    "horario": "L-D: 00:00-23:59",
-    "lat": 37.37006,
-    "lon": -5.87997,
-    "km": 97.6,
-    "dist_m": 80
+    "rotulo": "Repsol",
+    "municipio": "Camas",
+    "direccion": "Cr Se-610, 0,9",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 37.38172,
+    "lon": -6.02633,
+    "km": 85.3,
+    "dist_m": 21
+   },
+   {
+    "id": "14277",
+    "prov": "41",
+    "rotulo": "Karlavado.com",
+    "municipio": "Tomares",
+    "direccion": "Calle Castañeda, S/n",
+    "horario": "L-D: 24H",
+    "lat": 37.37925,
+    "lon": -6.02742,
+    "km": 85.5,
+    "dist_m": 79
+   },
+   {
+    "id": "13172",
+    "prov": "41",
+    "rotulo": "Ballenoil",
+    "municipio": "Tomares",
+    "direccion": "Calle San Roque, 54",
+    "horario": "L-D: 24H",
+    "lat": 37.37808,
+    "lon": -6.02931,
+    "km": 85.7,
+    "dist_m": 227
+   },
+   {
+    "id": "16026",
+    "prov": "41",
+    "rotulo": "Q8",
+    "municipio": "Tomares",
+    "direccion": "Calle Saladilla, 4",
+    "horario": "L-D: 24H",
+    "lat": 37.37467,
+    "lon": -6.03053,
+    "km": 86.1,
+    "dist_m": 283
+   },
+   {
+    "id": "8522",
+    "prov": "41",
+    "rotulo": "Repsol",
+    "municipio": "San Juan de Aznalfarache",
+    "direccion": "Carretera San Juan De Aznalfarache-camas Km. S/n",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 37.37106,
+    "lon": -6.02794,
+    "km": 86.4,
+    "dist_m": 123
+   },
+   {
+    "id": "14936",
+    "prov": "41",
+    "rotulo": "Moeve",
+    "municipio": "Sevilla",
+    "direccion": "Avenida Palmas Altas, S/n",
+    "horario": "L-V: 07:00-22:00; S: 08:00-22:00",
+    "lat": 37.33933,
+    "lon": -5.98525,
+    "km": 92.2,
+    "dist_m": 151
+   },
+   {
+    "id": "7333",
+    "prov": "41",
+    "rotulo": "Ballenoil",
+    "municipio": "Dos Hermanas",
+    "direccion": "A-4 Km 552,4",
+    "horario": "L-D: 24H",
+    "lat": 37.29639,
+    "lon": -5.95256,
+    "km": 99.9,
+    "dist_m": 99
+   },
+   {
+    "id": "7332",
+    "prov": "41",
+    "rotulo": "Ballenoil",
+    "municipio": "Dos Hermanas",
+    "direccion": "Carrera N Iv K.m.552,4, 2",
+    "horario": "L-D: 24H",
+    "lat": 37.29558,
+    "lon": -5.95261,
+    "km": 99.9,
+    "dist_m": 180
+   },
+   {
+    "id": "16493",
+    "prov": "41",
+    "rotulo": "Octanos",
+    "municipio": "Dos Hermanas",
+    "direccion": "Ronda Adolfo Suarez, 56",
+    "horario": "L-S: 06:00-00:00; D: 07:00-23:00",
+    "lat": 37.299,
+    "lon": -5.92764,
+    "km": 102.2,
+    "dist_m": 182
+   },
+   {
+    "id": "12972",
+    "prov": "41",
+    "rotulo": "Octanos",
+    "municipio": "Dos Hermanas",
+    "direccion": "Rotonda Adolfo Suarez, 54",
+    "horario": "L-S: 06:00-00:00; D: 07:00-23:00",
+    "lat": 37.2985,
+    "lon": -5.92503,
+    "km": 102.5,
+    "dist_m": 258
    },
    {
     "id": "9476",
@@ -3799,7 +7814,7 @@
     "horario": "L-D: 00:00-23:59",
     "lat": 37.35689,
     "lon": -5.86831,
-    "km": 99.4,
+    "km": 111.8,
     "dist_m": 66
    },
    {
@@ -3811,8 +7826,8 @@
     "horario": "L-D: 06:00-23:00",
     "lat": 37.35736,
     "lon": -5.867,
-    "km": 99.5,
-    "dist_m": 28
+    "km": 111.9,
+    "dist_m": 29
    },
    {
     "id": "7045",
@@ -3823,8 +7838,8 @@
     "horario": "L-S: 09:30-22:00",
     "lat": 37.35292,
     "lon": -5.85856,
-    "km": 100.4,
-    "dist_m": 232
+    "km": 112.8,
+    "dist_m": 231
    },
    {
     "id": "11241",
@@ -3835,7 +7850,7 @@
     "horario": "L-D: 24H",
     "lat": 37.35228,
     "lon": -5.84647,
-    "km": 101.4,
+    "km": 113.8,
     "dist_m": 47
    },
    {
@@ -3847,8 +7862,8 @@
     "horario": "L-D: 24H",
     "lat": 37.34781,
     "lon": -5.83397,
-    "km": 102.6,
-    "dist_m": 48
+    "km": 115.1,
+    "dist_m": 46
    },
    {
     "id": "12682",
@@ -3859,8 +7874,8 @@
     "horario": "L-D: 24H",
     "lat": 37.34756,
     "lon": -5.83222,
-    "km": 102.8,
-    "dist_m": 32
+    "km": 115.2,
+    "dist_m": 27
    },
    {
     "id": "7054",
@@ -3871,8 +7886,8 @@
     "horario": "L-D: 24H",
     "lat": 37.34633,
     "lon": -5.82761,
-    "km": 103.2,
-    "dist_m": 48
+    "km": 115.7,
+    "dist_m": 39
    },
    {
     "id": "9097",
@@ -3883,20 +7898,8 @@
     "horario": "L-V: 06:30-22:30; S-D: 07:00-22:30",
     "lat": 37.34397,
     "lon": -5.82064,
-    "km": 103.9,
-    "dist_m": 91
-   },
-   {
-    "id": "7341",
-    "prov": "41",
-    "rotulo": "Cepsa",
-    "municipio": "Carmona",
-    "direccion": "Autovia A-92 Km. 24,000",
-    "horario": "L-V: 06:00-22:00",
-    "lat": 37.29619,
-    "lon": -5.71128,
-    "km": 116.1,
-    "dist_m": 26
+    "km": 116.3,
+    "dist_m": 103
    },
    {
     "id": "7340",
@@ -3907,8 +7910,20 @@
     "horario": "L-V: 06:00-22:00; S-D: 07:00-22:00",
     "lat": 37.29553,
     "lon": -5.71183,
-    "km": 116.1,
-    "dist_m": 62
+    "km": 128.5,
+    "dist_m": 59
+   },
+   {
+    "id": "7341",
+    "prov": "41",
+    "rotulo": "Cepsa",
+    "municipio": "Carmona",
+    "direccion": "Autovia A-92 Km. 24,000",
+    "horario": "L-V: 06:00-22:00",
+    "lat": 37.29619,
+    "lon": -5.71128,
+    "km": 128.5,
+    "dist_m": 29
    },
    {
     "id": "7411",
@@ -3919,7 +7934,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.25492,
     "lon": -5.56581,
-    "km": 130.2,
+    "km": 142.6,
     "dist_m": 21
    },
    {
@@ -3931,7 +7946,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.25561,
     "lon": -5.56444,
-    "km": 130.3,
+    "km": 142.7,
     "dist_m": 90
    },
    {
@@ -3943,7 +7958,7 @@
     "horario": "L-D: 24H",
     "lat": 37.24706,
     "lon": -5.55272,
-    "km": 131.5,
+    "km": 143.9,
     "dist_m": 334
    },
    {
@@ -3955,7 +7970,7 @@
     "horario": "L-D: 06:30-22:30",
     "lat": 37.25189,
     "lon": -5.55017,
-    "km": 131.8,
+    "km": 144.2,
     "dist_m": 166
    },
    {
@@ -3967,7 +7982,7 @@
     "horario": "L-D: 24H",
     "lat": 37.26925,
     "lon": -5.49975,
-    "km": 136.8,
+    "km": 149.2,
     "dist_m": 39
    },
    {
@@ -3979,7 +7994,7 @@
     "horario": "L-D: 24H",
     "lat": 37.27006,
     "lon": -5.50039,
-    "km": 136.8,
+    "km": 149.2,
     "dist_m": 62
    },
    {
@@ -3991,7 +8006,7 @@
     "horario": "L-V: 07:00-21:00; S: 08:00-15:00",
     "lat": 37.25411,
     "lon": -5.40956,
-    "km": 145.8,
+    "km": 158.2,
     "dist_m": 101
    },
    {
@@ -4003,20 +8018,8 @@
     "horario": "L-D: 24H",
     "lat": 37.22897,
     "lon": -5.32303,
-    "km": 154.4,
+    "km": 166.8,
     "dist_m": 119
-   },
-   {
-    "id": "7398",
-    "prov": "41",
-    "rotulo": "Campsa",
-    "municipio": "Puebla de Cazalla (La)",
-    "direccion": "Cr N-334 67,5",
-    "horario": "M-X: 09:00-13:00",
-    "lat": 37.22942,
-    "lon": -5.32297,
-    "km": 154.5,
-    "dist_m": 83
    },
    {
     "id": "7106",
@@ -4027,8 +8030,20 @@
     "horario": "L-D: 24H",
     "lat": 37.23033,
     "lon": -5.32269,
-    "km": 154.6,
+    "km": 166.9,
     "dist_m": 18
+   },
+   {
+    "id": "7398",
+    "prov": "41",
+    "rotulo": "Campsa",
+    "municipio": "Puebla de Cazalla (La)",
+    "direccion": "Cr N-334 67,5",
+    "horario": "M-X: 09:00-13:00",
+    "lat": 37.22942,
+    "lon": -5.32297,
+    "km": 166.9,
+    "dist_m": 83
    },
    {
     "id": "7267",
@@ -4039,8 +8054,8 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.23706,
     "lon": -5.12783,
-    "km": 172.4,
-    "dist_m": 223
+    "km": 184.8,
+    "dist_m": 207
    },
    {
     "id": "8519",
@@ -4051,7 +8066,7 @@
     "horario": "L-D: 24H",
     "lat": 37.23364,
     "lon": -5.08733,
-    "km": 176.6,
+    "km": 189.0,
     "dist_m": 143
    },
    {
@@ -4063,8 +8078,8 @@
     "horario": "L-D: 07:00-21:00",
     "lat": 37.24961,
     "lon": -5.00525,
-    "km": 184.4,
-    "dist_m": 109
+    "km": 196.8,
+    "dist_m": 105
    },
    {
     "id": "10608",
@@ -4075,7 +8090,7 @@
     "horario": "L-D: 24H",
     "lat": 37.26353,
     "lon": -4.95919,
-    "km": 188.9,
+    "km": 201.2,
     "dist_m": 103
    },
    {
@@ -4087,20 +8102,8 @@
     "horario": "L-D: 24H",
     "lat": 37.29867,
     "lon": -4.88339,
-    "km": 196.9,
+    "km": 209.3,
     "dist_m": 366
-   },
-   {
-    "id": "7120",
-    "prov": "41",
-    "rotulo": "Repsol",
-    "municipio": "Estepa",
-    "direccion": "Autovia A-92 Km. 105,250",
-    "horario": "L-D: 06:00-23:00",
-    "lat": 37.30189,
-    "lon": -4.88,
-    "km": 197.3,
-    "dist_m": 64
    },
    {
     "id": "7117",
@@ -4111,8 +8114,20 @@
     "horario": "L-D: 24H",
     "lat": 37.30236,
     "lon": -4.87975,
-    "km": 197.4,
+    "km": 209.7,
     "dist_m": 13
+   },
+   {
+    "id": "7120",
+    "prov": "41",
+    "rotulo": "Repsol",
+    "municipio": "Estepa",
+    "direccion": "Autovia A-92 Km. 105,250",
+    "horario": "L-D: 06:00-23:00",
+    "lat": 37.30189,
+    "lon": -4.88,
+    "km": 209.7,
+    "dist_m": 64
    },
    {
     "id": "9308",
@@ -4123,7 +8138,7 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 37.27578,
     "lon": -4.80117,
-    "km": 205.9,
+    "km": 218.2,
     "dist_m": 128
    },
    {
@@ -4135,8 +8150,8 @@
     "horario": "L-D: 06:30-21:30",
     "lat": 37.19775,
     "lon": -4.79669,
-    "km": 215.1,
-    "dist_m": 87
+    "km": 227.4,
+    "dist_m": 86
    },
    {
     "id": "6466",
@@ -4147,8 +8162,8 @@
     "horario": "L-D: 07:00-22:00",
     "lat": 37.13761,
     "lon": -4.72828,
-    "km": 224.1,
-    "dist_m": 214
+    "km": 236.5,
+    "dist_m": 205
    },
    {
     "id": "9491",
@@ -4159,7 +8174,7 @@
     "horario": "L-D: 24H",
     "lat": 37.13319,
     "lon": -4.69331,
-    "km": 227.3,
+    "km": 239.6,
     "dist_m": 73
    },
    {
@@ -4171,7 +8186,7 @@
     "horario": "L-D: 24H",
     "lat": 37.13194,
     "lon": -4.69353,
-    "km": 227.3,
+    "km": 239.6,
     "dist_m": 67
    },
    {
@@ -4183,7 +8198,7 @@
     "horario": "L-D: 06:30-22:30",
     "lat": 37.11983,
     "lon": -4.66514,
-    "km": 230.2,
+    "km": 242.6,
     "dist_m": 302
    },
    {
@@ -4195,8 +8210,8 @@
     "horario": "L-D: 24H",
     "lat": 37.08208,
     "lon": -4.45369,
-    "km": 251.8,
-    "dist_m": 125
+    "km": 264.2,
+    "dist_m": 129
    },
    {
     "id": "6594",
@@ -4207,7 +8222,7 @@
     "horario": "L-D: 24H",
     "lat": 37.13328,
     "lon": -4.28478,
-    "km": 269.3,
+    "km": 281.6,
     "dist_m": 16
    },
    {
@@ -4219,8 +8234,8 @@
     "horario": "L-D: 24H",
     "lat": 37.16569,
     "lon": -4.16975,
-    "km": 280.9,
-    "dist_m": 55
+    "km": 293.2,
+    "dist_m": 57
    },
    {
     "id": "5784",
@@ -4231,7 +8246,7 @@
     "horario": "L-D: 24H",
     "lat": 37.1645,
     "lon": -4.16842,
-    "km": 281.0,
+    "km": 293.3,
     "dist_m": 44
    },
    {
@@ -4243,8 +8258,8 @@
     "horario": "L-D: 24H",
     "lat": 37.15767,
     "lon": -4.12814,
-    "km": 284.7,
-    "dist_m": 312
+    "km": 297.0,
+    "dist_m": 309
    },
    {
     "id": "12907",
@@ -4255,8 +8270,8 @@
     "horario": "L: 24H",
     "lat": 37.16406,
     "lon": -4.12719,
-    "km": 285.0,
-    "dist_m": 302
+    "km": 297.3,
+    "dist_m": 298
    },
    {
     "id": "16352",
@@ -4267,8 +8282,8 @@
     "horario": "L-D: 24H",
     "lat": 37.16106,
     "lon": -4.12469,
-    "km": 285.1,
-    "dist_m": 77
+    "km": 297.4,
+    "dist_m": 80
    },
    {
     "id": "5559",
@@ -4279,7 +8294,7 @@
     "horario": "L-D: 24H",
     "lat": 37.17972,
     "lon": -4.05928,
-    "km": 292.0,
+    "km": 304.3,
     "dist_m": 73
    },
    {
@@ -4291,7 +8306,7 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 37.18111,
     "lon": -4.05417,
-    "km": 292.5,
+    "km": 304.8,
     "dist_m": 29
    },
    {
@@ -4303,7 +8318,7 @@
     "horario": "L-D: 24H",
     "lat": 37.18733,
     "lon": -4.03347,
-    "km": 294.6,
+    "km": 307.0,
     "dist_m": 208
    },
    {
@@ -4315,7 +8330,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 37.18494,
     "lon": -3.95875,
-    "km": 301.8,
+    "km": 314.1,
     "dist_m": 28
    },
    {
@@ -4327,7 +8342,7 @@
     "horario": "L-D: 24H",
     "lat": 37.18258,
     "lon": -3.95275,
-    "km": 302.4,
+    "km": 314.7,
     "dist_m": 40
    },
    {
@@ -4339,7 +8354,7 @@
     "horario": "L-D: 24H",
     "lat": 37.18103,
     "lon": -3.92961,
-    "km": 304.5,
+    "km": 316.8,
     "dist_m": 39
    },
    {
@@ -4351,7 +8366,7 @@
     "horario": "L-D: 06:00-00:00",
     "lat": 37.18033,
     "lon": -3.92878,
-    "km": 304.6,
+    "km": 316.9,
     "dist_m": 40
    },
    {
@@ -4363,7 +8378,7 @@
     "horario": "L-D: 07:00-00:00",
     "lat": 37.193,
     "lon": -3.85336,
-    "km": 311.8,
+    "km": 324.1,
     "dist_m": 132
    },
    {
@@ -4375,20 +8390,8 @@
     "horario": "L-D: 24H",
     "lat": 37.19342,
     "lon": -3.83764,
-    "km": 313.2,
+    "km": 325.5,
     "dist_m": 150
-   },
-   {
-    "id": "6605",
-    "prov": "18",
-    "rotulo": "Bp Zona De Servicos El Molino",
-    "municipio": "Cijuela",
-    "direccion": "Carretera A-92 Km. 225",
-    "horario": "L-D: 24H",
-    "lat": 37.19597,
-    "lon": -3.80347,
-    "km": 316.6,
-    "dist_m": 177
    },
    {
     "id": "11579",
@@ -4399,8 +8402,20 @@
     "horario": "L-D: 24H",
     "lat": 37.19236,
     "lon": -3.80319,
-    "km": 316.6,
-    "dist_m": 221
+    "km": 328.9,
+    "dist_m": 216
+   },
+   {
+    "id": "6605",
+    "prov": "18",
+    "rotulo": "Bp Zona De Servicos El Molino",
+    "municipio": "Cijuela",
+    "direccion": "Carretera A-92 Km. 225",
+    "horario": "L-D: 24H",
+    "lat": 37.19597,
+    "lon": -3.80347,
+    "km": 328.9,
+    "dist_m": 181
    },
    {
     "id": "15867",
@@ -4411,8 +8426,8 @@
     "horario": "L-D: 24H",
     "lat": 37.19606,
     "lon": -3.80261,
-    "km": 316.7,
-    "dist_m": 193
+    "km": 329.0,
+    "dist_m": 197
    },
    {
     "id": "13059",
@@ -4423,7 +8438,7 @@
     "horario": "L-D: 24H",
     "lat": 37.19158,
     "lon": -3.77733,
-    "km": 319.0,
+    "km": 331.3,
     "dist_m": 103
    },
    {
@@ -4435,7 +8450,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.19375,
     "lon": -3.77692,
-    "km": 319.0,
+    "km": 331.3,
     "dist_m": 345
    },
    {
@@ -4447,7 +8462,7 @@
     "horario": "L-V: 06:00-23:00; S-D: 07:00-23:00",
     "lat": 37.23142,
     "lon": -3.66842,
-    "km": 330.8,
+    "km": 343.1,
     "dist_m": 66
    },
    {
@@ -4459,8 +8474,8 @@
     "horario": "L-D: 24H",
     "lat": 37.23267,
     "lon": -3.66714,
-    "km": 330.9,
-    "dist_m": 22
+    "km": 343.2,
+    "dist_m": 23
    },
    {
     "id": "6448",
@@ -4471,7 +8486,7 @@
     "horario": "L-D: 24H",
     "lat": 37.23217,
     "lon": -3.57089,
-    "km": 340.5,
+    "km": 352.8,
     "dist_m": 60
    },
    {
@@ -4483,8 +8498,8 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 37.23389,
     "lon": -3.49722,
-    "km": 347.7,
-    "dist_m": 76
+    "km": 359.9,
+    "dist_m": 77
    },
    {
     "id": "6566",
@@ -4495,7 +8510,7 @@
     "horario": "L-D: 24H",
     "lat": 37.31583,
     "lon": -3.33467,
-    "km": 367.5,
+    "km": 379.8,
     "dist_m": 2
    },
    {
@@ -4507,8 +8522,8 @@
     "horario": "L-V: 06:30-22:30; S-D: 07:30-22:30",
     "lat": 37.32097,
     "lon": -3.2975,
-    "km": 370.9,
-    "dist_m": 27
+    "km": 383.2,
+    "dist_m": 30
    },
    {
     "id": "6963",
@@ -4519,8 +8534,8 @@
     "horario": "L-V: 06:30-22:30; S-D: 07:30-22:30",
     "lat": 37.32211,
     "lon": -3.29678,
-    "km": 371.0,
-    "dist_m": 96
+    "km": 383.2,
+    "dist_m": 93
    },
    {
     "id": "11128",
@@ -4531,7 +8546,7 @@
     "horario": "L-V: 07:00-21:00; S: 07:00-14:00",
     "lat": 37.32303,
     "lon": -3.26658,
-    "km": 373.6,
+    "km": 385.9,
     "dist_m": 121
    },
    {
@@ -4543,20 +8558,8 @@
     "horario": "L-D: 05:00-23:00",
     "lat": 37.32889,
     "lon": -3.21569,
-    "km": 378.4,
+    "km": 390.6,
     "dist_m": 10
-   },
-   {
-    "id": "10211",
-    "prov": "18",
-    "rotulo": "Estación De Servicio Puerta Guadix 292",
-    "municipio": "Guadix",
-    "direccion": "Autovía A92 Km 292.5",
-    "horario": "L: 24H",
-    "lat": 37.31981,
-    "lon": -3.15861,
-    "km": 383.8,
-    "dist_m": 119
    },
    {
     "id": "10210",
@@ -4567,8 +8570,20 @@
     "horario": "L-D: 24H",
     "lat": 37.32019,
     "lon": -3.15833,
-    "km": 383.9,
-    "dist_m": 71
+    "km": 396.1,
+    "dist_m": 74
+   },
+   {
+    "id": "10211",
+    "prov": "18",
+    "rotulo": "Estación De Servicio Puerta Guadix 292",
+    "municipio": "Guadix",
+    "direccion": "Autovía A92 Km 292.5",
+    "horario": "L: 24H",
+    "lat": 37.31981,
+    "lon": -3.15861,
+    "km": 396.1,
+    "dist_m": 122
    },
    {
     "id": "10298",
@@ -4579,8 +8594,8 @@
     "horario": "L-D: 24H",
     "lat": 37.32047,
     "lon": -3.15264,
-    "km": 384.3,
-    "dist_m": 73
+    "km": 396.6,
+    "dist_m": 72
    },
    {
     "id": "5656",
@@ -4591,7 +8606,7 @@
     "horario": "L-V: 07:00-18:00",
     "lat": 37.20667,
     "lon": -3.04833,
-    "km": 403.2,
+    "km": 415.5,
     "dist_m": 42
    },
    {
@@ -4603,7 +8618,7 @@
     "horario": "L-D: 07:00-23:00",
     "lat": 37.19569,
     "lon": -2.98478,
-    "km": 409.0,
+    "km": 421.3,
     "dist_m": 187
    },
    {
@@ -4615,7 +8630,7 @@
     "horario": "X-V: 06:00-14:00",
     "lat": 37.18781,
     "lon": -2.959,
-    "km": 411.5,
+    "km": 423.7,
     "dist_m": 4
    },
    {
@@ -4627,7 +8642,7 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.18925,
     "lon": -2.95483,
-    "km": 411.8,
+    "km": 424.0,
     "dist_m": 290
    },
    {
@@ -4639,7 +8654,7 @@
     "horario": "L-D: 06:30-22:30",
     "lat": 37.16089,
     "lon": -2.83278,
-    "km": 423.9,
+    "km": 436.1,
     "dist_m": 319
    },
    {
@@ -4651,8 +8666,8 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 37.14475,
     "lon": -2.77278,
-    "km": 429.5,
-    "dist_m": 173
+    "km": 441.7,
+    "dist_m": 171
    },
    {
     "id": "5653",
@@ -4663,8 +8678,8 @@
     "horario": "L-D: 06:30-22:30",
     "lat": 37.11692,
     "lon": -2.56128,
-    "km": 450.5,
-    "dist_m": 41
+    "km": 462.7,
+    "dist_m": 40
    },
    {
     "id": "5647",
@@ -4675,7 +8690,7 @@
     "horario": "L-D: 06:00-21:30",
     "lat": 37.01642,
     "lon": -2.44606,
-    "km": 467.4,
+    "km": 479.6,
     "dist_m": 54
    },
    {
@@ -4687,200 +8702,56 @@
     "horario": "L-D: 06:00-22:00",
     "lat": 36.96075,
     "lon": -2.46658,
-    "km": 474.2,
+    "km": 486.4,
     "dist_m": 43
    },
    {
-    "id": "8276",
+    "id": "5618",
     "prov": "04",
-    "rotulo": "Eni",
-    "municipio": "Viator",
-    "direccion": "Calle Sierra De Cazorla, 23 (p.i. La Juaida), 23",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.88461,
-    "lon": -2.41947,
-    "km": 484.7,
-    "dist_m": 53
+    "rotulo": "Moeve",
+    "municipio": "Almería",
+    "direccion": "Carretera Nijar (alquian) Km. 6,9",
+    "horario": "L-D: 06:00-23:00",
+    "lat": 36.845,
+    "lon": -2.39094,
+    "km": 505.0,
+    "dist_m": 92
    },
    {
-    "id": "13591",
+    "id": "12615",
     "prov": "04",
-    "rotulo": "Repsol",
-    "municipio": "Viator",
-    "direccion": "Poligono Sierra De Cazorla, S7n",
-    "horario": "L-D: 24H",
-    "lat": 36.88331,
-    "lon": -2.42069,
-    "km": 484.9,
-    "dist_m": 72
-   },
-   {
-    "id": "15456",
-    "prov": "04",
-    "rotulo": "Energy Carburantes",
-    "municipio": "Viator",
-    "direccion": "Calle Sierra Atalaya, 6",
-    "horario": "L-D: 06:30-22:30",
-    "lat": 36.87931,
+    "rotulo": "Moeve",
+    "municipio": "Almería",
+    "direccion": "Carretera Al-12 Km. 3.6",
+    "horario": "L-D: 00:00-23:59",
+    "lat": 36.84308,
     "lon": -2.42297,
-    "km": 485.2,
-    "dist_m": 340
+    "km": 508.0,
+    "dist_m": 62
    },
    {
-    "id": "16149",
-    "prov": "04",
-    "rotulo": "Gonzalez Cañabate, S.l.",
-    "municipio": "Viator",
-    "direccion": "Calle Sierra Nevada, 90",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.88033,
-    "lon": -2.42325,
-    "km": 485.2,
-    "dist_m": 225
-   },
-   {
-    "id": "6861",
-    "prov": "04",
-    "rotulo": "Repsol",
-    "municipio": "Huércal de Almería",
-    "direccion": "Carretera N-340 Km. 446",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.87497,
-    "lon": -2.44478,
-    "km": 487.3,
-    "dist_m": 316
-   },
-   {
-    "id": "16143",
-    "prov": "04",
-    "rotulo": "Plenergy",
-    "municipio": "Huércal de Almería",
-    "direccion": "Carretera Torrecárdenas Km. 16",
-    "horario": "L-D: 24H",
-    "lat": 36.86519,
-    "lon": -2.44281,
-    "km": 487.9,
-    "dist_m": 388
-   },
-   {
-    "id": "10829",
-    "prov": "04",
-    "rotulo": "Bp Rambla Iniesta",
-    "municipio": "Almería",
-    "direccion": "Calle Cuesta De Los Callejones, 0",
-    "horario": "L-D: 24H",
-    "lat": 36.86553,
-    "lon": -2.44864,
-    "km": 488.2,
-    "dist_m": 24
-   },
-   {
-    "id": "15821",
+    "id": "14598",
     "prov": "04",
     "rotulo": "Plenergy",
     "municipio": "Almería",
-    "direccion": "Camino Los Almendros, 18",
+    "direccion": "Carretera Nijar Los Molinos Km. 396",
     "horario": "L-D: 24H",
-    "lat": 36.86514,
-    "lon": -2.44947,
-    "km": 488.3,
-    "dist_m": 51
+    "lat": 36.84356,
+    "lon": -2.43633,
+    "km": 509.3,
+    "dist_m": 113
    },
    {
-    "id": "15729",
+    "id": "14241",
     "prov": "04",
-    "rotulo": "Plenergy",
+    "rotulo": "La Torre",
     "municipio": "Almería",
-    "direccion": "Carretera De Granada, 2 Tramos 55.57 Km. S/n",
+    "direccion": "Avenida Sierra Alhamilla, 310",
     "horario": "L-D: 24H",
-    "lat": 36.86383,
-    "lon": -2.44892,
-    "km": 488.4,
-    "dist_m": 19
-   },
-   {
-    "id": "5620",
-    "prov": "04",
-    "rotulo": "Cepsa",
-    "municipio": "Almería",
-    "direccion": "Carretera N-340a Km. 444",
-    "horario": "L-D: 06:00-23:30",
-    "lat": 36.85778,
-    "lon": -2.44728,
-    "km": 489.2,
-    "dist_m": 49
-   },
-   {
-    "id": "9131",
-    "prov": "04",
-    "rotulo": "Alcampo",
-    "municipio": "Almería",
-    "direccion": "Avenida Del Mediterraneo, S/n",
-    "horario": "L-D: 24H",
-    "lat": 36.85244,
-    "lon": -2.44681,
-    "km": 490.2,
-    "dist_m": 37
-   },
-   {
-    "id": "10168",
-    "prov": "04",
-    "rotulo": "Cepsa",
-    "municipio": "Almería",
-    "direccion": "Calle Carretera De Nijar, S/n",
-    "horario": "L: 06:00-00:00",
-    "lat": 36.84586,
-    "lon": -2.45011,
-    "km": 491.0,
-    "dist_m": 227
-   },
-   {
-    "id": "14879",
-    "prov": "04",
-    "rotulo": "Plenergy",
-    "municipio": "Almería",
-    "direccion": "Avenida Mediterraneo, 184",
-    "horario": "L-D: 24H",
-    "lat": 36.83778,
-    "lon": -2.44714,
-    "km": 491.5,
-    "dist_m": 359
-   },
-   {
-    "id": "15858",
-    "prov": "04",
-    "rotulo": "Petroprix",
-    "municipio": "Almería",
-    "direccion": "Avenida Nuestra Señora De Montserrat, 160",
-    "horario": "L-D: 24H",
-    "lat": 36.83869,
-    "lon": -2.44453,
-    "km": 491.5,
-    "dist_m": 365
-   },
-   {
-    "id": "10433",
-    "prov": "04",
-    "rotulo": "Bp Montserrat Almeria",
-    "municipio": "Almería",
-    "direccion": "Calle Monserrat, 0",
-    "horario": "L-D: 24H",
-    "lat": 36.84003,
-    "lon": -2.44561,
-    "km": 491.5,
-    "dist_m": 195
-   },
-   {
-    "id": "6826",
-    "prov": "04",
-    "rotulo": "Repsol",
-    "municipio": "Almería",
-    "direccion": "Cl Padre Mendez, S.n.",
-    "horario": "L-D: 06:00-22:00",
-    "lat": 36.83944,
-    "lon": -2.44672,
-    "km": 491.5,
-    "dist_m": 184
+    "lat": 36.84197,
+    "lon": -2.43906,
+    "km": 509.5,
+    "dist_m": 153
    },
    {
     "id": "12812",
@@ -4891,8 +8762,56 @@
     "horario": "L-D: 06:00-23:00",
     "lat": 36.84217,
     "lon": -2.44297,
-    "km": 491.6,
-    "dist_m": 383
+    "km": 509.9,
+    "dist_m": 55
+   },
+   {
+    "id": "15858",
+    "prov": "04",
+    "rotulo": "Petroprix",
+    "municipio": "Almería",
+    "direccion": "Avenida Nuestra Señora De Montserrat, 160",
+    "horario": "L-D: 24H",
+    "lat": 36.83869,
+    "lon": -2.44453,
+    "km": 510.2,
+    "dist_m": 90
+   },
+   {
+    "id": "10433",
+    "prov": "04",
+    "rotulo": "Bp Montserrat Almeria",
+    "municipio": "Almería",
+    "direccion": "Calle Monserrat, 0",
+    "horario": "L-D: 24H",
+    "lat": 36.84003,
+    "lon": -2.44561,
+    "km": 510.3,
+    "dist_m": 31
+   },
+   {
+    "id": "6826",
+    "prov": "04",
+    "rotulo": "Repsol",
+    "municipio": "Almería",
+    "direccion": "Cl Padre Mendez, S.n.",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 36.83944,
+    "lon": -2.44672,
+    "km": 510.4,
+    "dist_m": 34
+   },
+   {
+    "id": "14879",
+    "prov": "04",
+    "rotulo": "Plenergy",
+    "municipio": "Almería",
+    "direccion": "Avenida Mediterraneo, 184",
+    "horario": "L-D: 24H",
+    "lat": 36.83778,
+    "lon": -2.44714,
+    "km": 510.5,
+    "dist_m": 219
    }
   ]
  },
@@ -4906,10 +8825,30 @@
   "2": [
    "11",
    "21",
-   "41"
+   "41",
+   "PT-8"
+  ],
+  "3": [
+   "PT-15",
+   "PT-2",
+   "PT-8"
+  ],
+  "4": [
+   "PT-10",
+   "PT-11",
+   "PT-15"
+  ],
+  "5": [
+   "PT-1",
+   "PT-10",
+   "PT-6"
   ],
   "6": [
-   "36"
+   "36",
+   "PT-1",
+   "PT-13",
+   "PT-16",
+   "PT-3"
   ],
   "7": [
    "15",
@@ -4918,10 +8857,26 @@
   "8": [
    "15",
    "32",
-   "36"
+   "36",
+   "PT-17"
+  ],
+  "9": [
+   "PT-17",
+   "PT-18",
+   "PT-6"
+  ],
+  "10": [
+   "PT-10",
+   "PT-12",
+   "PT-14",
+   "PT-5",
+   "PT-6",
+   "PT-7"
   ],
   "11": [
-   "21"
+   "21",
+   "PT-2",
+   "PT-7"
   ],
   "12": [
    "04",

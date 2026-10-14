@@ -3,7 +3,7 @@
    activo y ?viaje=<id> abre otro. Lo que el usuario apunta se guarda en localStorage. Sin build. */
 'use strict';
 
-const APP_VERSION = 'v4.1.1';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v4.2.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 /* Del dispositivo, comunes a todos los viajes */
 const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales y poliza: solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';           // auto | light | dark
@@ -47,6 +47,34 @@ function mapsDir(q) { return `https://www.google.com/maps/dir/?api=1&destination
 function horaMin(s) { const m = /(\d{1,2}):(\d{2})/.exec(String(s || '')); return m ? (+m[1]) * 60 + (+m[2]) : null; }
 function ahoraMin() { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
 function fmtHM(min) { return `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`; }
+/* Zonas horarias. Las horas del plan van en hora local de cada sitio: e.zona_horaria es la del destino del dia,
+   pt.zona_horaria la de un punto de meteo y h.zona_horaria la de una fila del horario. Sin nada, la del viaje. */
+function zonaViaje() { return (D.data && D.data.meteo && D.data.meteo.zona_horaria) || 'Europe/Madrid'; }
+function zonaDia(e) { return (e && e.zona_horaria) || zonaViaje(); }
+function zonaPunto(pt) { return (pt && pt.zona_horaria) || zonaViaje(); }
+/* Minutos desde medianoche ahora mismo en una zona horaria; sin zona, la hora del movil. */
+function ahoraMinEn(tz) {
+  if (!tz) return ahoraMin();
+  try {
+    const p = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    return (+p.find((x) => x.type === 'hour').value % 24) * 60 + (+p.find((x) => x.type === 'minute').value);
+  } catch (e) { return ahoraMin(); }
+}
+const ZONA_NOMBRE = { 'Europe/Lisbon': 'Portugal', 'Europe/Madrid': 'España' };
+const ZONA_CORTA = { 'Europe/Lisbon': 'PT', 'Europe/Madrid': 'ES' };
+const PAIS_NOMBRE = { ES: 'España', PT: 'Portugal' };
+/* ' (hora de Portugal)' si la zona no es la del viaje. */
+function horaDe(tz) { return tz && tz !== zonaViaje() ? ` (hora de ${ZONA_NOMBRE[tz] || tz})` : ''; }
+/* Salida y llegada del plan. Su zona es la de la primera y la ultima fila del horario (en los dias de frontera
+   no coinciden); sin horario, la del dia. horaCorta quita el comentario: "09:30 (hora española)" -> "09:30". */
+function zonaSalida(e) { const h = (e.horario_orientativo || [])[0]; return (h && h.zona_horaria) || zonaDia(e); }
+function zonaLlegada(e) { const h = (e.horario_orientativo || []).slice(-1)[0]; return (h && h.zona_horaria) || zonaDia(e); }
+function horaCorta(s) { return String(s || '').split(' ')[0]; }
+/* Marca "PT"/"ES" para una hora del dia e: siempre en los dias de frontera; si no, solo fuera de la zona del viaje. */
+function marcaZona(e, tz) { return tz && (zonasDia(e).size > 1 || tz !== zonaViaje()) ? (ZONA_CORTA[tz] || tz) : ''; }
+function horaZonaHTML(e, s, tz) { const m = marcaZona(e, tz); return `${esc(horaCorta(s))}${m ? ` <span class="tz">${esc(m)}</span>` : ''}`; }
+/* Minutos que la zona a va por delante de la b (Madrid, 60 sobre Lisboa). */
+function difZonas(a, b) { if (!a || !b || a === b) return 0; let d = ahoraMinEn(a) - ahoraMinEn(b); if (d > 720) d -= 1440; if (d < -720) d += 1440; return d; }
 /* Orto y ocaso (algoritmo NOAA simplificado, precision de ~2 min). Devuelve horas locales "HH:MM". */
 /* Orto y ocaso en hora local de tz (por defecto la del viaje). */
 function solDia(lat, lon, iso, tz) {
@@ -66,12 +94,14 @@ function solDia(lat, lon, iso, tz) {
     const T = H + RA - (0.06571 * t) - 6.622;
     const UT = (((T - lngH) % 24) + 24) % 24;
     const date = new Date(Date.UTC(y, m - 1, d, 0, 0, 0) + UT * 3600000);
-    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: tz || (D.data && D.data.meteo && D.data.meteo.zona_horaria) || 'Europe/Madrid' });
+    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: tz || zonaViaje() });
   };
   return { orto: calc(true), ocaso: calc(false) };
 }
 function dots(n, max = 5) { return `<span class="dots d${n}" title="${n}/${max}">${'●'.repeat(n)}${'○'.repeat(max - n)}</span>`; }
-function tipoInfo(t) { const m = t.startsWith('montaña'); return { icon: m ? '⛰️' : '☀️', cls: m ? 'mount' : 'hot', label: human(t) }; }
+/* Tipo de dia -> icono y color. Lo que no encaja (llano, calor_y_llano...) es el dia de calor del primer viaje. */
+const TIPOS = [[/^monta/, '⛰️', 'mount'], [/^costa/, '🌊', ''], [/^autov/, '🛣️', ''], [/^interior/, '🌄', 'mount'], [/^ciudad/, '🏙️', '']];
+function tipoInfo(t) { const n = norm(t); const x = TIPOS.find(([re]) => re.test(n)); return { icon: x ? x[1] : '☀️', cls: x ? x[2] : 'hot', label: human(t) }; }
 function list(items) { return `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`; }
 const EUR = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
 function fmtEur(v, aprox) { return (aprox ? '≈ ' : '') + EUR.format(v); }
@@ -185,17 +215,14 @@ async function meteoFetch(force) {
   if (!navigator.onLine) { D.meteo.error = 'Sin conexión'; return; }
   const pts = meteoPoints(); if (!pts.length) return;
   D.meteo.status = 'loading'; D.meteo.error = null;
-  const q = `latitude=${pts.map((p) => p.lat).join(',')}&longitude=${pts.map((p) => p.lon).join(',')}&daily=${METEO_DAILY.join(',')}&timezone=${encodeURIComponent(D.data.meteo.zona_horaria || 'Europe/Madrid')}&forecast_days=16`;
   try {
     const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 12000);
-    const res = await fetch(`${METEO_API}?${q}`, { signal: ctrl.signal, cache: 'no-store' });
+    /* Una peticion por zona horaria: asi cada punto trae sus dias en su hora local (Portugal, una menos). */
+    const pares = await meteoPorZona(pts, (z) => `daily=${METEO_DAILY.join(',')}&timezone=${encodeURIComponent(z)}&forecast_days=16`, ctrl.signal);
     clearTimeout(t);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    const arr = Array.isArray(json) ? json : [json];
     const byPoint = {};
-    arr.forEach((loc, i) => {
-      const pt = pts[i]; if (!pt || !loc.daily) return;
+    pares.forEach(([pt, loc]) => {
+      if (!pt || !loc.daily) return;
       const days = {};
       loc.daily.time.forEach((date, j) => {
         days[date] = { code: loc.daily.weather_code[j], tmax: loc.daily.temperature_2m_max[j], tmin: loc.daily.temperature_2m_min[j], pprob: loc.daily.precipitation_probability_max[j], psum: loc.daily.precipitation_sum[j], gust: loc.daily.wind_gusts_10m_max[j] };
@@ -209,6 +236,21 @@ async function meteoFetch(force) {
     D.meteo.error = err.name === 'AbortError' ? 'Tiempo de espera agotado' : (err instanceof TypeError ? 'Sin acceso a la red' : (err.message || 'Error de red'));
   }
   rerender('tiempo'); rerender('etapas'); rerender('resumen');
+}
+/* Pide a Open-Meteo los puntos agrupados por zona horaria (una peticion por zona) y devuelve [[punto, respuesta], ...]
+   en el mismo orden que 'pts'. 'extra(zona)' da el resto de la consulta. */
+async function meteoPorZona(pts, extra, signal) {
+  const grupos = {};
+  pts.forEach((p) => { const z = zonaPunto(p); (grupos[z] = grupos[z] || []).push(p); });
+  const partes = await Promise.all(Object.keys(grupos).map(async (z) => {
+    const g = grupos[z];
+    const res = await fetch(`${METEO_API}?latitude=${g.map((p) => p.lat).join(',')}&longitude=${g.map((p) => p.lon).join(',')}&${extra(z)}`, { signal, cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json(); const arr = Array.isArray(json) ? json : [json];
+    return g.map((p, i) => [p, arr[i] || {}]);
+  }));
+  const porPunto = new Map(); partes.flat().forEach(([p, loc]) => porPunto.set(p, loc));
+  return pts.map((p) => [p, porPunto.get(p) || {}]);
 }
 /* Re-pinta la vista actual conservando el scroll, solo si coincide con la vista (y dia) indicados.
    Las llamadas seguidas se agrupan en un unico repintado. */
@@ -235,10 +277,13 @@ function wmo(code) {
   if (code >= 95) return { icon: '⛈️', label: 'Tormenta' };
   return { icon: '❔', label: 'Sin dato' };
 }
+/* Nieve (71-77, 85-86) y llovizna o lluvia engelante (56, 57, 66, 67): en moto, mal tiempo siempre. */
+function esNieve(c) { return (c >= 71 && c <= 77) || c === 85 || c === 86; }
+function esHelada(c) { return c === 56 || c === 57 || c === 66 || c === 67; }
 function meteoVerdictOne(w) {
   if (!w) return null;
-  if (w.code >= 95 || w.pprob >= 70 || w.psum >= 8 || w.gust >= 70) return 'malo';
-  if (w.pprob >= 40 || w.psum >= 2 || (w.code >= 51 && w.code <= 82) || w.gust >= 50) return 'regular';
+  if (w.code >= 95 || esNieve(w.code) || esHelada(w.code) || w.pprob >= 70 || w.psum >= 8 || w.gust >= 70) return 'malo';
+  if (w.pprob >= 40 || w.psum >= 2 || (w.code >= 51 && w.code <= 82) || w.gust >= 50 || (w.tmin != null && w.tmin <= 1)) return 'regular';
   return 'bueno';
 }
 const VERDICT = { bueno: { cls: 'ok', txt: 'Buen tiempo', icon: '🟢' }, regular: { cls: 'warn', txt: 'Regular', icon: '🟠' }, malo: { cls: 'hot', txt: 'Mal tiempo', icon: '🔴' } };
@@ -275,7 +320,9 @@ function meteoStrip(e) {
   if (!m.verdict) return '';
   const v = VERDICT[m.verdict];
   const avisos = [];
-  if (m.tmin != null && m.tmin <= 8) avisos.push('Frío al salir: forro térmico');
+  if (m.tmin != null && m.tmin <= 2) avisos.push('Riesgo de hielo: con menos de 3 °C y asfalto húmedo a la sombra, esperar');
+  else if (m.tmin != null && m.tmin <= 8) avisos.push('Frío al salir: forro térmico');
+  if (m.pts.some(({ w }) => w && (esNieve(w.code) || esHelada(w.code)))) avisos.push('Nieve o lluvia helada en la previsión: plan B o día de margen');
   if (m.tmax != null && m.tmax >= 32) avisos.push('Calor: beber en cada parada');
   return `<div class="card wx-strip"><div class="card-title"><h3>Previsión</h3><span class="badge ${v.cls}">${v.icon} ${v.txt}</span></div>
     ${m.pts.map(({ pt, w }) => meteoPointRow(pt, w)).join('')}
@@ -298,18 +345,15 @@ async function meteoHorasFetch(e, force) {
   if (!force && c && c.lastTry && Date.now() - c.lastTry < METEO_RETRY_MS) return;
   D.meteoH.loading[e.dia] = true;
   const pts = e.meteo_puntos;
-  const q = `latitude=${pts.map((p) => p.lat).join(',')}&longitude=${pts.map((p) => p.lon).join(',')}&hourly=${METEO_HOURLY.join(',')}&timezone=${encodeURIComponent(D.data.meteo.zona_horaria || 'Europe/Madrid')}&start_date=${e.fecha}&end_date=${e.fecha}`;
   try {
     const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 12000);
-    const res = await fetch(`${METEO_API}?${q}`, { signal: ctrl.signal, cache: 'no-store' });
+    const pares = await meteoPorZona(pts, (z) => `hourly=${METEO_HOURLY.join(',')}&timezone=${encodeURIComponent(z)}&start_date=${e.fecha}&end_date=${e.fecha}`, ctrl.signal);
     clearTimeout(t);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json(); const arr = Array.isArray(json) ? json : [json];
     const out = { fecha: e.fecha, fetched: new Date().toISOString(), pts: [] };
-    arr.forEach((loc, i) => {
-      const pt = pts[i]; const h = loc.hourly; if (!pt || !h) return;
+    pares.forEach(([pt, loc]) => {
+      const h = loc.hourly; if (!pt || !h) return;
       const horas = h.time.map((tm, j) => ({ h: +tm.slice(11, 13), pp: h.precipitation_probability[j], t: h.temperature_2m[j], code: h.weather_code[j], gust: h.wind_gusts_10m[j] })).filter((x) => x.h >= HORA_INI && x.h <= HORA_FIN);
-      out.pts.push({ nombre: pt.nombre, horas });
+      out.pts.push({ nombre: pt.nombre, horas, zona: zonaPunto(pt) });   // horas locales del punto
     });
     D.meteoH.byDay[e.dia] = out;
     try { localStorage.setItem(METEO_H_KEY, JSON.stringify(D.meteoH.byDay)); } catch (err) { /* sin almacenamiento */ }
@@ -324,7 +368,10 @@ function tormentaTarde(hd) {
   let peor = null;
   (hd.pts || []).forEach((p) => p.horas.forEach((x) => {
     if (x.h < 13 || x.h > 19) return;
-    if (x.pp >= 40 || x.code >= 95) { if (!peor || x.h < peor.h) peor = { h: x.h, pp: x.pp, code: x.code, punto: p.nombre }; }
+    if (x.pp >= 40 || x.code >= 95) {
+      const ref = x.h * 60 - difZonas(p.zona, zonaViaje());   // para comparar puntos de zonas distintas
+      if (!peor || ref < peor.ref) peor = { h: x.h, ref, pp: x.pp, code: x.code, punto: p.nombre, zona: p.zona };
+    }
   }));
   return peor;
 }
@@ -333,16 +380,19 @@ function meteoHorasHTML(e) {
   const hd = D.meteoH.byDay[e.dia];
   if (!hd || hd.fecha !== e.fecha || !hd.pts.length) { meteoHorasFetch(e, false); return hd && hd.error ? '' : `<p class="muted"><small>Cargando la previsión por horas…</small></p>`; }
   meteoHorasFetch(e, false); // refresca si esta caducada
-  const filas = hd.pts.map((p) => `<div class="hrs-row"><b>${esc(p.nombre)}</b><div class="hrs">${p.horas.map((x) => {
-    const v = x.pp >= 70 || x.code >= 95 ? 'malo' : x.pp >= 40 || (x.code >= 51 && x.code <= 82) ? 'regular' : 'bueno';
+  const multi = zonasDia(e).size > 1;
+  const filas = hd.pts.map((p) => `<div class="hrs-row"><b>${esc(p.nombre)}${multi && p.zona ? ` <span class="tz">${esc(ZONA_CORTA[p.zona] || p.zona)}</span>` : ''}</b><div class="hrs">${p.horas.map((x) => {
+    const v = x.pp >= 70 || x.code >= 95 || esNieve(x.code) || esHelada(x.code) ? 'malo' : x.pp >= 40 || (x.code >= 51 && x.code <= 82) ? 'regular' : 'bueno';
     return `<div class="hr hr-${v}" title="${x.h}:00 · ${wmo(x.code).label} · ${x.pp}% lluvia · ${Math.round(x.t)}° · rachas ${Math.round(x.gust)} km/h"><span class="hr-ico">${wmo(x.code).icon}</span><span class="hr-t">${Math.round(x.t)}°</span><span class="hr-bar"><i style="height:${Math.max(4, x.pp)}%"></i></span><span class="hr-pp">${x.pp}</span><span class="hr-h">${x.h}</span></div>`;
   }).join('')}</div></div>`).join('');
   const tt = tormentaTarde(hd);
-  const llegada = horaMin(e.llegada_prevista);
-  const aviso = tt ? `<div class="note"><b>⛈️ Lluvia o tormenta de tarde</b> desde las ${tt.h}:00 en ${esc(tt.punto)} (${tt.pp}%).${llegada != null && llegada >= tt.h * 60 ? ` La llegada prevista (${esc(e.llegada_prevista.split(' ')[0])}) cae dentro: salir antes o acortar.` : ' Llegas antes, según el plan.'}</div>` : '';
-  return `<h4>Por horas · ${fmtFecha(e.fecha)}</h4>${filas}<p><small>Barra: probabilidad de lluvia (%). Temperatura en °C.</small></p>${aviso}`;
+  const llegada = horaMin(e.llegada_prevista), zl = zonaLlegada(e);
+  const ttLlegada = tt ? tt.h * 60 + difZonas(zl, tt.zona || zl) : null;   // la hora del aviso, en la zona de la llegada
+  const aviso = tt ? `<div class="note"><b>⛈️ Lluvia o tormenta de tarde</b> desde las ${tt.h}:00${multi && tt.zona ? ` (hora de ${esc(ZONA_NOMBRE[tt.zona] || tt.zona)})` : ''} en ${esc(tt.punto)} (${tt.pp}%).${llegada != null && llegada >= ttLlegada ? ` La llegada prevista (${horaZonaHTML(e, e.llegada_prevista, zl)}) cae dentro: salir antes o acortar.` : ' Llegas antes, según el plan.'}</div>` : '';
+  return `<h4>Por horas · ${fmtFecha(e.fecha)}</h4>${filas}<p><small>Barra: probabilidad de lluvia (%). Temperatura en °C.${multi ? ' Cada fila en la hora local de su punto.' : ''}</small></p>${aviso}`;
 }
 
+const ENLACE_NOMBRE = { aemet: 'AEMET', windy: 'Windy', ipma: 'IPMA', meteogalicia: 'MeteoGalicia', dgt: 'DGT tráfico' };
 function viewTiempo() {
   const it = D.data.itinerario, mt = D.data.meteo, today = todayISO();
   if (D.meteo.status === 'idle' || (D.meteo.status === 'ok' && meteoStale())) meteoFetch(false);
@@ -363,7 +413,7 @@ function viewTiempo() {
   }).join('');
   return `<div class="card accent"><div class="card-title"><h1>Tiempo en ruta</h1>${estado}</div>
       <p class="muted">Previsión diaria de ${esc(mt.proveedor.split(' (')[0])} para dos puntos de cada etapa. Se guarda en el móvil y se refresca sola cada 3 horas.</p>
-      <p><button class="btn small" type="button" id="meteo-refresh"${D.meteo.status === 'loading' ? ' disabled' : ''}>Actualizar ahora</button> <a class="btn small" href="${esc(mt.enlaces.aemet)}" target="_blank" rel="noopener">AEMET</a> <a class="btn small" href="${esc(mt.enlaces.windy)}" target="_blank" rel="noopener">Windy</a></p>
+      <p><button class="btn small" type="button" id="meteo-refresh"${D.meteo.status === 'loading' ? ' disabled' : ''}>Actualizar ahora</button> ${Object.keys(mt.enlaces).filter((k) => mt.enlaces[k]).map((k) => `<a class="btn small" href="${esc(mt.enlaces[k])}" target="_blank" rel="noopener">${esc(ENLACE_NOMBRE[k] || human(k))}</a>`).join(' ')}</p>
       ${!hasData && D.meteo.status === 'error' ? `<div class="note">No se ha podido consultar la previsión desde aquí. Usa los enlaces de cada punto o abre la app publicada en GitHub Pages.</div>` : ''}
     </div>
     <div class="note info"><b>Regla:</b> ${esc(mt.regla)}</div>
@@ -376,10 +426,13 @@ function pagoInfo(a) {
   const pg = a && a.pago; if (!pg) return null;
   return { ...pg, pendiente: (pg.pendiente_eur || 0) > 0 };
 }
+/* La etiqueta lleva solo el principio del estado ('Sin reservar · abierto...' -> 'Sin reservar'): el detalle va debajo. */
+function estadoCorto(t) { return String(t || '').split(/ · |: /)[0]; }
+function estadoPendiente(t) { return /sin reservar|por reservar|llamar|pendiente|confirmar/i.test(estadoCorto(t)); }
 function estadoBadge(a) {
   const pg = pagoInfo(a);
   if (pg && pg.pendiente) return `<span class="badge warn">Pendiente ${fmtEur(pg.pendiente_eur, pg.aproximado)}</span>`;
-  return `<span class="badge ok">${pg ? 'Pagado' : esc(a.estado)}</span>`;
+  return `<span class="badge ${!pg && estadoPendiente(a.estado) ? 'warn' : 'ok'}">${pg ? 'Pagado' : esc(estadoCorto(a.estado))}</span>`;
 }
 function pagoHTML(a) {
   const pg = pagoInfo(a); if (!pg) return '';
@@ -415,10 +468,15 @@ function preciosFetch(dia, force) {
   if (!provs.length) return Promise.resolve(false);
   provs.forEach((p) => { D.preciosIntento[p] = Date.now(); });
   D.preciosCargando = (D.preciosCargando || 0) + 1;
-  return Promise.all(provs.map((p) => fetch(`${g.api}FiltroProvinciaProducto/${p}/${g.producto.id}`, { cache: 'no-store' })
+  /* España: provincia del Ministerio. Portugal ('PT-<distrito>'): distrito de la DGEG, mismo producto (gasolina 95). */
+  const url = (p) => (/^PT-/.test(p) && g.pt
+    ? `${g.pt.api}PesquisarPostos?idsTiposComb=${g.pt.producto.id}&idMarca=&idTipoPosto=&idDistrito=${encodeURIComponent(p.slice(3))}&idsMunicipios=&qtdPorPagina=9999&pagina=1`
+    : `${g.api}FiltroProvinciaProducto/${p}/${g.producto.id}`);
+  return Promise.all(provs.map((p) => fetch(url(p), { cache: 'no-store' })
     .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then((d) => {
-      (d.ListaEESSPrecio || []).forEach((e) => { const v = parseFloat(String(e.PrecioProducto || '').replace(',', '.')); if (v) D.precios.precios[e.IDEESS] = v; });
+      if (/^PT-/.test(p)) (d.resultado || []).forEach((e) => { const v = parseFloat(String(e.Preco || '').replace(/[^\d,.]/g, '').replace(',', '.')); if (v) D.precios.precios[`PT-${e.Id}`] = v; });
+      else (d.ListaEESSPrecio || []).forEach((e) => { const v = parseFloat(String(e.PrecioProducto || '').replace(',', '.')); if (v) D.precios.precios[e.IDEESS] = v; });
       D.precios.provincias[p] = (d.Fecha || hoy);
     }).catch(() => null)))
     .then(() => { lsSet(GASOLINA_KEY, D.precios); D.preciosCargando--; rerender('etapas', dia); rerender('ahora'); rerender('gasolina'); return true; });
@@ -432,7 +490,7 @@ function gasolinerasDia(dia) {
 }
 function gasMasBarata(lista) { return lista.filter((s) => s.precio).sort((a, b) => a.precio - b.precio)[0] || null; }
 function fmtPrecio(p) { return p == null ? '–' : `${p.toLocaleString('es-ES', { minimumFractionDigits: 3, maximumFractionDigits: 3 })} €`; }
-function gasHorario(h) { return (h || '').replace(/^L-D: /, '').replace(/24H/i, '24 h'); }
+function gasHorario(h) { return (h || '–').replace(/^L-D: /, '').replace(/24H/i, '24 h'); }
 function gasEstadoPrecios(dia) {
   const g = D.gasolineras; if (!g) return '';
   const provs = g.provincias_por_dia[String(dia)] || [];
@@ -459,7 +517,7 @@ function gasolinerasHTML(e) {
   return `<h2>Gasolineras en la ruta (${lista.length})</h2>
     <div class="card">
       ${barata ? `<div class="note info"><b>⛽ La más barata hoy:</b> ${esc(barata.rotulo)} en ${esc(barata.municipio)}, km ${barata.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}, <b>${fmtPrecio(barata.precio)}</b> · ${esc(gasHorario(barata.horario))}</div>` : ''}
-      ${gasolinerasTabla(lista, null)}
+      ${lista.length > 20 ? `<details><summary>Las ${lista.length} gasolineras, por km</summary>${gasolinerasTabla(lista, null)}</details>` : gasolinerasTabla(lista, null)}
       <p class="row">${gasEstadoPrecios(e.dia)}</p>
       <p><small>${esc((D.gasolineras && D.gasolineras.aviso) || '')} Fuente: ${esc((D.gasolineras && D.gasolineras.fuente) || 'Ministerio')}.</small></p>
     </div>`;
@@ -495,7 +553,7 @@ function viewGasolina() {
     </div>`;
   }).join('');
   return `<div class="card accent"><div class="card-title"><h1>Gasolina</h1><span class="badge">95 E5</span></div>
-      <p>Gasolineras a menos de 400 m de cada track con el precio que declaran hoy al Ministerio. La app pide los precios de las provincias de la etapa (unos 50 KB por provincia) y los guarda hasta mañana.</p>
+      <p>Gasolineras a menos de 400 m de cada track con el precio que declaran hoy al Ministerio${g.pt ? ' (en Portugal, a la DGEG)' : ''}. La app pide los precios de las provincias${g.pt ? ' y distritos portugueses' : ''} de la etapa (unos 50 KB cada una) y los guarda hasta mañana.</p>
       ${hoy ? `<p><a class="btn" href="#/etapas/${hoy.dia}">Ir a la etapa de hoy</a></p>` : ''}
       <p><small>${esc(g.aviso || '')}</small></p></div>
     ${filas}`;
@@ -598,15 +656,20 @@ function radaresTabla(rs, conDist) {
     <td><a href="${mapsSearch(`${r.lat},${r.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>`;
 }
 /* Bloque de la ficha de etapa: los de la ruta y, plegados, los que quedan cerca. */
+/* La DGT solo cubre España: en los dias que pisan Portugal, decirlo en vez de dar a entender que no hay radares. */
+function radaresPortugalNota(e) {
+  return (e.paises || []).includes('PT') ? '<p class="muted"><small>En Portugal la app no tiene radares: la DGT solo cubre España. Allí hay radares fijos y de tramo (SINCRO) y móviles: 90 km/h en carretera y 50 en población.</small></p>' : '';
+}
 function radaresHTML(e) {
   const rs = radaresDia(e.dia);
-  if (!rs.en_ruta.length && !rs.cerca.length) return '';
+  if (!rs.en_ruta.length && !rs.cerca.length) return (e.paises || []).includes('PT') ? `<h2>Radares</h2><div class="card">${radaresPortugalNota(e)}</div>` : '';
   const cercaM = (D.radares && D.radares.cerca_m) || 5000;
   return `<h2>Radares (${rs.en_ruta.length})</h2>
     <div class="card">
       ${rs.en_ruta.length ? radaresTabla(rs.en_ruta, false)
         : '<p class="muted">Ningún radar de la DGT sobre la ruta de este día.</p>'}
       ${rs.cerca.length ? `<details><summary>Cerca de la ruta, sin pisarla (${rs.cerca.length})</summary>${radaresTabla(rs.cerca, true)}<p><small>Salen por si te desvías: no están sobre el track.</small></p></details>` : ''}
+      ${radaresPortugalNota(e)}
       ${radarFuente()}
       <p class="row"><a class="btn small" href="#/radares">Todos los radares del viaje</a></p>
     </div>`;
@@ -642,7 +705,7 @@ function trackLoadP(e) {
   });
 }
 function tracksLoadAll() { return Promise.all(D.data.itinerario.map(trackLoadP)); }
-const DIA_COLORS = ['#1d5fa5', '#c2410c', '#1f8a4c', '#7c3aed', '#b2600a', '#0e7490', '#be123c', '#4d7c0f', '#6d28d9', '#b45309', '#0369a1'];
+const DIA_COLORS = ['#1d5fa5', '#c2410c', '#1f8a4c', '#7c3aed', '#b2600a', '#0e7490', '#be123c', '#4d7c0f', '#6d28d9', '#b45309', '#0369a1', '#9d174d', '#047857', '#a16207'];
 function fmtMin(min) { if (min == null) return '–'; const h = Math.floor(min / 60), m = min % 60; return `${h}h${String(m).padStart(2, '0')}`; }
 function fmtKm(km) { return `${km.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km`; }
 function fmtM(m) { return m == null ? '–' : `${Math.round(m).toLocaleString('es-ES')} m`; }
@@ -781,7 +844,7 @@ function rutaHTML(e) {
       ${trackProfile(t)}
       <div class="statgrid">
         <div class="stat"><small>Distancia (GPX)</small><b>${fmtKm(t.km)}</b><small>Plan: ${e.km_aprox} km${Math.abs(diffKm) >= 5 ? ` (${diffKm > 0 ? '+' : ''}${Math.round(diffKm)})` : ''}</small></div>
-        <div class="stat"><small>Tiempo Kurviger</small><b>${fmtMin(t.duracion_min)}</b><small>Plan: ${esc(e.tiempo_real_aprox)} reales</small></div>
+        <div class="stat"><small>${/kurviger/i.test(t.fuente || '') ? 'Tiempo Kurviger' : 'Tiempo del GPX'}</small><b>${fmtMin(t.duracion_min)}</b><small>Plan: ${esc(e.tiempo_real_aprox)} reales</small></div>
         ${e.gpx.kurviger ? `<div class="stat"><small>Kurviger Cloud ${fmtFecha(e.gpx.kurviger.exportado)}</small><b>${fmtKm(e.gpx.kurviger.km)} · ${fmtMin(e.gpx.kurviger.duracion_min)}</b><small>${e.gpx.kurviger.waypoints} puntos · perfil ${esc(e.gpx.kurviger.perfil)}${Math.abs(e.gpx.kurviger.duracion_min - (t.duracion_min || 0)) >= 15 ? ` · ${e.gpx.kurviger.duracion_min > t.duracion_min ? '+' : '−'}${fmtMin(Math.abs(e.gpx.kurviger.duracion_min - t.duracion_min))} respecto al GPX` : ''}</small></div>` : ''}
         <div class="stat"><small>Desnivel</small><b>+${fmtM(t.subida_m)}</b><small>−${fmtM(t.bajada_m)}</small></div>
         <div class="stat"><small>Altitud</small><b>${fmtM(t.alt_max_m)}</b><small>mín. ${fmtM(t.alt_min_m)}</small></div>
@@ -906,7 +969,7 @@ function guiaHTML(e) {
       <div class="poi-body">
         <div class="poi-head"><b>${esc(v.lugar)}</b>${v.opcional ? '<span class="badge">Opcional</span>' : ''}${v.tiempo ? `<span class="poi-time">⏱ ${esc(v.tiempo)}</span>` : ''}</div>
         <p>${esc(v.que)}</p>
-        <small><a href="${v.lat != null ? mapsSearch(`${v.lat},${v.lon}`) : mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small>
+        <small><a href="${mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small>
       </div></div>`).join('');
   const c = g.comer;
   return `<h2 id="guia">Guía del día</h2>
@@ -1089,7 +1152,8 @@ function viewAhora() {
   if (r && !llegado) {
     const ritmo = t.duracion_min ? t.duracion_min / t.km : 1.1;
     const min = r.restante * ritmo;
-    const llega = now + min;
+    const zl = zonaLlegada(e), mz = marcaZona(e, zl);
+    const llega = ahoraMinEn(zl) + min;   // en hora del destino, como llegada_prevista
     const tarde = e.llegada_prevista && horaMin(e.llegada_prevista) != null && llega > horaMin(e.llegada_prevista) + 45;
     const rec = tarde ? recortablesDia(e) : [];
     cards.push({ p: 1, html: `<div class="card"><div class="card-title"><h3>Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</h3><span class="badge">${r.pct} %</span></div>
@@ -1097,7 +1161,7 @@ function viewAhora() {
       <div class="statgrid">
         <div class="stat"><small>Llevas</small><b>${fmtKm(Math.round(r.km))}</b><small>de ${fmtKm(t.km)}</small></div>
         <div class="stat"><small>Quedan</small><b>${fmtKm(Math.round(r.restante))}</b><small>≈ ${fmtRel(min)} de moto</small></div>
-        <div class="stat"><small>Llegada estimada</small><b class="${tarde ? 'txt-hot' : ''}">${fmtHM(Math.min(24 * 60 - 1, Math.round(llega)))}</b><small>plan: ${esc(e.llegada_prevista.split(' ')[0])}</small></div>
+        <div class="stat"><small>Llegada estimada</small><b class="${tarde ? 'txt-hot' : ''}">${fmtHM(Math.min(24 * 60 - 1, Math.round(llega)))}</b><small>plan: ${esc(horaCorta(e.llegada_prevista))}${mz ? ` · hora ${esc(mz)}` : ''}</small></div>
         <div class="stat"><small>Siguiente punto</small><b>${r.next ? esc(viaNombre(e, r.next, r.idxNext)) : 'Destino'}</b><small>${r.next ? `en ${fmtKm(Math.round((r.next.km - r.km) * 10) / 10)}` : ''}</small></div>
       </div>
       ${tarde ? `<div class="note">Vas con retraso sobre el plan. ${rec.length ? `Hoy puedes saltarte, sin tocar el alojamiento: ${esc(rec.join(' · '))}.` : 'Hoy no hay paradas opcionales que saltar: acorta las paradas, no alargues la comida y avisa al alojamiento si se hace de noche.'}</div>` : ''}</div>` });
@@ -1107,8 +1171,8 @@ function viewAhora() {
     const m = meteoDia(e), v = m.verdict ? VERDICT[m.verdict] : null;
     cards.push({ p: 1, html: `<div class="card"><div class="card-title"><h3>Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</h3><span class="badge">${fmtKm(e.km_aprox)}</span></div>
       <div class="statgrid">
-        <div class="stat"><small>Salida</small><b>${esc(e.salida.split(' ')[0])}</b><small>${esc(e.tiempo_real_aprox)} de moto</small></div>
-        <div class="stat"><small>Llegada prevista</small><b>${esc(e.llegada_prevista.split(' ')[0])}</b><small>${esc(e.destino)}</small></div>
+        <div class="stat"><small>Salida</small><b>${horaZonaHTML(e, e.salida, zonaSalida(e))}</b><small>${esc(e.tiempo_real_aprox)} de moto</small></div>
+        <div class="stat"><small>Llegada prevista</small><b>${horaZonaHTML(e, e.llegada_prevista, zonaLlegada(e))}</b><small>${esc(e.destino)}</small></div>
         ${v ? `<div class="stat"><small>Previsión</small><b>${esc(v.txt)}</b><small>${m.tmin != null ? `${Math.round(m.tmin)}° / ${Math.round(m.tmax)}°` : ''}</small></div>` : ''}
         <div class="stat"><small>Puntos de despiste</small><b>${((e.gpx && e.gpx.avisos) || []).length}</b><small><a href="#/etapas/${e.dia}">ver la etapa</a></small></div>
       </div>
@@ -1156,21 +1220,21 @@ function viewAhora() {
     if (pois.length) cards.push({ p: 3, html: `<div class="card"><h3>Por delante</h3><div class="poi-list">${pois.map((v) => `<div class="poi${v.opcional ? ' opcional' : ''}">
         <span class="poi-icon" aria-hidden="true">${POI_ICON[v.tipo] || '📍'}</span>
         <div class="poi-body"><div class="poi-head"><b>${esc(v.lugar)}</b><span class="badge">${v.km <= r.km ? 'aquí' : `en ${fmtKm(Math.round((v.km - r.km) * 10) / 10)}`}</span>${v.tiempo ? `<span class="poi-time">⏱ ${esc(v.tiempo)}</span>` : ''}</div>
-        <p>${esc(v.que)}</p><small><a href="${v.lat != null ? mapsSearch(`${v.lat},${v.lon}`) : mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small></div></div>`).join('')}</div></div>` });
+        <p>${esc(v.que)}</p><small><a href="${mapsSearch(v.lugar)}" target="_blank" rel="noopener">Ver en el mapa ↗</a></small></div></div>`).join('')}</div></div>` });
   }
   /* 6. Horario del dia */
   if (e.horario_orientativo) {
-    const idx = e.horario_orientativo.findIndex((h) => { const m = horaMin(h.hora); return m != null && m >= now; });
+    const idx = siguienteHorario(e);
     const h = idx >= 0 ? e.horario_orientativo[idx] : null;
-    if (h) { const m = horaMin(h.hora);
-      cards.push({ p: 3.5, html: `<div class="note info"><b>Según el horario:</b> ${esc(h.lugar)} a las ${esc(h.hora)}${m > now ? ` (en ${fmtRel(m - now)})` : ''} · ${esc(h.que)}</div>` }); }
+    if (h) { const m = horaMin(h.hora), nz = ahoraMinEn(h.zona_horaria || zonaDia(e));
+      cards.push({ p: 3.5, html: `<div class="note info"><b>Según el horario:</b> ${esc(h.lugar)} a las ${esc(h.hora)}${m > nz ? ` (en ${fmtRel(m - nz)})` : ''} · ${esc(h.que)}</div>` }); }
     else { const u = e.horario_orientativo[e.horario_orientativo.length - 1];
       cards.push({ p: 3.5, html: `<div class="note info"><b>Horario del día cumplido.</b> Última parada prevista: ${esc(u.lugar)} (${esc(u.hora)}).</div>` }); }
   }
   /* 7. Tiempo */
   const hd = D.meteoH.byDay[e.dia];
-  if (hd && hd.fecha === e.fecha) { const tt = tormentaTarde(hd);
-    if (tt && tt.h * 60 > now - 60) cards.push({ p: 1.5, html: `<div class="card warn"><h3>⛈️ Lluvia o tormenta</h3><p>Desde las ${tt.h}:00 en ${esc(tt.punto)}, ${tt.pp} % de probabilidad.${tt.h * 60 > now ? ` Faltan ${fmtRel(tt.h * 60 - now)}.` : ''} Forro impermeable puesto y guantes Sand 5 del baúl a mano.</p><p><a class="btn small" href="#/tiempo">Ver el tiempo</a></p></div>` }); }
+  if (hd && hd.fecha === e.fecha) { const tt = tormentaTarde(hd), nt = tt ? ahoraMinEn(tt.zona || zonaDia(e)) : now;
+    if (tt && tt.h * 60 > nt - 60) cards.push({ p: 1.5, html: `<div class="card warn"><h3>⛈️ Lluvia o tormenta</h3><p>Desde las ${tt.h}:00${tt.zona && zonasDia(e).size > 1 ? ` (hora de ${esc(ZONA_NOMBRE[tt.zona] || tt.zona)})` : ''} en ${esc(tt.punto)}, ${tt.pp} % de probabilidad.${tt.h * 60 > nt ? ` Faltan ${fmtRel(tt.h * 60 - nt)}.` : ''} ${esc(D.data.proyecto.moto.consejo_lluvia || 'Forro impermeable puesto y guantes Sand 5 del baúl a mano.')}</p><p><a class="btn small" href="#/tiempo">Ver el tiempo</a></p></div>` }); }
   /* 8. Gasolina */
   const aut = D.data.proyecto.moto.autonomia_orientativa_km;
   if (r) {
@@ -1198,8 +1262,8 @@ function viewAhora() {
       cards.push({ p: 3.2, html: `<div class="card"><div class="card-title"><h3>Mañana · día ${manana.dia}</h3><span class="badge">${fmtKm(manana.km_aprox)}</span></div>
         <p><b>${esc(manana.origen)} → ${esc(manana.destino)}</b></p>
         <div class="statgrid">
-          <div class="stat"><small>Salida</small><b>${esc(manana.salida.split(' ')[0])}</b><small>${esc(manana.tiempo_real_aprox)} de moto</small></div>
-          <div class="stat"><small>Llegada prevista</small><b>${esc(manana.llegada_prevista.split(' ')[0])}</b><small>${esc(manana.destino)}</small></div>
+          <div class="stat"><small>Salida</small><b>${horaZonaHTML(manana, manana.salida, zonaSalida(manana))}</b><small>${esc(manana.tiempo_real_aprox)} de moto</small></div>
+          <div class="stat"><small>Llegada prevista</small><b>${horaZonaHTML(manana, manana.llegada_prevista, zonaLlegada(manana))}</b><small>${esc(manana.destino)}</small></div>
           ${v ? `<div class="stat"><small>Previsión</small><b>${esc(v.txt)}</b><small>${m.tmin != null ? `${Math.round(m.tmin)}° / ${Math.round(m.tmax)}°` : ''}</small></div>` : ''}
           <div class="stat"><small>Puntos de despiste</small><b>${((manana.gpx && manana.gpx.avisos) || []).length}</b><small><a href="#/etapas/${manana.dia}">ver la etapa</a></small></div>
         </div>
@@ -1216,7 +1280,7 @@ function alojamientoMini(e) {
   const a = e.alojamiento, n = D.data.alojamientos_resumen.find((x) => x.fecha === e.fecha);
   if (!a && !n) return '';
   const nombre = a ? a.nombre : n.alojamiento, tel = a ? a.telefono : n.telefono;
-  return `<p><b>${esc(nombre)}</b>${a ? `<br><small>${esc(a.direccion)}</small>` : ''}<br>📞 ${telLink(tel)}${a ? ` · <a href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar ↗</a>` : ''}</p>`;
+  return `<p><b>${esc(nombre)}</b>${a ? `<br><small>${esc(a.direccion)}</small>` : ''}<br>📞 ${telLink(tel)}${a ? ` · <a href="${mapsDir(alojDestino(a))}" target="_blank" rel="noopener">Cómo llegar ↗</a>` : ''}</p>`;
 }
 
 /* Panel de emergencia: llamadas grandes, posicion y datos del seguro. */
@@ -1256,12 +1320,18 @@ function resumenDiaTexto(e) {
   const a = e.alojamiento; const m = meteoDia(e); const v = m.verdict ? VERDICT[m.verdict] : null;
   const l = [`🏍️ Día ${e.dia} de ${D.data.itinerario.length} · ${cap(e.dia_semana)} ${fmtFecha(e.fecha)}`,
     `${e.origen} → ${e.destino}`,
-    `Salida ${e.salida.split(' ')[0]} · llegada prevista ${e.llegada_prevista.split(' ')[0]} · ${e.km_aprox} km (${e.tiempo_real_aprox} de conducción)`];
+    `${horasTexto(e)} · ${e.km_aprox} km (${e.tiempo_real_aprox} de conducción)`];
   if (a) l.push(`Duermo en ${a.nombre}, ${a.direccion}. Tel. ${a.telefono}`);
   else { const n = D.data.alojamientos_resumen.find((x) => x.fecha === e.fecha); if (n) l.push(`Duermo en ${n.alojamiento} (${n.lugar}).${n.telefono ? ` Tel. ${n.telefono}` : ''}`); }
   if (v) l.push(`Previsión: ${v.txt}${m.tmin != null ? ` · ${Math.round(m.tmin)}°/${Math.round(m.tmax)}°` : ''}`);
   const nav = D.data.proyecto.navegacion; if (nav && nav.ubicacion_compartida) l.push(`Ubicación en tiempo real: ${nav.ubicacion_compartida}`);
   return l.join('\n');
+}
+/* "Salida 09:30 (hora de España) · llegada prevista 15:20 (hora de Portugal)": la zona, solo si hace falta. */
+function horasTexto(e) {
+  const zs = zonaSalida(e), zl = zonaLlegada(e), sal = horaCorta(e.salida), lle = horaCorta(e.llegada_prevista);
+  const nom = (z) => ` (hora de ${ZONA_NOMBRE[z] || z})`;
+  return zs !== zl ? `Salida ${sal}${nom(zs)} · llegada prevista ${lle}${nom(zl)}` : `Salida ${sal} · llegada prevista ${lle}${horaDe(zl)}`;
 }
 function avisarBtn(e) {
   return `<button class="btn" type="button" data-avisar="${e.dia}" title="Enviar el resumen del día a casa">📤 Avisar en casa</button>`;
@@ -1288,12 +1358,13 @@ function progresoViaje(hoy) {
   const pct = Math.round((hechos / total) * 100);
   return `<div class="card"><div class="card-title"><h3>Día ${hoy.dia} de ${it.length}</h3><span class="muted">${hechos} km hechos · ${total - hechos} km por delante</span></div><div class="bar"><i style="width:${pct}%"></i></div></div>`;
 }
+/* Indice de la siguiente fila del horario segun la hora de ahora en la zona de cada fila (o la del movil). */
+function siguienteHorario(e) { return (e.horario_orientativo || []).findIndex((h) => { const m = horaMin(h.hora); return m != null && m >= ahoraMinEn(h.zona_horaria || zonaDia(e)); }); }
 function proximaParada(e) {
   const h = e.horario_orientativo; if (!h || !h.length || e.fecha !== todayISO()) return '';
-  const now = ahoraMin();
-  const idx = h.findIndex((x) => { const m = horaMin(x.hora); return m != null && m >= now; });
+  const idx = siguienteHorario(e);
   if (idx < 0) return `<div class="note info"><b>Horario del día cumplido.</b> Última parada prevista: ${esc(h[h.length - 1].lugar)} (${esc(h[h.length - 1].hora)}).</div>`;
-  const p = h[idx], m = horaMin(p.hora), en = m - now;
+  const p = h[idx], m = horaMin(p.hora), en = m - ahoraMinEn(p.zona_horaria || zonaDia(e));
   return `<div class="note info"><b>Próximo:</b> ${esc(p.lugar)} a las ${esc(p.hora)}${en > 0 ? ` (en ${en >= 60 ? `${Math.floor(en / 60)} h ${en % 60} min` : `${en} min`})` : ''} · ${esc(p.que)}${h[idx + 1] ? `<br><small>Después: ${esc(h[idx + 1].lugar)} (${esc(h[idx + 1].hora)})</small>` : ''}</div>`;
 }
 function presionesHTML(m, corto) {
@@ -1331,10 +1402,18 @@ function gasolinaAviso(e) {
   if (e.km_aprox >= aut * 0.6) return `<div class="note"><b>⛽ Repostar en ruta:</b> ${e.km_aprox} km con ${aut} km de autonomía orientativa. Llenar en el primer pueblo grande, no apurar.</div>`;
   return '';
 }
+/* Aviso de hora en la ficha: dia con cambio de hora o dia entero en otra zona. */
+function zonasDia(e) { return new Set((e.horario_orientativo || []).map((h) => h.zona_horaria).filter(Boolean)); }
+function zonaNota(e) {
+  if (zonasDia(e).size > 1) return ' · 🕐 Cambias de hora en la frontera';
+  const z = zonaDia(e);
+  return z !== zonaViaje() ? ` · 🕐 Todo el día en hora de ${ZONA_NOMBRE[z] || z}` : '';
+}
 function solHTML(e) {
   const pt = (e.meteo_puntos || [])[e.meteo_puntos.length - 1]; if (!pt) return '';
-  const s = solDia(pt.lat, pt.lon, e.fecha, e.zona_horaria); if (!s || !s.ocaso) return '';
-  return `<span title="Ocaso en ${esc(pt.nombre)}">🌇 Anochece a las ${s.ocaso}${e.zona_horaria && e.zona_horaria !== D.data.meteo.zona_horaria ? ' (hora local)' : ''}</span>`;
+  const tz = pt.zona_horaria || zonaDia(e);
+  const s = solDia(pt.lat, pt.lon, e.fecha, tz); if (!s || !s.ocaso) return '';
+  return `<span title="Ocaso en ${esc(pt.nombre)}">🌇 Anochece a las ${s.ocaso}${zonasDia(e).size > 1 ? horaDe(tz) : ''}</span>`;
 }
 
 /* ---------- diario y gastos del dia (solo en este dispositivo) ---------- */
@@ -1370,7 +1449,11 @@ function gastosResumenHTML() {
 
 /* ---------- buscador ---------- */
 /* ---------- Pueblos: "tienes que visitar tal sitio". A que distancia queda de la ruta y que dia ---------- */
-/* Geocodificador de Open-Meteo: gratuito, sin clave y del mismo proveedor que la meteo. */
+/* Geocodificador de Open-Meteo: gratuito, sin clave y del mismo proveedor que la meteo. Busca en los paises del viaje
+   (proyecto.paises, por defecto solo España). */
+function paisesViaje() { const p = D.data.proyecto.paises; return p && p.length ? p : ['ES']; }
+/* Jornada maxima de conduccion del plan (reglas_globales.conduccion_real_maximo, p. ej. '6h'); por defecto 4 h. */
+function maxConduccionMin() { const m = /(\d+)\s*h\s*(\d{1,2})?/.exec(String((D.data.proyecto.reglas_globales || {}).conduccion_real_maximo || '')); return m ? (+m[1]) * 60 + (+(m[2] || 0)) : 240; }
 D.pueblo = { q: '', status: 'idle', hits: [], sel: null, error: null };
 async function puebloBuscar(q) {
   D.pueblo = { q, status: 'loading', hits: [], sel: null, error: null }; rerender('pueblos');
@@ -1378,9 +1461,10 @@ async function puebloBuscar(q) {
     const r = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=8&language=es&format=json`);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const j = await r.json();
-    const hits = (j.results || []).filter((x) => x.country_code === 'ES').map((x) => ({ nombre: x.name, prov: x.admin2 || x.admin1 || '', com: x.admin1 || '', lat: x.latitude, lon: x.longitude, pob: x.population }));
+    const paises = paisesViaje();
+    const hits = (j.results || []).filter((x) => paises.includes(x.country_code)).map((x) => ({ nombre: x.name, prov: x.admin2 || x.admin1 || '', com: x.admin1 || '', lat: x.latitude, lon: x.longitude, pob: x.population, pais: x.country_code }));
     await tracksLoadAll(); // para pintar el resultado de una vez, sin repintados que borren el cuadro
-    D.pueblo = { q, status: 'ok', hits, sel: hits.length === 1 ? hits[0] : null, error: hits.length ? null : 'No encuentro ningún sitio en España con ese nombre. Prueba sin acentos o con el nombre completo.' };
+    D.pueblo = { q, status: 'ok', hits, sel: hits.length === 1 ? hits[0] : null, error: hits.length ? null : `No encuentro ningún sitio ${paises.map((c) => `en ${PAIS_NOMBRE[c] || c}`).join(' ni ')} con ese nombre. Prueba sin acentos o con el nombre completo.` };
     if (D.pueblo.sel) puebloGuardar(D.pueblo.sel);
   } catch (err) {
     D.pueblo = { q, status: 'error', hits: [], sel: null, error: navigator.onLine ? err.message : 'Sin conexión: el buscador de pueblos necesita red. Los ya consultados siguen abajo.' };
@@ -1389,7 +1473,7 @@ async function puebloBuscar(q) {
 }
 function puebloGuardar(p) {
   const l = lsGet(PUEBLOS_KEY, []).filter((x) => !(x.nombre === p.nombre && x.prov === p.prov));
-  l.unshift({ nombre: p.nombre, prov: p.prov, lat: p.lat, lon: p.lon, t: Date.now() });
+  l.unshift({ nombre: p.nombre, prov: p.prov, lat: p.lat, lon: p.lon, pais: p.pais, t: Date.now() });
   lsSet(PUEBLOS_KEY, l.slice(0, 30));
 }
 /* Para cada etapa con track: distancia minima al recorrido y km del track donde cae. */
@@ -1406,6 +1490,7 @@ function puebloContraRuta(p) {
     return { e, t, dist: bd, km, cerca: viaNombre(e, vias[iv], iv), pasado: e.fecha < today, hoy: e.fecha === today, desvioKm: Math.round(dCarr * 2), desvioMin: Math.round(dCarr * 2 * 1.5) };
   }).filter(Boolean).sort((a, b) => a.dist - b.dist);
 }
+function fmtHoras(min) { return min % 60 ? `${Math.floor(min / 60)} h ${min % 60} min` : `${min / 60} h`; }
 function puebloVeredicto(r) {
   if (r.dist < 2) return { cls: 'ok', txt: 'Está en la ruta' };
   if (r.dist < 12) return { cls: 'ok', txt: 'Desvío corto' };
@@ -1424,7 +1509,7 @@ function puebloResultadoHTML(p) {
   else if (mejor.pasado && futuro && puebloVeredicto(futuro).cls !== 'hot') consejo = `El día que más cerca pasaba ya ha pasado. Todavía cabe el <b>día ${futuro.e.dia}</b> (${cap(futuro.e.dia_semana)} ${fmtFecha(futuro.e.fecha)}): a ${Math.round(futuro.dist)} km de la ruta, unos +${futuro.desvioKm} km y +${fmtRel(futuro.desvioMin)} de ida y vuelta.`;
   else if (mejor.pasado) consejo = `Pasaste cerca el <b>día ${mejor.e.dia}</b> y ya no vuelve a caer a mano. Para otro viaje.`;
   else if (mejor.dist < 2) consejo = `<b>Ya pasas por ahí</b> el día ${mejor.e.dia}, en el km ${Math.round(mejor.km)} de la etapa. Solo es cuestión de parar.`;
-  else consejo = `Encaja el <b>día ${mejor.e.dia}</b> (${cap(mejor.e.dia_semana)} ${fmtFecha(mejor.e.fecha)}): te sales de la ruta en el km ${Math.round(mejor.km)}, tras ${esc(mejor.cerca)}, y son unos <b>+${mejor.desvioKm} km y +${fmtRel(mejor.desvioMin)}</b> de ida y vuelta. Ese día llevas ${mejor.e.km_aprox} km y ${esc(mejor.e.tiempo_real_aprox)}: ${mejor.desvioMin + (horaMin(mejor.e.tiempo_real_aprox.replace('h', ':')) || 0) > 240 ? 'con el desvío pasas de las 4 h, tendrías que recortar otra cosa' : 'con el desvío sigues por debajo de las 4 h'}.`;
+  else consejo = `Encaja el <b>día ${mejor.e.dia}</b> (${cap(mejor.e.dia_semana)} ${fmtFecha(mejor.e.fecha)}): te sales de la ruta en el km ${Math.round(mejor.km)}, tras ${esc(mejor.cerca)}, y son unos <b>+${mejor.desvioKm} km y +${fmtRel(mejor.desvioMin)}</b> de ida y vuelta. Ese día llevas ${mejor.e.km_aprox} km y ${esc(mejor.e.tiempo_real_aprox)}: ${mejor.desvioMin + (horaMin(mejor.e.tiempo_real_aprox.replace('h', ':')) || 0) > maxConduccionMin() ? `con el desvío pasas de las ${fmtHoras(maxConduccionMin())}, tendrías que recortar otra cosa` : `con el desvío sigues por debajo de las ${fmtHoras(maxConduccionMin())}`}.`;
   return `<div class="card ${v.cls === 'hot' ? 'warn' : v.cls === 'warn' ? 'warn' : 'ok'}"><div class="card-title"><h3>${esc(p.nombre)}${p.prov ? ` <small class="muted">(${esc(p.prov)})</small>` : ''}</h3><span class="badge ${v.cls}">${v.txt}</span></div>
     <p>${consejo}</p>
     <p class="row"><a class="btn small" href="${link}" target="_blank" rel="noopener">Ver en Google Maps ↗</a>${!window.VIAJE_DATA ? `<button class="btn small" type="button" data-mapa="${mejor.e.dia}">🗺️ Ruta del día ${mejor.e.dia}</button>` : ''}</p></div>
@@ -1440,7 +1525,7 @@ function viewPueblos() {
   if (st.status === 'loading') cuerpo = '<div class="card"><p class="muted">Buscando…</p></div>';
   else if (st.error) cuerpo = `<div class="card warn"><p>${esc(st.error)}</p></div>`;
   else if (st.sel) cuerpo = puebloResultadoHTML(st.sel);
-  else if (st.hits.length > 1) cuerpo = `<div class="card"><h4>¿Cuál de estos?</h4><div class="guia-index">${st.hits.map((h, i) => `<a class="guia-link" href="#" data-pueblo-sel="${i}"><span class="badge">${esc(h.com.slice(0, 12))}</span><span>${esc(h.nombre)}</span><small>${esc(h.prov)}${h.pob ? ` · ${h.pob.toLocaleString('es-ES')} hab.` : ''}</small></a>`).join('')}</div></div>`;
+  else if (st.hits.length > 1) cuerpo = `<div class="card"><h4>¿Cuál de estos?</h4><div class="guia-index">${st.hits.map((h, i) => `<a class="guia-link" href="#" data-pueblo-sel="${i}"><span class="badge">${esc(h.com.slice(0, 12))}</span><span>${esc(h.nombre)}</span><small>${esc(h.prov)}${paisesViaje().length > 1 && h.pais ? ` · ${esc(PAIS_NOMBRE[h.pais] || h.pais)}` : ''}${h.pob ? ` · ${h.pob.toLocaleString('es-ES')} hab.` : ''}</small></a>`).join('')}</div></div>`;
   return `<div class="card accent"><h1>¿Me acerco a ese pueblo?</h1><p class="muted"><small>Para cuando te dicen «tienes que visitar tal sitio»: te dice a qué distancia queda de cada etapa y qué día podrías plantearte el desvío.</small></p>
     <form class="buscar row" id="pueblo-form"><input type="search" id="pueblo-q" placeholder="Nombre del pueblo" value="${esc(q)}" autocomplete="off"><button class="btn primary" type="submit">Mirar</button></form></div>
     ${cuerpo}
@@ -1467,6 +1552,7 @@ function viewBuscar(arg) {
       if (e.lavanderia) add(base, pre + e.lavanderia.nombre, `lavandería ${e.lavanderia.direccion} ${e.lavanderia.plan}`);
     });
     const rep = D.data.reparto_equipaje || {}; Object.keys(rep).forEach((k) => { if (Array.isArray(rep[k])) rep[k].forEach((t) => add('#/equipaje', `Equipaje · ${human(k)}`, t)); });
+    D.data.informacion.forEach((b) => (b.items || []).forEach((i) => add('#/guia', `${b.titulo}${i.titulo ? ` · ${i.titulo}` : ''}`, i.texto || '')));
     Object.keys(D.data.checklist_previa).forEach((k) => D.data.checklist_previa[k].forEach((t) => add('#/listas', `Checklist · ${human(k)}`, t)));
     D.data.compras_pendientes.forEach((c) => add('#/listas', 'Compra pendiente', `${c.que} ${c.donde}`));
     const mat = D.data.material_en_propiedad || {}; Object.keys(mat).filter((k) => mat[k] && mat[k].modelo).forEach((k) => add('#/equipaje', `Material · ${human(k)}`, `${mat[k].modelo} ${mat[k].nota || ''}`));
@@ -1563,6 +1649,7 @@ function viewResumen() {
         ${m.presiones ? `<dt>Presiones</dt><dd>${presionesHTML(m, true)} · <a href="#/guia">detalle</a></dd>` : ''}
         ${m.precarga_trasera ? `<dt>Precarga</dt><dd>Trasera en posición <b>${esc(m.precarga_trasera.recomendada.split(' ')[0])}</b> de ${m.precarga_trasera.posiciones} con maletas</dd>` : ''}
         ${(r.recortables_sin_cambiar_alojamiento || []).length ? `<dt>Recortable</dt><dd>${esc(r.recortables_sin_cambiar_alojamiento.join(' · '))}</dd>` : ''}
+        ${p.margen && p.margen.nota ? `<dt>Margen</dt><dd>${esc(p.margen.nota)}</dd>` : ''}
       </dl>
     </div>
     ${Object.keys(rd).length ? `<h2>Rutina diaria</h2>
@@ -1601,6 +1688,8 @@ function instalarHTML() {
 }
 function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · App ${APP_VERSION} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
 
+/* Destino de "Como llegar": las coordenadas si las hay (mas fiables que la direccion), si no la direccion. */
+function alojDestino(a) { return a.lat != null && a.lon != null ? `${a.lat},${a.lon}` : a.direccion; }
 /* Rutas del dia en Google Maps (campo google_maps: [{ tramo, url, opciones }]), para navegar con Google
    cuando no hay GPX de Kurviger. Las opciones de evitar no viajan en la URL: hay que marcarlas a mano. */
 function googleMapsHTML(e) {
@@ -1611,7 +1700,7 @@ function googleMapsHTML(e) {
 }
 function alojamientoCard(dia) {
   const a = dia.alojamiento; if (!a) return '';
-  const LABELS = { tipo: 'Tipo', precio_eur: 'Precio', precio_total_eur: 'Precio total', precio_referencia_eur_noche: 'Precio ref. / noche', moto_eur_dia: 'Moto / día', checkin: 'Check-in', recepcion: 'Recepción', servicios: 'Servicios', horario_google: 'Horario (Google)', parking: 'Parking', moto: 'Moto', desayuno: 'Desayuno', restaurante: 'Restaurante', noches: 'Noches', fechas: 'Fechas', altitud_m: 'Altitud', email: 'Email', reserva: 'Reserva' };
+  const LABELS = { tipo: 'Tipo', precio_eur: 'Precio', precio_total_eur: 'Precio total', precio_referencia_eur_noche: 'Precio ref. / noche', moto_eur_dia: 'Moto / día', checkin: 'Check-in', recepcion: 'Recepción', servicios: 'Servicios', horario_google: 'Horario (Google)', parking: 'Parking', moto: 'Moto', desayuno: 'Desayuno', restaurante: 'Restaurante', noches: 'Noches', fechas: 'Fechas', altitud_m: 'Altitud', reserva: 'Reserva' };
   const rows = Object.keys(LABELS).filter((k) => a[k] != null).map((k) => `<dt>${LABELS[k]}</dt><dd>${fmtVal(k, a[k])}</dd>`).join('') + pagoHTML(a);
   const keys = confirmarKeys(dia);
   const pend = a.pendiente_confirmar ? `<h4>Pendiente de confirmar ${progress(keys)}</h4>${a.pendiente_confirmar.map((t) => checkItem(`confirmar|${dia.dia}|${t}`, t)).join('')}` : '';
@@ -1620,8 +1709,9 @@ function alojamientoCard(dia) {
     <div class="card ok">
       <div class="card-title"><h3>${esc(a.nombre)}</h3>${estadoBadge(a)}</div>
       <p class="muted"><small>${esc(a.estado)}</small></p>
-      <p>${esc(a.direccion)}<br><a href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar</a> · <a href="${mapsSearch(a.nombre + ', ' + a.direccion)}" target="_blank" rel="noopener">Ver en el mapa</a></p>
-      <p>📞 ${telLink(a.telefono)}${a.email ? ` · <a href="mailto:${esc(a.email)}">${esc(a.email)}</a>` : ''}</p>
+      <p>${esc(a.direccion)}<br><a href="${mapsDir(alojDestino(a))}" target="_blank" rel="noopener">Cómo llegar</a> · <a href="${mapsSearch(a.lat != null ? alojDestino(a) : a.nombre + ', ' + a.direccion)}" target="_blank" rel="noopener">Ver en el mapa</a></p>
+      <p>📞 ${telLink(a.telefono)}${a.email ? ` · ✉️ <a href="mailto:${esc(a.email)}">${esc(a.email)}</a>` : ''}</p>
+      ${a.nota ? `<p><small>${esc(a.nota)}</small></p>` : ''}
       <dl>${rows}</dl>
       ${pend}
       ${planB ? `<div class="note">${a.plan_b_cena ? '<b>Plan B cena:</b> ' : '<b>Plan B:</b> '}${esc(planB)}</div>` : ''}
@@ -1665,7 +1755,7 @@ function viewEtapas(arg) {
         <div class="stat"><small>Llegada prevista</small><b>${esc(e.llegada_prevista)}</b></div>
         <div class="stat"><small>Perfil Kurviger</small><b>${esc(e.perfil_kurviger)}</b></div>
       </div>
-      <p class="row muted"><small>${solHTML(e)}</small>${avisarBtn(e)}${e.gpx ? localizarBtn(e) : ''}</p>
+      <p class="row muted"><small>${solHTML(e)}${zonaNota(e)}</small>${avisarBtn(e)}${e.gpx ? localizarBtn(e) : ''}</p>
       ${D.pos || D.posError ? posHTML(e) : ''}
       ${proximaParada(e)}
       ${e.objetivo ? `<div class="note info"><b>Objetivo:</b> ${esc(e.objetivo)}</div>` : ''}
@@ -1686,7 +1776,7 @@ function viewEtapas(arg) {
     <div class="card"><ol class="wp">${e.waypoints.map((w) => `<li><a href="${mapsSearch(w)}" target="_blank" rel="noopener">${esc(w)}</a><span class="go">mapa ↗</span></li>`).join('')}</ol>
       <p><small>Enlaces de consulta en Google Maps. La ruta real se crea en Kurviger con estos puntos como shaping points sobre la carretera.</small></p></div>
 
-    ${e.horario_orientativo ? (() => { const esHoy = e.fecha === today, now = ahoraMin(); let nextIdx = -1; if (esHoy) nextIdx = e.horario_orientativo.findIndex((h) => { const m = horaMin(h.hora); return m != null && m >= now; }); return `<h2>Horario orientativo</h2><div class="card"><div class="tbl-wrap"><table class="horario"><thead><tr><th>Hora</th><th>Lugar</th><th>Qué</th></tr></thead><tbody>${e.horario_orientativo.map((h, i) => `<tr class="${esHoy ? (i === nextIdx ? 'now' : (nextIdx < 0 || i < nextIdx) ? 'past' : '') : ''}"><td><b>${esc(h.hora)}</b></td><td>${esc(h.lugar)}</td><td>${esc(h.que)}</td></tr>`).join('')}</tbody></table></div>${esHoy ? '<p><small>Las filas en gris ya han pasado; la resaltada es la siguiente según la hora.</small></p>' : ''}</div>`; })() : ''}
+    ${e.horario_orientativo ? (() => { const esHoy = e.fecha === today; let nextIdx = -1; if (esHoy) nextIdx = siguienteHorario(e); const zonas = new Set(e.horario_orientativo.map((h) => h.zona_horaria).filter(Boolean)); return `<h2>Horario orientativo</h2><div class="card"><div class="tbl-wrap"><table class="horario"><thead><tr><th>Hora</th><th>Lugar</th><th>Qué</th></tr></thead><tbody>${e.horario_orientativo.map((h, i) => `<tr class="${esHoy ? (i === nextIdx ? 'now' : (nextIdx < 0 || i < nextIdx) ? 'past' : '') : ''}"><td><b>${esc(h.hora)}</b>${zonas.size > 1 && h.zona_horaria ? ` <small class="muted">${esc(ZONA_CORTA[h.zona_horaria] || '')}</small>` : ''}</td><td>${esc(h.lugar)}</td><td>${esc(h.que)}</td></tr>`).join('')}</tbody></table></div>${zonas.size > 1 ? '<p><small>Horas locales: ES, hora de España; PT, de Portugal (una menos).</small></p>' : ''}${esHoy ? '<p><small>Las filas en gris ya han pasado; la resaltada es la siguiente según la hora.</small></p>' : ''}</div>`; })() : ''}
     ${e.paradas ? `<h2>Paradas</h2><div class="card">${list(e.paradas)}</div>` : ''}
     ${guiaHTML(e)}
     ${opcionesHTML(e)}
@@ -1713,8 +1803,14 @@ function viewNoches() {
   const pendTotal = pend.reduce((s, e) => s + e.alojamiento.pago.pendiente_eur, 0);
   const pendAprox = pend.some((e) => e.alojamiento.pago.aproximado);
   const pendKeys = pend.map(pagoKey);
-  return `<h2>Las ${D.data.alojamientos_resumen.length} noches</h2>
-    <p class="muted">Todas reservadas. Total aprox. ${fmtEur(total)}. Toca el teléfono para llamar.</p>
+  const noches = D.data.alojamientos_resumen;
+  const reservadas = noches.filter((n) => /reservad|pagad|confirmad/i.test(n.estado || '')).length;
+  const conPrecio = it.filter((d) => { const a = d.alojamiento; return a && (pagoInfo(a) || a.precio_eur || a.precio_total_eur || a.precio_referencia_eur_noche); }).length;
+  const conAloj = it.filter((d) => d.alojamiento).length;
+  const estadoTxt = !noches.length ? '' : reservadas === noches.length ? 'Todas reservadas.' : reservadas ? `${reservadas} de ${noches.length} reservadas.` : 'Ninguna reservada todavía: lo pendiente de cada una está en Listas.';
+  const totalTxt = !conPrecio ? '' : conPrecio === conAloj ? ` Total aprox. ${fmtEur(total)}.` : ` Precio orientativo de ${conPrecio} de ${conAloj} noches: ${fmtEur(total)}.`;
+  return `<h2>Las ${noches.length} noches</h2>
+    <p class="muted">${estadoTxt}${totalTxt} Toca el teléfono para llamar.</p>
     ${pend.length ? `<div class="card warn"><div class="card-title"><h3>Por pagar en los alojamientos: ${fmtEur(pendTotal, pendAprox)}</h3>${progress(pendKeys)}</div>
       ${pend.map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)}${pg.pagado_eur ? ` · ya pagados ${fmtEur(pg.pagado_eur, pg.aproximado)}` : ''}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}
       <p><small>Marca cada uno al pagarlo. Las marcas se guardan en este dispositivo.</small></p></div>` : ''}
@@ -1724,9 +1820,9 @@ function viewNoches() {
       return `<div class="card${n.fecha === today ? ' warn' : ''}">
         <div class="card-title"><h3>Noche ${n.noche} · ${esc(n.lugar)}</h3><span class="muted">${fmtFecha(n.fecha)}</span></div>
         <p><b>${esc(n.alojamiento)}</b></p>
-        <div class="row spread"><span>📞 ${telLink(n.telefono)}</span>${a ? estadoBadge(a) : `<span class="badge ok">${esc(n.estado)}</span>`}</div>
+        <div class="row spread"><span>📞 ${telLink(n.telefono)}</span>${a ? estadoBadge(a) : `<span class="badge ${estadoPendiente(n.estado) ? 'warn' : 'ok'}">${esc(estadoCorto(n.estado))}</span>`}</div>
         <p class="muted"><small>${esc(n.estado)}</small></p>
-        ${dia ? `<p><a class="btn small" href="#/etapas/${dia.dia}">Día ${dia.dia}${a ? ' · ficha completa' : ''}</a>${a ? ` <a class="btn small" href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}</p>` : ''}
+        ${dia ? `<p><a class="btn small" href="#/etapas/${dia.dia}">Día ${dia.dia}${a ? ' · ficha completa' : ''}</a>${a ? ` <a class="btn small" href="${mapsDir(alojDestino(a))}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}</p>` : ''}
       </div>`;
     }).join('')}`;
 }
@@ -1862,6 +1958,7 @@ function viewGuia() {
   return `${viajesHTML()}${conGuia.length ? `<h2>Guía turística por etapa</h2>
     <div class="card"><p class="muted">Qué ver, dónde parar, qué comer y qué hacer por la tarde. Está en la ficha de cada día.</p>
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
+    ${informacionHTML()}
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
     <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares de la DGT</a> <a class="btn" href="#/gasolina">⛽ Gasolina más barata</a></p>
@@ -1883,6 +1980,13 @@ function viewGuia() {
     <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}${meta.sustituye_a ? `<br><small>${esc(meta.sustituye_a)}</small>` : ''}</p>${meta.uso ? `<p><small>${esc(meta.uso)}</small></p>` : ''}${meta.cambios.length ? `<details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios)}</details>` : ''}<p><small>Viaje <code>${esc(V.id || '')}</code>: <code>${esc(V.base || '')}viaje.json</code></small></p></div>`;
 }
 
+/* Bloques de informacion general del viaje (informacion: [{ id, titulo, icono, intro, items: [{ titulo, texto, url }] }]). */
+function informacionHTML() {
+  const inf = D.data.informacion; if (!inf.length) return '';
+  return `<h2>Información del viaje</h2>${inf.map((b) => `<details class="card info-bloque"${b.id ? ` id="info-${esc(b.id)}"` : ''}><summary>${b.icono ? `${esc(b.icono)} ` : ''}${esc(b.titulo)}</summary>
+    ${b.intro ? `<p class="muted">${esc(b.intro)}</p>` : ''}
+    <ul class="info-items">${(b.items || []).map((i) => `<li>${i.titulo ? `<b>${esc(i.titulo)}.</b> ` : ''}${i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.texto)}</a>` : esc(i.texto)}</li>`).join('')}</ul></details>`).join('')}`;
+}
 /* Resumen de la poliza (sin datos personales). full=true: version completa para la Guia. */
 function seguroHTML(full) {
   const s = D.data.seguro; if (!s) return '';
@@ -1916,7 +2020,7 @@ function rutasKurvigerHTML() {
   const tot = con.reduce((s, e) => { const i = info(e); return s + (i ? i.km : e.km_aprox); }, 0);
   const min = con.reduce((s, e) => { const i = info(e); return s + (i && i.min ? i.min : 0); }, 0);
   return `<div class="card">${col ? `<p><b>Colección «${esc(col.nombre)}»</b> en Kurviger Cloud · ${col.rutas} rutas · ${fmtKm(Math.round(col.km_total))} · ${fmtMin(col.duracion_min)} · +${fmtM(col.desnivel_subida_m)}<br><a class="btn small primary" href="${esc(col.url)}" target="_blank" rel="noopener">🧭 Abrir la colección en Kurviger</a></p><p class="muted"><small>Toca el nombre de una ruta para abrirla en Kurviger (app o web). Comprueba que en el móvil tienes estas ${con.length} rutas descargadas.</small></p>` : `<p class="muted"><small>Nombre exacto de cada ruta en Kurviger, según el GPX guardado. Comprueba que en el móvil tienes estas ${con.length} rutas.</small></p>`}
-    <div class="tbl-wrap"><table class="rutas"><thead><tr><th>Día</th><th>Ruta en Kurviger</th><th>km</th><th>Kurviger</th><th></th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td></td><td><b>Total</b></td><td><b>${fmtKm(Math.round(tot))}</b></td><td><b>${fmtMin(min)}</b></td><td></td></tr></tfoot></table></div>
+    <div class="tbl-wrap"><table class="rutas"><thead><tr><th>Día</th><th>Ruta en Kurviger</th><th>km</th><th>${con.some((e) => e.gpx.kurviger) ? 'Kurviger' : 'Tiempo'}</th><th></th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td></td><td><b>Total</b></td><td><b>${fmtKm(Math.round(tot))}</b></td><td><b>${fmtMin(min)}</b></td><td></td></tr></tfoot></table></div>
     <p class="row">${window.VIAJE_DATA ? '' : '<button class="btn primary" type="button" data-mapa="todos">🗺️ Mapa del viaje completo</button>'}<a class="btn" href="#/hoja">📄 Hoja de ruta</a></p></div>`;
 }
 
@@ -1930,7 +2034,7 @@ function viewHoja() {
     const t = D.tracks[e.dia] && D.tracks[e.dia].data;
     return `<tr><td><b>${e.dia}</b><br><small>${cap(e.dia_semana).slice(0, 3)} ${fmtFecha(e.fecha)}</small></td>
       <td><b>${esc(e.origen)} → ${esc(e.destino)}</b><br><small>${esc(e.waypoints.join(' · '))}</small>${e.gpx && e.gpx.kurviger ? `<br><small class="muted">Kurviger: ${esc(e.gpx.kurviger.nombre)}</small>` : t ? `<br><small class="muted">Kurviger: ${esc(t.nombre)}</small>` : ''}</td>
-      <td class="num">${e.km_aprox} km<br><small>${esc(e.tiempo_real_aprox)}</small>${e.salida ? `<br><small>${esc(e.salida.split(' ')[0])} → ${esc(e.llegada_prevista.split(' ')[0])}</small>` : ''}</td>
+      <td class="num">${e.km_aprox} km<br><small>${esc(e.tiempo_real_aprox)}</small>${e.salida ? `<br><small>${horaZonaHTML(e, e.salida, zonaSalida(e))} → ${horaZonaHTML(e, e.llegada_prevista, zonaLlegada(e))}</small>` : ''}</td>
       <td>${a ? `<b>${esc(a.nombre)}</b><br><small>${esc(a.direccion)}</small><br>${telLink(a.telefono)}${pagoInfo(a) && pagoInfo(a).pendiente ? `<br><small>Por pagar: ${fmtEur(a.pago.pendiente_eur, a.pago.aproximado)}</small>` : ''}` : n ? `<b>${esc(n.alojamiento)}</b><br><small>${esc(n.lugar)}</small><br>${telLink(n.telefono)}` : '<small>Casa</small>'}</td></tr>`;
   }).join('');
   it.forEach(trackLoad);
@@ -1967,6 +2071,7 @@ function viewRadares() {
   return `<div class="card accent">
       <div class="card-title"><h1>Radares</h1><span class="badge">${tot.en_ruta || 0} en ruta</span></div>
       <p>La app lleva los <b>${tot.puntos || m.radares.length} puntos de radar</b> de la DGT de toda España (${tot.fijos} fijos y ${tot.tramo} de tramo), no solo los de la ruta: así avisa también si te desvías.</p>
+      ${(D.data.proyecto.paises || []).includes('PT') ? '<p><small>En Portugal no hay datos: la DGT solo cubre España. Allí hay radares fijos y de tramo (SINCRO) y móviles.</small></p>' : ''}
       <p class="row">${localizarBtn(null)}</p>
       ${radarFuente()}
     </div>
@@ -2174,11 +2279,13 @@ function completar(d) {
   p.moto = obj(p.moto); p.moto.equipaje = arr(p.moto.equipaje);
   p.navegacion = obj(p.navegacion); p.navegacion.kurviger = obj(p.navegacion.kurviger);
   p.reglas_globales = obj(p.reglas_globales);
+  p.paises = arr(p.paises);
+  d.informacion = arr(d.informacion);
   d.meteo = obj(d.meteo);
   if (!d.meteo.zona_horaria) d.meteo.zona_horaria = 'Europe/Madrid';
   if (!d.meteo.proveedor) d.meteo.proveedor = 'Open-Meteo (api.open-meteo.com), gratuito, sin clave, previsión diaria a 16 días';
   if (!d.meteo.regla) d.meteo.regla = 'Mirar la previsión la noche anterior y por la mañana antes de salir.';
-  if (!d.meteo.criterio) d.meteo.criterio = { malo: 'Tormenta, probabilidad de lluvia >= 70%, >= 8 mm o rachas >= 70 km/h', regular: 'Probabilidad de lluvia >= 40%, >= 2 mm, chubascos o rachas >= 50 km/h', bueno: 'Todo lo demás' };
+  if (!d.meteo.criterio) d.meteo.criterio = { malo: 'Tormenta, nieve, lluvia helada, probabilidad de lluvia >= 70%, >= 8 mm o rachas >= 70 km/h', regular: 'Probabilidad de lluvia >= 40%, >= 2 mm, chubascos, rachas >= 50 km/h o mínima de 1 °C o menos (hielo)', bueno: 'Todo lo demás' };
   d.meteo.enlaces = Object.assign({ aemet: 'https://www.aemet.es/es/eltiempo/prediccion/municipios', windy: 'https://www.windy.com/' }, obj(d.meteo.enlaces));
   p.piloto = obj(p.piloto); p.piloto.filosofia = arr(p.piloto.filosofia);
   d.equipacion_moto = obj(d.equipacion_moto); d.equipacion_moto.configuracion_por_tipo_de_dia = obj(d.equipacion_moto.configuracion_por_tipo_de_dia);

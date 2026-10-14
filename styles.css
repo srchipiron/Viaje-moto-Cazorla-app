@@ -179,6 +179,8 @@ a.card:active { transform: scale(.995); }
 .stat { background: var(--accent-soft); border-radius: 10px; padding: 8px 10px; }
 .stat small { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; }
 .stat b { font-size: 1.05rem; }
+/* Marca de zona horaria junto a una hora ("PT", "ES") */
+.tz { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; color: var(--muted); vertical-align: 1px; }
 .dots { letter-spacing: 1px; font-size: .95rem; }
 .dots.d4 { color: var(--hot); }
 .wp { counter-reset: wp; list-style: none; padding-left: 0; }
@@ -474,3 +476,9 @@ table.horario tr.now td:first-child { border-left: 3px solid var(--accent); padd
 .buscar input { flex: 1 1 200px; min-width: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
 mark { background: var(--warn-soft); color: inherit; padding: 0 2px; border-radius: 3px; }
 @media print { .topbar-btns { display: none; } }
+
+/* Información del viaje (Guía) y enlaces de Google Maps de la etapa */
+.info-items { padding-left: 20px; margin: 6px 0 0; }
+.info-items li { margin: 6px 0; }
+.enlaces-mapa { list-style: none; padding: 0; margin: 4px 0 8px; }
+.enlaces-mapa li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 4px 0; }
