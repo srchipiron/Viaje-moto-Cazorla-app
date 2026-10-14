@@ -1,7 +1,7 @@
 /* Service worker: precarga la app y el viaje activo para funcionar sin cobertura.
    Al cambiar app.js, styles.css, index.html o este fichero, subir VERSION. Los viaje.json y
    viajes/index.json van siempre por red primero, asi que cambiar el plan no necesita VERSION. */
-const VERSION = 'v4.0.0';
+const VERSION = 'v4.1.1';
 const CACHE = `viaje-nx500-${VERSION}`;
 const TILES = 'viaje-nx500-tiles'; // teselas de OpenStreetMap ya vistas (se conservan entre versiones)
 const TILES_MAX = 800;

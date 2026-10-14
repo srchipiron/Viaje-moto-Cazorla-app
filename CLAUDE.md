@@ -18,6 +18,14 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
   `proyecto.nombre` y el itinerario con `dia`, `fecha`, `origen`, `destino`, `km_aprox`. Cada
   sección opcional se ve solo si existe. Si una vista nueva lee una sección del plan, que no
   rompa cuando falta: darle valor por defecto en `completar()` o comprobarla antes.
+- Campos opcionales por día que la app entiende además de los del primer viaje: `google_maps`
+  (`[{ tramo, url, opciones }]`, botones para navegar con Google), `zona_horaria` (p. ej.
+  `Europe/Lisbon` para la hora del ocaso en Portugal), `carreteras` y `autovia_km`. Sin
+  `gpx.avisos` la app no dice nada de puntos de despiste; con `[]` dice que la ruta es lineal.
+- `viajes/2027-01-fisterra/` (activo) vino de un JSON con waypoints y rutas de Google, sin GPX:
+  sus tracks son aproximados (OSRM por esos puntos, altitudes EU-DEM) y llevan
+  `fuente: "OSRM (aproximado)"`. Cuando lleguen los GPX de Kurviger, sustituirlos y regenerar
+  radares y gasolineras. Fechas provisionales (`proyecto.fechas.provisionales`).
 - localStorage: lo de cada viaje (marcas, diario, gastos, repostajes, meteo, precios, pueblos)
   lleva el sufijo `@<id>` (ver `claves()`); el primer viaje conserva las claves sin sufijo porque
   así están en el móvil. Contactos personales, póliza y tema son del dispositivo, sin sufijo.

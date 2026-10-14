@@ -3,7 +3,7 @@
    activo y ?viaje=<id> abre otro. Lo que el usuario apunta se guarda en localStorage. Sin build. */
 'use strict';
 
-const APP_VERSION = 'v4.0.0';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
+const APP_VERSION = 'v4.1.1';   // debe coincidir con VERSION en sw.js: si no, el movil tiene codigo viejo
 /* Del dispositivo, comunes a todos los viajes */
 const CONTACTOS_KEY = 'viaje-nx500-contactos'; // telefonos personales y poliza: solo en este dispositivo
 const TEMA_KEY = 'viaje-nx500-tema';           // auto | light | dark
@@ -40,7 +40,7 @@ const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'o
 function fmtFecha(iso) { const [, m, d] = iso.split('-'); return `${+d} ${MESES[+m - 1]}`; }
 function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 function human(key) { return cap(String(key).replace(/_/g, ' ')); }
-function telLink(tel) { return `<a class="tel" href="tel:${esc(String(tel).replace(/\s+/g, ''))}">${esc(tel)}</a>`; }
+function telLink(tel) { return tel ? `<a class="tel" href="tel:${esc(String(tel).replace(/\s+/g, ''))}">${esc(tel)}</a>` : '<span class="muted">sin teléfono</span>'; }
 function mapsSearch(q) { return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`; }
 function mapsDir(q) { return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}&travelmode=driving`; }
 /* Horas "HH:MM" o "HH:MM-HH:MM" (se usa el inicio) -> minutos desde medianoche. */
@@ -48,7 +48,8 @@ function horaMin(s) { const m = /(\d{1,2}):(\d{2})/.exec(String(s || '')); retur
 function ahoraMin() { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
 function fmtHM(min) { return `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`; }
 /* Orto y ocaso (algoritmo NOAA simplificado, precision de ~2 min). Devuelve horas locales "HH:MM". */
-function solDia(lat, lon, iso) {
+/* Orto y ocaso en hora local de tz (por defecto la del viaje). */
+function solDia(lat, lon, iso, tz) {
   const [y, m, d] = iso.split('-').map(Number);
   const n = Math.floor((Date.UTC(y, m - 1, d) - Date.UTC(y, 0, 0)) / 86400000);
   const rad = Math.PI / 180;
@@ -65,7 +66,7 @@ function solDia(lat, lon, iso) {
     const T = H + RA - (0.06571 * t) - 6.622;
     const UT = (((T - lngH) % 24) + 24) % 24;
     const date = new Date(Date.UTC(y, m - 1, d, 0, 0, 0) + UT * 3600000);
-    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: (D.data && D.data.meteo && D.data.meteo.zona_horaria) || 'Europe/Madrid' });
+    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: tz || (D.data && D.data.meteo && D.data.meteo.zona_horaria) || 'Europe/Madrid' });
   };
   return { orto: calc(true), ocaso: calc(false) };
 }
@@ -1257,7 +1258,7 @@ function resumenDiaTexto(e) {
     `${e.origen} → ${e.destino}`,
     `Salida ${e.salida.split(' ')[0]} · llegada prevista ${e.llegada_prevista.split(' ')[0]} · ${e.km_aprox} km (${e.tiempo_real_aprox} de conducción)`];
   if (a) l.push(`Duermo en ${a.nombre}, ${a.direccion}. Tel. ${a.telefono}`);
-  else { const n = D.data.alojamientos_resumen.find((x) => x.fecha === e.fecha); if (n) l.push(`Duermo en ${n.alojamiento} (${n.lugar}). Tel. ${n.telefono}`); }
+  else { const n = D.data.alojamientos_resumen.find((x) => x.fecha === e.fecha); if (n) l.push(`Duermo en ${n.alojamiento} (${n.lugar}).${n.telefono ? ` Tel. ${n.telefono}` : ''}`); }
   if (v) l.push(`Previsión: ${v.txt}${m.tmin != null ? ` · ${Math.round(m.tmin)}°/${Math.round(m.tmax)}°` : ''}`);
   const nav = D.data.proyecto.navegacion; if (nav && nav.ubicacion_compartida) l.push(`Ubicación en tiempo real: ${nav.ubicacion_compartida}`);
   return l.join('\n');
@@ -1304,8 +1305,8 @@ function presionesHTML(m, corto) {
 }
 /* Puntos de despiste de la etapa: idas y vueltas, bucles, vias dobles. */
 function avisosNavHTML(e) {
-  const av = e.gpx && e.gpx.avisos; if (!e.gpx) return '';
-  if (!av || !av.length) return `<h2>Puntos de despiste</h2><div class="card ok"><p>Ninguno: la ruta es lineal, sin idas y vueltas ni vías dobles. Seguir a Kurviger.</p></div>`;
+  const av = e.gpx && e.gpx.avisos; if (!e.gpx || !av) return '';   // sin campo avisos: no se ha revisado el GPX
+  if (!av.length) return `<h2>Puntos de despiste</h2><div class="card ok"><p>Ninguno: la ruta es lineal, sin idas y vueltas ni vías dobles. Seguir a Kurviger.</p></div>`;
   return `<h2>Puntos de despiste (${av.length})</h2>
     <div class="card"><ol class="despistes">${av.map((a) => `<li><div class="desp-head"><b>${esc(a.lugar)}</b><span class="badge">km ${a.km}</span>${a.lat != null ? `<a href="${mapsSearch(`${a.lat},${a.lon}`)}" target="_blank" rel="noopener">mapa ↗</a>` : ''}</div><p>${esc(a.que)}</p></li>`).join('')}</ol>
     <p><small>Sitios donde Kurviger te hará dar la vuelta o repetir carretera. Ninguno es un error: están comprobados sobre el GPX.</small></p></div>`;
@@ -1332,8 +1333,8 @@ function gasolinaAviso(e) {
 }
 function solHTML(e) {
   const pt = (e.meteo_puntos || [])[e.meteo_puntos.length - 1]; if (!pt) return '';
-  const s = solDia(pt.lat, pt.lon, e.fecha); if (!s || !s.ocaso) return '';
-  return `<span title="Ocaso en ${esc(pt.nombre)}">🌇 Anochece a las ${s.ocaso}</span>`;
+  const s = solDia(pt.lat, pt.lon, e.fecha, e.zona_horaria); if (!s || !s.ocaso) return '';
+  return `<span title="Ocaso en ${esc(pt.nombre)}">🌇 Anochece a las ${s.ocaso}${e.zona_horaria && e.zona_horaria !== D.data.meteo.zona_horaria ? ' (hora local)' : ''}</span>`;
 }
 
 /* ---------- diario y gastos del dia (solo en este dispositivo) ---------- */
@@ -1600,9 +1601,17 @@ function instalarHTML() {
 }
 function planVersion() { const m = D.data.meta; return `Plan v${m.version}${m.revision ? `.${m.revision}` : ''} · App ${APP_VERSION} · ${fmtFecha(m.actualizado)}${D.fromCache ? ' · copia sin conexión' : ''}`; }
 
+/* Rutas del dia en Google Maps (campo google_maps: [{ tramo, url, opciones }]), para navegar con Google
+   cuando no hay GPX de Kurviger. Las opciones de evitar no viajan en la URL: hay que marcarlas a mano. */
+function googleMapsHTML(e) {
+  const g = (e.google_maps || []).filter((x) => x && /^https:\/\/www\.google\.com\/maps\//.test(x.url));
+  if (!g.length) return '';
+  return `<h2>Rutas en Google Maps</h2><div class="card">${g.map((x) => `<p><a class="btn small${/plan b/i.test(x.tramo) ? '' : ' primary'}" href="${esc(x.url)}" target="_blank" rel="noopener">🧭 ${esc(x.tramo)}</a>${x.opciones ? `<br><small>${esc(x.opciones)}</small>` : ''}</p>`).join('')}
+    <p><small>Google no guarda en el enlace las opciones de evitar autopistas o peajes: márcalas en Opciones de ruta al abrirlo.</small></p></div>`;
+}
 function alojamientoCard(dia) {
   const a = dia.alojamiento; if (!a) return '';
-  const LABELS = { tipo: 'Tipo', precio_eur: 'Precio', precio_total_eur: 'Precio total', precio_referencia_eur_noche: 'Precio ref. / noche', moto_eur_dia: 'Moto / día', checkin: 'Check-in', recepcion: 'Recepción', servicios: 'Servicios', horario_google: 'Horario (Google)', parking: 'Parking', moto: 'Moto', desayuno: 'Desayuno', restaurante: 'Restaurante', noches: 'Noches', fechas: 'Fechas', altitud_m: 'Altitud' };
+  const LABELS = { tipo: 'Tipo', precio_eur: 'Precio', precio_total_eur: 'Precio total', precio_referencia_eur_noche: 'Precio ref. / noche', moto_eur_dia: 'Moto / día', checkin: 'Check-in', recepcion: 'Recepción', servicios: 'Servicios', horario_google: 'Horario (Google)', parking: 'Parking', moto: 'Moto', desayuno: 'Desayuno', restaurante: 'Restaurante', noches: 'Noches', fechas: 'Fechas', altitud_m: 'Altitud', email: 'Email', reserva: 'Reserva' };
   const rows = Object.keys(LABELS).filter((k) => a[k] != null).map((k) => `<dt>${LABELS[k]}</dt><dd>${fmtVal(k, a[k])}</dd>`).join('') + pagoHTML(a);
   const keys = confirmarKeys(dia);
   const pend = a.pendiente_confirmar ? `<h4>Pendiente de confirmar ${progress(keys)}</h4>${a.pendiente_confirmar.map((t) => checkItem(`confirmar|${dia.dia}|${t}`, t)).join('')}` : '';
@@ -1612,7 +1621,7 @@ function alojamientoCard(dia) {
       <div class="card-title"><h3>${esc(a.nombre)}</h3>${estadoBadge(a)}</div>
       <p class="muted"><small>${esc(a.estado)}</small></p>
       <p>${esc(a.direccion)}<br><a href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar</a> · <a href="${mapsSearch(a.nombre + ', ' + a.direccion)}" target="_blank" rel="noopener">Ver en el mapa</a></p>
-      <p>📞 ${telLink(a.telefono)}</p>
+      <p>📞 ${telLink(a.telefono)}${a.email ? ` · <a href="mailto:${esc(a.email)}">${esc(a.email)}</a>` : ''}</p>
       <dl>${rows}</dl>
       ${pend}
       ${planB ? `<div class="note">${a.plan_b_cena ? '<b>Plan B cena:</b> ' : '<b>Plan B:</b> '}${esc(planB)}</div>` : ''}
@@ -1670,6 +1679,7 @@ function viewEtapas(arg) {
     ${meteoStrip(e)}
     ${avisosNavHTML(e)}
     ${rutaHTML(e)}
+    ${googleMapsHTML(e)}
     ${radaresHTML(e)}
     ${gasolinerasHTML(e)}
     <h2>Waypoints (${e.waypoints.length})</h2>

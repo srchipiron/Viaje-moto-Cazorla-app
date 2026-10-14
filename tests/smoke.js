@@ -14,9 +14,11 @@ function loadPlaywright() {
 }
 const { chromium } = loadPlaywright();
 const fs = require('fs');
-/* Carpeta del viaje activo (viajes/<id>/), la que abre la app sin ?viaje=. */
+/* Las comprobaciones de detalle (radares del dia 3, gasolineras del 10, mapa...) son del viaje de 2026,
+   que esta completo: la prueba lo abre siempre con ?viaje=, sea o no el activo. */
 const INDICE = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'viajes', 'index.json'), 'utf8'));
-const VIAJE_DIR = path.join(__dirname, '..', 'viajes', INDICE.activo);
+const VIAJE_PRUEBA = '2026-09-cazorla';
+const VIAJE_DIR = path.join(__dirname, '..', 'viajes', VIAJE_PRUEBA);
 /* Punto de GPS a mitad de la etapa de HOY, sacado del plan: si se fija a mano,
    la prueba caduca en cuanto el viaje avanza un dia. Fuera de las fechas del viaje se usa el dia 1
    con el reloj simulado en esa fecha (relojEtapa). */
@@ -31,7 +33,8 @@ function puntoDeHoy() {
 }
 const HOY = puntoDeHoy();
 const relojEtapa = (pagina) => pagina.clock.install({ time: new Date(`${HOY.fecha}T11:00:00+02:00`) });
-const BASE = process.argv[2] || 'http://localhost:8080/';
+const RAIZ = process.argv[2] || 'http://localhost:8080/';
+const BASE = `${RAIZ}?viaje=${VIAJE_PRUEBA}`;   // BASE + '#/vista'
 const PNG1x1 = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
 
 function mockMeteo(url) {
@@ -289,19 +292,28 @@ function mockGeo(url) {
     pe.on('pageerror', (e) => errors.push('pageerror(ejemplo): ' + e.message));
     const vistas = ['resumen', 'etapas', 'etapas/1', 'etapas/2', 'noches', 'tiempo', 'listas', 'equipaje', 'guia', 'hoja', 'sos', 'buscar/alba', 'ahora', 'pueblos', 'radares', 'gasolina'];
     for (const v of vistas) {
-      await pe.goto(BASE + `?viaje=ejemplo#/${v}`, { waitUntil: 'networkidle' });
+      await pe.goto(RAIZ + `?viaje=ejemplo#/${v}`, { waitUntil: 'networkidle' });
       const t = await pe.locator('#view').innerText();
       if (/undefined|NaN|\[object |No se pudo cargar/.test(t)) errors.push(`ejemplo #/${v}: ${(t.match(/.{0,40}(undefined|NaN|\[object |No se pudo cargar).{0,30}/) || [''])[0]}`);
     }
     const marca = await pe.locator('.brand-text strong').innerText();
     if (!/ejemplo/i.test(marca)) errors.push('ejemplo: la cabecera no lleva el nombre del viaje: ' + marca);
-    await pe.goto(BASE + '?viaje=ejemplo#/etapas/1', { waitUntil: 'networkidle' });
+    await pe.goto(RAIZ + '?viaje=ejemplo#/etapas/1', { waitUntil: 'networkidle' });
     await pe.fill('[data-diario="1"]', 'Nota del viaje de ejemplo'); await pe.waitForTimeout(600);
     const claveE = await pe.evaluate(() => Object.keys(localStorage).filter((k) => /diario/.test(k)));
     if (!claveE.includes('viaje-nx500-diario@ejemplo')) errors.push('ejemplo: el diario no se guarda con su sufijo: ' + claveE.join(','));
     await pe.goto(BASE + '#/etapas/1', { waitUntil: 'networkidle' });
     const diarioActivo = await pe.locator('[data-diario="1"]').inputValue().catch(() => '');
     if (/ejemplo/.test(diarioActivo)) errors.push('el diario del viaje de ejemplo aparece en el viaje activo');
+    // el resto de viajes del indice (el activo incluido) abren todas las vistas sin errores
+    for (const vj of INDICE.viajes.filter((x) => x.id !== VIAJE_PRUEBA && x.id !== 'ejemplo')) {
+      for (const v of vistas) {
+        await pe.goto(RAIZ + `?viaje=${vj.id}#/${v}`, { waitUntil: 'networkidle' });
+        const t = await pe.locator('#view').innerText();
+        if (/undefined|NaN|\[object |No se pudo cargar/.test(t)) errors.push(`${vj.id} #/${v}: ${(t.match(/.{0,40}(undefined|NaN|\[object |No se pudo cargar).{0,30}/) || [''])[0]}`);
+      }
+      console.log(`viaje ${vj.id}:`, vistas.length, 'vistas sin errores');
+    }
     console.log('plantilla (viajes/ejemplo):', vistas.length, 'vistas · cabecera', marca, '· claves', claveE.join(','));
     await ctxE.close();
   }

@@ -1,0 +1,1228 @@
+{
+  "meta": {
+    "version": 1,
+    "revision": 1,
+    "actualizado": "2026-10-14",
+    "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
+    "cambios": [
+      "Plan cargado del fichero 'viaje-fisterra-2027.json' (2026-10-14): 12 etapas con sus waypoints, km y tiempos de Google, carreteras, alojamientos y rutas de Google Maps. Tracks aproximados con OSRM. Fecha de salida provisional: 2027-01-09"
+    ]
+  },
+  "proyecto": {
+    "nombre": "Almería–Fisterra por Portugal (enero 2027)",
+    "nombre_corto": "Fisterra 2027",
+    "fechas": {
+      "inicio": "2027-01-09",
+      "fin": "2027-01-20",
+      "dias": 12,
+      "noches": 11,
+      "provisionales": true
+    },
+    "distancia_total_aprox_km": 3688,
+    "moto": {
+      "modelo": "Honda NX500",
+      "autonomia_orientativa_km": 380,
+      "regla_gasolina": "En Portugal y en la costa gallega hay gasolineras de sobra; en el interior (N2, Alentejo) llenar al bajar de medio depósito. Los precios del Ministerio solo cubren España."
+    },
+    "objetivo": "12 días en enero por la costa de Portugal hasta Fisterra y vuelta por el interior (Douro, N2, Alentejo, Sierra de Aracena), durmiendo en campings con bungalow abiertos en invierno.",
+    "reglas_globales": {
+      "horario": "Enero: salir media hora después de amanecer y estar en el alojamiento antes de que anochezca. Portugal va una hora por detrás de España.",
+      "superficie": "100% asfalto",
+      "paradas": "Cada 60-90 minutos, con algo caliente: en enero el frío cansa más que los kilómetros."
+    }
+  },
+  "itinerario": [
+    {
+      "dia": 1,
+      "fecha": "2027-01-09",
+      "dia_semana": "sabado",
+      "tipo": "llano",
+      "origen": "Almería",
+      "destino": "El Puerto de Santa María",
+      "km_aprox": 459,
+      "tiempo_real_aprox": "5h24",
+      "dificultad": 2,
+      "fatiga": 4,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "16:09",
+      "meteo_puntos": [
+        {
+          "nombre": "San Roque",
+          "lat": 36.21,
+          "lon": -5.39
+        },
+        {
+          "nombre": "El Puerto de Santa María",
+          "lat": 36.59,
+          "lon": -6.24
+        }
+      ],
+      "waypoints": [
+        "Almería 04006",
+        "Motril",
+        "San Roque",
+        "Jerez de la Frontera",
+        "Camping Las Dunas (El Puerto)"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-01.gpx",
+        "track": "tracks/dia-01.json",
+        "vias": [
+          "Motril",
+          "San Roque",
+          "Jerez de la Frontera"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho. En la Costa del Sol lleva puntos de forma por la A-7 de la costa (Fuengirola, Marbella, Estepona, Sabinillas) para no meterse en la AP-7 de peaje."
+      },
+      "notas": [
+        "Carreteras: A-7 · A-381 · A-4. 356 km de autovía de 459.",
+        "Tiempo de conducción de Google (5h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:22) y llegada con 105 min de paradas: anochece a las 18:25 en El Puerto de Santa María, margen de 2h16.",
+        "Pasa de 4 h de conducción (5h24): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "A-7",
+        "A-381",
+        "A-4"
+      ],
+      "autovia_km": 356,
+      "google_maps": [
+        {
+          "tramo": "Almería → El Puerto",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.84172,-2.44688&destination=36.58735,-6.24086&travelmode=driving&waypoints=36.74509,-3.52077%7C36.21006,-5.38683%7C36.68169,-6.13774",
+          "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "TAIGA Puerto Santa María (antes Camping Playa Las Dunas)",
+        "direccion": "El Puerto de Santa María, a 1 km del centro",
+        "telefono": "+34 951 204 531",
+        "estado": "Abierto todo el año (ACSI 2026, PiNCAMP)",
+        "email": "hola.puerto@taigaresorts.com",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      }
+    },
+    {
+      "dia": 2,
+      "fecha": "2027-01-10",
+      "dia_semana": "domingo",
+      "tipo": "llano",
+      "origen": "El Puerto de Santa María",
+      "destino": "Sagres",
+      "km_aprox": 440,
+      "tiempo_real_aprox": "4h35",
+      "dificultad": 1,
+      "fatiga": 4,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:15",
+      "llegada_prevista": "14:35",
+      "meteo_puntos": [
+        {
+          "nombre": "Sagres",
+          "lat": 37.01,
+          "lon": -8.94
+        },
+        {
+          "nombre": "Sagres",
+          "lat": 37.02,
+          "lon": -8.95
+        }
+      ],
+      "waypoints": [
+        "Camping Las Dunas (El Puerto)",
+        "Lagos",
+        "Ponta da Piedade",
+        "Sagres",
+        "Cabo de São Vicente",
+        "Orbitur Sagres"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-02.gpx",
+        "track": "tracks/dia-02.json",
+        "vias": [
+          "Lagos",
+          "Ponta da Piedade",
+          "Sagres",
+          "Cabo de São Vicente"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: A-4 · A-49 · A22 · N125 · N268. 372 km de autovía de 440.",
+        "Tiempo de conducción de Google (4h35); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:37) y llegada con 105 min de paradas: anochece a las 17:35 en Sagres, margen de 3h00.",
+        "Cambio de hora: Portugal va una hora por detrás de España. Al entrar en Portugal se gana una hora (horas de llegada en hora portuguesa).",
+        "Pasa de 4 h de conducción (4h35): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "A-4",
+        "A-49",
+        "A22",
+        "N125",
+        "N268"
+      ],
+      "autovia_km": 372,
+      "google_maps": [
+        {
+          "tramo": "El Puerto → Sagres",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.58735,-6.24086&destination=37.02444,-8.94618&travelmode=driving&waypoints=37.21580,-7.40602%7C37.10280,-8.67287%7C37.08130,-8.66850%7C37.00783,-8.94192%7C37.02265,-8.99666",
+          "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Orbitur Sagres",
+        "direccion": "Cerro das Moitas, a 2 km de Sagres",
+        "telefono": "+351 282 624 371",
+        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
+        "email": "sagres@orbitur.pt",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 3,
+      "fecha": "2027-01-11",
+      "dia_semana": "lunes",
+      "tipo": "llano",
+      "origen": "Sagres",
+      "destino": "Setúbal",
+      "km_aprox": 223,
+      "tiempo_real_aprox": "4h05",
+      "dificultad": 1,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "14:30",
+      "meteo_puntos": [
+        {
+          "nombre": "Porto Covo",
+          "lat": 37.85,
+          "lon": -8.79
+        },
+        {
+          "nombre": "Setúbal",
+          "lat": 38.49,
+          "lon": -8.93
+        }
+      ],
+      "waypoints": [
+        "Orbitur Sagres",
+        "Vila do Bispo",
+        "Carrapateira",
+        "Aljezur",
+        "Odeceixe",
+        "Vila Nova de Milfontes",
+        "Porto Covo",
+        "Sines",
+        "Melides",
+        "Comporta",
+        "Tróia (cais do ferry)",
+        "Setúbal (cais do ferry)",
+        "EcoParque do Outão"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-03.gpx",
+        "track": "tracks/dia-03.json",
+        "vias": [
+          "Vila do Bispo",
+          "Carrapateira",
+          "Aljezur",
+          "Odeceixe",
+          "Vila Nova de Milfontes",
+          "Porto Covo",
+          "Sines",
+          "Melides",
+          "Comporta",
+          "Tróia (cais do ferry)",
+          "Setúbal (cais do ferry)"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N268 · N120 · N393 · N261 · N253-1 · Ferry. 0 km de autovía de 223.",
+        "Tiempo de conducción de Google (4h05); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:48) y llegada con 85 min de paradas: anochece a las 17:32 en Setúbal, margen de 3h02.",
+        "Pasa de 4 h de conducción (4h05): por encima del límite que se marcó en el viaje de 2026.",
+        "Ferry Tróia–Setúbal al final del día (unos 25 min de travesía según OSRM): comprobar los horarios de invierno antes de salir de Sagres para no llegar con el último ya ido."
+      ],
+      "carreteras": [
+        "N268",
+        "N120",
+        "N393",
+        "N261",
+        "N253-1",
+        "Ferry"
+      ],
+      "autovia_km": 0,
+      "google_maps": [
+        {
+          "tramo": "Sagres → muelle de Tróia",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.02444,-8.94618&destination=38.46733,-8.86307&travelmode=driving&waypoints=37.08298,-8.90961%7C37.18405,-8.89497%7C37.31515,-8.80405%7C37.43323,-8.77020%7C37.72528,-8.78229%7C37.85173,-8.79184%7C37.95655,-8.86896%7C38.14730,-8.72858%7C38.38038,-8.78600",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Setúbal → camping",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=38.52142,-8.88518&destination=38.49300,-8.92900&travelmode=driving",
+          "opciones": ""
+        }
+      ],
+      "alojamiento": {
+        "nombre": "EcoParque do Outão",
+        "direccion": "EN10-4 km 4, a 3 km de Setúbal",
+        "telefono": "+351 265 238 318",
+        "estado": "Abierto en enero (cierra todo febrero)",
+        "email": "parquecampismooutao@gmail.com",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 4,
+      "fecha": "2027-01-12",
+      "dia_semana": "martes",
+      "tipo": "llano",
+      "origen": "Setúbal",
+      "destino": "Peniche",
+      "km_aprox": 224,
+      "tiempo_real_aprox": "4h22",
+      "dificultad": 2,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "14:47",
+      "meteo_puntos": [
+        {
+          "nombre": "Praia do Guincho",
+          "lat": 38.73,
+          "lon": -9.47
+        },
+        {
+          "nombre": "Peniche",
+          "lat": 39.37,
+          "lon": -9.39
+        }
+      ],
+      "waypoints": [
+        "EcoParque do Outão",
+        "Portinho da Arrábida",
+        "Vila Nogueira de Azeitão",
+        "Fogueteiro",
+        "Lisboa (Alcântara)",
+        "Torre de Belém",
+        "Cascais",
+        "Praia do Guincho",
+        "Cabo da Roca",
+        "Colares",
+        "Sintra",
+        "Mafra",
+        "Ericeira",
+        "Lourinhã",
+        "PenichePraia"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-04.gpx",
+        "track": "tracks/dia-04.json",
+        "vias": [
+          "Portinho da Arrábida",
+          "Vila Nogueira de Azeitão",
+          "Fogueteiro",
+          "Lisboa (Alcântara)",
+          "Torre de Belém",
+          "Cascais",
+          "Praia do Guincho",
+          "Cabo da Roca",
+          "Colares",
+          "Sintra",
+          "Mafra",
+          "Ericeira",
+          "Lourinhã"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N379-1 · A2 · N6 · N247 · N9. 14 km de autovía de 224.",
+        "Tiempo de conducción de Google (4h22); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 85 min de paradas: anochece a las 17:33 en Peniche, margen de 2h46.",
+        "Pasa de 4 h de conducción (4h22): por encima del límite que se marcó en el viaje de 2026.",
+        "El Puente 25 de Abril es autopista con peaje (se paga entrando en Lisboa): no se puede evitar en esta ruta."
+      ],
+      "carreteras": [
+        "N379-1",
+        "A2",
+        "N6",
+        "N247",
+        "N9",
+        "N247"
+      ],
+      "autovia_km": 14,
+      "google_maps": [
+        {
+          "tramo": "Setúbal → Fogueteiro (Arrábida)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=38.49300,-8.92900&destination=38.60997,-9.10145&travelmode=driving&waypoints=38.47535,-8.98436%7C38.51868,-9.01386",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Fogueteiro → Cabo da Roca (puente y Marginal)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=38.60997,-9.10145&destination=38.78190,-9.49732&travelmode=driving&waypoints=38.70388,-9.18239%7C38.69159,-9.21593%7C38.68580,-9.31200%7C38.70430,-9.39750%7C38.69689,-9.42045%7C38.73316,-9.47278",
+          "opciones": "Sin opciones de evitar: el puente es autopista y peaje"
+        },
+        {
+          "tramo": "Cabo da Roca → Peniche",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=38.78190,-9.49732&destination=39.36874,-9.39213&travelmode=driving&waypoints=38.79900,-9.44700%7C38.79760,-9.39060%7C38.93698,-9.32824%7C38.96324,-9.41708%7C39.24339,-9.31193",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "PenichePraia",
+        "direccion": "Estrada Marginal Norte, Peniche",
+        "telefono": "+351 262 783 460",
+        "estado": "Abierto todo el año (PiNCAMP 2026, Alan Rogers)",
+        "email": "geral@penichepraia.pt",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 5,
+      "fecha": "2027-01-13",
+      "dia_semana": "miercoles",
+      "tipo": "llano",
+      "origen": "Peniche",
+      "destino": "Aveiro (Praia da Barra)",
+      "km_aprox": 217,
+      "tiempo_real_aprox": "4h24",
+      "dificultad": 1,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "14:49",
+      "meteo_puntos": [
+        {
+          "nombre": "São Pedro de Moel",
+          "lat": 39.76,
+          "lon": -9.03
+        },
+        {
+          "nombre": "Aveiro (Praia da Barra)",
+          "lat": 40.64,
+          "lon": -8.74
+        }
+      ],
+      "waypoints": [
+        "PenichePraia",
+        "Óbidos",
+        "Foz do Arelho",
+        "São Martinho do Porto",
+        "Nazaré",
+        "Nazaré (Forte de São Miguel)",
+        "São Pedro de Moel",
+        "Praia da Vieira",
+        "Figueira da Foz",
+        "Praia de Mira",
+        "Costa Nova",
+        "Barra Camping"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-05.gpx",
+        "track": "tracks/dia-05.json",
+        "vias": [
+          "Óbidos",
+          "Foz do Arelho",
+          "São Martinho do Porto",
+          "Nazaré",
+          "Nazaré (Forte de São Miguel)",
+          "São Pedro de Moel",
+          "Praia da Vieira",
+          "Figueira da Foz",
+          "Praia de Mira",
+          "Costa Nova"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N114 · N8 · N242 · N109. 0 km de autovía de 217.",
+        "Tiempo de conducción de Google (4h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:56) y llegada con 85 min de paradas: anochece a las 17:28 en Aveiro (Praia da Barra), margen de 2h39.",
+        "Pasa de 4 h de conducción (4h24): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "N114",
+        "N8",
+        "N242",
+        "N109"
+      ],
+      "autovia_km": 0,
+      "google_maps": [
+        {
+          "tramo": "Peniche → Barra (Aveiro)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=39.36874,-9.39213&destination=40.63902,-8.74369&travelmode=driving&waypoints=39.36195,-9.15715%7C39.43296,-9.21739%7C39.51353,-9.13359%7C39.60449,-9.08520%7C39.75793,-9.02940%7C39.87452,-8.97297%7C40.14858,-8.85566%7C40.45564,-8.80262%7C40.61258,-8.74954",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Barra Camping & Bungalows",
+        "direccion": "Praia da Barra, a 10 km de Aveiro",
+        "telefono": "+351 234 369 425",
+        "estado": "Abierto todo 2026 (CampingCard ACSI)",
+        "email": "info@campingbarra.com",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 6,
+      "fecha": "2027-01-14",
+      "dia_semana": "jueves",
+      "tipo": "llano",
+      "origen": "Aveiro",
+      "destino": "A Guarda",
+      "km_aprox": 218,
+      "tiempo_real_aprox": "4h05",
+      "dificultad": 1,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "15:30",
+      "meteo_puntos": [
+        {
+          "nombre": "Póvoa de Varzim",
+          "lat": 41.38,
+          "lon": -8.76
+        },
+        {
+          "nombre": "A Guarda",
+          "lat": 41.9,
+          "lon": -8.85
+        }
+      ],
+      "waypoints": [
+        "Barra Camping",
+        "Aveiro",
+        "Ovar",
+        "Espinho",
+        "Vila Nova de Gaia",
+        "Porto (Ponte D. Luís I)",
+        "Vila do Conde",
+        "Póvoa de Varzim",
+        "Esposende",
+        "Viana do Castelo",
+        "Caminha",
+        "Vila Nova de Cerveira",
+        "Goián (puente)",
+        "Camping Santa Tecla"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-06.gpx",
+        "track": "tracks/dia-06.json",
+        "vias": [
+          "Aveiro",
+          "Ovar",
+          "Espinho",
+          "Vila Nova de Gaia",
+          "Porto (Ponte D. Luís I)",
+          "Vila do Conde",
+          "Póvoa de Varzim",
+          "Esposende",
+          "Viana do Castelo",
+          "Caminha",
+          "Vila Nova de Cerveira",
+          "Goián (puente)"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N109 · N13 · PO-552. 0 km de autovía de 218.",
+        "Tiempo de conducción de Google (4h05); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:57) y llegada con 85 min de paradas: anochece a las 18:26 en A Guarda, margen de 2h56.",
+        "Cambio de hora: Portugal va una hora por detrás de España. Al volver a España se pierde una hora (horas de llegada en hora española).",
+        "Pasa de 4 h de conducción (4h05): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "N109",
+        "N13",
+        "PO-552"
+      ],
+      "autovia_km": 0,
+      "google_maps": [
+        {
+          "tramo": "Barra → Oporto",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=40.63902,-8.74369&destination=41.14000,-8.60950&travelmode=driving&waypoints=40.64050,-8.65380%7C40.85970,-8.62530%7C41.00836,-8.63941%7C41.12923,-8.60574",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Oporto → A Guarda",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=41.14000,-8.60950&destination=41.89878,-8.84788&travelmode=driving&waypoints=41.35404,-8.74354%7C41.37942,-8.75987%7C41.53153,-8.77925%7C41.69351,-8.82828%7C41.87460,-8.83860%7C41.94050,-8.74450%7C41.94464,-8.77329",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Camping Santa Tecla",
+        "direccion": "A Guarda, en la desembocadura del Miño",
+        "telefono": "+34 986 61 30 11",
+        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      }
+    },
+    {
+      "dia": 7,
+      "fecha": "2027-01-15",
+      "dia_semana": "viernes",
+      "tipo": "llano",
+      "origen": "A Guarda",
+      "destino": "Fisterra",
+      "km_aprox": 251,
+      "tiempo_real_aprox": "4h50",
+      "dificultad": 1,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:45",
+      "llegada_prevista": "16:20",
+      "meteo_puntos": [
+        {
+          "nombre": "Padrón",
+          "lat": 42.74,
+          "lon": -8.66
+        },
+        {
+          "nombre": "Fisterra",
+          "lat": 42.91,
+          "lon": -9.26
+        }
+      ],
+      "waypoints": [
+        "Camping Santa Tecla",
+        "A Guarda",
+        "Oia (mosteiro)",
+        "Baiona",
+        "Vigo",
+        "Redondela",
+        "Arcade",
+        "Pontevedra",
+        "Caldas de Reis",
+        "Padrón",
+        "Noia",
+        "Muros",
+        "Carnota",
+        "O Pindo",
+        "O Ézaro",
+        "Cee",
+        "Fisterra",
+        "Faro de Fisterra",
+        "Fisterra (O Encontro)"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-07.gpx",
+        "track": "tracks/dia-07.json",
+        "vias": [
+          "A Guarda",
+          "Oia (mosteiro)",
+          "Baiona",
+          "Vigo",
+          "Redondela",
+          "Arcade",
+          "Pontevedra",
+          "Caldas de Reis",
+          "Padrón",
+          "Noia",
+          "Muros",
+          "Carnota",
+          "O Pindo",
+          "O Ézaro",
+          "Cee",
+          "Fisterra",
+          "Faro de Fisterra"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho. Lleva puntos de forma en Chapela, Cesantes y Barro para ir por la N-552 y la N-550 y no por la AP-9 de peaje."
+      },
+      "notas": [
+        "Carreteras: PO-552 · N-550 · AC-543 · AC-550. 0 km de autovía de 251.",
+        "Tiempo de conducción de Google (4h50); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:00) y llegada con 105 min de paradas: anochece a las 18:26 en Fisterra, margen de 2h06.",
+        "Pasa de 4 h de conducción (4h50): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "PO-552",
+        "N-550",
+        "AC-543",
+        "AC-550"
+      ],
+      "autovia_km": 0,
+      "google_maps": [
+        {
+          "tramo": "A Guarda → Padrón",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=41.89878,-8.84788&destination=42.73830,-8.66030&travelmode=driving&waypoints=41.90150,-8.87400%7C42.00050,-8.87720%7C42.11835,-8.85521%7C42.23100,-8.72300%7C42.28330,-8.60940%7C42.33660,-8.60150%7C42.41800,-8.64000%7C42.60411,-8.64217",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Padrón → Fisterra",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=42.73830,-8.66030&destination=42.90590,-9.26385&travelmode=driving&waypoints=42.78508,-8.88774%7C42.77560,-9.06010%7C42.82196,-9.08780%7C42.89192,-9.13406%7C42.91145,-9.13327%7C42.95756,-9.19172%7C42.90648,-9.26379%7C42.88292,-9.27173",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Albergue-Pensión O Encontro",
+        "direccion": "Fisterra",
+        "telefono": null,
+        "estado": "Abierto todo el año (Gronze)",
+        "reserva": "Ficha y reservas en gronze.com (Fisterra)",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      }
+    },
+    {
+      "dia": 8,
+      "fecha": "2027-01-16",
+      "dia_semana": "sabado",
+      "tipo": "montaña",
+      "origen": "Fisterra",
+      "destino": "Chaves",
+      "km_aprox": 302,
+      "tiempo_real_aprox": "4h24",
+      "dificultad": 2,
+      "fatiga": 4,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:45",
+      "llegada_prevista": "14:34",
+      "meteo_puntos": [
+        {
+          "nombre": "Santiago de Compostela",
+          "lat": 42.88,
+          "lon": -8.54
+        },
+        {
+          "nombre": "Chaves",
+          "lat": 41.7,
+          "lon": -7.5
+        }
+      ],
+      "waypoints": [
+        "Fisterra (O Encontro)",
+        "Cee",
+        "Negreira",
+        "Ponte Maceira",
+        "Santiago de Compostela",
+        "Ourense",
+        "Verín",
+        "Chaves",
+        "Quinta do Rebentão"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-08.gpx",
+        "track": "tracks/dia-08.json",
+        "vias": [
+          "Cee",
+          "Negreira",
+          "Ponte Maceira",
+          "Santiago de Compostela",
+          "Ourense",
+          "Verín",
+          "Chaves"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho. Lleva puntos de forma por la N-525 (Ponte Ulla, Bandeira, Silleda, Lalín, Dozón) para no meterse en la AP-53 de peaje; el punto de la ruta de Google en Bandeira caía sobre la AP-53 y se ha quitado."
+      },
+      "notas": [
+        "Carreteras: AC-552 · N-525 · AG-53 · A-52 · N-532. 122 km de autovía de 302.",
+        "Tiempo de conducción de Google (4h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:04) y llegada con 85 min de paradas: anochece a las 17:23 en Chaves, margen de 2h49.",
+        "Cambio de hora: Portugal va una hora por detrás de España. Al entrar en Portugal se gana una hora (horas de llegada en hora portuguesa).",
+        "Pasa de 4 h de conducción (4h24): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "AC-552",
+        "N-525",
+        "AG-53",
+        "A-52",
+        "N-532"
+      ],
+      "autovia_km": 122,
+      "google_maps": [
+        {
+          "tramo": "Fisterra → Santiago",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=42.90590,-9.26385&destination=42.87620,-8.54460&travelmode=driving&waypoints=42.95756,-9.19172%7C42.90870,-8.73700%7C42.89900,-8.69450",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Santiago → Chaves",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=42.87620,-8.54460&destination=41.70094,-7.50144&travelmode=driving&waypoints=42.72894,-8.30290%7C42.34389,-7.85718%7C41.94160,-7.43800%7C41.73990,-7.47152",
+          "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Parque de Campismo Quinta do Rebentão",
+        "direccion": "Vila Nova de Veiga, a unos 5 km al sur de Chaves",
+        "telefono": "+351 276 322 733",
+        "estado": "Abierto todo el año. En diciembre y enero, solo con reserva (ACSI)",
+        "email": "parquedecampismo@chaves.pt",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 9,
+      "fecha": "2027-01-17",
+      "dia_semana": "domingo",
+      "tipo": "montaña",
+      "origen": "Chaves",
+      "destino": "Coimbra",
+      "km_aprox": 301,
+      "tiempo_real_aprox": "4h58",
+      "dificultad": 2,
+      "fatiga": 4,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "15:43",
+      "meteo_puntos": [
+        {
+          "nombre": "Folgosa (N222)",
+          "lat": 41.15,
+          "lon": -7.68
+        },
+        {
+          "nombre": "Coimbra",
+          "lat": 40.19,
+          "lon": -8.4
+        }
+      ],
+      "waypoints": [
+        "Quinta do Rebentão",
+        "Vidago",
+        "Vila Pouca de Aguiar",
+        "Vila Real",
+        "Sabrosa",
+        "Casal de Loivos (miradouro)",
+        "Pinhão",
+        "Folgosa (N222)",
+        "Peso da Régua",
+        "Lamego",
+        "Viseu",
+        "Tondela",
+        "Santa Comba Dão",
+        "Penacova",
+        "Coimbra Camping"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-09.gpx",
+        "track": "tracks/dia-09.json",
+        "vias": [
+          "Vidago",
+          "Vila Pouca de Aguiar",
+          "Vila Real",
+          "Sabrosa",
+          "Casal de Loivos (miradouro)",
+          "Pinhão",
+          "Folgosa (N222)",
+          "Peso da Régua",
+          "Lamego",
+          "Viseu",
+          "Tondela",
+          "Santa Comba Dão",
+          "Penacova"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N2 · N322 · N323 · N222 · A24 · N110. 49 km de autovía de 301.",
+        "Tiempo de conducción de Google (4h58); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:53) y llegada con 105 min de paradas: anochece a las 17:32 en Coimbra, margen de 1h49.",
+        "Pasa de 4 h de conducción (4h58): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "N2",
+        "N322",
+        "N323",
+        "N222",
+        "A24",
+        "N2",
+        "N110"
+      ],
+      "autovia_km": 49,
+      "google_maps": [
+        {
+          "tramo": "Chaves → Peso da Régua (N2 y Douro)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=41.70094,-7.50144&destination=41.16370,-7.78758&travelmode=driving&waypoints=41.64170,-7.57173%7C41.50076,-7.64429%7C41.29700,-7.74400%7C41.26638,-7.57576%7C41.20046,-7.53376%7C41.19105,-7.54600%7C41.15169,-7.67970",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Régua → Coimbra",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=41.16370,-7.78758&destination=40.18793,-8.39900&travelmode=driving&waypoints=41.09853,-7.81057%7C40.66100,-7.90970%7C40.51642,-8.08053%7C40.39611,-8.12996%7C40.27021,-8.28107",
+          "opciones": "Evitar peajes: SÍ · Evitar autopistas: NO (A24 Lamego–Viseu)"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Coimbra Camping & Bungalows",
+        "direccion": "Alto do Areeiro, Coimbra",
+        "telefono": "+351 239 086 902",
+        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
+        "email": "geral@coimbracamping.com",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 10,
+      "fecha": "2027-01-18",
+      "dia_semana": "lunes",
+      "tipo": "llano",
+      "origen": "Coimbra",
+      "destino": "Évora",
+      "km_aprox": 313,
+      "tiempo_real_aprox": "5h00",
+      "dificultad": 2,
+      "fatiga": 4,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "15:45",
+      "meteo_puntos": [
+        {
+          "nombre": "Abrantes",
+          "lat": 39.46,
+          "lon": -8.2
+        },
+        {
+          "nombre": "Évora",
+          "lat": 38.56,
+          "lon": -7.93
+        }
+      ],
+      "waypoints": [
+        "Coimbra Camping",
+        "Vila Nova de Poiares",
+        "Góis",
+        "Pedrógão Grande",
+        "Sertã",
+        "Vila de Rei",
+        "Abrantes",
+        "Ponte de Sor",
+        "Montargil",
+        "Mora",
+        "Montemor-o-Novo",
+        "Orbitur Évora"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-10.gpx",
+        "track": "tracks/dia-10.json",
+        "vias": [
+          "Vila Nova de Poiares",
+          "Góis",
+          "Pedrógão Grande",
+          "Sertã",
+          "Vila de Rei",
+          "Abrantes",
+          "Ponte de Sor",
+          "Montargil",
+          "Mora",
+          "Montemor-o-Novo"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N17 · N2 · N114. 0 km de autovía de 313.",
+        "Tiempo de conducción de Google (5h00); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 105 min de paradas: anochece a las 17:35 en Évora, margen de 1h50.",
+        "Pasa de 4 h de conducción (5h00): por encima del límite que se marcó en el viaje de 2026."
+      ],
+      "carreteras": [
+        "N17",
+        "N2",
+        "N2",
+        "N114"
+      ],
+      "autovia_km": 0,
+      "google_maps": [
+        {
+          "tramo": "Coimbra → Abrantes (N2)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=40.18793,-8.39900&destination=39.46303,-8.19752&travelmode=driving&waypoints=40.21058,-8.25889%7C40.15462,-8.10995%7C39.91696,-8.14556%7C39.80521,-8.09644%7C39.67598,-8.14422",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        },
+        {
+          "tramo": "Abrantes → Évora",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=39.46303,-8.19752&destination=38.55759,-7.92675&travelmode=driving&waypoints=39.25193,-8.00900%7C39.07830,-8.17328%7C38.94419,-8.16547%7C38.64818,-8.21159",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Orbitur Évora",
+        "direccion": "Estrada das Alcáçovas, a 2 km del centro",
+        "telefono": "+351 266 705 190",
+        "estado": "Abierto todo el año (ACSI, Alan Rogers)",
+        "email": "evora@orbitur.pt",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      },
+      "zona_horaria": "Europe/Lisbon"
+    },
+    {
+      "dia": 11,
+      "fecha": "2027-01-19",
+      "dia_semana": "martes",
+      "tipo": "llano",
+      "origen": "Évora",
+      "destino": "Aracena",
+      "km_aprox": 229,
+      "tiempo_real_aprox": "3h47",
+      "dificultad": 1,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "14:27",
+      "meteo_puntos": [
+        {
+          "nombre": "Aroche",
+          "lat": 37.94,
+          "lon": -6.95
+        },
+        {
+          "nombre": "Aracena",
+          "lat": 37.89,
+          "lon": -6.56
+        }
+      ],
+      "waypoints": [
+        "Orbitur Évora",
+        "Beja",
+        "Serpa",
+        "Vila Verde de Ficalho",
+        "Rosal de la Frontera",
+        "Aroche",
+        "Cortegana",
+        "El Repilado (Jabugo)",
+        "Fuenteheridos",
+        "Aracena (Los Castaños)"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-11.gpx",
+        "track": "tracks/dia-11.json",
+        "vias": [
+          "Beja",
+          "Serpa",
+          "Vila Verde de Ficalho",
+          "Rosal de la Frontera",
+          "Aroche",
+          "Cortegana",
+          "El Repilado (Jabugo)",
+          "Fuenteheridos"
+        ],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N380 · N258 · IP8 · N-433. 0 km de autovía de 229.",
+        "Tiempo de conducción de Google (3h47); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:46) y llegada con 40 min de paradas: anochece a las 18:33 en Aracena, margen de 4h06.",
+        "Cambio de hora: Portugal va una hora por detrás de España. Al volver a España se pierde una hora (horas de llegada en hora española).",
+        "Sin camping con bungalow confirmado abierto en enero en Aracena: por eso el hotel."
+      ],
+      "carreteras": [
+        "N380",
+        "N258",
+        "IP8",
+        "N-433"
+      ],
+      "autovia_km": 0,
+      "google_maps": [
+        {
+          "tramo": "Évora → Aracena",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=38.55759,-7.92675&destination=37.89249,-6.56389&travelmode=driving&waypoints=38.01545,-7.86504%7C37.94365,-7.59669%7C37.94460,-7.30170%7C37.96791,-7.22047%7C37.94362,-6.95396%7C37.90930,-6.81962%7C37.91050,-6.71550%7C37.90500,-6.66000",
+          "opciones": "Evitar autopistas: SÍ · Evitar peajes: SÍ"
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Hotel Los Castaños",
+        "direccion": "Av. de Huelva 5, Aracena",
+        "telefono": null,
+        "estado": "No hay camping con bungalow confirmado abierto en enero",
+        "reserva": "Reserva directa o por portales",
+        "pendiente_confirmar": [
+          "Reservar y confirmar que abre esa noche de enero",
+          "Dónde dejar la moto"
+        ]
+      }
+    },
+    {
+      "dia": 12,
+      "fecha": "2027-01-20",
+      "dia_semana": "miercoles",
+      "tipo": "montaña",
+      "origen": "Aracena",
+      "destino": "Almería",
+      "km_aprox": 511,
+      "tiempo_real_aprox": "5h19",
+      "dificultad": 1,
+      "fatiga": 4,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:15",
+      "llegada_prevista": "16:19",
+      "meteo_puntos": [
+        {
+          "nombre": "Almería 04006",
+          "lat": 36.84,
+          "lon": -2.45
+        },
+        {
+          "nombre": "Almería",
+          "lat": 36.84,
+          "lon": -2.45
+        }
+      ],
+      "waypoints": [
+        "Aracena (Los Castaños)",
+        "Almería 04006"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-12.gpx",
+        "track": "tracks/dia-12.json",
+        "vias": [],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos de las rutas de Google Maps del plan, con altitudes de EU-DEM. OSRM no evita autopistas ni peajes, así que en algún tramo puede no coincidir con Google o Kurviger. Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Carreteras: N-433 · A-66 · A-92. 443 km de autovía de 511.",
+        "Tiempo de conducción de Google (5h19); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:38) y llegada con 105 min de paradas: anochece a las 18:20 en Almería, margen de 2h01.",
+        "Pasa de 4 h de conducción (5h19): por encima del límite que se marcó en el viaje de 2026.",
+        "Plan B por la costa (A-44 y A-7) en los enlaces de Google Maps, por si hay nieve o hielo en la A-92, que sube hasta 1.369 m."
+      ],
+      "carreteras": [
+        "N-433",
+        "A-66",
+        "A-92"
+      ],
+      "autovia_km": 443,
+      "google_maps": [
+        {
+          "tramo": "Aracena → Almería (A-92)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.89249,-6.56389&destination=36.84172,-2.44688&travelmode=driving",
+          "opciones": "Sin opciones de evitar"
+        },
+        {
+          "tramo": "Plan B por la costa (A-44 + A-7)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.89249,-6.56389&destination=36.84172,-2.44688&travelmode=driving&waypoints=37.13000,-3.61500%7C36.74509,-3.52077",
+          "opciones": "Evitar peajes: SÍ"
+        }
+      ]
+    }
+  ],
+  "alojamientos_resumen": [
+    {
+      "noche": 1,
+      "fecha": "2027-01-09",
+      "lugar": "El Puerto de Santa María",
+      "alojamiento": "TAIGA Puerto Santa María (antes Camping Playa Las Dunas)",
+      "telefono": "+34 951 204 531",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 2,
+      "fecha": "2027-01-10",
+      "lugar": "Sagres",
+      "alojamiento": "Orbitur Sagres",
+      "telefono": "+351 282 624 371",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 3,
+      "fecha": "2027-01-11",
+      "lugar": "Setúbal",
+      "alojamiento": "EcoParque do Outão",
+      "telefono": "+351 265 238 318",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 4,
+      "fecha": "2027-01-12",
+      "lugar": "Peniche",
+      "alojamiento": "PenichePraia",
+      "telefono": "+351 262 783 460",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 5,
+      "fecha": "2027-01-13",
+      "lugar": "Aveiro (Praia da Barra)",
+      "alojamiento": "Barra Camping & Bungalows",
+      "telefono": "+351 234 369 425",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 6,
+      "fecha": "2027-01-14",
+      "lugar": "A Guarda",
+      "alojamiento": "Camping Santa Tecla",
+      "telefono": "+34 986 61 30 11",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 7,
+      "fecha": "2027-01-15",
+      "lugar": "Fisterra",
+      "alojamiento": "Albergue-Pensión O Encontro",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 8,
+      "fecha": "2027-01-16",
+      "lugar": "Chaves",
+      "alojamiento": "Parque de Campismo Quinta do Rebentão",
+      "telefono": "+351 276 322 733",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 9,
+      "fecha": "2027-01-17",
+      "lugar": "Coimbra",
+      "alojamiento": "Coimbra Camping & Bungalows",
+      "telefono": "+351 239 086 902",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 10,
+      "fecha": "2027-01-18",
+      "lugar": "Évora",
+      "alojamiento": "Orbitur Évora",
+      "telefono": "+351 266 705 190",
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 11,
+      "fecha": "2027-01-19",
+      "lugar": "Aracena",
+      "alojamiento": "Hotel Los Castaños",
+      "telefono": null,
+      "estado": "Sin reservar"
+    }
+  ],
+  "contactos": {
+    "emergencias": "112",
+    "en_casa": {
+      "nombre": "Contacto en casa",
+      "telefono": null,
+      "local": true,
+      "nota": "El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil."
+    }
+  },
+  "principios_para_claude": [
+    "No cambiar destinos ni bases sin una razon fuerte y explicita.",
+    "No añadir turismo por añadir.",
+    "Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.",
+    "No proponer jornadas reales de conduccion superiores a 4h.",
+    "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
+    "No inventar disponibilidad, horarios ni precios; verificar antes.",
+    "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan."
+  ]
+}

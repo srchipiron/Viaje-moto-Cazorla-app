@@ -1,5 +1,5 @@
 {
- "activo": "2026-09-cazorla",
+ "activo": "2027-01-fisterra",
  "viajes": [
   {
    "id": "2026-09-cazorla",
@@ -20,6 +20,15 @@
    "km": 172,
    "moto": "Honda NX500",
    "oculto": true
+  },
+  {
+   "id": "2027-01-fisterra",
+   "nombre": "Almería–Fisterra por Portugal (enero 2027)",
+   "inicio": "2027-01-09",
+   "fin": "2027-01-20",
+   "dias": 12,
+   "km": 3688,
+   "moto": "Honda NX500"
   }
  ]
 }
