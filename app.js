@@ -1531,7 +1531,7 @@ function viewResumen() {
       <small>Se guarda solo en este dispositivo. No viaja al repositorio ni a ningún servidor.</small>
     </form>`;
   };
-  return `
+  return `${alternativasHTML()}
     <div class="card accent">
       <h1>${esc(p.nombre)}</h1>
       ${p.objetivo ? `<p class="muted">${esc(p.objetivo)}</p>` : ''}
@@ -2224,6 +2224,15 @@ function viajesHTML() {
   if (lista.length < 2) return '';
   const activo = V.indice.activo;
   return `<h2>Viajes</h2><div class="card"><div class="guia-index">${lista.map((v) => `<a class="guia-link" href="${v.id === activo ? './' : `?viaje=${encodeURIComponent(v.id)}`}#/resumen"><span class="badge${v.id === V.id ? ' ok' : ''}">${v.id === V.id ? 'Abierto' : fmtFecha(v.inicio)}</span><span>${esc(v.nombre)}</span><small>${fmtFecha(v.inicio)} – ${fmtFecha(v.fin)} ${esc(String(v.inicio).slice(0, 4))} · ${v.dias} días${v.km ? ` · ${v.km} km` : ''}${v.id === activo ? ' · el activo' : ''}</small></a>`).join('')}</div></div>`;
+}
+/* Selector arriba en Resumen cuando hay varios viajes por hacer (p. ej. dos opciones para las
+   mismas vacaciones): uno pulsado por cada viaje no oculto que no haya terminado. */
+function alternativasHTML() {
+  const hoy = todayISO();
+  const lista = ((V.indice && V.indice.viajes) || []).filter((v) => !v.oculto && String(v.fin || '') >= hoy);
+  if (lista.length < 2) return '';
+  const activo = V.indice.activo;
+  return `<div class="card"><p class="muted"><small>Opciones de viaje · elige cuál ver</small></p><p class="row">${lista.map((v) => `<a class="btn small${v.id === V.id ? ' primary' : ''}" href="${v.id === activo ? './' : `?viaje=${encodeURIComponent(v.id)}`}#/resumen">${esc(v.corto || v.nombre)}<br><small>${fmtFecha(v.inicio)} – ${fmtFecha(v.fin)} · ${v.dias} días${v.km ? ` · ${v.km} km` : ''}</small></a>`).join(' ')}</p></div>`;
 }
 async function init() {
   updateNet(); aplicarTema();
