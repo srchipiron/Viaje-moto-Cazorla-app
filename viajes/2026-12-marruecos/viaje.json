@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "revision": 5,
+    "revision": 6,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
@@ -10,7 +10,8 @@
       "Checklist: sacar el pasaporte, primer paso de los papeles.",
       "Ruta v2 (2026-11-09): todas las etapas por debajo de 4 h (media de 3 h). Primer día corto hasta Guercif y noche en Missour; Merzouga el día 4 con descanso el 5 (que sirve también de margen si nieva en Midelt); Nochevieja en Tinghir; noches en Alnif y Errachidia para partir el N12; sin día libre en Aït Ben Haddou. La vuelta por Fez y Taza tiene una alternativa por Missour que ahorra un día. Tiempos con OSRM sin el 15 % extra (ya da medias de 50-65 km/h).",
       "Viaje completado (2026-11-09): alojamiento propuesto para cada noche (sin reservar), guía de cada día con qué ver y dónde comer, seguro Mapfre adaptado a Marruecos, consulado de España en Nador, equipación de invierno, reparto, rutina, lavandería (noches 5, 8 y 12), cadena (días 5, 8, 11 y 14) y checklist con dinero, SIM y papeles.",
-      "Ferry (2026-11-09): Baleària en butaca, ida el 25 dic a las 14:00 (llega a Nador a las 20:00, hora local) y vuelta el 10 ene a las 23:30 (llega el 11 a las 07:00), 135 € cada trayecto, sin reservar. Noche 0 en Nador al llegar; el domingo 10 queda de margen."
+      "Ferry (2026-11-09): Baleària en butaca, ida el 25 dic a las 14:00 (llega a Nador a las 20:00, hora local) y vuelta el 10 ene a las 23:30 (llega el 11 a las 07:00), 135 € cada trayecto, sin reservar. Noche 0 en Nador al llegar; el domingo 10 queda de margen.",
+      "Fez con día entero (2026-11-09): el día 14 queda libre en Fez (dos noches en el riad) y el 15 va de Fez a Nador del tirón (346 km, 4h55). Se quita la noche de Taza. Tope de conducción subido a unas 5 h, siempre llegando con luz. Cadena en los días 5, 8 y 11."
     ]
   },
   "proyecto": {
@@ -57,7 +58,7 @@
       "cadena": {
         "producto": "Motul C2 Road (maleta izquierda, al fondo con las zapatillas)",
         "cuando": "Cada 400-500 km y siempre despues de lluvia, al LLEGAR (cadena caliente), nunca antes de salir.",
-        "dias_previstos": "Día 5 en Merzouga (689 km. quitando antes la arena). día 8 en Aït Ben Haddou (1.174 km). día 11 en Meski (1.751 km) y día 14 en Taza (2.220 km).",
+        "dias_previstos": "Día 5 en Merzouga (689 km, quitando antes la arena), día 8 en Aït Ben Haddou (1.174 km) y día 11 en Meski (1.751 km). La siguiente, en casa al volver.",
         "regla_extra": "Con polvo o arena, limpiar con trapo antes de engrasar; si se ve gris o seca, engrasar esa noche aunque no toque.",
         "tension": "Juego de 25-35 mm en el punto medio del ramal inferior, sin peso encima. El valor exacto, en la pegatina del basculante. Si hay puntos tensos y flojos, cadena desgastada: mirarlo antes de seguir."
       },
@@ -69,10 +70,10 @@
     },
     "objetivo": "15 días por el sureste de Marruecos en invierno, sin puertos altos obligatorios: Merzouga, gargantas del Todra y del Dadès, Aït Ben Haddou, valle del Draa y vuelta por el Atlas Medio y Fez. Ferry Almería–Nador ida y vuelta.",
     "reglas_globales": {
-      "conduccion_real_objetivo": "3h-3h30",
-      "conduccion_real_maximo": "4h",
+      "conduccion_real_objetivo": "3h-4h",
+      "conduccion_real_maximo": "5h",
       "superficie": "100% asfalto",
-      "horario": "Diciembre-enero, en hora de Marruecos: amanece hacia las 07:15 y anochece hacia las 17:30. Desde el 20 de septiembre de 2026 Marruecos vuelve al GMT y va una hora por detrás de España. Salir a las 09:00 (09:30 los días de puerto, por el hielo) y estar en el alojamiento antes de las 17:00. Nunca de noche: animales, peatones y vehículos sin luces.",
+      "horario": "Diciembre-enero, en hora de Marruecos: amanece hacia las 07:15 y anochece hacia las 17:30. Desde el 20 de septiembre de 2026 Marruecos vuelve al GMT y va una hora por detrás de España. Salir a las 09:00 (09:30 los días de puerto, por el hielo) y estar en el alojamiento antes de las 17:00: eso deja unas 5 h de moto como máximo con paradas. Nunca de noche: animales, peatones y vehículos sin luces.",
       "paradas": "Cada 60-90 minutos, con algo caliente: las mañanas rondan 0-5 °C.",
       "recortables_sin_cambiar_alojamiento": [
         "Gargantas del Todra (día 7)",
@@ -1286,9 +1287,11 @@
         "pendiente_confirmar": [
           "Reservar y anotar el teléfono",
           "Dónde se deja la moto: parking vigilado de Bab R'cif u otro que diga el riad, y cuánto cuesta",
-          "Que alguien del riad espere en la puerta para guiar a pie (la medina no admite motos)"
+          "Que alguien del riad espere en la puerta para guiar a pie (la medina no admite motos)",
+          "Reservar las dos noches seguidas (7 y 8 de enero)"
         ],
-        "plan_b": "Si no hay parking claro, hotel fuera de la medina con garaje y taxi petit a la medina."
+        "plan_b": "Si no hay parking claro, hotel fuera de la medina con garaje y taxi petit a la medina.",
+        "fechas": "Noches 13 y 14"
       },
       "opciones": [
         {
@@ -1299,14 +1302,14 @@
             {
               "nombre": "Por Azrou e Ifrane hasta Fez (plan)",
               "coste": "Como está la ruta",
-              "por_que": "Cedros, monos, Fez y la vuelta por Taza. Solo con asfalto seco y sin nieve prevista.",
+              "por_que": "Cedros, monos y dos noches en Fez. Solo con asfalto seco y sin nieve prevista.",
               "como": "No tocar nada"
             },
             {
               "nombre": "Por Missour y Guercif, sin Fez",
-              "coste": "Día 13 Midelt → Missour → Guercif (260 km, unas 4h15); día 14 Guercif → Nador (163 km). Sobra un día",
+              "coste": "Día 13 Midelt → Missour → Guercif (260 km, unas 4h15); día 14 Guercif → Nador (163 km). Sobra el día 15, que se suma al domingo de margen",
               "por_que": "Todo por debajo de 1.500 m y por carretera ya conocida. Se pierde Fez, pero no hay riesgo de hielo, y el día sobrante sirve de margen o para coger antes el ferry.",
-              "como": "Rehacer los días 13 a 15"
+              "como": "Rehacer los días 13 y 14 y anular las noches de Fez"
             }
           ]
         }
@@ -1359,56 +1362,43 @@
       "dia": 14,
       "fecha": "2027-01-08",
       "dia_semana": "viernes",
-      "tipo": "llano",
+      "tipo": "descanso",
       "origen": "Fez",
-      "destino": "Taza",
-      "km_aprox": 119,
-      "tiempo_real_aprox": "1h30",
+      "destino": "Fez",
+      "km_aprox": 0,
+      "tiempo_real_aprox": "0h00",
       "dificultad": 1,
       "fatiga": 1,
-      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "13:30",
-      "llegada_prevista": "15:50",
+      "perfil_kurviger": "Día sin moto",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
-          "nombre": "Taza",
-          "lat": 34.21,
-          "lon": -4.01
-        },
-        {
-          "nombre": "Taza",
-          "lat": 34.21,
-          "lon": -4.01
+          "nombre": "Fez",
+          "lat": 34.03,
+          "lon": -5.0
         }
       ],
-      "waypoints": [
-        "Fez",
-        "Taza"
-      ],
-      "gpx": {
-        "archivo": "gpx/dia-14.gpx",
-        "track": "tracks/dia-14.json",
-        "vias": [],
-        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
-      },
       "notas": [
-        "Que ver: Mañana en la medina de Fez y salida después de comer: hasta Taza es menos de 1 h 30 por la carretera nacional.",
-        "Conducción estimada con OSRM: 1h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 52 min de paradas; anochece hacia las 17:30."
+        "Día entero en Fez sin moto: la moto se queda en el parking vigilado y la medina se hace a pie.",
+        "Ir pronto a las curtidurías y contratar guía oficial en la oficina de turismo o en el riad; sin guía, con el mapa sin conexión."
       ],
       "alojamiento": {
-        "nombre": "Hôtel Le Manoir",
-        "direccion": "Hôtel Le Manoir, Taza, Marruecos",
+        "nombre": "Riad en la medina de Fez, junto a Bab R'cif (p. ej. Riad Baba)",
+        "direccion": "Bab R'cif, Fez, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Hotel en Taza",
-        "moto": "Delante del hotel, a la vista de recepción y vigilada",
+        "tipo": "Riad en la medina; la moto se deja en un parking vigilado de la puerta",
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono"
-        ]
+          "Reservar y anotar el teléfono",
+          "Dónde se deja la moto: parking vigilado de Bab R'cif u otro que diga el riad, y cuánto cuesta",
+          "Que alguien del riad espere en la puerta para guiar a pie (la medina no admite motos)",
+          "Reservar las dos noches seguidas (7 y 8 de enero)"
+        ],
+        "plan_b": "Si no hay parking claro, hotel fuera de la medina con garaje y taxi petit a la medina.",
+        "fechas": "Noches 13 y 14"
       },
       "guia": {
-        "resumen": "Mañana en la medina de Fez y salida a mediodía a Taza.",
+        "resumen": "Día entero en la medina de Fez, sin moto: la ciudad medieval viva más grande del mundo árabe, con calma y sin horarios.",
         "ver": [
           {
             "lugar": "Medersa Bou Inania",
@@ -1421,6 +1411,19 @@
             "tipo": "monumento",
             "que": "Vista desde las terrazas de las tiendas de cuero (ir temprano).",
             "tiempo": "30 min"
+          },
+          {
+            "lugar": "Medersa Al-Attarine",
+            "tipo": "monumento",
+            "que": "La otra gran escuela coránica visitable, junto a la mezquita Karaouiyine (la mezquita solo se ve desde la puerta).",
+            "tiempo": "30 min"
+          },
+          {
+            "lugar": "Tumbas meriníes",
+            "tipo": "mirador",
+            "que": "Mirador sobre toda la medina al atardecer, en la colina del norte (taxi petit desde Bab Boujloud).",
+            "tiempo": "1 h",
+            "opcional": true
           }
         ],
         "comer": {
@@ -1432,20 +1435,14 @@
               "que": "Cocina casera en una casa familiar; de 12:00 a 22:30"
             }
           ],
-          "cena": "En el hotel o en Taza.",
+          "cena": "En la medina.",
           "platos": [
             "Pastilla",
             "Dulces de almendra"
           ]
         },
-        "tarde": "Taza.",
-        "consejo": "Salir de Fez a las 13:30 como muy tarde; a la medina, con guía oficial o con mapa sin conexión."
-      },
-      "mantenimiento": {
-        "que": "Engrasar la cadena (última del viaje).",
-        "km_acumulados": 2220,
-        "desde_la_ultima": 469,
-        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
+        "tarde": "Atardecer desde las tumbas meriníes y cena en la medina.",
+        "consejo": "Sin moto todo el día: ropa de calle, el casco en el riad y la cartera repartida. A los guías espontáneos, un «no, gracias» firme."
       }
     },
     {
@@ -1453,17 +1450,22 @@
       "fecha": "2027-01-09",
       "dia_semana": "sabado",
       "tipo": "llano",
-      "origen": "Taza",
+      "origen": "Fez",
       "destino": "Nador (puerto de Beni Ensar)",
-      "km_aprox": 227,
-      "tiempo_real_aprox": "3h25",
+      "km_aprox": 346,
+      "tiempo_real_aprox": "4h55",
       "dificultad": 2,
-      "fatiga": 3,
+      "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "13:45",
+      "llegada_prevista": "15:30",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
+        {
+          "nombre": "Taza",
+          "lat": 34.21,
+          "lon": -4.01
+        },
         {
           "nombre": "Guercif",
           "lat": 34.23,
@@ -1476,6 +1478,7 @@
         }
       ],
       "waypoints": [
+        "Fez",
         "Taza",
         "Guercif",
         "Nador (puerto de Beni Ensar)"
@@ -1484,14 +1487,15 @@
         "archivo": "gpx/dia-15.gpx",
         "track": "tracks/dia-15.json",
         "vias": [
+          "Taza",
           "Guercif"
         ],
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Vuelta a Nador por Guercif. Noche en Nador para coger el ferry del domingo.",
+        "Que ver: Vuelta a Nador desde Fez en un solo día por Taza y Guercif, carretera conocida y llana. Es la jornada más larga del viaje.",
+        "Conducción estimada con OSRM: 4h55 (Fez–Taza 1h30 y Taza–Nador 3h25). Salir a las 09:00 y parar en Taza y en Guercif; llegada hacia las 15:30, con dos horas de luz de margen.",
         "Ferry Nador → Almería el domingo 10 de enero a las 23:30 (Baleària, butaca), llegada el lunes 11 a las 07:00. El domingo 10 queda libre en Nador: margen si la nieve retrasa un día la vuelta.",
-        "Conducción estimada con OSRM: 3h25 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 81 min de paradas; anochece hacia las 17:30.",
         "Hora: al volver a España, una hora más."
       ],
       "alojamiento": {
@@ -1508,7 +1512,7 @@
         ]
       },
       "guia": {
-        "resumen": "Último día: valle de Taza y Guercif de vuelta a Nador.",
+        "resumen": "Último día: de Fez a Nador por Taza y el valle de Guercif, la jornada más larga pero la más fácil, por carretera ya conocida.",
         "ver": [
           {
             "lugar": "Paseo de Nador",
@@ -1518,14 +1522,14 @@
           }
         ],
         "comer": {
-          "donde": "Café en Guercif.",
+          "donde": "Café en Taza a media mañana y comida rápida en Guercif (brochetas de la rotonda, como el primer día).",
           "cena": "En Nador; último tajine.",
           "platos": [
             "Pescado en Nador"
           ]
         },
         "tarde": "Gastar los dirhams que sobren (no se pueden sacar más de 2.000 MAD).",
-        "consejo": "El día del ferry, ir al puerto con 2 h de margen y el papel de aduana de la moto a mano."
+        "consejo": "Si el día 13 tocó la alternativa por Missour, este día ya está hecho: queda de margen en Nador. Por la A2 se va más rápido pero cansa igual; mejor la N6 con paradas."
       }
     }
   ],
@@ -1645,8 +1649,8 @@
     {
       "noche": 14,
       "fecha": "2027-01-08",
-      "lugar": "Taza",
-      "alojamiento": "Hôtel Le Manoir",
+      "lugar": "Fez",
+      "alojamiento": "Riad en la medina de Fez, junto a Bab R'cif (p. ej. Riad Baba)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1816,7 +1820,7 @@
     "No cambiar destinos ni bases sin una razon fuerte y explicita.",
     "No añadir turismo por añadir.",
     "Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.",
-    "No proponer jornadas reales de conduccion superiores a 4h.",
+    "Jornadas de unas 5 h reales como máximo (lo decidió Javi el 2026-11-09: puede conducir más, pero con lógica), y siempre en el alojamiento antes de anochecer.",
     "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
     "No inventar disponibilidad, horarios ni precios; verificar antes.",
     "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan.",
@@ -2012,7 +2016,7 @@
       "Meteo de la etapa siguiente en la app (nieve en Midelt, Ifrane y puertos)",
       "Cargar Pixel, las powerbanks, D6A, Sena SRL3 y Osmo 360",
       "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacío y seco",
-      "Cadena: días 5, 8, 11 y 14 (la app lo avisa en la ficha)",
+      "Cadena: días 5, 8 y 11 (la app lo avisa en la ficha)",
       "Repasar la ruta en Kurviger y que esté descargada sin conexión",
       "Decidir forros según la temperatura de la mañana"
     ],
@@ -2055,6 +2059,11 @@
         "noche": 12,
         "lugar": "Midelt",
         "como": "Lavandería del Hotel Kasbah Asmaa"
+      },
+      {
+        "noche": 14,
+        "lugar": "Fez",
+        "como": "Si hace falta, pedirlo en el riad (día libre)"
       }
     ],
     "cuidado_merino": "30 C, sin suavizante, nunca secadora caliente."
