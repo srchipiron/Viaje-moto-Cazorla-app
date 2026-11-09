@@ -379,7 +379,7 @@ function pagoInfo(a) {
 function estadoBadge(a) {
   const pg = pagoInfo(a);
   if (pg && pg.pendiente) return `<span class="badge warn">Pendiente ${fmtEur(pg.pendiente_eur, pg.aproximado)}</span>`;
-  return `<span class="badge ok">${pg ? 'Pagado' : esc(a.estado)}</span>`;
+  return `<span class="badge ${!pg && /sin reservar|por elegir|por reservar/i.test(a.estado || '') ? 'warn' : 'ok'}">${pg ? 'Pagado' : esc(a.estado)}</span>`;
 }
 function pagoHTML(a) {
   const pg = pagoInfo(a); if (!pg) return '';
@@ -1274,6 +1274,7 @@ function viewSos() {
       ${typeof seg === 'object' && seg.telefonos_alternativos ? big('🛡️', 'Seguro (alternativo)', seg.telefonos_alternativos[0]) : ''}
       ${big('🏠', typeof casa === 'object' ? casa.nombre : 'En casa', typeof casa === 'object' ? casa.telefono : casa, typeof casa === 'object' && !casa.telefono ? '' : undefined) || `<span class="call pend"><span class="call-icon">🏠</span><b>En casa</b><small>Añade el número en Resumen</small></span>`}
       ${n ? big('🛏️', 'Alojamiento de hoy', n.telefono, n.alojamiento) : ''}
+      ${(Array.isArray(c.otros) ? c.otros : []).filter((o) => o.sos && o.telefono).map((o) => big(o.icono || '📞', o.nombre, o.telefono, o.nota_corta || o.telefono)).join('')}
     </div>
     <h2>Mi posición</h2>
     <p class="row">${localizarBtn(hoy)}</p>
@@ -1587,7 +1588,7 @@ function viewResumen() {
     <h2>Llamar</h2>
     ${quickCalls()}
     <h2>Contactos</h2>
-    <div class="card"><dl>${contactoRow('Emergencias', c.emergencias)}${contactoRow('Seguro / asistencia', contacto('seguro_asistencia'))}${contactoRow('En casa', contacto('en_casa'))}</dl>
+    <div class="card"><dl>${contactoRow('Emergencias', c.emergencias)}${contactoRow('Seguro / asistencia', contacto('seguro_asistencia'))}${contactoRow('En casa', contacto('en_casa'))}${(Array.isArray(c.otros) ? c.otros : []).map((o) => contactoRow(esc(o.nombre || 'Contacto'), o)).join('')}</dl>
       ${localForm('en_casa', 'En casa')}
       ${localForm('seguro_asistencia', 'Seguro', 'poliza')}
       ${D.data.seguro ? `<details><summary>Qué cubre el seguro y qué hacer</summary>${seguroHTML(false)}</details>` : ''}
@@ -1754,7 +1755,7 @@ function viewNoches() {
   const pendAprox = pend.some((e) => e.alojamiento.pago.aproximado);
   const pendKeys = pend.map(pagoKey);
   return `<h2>Las ${D.data.alojamientos_resumen.length} noches</h2>
-    <p class="muted">Todas reservadas. Total aprox. ${fmtEur(total)}. Toca el teléfono para llamar.</p>
+    <p class="muted">${(() => { const ns = D.data.alojamientos_resumen, sin = ns.filter((n) => /sin reservar|por elegir|por reservar/i.test(n.estado || '')).length; return sin ? `${ns.length - sin} de ${ns.length} reservadas.` : 'Todas reservadas.'; })()}${total > 0 ? ` Total aprox. ${fmtEur(total)}.` : ''} Toca el teléfono para llamar.</p>
     ${pend.length ? `<div class="card warn"><div class="card-title"><h3>Por pagar en los alojamientos: ${fmtEur(pendTotal, pendAprox)}</h3>${progress(pendKeys)}</div>
       ${pend.map((e) => { const pg = e.alojamiento.pago; return checkItem(pagoKey(e), `${fmtEur(pg.pendiente_eur, pg.aproximado)} · ${e.alojamiento.nombre}`, `Día ${e.dia} · ${fmtFecha(e.fecha)}${pg.pagado_eur ? ` · ya pagados ${fmtEur(pg.pagado_eur, pg.aproximado)}` : ''}${pg.aproximado ? ' · importe por confirmar' : ''}`); }).join('')}
       <p><small>Marca cada uno al pagarlo. Las marcas se guardan en este dispositivo.</small></p></div>` : ''}
