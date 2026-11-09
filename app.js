@@ -434,7 +434,7 @@ function gasMasBarata(lista) { return lista.filter((s) => s.precio).sort((a, b) 
 function fmtPrecio(p) { return p == null ? '–' : `${p.toLocaleString('es-ES', { minimumFractionDigits: 3, maximumFractionDigits: 3 })} €`; }
 function gasHorario(h) { return (h || '').replace(/^L-D: /, '').replace(/24H/i, '24 h'); }
 function gasEstadoPrecios(dia) {
-  const g = D.gasolineras; if (!g) return '';
+  const g = D.gasolineras; if (!g || !g.api) return '';
   const provs = g.provincias_por_dia[String(dia)] || [];
   const hoy = todayISO();
   const tengo = D.precios.fecha === hoy && provs.every((p) => D.precios.provincias[p]);
@@ -443,11 +443,12 @@ function gasEstadoPrecios(dia) {
 }
 function gasolinerasTabla(lista, kmActual) {
   const barata = gasMasBarata(lista);
-  return `<div class="tbl-wrap"><table class="vias gas"><thead><tr><th>km</th><th>Gasolinera</th><th>Horario</th><th>95</th><th></th></tr></thead><tbody>${lista.map((s) => `<tr class="${barata && s.id === barata.id ? 'barata' : ''}${kmActual != null && s.km < kmActual - 0.5 ? ' past' : ''}">
+  const conPrecio = !!(D.gasolineras && D.gasolineras.api);
+  return `<div class="tbl-wrap"><table class="vias gas"><thead><tr><th>km</th><th>Gasolinera</th><th>Horario</th>${conPrecio ? '<th>95</th>' : ''}<th></th></tr></thead><tbody>${lista.map((s) => `<tr class="${barata && s.id === barata.id ? 'barata' : ''}${kmActual != null && s.km < kmActual - 0.5 ? ' past' : ''}">
     <td>${s.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td>
     <td><b>${esc(s.rotulo)}</b><br><small>${esc(s.municipio)}</small></td>
     <td><small>${esc(gasHorario(s.horario))}</small></td>
-    <td class="num">${s.precio ? `<b>${fmtPrecio(s.precio)}</b>` : '<span class="muted">–</span>'}</td>
+    ${conPrecio ? `<td class="num">${s.precio ? `<b>${fmtPrecio(s.precio)}</b>` : '<span class="muted">–</span>'}</td>` : ''}
     <td><a href="${mapsSearch(`${s.lat},${s.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>`;
 }
 /* Bloque de la ficha de etapa. */
@@ -459,10 +460,17 @@ function gasolinerasHTML(e) {
   return `<h2>Gasolineras en la ruta (${lista.length})</h2>
     <div class="card">
       ${barata ? `<div class="note info"><b>⛽ La más barata hoy:</b> ${esc(barata.rotulo)} en ${esc(barata.municipio)}, km ${barata.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}, <b>${fmtPrecio(barata.precio)}</b> · ${esc(gasHorario(barata.horario))}</div>` : ''}
+      ${gasHuecoHTML(e.dia)}
       ${gasolinerasTabla(lista, null)}
       <p class="row">${gasEstadoPrecios(e.dia)}</p>
       <p><small>${esc((D.gasolineras && D.gasolineras.aviso) || '')} Fuente: ${esc((D.gasolineras && D.gasolineras.fuente) || 'Ministerio')}.</small></p>
     </div>`;
+}
+/* Tramo mas largo del dia sin gasolinera en la ruta (campo huecos del fichero, solo en los viajes con datos de OSM). */
+function gasHuecoHTML(dia) {
+  const h = D.gasolineras && D.gasolineras.huecos && D.gasolineras.huecos[String(dia)]; if (!h) return '';
+  const aut = D.data.proyecto.moto.autonomia_orientativa_km;
+  return `<p class="${aut && h.max_km > aut * 0.5 ? 'note' : ''}"><b>Tramo más largo sin gasolinera:</b> ${h.max_km} km (del km ${h.desde_km.toLocaleString('es-ES')} al ${h.hasta_km.toLocaleString('es-ES')})${aut ? ` con ${aut} km de autonomía orientativa` : ''}.</p>`;
 }
 /* En Ahora: la mas barata que queda por delante en la etapa, y la siguiente si es distinta. */
 function gasPorDelanteHTML(e, r, llegado) {
@@ -489,13 +497,13 @@ function viewGasolina() {
     const pasado = e.fecha < today;
     return `<div class="card${e.fecha === today ? ' accent' : ''}${pasado ? ' pasado' : ''}">
       <div class="card-title"><h3><a href="#/etapas/${e.dia}">Día ${e.dia} · ${esc(e.origen)} → ${esc(e.destino)}</a></h3><span class="badge">${lista.length} en ruta</span></div>
-      ${barata ? `<p><b>⛽ Más barata:</b> ${esc(barata.rotulo)} (${esc(barata.municipio)}), km ${barata.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })} · <b>${fmtPrecio(barata.precio)}</b> · ${esc(gasHorario(barata.horario))}</p>` : `<p class="muted">Sin precios de hoy${pasado ? '' : ': ' + (navigator.onLine ? 'pídelos abajo' : 'sin red')}.</p>`}
+      ${barata ? `<p><b>⛽ Más barata:</b> ${esc(barata.rotulo)} (${esc(barata.municipio)}), km ${barata.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })} · <b>${fmtPrecio(barata.precio)}</b> · ${esc(gasHorario(barata.horario))}</p>` : (g.api ? `<p class="muted">Sin precios de hoy${pasado ? '' : ': ' + (navigator.onLine ? 'pídelos abajo' : 'sin red')}.</p>` : gasHuecoHTML(e.dia))}
       <details><summary>Las ${lista.length} de la etapa</summary>${gasolinerasTabla(lista, null)}</details>
       ${pasado ? '' : `<p class="row">${gasEstadoPrecios(e.dia)}</p>`}
     </div>`;
   }).join('');
-  return `<div class="card accent"><div class="card-title"><h1>Gasolina</h1><span class="badge">95 E5</span></div>
-      <p>Gasolineras a menos de 400 m de cada track con el precio que declaran hoy al Ministerio. La app pide los precios de las provincias de la etapa (unos 50 KB por provincia) y los guarda hasta mañana.</p>
+  return `<div class="card accent"><div class="card-title"><h1>Gasolina</h1>${g.api ? '<span class="badge">95 E5</span>' : ''}</div>
+      <p>${esc(g.descripcion || 'Gasolineras a menos de 400 m de cada track con el precio que declaran hoy al Ministerio. La app pide los precios de las provincias de la etapa (unos 50 KB por provincia) y los guarda hasta mañana.')}</p>
       ${hoy ? `<p><a class="btn" href="#/etapas/${hoy.dia}">Ir a la etapa de hoy</a></p>` : ''}
       <p><small>${esc(g.aviso || '')}</small></p></div>
     ${filas}`;
@@ -1908,7 +1916,7 @@ function viewGuia() {
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
-    <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares</a> <a class="btn" href="#/gasolina">⛽ Gasolina más barata</a></p>
+    <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares</a> <a class="btn" href="#/gasolina">⛽ Gasolina</a></p>
     ${nav.pantalla || nav.app ? `<h2>Navegación</h2>
     <div class="card"><dl>${dlPares([['Pantalla', nav.pantalla], ['Móvil', nav.movil], ['App', nav.app], ['Ubicación', nav.ubicacion_compartida], ['Si falla', nav.fallback], ['Sygic', nav.sygic]])}</dl></div>` : ''}
     ${Object.keys(KV).some((key) => k[key]) ? `<div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}${k.mapas_offline ? `<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd>` : ''}${k.rutas_a_crear ? `<dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd>` : ''}</dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>` : ''}
