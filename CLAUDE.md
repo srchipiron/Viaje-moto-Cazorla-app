@@ -95,6 +95,11 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
 - Artefacto de Claude (un solo HTML): `python3 tools/bundle.py [--viaje <id>]` genera `dist/viaje-nx500.html`;
   republicar con la herramienta Artifact sobre esa ruta. `dist/` no se versiona.
 - Commits en español, autor Javier; rama de trabajo la indicada por la sesión.
+- **Publicación automática** (lo pidió Javier el 2026-11-09): no preguntar antes de publicar. Con
+  `python3 tools/validar.py` sin errores y `node tests/smoke.js` sin errores, subir los cambios en una
+  rama, abrir la PR contra la rama publicada (`claude/moto-trip-almeria-cazorla-cuenca-qw2ec6`, la que
+  sirve GitHub Pages) y fusionarla en el mismo turno. Si alguna de las dos pruebas falla, no fusionar:
+  arreglarlo o avisar. En GitHub, `.github/workflows/validar.yml` repite las dos pruebas en cada push y PR.
 
 ## Estructura de la app
 

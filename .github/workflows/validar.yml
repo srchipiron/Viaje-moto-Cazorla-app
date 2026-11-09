@@ -1,0 +1,30 @@
+# Repite en GitHub las dos pruebas que se pasan antes de publicar: validar los viajes y la prueba de humo.
+name: Validar
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Viajes (tools/validar.py)
+        run: python3 tools/validar.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Playwright con Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Prueba de humo (tests/smoke.js)
+        run: |
+          python3 -m http.server 8080 >/dev/null 2>&1 &
+          sleep 2
+          node tests/smoke.js
