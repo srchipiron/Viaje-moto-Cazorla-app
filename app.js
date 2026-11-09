@@ -151,7 +151,7 @@ function quickCalls() {
   const prox = hoy || it.find((d) => d.fecha >= today && d.alojamiento) || null;
   const a = prox && prox.alojamiento;
   return `<div class="calls">
-    <a class="call sos" href="#/sos"><span class="call-icon">🆘</span><b>Emergencia</b><small>112 · posición GPS · seguro</small></a>
+    <a class="call sos" href="#/sos"><span class="call-icon">🆘</span><b>Emergencia</b><small>${esc(c.emergencias)} · posición GPS · seguro</small></a>
     ${btn('🏠', typeof casa === 'string' ? 'En casa' : (casa.nombre || 'En casa'), casaTel, casaTel || (casa.local ? 'Añádelo en Contactos' : 'Pendiente'))}
     ${btn('🛡️', typeof seg === 'string' ? 'Seguro' : (seg.compania || 'Seguro'), segTel, segTel ? segTel : 'Teléfono pendiente')}
     ${a ? btn('🛏️', hoy ? 'Alojamiento de hoy' : `Noche ${prox.dia} · ${fmtFecha(prox.fecha)}`, a.telefono, a.nombre) : ''}
@@ -1571,7 +1571,7 @@ function viewResumen() {
       <small>Se guarda solo en este dispositivo. No viaja al repositorio ni a ningún servidor.</small>
     </form>`;
   };
-  return `${alternativasHTML()}
+  return `${alternativasHTML()}${ferryHTML()}
     <div class="card accent">
       <h1>${esc(p.nombre)}</h1>
       ${p.objetivo ? `<p class="muted">${esc(p.objetivo)}</p>` : ''}
@@ -1765,7 +1765,7 @@ function viewNoches() {
       return `<div class="card${n.fecha === today ? ' warn' : ''}">
         <div class="card-title"><h3>Noche ${n.noche} · ${esc(n.lugar)}</h3><span class="muted">${fmtFecha(n.fecha)}</span></div>
         <p><b>${esc(n.alojamiento)}</b></p>
-        <div class="row spread"><span>📞 ${telLink(n.telefono)}</span>${a ? estadoBadge(a) : `<span class="badge ok">${esc(n.estado)}</span>`}</div>
+        <div class="row spread"><span>📞 ${telLink(n.telefono)}</span>${a ? estadoBadge(a) : `<span class="badge ${/sin reservar|por elegir|por reservar/i.test(n.estado || '') ? 'warn' : 'ok'}">${esc(n.estado)}</span>`}</div>
         <p class="muted"><small>${esc(n.estado)}</small></p>
         ${dia ? `<p><a class="btn small" href="#/etapas/${dia.dia}">Día ${dia.dia}${a ? ' · ficha completa' : ''}</a>${a ? ` <a class="btn small" href="${mapsDir(a.direccion)}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}</p>` : ''}
       </div>`;
@@ -2211,6 +2211,7 @@ function completar(d) {
   const it = d.itinerario = arr(d.itinerario);
   const p = d.proyecto = obj(d.proyecto);
   p.fechas = obj(p.fechas);
+  d.ferry = arr(d.ferry);
   if (!p.fechas.inicio && it.length) p.fechas.inicio = it[0].fecha;
   if (!p.fechas.fin && it.length) p.fechas.fin = it[it.length - 1].fecha;
   if (!p.distancia_total_aprox_km) p.distancia_total_aprox_km = Math.round(it.reduce((n, e) => n + (e.km_aprox || 0), 0));
@@ -2268,6 +2269,14 @@ function viajesHTML() {
 }
 /* Selector arriba en Resumen cuando hay varios viajes por hacer (p. ej. dos opciones para las
    mismas vacaciones): uno pulsado por cada viaje no oculto que no haya terminado. */
+/* Barcos del viaje (seccion opcional "ferry" del plan): ida y vuelta con hora local de cada puerto. */
+function ferryHTML() {
+  const fs = D.data.ferry || []; if (!fs.length) return '';
+  return `<div class="card"><div class="card-title"><h3>⛴️ Ferry</h3></div>${fs.map((f) => `<div class="ferry">
+      <p><b>${esc(f.tramo)}</b> · ${fmtFecha(f.fecha)} <span class="badge ${/reservad|pagad/i.test(f.estado || '') ? 'ok' : 'warn'}">${esc(f.estado || 'Sin reservar')}</span></p>
+      <p>Sale ${esc(f.salida)} · llega ${esc(f.llegada)}${f.llegada_fecha && f.llegada_fecha !== f.fecha ? ` (${fmtFecha(f.llegada_fecha)})` : ''}<br><small>${esc([f.naviera, f.plaza, f.precio_eur != null ? `${f.precio_eur} €` : ''].filter(Boolean).join(' · '))}</small></p>
+      ${f.nota ? `<p><small>${esc(f.nota)}</small></p>` : ''}</div>`).join('')}</div>`;
+}
 function alternativasHTML() {
   const hoy = todayISO();
   const lista = ((V.indice && V.indice.viajes) || []).filter((v) => !v.oculto && String(v.fin || '') >= hoy);

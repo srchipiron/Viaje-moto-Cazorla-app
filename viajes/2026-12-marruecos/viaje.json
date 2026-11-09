@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "revision": 4,
+    "revision": 5,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
@@ -9,7 +9,8 @@
       "Horario corregido: Marruecos volvió al GMT el 20-09-2026 (una hora menos que España). Salida a las 09:00 y llegadas recalculadas.",
       "Checklist: sacar el pasaporte, primer paso de los papeles.",
       "Ruta v2 (2026-11-09): todas las etapas por debajo de 4 h (media de 3 h). Primer día corto hasta Guercif y noche en Missour; Merzouga el día 4 con descanso el 5 (que sirve también de margen si nieva en Midelt); Nochevieja en Tinghir; noches en Alnif y Errachidia para partir el N12; sin día libre en Aït Ben Haddou. La vuelta por Fez y Taza tiene una alternativa por Missour que ahorra un día. Tiempos con OSRM sin el 15 % extra (ya da medias de 50-65 km/h).",
-      "Viaje completado (2026-11-09): alojamiento propuesto para cada noche (sin reservar), guía de cada día con qué ver y dónde comer, seguro Mapfre adaptado a Marruecos, consulado de España en Nador, equipación de invierno, reparto, rutina, lavandería (noches 5, 8 y 12), cadena (días 5, 8, 11 y 14) y checklist con dinero, SIM y papeles."
+      "Viaje completado (2026-11-09): alojamiento propuesto para cada noche (sin reservar), guía de cada día con qué ver y dónde comer, seguro Mapfre adaptado a Marruecos, consulado de España en Nador, equipación de invierno, reparto, rutina, lavandería (noches 5, 8 y 12), cadena (días 5, 8, 11 y 14) y checklist con dinero, SIM y papeles.",
+      "Ferry (2026-11-09): Baleària en butaca, ida el 25 dic a las 14:00 (llega a Nador a las 20:00, hora local) y vuelta el 10 ene a las 23:30 (llega el 11 a las 07:00), 135 € cada trayecto, sin reservar. Noche 0 en Nador al llegar; el domingo 10 queda de margen."
     ]
   },
   "proyecto": {
@@ -24,7 +25,10 @@
       "fin": "2027-01-09",
       "dias": 15,
       "noches": 15,
-      "provisionales": true
+      "provisionales": true,
+      "salida_de_casa": "2026-12-25",
+      "vuelta_a_casa": "2027-01-11",
+      "dia_de_margen": "2027-01-10"
     },
     "distancia_total_aprox_km": 2447,
     "moto": {
@@ -123,9 +127,9 @@
       },
       "notas": [
         "Que ver: Primer día corto a propósito: desembarque, aduana, cambiar dinero, tarjeta SIM y hacerse con el tráfico marroquí.",
+        "Se sale del hotel de Nador donde se durmió al llegar el ferry la noche del 25 (llega a las 20:00). Cambiar dinero y comprar la SIM por la mañana.",
         "Conducción estimada con OSRM: 2h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 68 min de paradas; anochece hacia las 17:30.",
-        "Llegada en el ferry nocturno desde Almería del viernes 25 de diciembre (naviera y hora por confirmar al reservar). Desembarque y aduana: contar 1-2 h.",
-        "Hora: Marruecos va una hora por detrás de España. Al desembarcar, atrasar el reloj una hora (los horarios del ferry suelen darse en hora española)."
+        "Hora: Marruecos va una hora por detrás de España. Los horarios de Baleària van en hora local de cada puerto."
       ],
       "alojamiento": {
         "nombre": "Hôtel Chark",
@@ -168,7 +172,8 @@
         },
         "tarde": "Descanso. Revisar que la SIM funciona y que el dinero está repartido en dos sitios.",
         "consejo": "Primer contacto con el tráfico: rotondas sin prioridad clara, peatones, carros y controles de policía. Despacio y parar del todo en los STOP de los controles."
-      }
+      },
+      "origen_nota": "Hotel de Nador (noche 0)"
     },
     {
       "dia": 2,
@@ -1485,8 +1490,8 @@
       },
       "notas": [
         "Que ver: Vuelta a Nador por Guercif. Noche en Nador para coger el ferry del domingo.",
+        "Ferry Nador → Almería el domingo 10 de enero a las 23:30 (Baleària, butaca), llegada el lunes 11 a las 07:00. El domingo 10 queda libre en Nador: margen si la nieve retrasa un día la vuelta.",
         "Conducción estimada con OSRM: 3h25 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 81 min de paradas; anochece hacia las 17:30.",
-        "Ferry Nador → Almería el domingo 10 de enero (naviera y hora por confirmar). El lunes 11 queda de margen en casa.",
         "Hora: al volver a España, una hora más."
       ],
       "alojamiento": {
@@ -1499,7 +1504,7 @@
         "restaurante": "Sí",
         "pendiente_confirmar": [
           "Reservar y anotar el teléfono",
-          "Hora del ferry del domingo para calcular la salida (facturar 2 h antes)"
+          "Salida tardía el domingo 10 o dejar el equipaje en consigna hasta el ferry (23:30)"
         ]
       },
       "guia": {
@@ -1525,6 +1530,14 @@
     }
   ],
   "alojamientos_resumen": [
+    {
+      "noche": 0,
+      "fecha": "2026-12-25",
+      "lugar": "Nador (llegada del ferry)",
+      "alojamiento": "Hotel en Nador para la noche de llegada (p. ej. Hotel Mercure Rif, 1 Av. Ibn Tachfine, a 13 km del puerto, parking cubierto y vigilado)",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
     {
       "noche": 1,
       "fecha": "2026-12-26",
@@ -1712,11 +1725,15 @@
         "hecho": false
       },
       {
-        "que": "Ferry Almería → Nador, viernes 25 dic por la noche, con moto",
+        "que": "Ferry Almería → Nador, viernes 25 dic a las 14:00, Baleària, butaca con moto (135 €)",
         "hecho": false
       },
       {
-        "que": "Ferry Nador → Almería, domingo 10 ene, con moto",
+        "que": "Ferry Nador → Almería, domingo 10 ene a las 23:30, Baleària, butaca con moto (135 €)",
+        "hecho": false
+      },
+      {
+        "que": "Hotel en Nador para la noche del 25 de diciembre (llegada del ferry a las 20:00)",
         "hecho": false
       },
       {
@@ -1725,10 +1742,6 @@
       },
       {
         "que": "Resto de alojamientos",
-        "hecho": false
-      },
-      {
-        "que": "Confirmar que hay ferry el domingo 10 de enero (el invierno pasado las salidas diarias acababan el 7)",
         "hecho": false
       }
     ],
@@ -2197,5 +2210,31 @@
       "talla": 43,
       "membrana": "Gore-Tex"
     }
-  }
+  },
+  "ferry": [
+    {
+      "tramo": "Almería → Nador",
+      "fecha": "2026-12-25",
+      "salida": "14:00 (hora de España)",
+      "llegada": "20:00 (hora de Marruecos)",
+      "llegada_fecha": "2026-12-25",
+      "naviera": "Baleària",
+      "plaza": "Butaca",
+      "precio_eur": 135,
+      "estado": "Sin reservar",
+      "nota": "Unas 7 h de travesía. Se llega de noche (anochece hacia las 17:30): desembarque y aduana hasta las 21:30-22:00 y a dormir en Nador. Estar en el puerto 2 h antes con la moto."
+    },
+    {
+      "tramo": "Nador → Almería",
+      "fecha": "2027-01-10",
+      "salida": "23:30 (hora de Marruecos)",
+      "llegada": "07:00 (hora de España)",
+      "llegada_fecha": "2027-01-11",
+      "naviera": "Baleària",
+      "plaza": "Butaca",
+      "precio_eur": 135,
+      "estado": "Sin reservar",
+      "nota": "Facturar la moto hacia las 21:30. El domingo 10 queda libre en Nador como margen por si la nieve retrasa un día la vuelta. Llegada a casa el lunes 11 por la mañana, último día de vacaciones."
+    }
+  ]
 }
