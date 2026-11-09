@@ -1,14 +1,15 @@
 {
   "meta": {
     "version": 2,
-    "revision": 3,
+    "revision": 4,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
       "Plan inicial (2026-11-09): bucle desde Nador por el sureste de Marruecos (Merzouga, Todra, Dadès, Aït Ben Haddou, Draa, N12, Atlas Medio, Fez). Tracks aproximados con OSRM. Fechas provisionales: vacaciones del 28 dic al 11 ene, ferry de ida el 25 dic y de vuelta el 10 ene.",
       "Horario corregido: Marruecos volvió al GMT el 20-09-2026 (una hora menos que España). Salida a las 09:00 y llegadas recalculadas.",
       "Checklist: sacar el pasaporte, primer paso de los papeles.",
-      "Ruta v2 (2026-11-09): todas las etapas por debajo de 4 h (media de 3 h). Primer día corto hasta Guercif y noche en Missour; Merzouga el día 4 con descanso el 5 (que sirve también de margen si nieva en Midelt); Nochevieja en Tinghir; noches en Alnif y Errachidia para partir el N12; sin día libre en Aït Ben Haddou. La vuelta por Fez y Taza tiene una alternativa por Missour que ahorra un día. Tiempos con OSRM sin el 15 % extra (ya da medias de 50-65 km/h)."
+      "Ruta v2 (2026-11-09): todas las etapas por debajo de 4 h (media de 3 h). Primer día corto hasta Guercif y noche en Missour; Merzouga el día 4 con descanso el 5 (que sirve también de margen si nieva en Midelt); Nochevieja en Tinghir; noches en Alnif y Errachidia para partir el N12; sin día libre en Aït Ben Haddou. La vuelta por Fez y Taza tiene una alternativa por Missour que ahorra un día. Tiempos con OSRM sin el 15 % extra (ya da medias de 50-65 km/h).",
+      "Viaje completado (2026-11-09): alojamiento propuesto para cada noche (sin reservar), guía de cada día con qué ver y dónde comer, seguro Mapfre adaptado a Marruecos, consulado de España en Nador, equipación de invierno, reparto, rutina, lavandería (noches 5, 8 y 12), cadena (días 5, 8, 11 y 14) y checklist con dinero, SIM y papeles."
     ]
   },
   "proyecto": {
@@ -29,7 +30,38 @@
     "moto": {
       "modelo": "Honda NX500",
       "autonomia_orientativa_km": 380,
-      "regla_gasolina": "Llenar al bajar de medio depósito. En el N12 (Tazzarine–Rissani) y entre Missour y Midelt hay tramos largos casi sin gasolineras. La app no tiene gasolineras ni precios de Marruecos (solo España)."
+      "regla_gasolina": "Llenar al bajar de medio depósito. En el N12 (Tazzarine–Rissani) y entre Missour y Midelt hay tramos largos casi sin gasolineras. La app no tiene gasolineras ni precios de Marruecos (solo España).",
+      "rueda_delantera": "19 pulgadas",
+      "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
+      "presiones": {
+        "delantera_bar": 2.0,
+        "trasera_bar": 2.5,
+        "delantera_psi": 29,
+        "trasera_psi": 36,
+        "en_frio": true,
+        "con_carga": "Mismos valores solo o con carga: el manual no distingue. No subir por las maletas.",
+        "comprobar": "Con los neumaticos frios, antes de arrancar, cada 2-3 dias con el compresor Xiaomi. En caliente suben 0,2-0,3 bar: no desinflar nunca en caliente.",
+        "fuente": "Manual de usuario Honda NX500 2024: 200 kPa / 250 kPa (29 / 36 psi). Puestas el 12 sept con el compresor Xiaomi."
+      },
+      "precarga_trasera": {
+        "posiciones": 5,
+        "de_serie": "2 (de fabrica)",
+        "recomendada": "4 con maletas cargadas; 5 si toca fondo o la moto se siente blanda de atras",
+        "como": "Puesta en la posicion 4 el 13 sept con la moto cargada. Anillo escalonado en el amortiguador trasero, con la llave de gancho del kit bajo el asiento. Si toca fondo, subir a 5.",
+        "por_que": "Con 120 kg de piloto mas maletas, en la posicion de serie el amortiguador va muy hundido: la moto se vuelve lenta al entrar en curva, toca fondo en baches y el faro apunta alto."
+      },
+      "cadena": {
+        "producto": "Motul C2 Road (maleta izquierda, al fondo con las zapatillas)",
+        "cuando": "Cada 400-500 km y siempre despues de lluvia, al LLEGAR (cadena caliente), nunca antes de salir.",
+        "dias_previstos": "Día 5 en Merzouga (689 km. quitando antes la arena). día 8 en Aït Ben Haddou (1.174 km). día 11 en Meski (1.751 km) y día 14 en Taza (2.220 km).",
+        "regla_extra": "Con polvo o arena, limpiar con trapo antes de engrasar; si se ve gris o seca, engrasar esa noche aunque no toque.",
+        "tension": "Juego de 25-35 mm en el punto medio del ramal inferior, sin peso encima. El valor exacto, en la pegatina del basculante. Si hay puntos tensos y flojos, cadena desgastada: mirarlo antes de seguir."
+      },
+      "equipaje": [
+        "Baúl SHAD SH58X",
+        "Laterales SHAD SH38X",
+        "Bolsa de depósito SHAD E09CL Pro"
+      ]
     },
     "objetivo": "15 días por el sureste de Marruecos en invierno, sin puertos altos obligatorios: Merzouga, gargantas del Todra y del Dadès, Aït Ben Haddou, valle del Draa y vuelta por el Atlas Medio y Fez. Ferry Almería–Nador ida y vuelta.",
     "reglas_globales": {
@@ -96,15 +128,46 @@
         "Hora: Marruecos va una hora por detrás de España. Al desembarcar, atrasar el reloj una hora (los horarios del ferry suelen darse en hora española)."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Guercif",
+        "nombre": "Hôtel Chark",
+        "direccion": "Hôtel Chark, Guercif, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Hotel sencillo en el centro",
+        "moto": "Garaje en el propio edificio; bien valorado por moteros",
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
-        ]
+          "Reservar y anotar el teléfono"
+        ],
+        "plan_b": "Cualquier hotel del centro de Guercif con garaje: preguntar antes de descargar."
+      },
+      "guia": {
+        "resumen": "Día de llegada: desembarco, aduana, dinero y SIM. Etapa corta y llana por el valle del Moulouya para hacerse al tráfico marroquí.",
+        "ver": [
+          {
+            "lugar": "Puerto de Beni Ensar",
+            "tipo": "monumento",
+            "que": "Aduana: guardar el papel de admisión temporal de la moto hasta la salida. Cambiar dinero y comprar la SIM (Maroc Telecom) antes de salir.",
+            "tiempo": "1-2 h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Guercif",
+            "tipo": "pueblo",
+            "que": "Ciudad de paso, sin monumentos: tarde para descansar del ferry.",
+            "tiempo": "—",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "desayuno": "En el ferry o en un café de Nador.",
+          "donde": "Brochetas en los puestos de la rotonda de Guercif, al llegar.",
+          "cena": "Brochetas o cena en el alojamiento.",
+          "platos": [
+            "Brochetas de cordero y kefta",
+            "Pan y té a la menta"
+          ]
+        },
+        "tarde": "Descanso. Revisar que la SIM funciona y que el dinero está repartido en dos sitios.",
+        "consejo": "Primer contacto con el tráfico: rotondas sin prioridad clara, peatones, carros y controles de policía. Despacio y parar del todo en los STOP de los controles."
       }
     },
     {
@@ -150,15 +213,45 @@
         "Etapa corta. Missour es un pueblo pequeño: alojamiento sencillo, reservar antes."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Missour",
+        "nombre": "Gîte Boukhalfa",
+        "direccion": "Gîte Boukhalfa, douar Oulad Boukhalfa, Missour, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Gîte rural a unos 8 km de Missour (por la R601)",
+        "moto": "Parking privado",
+        "restaurante": "Sí, cena en el gîte",
+        "servicios": [
+          "Restaurante",
+          "Parking privado",
+          "Piscina (cerrada en invierno, se supone)"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Que el acceso está asfaltado hasta la puerta",
+          "Que las habitaciones tienen calefacción"
         ]
+      },
+      "guia": {
+        "resumen": "Del Moulouya al altiplano oriental: paisaje abierto y casi sin tráfico hasta Missour.",
+        "ver": [
+          {
+            "lugar": "Valle del Moulouya",
+            "tipo": "naturaleza",
+            "que": "Estepa y oasis sueltos. Pocas paradas: repostar en Guercif antes de salir.",
+            "tiempo": "—",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Café de carretera en Outat El Haj o al llegar a Missour.",
+          "cena": "Cena en el alojamiento (Gîte Boukhalfa).",
+          "platos": [
+            "Tajine de pollo o kefta",
+            "Harira"
+          ]
+        },
+        "tarde": "Tarde libre en el gîte.",
+        "consejo": "Tramo largo con pocas gasolineras: salir con el depósito lleno."
       }
     },
     {
@@ -209,15 +302,61 @@
         "Salir a las 09:30: a primera hora puede haber hielo en el puerto."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Errachidia",
+        "nombre": "Birgits Bed & Bistro",
+        "direccion": "Birgits Bed & Bistro, Meski, Errachidia, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Casa de huéspedes con bistró, a unos 18 km de Errachidia hacia Erfoud",
+        "fechas": "Noches 3 y 11 (ida y vuelta)",
+        "moto": "Garaje gratis para moteros",
+        "restaurante": "Cocina la dueña: cenar allí",
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Reservar a la vez las dos noches (28 dic y 5 ene)"
         ]
+      },
+      "guia": {
+        "resumen": "Día de montaña: el Atlas Medio por Midelt y el paso hacia el valle del Ziz. Salida a las 09:30 por el hielo.",
+        "ver": [
+          {
+            "lugar": "Midelt",
+            "tipo": "pueblo",
+            "que": "Capital de la manzana, al pie del Ayachi nevado. Parada para comer.",
+            "tiempo": "1 h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Túnel del Legionario (garganta del Ziz)",
+            "tipo": "mirador",
+            "que": "Túnel de los años 20 al entrar en la garganta del Ziz pasado Rich; foto rápida a la salida.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Fuente Azul de Meski",
+            "tipo": "naturaleza",
+            "que": "Manantial y palmeral junto al alojamiento: paseo al llegar.",
+            "tiempo": "30 min",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Midelt.",
+          "sitios": [
+            {
+              "nombre": "Hotel Kasbah Asmaa",
+              "donde": "Route d'Errachidia km 3, Midelt",
+              "que": "Restaurante del hotel donde se duerme el día 12: comer aquí de paso"
+            }
+          ],
+          "cena": "En Birgits Bed & Bistro: cocina la dueña.",
+          "platos": [
+            "Tajine de cordero con ciruelas",
+            "Manzanas de Midelt"
+          ]
+        },
+        "tarde": "Paseo por el palmeral de Meski.",
+        "consejo": "Si la previsión da nieve o hielo en Midelt, usar el día libre de Merzouga como margen y retrasar un día."
       }
     },
     {
@@ -267,16 +406,61 @@
         "Elegir alojamiento con acceso asfaltado hasta la puerta (muchos están a pie de duna, por pista)."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Merzouga",
+        "nombre": "Kasbah Mohayut",
+        "direccion": "Kasbah Mohayut, Hassilabied, Merzouga, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Kasbah junto a las dunas del Erg Chebbi, unas 20 habitaciones",
+        "fechas": "Noches 4 y 5",
+        "moto": "Parking gratis",
+        "restaurante": "Sí",
+        "servicios": [
+          "Restaurante",
+          "Parking",
+          "Piscina"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Acceso asfaltado hasta la puerta (sin arena ni pista)",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Que se llega por asfalto hasta la kasbah (en Hassilabied hay pistas de arena)",
+          "Forma de pago: según Hotels.com solo tarjeta; confirmar o llevar efectivo",
+          "Excursión en camello o a 4x4 por las dunas: precio y horario al llegar"
         ]
+      },
+      "guia": {
+        "resumen": "Valle del Ziz entre palmerales hasta las dunas del Erg Chebbi. Etapa corta para llegar con luz al desierto.",
+        "ver": [
+          {
+            "lugar": "Miradores del valle del Ziz",
+            "tipo": "mirador",
+            "que": "Palmeral del Ziz desde la carretera entre Meski y Erfoud.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Erfoud",
+            "tipo": "pueblo",
+            "que": "Talleres de fósiles: solo si apetece, sin prisa.",
+            "tiempo": "20 min",
+            "opcional": true
+          },
+          {
+            "lugar": "Erg Chebbi",
+            "tipo": "naturaleza",
+            "que": "Puesta de sol sobre las dunas, a pie desde la kasbah.",
+            "tiempo": "1 h",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Café en Erfoud.",
+          "cena": "Cena en el alojamiento (Kasbah Mohayut).",
+          "platos": [
+            "Tajine bereber",
+            "Pan de arena (pan cocido en la arena)"
+          ]
+        },
+        "tarde": "Atardecer en las dunas. Decidir la excursión del día siguiente.",
+        "consejo": "No entrar en la arena con la moto cargada: en Hassilabied, solo asfalto."
       }
     },
     {
@@ -303,16 +487,73 @@
         "Día libre en Merzouga: dunas de Erg Chebbi a pie o en dromedario, sin moto."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Merzouga",
+        "nombre": "Kasbah Mohayut",
+        "direccion": "Kasbah Mohayut, Hassilabied, Merzouga, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Kasbah junto a las dunas del Erg Chebbi, unas 20 habitaciones",
+        "fechas": "Noches 4 y 5",
+        "moto": "Parking gratis",
+        "restaurante": "Sí",
+        "servicios": [
+          "Restaurante",
+          "Parking",
+          "Piscina"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Acceso asfaltado hasta la puerta (sin arena ni pista)",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Que se llega por asfalto hasta la kasbah (en Hassilabied hay pistas de arena)",
+          "Forma de pago: según Hotels.com solo tarjeta; confirmar o llevar efectivo",
+          "Excursión en camello o a 4x4 por las dunas: precio y horario al llegar"
         ]
+      },
+      "guia": {
+        "resumen": "Día libre en Merzouga: descanso, margen por si hubo nieve y mantenimiento de la moto tras la arena.",
+        "ver": [
+          {
+            "lugar": "Khamlia",
+            "tipo": "pueblo",
+            "que": "Pueblo de música gnawa a pocos km: concierto con té en una de sus casas.",
+            "tiempo": "1 h",
+            "opcional": true
+          },
+          {
+            "lugar": "Rissani",
+            "tipo": "pueblo",
+            "que": "Zoco y ksar; cuna de la dinastía alauí. A unos 35 km: ir sin maletas.",
+            "tiempo": "2 h",
+            "opcional": true
+          },
+          {
+            "lugar": "Dunas en camello o 4x4",
+            "tipo": "naturaleza",
+            "que": "Contratar en la kasbah. Amanecer o atardecer.",
+            "tiempo": "2 h",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "Si se va a Rissani, medfouna en el Café Restaurant Amraoui.",
+          "sitios": [
+            {
+              "nombre": "Café Restaurant Amraoui",
+              "donde": "Rissani",
+              "que": "La «pizza bereber» (medfouna) de la zona"
+            }
+          ],
+          "cena": "Cena en el alojamiento.",
+          "platos": [
+            "Medfouna (pan relleno de carne y especias)"
+          ]
+        },
+        "tarde": "Cadena, lavandería y descanso.",
+        "consejo": "Día sin laterales si se sale: solo el baúl con lo básico."
+      },
+      "mantenimiento": {
+        "que": "Limpiar la arena de la cadena con un trapo y engrasarla (Motul C2). Lavandería.",
+        "km_acumulados": 689,
+        "desde_la_ultima": 689,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       }
     },
     {
@@ -367,16 +608,45 @@
         "Nochevieja en Tinghir: reservar pronto."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Tinghir",
+        "nombre": "Hotel AZUL Todra Gorges",
+        "direccion": "Hotel Azul, Tinghir, gargantas del Todra, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Hotel a 5,5 km de las gargantas",
+        "moto": "Parking seguro para la moto",
         "pendiente_confirmar": [
-          "Reservar",
-          "Nochevieja: reservar de los primeros",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Nochevieja: si hay cena especial, a qué hora y si hay que reservarla"
         ]
+      },
+      "guia": {
+        "resumen": "Nochevieja. Por los khettaras de Jorf y el palmeral de Tinejdad hasta Tinghir, a la entrada del Todra.",
+        "ver": [
+          {
+            "lugar": "Khettaras de Jorf",
+            "tipo": "monumento",
+            "que": "Líneas de pozos de riego subterráneo junto a la carretera, pasado Erfoud.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Palmeral de Tinghir",
+            "tipo": "mirador",
+            "que": "Vista del oasis desde la carretera al llegar.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Café en Tinejdad o Jorf.",
+          "cena": "Cena de Nochevieja en el Hotel AZUL (confirmar al reservar).",
+          "platos": [
+            "Tajine",
+            "Pastilla, si la hay"
+          ]
+        },
+        "tarde": "Nochevieja tranquila en el hotel: mañana se conduce.",
+        "consejo": "Marruecos no celebra la Nochevieja como en España: lo habitual es la cena del hotel. Confirmarla al reservar."
       }
     },
     {
@@ -430,15 +700,50 @@
         "El Todra es ida y vuelta por la misma carretera."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Gargantas del Dadès",
+        "nombre": "Hôtel Restaurant La Gazelle du Dadès",
+        "direccion": "La Gazelle du Dadès, gargantas del Dadès, Boumalne Dadès, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Hotel-restaurante dentro de las gargantas, a 27 km de Boumalne",
+        "moto": "Parking",
+        "restaurante": "Sí",
+        "servicios": [
+          "Calefacción",
+          "Restaurante",
+          "Parking"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono"
         ]
+      },
+      "guia": {
+        "resumen": "Las dos gargantas en un día corto: Todra por la mañana, Dadès y sus curvas por la tarde.",
+        "ver": [
+          {
+            "lugar": "Gargantas del Todra",
+            "tipo": "naturaleza",
+            "que": "Paredes de 300 m a pocos metros de la carretera. Ida y vuelta desde Tinghir.",
+            "tiempo": "45 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Curvas de Tissadrine",
+            "tipo": "mirador",
+            "que": "Las lazadas del Dadès vistas desde el café de arriba.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Boumalne Dadès o en el hotel.",
+          "cena": "Cena en el alojamiento (La Gazelle du Dadès).",
+          "platos": [
+            "Tajine",
+            "Harira"
+          ]
+        },
+        "tarde": "En las gargantas: paseo junto al río.",
+        "consejo": "Recortable si hace mal tiempo: saltar el Todra y subir directo al Dadès."
       }
     },
     {
@@ -492,15 +797,61 @@
         "Conducción estimada con OSRM: 3h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 83 min de paradas; anochece hacia las 17:30."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Aït Ben Haddou",
+        "nombre": "Riad Ait Ben Haddou",
+        "direccion": "Riad Ait Ben Haddou, Aït Ben Haddou, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Riad a 800 m del ksar",
+        "moto": "Parking gratis",
+        "servicios": [
+          "Calefacción",
+          "Parking gratis"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono"
         ]
+      },
+      "guia": {
+        "resumen": "El valle de las rosas y las kasbahs de Skoura hasta Ouarzazate y el ksar de Aït Ben Haddou.",
+        "ver": [
+          {
+            "lugar": "Kelaat M'Gouna",
+            "tipo": "pueblo",
+            "que": "Valle de las rosas: tiendas de agua de rosas en la carretera.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Kasbah Amridil (Skoura)",
+            "tipo": "monumento",
+            "que": "La kasbah más conocida del palmeral de Skoura, visitable.",
+            "tiempo": "45 min",
+            "en_ruta": true,
+            "opcional": true
+          },
+          {
+            "lugar": "Ksar de Aït Ben Haddou",
+            "tipo": "monumento",
+            "que": "Patrimonio de la Humanidad. Subir al granero de arriba al atardecer.",
+            "tiempo": "1h30",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Ouarzazate, de paso.",
+          "cena": "Cena en el alojamiento.",
+          "platos": [
+            "Tajine de kefta con huevo"
+          ]
+        },
+        "tarde": "Ksar al atardecer.",
+        "consejo": "Recortable: la kasbah de Skoura si se va justo de hora."
+      },
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar.",
+        "km_acumulados": 1174,
+        "desde_la_ultima": 485,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       }
     },
     {
@@ -550,15 +901,56 @@
         "Conducción estimada con OSRM: 3h50 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 87 min de paradas; anochece hacia las 17:30."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Zagora",
+        "nombre": "Riad de Rêve",
+        "direccion": "Riad de Rêve, Zagora, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Riad en Zagora",
+        "moto": "Cabe una moto dentro (según iOverlander)",
+        "servicios": [
+          "Aire acondicionado con calefacción"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Que el hueco para la moto sigue libre esa noche"
         ]
+      },
+      "guia": {
+        "resumen": "Por el Tizi n'Tinififft al valle del Draa: el palmeral más largo de Marruecos hasta Zagora.",
+        "ver": [
+          {
+            "lugar": "Tizi n'Tinififft",
+            "tipo": "mirador",
+            "que": "Puerto de 1.660 m entre Ouarzazate y Agdz, con vistas al Anti Atlas.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Tamnougalt",
+            "tipo": "monumento",
+            "que": "Ksar junto a Agdz en el palmeral del Draa.",
+            "tiempo": "45 min",
+            "en_ruta": true,
+            "opcional": true
+          },
+          {
+            "lugar": "Cartel «Tombouctou 52 jours»",
+            "tipo": "mirador",
+            "que": "Foto clásica a la salida de Zagora.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Café en Agdz.",
+          "cena": "Cena en el alojamiento.",
+          "platos": [
+            "Dátiles del Draa",
+            "Tajine"
+          ]
+        },
+        "tarde": "Zagora.",
+        "consejo": "El puerto puede tener hielo a primera hora: no salir antes de las 09:00."
       }
     },
     {
@@ -610,16 +1002,43 @@
         "Repostar en Zagora y en Tazzarine."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Alnif",
+        "nombre": "Auberge Kasbah Meteorites",
+        "direccion": "Kasbah Meteorites, N12, Alnif, Marruecos (31.0285, -5.2651)",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Auberge en la N12, 13 km antes de Alnif",
+        "moto": "Patio cerrado con llave por la noche",
+        "restaurante": "Sí, y bar",
+        "desayuno": "Incluido según la ficha",
+        "servicios": [
+          "Restaurante",
+          "Bar",
+          "Patio cerrado"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Pocas opciones en Alnif: reservar de los primeros",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono"
         ]
+      },
+      "guia": {
+        "resumen": "La N12 por Nkob y Tazzarine: el tramo más aislado del viaje, entre el Jbel Saghro y el desierto.",
+        "ver": [
+          {
+            "lugar": "Nkob",
+            "tipo": "pueblo",
+            "que": "Pueblo de las 45 kasbahs, a pie de carretera.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Café en Tazzarine.",
+          "cena": "Cena en el alojamiento (Kasbah Meteorites).",
+          "platos": [
+            "Tajine"
+          ]
+        },
+        "tarde": "En la kasbah.",
+        "consejo": "Repostar en Zagora y en Tazzarine: entre medias casi no hay gasolineras."
       }
     },
     {
@@ -670,15 +1089,52 @@
         "Hasta Rissani hay muy pocas gasolineras: salir de Alnif con el depósito lleno."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Errachidia",
+        "nombre": "Birgits Bed & Bistro",
+        "direccion": "Birgits Bed & Bistro, Meski, Errachidia, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Casa de huéspedes con bistró, a unos 18 km de Errachidia hacia Erfoud",
+        "fechas": "Noches 3 y 11 (ida y vuelta)",
+        "moto": "Garaje gratis para moteros",
+        "restaurante": "Cocina la dueña: cenar allí",
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Reservar a la vez las dos noches (28 dic y 5 ene)"
         ]
+      },
+      "guia": {
+        "resumen": "Del N12 a Rissani y vuelta al valle del Ziz. Se repite la noche en Meski.",
+        "ver": [
+          {
+            "lugar": "Rissani",
+            "tipo": "pueblo",
+            "que": "Comida y zoco si no se vio el día 5.",
+            "tiempo": "1 h",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "Medfouna en Rissani.",
+          "sitios": [
+            {
+              "nombre": "Café Restaurant Amraoui",
+              "donde": "Rissani",
+              "que": "Medfouna"
+            }
+          ],
+          "cena": "En Birgits Bed & Bistro.",
+          "platos": [
+            "Medfouna"
+          ]
+        },
+        "tarde": "Cadena en el garaje de Birgit.",
+        "consejo": "Viento de arena posible entre Rissani y Erfoud: visera cerrada."
+      },
+      "mantenimiento": {
+        "que": "Engrasar la cadena en el garaje de Birgit.",
+        "km_acumulados": 1751,
+        "desde_la_ultima": 577,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       }
     },
     {
@@ -727,15 +1183,43 @@
         "Etapa corta a propósito: si nieva en el puerto, deja margen para esperar a que lo abran (las quitanieves suelen abrir en el día)."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Midelt",
-        "telefono": null,
+        "nombre": "Hotel Kasbah Asmaa",
+        "direccion": "Hotel Kasbah Asmaa, Route d'Errachidia km 3, Midelt, Marruecos",
+        "telefono": "+212 535 580 408",
         "estado": "Sin reservar",
+        "tipo": "Hotel kasbah a la entrada de Midelt viniendo de Errachidia",
+        "moto": "Parking",
+        "restaurante": "Sí",
+        "servicios": [
+          "Restaurante",
+          "Lavandería",
+          "Calefacción",
+          "Parking"
+        ],
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono"
         ]
+      },
+      "guia": {
+        "resumen": "Subida corta de vuelta a Midelt por el Ziz. Salida a las 09:30 por el hielo.",
+        "ver": [
+          {
+            "lugar": "Garganta del Ziz",
+            "tipo": "naturaleza",
+            "que": "Ahora en subida, con la luz de la mañana.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Rich o en el hotel al llegar.",
+          "cena": "Cena en el alojamiento (Kasbah Asmaa).",
+          "platos": [
+            "Tajine"
+          ]
+        },
+        "tarde": "Lavandería del hotel y descanso.",
+        "consejo": "Mirar la previsión de nieve para el día 13 (Zeida–Azrou–Ifrane). Si nieva, la alternativa por Missour."
       }
     },
     {
@@ -789,15 +1273,17 @@
         "Salir a las 09:30, con el asfalto ya sin hielo."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Fez",
+        "nombre": "Riad en la medina de Fez, junto a Bab R'cif (p. ej. Riad Baba)",
+        "direccion": "Bab R'cif, Fez, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Riad en la medina; la moto se deja en un parking vigilado de la puerta",
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
-        ]
+          "Reservar y anotar el teléfono",
+          "Dónde se deja la moto: parking vigilado de Bab R'cif u otro que diga el riad, y cuánto cuesta",
+          "Que alguien del riad espere en la puerta para guiar a pie (la medina no admite motos)"
+        ],
+        "plan_b": "Si no hay parking claro, hotel fuera de la medina con garaje y taxi petit a la medina."
       },
       "opciones": [
         {
@@ -819,7 +1305,50 @@
             }
           ]
         }
-      ]
+      ],
+      "guia": {
+        "resumen": "El Atlas Medio entre cedros: Zeida, Azrou e Ifrane, y bajada a Fez.",
+        "ver": [
+          {
+            "lugar": "Cedros de Azrou",
+            "tipo": "naturaleza",
+            "que": "Bosque de cedros con monos de Berbería junto a la carretera. No darles comida.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Ifrane",
+            "tipo": "pueblo",
+            "que": "La «Suiza marroquí»: tejados a dos aguas y el león de piedra.",
+            "tiempo": "20 min",
+            "en_ruta": true,
+            "opcional": true
+          },
+          {
+            "lugar": "Medina de Fez",
+            "tipo": "monumento",
+            "que": "Al llegar, primer paseo por Bab Boujloud.",
+            "tiempo": "1 h"
+          }
+        ],
+        "comer": {
+          "donde": "Café en Azrou o Ifrane.",
+          "sitios": [
+            {
+              "nombre": "Café Clock",
+              "donde": "Medina de Fez, cerca de Bab Boujloud",
+              "que": "Terraza y carta mixta; famosa su hamburguesa de camello"
+            }
+          ],
+          "cena": "En la medina de Fez.",
+          "platos": [
+            "Pastilla de pichón o pollo",
+            "Harira"
+          ]
+        },
+        "tarde": "Fez.",
+        "consejo": "Ifrane es recortable. Con nieve, el día cambia a la alternativa por Missour (ver Decisiones del día)."
+      }
     },
     {
       "dia": 14,
@@ -863,15 +1392,55 @@
         "Conducción estimada con OSRM: 1h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 52 min de paradas; anochece hacia las 17:30."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Taza",
+        "nombre": "Hôtel Le Manoir",
+        "direccion": "Hôtel Le Manoir, Taza, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Hotel en Taza",
+        "moto": "Delante del hotel, a la vista de recepción y vigilada",
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono"
         ]
+      },
+      "guia": {
+        "resumen": "Mañana en la medina de Fez y salida a mediodía a Taza.",
+        "ver": [
+          {
+            "lugar": "Medersa Bou Inania",
+            "tipo": "monumento",
+            "que": "Escuela coránica del s. XIV, una de las pocas visitables.",
+            "tiempo": "30 min"
+          },
+          {
+            "lugar": "Curtidurías Chouara",
+            "tipo": "monumento",
+            "que": "Vista desde las terrazas de las tiendas de cuero (ir temprano).",
+            "tiempo": "30 min"
+          }
+        ],
+        "comer": {
+          "donde": "Antes de salir, en la medina.",
+          "sitios": [
+            {
+              "nombre": "Dar Hatim",
+              "donde": "19 Derb Zaouia Fandak Lihoudi, medina de Fez",
+              "que": "Cocina casera en una casa familiar; de 12:00 a 22:30"
+            }
+          ],
+          "cena": "En el hotel o en Taza.",
+          "platos": [
+            "Pastilla",
+            "Dulces de almendra"
+          ]
+        },
+        "tarde": "Taza.",
+        "consejo": "Salir de Fez a las 13:30 como muy tarde; a la medina, con guía oficial o con mapa sin conexión."
+      },
+      "mantenimiento": {
+        "que": "Engrasar la cadena (última del viaje).",
+        "km_acumulados": 2220,
+        "desde_la_ultima": 469,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       }
     },
     {
@@ -921,15 +1490,37 @@
         "Hora: al volver a España, una hora más."
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Nador (puerto de Beni Ensar)",
+        "nombre": "Hotel Mercure Rif Nador",
+        "direccion": "1 Av. Ibn Tachfine, Nador, Marruecos",
         "telefono": null,
         "estado": "Sin reservar",
+        "tipo": "Hotel de cadena en el paseo de Nador, a 13 km del puerto de Beni Ensar",
+        "moto": "Parking gratis, cubierto y vigilado",
+        "restaurante": "Sí",
         "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
+          "Reservar y anotar el teléfono",
+          "Hora del ferry del domingo para calcular la salida (facturar 2 h antes)"
         ]
+      },
+      "guia": {
+        "resumen": "Último día: valle de Taza y Guercif de vuelta a Nador.",
+        "ver": [
+          {
+            "lugar": "Paseo de Nador",
+            "tipo": "paseo",
+            "que": "La laguna de Marchica junto al hotel.",
+            "tiempo": "30 min"
+          }
+        ],
+        "comer": {
+          "donde": "Café en Guercif.",
+          "cena": "En Nador; último tajine.",
+          "platos": [
+            "Pescado en Nador"
+          ]
+        },
+        "tarde": "Gastar los dirhams que sobren (no se pueden sacar más de 2.000 MAD).",
+        "consejo": "El día del ferry, ir al puerto con 2 h de margen y el papel de aduana de la moto a mano."
       }
     }
   ],
@@ -938,7 +1529,7 @@
       "noche": 1,
       "fecha": "2026-12-26",
       "lugar": "Guercif",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Hôtel Chark",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -946,7 +1537,7 @@
       "noche": 2,
       "fecha": "2026-12-27",
       "lugar": "Missour",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Gîte Boukhalfa",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -954,7 +1545,7 @@
       "noche": 3,
       "fecha": "2026-12-28",
       "lugar": "Errachidia",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Birgits Bed & Bistro",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -962,7 +1553,7 @@
       "noche": 4,
       "fecha": "2026-12-29",
       "lugar": "Merzouga",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Kasbah Mohayut",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -970,7 +1561,7 @@
       "noche": 5,
       "fecha": "2026-12-30",
       "lugar": "Merzouga",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Kasbah Mohayut",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -978,7 +1569,7 @@
       "noche": 6,
       "fecha": "2026-12-31",
       "lugar": "Tinghir",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Hotel AZUL Todra Gorges",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -986,7 +1577,7 @@
       "noche": 7,
       "fecha": "2027-01-01",
       "lugar": "Gargantas del Dadès",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Hôtel Restaurant La Gazelle du Dadès",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -994,7 +1585,7 @@
       "noche": 8,
       "fecha": "2027-01-02",
       "lugar": "Aït Ben Haddou",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Riad Ait Ben Haddou",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1002,7 +1593,7 @@
       "noche": 9,
       "fecha": "2027-01-03",
       "lugar": "Zagora",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Riad de Rêve",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1010,7 +1601,7 @@
       "noche": 10,
       "fecha": "2027-01-04",
       "lugar": "Alnif",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Auberge Kasbah Meteorites",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1018,7 +1609,7 @@
       "noche": 11,
       "fecha": "2027-01-05",
       "lugar": "Errachidia",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Birgits Bed & Bistro",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1026,15 +1617,15 @@
       "noche": 12,
       "fecha": "2027-01-06",
       "lugar": "Midelt",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
-      "telefono": null,
+      "alojamiento": "Hotel Kasbah Asmaa",
+      "telefono": "+212 535 580 408",
       "estado": "Sin reservar"
     },
     {
       "noche": 13,
       "fecha": "2027-01-07",
       "lugar": "Fez",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Riad en la medina de Fez, junto a Bab R'cif (p. ej. Riad Baba)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1042,7 +1633,7 @@
       "noche": 14,
       "fecha": "2027-01-08",
       "lugar": "Taza",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Hôtel Le Manoir",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1050,7 +1641,7 @@
       "noche": 15,
       "fecha": "2027-01-09",
       "lugar": "Nador (puerto de Beni Ensar)",
-      "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
+      "alojamiento": "Hotel Mercure Rif Nador",
       "telefono": null,
       "estado": "Sin reservar"
     }
@@ -1065,10 +1656,24 @@
       "nota": "El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil."
     },
     "seguro_asistencia": {
-      "compania": "Seguro de la moto",
-      "telefono": null,
-      "nota": "Confirmar que la asistencia en viaje cubre Marruecos y pedir la carta verde con MA sin tachar."
-    }
+      "compania": "Mapfre",
+      "telefono": "+34 918 365 365",
+      "poliza_local": true,
+      "nota": "Desde Marruecos, con el prefijo +34. Confirmar antes del viaje que la asistencia cubre Marruecos (las condiciones hablan de los países ribereños del Mediterráneo)."
+    },
+    "otros": [
+      {
+        "nombre": "Consulado de España en Nador (emergencias)",
+        "telefono": "+212 661 764 005",
+        "telefonos_alternativos": [
+          "+212 536 320 690"
+        ],
+        "nota": "Pasaporte perdido o robado, detención o accidente grave. El segundo número es la centralita en horario de oficina.",
+        "sos": true,
+        "icono": "🇪🇸",
+        "nota_corta": "Consulado en Nador"
+      }
+    ]
   },
   "checklist_previa": {
     "papeles": [
@@ -1086,6 +1691,18 @@
       },
       {
         "que": "Permiso de circulación a mi nombre e ITV en vigor",
+        "hecho": false
+      },
+      {
+        "que": "Copias del pasaporte, permiso de circulación y carta verde (papel y foto en el móvil)",
+        "hecho": false
+      },
+      {
+        "que": "En la aduana de Nador: guardar el papel de admisión temporal de la moto hasta la salida",
+        "hecho": false
+      },
+      {
+        "que": "Seguro de viaje médico para Marruecos (la tarjeta sanitaria europea no vale)",
         "hecho": false
       }
     ],
@@ -1109,6 +1726,10 @@
       {
         "que": "Resto de alojamientos",
         "hecho": false
+      },
+      {
+        "que": "Confirmar que hay ferry el domingo 10 de enero (el invierno pasado las salidas diarias acababan el 7)",
+        "hecho": false
       }
     ],
     "moto_y_equipo": [
@@ -1131,11 +1752,49 @@
       {
         "que": "NO llevar dron (prohibido entrarlo en Marruecos sin autorización)",
         "hecho": false
+      },
+      {
+        "que": "Comprar guantes de invierno y probarlos con los puños del Sena",
+        "hecho": false
+      },
+      {
+        "que": "Taller: toma USB-C de la moto (no funciona desde septiembre) y revisión antes de salir",
+        "hecho": false
+      },
+      {
+        "que": "Filtro de aire: revisarlo a la vuelta (polvo del desierto)",
+        "hecho": false
       }
     ],
     "dinero": [
       {
         "que": "Efectivo: cambiar a dirhams al llegar y llevar algo en euros",
+        "hecho": false
+      },
+      {
+        "que": "Tarjeta sin comisión en el extranjero y otra de reserva guardada aparte",
+        "hecho": false
+      },
+      {
+        "que": "Máximo 2.000 MAD al entrar y al salir: sacar en cajeros (los de BMCI dejan más por operación)",
+        "hecho": false
+      },
+      {
+        "que": "Gastar los dirhams antes del ferry de vuelta",
+        "hecho": false
+      }
+    ],
+    "movil": [
+      {
+        "que": "SIM de Maroc Telecom al llegar (mejor cobertura en el sur)",
+        "hecho": false
+      },
+      {
+        "que": "Mapas sin conexión de Marruecos en Google Maps y Kurviger",
+        "hecho": false
+      },
+      {
+        "que": "Teléfono de casa guardado en esta app",
         "hecho": false
       }
     ]
@@ -1149,5 +1808,394 @@
     "No inventar disponibilidad, horarios ni precios; verificar antes.",
     "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan.",
     "Invierno en Marruecos: no meter puertos por encima de 2.000 m (Tichka, Test) sin mirar antes el estado de la carretera."
-  ]
+  ],
+  "seguro": {
+    "compania": "Mapfre España",
+    "producto": "Automoviles particulares - Terceros Ampliado (motocicleta Honda NX500, uso particular)",
+    "vigencia": {
+      "desde": "2026-09-01",
+      "hasta": "2027-09-01"
+    },
+    "documento": "Póliza y carta verde en la app de Mapfre y en papel en la bolsa estanca. La carta verde debe llevar MA (Marruecos) sin tachar: sin ella hay que comprar un seguro de frontera en el puerto.",
+    "coberturas": [
+      {
+        "nombre": "Responsabilidad civil obligatoria",
+        "limite": "Incluida"
+      },
+      {
+        "nombre": "Responsabilidad civil suplementaria",
+        "limite": "Hasta 50.000.000 EUR por siniestro"
+      },
+      {
+        "nombre": "Asistencia en viaje",
+        "limite": "Incluida, 24 h. Los limites (km, grua, hotel, vuelta a casa) estan en las condiciones generales, no en las particulares: preguntarlos al llamar si hace falta usarla"
+      },
+      {
+        "nombre": "Seguro del conductor (accidentes personales)",
+        "limite": "Fallecimiento 8.000 EUR; invalidez hasta 8.000 EUR segun baremo; asistencia sanitaria 8.000 EUR"
+      },
+      {
+        "nombre": "Defensa juridica",
+        "limite": "3.000 EUR"
+      },
+      {
+        "nombre": "Defensa en multas y asesoramiento",
+        "limite": "Incluida"
+      },
+      {
+        "nombre": "Incendio del vehiculo",
+        "limite": "Incluido. Perdida total: 100 % valor nuevo el primer año para primer propietario; despues valor de mercado"
+      },
+      {
+        "nombre": "Robo del vehiculo",
+        "limite": "Incluido con franquicia de 150 EUR. Solo robo de la moto completa"
+      }
+    ],
+    "no_incluye": "No es a todo riesgo: los daños propios de la moto por caida o accidente sin tercero responsable NO estan cubiertos (ni lunas, ni daños propios).",
+    "accesorios_declarados": [
+      {
+        "nombre": "Maleta SHAD SH58X",
+        "valor_eur": 195.0
+      },
+      {
+        "nombre": "Juego de maletas SHAD SH38X",
+        "valor_eur": 409.64
+      },
+      {
+        "nombre": "Bolsa de deposito SHAD",
+        "valor_eur": 74.51
+      },
+      {
+        "nombre": "Pantalla inteligente D6A",
+        "valor_eur": 186.48
+      },
+      {
+        "nombre": "Defensas Motoguard SG67",
+        "valor_eur": 324.99
+      }
+    ],
+    "exclusiones_relevantes": [
+      "Equipos extraibles de telefonia y navegacion (Pixel, Osmo 360) no estan cubiertos por esta poliza en ninguna garantia",
+      "Robo parcial (maletas, piezas o accesorios sueltos) no cubierto: solo la sustraccion de la moto completa, y los accesorios solo si estan declarados",
+      "Actos vandalicos no cubiertos en robo",
+      "Asistencia: no se reembolsa ningun servicio (grua, taller) contratado sin avisar antes a Mapfre",
+      "Alcohol o drogas por encima de la tasa: sin cobertura voluntaria",
+      "Carga o pasajeros fuera de lo reglamentario como causa del accidente: sin cobertura"
+    ],
+    "en_caso_de": {
+      "averia_o_accidente": [
+        "Ponerse a salvo con el chaleco reflectante; 15 (ambulancia) si hay heridos; 177 Gendarmería en carretera, 19 Policía en ciudad",
+        "Llamar a Mapfre asistencia (+34 918 365 365) antes de pedir grúa o taller: póliza, matrícula y ubicación compartida",
+        "Si hay otro vehículo: constat amiable con fotos de todo y esperar a la Gendarmería si hay heridos o discusión. No firmar nada en árabe que no se entienda",
+        "Avisar en casa y al alojamiento de esa noche"
+      ],
+      "robo": [
+        "Denuncia en la Policía o la Gendarmería (necesaria para el seguro y para sacar la moto del país sin ella)",
+        "Llamar a Mapfre y al consulado en Nador",
+        "Sin la moto no se puede salir sin resolver la admisión temporal en aduana: llamar al consulado"
+      ]
+    },
+    "aviso": "Antes del viaje: confirmar por escrito con Mapfre que la asistencia en viaje cubre Marruecos y pedir la carta verde con MA. Si la asistencia no lo cubre, contratar una asistencia de viaje aparte."
+  },
+  "equipacion_moto": {
+    "decision": "REV'IT Vertical GTX y Tornado 4 con sus forros térmicos. Guantes de invierno nuevos; los Caliber 1 de verano se quedan en casa.",
+    "puesto_siempre": [
+      "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)",
+      "Botas REV'IT Breccia GTX (Gore-Tex)",
+      "Casco Shoei GT-Air 3 con Sena SRL3",
+      "Braga de cuello merino",
+      "Gafas de sol",
+      "Tapones Alpine MotoSafe Duo Pack (filtros negros Tour 17 dB y rojos Race 20 dB)",
+      "Guantes de invierno (por comprar)"
+    ],
+    "lluvia": "Guantes REV'IT Sand 5 H2O en el SH58X por si llueve en el norte (Fez, Taza, Nador). Botas Gore-Tex.",
+    "configuracion_por_tipo_de_dia": {
+      "montaña_y_frio": {
+        "dias": [
+          3,
+          7,
+          9,
+          12,
+          13
+        ],
+        "pantalon": "Tornado con forro térmico e impermeable y el SIXS bottom debajo",
+        "chaqueta": "Vertical GTX con forro térmico, SIXS top, merino manga larga y polar; sotocasco SIXS y braga merino",
+        "nota": "Salida a las 09:30 (09:00 el día 9). Quitar el polar en la primera parada si sube la temperatura."
+      },
+      "valles_y_desierto": {
+        "dias": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          8,
+          10,
+          11,
+          14,
+          15
+        ],
+        "pantalon": "Tornado con forro térmico por la mañana; quitarlo a mediodía si pasa de 15 °C",
+        "chaqueta": "Vertical GTX con forro térmico y merino; polar en el baúl",
+        "nota": "Mañanas de 0-5 °C y mediodías de 15-20 °C en el sur: vestirse por capas y quitar en las paradas."
+      }
+    },
+    "tapones": "Alpine MotoSafe: filtros NEGROS (Tour 17 dB) para todo el viaje; los ROJOS solo si hay autopista.",
+    "sixs": "Conjunto SIXS Carbon Underwear: top y bottom como primera capa todos los dias (se lavan a mano por la noche y estan secos por la mañana). Sotocasco en las salidas frias (dia 1 por Calar Alto, Albarracin, Maestrazgo) y para mantener el casco limpio; probado en las etapas 1 y 2 con el Sena y los tapones. Calcetines SIXS los dias de calor, MH900 los de montaña."
+  },
+  "reparto_equipaje": {
+    "regla": "Cada cosa vive siempre en la misma maleta.",
+    "bolsa_deposito_e09cl": [
+      "Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas",
+      "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)",
+      "Pixel conectado a la powerbank 1 (cable corto)",
+      "Powerbank 2 de reserva",
+      "Botella de agua 0,5 l (la de beber en marcha y en cada parada)",
+      "Abus 8008 + cable recordatorio",
+      "Bolsa estanca: pasaporte, papel de admisión temporal de la aduana, permiso de circulación, carta verde y copias",
+      "Microfibra visera",
+      "Crema solar pequeña, balsamo labial, barritas",
+      "Dirhams para el día en el bolsillo exterior (gasolina, cafés, aparcacoches); el resto del efectivo repartido entre la chaqueta y la maleta"
+    ],
+    "sh38x_izquierda_ropa": [
+      "Organizador grande: SIXS (top, bottom, sotocasco, calcetines), merino manga corta x2, top merino manga larga, boxers, calcetines",
+      "Tablet entre la ropa, pantalla hacia el interior (nunca en la maleta de herramientas). Al comer, sube con el casco o asume el riesgo: la poliza no cubre electronica",
+      "Organizador pequeño: pantalon MT100, toalla microfibra",
+      "Bolsa: chanclas y zapatillas ligeras",
+      "Al fondo: spray Motul C2 Road y capsulas de CO2 del kit de mechas (aerosoles lejos del escape; la izquierda no lleva escape al lado)",
+      "Organizador vacio para ropa sucia + detergente"
+    ],
+    "sh38x_derecha_taller_y_aseo": [
+      "Fondo: compresor Xiaomi, herramienta del Givi S450 (las capsulas de CO2 y el spray Motul, en la izquierda: lejos del escape)",
+      "Multiherramienta con cinta americana, bridas, nitrilo, microfibras",
+      "Botiquin",
+      "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip",
+      "Un solo cargador de pared de varias tomas (el de la tablet) + cable largo + cable micro-USB + cable de la Osmo 360; los demas cargadores se quedan en casa"
+    ],
+    "sh58x_capas_y_lluvia": [
+      "Forros del Tornado que no se lleven puestos",
+      "Polar MH100 y forros térmicos que no se lleven puestos",
+      "Guantes REV'IT Sand 5 H2O (impermeables)",
+      "Aparato para dormir con su bolsa, mascarilla, tubo y fuente de alimentacion (imprescindible; humidificador vacio y seco cada mañana; alargador corto)",
+      "Chaleco reflectante",
+      "Botella de agua de 1 a 1,5 l de reserva (se rellena en cada parada; con 120 kg y calor, medio litro por hora)",
+      "Casco y chaqueta al bajar a comer o pasear"
+    ],
+    "dias_sin_laterales": {
+      "dias": [
+        5
+      ],
+      "pasar_al_sh58x": [
+        "Botiquín",
+        "Givi S450",
+        "Compresor",
+        "Agua y barrita"
+      ]
+    },
+    "llaves": "Llave de repuesto de la moto y de las maletas SHAD guardada aparte de la principal (chaqueta una, maleta izquierda la otra)."
+  },
+  "rutina_diaria": {
+    "noche_anterior": [
+      "Meteo de la etapa siguiente en la app (nieve en Midelt, Ifrane y puertos)",
+      "Cargar Pixel, las powerbanks, D6A, Sena SRL3 y Osmo 360",
+      "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacío y seco",
+      "Cadena: días 5, 8, 11 y 14 (la app lo avisa en la ficha)",
+      "Repasar la ruta en Kurviger y que esté descargada sin conexión",
+      "Decidir forros según la temperatura de la mañana"
+    ],
+    "mañana": [
+      "Presiones en frío cada 2-3 días: 2,0 delante / 2,5 detrás",
+      "Cargar maletas en 5 minutos (cada cosa en su sitio)",
+      "Cable recordatorio del Abus fuera antes de arrancar",
+      "Salir a las 09:00 (09:30 los días 3, 12 y 13, por el hielo)",
+      "Efectivo del día en el bolsillo exterior"
+    ],
+    "en_ruta": [
+      "Parada cada 60-90 min con algo caliente",
+      "Gasolina: llenar al bajar de medio depósito; en el sur, en cada ciudad",
+      "Controles de policía: reducir, parar del todo si lo indican, quitarse el casco y tener los papeles a mano",
+      "Pueblos: niños, burros, bicis y peatones en la calzada; badenes sin señalizar",
+      "En el alojamiento antes de las 17:00: nunca de noche"
+    ],
+    "llegada": [
+      "Moto en el garaje o patio cerrado; antirrobo de disco puesto",
+      "Quitar la cámara y subirla",
+      "Avisar en casa",
+      "Confirmar cena y desayuno",
+      "Enchufe cerca de la cama para el aparato de dormir (el enchufe en Marruecos es igual que en España)"
+    ]
+  },
+  "ropa_y_lavanderia": {
+    "filosofia": "Ropa para 4-5 días y lavandería tres veces. El SIXS se lava a mano cada noche (seca en 2-3 h con calefacción).",
+    "lavados": [
+      {
+        "noche": 5,
+        "lugar": "Merzouga",
+        "como": "Pedir lavandería en la kasbah (día libre)"
+      },
+      {
+        "noche": 8,
+        "lugar": "Aït Ben Haddou",
+        "como": "Preguntar en el riad; si no, a mano"
+      },
+      {
+        "noche": 12,
+        "lugar": "Midelt",
+        "como": "Lavandería del Hotel Kasbah Asmaa"
+      }
+    ],
+    "cuidado_merino": "30 C, sin suavizante, nunca secadora caliente."
+  },
+  "material_en_propiedad": {
+    "compresor": {
+      "modelo": "Xiaomi Portable Electric Air Compressor v1",
+      "nota": "Carga por micro-USB; el cable en la maleta derecha."
+    },
+    "antirrobo": {
+      "modelo": "Abus Granit Detecto X-Plus 8008",
+      "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito."
+    },
+    "powerbank": {
+      "modelo": "2x Baseus PPKPC-1027G de 10.000 mAh (la 1 conectada al Pixel en la bolsa de deposito, la 2 de reserva en la misma bolsa) + Baseus de 5.000 mAh en el bolsillo de la chaqueta como reserva de emergencia lejos de la moto",
+      "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen."
+    },
+    "otros": [
+      "Givi S450 kit tubeless",
+      "Motul C2 Road grasa de cadena",
+      "Motul limpiador de casco y visera",
+      "Bridas",
+      "Guantes de nitrilo",
+      "Multiherramienta",
+      "Detergente en cápsulas",
+      "Trapo viejo para limpiar la arena de la cadena"
+    ]
+  },
+  "inventario": {
+    "nota": "Equipo en propiedad, declarado el 10 de septiembre. Fuente para decidir que se lleva y que se compra.",
+    "moto": {
+      "marca": "Honda",
+      "modelo": "NX500",
+      "carnet": "A2",
+      "ubicacion": "Almeria",
+      "accesorios": [
+        {
+          "tipo": "Defensas superiores",
+          "marca": "Motoguard",
+          "modelo": "HG44"
+        },
+        {
+          "tipo": "Caballete central",
+          "marca": "-",
+          "modelo": "-"
+        },
+        {
+          "tipo": "Pantalla Android Auto inalambrico",
+          "marca": "AOOCCI",
+          "modelo": "D6A"
+        }
+      ]
+    },
+    "equipaje": {
+      "marca": "Shad",
+      "baul": "SH58X",
+      "maletas_laterales": "SH38X",
+      "bolsa_deposito": {
+        "modelo": "E09CL Pro",
+        "anclaje": "Click System",
+        "cierre_con_llave": true
+      }
+    },
+    "casco": {
+      "marca": "Shoei",
+      "modelo": "GT-Air 3",
+      "tipo": "integral",
+      "talla": "XL",
+      "intercomunicador": {
+        "marca": "Sena",
+        "modelo": "SRL3",
+        "integrado": true
+      }
+    },
+    "chaquetas": [
+      {
+        "marca": "REV'IT",
+        "modelo": "Vertical GTX",
+        "uso": "touring / 3 estaciones",
+        "forro_termico_desmontable": true,
+        "membrana": "Gore-Tex",
+        "espaldera": true
+      },
+      {
+        "marca": "REV'IT",
+        "modelo": "Airwave 4",
+        "uso": "verano",
+        "espaldera": false
+      }
+    ],
+    "pantalones": [
+      {
+        "marca": "REV'IT",
+        "modelo": "Tornado 4",
+        "forro_impermeable_desmontable": true,
+        "forro_termico_desmontable": true
+      },
+      {
+        "marca": "Racered",
+        "modelo": "Vaqueros AAA",
+        "tipo": "vaqueros de moto"
+      }
+    ],
+    "guantes": [
+      {
+        "marca": "REV'IT",
+        "modelo": "Sand 5 H2O",
+        "impermeable": true
+      },
+      {
+        "marca": "REV'IT",
+        "modelo": "Caliber 1",
+        "impermeable": false
+      }
+    ],
+    "camara": {
+      "marca": "DJI",
+      "modelo": "Osmo 360",
+      "tipo": "camara 360",
+      "soporte": {
+        "marca": "K&F Concept",
+        "tipo": "Abrazadera de parabrisas para moto",
+        "material": "PP66",
+        "anclajes": "Rosca 1/4 (la Osmo 360 solo monta por rosca, no por orejetas GoPro)",
+        "montaje": "Sin herramientas, palanca",
+        "llega": "2026-09-11",
+        "estado": "Rosca de 1/4 pasada (aluminio sobre acero). Fuera de servicio hasta encontrar recambio; recado en Cuenca el dia 3.",
+        "alternativa": "Palo oficial DJI solo en paradas y miradores, nunca desplegado en marcha."
+      },
+      "aviso": "Sin soporte utilizable: el K&F tiene la rosca pasada. Recambio en Cuenca el dia 3 (ver notas de la etapa). Mientras tanto, el palo oficial DJI solo en las paradas."
+    },
+    "protecciones": {
+      "espaldera": {
+        "marca": "REV'IT",
+        "modelo": "SeeFlex",
+        "montada_en": "REV'IT Vertical GTX"
+      }
+    },
+    "ropa_tecnica": {
+      "marca": "SIXS",
+      "modelo": "Carbon Underwear (conjunto)",
+      "piezas": [
+        "Camiseta interior (top)",
+        "Pantalon interior (bottom)",
+        "Sotocasco",
+        "Calcetines"
+      ],
+      "uso": "Primera capa fina y transpirable: seca el sudor, no huele y se seca en 2-3 h. Vale para el calor (bajo la chaqueta abierta) y para el frio (bajo el merino)."
+    },
+    "botas": {
+      "marca": "REV'IT",
+      "modelo": "Breccia GTX",
+      "talla": 43,
+      "membrana": "Gore-Tex"
+    }
+  }
 }
