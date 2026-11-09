@@ -1,13 +1,14 @@
 {
   "meta": {
-    "version": 1,
-    "revision": 2,
+    "version": 2,
+    "revision": 3,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
       "Plan inicial (2026-11-09): bucle desde Nador por el sureste de Marruecos (Merzouga, Todra, Dadès, Aït Ben Haddou, Draa, N12, Atlas Medio, Fez). Tracks aproximados con OSRM. Fechas provisionales: vacaciones del 28 dic al 11 ene, ferry de ida el 25 dic y de vuelta el 10 ene.",
       "Horario corregido: Marruecos volvió al GMT el 20-09-2026 (una hora menos que España). Salida a las 09:00 y llegadas recalculadas.",
-      "Checklist: sacar el pasaporte, primer paso de los papeles."
+      "Checklist: sacar el pasaporte, primer paso de los papeles.",
+      "Ruta v2 (2026-11-09): todas las etapas por debajo de 4 h (media de 3 h). Primer día corto hasta Guercif y noche en Missour; Merzouga el día 4 con descanso el 5 (que sirve también de margen si nieva en Midelt); Nochevieja en Tinghir; noches en Alnif y Errachidia para partir el N12; sin día libre en Aït Ben Haddou. La vuelta por Fez y Taza tiene una alternativa por Missour que ahorra un día. Tiempos con OSRM sin el 15 % extra (ya da medias de 50-65 km/h)."
     ]
   },
   "proyecto": {
@@ -35,11 +36,11 @@
       "conduccion_real_objetivo": "3h-3h30",
       "conduccion_real_maximo": "4h",
       "superficie": "100% asfalto",
-      "horario": "Diciembre-enero, en hora de Marruecos: amanece hacia las 07:15 y anochece hacia las 17:30. Desde el 20 de septiembre de 2026 Marruecos vuelve al GMT y va una hora por detrás de España. Salir a las 09:00 (antes puede haber hielo en los puertos) y estar en el alojamiento antes de las 17:00. Nunca de noche: animales, peatones y vehículos sin luces.",
+      "horario": "Diciembre-enero, en hora de Marruecos: amanece hacia las 07:15 y anochece hacia las 17:30. Desde el 20 de septiembre de 2026 Marruecos vuelve al GMT y va una hora por detrás de España. Salir a las 09:00 (09:30 los días de puerto, por el hielo) y estar en el alojamiento antes de las 17:00. Nunca de noche: animales, peatones y vehículos sin luces.",
       "paradas": "Cada 60-90 minutos, con algo caliente: las mañanas rondan 0-5 °C.",
       "recortables_sin_cambiar_alojamiento": [
-        "Gargantas del Todra (día 6)",
-        "Kasbah de Skoura (día 7)",
+        "Gargantas del Todra (día 7)",
+        "Kasbah de Skoura (día 8)",
         "Ifrane (día 13)"
       ]
     }
@@ -57,14 +58,14 @@
       "dia_semana": "sabado",
       "tipo": "llano",
       "origen": "Nador (puerto de Beni Ensar)",
-      "destino": "Missour",
-      "km_aprox": 333,
-      "tiempo_real_aprox": "6h00",
+      "destino": "Guercif",
+      "km_aprox": 163,
+      "tiempo_real_aprox": "2h30",
       "dificultad": 2,
-      "fatiga": 4,
+      "fatiga": 2,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "17:02",
+      "llegada_prevista": "12:40",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -73,30 +74,80 @@
           "lon": -3.35
         },
         {
+          "nombre": "Guercif",
+          "lat": 34.23,
+          "lon": -3.35
+        }
+      ],
+      "waypoints": [
+        "Nador (puerto de Beni Ensar)",
+        "Guercif"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-01.gpx",
+        "track": "tracks/dia-01.json",
+        "vias": [],
+        "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
+      },
+      "notas": [
+        "Que ver: Primer día corto a propósito: desembarque, aduana, cambiar dinero, tarjeta SIM y hacerse con el tráfico marroquí.",
+        "Conducción estimada con OSRM: 2h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 68 min de paradas; anochece hacia las 17:30.",
+        "Llegada en el ferry nocturno desde Almería del viernes 25 de diciembre (naviera y hora por confirmar al reservar). Desembarque y aduana: contar 1-2 h.",
+        "Hora: Marruecos va una hora por detrás de España. Al desembarcar, atrasar el reloj una hora (los horarios del ferry suelen darse en hora española)."
+      ],
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Guercif",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "pendiente_confirmar": [
+          "Reservar",
+          "Que la moto duerma dentro o en un patio cerrado",
+          "Que haya calefacción (noches cerca de 0 °C)"
+        ]
+      }
+    },
+    {
+      "dia": 2,
+      "fecha": "2026-12-27",
+      "dia_semana": "domingo",
+      "tipo": "llano",
+      "origen": "Guercif",
+      "destino": "Missour",
+      "km_aprox": 170,
+      "tiempo_real_aprox": "2h45",
+      "dificultad": 2,
+      "fatiga": 2,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:00",
+      "llegada_prevista": "12:53",
+      "zona_horaria": "Africa/Casablanca",
+      "meteo_puntos": [
+        {
+          "nombre": "Missour",
+          "lat": 33.05,
+          "lon": -3.99
+        },
+        {
           "nombre": "Missour",
           "lat": 33.05,
           "lon": -3.99
         }
       ],
       "waypoints": [
-        "Nador (puerto de Beni Ensar)",
         "Guercif",
         "Missour"
       ],
       "gpx": {
-        "archivo": "gpx/dia-01.gpx",
-        "track": "tracks/dia-01.json",
-        "vias": [
-          "Guercif"
-        ],
+        "archivo": "gpx/dia-02.gpx",
+        "track": "tracks/dia-02.json",
+        "vias": [],
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Primer día para hacerse al país: carretera ancha por la meseta oriental, pueblos, controles de gendarmería.",
-        "Tiempo de conducción de OSRM 5h15; en moto, cargado y con travesías de pueblos cuenta 6h00. Llegada con 120 min de paradas.",
-        "Pasa de 4 h de conducción (6h00): por encima del límite del plan.",
-        "Llegada en el ferry nocturno desde Almería del viernes 25 de diciembre (naviera y hora por confirmar al reservar). Desembarque y aduana: contar 1-2 h.",
-        "Hora: Marruecos va una hora por detrás de España. Al desembarcar, atrasar el reloj una hora (los horarios del ferry suelen darse en hora española)."
+        "Que ver: Valle del Moulouya entre el Atlas Medio y el Alto Atlas oriental: meseta abierta, poco tráfico y las primeras montañas nevadas al fondo.",
+        "Conducción estimada con OSRM: 2h45 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 71 min de paradas; anochece hacia las 17:30.",
+        "Etapa corta. Missour es un pueblo pequeño: alojamiento sencillo, reservar antes."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -111,19 +162,19 @@
       }
     },
     {
-      "dia": 2,
-      "fecha": "2026-12-27",
-      "dia_semana": "domingo",
+      "dia": 3,
+      "fecha": "2026-12-28",
+      "dia_semana": "lunes",
       "tipo": "montaña",
       "origen": "Missour",
       "destino": "Errachidia",
       "km_aprox": 233,
-      "tiempo_real_aprox": "4h35",
+      "tiempo_real_aprox": "4h00",
       "dificultad": 3,
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "15:14",
+      "salida": "09:30",
+      "llegada_prevista": "14:59",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -144,8 +195,8 @@
         "Errachidia"
       ],
       "gpx": {
-        "archivo": "gpx/dia-02.gpx",
-        "track": "tracks/dia-02.json",
+        "archivo": "gpx/dia-03.gpx",
+        "track": "tracks/dia-03.json",
         "vias": [
           "Midelt",
           "Rich"
@@ -153,10 +204,9 @@
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Midelt al pie del Atlas, puerto de Tizi n'Talghemt (unos 1.900 m) y las gargantas del Ziz entre Rich y Errachidia, con los palmerales de Aoufous.",
-        "Tiempo de conducción de OSRM 4h00; en moto, cargado y con travesías de pueblos cuenta 4h35. Llegada con 99 min de paradas.",
-        "Pasa de 4 h de conducción (4h35): por encima del límite del plan.",
-        "El puerto de Tizi n'Talghemt puede tener hielo a primera hora: no salir antes de las 09:30."
+        "Que ver: Midelt al pie del Jbel Ayachi, puerto de Tizi n'Talghemt (unos 1.900 m) y las gargantas del Ziz entre Rich y Errachidia, con buena luz a mediodía.",
+        "Conducción estimada con OSRM: 4h00 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 90 min de paradas; anochece hacia las 17:30.",
+        "Salir a las 09:30: a primera hora puede haber hielo en el puerto."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -171,19 +221,19 @@
       }
     },
     {
-      "dia": 3,
-      "fecha": "2026-12-28",
-      "dia_semana": "lunes",
+      "dia": 4,
+      "fecha": "2026-12-29",
+      "dia_semana": "martes",
       "tipo": "llano",
       "origen": "Errachidia",
       "destino": "Merzouga",
       "km_aprox": 123,
-      "tiempo_real_aprox": "2h30",
+      "tiempo_real_aprox": "2h10",
       "dificultad": 1,
       "fatiga": 2,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "12:35",
+      "llegada_prevista": "12:11",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -203,17 +253,17 @@
         "Merzouga"
       ],
       "gpx": {
-        "archivo": "gpx/dia-03.gpx",
-        "track": "tracks/dia-03.json",
+        "archivo": "gpx/dia-04.gpx",
+        "track": "tracks/dia-04.json",
         "vias": [
           "Erfoud"
         ],
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Palmeral del Tafilalet y llegada a las dunas de Erg Chebbi para el atardecer.",
-        "Tiempo de conducción de OSRM 2h10; en moto, cargado y con travesías de pueblos cuenta 2h30. Llegada con 67 min de paradas.",
-        "Etapa corta a propósito. Los últimos kilómetros pueden tener arena sobre el asfalto: despacio y recto.",
+        "Que ver: Palmeral del Tafilalet (miradores sobre el Ziz en Aoufous) y llegada a Merzouga a mediodía, con la tarde libre para las dunas.",
+        "Conducción estimada con OSRM: 2h10 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 62 min de paradas; anochece hacia las 17:30.",
+        "Los últimos kilómetros pueden tener arena sobre el asfalto: despacio y recto.",
         "Elegir alojamiento con acceso asfaltado hasta la puerta (muchos están a pie de duna, por pista)."
       ],
       "alojamiento": {
@@ -230,9 +280,9 @@
       }
     },
     {
-      "dia": 4,
-      "fecha": "2026-12-29",
-      "dia_semana": "martes",
+      "dia": 5,
+      "fecha": "2026-12-30",
+      "dia_semana": "miercoles",
       "tipo": "descanso",
       "origen": "Merzouga",
       "destino": "Merzouga",
@@ -266,19 +316,19 @@
       }
     },
     {
-      "dia": 5,
-      "fecha": "2026-12-30",
-      "dia_semana": "miercoles",
+      "dia": 6,
+      "fecha": "2026-12-31",
+      "dia_semana": "jueves",
       "tipo": "llano",
       "origen": "Merzouga",
       "destino": "Tinghir",
       "km_aprox": 201,
-      "tiempo_real_aprox": "4h30",
+      "tiempo_real_aprox": "3h55",
       "dificultad": 2,
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "15:10",
+      "llegada_prevista": "14:26",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -301,8 +351,8 @@
         "Tinghir"
       ],
       "gpx": {
-        "archivo": "gpx/dia-05.gpx",
-        "track": "tracks/dia-05.json",
+        "archivo": "gpx/dia-06.gpx",
+        "track": "tracks/dia-06.json",
         "vias": [
           "Rissani",
           "Erfoud",
@@ -312,9 +362,9 @@
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Ksar de Rissani, las khettaras (pozos en línea) junto a Jorf y el palmeral de Tinejdad.",
-        "Tiempo de conducción de OSRM 3h55; en moto, cargado y con travesías de pueblos cuenta 4h30. Llegada con 98 min de paradas.",
-        "Pasa de 4 h de conducción (4h30): por encima del límite del plan."
+        "Que ver: Ksar de Rissani, las khettaras (pozos en línea) junto a Jorf y el palmeral de Tinejdad hasta Tinghir.",
+        "Conducción estimada con OSRM: 3h55 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 89 min de paradas; anochece hacia las 17:30.",
+        "Nochevieja en Tinghir: reservar pronto."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -323,25 +373,26 @@
         "estado": "Sin reservar",
         "pendiente_confirmar": [
           "Reservar",
+          "Nochevieja: reservar de los primeros",
           "Que la moto duerma dentro o en un patio cerrado",
           "Que haya calefacción (noches cerca de 0 °C)"
         ]
       }
     },
     {
-      "dia": 6,
-      "fecha": "2026-12-31",
-      "dia_semana": "jueves",
+      "dia": 7,
+      "fecha": "2027-01-01",
+      "dia_semana": "viernes",
       "tipo": "montaña",
       "origen": "Tinghir",
       "destino": "Gargantas del Dadès",
       "km_aprox": 113,
-      "tiempo_real_aprox": "2h50",
+      "tiempo_real_aprox": "2h25",
       "dificultad": 3,
       "fatiga": 2,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "13:00",
+      "llegada_prevista": "12:33",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -363,8 +414,8 @@
         "Gargantas del Dadès"
       ],
       "gpx": {
-        "archivo": "gpx/dia-06.gpx",
-        "track": "tracks/dia-06.json",
+        "archivo": "gpx/dia-07.gpx",
+        "track": "tracks/dia-07.json",
         "vias": [
           "Gargantas del Todra",
           "Tinghir",
@@ -373,9 +424,9 @@
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Gargantas del Todra a primera hora (ida y vuelta, 15 km) y subida a las gargantas del Dadès por las curvas de Tamellalt.",
-        "Tiempo de conducción de OSRM 2h25; en moto, cargado y con travesías de pueblos cuenta 2h50. Llegada con 72 min de paradas.",
-        "Nochevieja en el Dadès: reservar pronto.",
+        "Que ver: Gargantas del Todra a primera hora (ida y vuelta, 15 km) y subida al Dadès por las curvas de Tamellalt.",
+        "Conducción estimada con OSRM: 2h25 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 67 min de paradas; anochece hacia las 17:30.",
+        "Año Nuevo: día corto. Algunas tiendas y gasolineras pequeñas abren tarde: salir con el depósito lleno del día anterior.",
         "El Todra es ida y vuelta por la misma carretera."
       ],
       "alojamiento": {
@@ -385,26 +436,25 @@
         "estado": "Sin reservar",
         "pendiente_confirmar": [
           "Reservar",
-          "Nochevieja: reservar de los primeros",
           "Que la moto duerma dentro o en un patio cerrado",
           "Que haya calefacción (noches cerca de 0 °C)"
         ]
       }
     },
     {
-      "dia": 7,
-      "fecha": "2027-01-01",
-      "dia_semana": "viernes",
+      "dia": 8,
+      "fecha": "2027-01-02",
+      "dia_semana": "sabado",
       "tipo": "llano",
       "origen": "Gargantas del Dadès",
       "destino": "Aït Ben Haddou",
       "km_aprox": 171,
-      "tiempo_real_aprox": "4h00",
+      "tiempo_real_aprox": "3h30",
       "dificultad": 2,
-      "fatiga": 4,
+      "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "14:33",
+      "llegada_prevista": "13:53",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -427,8 +477,8 @@
         "Aït Ben Haddou"
       ],
       "gpx": {
-        "archivo": "gpx/dia-07.gpx",
-        "track": "tracks/dia-07.json",
+        "archivo": "gpx/dia-08.gpx",
+        "track": "tracks/dia-08.json",
         "vias": [
           "Boumalne Dadès",
           "Kelaat M'Gouna",
@@ -438,45 +488,8 @@
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Valle de las Rosas en Kelaat M'Gouna, kasbah Amridil en Skoura, Ouarzazate y llegada al ksar de Aït Ben Haddou.",
-        "Tiempo de conducción de OSRM 3h30; en moto, cargado y con travesías de pueblos cuenta 4h00. Llegada con 91 min de paradas.",
-        "Pasa de 4 h de conducción (4h00): por encima del límite del plan.",
-        "Año Nuevo: muchas tiendas y algunas gasolineras pequeñas pueden abrir tarde. Salir con el depósito lleno del día anterior."
-      ],
-      "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Aït Ben Haddou",
-        "telefono": null,
-        "estado": "Sin reservar",
-        "pendiente_confirmar": [
-          "Reservar",
-          "Que la moto duerma dentro o en un patio cerrado",
-          "Que haya calefacción (noches cerca de 0 °C)"
-        ]
-      }
-    },
-    {
-      "dia": 8,
-      "fecha": "2027-01-02",
-      "dia_semana": "sabado",
-      "tipo": "descanso",
-      "origen": "Aït Ben Haddou",
-      "destino": "Aït Ben Haddou",
-      "km_aprox": 0,
-      "tiempo_real_aprox": "0h00",
-      "dificultad": 1,
-      "fatiga": 1,
-      "perfil_kurviger": "Día sin moto",
-      "zona_horaria": "Africa/Casablanca",
-      "meteo_puntos": [
-        {
-          "nombre": "Aït Ben Haddou",
-          "lat": 31.05,
-          "lon": -7.13
-        }
-      ],
-      "notas": [
-        "Día libre en Aït Ben Haddou: ksar al amanecer; opcional, Ouarzazate (estudios de cine)."
+        "Que ver: Valle de las Rosas en Kelaat M'Gouna, kasbah Amridil en Skoura, Ouarzazate y llegada a Aït Ben Haddou a primera hora de la tarde: el ksar con la luz del atardecer.",
+        "Conducción estimada con OSRM: 3h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 83 min de paradas; anochece hacia las 17:30."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -498,12 +511,12 @@
       "origen": "Aït Ben Haddou",
       "destino": "Zagora",
       "km_aprox": 188,
-      "tiempo_real_aprox": "4h20",
+      "tiempo_real_aprox": "3h50",
       "dificultad": 3,
-      "fatiga": 4,
+      "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "14:58",
+      "llegada_prevista": "14:15",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -533,9 +546,8 @@
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Puerto de Tizi n'Tinififft y valle del Draa: el palmeral más largo de Marruecos, de Agdz a Zagora.",
-        "Tiempo de conducción de OSRM 3h50; en moto, cargado y con travesías de pueblos cuenta 4h20. Llegada con 96 min de paradas.",
-        "Pasa de 4 h de conducción (4h20): por encima del límite del plan."
+        "Que ver: Puerto de Tizi n'Tinififft y valle del Draa: el palmeral más largo de Marruecos, de Agdz a Zagora. Antes de salir, el ksar de Aït Ben Haddou con la luz de la mañana.",
+        "Conducción estimada con OSRM: 3h50 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 87 min de paradas; anochece hacia las 17:30."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -555,49 +567,56 @@
       "dia_semana": "lunes",
       "tipo": "llano",
       "origen": "Zagora",
-      "destino": "Nkob",
-      "km_aprox": 102,
-      "tiempo_real_aprox": "2h15",
-      "dificultad": 1,
-      "fatiga": 2,
+      "destino": "Alnif",
+      "km_aprox": 199,
+      "tiempo_real_aprox": "3h55",
+      "dificultad": 2,
+      "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "12:16",
+      "llegada_prevista": "14:23",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
-          "nombre": "Nkob",
-          "lat": 30.87,
-          "lon": -5.87
+          "nombre": "Tazzarine",
+          "lat": 30.78,
+          "lon": -5.57
         },
         {
-          "nombre": "Nkob",
-          "lat": 30.87,
-          "lon": -5.87
+          "nombre": "Alnif",
+          "lat": 31.12,
+          "lon": -5.17
         }
       ],
       "waypoints": [
         "Zagora",
-        "Nkob"
+        "Nkob",
+        "Tazzarine",
+        "Alnif"
       ],
       "gpx": {
         "archivo": "gpx/dia-10.gpx",
         "track": "tracks/dia-10.json",
-        "vias": [],
+        "vias": [
+          "Nkob",
+          "Tazzarine"
+        ],
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Etapa corta: Nkob, el pueblo de las 45 kasbahs, al pie del Jbel Saghro.",
-        "Tiempo de conducción de OSRM 1h55; en moto, cargado y con travesías de pueblos cuenta 2h15. Llegada con 63 min de paradas.",
-        "Día corto para descansar antes del tramo largo y vacío del N12."
+        "Que ver: Nkob, el pueblo de las 45 kasbahs, al pie del Jbel Saghro, y la carretera N12 hasta Alnif, capital de los fósiles de trilobites.",
+        "Conducción estimada con OSRM: 3h55 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 89 min de paradas; anochece hacia las 17:30.",
+        "En Tazzarine apenas hay alojamiento; en Alnif hay pocas opciones (y alguna kasbah a las afueras): reservar con tiempo.",
+        "Repostar en Zagora y en Tazzarine."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
-        "direccion": "Nkob",
+        "direccion": "Alnif",
         "telefono": null,
         "estado": "Sin reservar",
         "pendiente_confirmar": [
           "Reservar",
+          "Pocas opciones en Alnif: reservar de los primeros",
           "Que la moto duerma dentro o en un patio cerrado",
           "Que haya calefacción (noches cerca de 0 °C)"
         ]
@@ -608,54 +627,51 @@
       "fecha": "2027-01-05",
       "dia_semana": "martes",
       "tipo": "llano",
-      "origen": "Nkob",
-      "destino": "Erfoud",
-      "km_aprox": 214,
-      "tiempo_real_aprox": "5h05",
+      "origen": "Alnif",
+      "destino": "Errachidia",
+      "km_aprox": 190,
+      "tiempo_real_aprox": "3h45",
       "dificultad": 2,
-      "fatiga": 4,
+      "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "15:50",
+      "llegada_prevista": "14:11",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
-        {
-          "nombre": "Alnif",
-          "lat": 31.12,
-          "lon": -5.17
-        },
         {
           "nombre": "Erfoud",
           "lat": 31.43,
           "lon": -4.23
+        },
+        {
+          "nombre": "Errachidia",
+          "lat": 31.93,
+          "lon": -4.42
         }
       ],
       "waypoints": [
-        "Nkob",
-        "Tazzarine",
         "Alnif",
         "Rissani",
-        "Erfoud"
+        "Erfoud",
+        "Errachidia"
       ],
       "gpx": {
         "archivo": "gpx/dia-11.gpx",
         "track": "tracks/dia-11.json",
         "vias": [
-          "Tazzarine",
-          "Alnif",
-          "Rissani"
+          "Rissani",
+          "Erfoud"
         ],
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Carretera N12, la más solitaria del viaje: hamadas, fósiles en Alnif y vuelta al Tafilalet.",
-        "Tiempo de conducción de OSRM 4h25; en moto, cargado y con travesías de pueblos cuenta 5h05. Llegada con 106 min de paradas.",
-        "Pasa de 4 h de conducción (5h05): por encima del límite del plan.",
-        "Entre Tazzarine y Rissani hay más de 150 km con muy pocas gasolineras: salir con el depósito lleno en Nkob o Tazzarine."
+        "Que ver: Final del N12 por las hamadas hasta Rissani y el Tafilalet, y subida por el palmeral del Ziz hasta Errachidia.",
+        "Conducción estimada con OSRM: 3h45 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 86 min de paradas; anochece hacia las 17:30.",
+        "Hasta Rissani hay muy pocas gasolineras: salir de Alnif con el depósito lleno."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
-        "direccion": "Erfoud",
+        "direccion": "Errachidia",
         "telefono": null,
         "estado": "Sin reservar",
         "pendiente_confirmar": [
@@ -670,15 +686,15 @@
       "fecha": "2027-01-06",
       "dia_semana": "miercoles",
       "tipo": "montaña",
-      "origen": "Erfoud",
+      "origen": "Errachidia",
       "destino": "Midelt",
-      "km_aprox": 216,
-      "tiempo_real_aprox": "4h25",
+      "km_aprox": 143,
+      "tiempo_real_aprox": "2h30",
       "dificultad": 3,
-      "fatiga": 4,
+      "fatiga": 2,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "14:59",
+      "salida": "09:30",
+      "llegada_prevista": "13:07",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -693,7 +709,6 @@
         }
       ],
       "waypoints": [
-        "Erfoud",
         "Errachidia",
         "Rich",
         "Midelt"
@@ -702,15 +717,14 @@
         "archivo": "gpx/dia-12.gpx",
         "track": "tracks/dia-12.json",
         "vias": [
-          "Errachidia",
           "Rich"
         ],
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Gargantas del Ziz en sentido contrario y subida a Midelt por el Tizi n'Talghemt.",
-        "Tiempo de conducción de OSRM 3h50; en moto, cargado y con travesías de pueblos cuenta 4h25. Llegada con 96 min de paradas.",
-        "Pasa de 4 h de conducción (4h25): por encima del límite del plan."
+        "Que ver: Gargantas del Ziz con la luz de la mañana y subida a Midelt por el Tizi n'Talghemt.",
+        "Conducción estimada con OSRM: 2h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 67 min de paradas; anochece hacia las 17:30.",
+        "Etapa corta a propósito: si nieva en el puerto, deja margen para esperar a que lo abran (las quitanieves suelen abrir en el día)."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -732,12 +746,12 @@
       "origen": "Midelt",
       "destino": "Fez",
       "km_aprox": 207,
-      "tiempo_real_aprox": "4h30",
+      "tiempo_real_aprox": "3h55",
       "dificultad": 3,
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "15:08",
+      "salida": "09:30",
+      "llegada_prevista": "14:53",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -770,9 +784,9 @@
       },
       "notas": [
         "Que ver: Atlas Medio: altiplano de Zeida, bosque de cedros de Azrou (monos de Berbería), Ifrane y bajada a Fez.",
-        "Tiempo de conducción de OSRM 3h55; en moto, cargado y con travesías de pueblos cuenta 4h30. Llegada con 98 min de paradas.",
-        "Pasa de 4 h de conducción (4h30): por encima del límite del plan.",
-        "El tramo Timahdite–Azrou–Ifrane pasa de 1.900 m: en enero puede nevar. Mirar el tiempo la noche antes (ver decisión del día)."
+        "Conducción estimada con OSRM: 3h55 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 89 min de paradas; anochece hacia las 17:30.",
+        "Entre Timahdite, Azrou e Ifrane se pasa de 1.900 m: en enero puede nevar. Mirar el tiempo la noche antes (ver la decisión del día).",
+        "Salir a las 09:30, con el asfalto ya sin hielo."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -787,21 +801,21 @@
       },
       "opciones": [
         {
-          "titulo": "Atlas Medio con nieve: por Azrou e Ifrane o por abajo",
+          "titulo": "Atlas Medio con nieve: por Azrou e Ifrane o por Missour",
           "estado": "Pendiente",
-          "cuando": "La noche del día 12 en Midelt, con la previsión y el estado de la carretera N13.",
+          "cuando": "La noche del día 12 en Midelt, con la previsión y el estado de la N13 (preguntar en el hotel o a la gendarmería).",
           "alternativas": [
             {
-              "nombre": "Por Azrou e Ifrane (plan)",
+              "nombre": "Por Azrou e Ifrane hasta Fez (plan)",
               "coste": "Como está la ruta",
-              "por_que": "Cedros, monos y la bajada a Fez. Solo con asfalto seco y sin nieve prevista.",
+              "por_que": "Cedros, monos, Fez y la vuelta por Taza. Solo con asfalto seco y sin nieve prevista.",
               "como": "No tocar nada"
             },
             {
               "nombre": "Por Missour y Guercif, sin Fez",
-              "coste": "Noche en Guercif en vez de Fez; el día 14 Guercif → Taza",
-              "por_que": "Todo por debajo de 1.500 m. Se pierde Fez pero no se arriesga con hielo.",
-              "como": "Rehacer los días 13 (Midelt → Missour → Guercif) y 14 (Guercif → Taza)"
+              "coste": "Día 13 Midelt → Missour → Guercif (260 km, unas 4h15); día 14 Guercif → Nador (163 km). Sobra un día",
+              "por_que": "Todo por debajo de 1.500 m y por carretera ya conocida. Se pierde Fez, pero no hay riesgo de hielo, y el día sobrante sirve de margen o para coger antes el ferry.",
+              "como": "Rehacer los días 13 a 15"
             }
           ]
         }
@@ -815,12 +829,12 @@
       "origen": "Fez",
       "destino": "Taza",
       "km_aprox": 119,
-      "tiempo_real_aprox": "1h40",
+      "tiempo_real_aprox": "1h30",
       "dificultad": 1,
       "fatiga": 1,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "11:37",
+      "salida": "13:30",
+      "llegada_prevista": "15:50",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -845,9 +859,8 @@
         "nota": "Track APROXIMADO: ruta calculada con OSRM por los puntos del plan (OSRM no evita autopistas: en Fez–Taza–Guercif puede ir por la A2; en Kurviger, evitar autopistas), con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho."
       },
       "notas": [
-        "Que ver: Etapa corta por la carretera nacional (sin autopista). Mañana libre en la medina de Fez antes de salir.",
-        "Tiempo de conducción de OSRM 1h30; en moto, cargado y con travesías de pueblos cuenta 1h40. Llegada con 55 min de paradas.",
-        "Si se prefiere, salir después de comer: son menos de 2 h."
+        "Que ver: Mañana en la medina de Fez y salida después de comer: hasta Taza es menos de 1 h 30 por la carretera nacional.",
+        "Conducción estimada con OSRM: 1h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 52 min de paradas; anochece hacia las 17:30."
       ],
       "alojamiento": {
         "nombre": "Por elegir",
@@ -869,12 +882,12 @@
       "origen": "Taza",
       "destino": "Nador (puerto de Beni Ensar)",
       "km_aprox": 227,
-      "tiempo_real_aprox": "3h55",
+      "tiempo_real_aprox": "3h25",
       "dificultad": 2,
-      "fatiga": 4,
+      "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "14:23",
+      "llegada_prevista": "13:45",
       "zona_horaria": "Africa/Casablanca",
       "meteo_puntos": [
         {
@@ -903,7 +916,7 @@
       },
       "notas": [
         "Que ver: Vuelta a Nador por Guercif. Noche en Nador para coger el ferry del domingo.",
-        "Tiempo de conducción de OSRM 3h25; en moto, cargado y con travesías de pueblos cuenta 3h55. Llegada con 89 min de paradas.",
+        "Conducción estimada con OSRM: 3h25 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 81 min de paradas; anochece hacia las 17:30.",
         "Ferry Nador → Almería el domingo 10 de enero (naviera y hora por confirmar). El lunes 11 queda de margen en casa.",
         "Hora: al volver a España, una hora más."
       ],
@@ -924,7 +937,7 @@
     {
       "noche": 1,
       "fecha": "2026-12-26",
-      "lugar": "Missour",
+      "lugar": "Guercif",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -932,7 +945,7 @@
     {
       "noche": 2,
       "fecha": "2026-12-27",
-      "lugar": "Errachidia",
+      "lugar": "Missour",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -940,7 +953,7 @@
     {
       "noche": 3,
       "fecha": "2026-12-28",
-      "lugar": "Merzouga",
+      "lugar": "Errachidia",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -956,7 +969,7 @@
     {
       "noche": 5,
       "fecha": "2026-12-30",
-      "lugar": "Tinghir",
+      "lugar": "Merzouga",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -964,7 +977,7 @@
     {
       "noche": 6,
       "fecha": "2026-12-31",
-      "lugar": "Gargantas del Dadès",
+      "lugar": "Tinghir",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -972,7 +985,7 @@
     {
       "noche": 7,
       "fecha": "2027-01-01",
-      "lugar": "Aït Ben Haddou",
+      "lugar": "Gargantas del Dadès",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -996,7 +1009,7 @@
     {
       "noche": 10,
       "fecha": "2027-01-04",
-      "lugar": "Nkob",
+      "lugar": "Alnif",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -1004,7 +1017,7 @@
     {
       "noche": 11,
       "fecha": "2027-01-05",
-      "lugar": "Erfoud",
+      "lugar": "Errachidia",
       "alojamiento": "Por elegir (riad o auberge con la moto dentro)",
       "telefono": null,
       "estado": "Sin reservar"
@@ -1090,7 +1103,7 @@
         "hecho": false
       },
       {
-        "que": "Alojamientos de Merzouga (noches 3 y 4) y del Dadès (Nochevieja) primero",
+        "que": "Alojamientos de Merzouga (noches 4 y 5) y de Tinghir (Nochevieja) primero",
         "hecho": false
       },
       {
