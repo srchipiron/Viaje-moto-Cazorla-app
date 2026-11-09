@@ -858,7 +858,7 @@ async function openMapTodos() {
   posMarker();
   D.mapaCapas = capas; D.mapaBounds = bounds.length ? bounds.reduce((a, b) => L.latLngBounds(a.getSouthWest(), a.getNorthEast()).extend(b)) : null; D.mapaSel = null;
   document.getElementById('mapa-titulo').textContent = `Viaje completo · ${it.length} días · ${D.data.proyecto.distancia_total_aprox_km} km`;
-  const ley = document.getElementById('mapa-leyenda'); if (ley) ley.textContent = 'Toca un día abajo para verlo solo';
+  const ley = document.getElementById('mapa-leyenda'); if (ley) ley.textContent = ley.textContent ? `${ley.textContent} · toca un día abajo para verlo solo` : 'Toca un día abajo para verlo solo';
   const dias = document.getElementById('mapa-dias');
   if (dias) {
     dias.hidden = false;
