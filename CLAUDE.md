@@ -71,6 +71,11 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
   los más próximos a una posición mire donde mire, y `#/radares` es la vista completa.
 - Cubre solo la red que gestiona la DGT: ni Cataluña ni País Vasco, ni radares autonómicos,
   municipales o móviles. No inventar radares ni copiarlos de webs de terceros.
+- Fuera de España (Marruecos) no hay datos de la DGT: `python3 tools/radares_osm.py --viaje <id> [csv]`
+  genera el mismo formato con los nodos `highway=speed_camera` de OpenStreetMap (ODbL), pedidos a
+  Overpass (`overpass.openstreetmap.fr`; desde la sesión de Claude no hay red a Overpass: descargar el
+  CSV con el navegador y pasarlo como argumento). Lleva `organismo` y `ambito` para los textos de la app
+  y un aviso de que la lista está incompleta.
 - Al regenerarlo, subir `VERSION` en `sw.js` no hace falta si solo cambia el JSON, pero sí
   conviene subir `meta.revision` del plan para que se note el cambio.
 
