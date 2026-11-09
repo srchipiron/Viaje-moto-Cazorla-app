@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "revision": 7,
+    "revision": 8,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
@@ -12,7 +12,8 @@
       "Viaje completado (2026-11-09): alojamiento propuesto para cada noche (sin reservar), guía de cada día con qué ver y dónde comer, seguro Mapfre adaptado a Marruecos, consulado de España en Nador, equipación de invierno, reparto, rutina, lavandería (noches 5, 8 y 12), cadena (días 5, 8, 11 y 14) y checklist con dinero, SIM y papeles.",
       "Ferry (2026-11-09): Baleària en butaca, ida el 25 dic a las 14:00 (llega a Nador a las 20:00, hora local) y vuelta el 10 ene a las 23:30 (llega el 11 a las 07:00), 135 € cada trayecto, sin reservar. Noche 0 en Nador al llegar; el domingo 10 queda de margen.",
       "Fez con día entero (2026-11-09): el día 14 queda libre en Fez (dos noches en el riad) y el 15 va de Fez a Nador del tirón (346 km, 4h55). Se quita la noche de Taza. Tope de conducción subido a unas 5 h, siempre llegando con luz. Cadena en los días 5, 8 y 11.",
-      "Radares (2026-11-09): 94 radares fijos de OpenStreetMap en la zona del viaje, 12 sobre la ruta (tools/radares_osm.py). Lista incompleta y sin móviles."
+      "Radares (2026-11-09): 94 radares fijos de OpenStreetMap en la zona del viaje, 12 sobre la ruta (tools/radares_osm.py). Lista incompleta y sin móviles.",
+      "Móvil (2026-11-09): pasos con Digi antes de salir y SIM de Maroc Telecom el día 1 por la mañana en Nador."
     ]
   },
   "proyecto": {
@@ -131,7 +132,8 @@
         "Que ver: Primer día corto a propósito: desembarque, aduana, cambiar dinero, tarjeta SIM y hacerse con el tráfico marroquí.",
         "Se sale del hotel de Nador donde se durmió al llegar el ferry la noche del 25 (llega a las 20:00). Cambiar dinero y comprar la SIM por la mañana.",
         "Conducción estimada con OSRM: 2h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 68 min de paradas; anochece hacia las 17:30.",
-        "Hora: Marruecos va una hora por detrás de España. Los horarios de Baleària van en hora local de cada puerto."
+        "Hora: Marruecos va una hora por detrás de España. Los horarios de Baleària van en hora local de cada puerto.",
+        "Móvil: la noche del 25 en Nador, wifi del hotel y Digi en itinerancia solo si hace falta. Por la mañana, antes de salir: dirhams en un cajero, SIM de Maroc Telecom con el pasaporte en una agencia de Nador (que la activen y la prueben en la tienda), y en el Pixel datos móviles con Maroc Telecom, llamadas y SMS con Digi y la itinerancia de datos de Digi apagada. WhatsApp sigue con el número español."
       ],
       "alojamiento": {
         "nombre": "Hôtel Chark",
@@ -1804,11 +1806,15 @@
     ],
     "movil": [
       {
-        "que": "SIM de Maroc Telecom al llegar (mejor cobertura en el sur)",
+        "que": "Digi: activar la itinerancia en el área de cliente y subir el límite de gasto fuera de la UE (viene en 10 €)",
         "hecho": false
       },
       {
-        "que": "Mapas sin conexión de Marruecos en Google Maps y Kurviger",
+        "que": "Digi: mirar en su selector de roaming el precio de Marruecos (datos, llamadas, SMS recibidos)",
+        "hecho": false
+      },
+      {
+        "que": "Mapas sin conexión de Marruecos en Google Maps y Kurviger, y Radarbot con la base descargada",
         "hecho": false
       },
       {
