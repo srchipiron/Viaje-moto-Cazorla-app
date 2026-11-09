@@ -642,7 +642,8 @@ function trackLoadP(e) {
   });
 }
 function tracksLoadAll() { return Promise.all(D.data.itinerario.map(trackLoadP)); }
-const DIA_COLORS = ['#1d5fa5', '#c2410c', '#1f8a4c', '#7c3aed', '#b2600a', '#0e7490', '#be123c', '#4d7c0f', '#6d28d9', '#b45309', '#0369a1'];
+/* Un color por día, todos distintos entre sí (hasta 15) y ordenados para que dos días seguidos no se parezcan. */
+const DIA_COLORS = ['#e6194b', '#4363d8', '#3cb44b', '#f58231', '#911eb4', '#469990', '#f032e6', '#9a6324', '#000075', '#808000', '#800000', '#0aa5c9', '#111111', '#d4a000', '#6b6b6b'];
 function fmtMin(min) { if (min == null) return '–'; const h = Math.floor(min / 60), m = min % 60; return `${h}h${String(m).padStart(2, '0')}`; }
 function fmtKm(km) { return `${km.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km`; }
 function fmtM(m) { return m == null ? '–' : `${Math.round(m).toLocaleString('es-ES')} m`; }
@@ -815,39 +816,77 @@ function mapaBase() {
 }
 function mapaAbrirCaja(titulo) {
   const box = document.getElementById('mapa'); box.hidden = false; document.body.classList.add('mapa-abierto');
+  const dias = document.getElementById('mapa-dias'); if (dias) { dias.hidden = true; dias.innerHTML = ''; }
   document.getElementById('mapa-titulo').textContent = titulo;
   const ley = document.getElementById('mapa-leyenda'); if (ley) ley.textContent = '';
 }
-/* Mapa del viaje completo: los 11 tracks, cada dia de un color, con las noches marcadas. */
+/* Mapa del viaje completo: cada etapa de un color, con su número en mitad del recorrido y una cama en
+   cada noche. Abajo, la lista de días: tocar uno lo resalta (y apaga los demás); los días sin moto salen
+   con su número en el sitio donde se duerme. */
 async function openMapTodos() {
   mapaAbrirCaja('Viaje completo · cargando…');
   try { await loadLeaflet(); } catch (err) { closeMap(); alert(err.message); return; }
   const tracks = await tracksLoadAll();
   if (document.getElementById('mapa').hidden) return;
   mapaBase();
-  const it = D.data.itinerario; const bounds = [];
+  const it = D.data.itinerario; const bounds = []; const capas = {};
+  let ultimoFin = null;
   it.forEach((e, i) => {
-    const t = tracks[i]; if (!t) return;
     const color = DIA_COLORS[i % DIA_COLORS.length];
-    const line = L.polyline(t.track, { color, weight: 4, opacity: .85 }).addTo(LMAP).bindTooltip(`Día ${e.dia} · ${fmtFecha(e.fecha)} · ${esc(e.origen)} → ${esc(e.destino)} · ${fmtKm(t.km)}`, { sticky: true });
+    const t = tracks[i];
+    if (!t) {
+      // Día sin ruta (descanso): su número donde se duerme
+      if (!ultimoFin) return;
+      const m = L.marker(ultimoFin, { zIndexOffset: 1100, icon: L.divIcon({ className: 'via-icon via-dia via-libre', html: `<span style="border-color:${color};color:${color}">${e.dia}</span>`, iconSize: [26, 26], iconAnchor: [-6, -6] }) }).addTo(LMAP).bindTooltip(`Día ${e.dia} · ${fmtFecha(e.fecha)} · sin moto en ${esc(e.destino)}`);
+      capas[e.dia] = { color, marcas: [m], libre: true, centro: ultimoFin };
+      return;
+    }
+    const line = L.polyline(t.track, { color, weight: 5, opacity: .9 }).addTo(LMAP).bindTooltip(`Día ${e.dia} · ${fmtFecha(e.fecha)} · ${esc(e.origen)} → ${esc(e.destino)} · ${fmtKm(t.km)}`, { sticky: true });
     line.on('click', () => { closeMap(); location.hash = `#/etapas/${e.dia}`; });
     bounds.push(line.getBounds());
-    // Salidas que coinciden con otra anterior (bucles desde la misma base) se desplazan un poco para que se vean.
-    const ini = t.track[0];
-    const repes = it.slice(0, i).filter((d) => { const s = tracks[it.indexOf(d)]; return s && Math.abs(s.track[0][0] - ini[0]) < 0.01 && Math.abs(s.track[0][1] - ini[1]) < 0.01; }).length;
-    L.marker(ini, { zIndexOffset: 1000, icon: L.divIcon({ className: 'via-icon via-dia', html: `<span style="background:${color}">${e.dia}</span>`, iconSize: [24, 24], iconAnchor: [12 - repes * 26, 12] }) }).addTo(LMAP).bindTooltip(`Salida día ${e.dia}: ${esc(e.origen)}`);
+    const mid = t.track[Math.floor(t.track.length / 2)];
+    const num = L.marker(mid, { zIndexOffset: 1000, icon: L.divIcon({ className: 'via-icon via-dia', html: `<span style="background:${color}">${e.dia}</span>`, iconSize: [26, 26], iconAnchor: [13, 13] }) }).addTo(LMAP).bindTooltip(`Día ${e.dia}: ${esc(e.origen)} → ${esc(e.destino)}`);
+    num.on('click', () => mapaResaltar(e.dia));
+    const marcas = [num];
+    const fin = t.track[t.track.length - 1]; ultimoFin = fin;
     const noche = D.data.alojamientos_resumen.find((n) => n.fecha === e.fecha);
-    if (noche) {
-      const fin = t.track[t.track.length - 1];
-      L.marker(fin, { zIndexOffset: 500, icon: L.divIcon({ className: 'via-icon via-noche', html: '<span>🛏️</span>', iconSize: [24, 24], iconAnchor: [-4, 28] }) }).addTo(LMAP).bindTooltip(`Noche ${noche.noche} · ${esc(noche.lugar)}: ${esc(noche.alojamiento)}`);
-    }
+    if (noche) marcas.push(L.marker(fin, { zIndexOffset: 500, icon: L.divIcon({ className: 'via-icon via-noche', html: '<span>🛏️</span>', iconSize: [24, 24], iconAnchor: [-4, 28] }) }).addTo(LMAP).bindTooltip(`Noche ${noche.noche} · ${esc(noche.lugar)}: ${esc(noche.alojamiento)}`));
+    capas[e.dia] = { color, line, marcas, bounds: line.getBounds() };
   });
   it.forEach((e) => { const rd = radaresDia(e.dia); rd.en_ruta.forEach((r) => L.marker([r.lat, r.lon], { zIndexOffset: 300, icon: L.divIcon({ className: 'via-icon via-radar', html: `<span>${radarIcono(r)}</span>`, iconSize: [24, 24], iconAnchor: [12, 12] }) }).addTo(LMAP).bindTooltip(`Día ${e.dia} km ${r.km} · ${radarTipo(r)} · ${radarSitio(r)}`)); });
   if (bounds.length) mapaRadares(bounds.reduce((a, b) => a.extend(b)), it.flatMap((e) => radaresDia(e.dia).en_ruta));
   posMarker();
-  document.getElementById('mapa-titulo').textContent = `Viaje completo · ${it.length} etapas · ${D.data.proyecto.distancia_total_aprox_km} km`;
-  if (bounds.length) LMAP.fitBounds(bounds.reduce((a, b) => a.extend(b)), { padding: [24, 24] });
+  D.mapaCapas = capas; D.mapaBounds = bounds.length ? bounds.reduce((a, b) => L.latLngBounds(a.getSouthWest(), a.getNorthEast()).extend(b)) : null; D.mapaSel = null;
+  document.getElementById('mapa-titulo').textContent = `Viaje completo · ${it.length} días · ${D.data.proyecto.distancia_total_aprox_km} km`;
+  const ley = document.getElementById('mapa-leyenda'); if (ley) ley.textContent = 'Toca un día abajo para verlo solo';
+  const dias = document.getElementById('mapa-dias');
+  if (dias) {
+    dias.hidden = false;
+    dias.innerHTML = `<button type="button" class="mapa-dia todos activo" data-mapa-dia="">Todos</button>` + it.map((e) => {
+      const c = capas[e.dia]; if (!c) return '';
+      const txt = c.libre ? `Libre · ${esc(e.destino)}` : `${esc(String(e.origen).replace(/\s*\(.*\)\s*$/, ''))} → ${esc(String(e.destino).replace(/\s*\(.*\)\s*$/, ''))}`;
+      return `<button type="button" class="mapa-dia${c.libre ? ' libre' : ''}" data-mapa-dia="${e.dia}" style="--c:${c.color}"><b>${e.dia}</b>${txt}</button>`;
+    }).join('');
+  }
+  if (D.mapaBounds) LMAP.fitBounds(D.mapaBounds, { padding: [24, 24] });
   setTimeout(() => LMAP && LMAP.invalidateSize(), 50);
+}
+/* Resalta un día en el mapa del viaje completo (o todos con dia vacío). */
+function mapaResaltar(dia) {
+  const capas = D.mapaCapas; if (!LMAP || !capas) return;
+  const sel = dia && String(D.mapaSel) !== String(dia) ? String(dia) : null;
+  D.mapaSel = sel;
+  Object.keys(capas).forEach((k) => {
+    const c = capas[k], on = !sel || k === sel;
+    if (c.line) { c.line.setStyle({ weight: sel && on ? 8 : 5, opacity: on ? .95 : .15 }); if (sel && on) c.line.bringToFront(); }
+    c.marcas.forEach((m) => m.setOpacity(on ? 1 : .2));
+  });
+  document.querySelectorAll('#mapa-dias .mapa-dia').forEach((b) => b.classList.toggle('activo', (b.dataset.mapaDia || null) === sel));
+  const c = sel && capas[sel];
+  if (c && c.bounds) LMAP.fitBounds(c.bounds, { padding: [40, 40] });
+  else if (c && c.centro) LMAP.setView(c.centro, 11);
+  else if (D.mapaBounds) LMAP.fitBounds(D.mapaBounds, { padding: [24, 24] });
+  const chip = sel && document.querySelector(`#mapa-dias [data-mapa-dia="${sel}"]`); if (chip) chip.scrollIntoView({ inline: 'center', block: 'nearest' });
 }
 async function openMap(dia) {
   if (dia === 'todos') return openMapTodos();
@@ -2089,6 +2128,7 @@ document.addEventListener('click', (ev) => {
   if (ev.target.closest('#instalar')) { const p = D.installEvt; if (!p) return; D.installEvt = null; p.prompt(); p.userChoice.then(() => render()).catch(() => render()); return; }
   if (ev.target.closest('#ios-hint-ok')) { try { localStorage.setItem(IOS_HINT_KEY, '1'); } catch (e) { /* nada */ } render(); return; }
   if (ev.target.closest('#mapa-cerrar')) { closeMap(); return; }
+  const chipDia = ev.target.closest('[data-mapa-dia]'); if (chipDia) { mapaResaltar(chipDia.dataset.mapaDia); return; }
   const btn = ev.target.closest('#reset-checks');
   if (!btn) return;
   if (confirm('¿Borrar todas las marcas de las listas en este dispositivo?')) { D.checks = {}; saveChecks(); render(); }
