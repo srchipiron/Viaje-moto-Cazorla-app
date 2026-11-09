@@ -1230,7 +1230,7 @@ function viewSos() {
   const localForm = (k, label, ph) => `<form class="tel-local" data-contacto="${k}" data-campo="texto"><label for="sos-${k}">${label} · en este móvil</label><div class="row"><input id="sos-${k}" type="text" placeholder="${ph}" value="${esc(loc[k + ':texto'] || '')}" autocomplete="off"><button class="btn small primary" type="submit">Guardar</button>${loc[k + ':texto'] ? '<button class="btn small danger" type="button" data-borrar>Borrar</button>' : ''}</div></form>`;
   return `<div class="card sos-head"><h1>🆘 Emergencia</h1><p>Primero a salvo, chaleco puesto, moto fuera de la calzada si se puede. Luego llama.</p></div>
     <div class="calls sos-calls">
-      ${big('🚨', 'Emergencias', c.emergencias, '112', 'sos')}
+      ${big('🚨', 'Emergencias', c.emergencias, c.emergencias_nota || c.emergencias, 'sos')}
       ${big('🛡️', typeof seg === 'object' ? seg.compania : 'Seguro', typeof seg === 'object' ? seg.telefono : seg, 'Asistencia 24 h')}
       ${typeof seg === 'object' && seg.telefonos_alternativos ? big('🛡️', 'Seguro (alternativo)', seg.telefonos_alternativos[0]) : ''}
       ${big('🏠', typeof casa === 'object' ? casa.nombre : 'En casa', typeof casa === 'object' ? casa.telefono : casa, typeof casa === 'object' && !casa.telefono ? '' : undefined) || `<span class="call pend"><span class="call-icon">🏠</span><b>En casa</b><small>Añade el número en Resumen</small></span>`}
@@ -1240,7 +1240,7 @@ function viewSos() {
     <p class="row">${localizarBtn(hoy)}</p>
     ${posHTML(hoy)}
     ${!D.pos && !D.posError ? '<p class="muted"><small>Pulsa «Dónde estoy» para obtener las coordenadas por GPS (funciona sin cobertura) y enviarlas por WhatsApp o compartir.</small></p>' : ''}
-    <h2>Qué decir al 112</h2>
+    <h2>Qué decir al ${esc(c.emergencias)}</h2>${c.emergencias_nota ? `<p class="muted"><small>${esc(c.emergencias_nota)}</small></p>` : ''}
     <div class="card"><ol><li>Dónde estás: carretera, punto kilométrico o pueblo más cercano, o las coordenadas de arriba.</li><li>Qué ha pasado y cuántas personas hay heridas; si respiran y están conscientes.</li><li>Que vas en moto, solo, y el estado de la vía (curva, sin visibilidad).</li><li>No cuelgues hasta que te lo digan.</li></ol></div>
     <h2>Datos para el seguro</h2>
     <div class="card"><dl>${s ? `<dt>Póliza</dt><dd>${esc(s.compania)} · ${esc(s.producto.split(' (')[0])}${loc['seguro_asistencia:poliza'] ? `<br><b>Nº ${esc(loc['seguro_asistencia:poliza'])}</b>` : '<br><small>Nº de póliza: guárdalo en Resumen → Contactos</small>'}</dd>` : ''}<dt>Moto</dt><dd>${esc(D.data.proyecto.moto.modelo)}${loc['matricula:texto'] ? ` · matrícula <b>${esc(loc['matricula:texto'])}</b>` : ''}</dd></dl>
@@ -1378,9 +1378,10 @@ async function puebloBuscar(q) {
     const r = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=8&language=es&format=json`);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const j = await r.json();
-    const hits = (j.results || []).filter((x) => x.country_code === 'ES').map((x) => ({ nombre: x.name, prov: x.admin2 || x.admin1 || '', com: x.admin1 || '', lat: x.latitude, lon: x.longitude, pob: x.population }));
+    const paises = D.data.proyecto.paises || ['ES'];
+    const hits = (j.results || []).filter((x) => paises.includes(x.country_code)).map((x) => ({ nombre: x.name, prov: x.admin2 || x.admin1 || '', com: x.admin1 || '', lat: x.latitude, lon: x.longitude, pob: x.population }));
     await tracksLoadAll(); // para pintar el resultado de una vez, sin repintados que borren el cuadro
-    D.pueblo = { q, status: 'ok', hits, sel: hits.length === 1 ? hits[0] : null, error: hits.length ? null : 'No encuentro ningún sitio en España con ese nombre. Prueba sin acentos o con el nombre completo.' };
+    D.pueblo = { q, status: 'ok', hits, sel: hits.length === 1 ? hits[0] : null, error: hits.length ? null : (paises.length === 1 && paises[0] === 'ES' ? 'No encuentro ningún sitio en España con ese nombre.' : 'No encuentro ningún sitio con ese nombre en los países del viaje.') + ' Prueba sin acentos o con el nombre completo.' };
     if (D.pueblo.sel) puebloGuardar(D.pueblo.sel);
   } catch (err) {
     D.pueblo = { q, status: 'error', hits: [], sel: null, error: navigator.onLine ? err.message : 'Sin conexión: el buscador de pueblos necesita red. Los ya consultados siguen abajo.' };
@@ -1530,7 +1531,7 @@ function viewResumen() {
       <small>Se guarda solo en este dispositivo. No viaja al repositorio ni a ningún servidor.</small>
     </form>`;
   };
-  return `
+  return `${alternativasHTML()}
     <div class="card accent">
       <h1>${esc(p.nombre)}</h1>
       ${p.objetivo ? `<p class="muted">${esc(p.objetivo)}</p>` : ''}
@@ -1949,6 +1950,7 @@ function viewRadares() {
   radaresLoad();
   const m = D.radares;
   if (!m) return '<div class="card"><p class="muted">Cargando los radares…</p></div>';
+  if ((!m.radares || !m.radares.length) && m.aviso) return `<div class="card warn"><h3>Sin datos de radares</h3><p>${esc(m.aviso)}</p></div>`;
   if (!m.radares || !m.radares.length) return '<div class="card warn"><h3>Sin datos de radares</h3><p>No se pudo cargar <code>radares.json</code> del viaje. Con conexión, abre la app otra vez.</p></div>';
   const it = D.data.itinerario, today = todayISO();
   const tot = m.totales || {};
@@ -2222,6 +2224,15 @@ function viajesHTML() {
   if (lista.length < 2) return '';
   const activo = V.indice.activo;
   return `<h2>Viajes</h2><div class="card"><div class="guia-index">${lista.map((v) => `<a class="guia-link" href="${v.id === activo ? './' : `?viaje=${encodeURIComponent(v.id)}`}#/resumen"><span class="badge${v.id === V.id ? ' ok' : ''}">${v.id === V.id ? 'Abierto' : fmtFecha(v.inicio)}</span><span>${esc(v.nombre)}</span><small>${fmtFecha(v.inicio)} – ${fmtFecha(v.fin)} ${esc(String(v.inicio).slice(0, 4))} · ${v.dias} días${v.km ? ` · ${v.km} km` : ''}${v.id === activo ? ' · el activo' : ''}</small></a>`).join('')}</div></div>`;
+}
+/* Selector arriba en Resumen cuando hay varios viajes por hacer (p. ej. dos opciones para las
+   mismas vacaciones): uno pulsado por cada viaje no oculto que no haya terminado. */
+function alternativasHTML() {
+  const hoy = todayISO();
+  const lista = ((V.indice && V.indice.viajes) || []).filter((v) => !v.oculto && String(v.fin || '') >= hoy);
+  if (lista.length < 2) return '';
+  const activo = V.indice.activo;
+  return `<div class="card"><p class="muted"><small>Opciones de viaje · elige cuál ver</small></p><p class="row">${lista.map((v) => `<a class="btn small${v.id === V.id ? ' primary' : ''}" href="${v.id === activo ? './' : `?viaje=${encodeURIComponent(v.id)}`}#/resumen">${esc(v.corto || v.nombre)}<br><small>${fmtFecha(v.inicio)} – ${fmtFecha(v.fin)} · ${v.dias} días${v.km ? ` · ${v.km} km` : ''}</small></a>`).join(' ')}</p></div>`;
 }
 async function init() {
   updateNet(); aplicarTema();

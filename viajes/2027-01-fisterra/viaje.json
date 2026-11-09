@@ -1,19 +1,20 @@
 {
   "meta": {
     "version": 1,
-    "revision": 1,
-    "actualizado": "2026-10-14",
+    "revision": 2,
+    "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
-      "Plan cargado del fichero 'viaje-fisterra-2027.json' (2026-10-14): 12 etapas con sus waypoints, km y tiempos de Google, carreteras, alojamientos y rutas de Google Maps. Tracks aproximados con OSRM. Fecha de salida provisional: 2027-01-09"
+      "Plan cargado del fichero 'viaje-fisterra-2027.json' (2026-10-14): 12 etapas con sus waypoints, km y tiempos de Google, carreteras, alojamientos y rutas de Google Maps. Tracks aproximados con OSRM. Fecha de salida provisional: 2027-01-09",
+      "Fechas movidas a las mismas vacaciones que el viaje a Marruecos, como alternativa: salida sábado 26-12-2026, vuelta miércoles 06-01-2027 (vacaciones del 28-12 al 11-01; quedan 5 días de margen). Las aperturas de campings se comprobaron para enero: confirmarlas para estas fechas. Las horas de amanecer de las notas eran de enero (varían pocos minutos)."
     ]
   },
   "proyecto": {
-    "nombre": "Almería–Fisterra por Portugal (enero 2027)",
-    "nombre_corto": "Fisterra 2027",
+    "nombre": "Almería–Fisterra por Portugal (Navidad 2026)",
+    "nombre_corto": "Fisterra",
     "fechas": {
-      "inicio": "2027-01-09",
-      "fin": "2027-01-20",
+      "inicio": "2026-12-26",
+      "fin": "2027-01-06",
       "dias": 12,
       "noches": 11,
       "provisionales": true
@@ -24,17 +25,17 @@
       "autonomia_orientativa_km": 380,
       "regla_gasolina": "En Portugal y en la costa gallega hay gasolineras de sobra; en el interior (N2, Alentejo) llenar al bajar de medio depósito. Los precios del Ministerio solo cubren España."
     },
-    "objetivo": "12 días en enero por la costa de Portugal hasta Fisterra y vuelta por el interior (Douro, N2, Alentejo, Sierra de Aracena), durmiendo en campings con bungalow abiertos en invierno.",
+    "objetivo": "12 días en invierno por la costa de Portugal hasta Fisterra y vuelta por el interior (Douro, N2, Alentejo, Sierra de Aracena), durmiendo en campings con bungalow abiertos en invierno.",
     "reglas_globales": {
-      "horario": "Enero: salir media hora después de amanecer y estar en el alojamiento antes de que anochezca. Portugal va una hora por detrás de España.",
+      "horario": "Invierno: salir media hora después de amanecer y estar en el alojamiento antes de que anochezca. Portugal va una hora por detrás de España.",
       "superficie": "100% asfalto",
-      "paradas": "Cada 60-90 minutos, con algo caliente: en enero el frío cansa más que los kilómetros."
+      "paradas": "Cada 60-90 minutos, con algo caliente: en invierno el frío cansa más que los kilómetros."
     }
   },
   "itinerario": [
     {
       "dia": 1,
-      "fecha": "2027-01-09",
+      "fecha": "2026-12-26",
       "dia_semana": "sabado",
       "tipo": "llano",
       "origen": "Almería",
@@ -77,7 +78,7 @@
       },
       "notas": [
         "Carreteras: A-7 · A-381 · A-4. 356 km de autovía de 459.",
-        "Tiempo de conducción de Google (5h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:22) y llegada con 105 min de paradas: anochece a las 18:25 en El Puerto de Santa María, margen de 2h16.",
+        "Tiempo de conducción de Google (5h24); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:22) y llegada con 105 min de paradas: anochece a las 18:25 en El Puerto de Santa María, margen de 2h16.",
         "Pasa de 4 h de conducción (5h24): por encima del límite que se marcó en el viaje de 2026."
       ],
       "carreteras": [
@@ -100,14 +101,14 @@
         "estado": "Abierto todo el año (ACSI 2026, PiNCAMP)",
         "email": "hola.puerto@taigaresorts.com",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       }
     },
     {
       "dia": 2,
-      "fecha": "2027-01-10",
+      "fecha": "2026-12-27",
       "dia_semana": "domingo",
       "tipo": "llano",
       "origen": "El Puerto de Santa María",
@@ -152,7 +153,7 @@
       },
       "notas": [
         "Carreteras: A-4 · A-49 · A22 · N125 · N268. 372 km de autovía de 440.",
-        "Tiempo de conducción de Google (4h35); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:37) y llegada con 105 min de paradas: anochece a las 17:35 en Sagres, margen de 3h00.",
+        "Tiempo de conducción de Google (4h35); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:37) y llegada con 105 min de paradas: anochece a las 17:35 en Sagres, margen de 3h00.",
         "Cambio de hora: Portugal va una hora por detrás de España. Al entrar en Portugal se gana una hora (horas de llegada en hora portuguesa).",
         "Pasa de 4 h de conducción (4h35): por encima del límite que se marcó en el viaje de 2026."
       ],
@@ -178,7 +179,7 @@
         "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "email": "sagres@orbitur.pt",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -186,7 +187,7 @@
     },
     {
       "dia": 3,
-      "fecha": "2027-01-11",
+      "fecha": "2026-12-28",
       "dia_semana": "lunes",
       "tipo": "llano",
       "origen": "Sagres",
@@ -245,7 +246,7 @@
       },
       "notas": [
         "Carreteras: N268 · N120 · N393 · N261 · N253-1 · Ferry. 0 km de autovía de 223.",
-        "Tiempo de conducción de Google (4h05); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:48) y llegada con 85 min de paradas: anochece a las 17:32 en Setúbal, margen de 3h02.",
+        "Tiempo de conducción de Google (4h05); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:48) y llegada con 85 min de paradas: anochece a las 17:32 en Setúbal, margen de 3h02.",
         "Pasa de 4 h de conducción (4h05): por encima del límite que se marcó en el viaje de 2026.",
         "Ferry Tróia–Setúbal al final del día (unos 25 min de travesía según OSRM): comprobar los horarios de invierno antes de salir de Sagres para no llegar con el último ya ido."
       ],
@@ -277,7 +278,7 @@
         "estado": "Abierto en enero (cierra todo febrero)",
         "email": "parquecampismooutao@gmail.com",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -285,7 +286,7 @@
     },
     {
       "dia": 4,
-      "fecha": "2027-01-12",
+      "fecha": "2026-12-29",
       "dia_semana": "martes",
       "tipo": "llano",
       "origen": "Setúbal",
@@ -348,7 +349,7 @@
       },
       "notas": [
         "Carreteras: N379-1 · A2 · N6 · N247 · N9. 14 km de autovía de 224.",
-        "Tiempo de conducción de Google (4h22); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 85 min de paradas: anochece a las 17:33 en Peniche, margen de 2h46.",
+        "Tiempo de conducción de Google (4h22); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 85 min de paradas: anochece a las 17:33 en Peniche, margen de 2h46.",
         "Pasa de 4 h de conducción (4h22): por encima del límite que se marcó en el viaje de 2026.",
         "El Puente 25 de Abril es autopista con peaje (se paga entrando en Lisboa): no se puede evitar en esta ruta."
       ],
@@ -385,7 +386,7 @@
         "estado": "Abierto todo el año (PiNCAMP 2026, Alan Rogers)",
         "email": "geral@penichepraia.pt",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -393,7 +394,7 @@
     },
     {
       "dia": 5,
-      "fecha": "2027-01-13",
+      "fecha": "2026-12-30",
       "dia_semana": "miercoles",
       "tipo": "llano",
       "origen": "Peniche",
@@ -450,7 +451,7 @@
       },
       "notas": [
         "Carreteras: N114 · N8 · N242 · N109. 0 km de autovía de 217.",
-        "Tiempo de conducción de Google (4h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:56) y llegada con 85 min de paradas: anochece a las 17:28 en Aveiro (Praia da Barra), margen de 2h39.",
+        "Tiempo de conducción de Google (4h24); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:56) y llegada con 85 min de paradas: anochece a las 17:28 en Aveiro (Praia da Barra), margen de 2h39.",
         "Pasa de 4 h de conducción (4h24): por encima del límite que se marcó en el viaje de 2026."
       ],
       "carreteras": [
@@ -474,7 +475,7 @@
         "estado": "Abierto todo 2026 (CampingCard ACSI)",
         "email": "info@campingbarra.com",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -482,7 +483,7 @@
     },
     {
       "dia": 6,
-      "fecha": "2027-01-14",
+      "fecha": "2026-12-31",
       "dia_semana": "jueves",
       "tipo": "llano",
       "origen": "Aveiro",
@@ -543,7 +544,7 @@
       },
       "notas": [
         "Carreteras: N109 · N13 · PO-552. 0 km de autovía de 218.",
-        "Tiempo de conducción de Google (4h05); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:57) y llegada con 85 min de paradas: anochece a las 18:26 en A Guarda, margen de 2h56.",
+        "Tiempo de conducción de Google (4h05); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:57) y llegada con 85 min de paradas: anochece a las 18:26 en A Guarda, margen de 2h56.",
         "Cambio de hora: Portugal va una hora por detrás de España. Al volver a España se pierde una hora (horas de llegada en hora española).",
         "Pasa de 4 h de conducción (4h05): por encima del límite que se marcó en el viaje de 2026."
       ],
@@ -571,14 +572,14 @@
         "telefono": "+34 986 61 30 11",
         "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       }
     },
     {
       "dia": 7,
-      "fecha": "2027-01-15",
+      "fecha": "2027-01-01",
       "dia_semana": "viernes",
       "tipo": "llano",
       "origen": "A Guarda",
@@ -649,7 +650,7 @@
       },
       "notas": [
         "Carreteras: PO-552 · N-550 · AC-543 · AC-550. 0 km de autovía de 251.",
-        "Tiempo de conducción de Google (4h50); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:00) y llegada con 105 min de paradas: anochece a las 18:26 en Fisterra, margen de 2h06.",
+        "Tiempo de conducción de Google (4h50); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:00) y llegada con 105 min de paradas: anochece a las 18:26 en Fisterra, margen de 2h06.",
         "Pasa de 4 h de conducción (4h50): por encima del límite que se marcó en el viaje de 2026."
       ],
       "carreteras": [
@@ -678,14 +679,14 @@
         "estado": "Abierto todo el año (Gronze)",
         "reserva": "Ficha y reservas en gronze.com (Fisterra)",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       }
     },
     {
       "dia": 8,
-      "fecha": "2027-01-16",
+      "fecha": "2027-01-02",
       "dia_semana": "sabado",
       "tipo": "montaña",
       "origen": "Fisterra",
@@ -736,7 +737,7 @@
       },
       "notas": [
         "Carreteras: AC-552 · N-525 · AG-53 · A-52 · N-532. 122 km de autovía de 302.",
-        "Tiempo de conducción de Google (4h24); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:04) y llegada con 85 min de paradas: anochece a las 17:23 en Chaves, margen de 2h49.",
+        "Tiempo de conducción de Google (4h24); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 09:04) y llegada con 85 min de paradas: anochece a las 17:23 en Chaves, margen de 2h49.",
         "Cambio de hora: Portugal va una hora por detrás de España. Al entrar en Portugal se gana una hora (horas de llegada en hora portuguesa).",
         "Pasa de 4 h de conducción (4h24): por encima del límite que se marcó en el viaje de 2026."
       ],
@@ -767,7 +768,7 @@
         "estado": "Abierto todo el año. En diciembre y enero, solo con reserva (ACSI)",
         "email": "parquedecampismo@chaves.pt",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -775,7 +776,7 @@
     },
     {
       "dia": 9,
-      "fecha": "2027-01-17",
+      "fecha": "2027-01-03",
       "dia_semana": "domingo",
       "tipo": "montaña",
       "origen": "Chaves",
@@ -838,7 +839,7 @@
       },
       "notas": [
         "Carreteras: N2 · N322 · N323 · N222 · A24 · N110. 49 km de autovía de 301.",
-        "Tiempo de conducción de Google (4h58); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:53) y llegada con 105 min de paradas: anochece a las 17:32 en Coimbra, margen de 1h49.",
+        "Tiempo de conducción de Google (4h58); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:53) y llegada con 105 min de paradas: anochece a las 17:32 en Coimbra, margen de 1h49.",
         "Pasa de 4 h de conducción (4h58): por encima del límite que se marcó en el viaje de 2026."
       ],
       "carreteras": [
@@ -870,7 +871,7 @@
         "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "email": "geral@coimbracamping.com",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -878,7 +879,7 @@
     },
     {
       "dia": 10,
-      "fecha": "2027-01-18",
+      "fecha": "2027-01-04",
       "dia_semana": "lunes",
       "tipo": "llano",
       "origen": "Coimbra",
@@ -935,7 +936,7 @@
       },
       "notas": [
         "Carreteras: N17 · N2 · N114. 0 km de autovía de 313.",
-        "Tiempo de conducción de Google (5h00); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 105 min de paradas: anochece a las 17:35 en Évora, margen de 1h50.",
+        "Tiempo de conducción de Google (5h00); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:52) y llegada con 105 min de paradas: anochece a las 17:35 en Évora, margen de 1h50.",
         "Pasa de 4 h de conducción (5h00): por encima del límite que se marcó en el viaje de 2026."
       ],
       "carreteras": [
@@ -964,7 +965,7 @@
         "estado": "Abierto todo el año (ACSI, Alan Rogers)",
         "email": "evora@orbitur.pt",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       },
@@ -972,7 +973,7 @@
     },
     {
       "dia": 11,
-      "fecha": "2027-01-19",
+      "fecha": "2027-01-05",
       "dia_semana": "martes",
       "tipo": "llano",
       "origen": "Évora",
@@ -1025,7 +1026,7 @@
       },
       "notas": [
         "Carreteras: N380 · N258 · IP8 · N-433. 0 km de autovía de 229.",
-        "Tiempo de conducción de Google (3h47); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:46) y llegada con 40 min de paradas: anochece a las 18:33 en Aracena, margen de 4h06.",
+        "Tiempo de conducción de Google (3h47); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 07:46) y llegada con 40 min de paradas: anochece a las 18:33 en Aracena, margen de 4h06.",
         "Cambio de hora: Portugal va una hora por detrás de España. Al volver a España se pierde una hora (horas de llegada en hora española).",
         "Sin camping con bungalow confirmado abierto en enero en Aracena: por eso el hotel."
       ],
@@ -1050,14 +1051,14 @@
         "estado": "No hay camping con bungalow confirmado abierto en enero",
         "reserva": "Reserva directa o por portales",
         "pendiente_confirmar": [
-          "Reservar y confirmar que abre esa noche de enero",
+          "Reservar y confirmar que abre esa noche (fechas de Navidad)",
           "Dónde dejar la moto"
         ]
       }
     },
     {
       "dia": 12,
-      "fecha": "2027-01-20",
+      "fecha": "2027-01-06",
       "dia_semana": "miercoles",
       "tipo": "montaña",
       "origen": "Aracena",
@@ -1093,7 +1094,7 @@
       },
       "notas": [
         "Carreteras: N-433 · A-66 · A-92. 443 km de autovía de 511.",
-        "Tiempo de conducción de Google (5h19); en moto y en enero cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:38) y llegada con 105 min de paradas: anochece a las 18:20 en Almería, margen de 2h01.",
+        "Tiempo de conducción de Google (5h19); en moto y en invierno cuenta un 10-15 % más. Salida media hora después de amanecer (amanece a las 08:38) y llegada con 105 min de paradas: anochece a las 18:20 en Almería, margen de 2h01.",
         "Pasa de 4 h de conducción (5h19): por encima del límite que se marcó en el viaje de 2026.",
         "Plan B por la costa (A-44 y A-7) en los enlaces de Google Maps, por si hay nieve o hielo en la A-92, que sube hasta 1.369 m."
       ],
@@ -1120,7 +1121,7 @@
   "alojamientos_resumen": [
     {
       "noche": 1,
-      "fecha": "2027-01-09",
+      "fecha": "2026-12-26",
       "lugar": "El Puerto de Santa María",
       "alojamiento": "TAIGA Puerto Santa María (antes Camping Playa Las Dunas)",
       "telefono": "+34 951 204 531",
@@ -1128,7 +1129,7 @@
     },
     {
       "noche": 2,
-      "fecha": "2027-01-10",
+      "fecha": "2026-12-27",
       "lugar": "Sagres",
       "alojamiento": "Orbitur Sagres",
       "telefono": "+351 282 624 371",
@@ -1136,7 +1137,7 @@
     },
     {
       "noche": 3,
-      "fecha": "2027-01-11",
+      "fecha": "2026-12-28",
       "lugar": "Setúbal",
       "alojamiento": "EcoParque do Outão",
       "telefono": "+351 265 238 318",
@@ -1144,7 +1145,7 @@
     },
     {
       "noche": 4,
-      "fecha": "2027-01-12",
+      "fecha": "2026-12-29",
       "lugar": "Peniche",
       "alojamiento": "PenichePraia",
       "telefono": "+351 262 783 460",
@@ -1152,7 +1153,7 @@
     },
     {
       "noche": 5,
-      "fecha": "2027-01-13",
+      "fecha": "2026-12-30",
       "lugar": "Aveiro (Praia da Barra)",
       "alojamiento": "Barra Camping & Bungalows",
       "telefono": "+351 234 369 425",
@@ -1160,7 +1161,7 @@
     },
     {
       "noche": 6,
-      "fecha": "2027-01-14",
+      "fecha": "2026-12-31",
       "lugar": "A Guarda",
       "alojamiento": "Camping Santa Tecla",
       "telefono": "+34 986 61 30 11",
@@ -1168,7 +1169,7 @@
     },
     {
       "noche": 7,
-      "fecha": "2027-01-15",
+      "fecha": "2027-01-01",
       "lugar": "Fisterra",
       "alojamiento": "Albergue-Pensión O Encontro",
       "telefono": null,
@@ -1176,7 +1177,7 @@
     },
     {
       "noche": 8,
-      "fecha": "2027-01-16",
+      "fecha": "2027-01-02",
       "lugar": "Chaves",
       "alojamiento": "Parque de Campismo Quinta do Rebentão",
       "telefono": "+351 276 322 733",
@@ -1184,7 +1185,7 @@
     },
     {
       "noche": 9,
-      "fecha": "2027-01-17",
+      "fecha": "2027-01-03",
       "lugar": "Coimbra",
       "alojamiento": "Coimbra Camping & Bungalows",
       "telefono": "+351 239 086 902",
@@ -1192,7 +1193,7 @@
     },
     {
       "noche": 10,
-      "fecha": "2027-01-18",
+      "fecha": "2027-01-04",
       "lugar": "Évora",
       "alojamiento": "Orbitur Évora",
       "telefono": "+351 266 705 190",
@@ -1200,7 +1201,7 @@
     },
     {
       "noche": 11,
-      "fecha": "2027-01-19",
+      "fecha": "2027-01-05",
       "lugar": "Aracena",
       "alojamiento": "Hotel Los Castaños",
       "telefono": null,
