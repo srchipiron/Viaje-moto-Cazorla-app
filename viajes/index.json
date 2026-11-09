@@ -1,5 +1,5 @@
 {
- "activo": "2027-01-fisterra",
+ "activo": "2026-12-marruecos",
  "viajes": [
   {
    "id": "2026-09-cazorla",
@@ -28,6 +28,16 @@
    "fin": "2027-01-20",
    "dias": 12,
    "km": 3688,
+   "moto": "Honda NX500"
+  },
+  {
+   "id": "2026-12-marruecos",
+   "nombre": "Marruecos en Navidad: desierto y gargantas (dic 2026 – ene 2027)",
+   "corto": "Marruecos 2026",
+   "inicio": "2026-12-26",
+   "fin": "2027-01-09",
+   "dias": 15,
+   "km": 2447,
    "moto": "Honda NX500"
   }
  ]
