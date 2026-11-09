@@ -1,12 +1,13 @@
 {
   "meta": {
     "version": 1,
-    "revision": 1,
+    "revision": 2,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
       "Plan inicial (2026-11-09): bucle desde Nador por el sureste de Marruecos (Merzouga, Todra, Dadès, Aït Ben Haddou, Draa, N12, Atlas Medio, Fez). Tracks aproximados con OSRM. Fechas provisionales: vacaciones del 28 dic al 11 ene, ferry de ida el 25 dic y de vuelta el 10 ene.",
-      "Horario corregido: Marruecos volvió al GMT el 20-09-2026 (una hora menos que España). Salida a las 09:00 y llegadas recalculadas."
+      "Horario corregido: Marruecos volvió al GMT el 20-09-2026 (una hora menos que España). Salida a las 09:00 y llegadas recalculadas.",
+      "Checklist: sacar el pasaporte, primer paso de los papeles."
     ]
   },
   "proyecto": {
@@ -1059,15 +1060,15 @@
   "checklist_previa": {
     "papeles": [
       {
+        "que": "Sacar el pasaporte (no tengo): cita en citapreviadnie.es, DNI en vigor, una foto y 30 €. Si no hay cita en Almería, probar otras comisarías (El Ejido, Roquetas, Granada)",
+        "hecho": false
+      },
+      {
         "que": "Carta verde del seguro con Marruecos (MA) sin tachar",
         "hecho": false
       },
       {
         "que": "Asistencia en viaje: confirmar que cubre Marruecos y anotar el teléfono",
-        "hecho": false
-      },
-      {
-        "que": "Pasaporte en vigor",
         "hecho": false
       },
       {
