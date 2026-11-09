@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "revision": 6,
+    "revision": 7,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
@@ -11,7 +11,8 @@
       "Ruta v2 (2026-11-09): todas las etapas por debajo de 4 h (media de 3 h). Primer día corto hasta Guercif y noche en Missour; Merzouga el día 4 con descanso el 5 (que sirve también de margen si nieva en Midelt); Nochevieja en Tinghir; noches en Alnif y Errachidia para partir el N12; sin día libre en Aït Ben Haddou. La vuelta por Fez y Taza tiene una alternativa por Missour que ahorra un día. Tiempos con OSRM sin el 15 % extra (ya da medias de 50-65 km/h).",
       "Viaje completado (2026-11-09): alojamiento propuesto para cada noche (sin reservar), guía de cada día con qué ver y dónde comer, seguro Mapfre adaptado a Marruecos, consulado de España en Nador, equipación de invierno, reparto, rutina, lavandería (noches 5, 8 y 12), cadena (días 5, 8, 11 y 14) y checklist con dinero, SIM y papeles.",
       "Ferry (2026-11-09): Baleària en butaca, ida el 25 dic a las 14:00 (llega a Nador a las 20:00, hora local) y vuelta el 10 ene a las 23:30 (llega el 11 a las 07:00), 135 € cada trayecto, sin reservar. Noche 0 en Nador al llegar; el domingo 10 queda de margen.",
-      "Fez con día entero (2026-11-09): el día 14 queda libre en Fez (dos noches en el riad) y el 15 va de Fez a Nador del tirón (346 km, 4h55). Se quita la noche de Taza. Tope de conducción subido a unas 5 h, siempre llegando con luz. Cadena en los días 5, 8 y 11."
+      "Fez con día entero (2026-11-09): el día 14 queda libre en Fez (dos noches en el riad) y el 15 va de Fez a Nador del tirón (346 km, 4h55). Se quita la noche de Taza. Tope de conducción subido a unas 5 h, siempre llegando con luz. Cadena en los días 5, 8 y 11.",
+      "Radares (2026-11-09): 94 radares fijos de OpenStreetMap en la zona del viaje, 12 sobre la ruta (tools/radares_osm.py). Lista incompleta y sin móviles."
     ]
   },
   "proyecto": {

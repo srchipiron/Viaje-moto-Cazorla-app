@@ -545,11 +545,14 @@ function rumbo(a, b) {
   const x = Math.cos(a.lat * rd) * Math.sin(b.lat * rd) - Math.sin(a.lat * rd) * Math.cos(b.lat * rd) * Math.cos((b.lon - a.lon) * rd);
   return ROSA[Math.round((Math.atan2(y, x) / rd + 360) % 360 / 45) % 8];
 }
+/* Quien da los datos: la DGT en Espana, OpenStreetMap fuera (campo organismo de radares.json). */
+function radarOrg() { return (D.radares && D.radares.organismo) || 'de la DGT'; }
 function radarIcono(r) { return r.tipo === 'tramo' ? '📏' : '📷'; }
 function radarTipo(r) { return r.tipo === 'tramo' ? `Tramo${r.punto ? ` (${r.punto})` : ''}` : 'Fijo'; }
 function radarSitio(r) {
-  const donde = r.municipio && r.municipio !== r.provincia ? `${r.municipio} (${r.provincia})` : (r.municipio || r.provincia);
-  return `${r.via}${r.pk != null ? ` pk ${r.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}${donde ? ` · ${donde}` : ''}`;
+  const donde = r.municipio && r.provincia && r.municipio !== r.provincia ? `${r.municipio} (${r.provincia})` : (r.municipio || r.provincia);
+  const via = `${r.via || ''}${r.pk != null ? ` pk ${r.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}`;
+  return [via, donde].filter(Boolean).join(' · ');
 }
 /* Los 47 radares de tramo, con inicio y fin ya hidratados, del mas cercano al viaje al mas lejano. */
 function radaresTramos() {
@@ -587,13 +590,13 @@ function mapaRadares(bounds, saltar) {
 }
 function radarFuente() {
   const m = D.radares || {};
-  return `${m.aviso ? `<p><small>${esc(m.aviso)}</small></p>` : ''}${m.publicado ? `<p><small>Fuente: ${esc(m.fuente || 'DGT')}, datos de ${fmtFecha(m.publicado)} de ${m.publicado.slice(0, 4)}${m.totales ? ` · ${m.totales.fijos} fijos y ${m.totales.tramo} de tramo en toda España` : ''}.</small></p>` : ''}`;
+  return `${m.aviso ? `<p><small>${esc(m.aviso)}</small></p>` : ''}${m.publicado ? `<p><small>Fuente: ${esc(m.fuente || 'DGT')}, datos de ${fmtFecha(m.publicado)} de ${m.publicado.slice(0, 4)}${m.totales ? ` · ${m.totales.fijos} fijos${m.totales.tramo ? ` y ${m.totales.tramo} de tramo` : ''} ${esc((m.ambito || 'de toda España').replace(/^de /, 'en '))}` : ''}.</small></p>` : ''}`;
 }
 function radaresTabla(rs, conDist) {
   return `<div class="tbl-wrap"><table class="vias"><thead><tr><th>km</th><th>Radar</th><th>Sentido</th>${conDist ? '<th>De la ruta</th>' : ''}<th></th></tr></thead><tbody>${rs.map((r) => `<tr>
     <td>${r.km.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</td>
     <td>${radarIcono(r)} ${esc(radarTipo(r))} · ${esc(radarSitio(r))}</td>
-    <td><small>pk ${esc(r.sentido || '?')}</small></td>
+    <td><small>${r.pk != null ? `pk ${esc(r.sentido || '?')}` : esc(r.sentido ? `mira a ${r.sentido}` : '—')}</small></td>
     ${conDist ? `<td><small>${fmtKm(Math.round(r.dist_m / 100) / 10)}</small></td>` : ''}
     <td><a href="${mapsSearch(`${r.lat},${r.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div>`;
 }
@@ -605,7 +608,7 @@ function radaresHTML(e) {
   return `<h2>Radares (${rs.en_ruta.length})</h2>
     <div class="card">
       ${rs.en_ruta.length ? radaresTabla(rs.en_ruta, false)
-        : '<p class="muted">Ningún radar de la DGT sobre la ruta de este día.</p>'}
+        : `<p class="muted">Ningún radar ${esc(radarOrg())} sobre la ruta de este día.</p>`}
       ${rs.cerca.length ? `<details><summary>Cerca de la ruta, sin pisarla (${rs.cerca.length})</summary>${radaresTabla(rs.cerca, true)}<p><small>Salen por si te desvías: no están sobre el track.</small></p></details>` : ''}
       ${radarFuente()}
       <p class="row"><a class="btn small" href="#/radares">Todos los radares del viaje</a></p>
@@ -1905,7 +1908,7 @@ function viewGuia() {
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
-    <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares de la DGT</a> <a class="btn" href="#/gasolina">⛽ Gasolina más barata</a></p>
+    <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares</a> <a class="btn" href="#/gasolina">⛽ Gasolina más barata</a></p>
     ${nav.pantalla || nav.app ? `<h2>Navegación</h2>
     <div class="card"><dl>${dlPares([['Pantalla', nav.pantalla], ['Móvil', nav.movil], ['App', nav.app], ['Ubicación', nav.ubicacion_compartida], ['Si falla', nav.fallback], ['Sygic', nav.sygic]])}</dl></div>` : ''}
     ${Object.keys(KV).some((key) => k[key]) ? `<div class="card"><h3>Kurviger</h3><dl>${Object.keys(KV).map((key) => `<dt>${KV[key]}</dt><dd>${esc(k[key])}</dd>`).join('')}${k.mapas_offline ? `<dt>Mapas offline</dt><dd>${esc(k.mapas_offline.join(', '))} (${k.mapas_offline.length} provincias)</dd>` : ''}${k.rutas_a_crear ? `<dt>Rutas a crear</dt><dd>${k.rutas_a_crear}</dd>` : ''}</dl>${k.en_ruta ? `<h4>Siguiendo la ruta</h4>${list(k.en_ruta)}<p><small>Los puntos de despiste de cada día están en su ficha.</small></p>` : ''}</div>` : ''}
@@ -2008,15 +2011,15 @@ function viewRadares() {
   const sinRadar = it.filter((e) => { const rs = radaresDia(e.dia); return !rs.en_ruta.length && !rs.cerca.length; }).map((e) => e.dia);
   return `<div class="card accent">
       <div class="card-title"><h1>Radares</h1><span class="badge">${tot.en_ruta || 0} en ruta</span></div>
-      <p>La app lleva los <b>${tot.puntos || m.radares.length} puntos de radar</b> de la DGT de toda España (${tot.fijos} fijos y ${tot.tramo} de tramo), no solo los de la ruta: así avisa también si te desvías.</p>
+      <p>La app lleva los <b>${tot.puntos || m.radares.length} puntos de radar</b> ${esc(radarOrg())} ${esc(m.ambito || 'de toda España')} (${tot.fijos} fijos${tot.tramo ? ` y ${tot.tramo} de tramo` : ''}), no solo los de la ruta: así avisa también si te desvías.</p>
       <p class="row">${localizarBtn(null)}</p>
       ${radarFuente()}
     </div>
     ${D.pos ? `<h2>Alrededor de donde estás</h2>
       <div class="card">${cerca.length
         ? `<ul class="radar-cerca">${cerca.map((x) => `<li><b>${fmtKm(Math.round(x.dist_km * 10) / 10)} al ${esc(x.rumbo)}</b> · ${radarIcono(x)} ${esc(radarTipo(x))} · ${esc(radarSitio(x))} <a href="${mapsSearch(`${x.lat},${x.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></li>`).join('')}</ul>`
-        : '<p class="muted">Ningún radar de la DGT en 25 km a la redonda.</p>'}</div>` : ''}
-    <h2>Radares de tramo</h2>
+        : `<p class="muted">Ningún radar ${esc(radarOrg())} en 25 km a la redonda.</p>`}</div>` : ''}
+    ${tot.tramo === 0 ? '' : `<h2>Radares de tramo</h2>
     <div class="card">
       <p>${tramos.length ? `Ninguno de los ${tramos.length} radares de tramo de la DGT pisa la ruta. El más cercano queda a <b>${tramos[0].dist_km} km</b> del día ${tramos[0].dia}. Los de la zona del viaje salen en el mapa como línea roja discontinua entre sus dos cabinas.` : 'Sin datos de tramos.'}</p>
       ${tramos.length ? `<div class="tbl-wrap"><table class="vias"><thead><tr><th>De la ruta</th><th>Tramo</th><th>Largo</th><th></th></tr></thead><tbody>${tramos.slice(0, 10).map((t) => `<tr>
@@ -2024,10 +2027,10 @@ function viewRadares() {
         <td>📏 ${esc(radarSitio(t.ini))}${t.fin.pk != null && t.fin.pk !== t.ini.pk ? ` → pk ${t.fin.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}<br><small>pk ${esc(t.ini.sentido || '?')}</small></td>
         <td>${fmtKm(t.largo_km)}</td>
         <td><a href="${mapsSearch(`${t.ini.lat},${t.ini.lon}`)}" target="_blank" rel="noopener">mapa ↗</a></td></tr>`).join('')}</tbody></table></div><p><small>Los 10 más cercanos al viaje de los ${tramos.length} que hay en España.</small></p>` : ''}
-    </div>
+    </div>`}
     <h2>Por etapa</h2>
     ${dias || '<div class="card"><p class="muted">Ningún radar cerca de las etapas.</p></div>'}
-    ${sinRadar.length ? `<div class="card ok"><p>Sin ningún radar de la DGT ni cerca: días ${sinRadar.join(', ')}.</p></div>` : ''}`;
+    ${sinRadar.length ? `<div class="card ok"><p>Sin ningún radar ${esc(radarOrg())} ni cerca: días ${sinRadar.join(', ')}.</p></div>` : ''}`;
 }
 
 const VIEWS = { resumen: viewResumen, etapas: viewEtapas, noches: viewNoches, tiempo: viewTiempo, listas: viewListas, equipaje: viewEquipaje, guia: viewGuia, hoja: viewHoja, sos: viewSos, buscar: viewBuscar, ahora: viewAhora, pueblos: viewPueblos, radares: viewRadares, gasolina: viewGasolina };
