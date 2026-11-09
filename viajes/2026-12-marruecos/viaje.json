@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "revision": 8,
+    "revision": 9,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
@@ -13,7 +13,8 @@
       "Ferry (2026-11-09): Baleària en butaca, ida el 25 dic a las 14:00 (llega a Nador a las 20:00, hora local) y vuelta el 10 ene a las 23:30 (llega el 11 a las 07:00), 135 € cada trayecto, sin reservar. Noche 0 en Nador al llegar; el domingo 10 queda de margen.",
       "Fez con día entero (2026-11-09): el día 14 queda libre en Fez (dos noches en el riad) y el 15 va de Fez a Nador del tirón (346 km, 4h55). Se quita la noche de Taza. Tope de conducción subido a unas 5 h, siempre llegando con luz. Cadena en los días 5, 8 y 11.",
       "Radares (2026-11-09): 94 radares fijos de OpenStreetMap en la zona del viaje, 12 sobre la ruta (tools/radares_osm.py). Lista incompleta y sin móviles.",
-      "Móvil (2026-11-09): pasos con Digi antes de salir y SIM de Maroc Telecom el día 1 por la mañana en Nador."
+      "Móvil (2026-11-09): pasos con Digi antes de salir y SIM de Maroc Telecom el día 1 por la mañana en Nador.",
+      "Gasolineras y navegación (2026-11-09): gasolineras de OpenStreetMap en cada etapa con el tramo más largo sin ninguna (máximo 58 km, día 9), y un botón por día para abrir la etapa en Google Maps con sus puntos de paso."
     ]
   },
   "proyecto": {
@@ -37,7 +38,7 @@
     "moto": {
       "modelo": "Honda NX500",
       "autonomia_orientativa_km": 380,
-      "regla_gasolina": "Llenar al bajar de medio depósito. En el N12 (Tazzarine–Rissani) y entre Missour y Midelt hay tramos largos casi sin gasolineras. La app no tiene gasolineras ni precios de Marruecos (solo España).",
+      "regla_gasolina": "Llenar al bajar de medio depósito y en cada ciudad del sur aunque quede gasolina. Según OpenStreetMap, ningún día pasa de 60 km sin gasolinera en la ruta (lo más largo: Agdz–Zagora, día 9, y Alnif–Rissani, día 11), pero en pueblos pequeños puede no haber sin plomo o estar cerrada. Sin precios en la app: en Marruecos apenas cambia de una a otra.",
       "rueda_delantera": "19 pulgadas",
       "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
       "presiones": {
@@ -133,7 +134,8 @@
         "Se sale del hotel de Nador donde se durmió al llegar el ferry la noche del 25 (llega a las 20:00). Cambiar dinero y comprar la SIM por la mañana.",
         "Conducción estimada con OSRM: 2h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 68 min de paradas; anochece hacia las 17:30.",
         "Hora: Marruecos va una hora por detrás de España. Los horarios de Baleària van en hora local de cada puerto.",
-        "Móvil: la noche del 25 en Nador, wifi del hotel y Digi en itinerancia solo si hace falta. Por la mañana, antes de salir: dirhams en un cajero, SIM de Maroc Telecom con el pasaporte en una agencia de Nador (que la activen y la prueben en la tienda), y en el Pixel datos móviles con Maroc Telecom, llamadas y SMS con Digi y la itinerancia de datos de Digi apagada. WhatsApp sigue con el número español."
+        "Móvil: la noche del 25 en Nador, wifi del hotel y Digi en itinerancia solo si hace falta. Por la mañana, antes de salir: dirhams en un cajero, SIM de Maroc Telecom con el pasaporte en una agencia de Nador (que la activen y la prueben en la tienda), y en el Pixel datos móviles con Maroc Telecom, llamadas y SMS con Digi y la itinerancia de datos de Digi apagada. WhatsApp sigue con el número español.",
+        "Gasolina: 19 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 53 km (km 54–107)."
       ],
       "alojamiento": {
         "nombre": "Hôtel Chark",
@@ -177,7 +179,14 @@
         "tarde": "Descanso. Revisar que la SIM funciona y que el dinero está repartido en dos sitios.",
         "consejo": "Primer contacto con el tráfico: rotondas sin prioridad clara, peatones, carros y controles de policía. Despacio y parar del todo en los STOP de los controles."
       },
-      "origen_nota": "Hotel de Nador (noche 0)"
+      "origen_nota": "Hotel de Nador (noche 0)",
+      "google_maps": [
+        {
+          "tramo": "Nador → Guercif",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=35.27450,-2.93200&destination=34.22600,-3.35200&travelmode=driving",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 2,
@@ -219,7 +228,8 @@
       "notas": [
         "Que ver: Valle del Moulouya entre el Atlas Medio y el Alto Atlas oriental: meseta abierta, poco tráfico y las primeras montañas nevadas al fondo.",
         "Conducción estimada con OSRM: 2h45 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 71 min de paradas; anochece hacia las 17:30.",
-        "Etapa corta. Missour es un pueblo pequeño: alojamiento sencillo, reservar antes."
+        "Etapa corta. Missour es un pueblo pequeño: alojamiento sencillo, reservar antes.",
+        "Gasolina: 11 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 48 km (km 37–86)."
       ],
       "alojamiento": {
         "nombre": "Gîte Boukhalfa",
@@ -261,7 +271,14 @@
         },
         "tarde": "Tarde libre en el gîte.",
         "consejo": "Tramo largo con pocas gasolineras: salir con el depósito lleno."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Guercif → Missour",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=34.22600,-3.35200&destination=33.04700,-3.99300&travelmode=driving",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 3,
@@ -308,7 +325,8 @@
       "notas": [
         "Que ver: Midelt al pie del Jbel Ayachi, puerto de Tizi n'Talghemt (unos 1.900 m) y las gargantas del Ziz entre Rich y Errachidia, con buena luz a mediodía.",
         "Conducción estimada con OSRM: 4h00 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 90 min de paradas; anochece hacia las 17:30.",
-        "Salir a las 09:30: a primera hora puede haber hielo en el puerto."
+        "Salir a las 09:30: a primera hora puede haber hielo en el puerto.",
+        "Gasolina: 29 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 44 km (km 8–52)."
       ],
       "alojamiento": {
         "nombre": "Birgits Bed & Bistro",
@@ -366,7 +384,14 @@
         },
         "tarde": "Paseo por el palmeral de Meski.",
         "consejo": "Si la previsión da nieve o hielo en Midelt, usar el día libre de Merzouga como margen y retrasar un día."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Missour → Midelt → Rich → Errachidia",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=33.04700,-3.99300&destination=31.93100,-4.42500&travelmode=driving&waypoints=32.68000,-4.73300%7C32.25700,-4.50300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 4,
@@ -412,7 +437,8 @@
         "Que ver: Palmeral del Tafilalet (miradores sobre el Ziz en Aoufous) y llegada a Merzouga a mediodía, con la tarde libre para las dunas.",
         "Conducción estimada con OSRM: 2h10 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 62 min de paradas; anochece hacia las 17:30.",
         "Los últimos kilómetros pueden tener arena sobre el asfalto: despacio y recto.",
-        "Elegir alojamiento con acceso asfaltado hasta la puerta (muchos están a pie de duna, por pista)."
+        "Elegir alojamiento con acceso asfaltado hasta la puerta (muchos están a pie de duna, por pista).",
+        "Gasolina: 13 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 38 km (km 73–111)."
       ],
       "alojamiento": {
         "nombre": "Kasbah Mohayut",
@@ -470,7 +496,14 @@
         },
         "tarde": "Atardecer en las dunas. Decidir la excursión del día siguiente.",
         "consejo": "No entrar en la arena con la moto cargada: en Hassilabied, solo asfalto."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Errachidia → Erfoud → Merzouga",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.93100,-4.42500&destination=31.09900,-4.01200&travelmode=driving&waypoints=31.43100,-4.23300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 5,
@@ -614,7 +647,8 @@
       "notas": [
         "Que ver: Ksar de Rissani, las khettaras (pozos en línea) junto a Jorf y el palmeral de Tinejdad hasta Tinghir.",
         "Conducción estimada con OSRM: 3h55 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 89 min de paradas; anochece hacia las 17:30.",
-        "Nochevieja en Tinghir: reservar pronto."
+        "Nochevieja en Tinghir: reservar pronto.",
+        "Gasolina: 28 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 31 km (km 7–38)."
       ],
       "alojamiento": {
         "nombre": "Hotel AZUL Todra Gorges",
@@ -656,7 +690,14 @@
         },
         "tarde": "Nochevieja tranquila en el hotel: mañana se conduce.",
         "consejo": "Marruecos no celebra la Nochevieja como en España: lo habitual es la cena del hotel. Confirmarla al reservar."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Merzouga → Rissani → Erfoud → Jorf → Tinejdad → Tinghir",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.09900,-4.01200&destination=31.51500,-5.53300&travelmode=driving&waypoints=31.28200,-4.26400%7C31.43100,-4.23300%7C31.49000,-4.40000%7C31.50500,-5.02500",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 7,
@@ -706,7 +747,8 @@
         "Que ver: Gargantas del Todra a primera hora (ida y vuelta, 15 km) y subida al Dadès por las curvas de Tamellalt.",
         "Conducción estimada con OSRM: 2h25 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 67 min de paradas; anochece hacia las 17:30.",
         "Año Nuevo: día corto. Algunas tiendas y gasolineras pequeñas abren tarde: salir con el depósito lleno del día anterior.",
-        "El Todra es ida y vuelta por la misma carretera."
+        "El Todra es ida y vuelta por la misma carretera.",
+        "Gasolina: 11 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 32 km (km 0–32)."
       ],
       "alojamiento": {
         "nombre": "Hôtel Restaurant La Gazelle du Dadès",
@@ -753,7 +795,14 @@
         },
         "tarde": "En las gargantas: paseo junto al río.",
         "consejo": "Recortable si hace mal tiempo: saltar el Todra y subir directo al Dadès."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Tinghir → Gargantas del Todra → Tinghir → Boumalne Dadès → Gargantas del Dadès",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.51500,-5.53300&destination=31.52000,-5.93000&travelmode=driving&waypoints=31.59000,-5.59000%7C31.51500,-5.53300%7C31.37100,-5.99300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 8,
@@ -803,7 +852,8 @@
       },
       "notas": [
         "Que ver: Valle de las Rosas en Kelaat M'Gouna, kasbah Amridil en Skoura, Ouarzazate y llegada a Aït Ben Haddou a primera hora de la tarde: el ksar con la luz del atardecer.",
-        "Conducción estimada con OSRM: 3h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 83 min de paradas; anochece hacia las 17:30."
+        "Conducción estimada con OSRM: 3h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 83 min de paradas; anochece hacia las 17:30.",
+        "Gasolina: 34 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 29 km (km 0–29)."
       ],
       "alojamiento": {
         "nombre": "Riad Ait Ben Haddou",
@@ -861,7 +911,14 @@
         "km_acumulados": 1174,
         "desde_la_ultima": 485,
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Gargantas del Dadès → Boumalne Dadès → Kelaat M'Gouna → Skoura → Ouarzazate → Aït Ben Haddou",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.52000,-5.93000&destination=31.04700,-7.13000&travelmode=driving&waypoints=31.37100,-5.99300%7C31.24000,-6.12800%7C31.06000,-6.55500%7C30.92000,-6.90600",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 9,
@@ -907,7 +964,8 @@
       },
       "notas": [
         "Que ver: Puerto de Tizi n'Tinififft y valle del Draa: el palmeral más largo de Marruecos, de Agdz a Zagora. Antes de salir, el ksar de Aït Ben Haddou con la luz de la mañana.",
-        "Conducción estimada con OSRM: 3h50 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 87 min de paradas; anochece hacia las 17:30."
+        "Conducción estimada con OSRM: 3h50 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 87 min de paradas; anochece hacia las 17:30.",
+        "Gasolina: 28 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 58 km (km 37–95)."
       ],
       "alojamiento": {
         "nombre": "Riad de Rêve",
@@ -960,7 +1018,14 @@
         },
         "tarde": "Zagora.",
         "consejo": "El puerto puede tener hielo a primera hora: no salir antes de las 09:00."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Aït Ben Haddou → Ouarzazate → Agdz → Zagora",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.04700,-7.13000&destination=30.33000,-5.83800&travelmode=driving&waypoints=30.92000,-6.90600%7C30.69700,-6.45000",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 10,
@@ -1008,7 +1073,8 @@
         "Que ver: Nkob, el pueblo de las 45 kasbahs, al pie del Jbel Saghro, y la carretera N12 hasta Alnif, capital de los fósiles de trilobites.",
         "Conducción estimada con OSRM: 3h55 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 89 min de paradas; anochece hacia las 17:30.",
         "En Tazzarine apenas hay alojamiento; en Alnif hay pocas opciones (y alguna kasbah a las afueras): reservar con tiempo.",
-        "Repostar en Zagora y en Tazzarine."
+        "Repostar en Zagora y en Tazzarine.",
+        "Gasolina: 16 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 51 km (km 136–187)."
       ],
       "alojamiento": {
         "nombre": "Auberge Kasbah Meteorites",
@@ -1048,7 +1114,14 @@
         },
         "tarde": "En la kasbah.",
         "consejo": "Repostar en Zagora y en Tazzarine: entre medias casi no hay gasolineras."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Zagora → Nkob → Tazzarine → Alnif",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=30.33000,-5.83800&destination=31.11700,-5.17000&travelmode=driving&waypoints=30.87000,-5.86600%7C30.77800,-5.56700",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 11,
@@ -1095,7 +1168,8 @@
       "notas": [
         "Que ver: Final del N12 por las hamadas hasta Rissani y el Tafilalet, y subida por el palmeral del Ziz hasta Errachidia.",
         "Conducción estimada con OSRM: 3h45 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 86 min de paradas; anochece hacia las 17:30.",
-        "Hasta Rissani hay muy pocas gasolineras: salir de Alnif con el depósito lleno."
+        "Hasta Rissani hay muy pocas gasolineras: salir de Alnif con el depósito lleno.",
+        "Gasolina: 20 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 57 km (km 37–94)."
       ],
       "alojamiento": {
         "nombre": "Birgits Bed & Bistro",
@@ -1144,7 +1218,14 @@
         "km_acumulados": 1751,
         "desde_la_ultima": 577,
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Alnif → Rissani → Erfoud → Errachidia",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.11700,-5.17000&destination=31.93100,-4.42500&travelmode=driving&waypoints=31.28200,-4.26400%7C31.43100,-4.23300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 12,
@@ -1189,7 +1270,8 @@
       "notas": [
         "Que ver: Gargantas del Ziz con la luz de la mañana y subida a Midelt por el Tizi n'Talghemt.",
         "Conducción estimada con OSRM: 2h30 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 67 min de paradas; anochece hacia las 17:30.",
-        "Etapa corta a propósito: si nieva en el puerto, deja margen para esperar a que lo abran (las quitanieves suelen abrir en el día)."
+        "Etapa corta a propósito: si nieva en el puerto, deja margen para esperar a que lo abran (las quitanieves suelen abrir en el día).",
+        "Gasolina: 24 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 40 km (km 8–48)."
       ],
       "alojamiento": {
         "nombre": "Hotel Kasbah Asmaa",
@@ -1229,7 +1311,14 @@
         },
         "tarde": "Lavandería del hotel y descanso.",
         "consejo": "Mirar la previsión de nieve para el día 13 (Zeida–Azrou–Ifrane). Si nieva, la alternativa por Missour."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Errachidia → Rich → Midelt",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=31.93100,-4.42500&destination=32.68000,-4.73300&travelmode=driving&waypoints=32.25700,-4.50300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 13,
@@ -1279,7 +1368,8 @@
         "Que ver: Atlas Medio: altiplano de Zeida, bosque de cedros de Azrou (monos de Berbería), Ifrane y bajada a Fez.",
         "Conducción estimada con OSRM: 3h55 (medias prudentes, de 50-65 km/h, con las travesías de pueblos). Llegada con 89 min de paradas; anochece hacia las 17:30.",
         "Entre Timahdite, Azrou e Ifrane se pasa de 1.900 m: en enero puede nevar. Mirar el tiempo la noche antes (ver la decisión del día).",
-        "Salir a las 09:30, con el asfalto ya sin hielo."
+        "Salir a las 09:30, con el asfalto ya sin hielo.",
+        "Gasolina: 44 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 35 km (km 54–90)."
       ],
       "alojamiento": {
         "nombre": "Riad en la medina de Fez, junto a Bab R'cif (p. ej. Riad Baba)",
@@ -1359,7 +1449,14 @@
         },
         "tarde": "Fez.",
         "consejo": "Ifrane es recortable. Con nieve, el día cambia a la alternativa por Missour (ver Decisiones del día)."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Midelt → Zeida → Azrou → Ifrane → Fez",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=32.68000,-4.73300&destination=34.03300,-5.00000&travelmode=driving&waypoints=32.81000,-4.96000%7C33.43400,-5.22100%7C33.52700,-5.11000",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     },
     {
       "dia": 14,
@@ -1499,7 +1596,8 @@
         "Que ver: Vuelta a Nador desde Fez en un solo día por Taza y Guercif, carretera conocida y llana. Es la jornada más larga del viaje.",
         "Conducción estimada con OSRM: 4h55 (Fez–Taza 1h30 y Taza–Nador 3h25). Salir a las 09:00 y parar en Taza y en Guercif; llegada hacia las 15:30, con dos horas de luz de margen.",
         "Ferry Nador → Almería el domingo 10 de enero a las 23:30 (Baleària, butaca), llegada el lunes 11 a las 07:00. El domingo 10 queda libre en Nador: margen si la nieve retrasa un día la vuelta.",
-        "Hora: al volver a España, una hora más."
+        "Hora: al volver a España, una hora más.",
+        "Gasolina: 59 gasolineras en la ruta según OpenStreetMap; el tramo más largo sin ninguna es de 53 km (km 241–294)."
       ],
       "alojamiento": {
         "nombre": "Hotel Mercure Rif Nador",
@@ -1533,7 +1631,14 @@
         },
         "tarde": "Gastar los dirhams que sobren (no se pueden sacar más de 2.000 MAD).",
         "consejo": "Si el día 13 tocó la alternativa por Missour, este día ya está hecho: queda de margen en Nador. Por la A2 se va más rápido pero cansa igual; mejor la N6 con paradas."
-      }
+      },
+      "google_maps": [
+        {
+          "tramo": "Fez → Taza → Guercif → Nador",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=34.03300,-5.00000&destination=35.27450,-2.93200&travelmode=driving&waypoints=34.21400,-4.01000%7C34.22600,-3.35200",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ]
     }
   ],
   "alojamientos_resumen": [

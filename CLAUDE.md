@@ -88,6 +88,9 @@ npm, sin CDN. Se publica en GitHub Pages desde la raíz de la rama.
   `FiltroProvinciaProducto/{provincia}/1` (95 E5, ~50 KB por provincia, CORS abierto) y los guarda
   en `localStorage` (`viaje-nx500-gasolina`) hasta que cambia el día. `gasolinerasDia(n)` devuelve
   la lista con precio, `gasMasBarata()` la más barata. Sin red, salen sin precio.
+- Fuera de España: `python3 tools/gasolineras_osm.py --viaje <id> datos.psv` con las `amenity=fuel` de
+  OpenStreetMap (descargadas con el navegador desde Overpass, igual que los radares). Sin `api` ni precios;
+  añade `huecos` (tramo más largo sin gasolinera por día) y `descripcion` para la vista `#/gasolina`.
 
 ## Probar y publicar
 
