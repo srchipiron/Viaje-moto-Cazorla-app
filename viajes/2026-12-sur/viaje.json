@@ -1,14 +1,15 @@
 {
   "meta": {
     "version": 2,
-    "revision": 4,
+    "revision": 5,
     "actualizado": "2026-11-10",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
       "Plan inicial (2026-11-10): alternativa barata a Marruecos para Navidad, por la zona más seca de la península en invierno. Bucle de 11 días (10 de moto y 1 libre en Vejer): Costa Tropical y Carretera de la Cabra, Torcal y Serranía de Ronda, Grazalema, Vejer, Aracena, Mértola y la EN2, Monchique y la Costa Vicentina, Sagres, Tavira, Subbética y Alpujarra. Tracks aproximados con OSRM. Fechas provisionales: 26 dic – 5 ene, con margen hasta el fin de las vacaciones.",
       "Organización (2026-11-10): alojamiento candidato para cada noche, buscando campings con bungalow abiertos en invierno (Ronda, Vejer, Fuenteheridos, Sagres, Cabanas de Tavira) y hostal donde no hay; fechas de vacaciones (26 dic – 9 ene) con margen del 6 al 9; calendario de reservas y revisión de la moto.",
       "Mijas y Mecina Alfahar (2026-11-10): Javi tiene cama en los dos sitios. Día 2 Alhama → Mijas (122 km, llegada a comer), día 3 Mijas → Ronda por El Chorro, los embalses y la A-366 (119 km), día 4 Ronda → Vejer con una sola noche (fuera el día libre); día 9 Tavira → Rute (349 km, casi todo autovía) y día 10 Rute → Mecina Alfahar por la Subbética y la Alpujarra (234 km); día 11 Mecina → Almería (88 km). Mismas fechas, 26 dic – 5 ene, 8 noches de pago. Alojamientos pasados a hostal u hotel pequeño por Booking, con precios orientativos, en vez de bungalows de camping. Presupuesto corregido: 900-1.200 €.",
-      "Etapas de unas 5 h (2026-11-10): Javi no quiere pagar cama por etapas cortas. El viaje pasa de 11 a 7 días (26 dic – 1 ene), unos 2.000 km, con solo 4 noches de pago. Día 1 Almería → Mijas por la Cabra y Alhama (5 h 40); día 2 Mijas → Vejer por la A-366, Ronda y Grazalema (4 h 50); día 3 Vejer → Mértola por autovía y el Guadiana (4 h 55); día 4 Mértola → Sagres por la EN2 y Monchique (4 h 30); día 5 Sagres → Osuna (5 h 10, autovía); día 6 Osuna → Mecina Alfahar (4 h 55, Nochevieja); día 7 Mecina → Almería (1 h 45). Fuera las noches de Alhama, Ronda, Aracena, Loulé, Tavira y Rute. Presupuesto: 550-750 €. Los ficheros gpx y tracks de los días 8 a 11 quedan sin usar."
+      "Etapas de unas 5 h (2026-11-10): Javi no quiere pagar cama por etapas cortas. El viaje pasa de 11 a 7 días (26 dic – 1 ene), unos 2.000 km, con solo 4 noches de pago. Día 1 Almería → Mijas por la Cabra y Alhama (5 h 40); día 2 Mijas → Vejer por la A-366, Ronda y Grazalema (4 h 50); día 3 Vejer → Mértola por autovía y el Guadiana (4 h 55); día 4 Mértola → Sagres por la EN2 y Monchique (4 h 30); día 5 Sagres → Osuna (5 h 10, autovía); día 6 Osuna → Mecina Alfahar (4 h 55, Nochevieja); día 7 Mecina → Almería (1 h 45). Fuera las noches de Alhama, Ronda, Aracena, Loulé, Tavira y Rute. Presupuesto: 550-750 €. Los ficheros gpx y tracks de los días 8 a 11 quedan sin usar.",
+      "Horarios realistas (2026-11-10): cada día lleva horario orientativo con la comida (1 h), cafés y gasolina, y llegada entre las 15:45 y las 16:15, dos horas antes de anochecer. Fuera las visitas a pie (Ronda, Lagos, Mértola, Osuna): solo miradores a pie de moto. El día 5 va directo de Sagres a Osuna sin Lagos (397 km, 4 h 40) y el cabo de São Vicente pasa a la tarde del día 4, opcional."
     ]
   },
   "proyecto": {
@@ -27,7 +28,7 @@
       "vacaciones": "15 días naturales: del 26 dic al 9 ene",
       "margen": "El viaje ocupa del 26 dic al 1 ene. Del 2 al 9 de enero quedan libres: si un frente obliga a esperar, se puede salir uno o dos días más tarde o parar un día en Mijas o Mecina sin pagar cama."
     },
-    "distancia_total_aprox_km": 2003,
+    "distancia_total_aprox_km": 1984,
     "moto": {
       "modelo": "Honda NX500",
       "autonomia_orientativa_km": 380,
@@ -70,11 +71,10 @@
       "conduccion_real_maximo": "5h45",
       "superficie": "100% asfalto",
       "horario": "Finales de diciembre: amanece hacia las 08:20-08:40 en España (07:40 en Portugal) y anochece hacia las 17:40-18:00 (17:20 en Portugal). Salir a las 09:00-09:30 y estar en el alojamiento antes de que anochezca.",
-      "paradas": "Cada 60-90 minutos, con algo caliente.",
+      "paradas": "Café o gasolina cada 60-90 minutos y 1 h para comer a mitad de etapa. Solo miradores a pie de carretera: sin visitas andando con chaqueta, botas y casco.",
       "recortables_sin_cambiar_alojamiento": [
         "La Carretera de la Cabra (día 1, por la A-7)",
-        "La Fóia (día 4)",
-        "Lagos (día 5)"
+        "La Fóia (día 4)"
       ]
     }
   },
@@ -100,7 +100,7 @@
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:00",
-      "llegada_prevista": "17:08",
+      "llegada_prevista": "16:15",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
@@ -142,9 +142,9 @@
       "carreteras": "A-7, A-4050, GR-3302, A-338, A-402, A-356, A-7, A-387",
       "notas": [
         "Que ver: A-7 hasta Almuñécar para ganar tiempo, subida por la Carretera de la Cabra (A-4050) a Jayena y Alhama de Granada, bajada por la Boca del Asno de Zafarraya a Vélez-Málaga y costa hasta Mijas.",
-        "Conducción estimada con OSRM: 5h40. Llegada con 116 min de paradas (hora española).",
         "Etapa larga: salida a las 09:00 y comida rápida en Alhama. Si el día va justo o hay hielo en la Cabra (pasa de 1.000 m), seguir por la A-7 hasta Mijas: 2 h 30 en total.",
-        "Noche en Mijas (Osunillas), sin coste."
+        "Noche en Mijas (Osunillas), sin coste.",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
@@ -159,34 +159,27 @@
           {
             "lugar": "Carretera de la Cabra (A-4050)",
             "tipo": "carretera",
-            "que": "Subida de Otívar hacia Jayena, con miradores sobre el valle del río Verde y el mar.",
-            "tiempo": "—",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Alhama de Granada",
-            "tipo": "pueblo",
-            "que": "Los Tajos junto al pueblo: parada para comer.",
-            "tiempo": "45 min",
+            "que": "Miradores a pie de carretera sobre el valle del río Verde y el mar.",
+            "tiempo": "Sin bajarse",
             "en_ruta": true
           },
           {
             "lugar": "Boca del Asno (Zafarraya)",
             "tipo": "mirador",
-            "que": "Paso entre la sierra de Alhama y la Axarquía, con el mar al fondo.",
-            "tiempo": "10 min",
+            "que": "El tajo y la Axarquía con el mar al fondo, desde el arcén.",
+            "tiempo": "5 min",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En Alhama de Granada.",
+          "donde": "En Alhama de Granada, en un bar de la carretera.",
           "cena": "En Mijas.",
           "platos": [
             "Olla jameña",
             "Pescaíto frito"
           ]
         },
-        "tarde": "Llegada a Mijas y descanso.",
+        "tarde": "Descanso en Mijas.",
         "consejo": "Repostar en Almuñécar: hasta Alhama no hay apenas gasolineras."
       },
       "alojamiento": {
@@ -200,7 +193,44 @@
           "Avisar de la llegada el 26 de diciembre por la tarde"
         ],
         "plan_b_cena": "En Mijas"
-      }
+      },
+      "horario_orientativo": [
+        {
+          "hora": "09:00",
+          "lugar": "Almería",
+          "que": "Salida con el depósito lleno. A-7 sin parar"
+        },
+        {
+          "hora": "10:45",
+          "lugar": "Almuñécar",
+          "que": "Gasolina y café (20 min). Última gasolinera hasta Alhama"
+        },
+        {
+          "hora": "11:05",
+          "lugar": "Carretera de la Cabra",
+          "que": "Subida por Otívar a Jayena: los miradores están a pie de carretera, foto sin bajarse"
+        },
+        {
+          "hora": "13:00",
+          "lugar": "Alhama de Granada",
+          "que": "Comida (1 h). Bar o venta en la carretera, sin entrar al casco antiguo"
+        },
+        {
+          "hora": "14:25",
+          "lugar": "Boca del Asno (Zafarraya)",
+          "que": "Mirador junto a la carretera: 5 min"
+        },
+        {
+          "hora": "15:00",
+          "lugar": "Vélez-Málaga",
+          "que": "A-7 hasta Benalmádena"
+        },
+        {
+          "hora": "16:15",
+          "lugar": "Mijas (Osunillas)",
+          "que": "Llegada. Anochece a las 18:05"
+        }
+      ]
     },
     {
       "dia": 2,
@@ -215,7 +245,7 @@
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:30",
-      "llegada_prevista": "16:49",
+      "llegada_prevista": "16:00",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
@@ -263,10 +293,9 @@
       "carreteras": "A-387, A-366, A-374, A-372, A-389, A-396",
       "notas": [
         "Que ver: La A-366 entera de Coín a Ronda por Alozaina, Yunquera, El Burgo y el Puerto del Viento; Sierra de Grazalema por la A-372 y el Puerto del Boyar hasta El Bosque; Arcos y Medina Sidonia hasta Vejer.",
-        "Conducción estimada con OSRM: 4h50. Llegada con 103 min de paradas (hora española).",
-        "Parada en Ronda para ver el Tajo y comer algo (45 min).",
         "Sin Zahara ni el Puerto de las Palomas para no pasar de 5 h; si vas bien de hora, son 35 min más.",
-        "Grazalema es de los sitios más lluviosos de España: si entra un frente, ver la alternativa del día."
+        "Grazalema es de los sitios más lluviosos de España: si entra un frente, ver la alternativa del día.",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
@@ -279,36 +308,29 @@
         "resumen": "Las dos mejores carreteras de la Serranía en un día: la A-366 a Ronda y la A-372 por Grazalema.",
         "ver": [
           {
-            "lugar": "A-366 de Coín a Ronda",
+            "lugar": "A-366 y Puerto del Viento",
             "tipo": "carretera",
-            "que": "Sierra de las Nieves por Yunquera y El Burgo, y el Puerto del Viento.",
-            "tiempo": "—",
+            "que": "Sierra de las Nieves; mirador en la propia carretera.",
+            "tiempo": "5 min",
             "en_ruta": true
           },
           {
-            "lugar": "Ronda",
-            "tipo": "ciudad",
-            "que": "Puente Nuevo y el Tajo: parada de media mañana.",
-            "tiempo": "45 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Grazalema y Puerto del Boyar",
-            "tipo": "carretera",
-            "que": "Pueblo blanco y bajada entre pinsapos hacia El Bosque.",
-            "tiempo": "20 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Zahara y Puerto de las Palomas",
+            "lugar": "Puente Nuevo de Ronda",
             "tipo": "mirador",
-            "que": "Desvío por la CA-9104 si sobra tiempo.",
-            "tiempo": "35 min más",
-            "opcional": true
+            "que": "Se cruza en moto: el Tajo se ve sin aparcar.",
+            "tiempo": "De paso",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Puerto del Boyar",
+            "tipo": "mirador",
+            "que": "Mirador con aparcamiento junto a la A-372.",
+            "tiempo": "5 min",
+            "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En Ronda o Grazalema.",
+          "donde": "En El Bosque, en una venta.",
           "cena": "En Vejer.",
           "platos": [
             "Queso payoyo",
@@ -316,7 +338,7 @@
             "Atún"
           ]
         },
-        "tarde": "Vejer al anochecer.",
+        "tarde": "Descanso en Vejer; el pueblo queda a un paseo corto del alojamiento si apetece.",
         "consejo": "Hojas y humedad en la sombra del Boyar: frenar recto antes de cada curva."
       },
       "opciones": [
@@ -352,7 +374,44 @@
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
         "plan_b_cena": "En Vejer"
-      }
+      },
+      "horario_orientativo": [
+        {
+          "hora": "09:30",
+          "lugar": "Mijas",
+          "que": "Salida"
+        },
+        {
+          "hora": "10:45",
+          "lugar": "El Burgo",
+          "que": "A-366: Puerto del Viento. Parar solo en el mirador de la carretera"
+        },
+        {
+          "hora": "11:20",
+          "lugar": "Ronda",
+          "que": "Gasolina y café en la entrada (25 min). El Tajo se ve desde el Puente Nuevo cruzándolo en moto; no hace falta aparcar"
+        },
+        {
+          "hora": "12:20",
+          "lugar": "Grazalema",
+          "que": "Sin parar: Puerto del Boyar, mirador en la misma carretera (5 min)"
+        },
+        {
+          "hora": "13:00",
+          "lugar": "El Bosque",
+          "que": "Comida (1 h) en una venta"
+        },
+        {
+          "hora": "14:35",
+          "lugar": "Arcos de la Frontera",
+          "que": "De paso"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "Vejer de la Frontera",
+          "que": "Llegada. Anochece a las 18:10"
+        }
+      ]
     },
     {
       "dia": 3,
@@ -367,7 +426,7 @@
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "08:00",
-      "llegada_prevista": "14:37",
+      "llegada_prevista": "14:45",
       "zona_horaria": "Europe/Lisbon",
       "meteo_puntos": [
         {
@@ -403,10 +462,10 @@
       "carreteras": "A-48, A-4, SE-30, A-49, IC 27, EN 122",
       "notas": [
         "Que ver: Enlace por autovía: Jerez, Sevilla y la A-49 hasta Ayamonte; puente del Guadiana, Castro Marim y la carretera del río por Alcoutim hasta Mértola.",
-        "Conducción estimada con OSRM: 4h55. Llegada con 103 min de paradas (hora portuguesa).",
         "Casi 300 km de autovía: tapones rojos (Race) y parada cada hora. Lo bueno es el final: el Guadiana por Alcoutim y Mértola.",
         "Al cruzar a Portugal, atrasar el reloj una hora. Las horas de esta ficha van en hora portuguesa: la salida de las 08:00 son las 09:00 en Vejer.",
-        "Llenar el depósito en Ayamonte antes de cruzar: en Portugal la gasolina es bastante más cara."
+        "Llenar el depósito en Ayamonte antes de cruzar: en Portugal la gasolina es bastante más cara.",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
@@ -419,36 +478,29 @@
         "resumen": "Autovía hasta Portugal y un final bonito: el Guadiana por Alcoutim hasta Mértola.",
         "ver": [
           {
-            "lugar": "Castro Marim",
-            "tipo": "historia",
-            "que": "Castillo sobre las marismas del Guadiana, nada más cruzar.",
-            "tiempo": "20 min",
-            "opcional": true
-          },
-          {
             "lugar": "Alcoutim",
             "tipo": "pueblo",
-            "que": "Pueblo a la orilla del Guadiana, con Sanlúcar enfrente.",
-            "tiempo": "20 min",
+            "que": "El Guadiana y Sanlúcar enfrente, desde el embarcadero.",
+            "tiempo": "10 min",
             "en_ruta": true
           },
           {
             "lugar": "Mértola",
             "tipo": "pueblo",
-            "que": "Castillo e iglesia-mezquita sobre el río.",
-            "tiempo": "1 h",
+            "que": "Castillo sobre el río, visto desde el puente de entrada.",
+            "tiempo": "De paso",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En ruta, pasada Sevilla, o en Ayamonte.",
+          "donde": "En Ayamonte, antes de cruzar.",
           "cena": "En Mértola.",
           "platos": [
             "Migas alentejanas",
             "Carne de porco à alentejana"
           ]
         },
-        "tarde": "Mértola a pie.",
+        "tarde": "Descanso en Mértola.",
         "consejo": "La circunvalación de Sevilla es de mucho tráfico: carril derecho y distancia."
       },
       "mantenimiento": {
@@ -470,7 +522,39 @@
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
         "plan_b_cena": "En Mértola"
-      }
+      },
+      "horario_orientativo": [
+        {
+          "hora": "08:00",
+          "lugar": "Vejer",
+          "que": "Salida: son las 09:00 en España. Las horas de esta ficha van en hora portuguesa"
+        },
+        {
+          "hora": "09:35",
+          "lugar": "Las Cabezas de San Juan",
+          "que": "Gasolina y café en área de servicio (20 min). 10:35 en España"
+        },
+        {
+          "hora": "12:05",
+          "lugar": "Ayamonte",
+          "que": "Llenar el depósito y comida (1 h 10). 13:05 en España"
+        },
+        {
+          "hora": "13:15",
+          "lugar": "Puente del Guadiana",
+          "que": "Entrada en Portugal"
+        },
+        {
+          "hora": "13:55",
+          "lugar": "Alcoutim",
+          "que": "El Guadiana desde la moto, en el embarcadero: 10 min"
+        },
+        {
+          "hora": "14:45",
+          "lugar": "Mértola",
+          "que": "Llegada. El castillo se ve desde el puente de entrada. Anochece a las 17:20"
+        }
+      ]
     },
     {
       "dia": 4,
@@ -485,7 +569,7 @@
       "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "09:30",
-      "llegada_prevista": "15:37",
+      "llegada_prevista": "15:55",
       "zona_horaria": "Europe/Lisbon",
       "meteo_puntos": [
         {
@@ -531,9 +615,9 @@
       "carreteras": "EN 2, EN 124, EN 266, EN 267, EN 120, EN 268",
       "notas": [
         "Que ver: La EN2, carretera patrimonio, por la Serra do Caldeirão de Almodôvar a Barranco do Velho; la N124 por Salir y Alte hasta Silves; Serra de Monchique y el mirador de la Fóia (902 m); la N267 por Marmelete a Aljezur y la Costa Vicentina hasta Sagres.",
-        "Conducción estimada con OSRM: 4h30. Llegada con 97 min de paradas (hora portuguesa).",
         "El mejor día de curvas de Portugal. Horas en hora portuguesa.",
-        "En la Fóia sopla fuerte: casco puesto y moto con la rueda hacia el viento. Si vas justo, saltársela ahorra 15 min."
+        "En la Fóia sopla fuerte: casco puesto y moto con la rueda hacia el viento. Si vas justo, saltársela ahorra 15 min.",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
@@ -553,36 +637,29 @@
             "en_ruta": true
           },
           {
-            "lugar": "Silves",
-            "tipo": "pueblo",
-            "que": "Castillo de piedra roja: parada para comer.",
-            "tiempo": "45 min",
-            "en_ruta": true
-          },
-          {
             "lugar": "Fóia",
             "tipo": "mirador",
-            "que": "Lo más alto del Algarve.",
+            "que": "Lo más alto del Algarve; se aparca arriba.",
             "tiempo": "15 min",
             "en_ruta": true
           },
           {
-            "lugar": "Sagres",
-            "tipo": "costa",
-            "que": "Puesta de sol en la fortaleza o en el cabo.",
-            "tiempo": "—",
+            "lugar": "Cabo de São Vicente",
+            "tipo": "mirador",
+            "que": "Puesta de sol junto al faro, aparcando al lado.",
+            "tiempo": "Opcional",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En Silves o Monchique.",
+          "donde": "En Silves.",
           "cena": "En Sagres.",
           "platos": [
             "Pescado a la brasa",
             "Percebes"
           ]
         },
-        "tarde": "Puesta de sol en Sagres (hacia las 17:20).",
+        "tarde": "Puesta de sol en el cabo o descanso.",
         "consejo": "Viento atlántico en la Costa Vicentina: rachas de lado en los tramos abiertos."
       },
       "alojamiento": {
@@ -597,7 +674,54 @@
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
         "plan_b_cena": "En Sagres"
-      }
+      },
+      "horario_orientativo": [
+        {
+          "hora": "09:30",
+          "lugar": "Mértola",
+          "que": "Salida"
+        },
+        {
+          "hora": "10:15",
+          "lugar": "Almodôvar",
+          "que": "Empieza la EN2 por la Serra do Caldeirão"
+        },
+        {
+          "hora": "11:00",
+          "lugar": "Barranco do Velho",
+          "que": "Café (20 min)"
+        },
+        {
+          "hora": "12:10",
+          "lugar": "Silves",
+          "que": "Comida (1 h). El castillo rojo se ve desde la carretera y el puente"
+        },
+        {
+          "hora": "13:50",
+          "lugar": "Monchique",
+          "que": "Subida a la Fóia"
+        },
+        {
+          "hora": "14:00",
+          "lugar": "Fóia",
+          "que": "Mirador: se aparca arriba, a pie de moto (15 min)"
+        },
+        {
+          "hora": "14:50",
+          "lugar": "Aljezur",
+          "que": "Gasolina y café (15 min)"
+        },
+        {
+          "hora": "15:55",
+          "lugar": "Sagres",
+          "que": "Llegada. Anochece a las 17:20"
+        },
+        {
+          "hora": "16:45",
+          "lugar": "Cabo de São Vicente (opcional)",
+          "que": "Puesta de sol: 6 km, se aparca junto al faro"
+        }
+      ]
     },
     {
       "dia": 5,
@@ -606,13 +730,13 @@
       "tipo": "autovía",
       "origen": "Sagres",
       "destino": "Osuna",
-      "km_aprox": 416,
-      "tiempo_real_aprox": "5h10",
+      "km_aprox": 397,
+      "tiempo_real_aprox": "4h40",
       "dificultad": 2,
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:00",
-      "llegada_prevista": "16:56",
+      "salida": "08:30",
+      "llegada_prevista": "15:45",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
@@ -628,8 +752,6 @@
       ],
       "waypoints": [
         "Sagres",
-        "Cabo de São Vicente",
-        "Lagos",
         "Ayamonte",
         "Osuna"
       ],
@@ -637,24 +759,22 @@
         "archivo": "gpx/dia-05.gpx",
         "track": "tracks/dia-05.json",
         "vias": [
-          "Cabo de São Vicente",
-          "Lagos",
           "Ayamonte"
         ],
         "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 3 y 5)."
       },
       "carreteras": "EN 268, EN 125, A 22, A-49, A-92",
       "notas": [
-        "Que ver: Cabo de São Vicente con la primera luz, Lagos, la A22 (sin peaje desde 2025) hasta Ayamonte y vuelta a Andalucía por Huelva, Sevilla y la A-92 hasta Osuna.",
-        "Conducción estimada con OSRM: 5h10. Llegada con 107 min de paradas (hora portuguesa la salida y española la llegada).",
+        "Que ver: A22 (sin peaje desde 2025) hasta Ayamonte y vuelta a Andalucía por Huelva, Sevilla y la A-92 hasta Osuna. El cabo de São Vicente se ve la tarde anterior.",
         "Día de enlace: más de 400 km, casi todo autovía. Tapones rojos y parada cada hora.",
-        "Salida a las 09:00 hora portuguesa; la llegada, en hora española (una más).",
-        "Repostar en Ayamonte al volver a España."
+        "Repostar en Ayamonte al volver a España.",
+        "Salida a las 08:30 hora portuguesa; la llegada, en hora española (una más).",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
-          "tramo": "Sagres → Cabo de São Vicente → Lagos → Ayamonte → Osuna",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=37.00860,-8.94310&destination=37.23760,-5.10310&travelmode=driving&waypoints=37.02300,-8.99600%7C37.10200,-8.67300%7C37.21300,-7.40500",
+          "tramo": "Sagres → Ayamonte → Osuna",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.00860,-8.94310&destination=37.23760,-5.10310&travelmode=driving&waypoints=37.21300,-7.40500",
           "opciones": "Evitar autopistas: NO (la etapa es de enlace)"
         }
       ],
@@ -662,36 +782,22 @@
         "resumen": "El cabo por la mañana y enlace largo de vuelta hasta la campiña sevillana.",
         "ver": [
           {
-            "lugar": "Cabo de São Vicente",
+            "lugar": "Puente del Guadiana",
             "tipo": "mirador",
-            "que": "Faro y acantilados: el punto más al suroeste de Europa.",
-            "tiempo": "20 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "Ponta da Piedade (Lagos)",
-            "tipo": "costa",
-            "que": "Farallones de roca dorada, si vas bien de hora.",
-            "tiempo": "30 min",
-            "opcional": true
-          },
-          {
-            "lugar": "Osuna",
-            "tipo": "ciudad",
-            "que": "Colegiata y calle San Pedro.",
-            "tiempo": "1 h",
+            "que": "La vuelta a España, de paso.",
+            "tiempo": "De paso",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En ruta, antes de Sevilla.",
+          "donde": "En una venta junto a la A-49, antes de Sevilla.",
           "cena": "En Osuna.",
           "platos": [
             "Pastel de nata para el camino",
             "Mantecados de Estepa"
           ]
         },
-        "tarde": "Osuna a pie.",
+        "tarde": "Descanso en Osuna.",
         "consejo": "La A22 tiene el firme gastado en algunos tramos: atención a los baches con la moto cargada."
       },
       "mantenimiento": {
@@ -712,7 +818,34 @@
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
         "plan_b_cena": "En Osuna"
-      }
+      },
+      "horario_orientativo": [
+        {
+          "hora": "08:30",
+          "lugar": "Sagres",
+          "que": "Salida (09:30 en España). Las horas siguientes, en hora española"
+        },
+        {
+          "hora": "11:30",
+          "lugar": "Ayamonte",
+          "que": "Gasolina barata y café (20 min), ya en España"
+        },
+        {
+          "hora": "13:15",
+          "lugar": "Sanlúcar la Mayor",
+          "que": "Comida (1 h) en una venta junto a la A-49, antes de Sevilla"
+        },
+        {
+          "hora": "14:15",
+          "lugar": "Sevilla",
+          "que": "Circunvalación SE-30 y A-92"
+        },
+        {
+          "hora": "15:45",
+          "lugar": "Osuna",
+          "que": "Llegada. Anochece a las 18:10"
+        }
+      ]
     },
     {
       "dia": 6,
@@ -726,8 +859,8 @@
       "dificultad": 3,
       "fatiga": 4,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:30",
-      "llegada_prevista": "16:09",
+      "salida": "09:15",
+      "llegada_prevista": "16:05",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
@@ -773,9 +906,9 @@
       "carreteras": "A-92, A-318, A-45, CO-7218, A-331, A-333, A-328, A-92G, A-44, A-348, A-4126",
       "notas": [
         "Que ver: Estepa, Rute y el embalse de Iznájar, Loja, bajada por Granada y el valle de Lecrín a Lanjarón y la Alpujarra baja: Órgiva, Torvizcón, Cádiar y Ugíjar hasta Mecina Alfahar.",
-        "Conducción estimada con OSRM: 4h55. Llegada con 104 min de paradas (hora española).",
         "Nochevieja en Mecina Alfahar, sin coste: comprar la cena en Órgiva o Ugíjar al pasar, que el 31 por la tarde cierra todo.",
-        "Llegar con luz: Mecina está a 820 m y por la tarde hiela."
+        "Llegar con luz: Mecina está a 820 m y por la tarde hiela.",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
@@ -788,29 +921,22 @@
         "resumen": "Subbética, Granada y la Alpujarra baja hasta Mecina Alfahar.",
         "ver": [
           {
-            "lugar": "Estepa",
-            "tipo": "pueblo",
-            "que": "Obradores de mantecados, en temporada alta.",
-            "tiempo": "20 min",
-            "opcional": true
-          },
-          {
-            "lugar": "Iznájar",
-            "tipo": "pueblo",
-            "que": "Pueblo blanco sobre el embalse más grande de Andalucía.",
-            "tiempo": "20 min",
+            "lugar": "Embalse de Iznájar",
+            "tipo": "mirador",
+            "que": "Mirador en la carretera, con el pueblo sobre el agua.",
+            "tiempo": "20 min con el café",
             "en_ruta": true
           },
           {
-            "lugar": "Mirador de Cádiar y valle del Guadalfeo",
+            "lugar": "Valle del Guadalfeo (Cádiar)",
             "tipo": "mirador",
-            "que": "Bancales y pueblos blancos bajo Sierra Nevada nevada.",
-            "tiempo": "15 min",
+            "que": "Bancales y Sierra Nevada nevada, desde la carretera.",
+            "tiempo": "Sin bajarse",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En Loja o Lanjarón.",
+          "donde": "En Lanjarón.",
           "cena": "Nochevieja en Mecina Alfahar.",
           "platos": [
             "Remojón",
@@ -833,7 +959,44 @@
           "Nochevieja: llevar la cena comprada"
         ],
         "plan_b_cena": "Comprar la cena en Órgiva o Ugíjar al pasar"
-      }
+      },
+      "horario_orientativo": [
+        {
+          "hora": "09:15",
+          "lugar": "Osuna",
+          "que": "Salida"
+        },
+        {
+          "hora": "10:50",
+          "lugar": "Iznájar",
+          "que": "Café con vistas al embalse, en el mirador de la carretera (20 min)"
+        },
+        {
+          "hora": "11:45",
+          "lugar": "Loja",
+          "que": "A-92 hasta Granada y A-44"
+        },
+        {
+          "hora": "13:10",
+          "lugar": "Lanjarón",
+          "que": "Comida (1 h)"
+        },
+        {
+          "hora": "14:30",
+          "lugar": "Órgiva",
+          "que": "Gasolina y compra de la cena de Nochevieja (20 min)"
+        },
+        {
+          "hora": "15:35",
+          "lugar": "Cádiar",
+          "que": "Mirador del Guadalfeo en la carretera, sin bajarse"
+        },
+        {
+          "hora": "16:05",
+          "lugar": "Mecina Alfahar",
+          "que": "Llegada. Anochece a las 18:00"
+        }
+      ]
     },
     {
       "dia": 7,
@@ -848,7 +1011,7 @@
       "fatiga": 1,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "10:30",
-      "llegada_prevista": "13:11",
+      "llegada_prevista": "12:35",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
@@ -880,8 +1043,8 @@
       "carreteras": "A-4126, A-348, AL-5402, A-1180, N-340A, A-7",
       "notas": [
         "Que ver: De Mecina Alfahar a casa por Laujar de Andarax y la A-348 por Canjáyar.",
-        "Conducción estimada con OSRM: 1h45. Llegada con 56 min de paradas (hora española).",
-        "Año Nuevo: salida tranquila a las 10:30 por el hielo de la A-348 (pasa de 900 m) y en casa a la hora de comer."
+        "Año Nuevo: salida tranquila a las 10:30 por el hielo de la A-348 (pasa de 900 m) y en casa a la hora de comer.",
+        "El horario cuenta la comida (1 h), los cafés y la gasolina. Paradas solo a pie de moto: nada de visitas andando con el equipo puesto."
       ],
       "google_maps": [
         {
@@ -896,23 +1059,40 @@
           {
             "lugar": "Laujar de Andarax",
             "tipo": "pueblo",
-            "que": "Nacimiento del Andarax y sus bodegas.",
-            "tiempo": "30 min",
+            "que": "Café en la plaza.",
+            "tiempo": "20 min",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En Laujar o ya en casa.",
+          "donde": "En casa.",
           "cena": "En casa.",
           "platos": [
             "Plato alpujarreño",
             "Vino de la Contraviesa"
           ]
         },
-        "tarde": "Descargar la moto, cadena y fotos.",
+        "tarde": "Descargar la moto.",
         "consejo": "Con hielo en la A-348 a primera hora, esperar en Mecina: el día da de sobra."
       },
-      "alojamiento": null
+      "alojamiento": null,
+      "horario_orientativo": [
+        {
+          "hora": "10:30",
+          "lugar": "Mecina Alfahar",
+          "que": "Salida tranquila, con el hielo ya fundido"
+        },
+        {
+          "hora": "11:05",
+          "lugar": "Laujar de Andarax",
+          "que": "Café (20 min)"
+        },
+        {
+          "hora": "12:35",
+          "lugar": "Almería",
+          "que": "En casa para comer"
+        }
+      ]
     }
   ],
   "alojamientos_resumen": [
@@ -1415,6 +1595,7 @@
     "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
     "No inventar disponibilidad, horarios ni precios; verificar antes.",
     "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan.",
-    "Viaje pensado para esquivar la lluvia: si la previsión cambia, mover días o usar las alternativas antes que mojarse en los puertos."
+    "Viaje pensado para esquivar la lluvia: si la previsión cambia, mover días o usar las alternativas antes que mojarse en los puertos.",
+    "Horarios con la comida (1 h), cafés y gasolina incluidos. Javi no quiere parar a andar con el equipo de moto: proponer solo miradores y paradas a pie de moto, no visitas a pie (2026-11-10)."
   ]
 }
