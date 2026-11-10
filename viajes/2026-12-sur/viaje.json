@@ -1,12 +1,13 @@
 {
   "meta": {
     "version": 2,
-    "revision": 2,
+    "revision": 3,
     "actualizado": "2026-11-10",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
       "Plan inicial (2026-11-10): alternativa barata a Marruecos para Navidad, por la zona más seca de la península en invierno. Bucle de 11 días (10 de moto y 1 libre en Vejer): Costa Tropical y Carretera de la Cabra, Torcal y Serranía de Ronda, Grazalema, Vejer, Aracena, Mértola y la EN2, Monchique y la Costa Vicentina, Sagres, Tavira, Subbética y Alpujarra. Tracks aproximados con OSRM. Fechas provisionales: 26 dic – 5 ene, con margen hasta el fin de las vacaciones.",
-      "Organización (2026-11-10): alojamiento candidato para cada noche, buscando campings con bungalow abiertos en invierno (Ronda, Vejer, Fuenteheridos, Sagres, Cabanas de Tavira) y hostal donde no hay; fechas de vacaciones (26 dic – 9 ene) con margen del 6 al 9; calendario de reservas y revisión de la moto."
+      "Organización (2026-11-10): alojamiento candidato para cada noche, buscando campings con bungalow abiertos en invierno (Ronda, Vejer, Fuenteheridos, Sagres, Cabanas de Tavira) y hostal donde no hay; fechas de vacaciones (26 dic – 9 ene) con margen del 6 al 9; calendario de reservas y revisión de la moto.",
+      "Mijas y Mecina Alfahar (2026-11-10): Javi tiene cama en los dos sitios. Día 2 Alhama → Mijas (122 km, llegada a comer), día 3 Mijas → Ronda por El Chorro, los embalses y la A-366 (119 km), día 4 Ronda → Vejer con una sola noche (fuera el día libre); día 9 Tavira → Rute (349 km, casi todo autovía) y día 10 Rute → Mecina Alfahar por la Subbética y la Alpujarra (234 km); día 11 Mecina → Almería (88 km). Mismas fechas, 26 dic – 5 ene, 8 noches de pago. Alojamientos pasados a hostal u hotel pequeño por Booking, con precios orientativos, en vez de bungalows de camping. Presupuesto corregido: 900-1.200 €."
     ]
   },
   "proyecto": {
@@ -25,7 +26,7 @@
       "vacaciones": "15 días naturales: del 26 dic al 9 ene",
       "margen": "Del 6 al 9 de enero libres: si un frente obliga a parar uno o dos días, se corre todo sin perder nada. Reyes en casa."
     },
-    "distancia_total_aprox_km": 2062,
+    "distancia_total_aprox_km": 2129,
     "moto": {
       "modelo": "Honda NX500",
       "autonomia_orientativa_km": 380,
@@ -62,7 +63,7 @@
         "Bolsa de depósito SHAD E09CL Pro"
       ]
     },
-    "objetivo": "Las mejores carreteras de curvas del sur peninsular donde menos llueve en Navidad, en 11 días y sin ferry: Andalucía y el Algarve, con etapas de 3-5 h y un día libre.",
+    "objetivo": "Las mejores carreteras de curvas del sur peninsular donde menos llueve en Navidad, en 11 días y sin ferry: Andalucía y el Algarve, con etapas de 2-5 h, noches en Mijas y Mecina Alfahar y el resto en hostales.",
     "reglas_globales": {
       "conduccion_real_objetivo": "3h30-4h",
       "conduccion_real_maximo": "5h",
@@ -70,8 +71,8 @@
       "horario": "Finales de diciembre: amanece hacia las 08:20-08:40 en España (07:40 en Portugal) y anochece hacia las 17:40-18:00 (17:20 en Portugal). Salir a las 09:30, a las 10:00 los días de sierra por el hielo, y estar en el alojamiento antes de que anochezca.",
       "paradas": "Cada 60-90 minutos, con algo caliente.",
       "recortables_sin_cambiar_alojamiento": [
-        "El Torcal (día 2)",
-        "Arcos (día 3)",
+        "Los embalses (día 3)",
+        "Arcos (día 4)",
         "La Fóia (día 7)",
         "Alcalá la Real (día 10)"
       ]
@@ -203,37 +204,135 @@
         "direccion": "Carretera de Granada 8, Alhama de Granada",
         "telefono": null,
         "estado": "Sin reservar",
-        "servicios": [
-          "Recepción 24 h"
-        ],
+        "servicios": [],
         "pendiente_confirmar": [
-          "Aparcamiento solo en la calle: preguntar si hay sitio a cubierto para la moto",
-          "Alternativa con parking gratis: Hotel Balneario de Alhama (1,4 km del pueblo), más caro",
-          "Que la moto duerma a cubierto o en recinto cerrado"
+          "Booking, precios del 10 nov para 1 adulto (orientativos): Hostal Ana 45 €; Alojamiento La Escalera 64 €",
+          "Aparcamiento en la calle: preguntar por sitio para la moto"
         ],
-        "plan_b_cena": "En el pueblo; comprar algo en Almuñécar por si acaso (es sábado 26)"
+        "plan_b_cena": "En el pueblo"
       }
     },
     {
       "dia": 2,
       "fecha": "2026-12-27",
       "dia_semana": "domingo",
-      "tipo": "montaña",
+      "tipo": "costa",
       "origen": "Alhama de Granada",
-      "destino": "Ronda",
-      "km_aprox": 183,
-      "tiempo_real_aprox": "4h20",
+      "destino": "Osunillas (Mijas)",
+      "km_aprox": 122,
+      "tiempo_real_aprox": "2h05",
       "dificultad": 3,
-      "fatiga": 3,
+      "fatiga": 1,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "10:00",
-      "llegada_prevista": "15:55",
+      "llegada_prevista": "13:06",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
-          "nombre": "Villanueva de la Concepción",
-          "lat": 36.93,
-          "lon": -4.54
+          "nombre": "Vélez-Málaga",
+          "lat": 36.78,
+          "lon": -4.1
+        },
+        {
+          "nombre": "Osunillas (Mijas)",
+          "lat": 36.6,
+          "lon": -4.64
+        }
+      ],
+      "waypoints": [
+        "Alhama de Granada",
+        "Ventas de Zafarraya",
+        "Vélez-Málaga",
+        "Arroyo de la Miel",
+        "Osunillas (Mijas)"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-02.gpx",
+        "track": "tracks/dia-02.json",
+        "vias": [
+          "Ventas de Zafarraya",
+          "Vélez-Málaga",
+          "Arroyo de la Miel"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-402, A-356, A-7, MA-20, AP-7, A-368, A-387",
+      "notas": [
+        "Que ver: Bajada de la Boca del Asno (A-402) de Zafarraya a Vélez-Málaga y costa por la A-7 hasta Benalmádena y la subida a Mijas. Día corto para llegar a comer a Osunillas.",
+        "Conducción estimada con OSRM: 2h05. Llegada con 61 min de paradas (hora española).",
+        "Noche en Mijas, sin coste. Tarde libre y lavadora.",
+        "Entre Vélez y Benalmádena, autovía (A-7 y la ronda oeste de Málaga). En Kurviger, marcar evitar peajes."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Alhama de Granada → Ventas de Zafarraya → Vélez-Málaga → Arroyo de la Miel → Osunillas (Mijas)",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.00690,-3.98960&destination=36.59850,-4.64300&travelmode=driving&waypoints=36.95810,-4.12140%7C36.78000,-4.10100%7C36.59900,-4.53700",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Bajada a la Axarquía por la Boca del Asno y costa hasta Mijas: día corto para comer en Osunillas y descansar.",
+        "ver": [
+          {
+            "lugar": "Boca del Asno (Zafarraya)",
+            "tipo": "mirador",
+            "que": "Paso entre la sierra de Alhama y la Axarquía, con el mar al fondo en días claros.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Mijas pueblo",
+            "tipo": "pueblo",
+            "que": "Casco blanco colgado sobre la costa; paseo por la tarde.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Osunillas (Mijas).",
+          "cena": "En Mijas.",
+          "platos": [
+            "Pescaíto frito",
+            "Espetos de sardinas"
+          ]
+        },
+        "tarde": "Libre en Mijas: lavadora y descanso.",
+        "consejo": "Repostar en la costa: al día siguiente hasta Ronda apenas hay gasolineras."
+      },
+      "alojamiento": {
+        "nombre": "Cama propia en Mijas",
+        "tipo": "Sin coste",
+        "direccion": "Osunillas, Mijas",
+        "telefono": null,
+        "estado": "Confirmado",
+        "servicios": [],
+        "pendiente_confirmar": [
+          "Avisar de la llegada el 27 de diciembre a mediodía",
+          "Lavadora"
+        ],
+        "plan_b_cena": "En Mijas"
+      }
+    },
+    {
+      "dia": 3,
+      "fecha": "2026-12-28",
+      "dia_semana": "lunes",
+      "tipo": "montaña",
+      "origen": "Osunillas (Mijas)",
+      "destino": "Ronda",
+      "km_aprox": 119,
+      "tiempo_real_aprox": "2h45",
+      "dificultad": 3,
+      "fatiga": 2,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "10:00",
+      "llegada_prevista": "13:56",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "El Chorro",
+          "lat": 36.91,
+          "lon": -4.76
         },
         {
           "nombre": "Ronda",
@@ -242,109 +341,95 @@
         }
       ],
       "waypoints": [
-        "Alhama de Granada",
-        "Ventas de Zafarraya",
-        "Alfarnate",
-        "El Torcal de Antequera",
-        "Villanueva de la Concepción",
-        "Valle de Abdalajís",
+        "Osunillas (Mijas)",
+        "Cártama",
+        "Álora",
+        "El Chorro",
         "Ardales",
         "El Burgo",
         "Ronda"
       ],
       "gpx": {
-        "archivo": "gpx/dia-02.gpx",
-        "track": "tracks/dia-02.json",
+        "archivo": "gpx/dia-03.gpx",
+        "track": "tracks/dia-03.json",
         "vias": [
-          "Ventas de Zafarraya",
-          "Alfarnate",
-          "El Torcal de Antequera",
-          "Villanueva de la Concepción",
-          "Valle de Abdalajís",
+          "Cártama",
+          "Álora",
+          "El Chorro",
           "Ardales",
           "El Burgo"
         ],
         "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
       },
-      "carreteras": "A-402, A-341, MA-4101, A-4152, A-7204, A-7075, MA-9016, MA-4402, MA-4401, MA-5403, MA-5402, MA-5401, A-366",
+      "carreteras": "A-387, MA-3304, A-357, A-343, MA-5005, MA-5403, MA-5402, MA-5401, A-366",
       "notas": [
-        "Que ver: Boca del Asno de Zafarraya, El Torcal de Antequera, embalses del Guadalhorce junto al Caminito del Rey y la A-366 de El Burgo a Ronda por el Puerto del Viento.",
-        "Conducción estimada con OSRM: 4h20. Llegada con 95 min de paradas (hora española).",
-        "El Torcal (A-7075) y el Puerto del Viento rondan los 1.000-1.200 m: hielo posible a primera hora, de ahí la salida a las 10:00."
+        "Que ver: Cártama, Álora y el desfiladero de los Gaitanes en El Chorro, los embalses del Guadalhorce junto al Caminito del Rey, Ardales y la A-366 por El Burgo y el Puerto del Viento hasta Ronda.",
+        "Conducción estimada con OSRM: 2h45. Llegada con 71 min de paradas (hora española).",
+        "El Puerto del Viento (A-366) ronda los 1.200 m: salida a las 10:00 por el hielo.",
+        "Llegada a Ronda a primera hora de la tarde: tarde para verla con calma."
       ],
       "google_maps": [
         {
-          "tramo": "Alhama de Granada → Ventas de Zafarraya → Alfarnate → El Torcal de Antequera → Villanueva de la Concepción → Valle de Abdalajís → Ardales → El Burgo → Ronda",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=37.00690,-3.98960&destination=36.74230,-5.16580&travelmode=driving&waypoints=36.95810,-4.12140%7C36.99500,-4.26000%7C36.95300,-4.54500%7C36.92700,-4.53800%7C36.93400,-4.68100%7C36.87800,-4.84690%7C36.78960,-4.94720",
+          "tramo": "Osunillas (Mijas) → Cártama → Álora → El Chorro → Ardales → El Burgo → Ronda",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.59850,-4.64300&destination=36.74230,-5.16580&travelmode=driving&waypoints=36.71100,-4.63300%7C36.82400,-4.70400%7C36.90600,-4.76100%7C36.87800,-4.84690%7C36.78960,-4.94720",
           "opciones": "Evitar autopistas: SÍ"
         }
       ],
       "guia": {
-        "resumen": "El día más de curvas del viaje: del Poniente granadino a la Serranía de Ronda por el Torcal y los embalses.",
+        "resumen": "Embalses, el desfiladero de los Gaitanes y la A-366 hasta Ronda, con la tarde libre para verla.",
         "ver": [
           {
-            "lugar": "Boca del Asno (Zafarraya)",
-            "tipo": "mirador",
-            "que": "Paso entre la sierra de Alhama y la Axarquía, con vistas al mar en días claros.",
-            "tiempo": "10 min",
-            "en_ruta": true
-          },
-          {
-            "lugar": "El Torcal de Antequera",
+            "lugar": "El Chorro",
             "tipo": "naturaleza",
-            "que": "Karst de piedra caliza; sendero corto (ruta verde) desde el centro de visitantes.",
-            "tiempo": "1 h",
+            "que": "Desfiladero de los Gaitanes, al pie del Caminito del Rey.",
+            "tiempo": "20 min",
             "en_ruta": true
           },
           {
             "lugar": "Embalses del Guadalhorce",
             "tipo": "naturaleza",
-            "que": "Agua turquesa entre pinares junto a la entrada del Caminito del Rey.",
+            "que": "Agua turquesa entre pinares, con miradores junto a la carretera.",
             "tiempo": "15 min",
             "en_ruta": true
           },
           {
             "lugar": "Ronda",
             "tipo": "ciudad",
-            "que": "Puente Nuevo y el Tajo con la luz de la tarde.",
-            "tiempo": "1 h 30",
+            "que": "Puente Nuevo, el Tajo y los jardines de Cuenca.",
+            "tiempo": "Tarde",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En Ardales o en una venta de los embalses.",
+          "donde": "En Ardales o ya en Ronda.",
           "cena": "En Ronda.",
           "platos": [
             "Rabo de toro",
             "Porra antequerana"
           ]
         },
-        "tarde": "Ronda a pie: el Tajo, el puente y los jardines de Cuenca.",
-        "consejo": "Si hace niebla en el Torcal (pasa a menudo), no subir al mirador: no se ve nada y el asfalto va húmedo."
+        "tarde": "Ronda a pie.",
+        "consejo": "En la sombra del Puerto del Viento hay humedad: frenar recto antes de las curvas."
       },
       "alojamiento": {
-        "nombre": "Camping El Sur (Complejo Turístico El Sur)",
-        "tipo": "Bungalow de madera con calefacción y cocina",
-        "direccion": "Ctra. Ronda–Algeciras (A-369) km 1,5, Ronda",
-        "telefono": "+34 952 87 59 39",
+        "nombre": "Por elegir en Ronda",
+        "tipo": "Hostal u hotel pequeño",
+        "direccion": "Ronda",
+        "telefono": null,
         "estado": "Sin reservar",
-        "servicios": [
-          "Abierto todo el año",
-          "Restaurante",
-          "Tienda",
-          "Parking junto al bungalow"
-        ],
+        "servicios": [],
         "pendiente_confirmar": [
-          "Reservar bungalow para 1 persona la noche del 27",
+          "Booking, precios del 10 nov para 1 adulto (orientativos): Hostal Rural Venta La Vega 30 € (a 8,6 km del centro); Hotel Royal 48 € con desayuno, en el centro (mirados para el 27; repetir la búsqueda para el 28)",
+          "Ronda se llena: reservar pronto",
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
-        "plan_b_cena": "Restaurante del camping o en Ronda (a unos 20 min andando)"
+        "plan_b_cena": "En Ronda"
       }
     },
     {
-      "dia": 3,
-      "fecha": "2026-12-28",
-      "dia_semana": "lunes",
+      "dia": 4,
+      "fecha": "2026-12-29",
+      "dia_semana": "martes",
       "tipo": "montaña",
       "origen": "Ronda",
       "destino": "Vejer de la Frontera",
@@ -379,8 +464,8 @@
         "Vejer de la Frontera"
       ],
       "gpx": {
-        "archivo": "gpx/dia-03.gpx",
-        "track": "tracks/dia-03.json",
+        "archivo": "gpx/dia-04.gpx",
+        "track": "tracks/dia-04.json",
         "vias": [
           "Zahara de la Sierra",
           "Grazalema",
@@ -470,107 +555,24 @@
           ]
         }
       ],
-      "alojamiento": {
-        "nombre": "Camping Vejer",
-        "tipo": "Bungalow con baño y cocina",
-        "direccion": "N-340 km 39,5, Vejer de la Frontera (en un pinar, 3 km del pueblo)",
-        "telefono": null,
-        "estado": "Sin reservar",
-        "servicios": [
-          "Bar",
-          "Tienda",
-          "Lavadoras",
-          "Al lado, restaurante El Valenciano"
-        ],
-        "pendiente_confirmar": [
-          "Confirmar que abre en diciembre (figura como abierto en invierno)",
-          "Reservar las dos noches, 28 y 29",
-          "Que la moto duerma a cubierto o en recinto cerrado"
-        ],
-        "plan_b_cena": "Restaurante El Valenciano, junto al camping"
-      }
-    },
-    {
-      "dia": 4,
-      "fecha": "2026-12-29",
-      "dia_semana": "martes",
-      "tipo": "descanso",
-      "origen": "Vejer de la Frontera",
-      "destino": "Vejer de la Frontera",
-      "km_aprox": 0,
-      "tiempo_real_aprox": "0h00",
-      "dificultad": 1,
-      "fatiga": 1,
-      "perfil_kurviger": "Día sin maletas",
-      "zona_horaria": "Europe/Madrid",
-      "meteo_puntos": [
-        {
-          "nombre": "Vejer de la Frontera",
-          "lat": 36.25,
-          "lon": -5.97
-        }
-      ],
-      "notas": [
-        "Día libre en Vejer: descanso, cadena y lavandería. Salida corta opcional a Bolonia o Tarifa sin maletas."
-      ],
-      "guia": {
-        "resumen": "Día sin maletas en Vejer: descanso, cadena y lavandería. Si apetece moto, vuelta corta por la costa.",
-        "ver": [
-          {
-            "lugar": "Bolonia y Baelo Claudia",
-            "tipo": "historia",
-            "que": "Ciudad romana junto a la duna, a unos 35 km. Mirar el horario antes de ir.",
-            "tiempo": "2 h",
-            "opcional": true
-          },
-          {
-            "lugar": "Tarifa",
-            "tipo": "pueblo",
-            "que": "Punta de Europa con Marruecos enfrente: el viaje queda para otro año.",
-            "tiempo": "1 h 30",
-            "opcional": true
-          },
-          {
-            "lugar": "Caños de Meca y Cabo de Trafalgar",
-            "tipo": "costa",
-            "que": "Faro y playas a 15 km de Vejer.",
-            "tiempo": "1 h",
-            "opcional": true
-          }
-        ],
-        "comer": {
-          "donde": "En Vejer, Zahara de los Atunes o Bolonia.",
-          "cena": "En Vejer.",
-          "platos": [
-            "Atún",
-            "Tortillitas de camarones"
-          ]
-        },
-        "tarde": "Libre.",
-        "consejo": "Con poniente o levante fuerte, la vuelta por Tarifa no compensa: quedarse en Vejer."
-      },
       "mantenimiento": {
-        "que": "Engrasar la cadena (Motul C2) con la moto fría tras la noche, de vuelta de la salida corta si la hay. Lavandería.",
-        "km_acumulados": 567,
-        "desde_la_ultima": 567,
+        "que": "Engrasar la cadena al llegar a Vejer (cadena caliente).",
+        "km_acumulados": 624,
+        "desde_la_ultima": 624,
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       },
       "alojamiento": {
-        "nombre": "Camping Vejer",
-        "tipo": "Bungalow con baño y cocina",
-        "direccion": "N-340 km 39,5, Vejer de la Frontera (en un pinar, 3 km del pueblo)",
+        "nombre": "La Janda (candidato)",
+        "tipo": "Hostal u hotel pequeño",
+        "direccion": "Vejer de la Frontera",
         "telefono": null,
         "estado": "Sin reservar",
-        "servicios": [
-          "Bar",
-          "Tienda",
-          "Lavadoras",
-          "Al lado, restaurante El Valenciano"
-        ],
+        "servicios": [],
         "pendiente_confirmar": [
-          "Misma reserva que la noche 28"
+          "Booking, precios del 10 nov para 1 adulto (orientativos): La Janda unos 48 € la noche; apartamentos desde unos 50 €",
+          "Que la moto duerma a cubierto o en recinto cerrado"
         ],
-        "plan_b_cena": "Restaurante El Valenciano, junto al camping"
+        "plan_b_cena": "En Vejer"
       }
     },
     {
@@ -661,7 +663,7 @@
         {
           "titulo": "Si viene un frente atlántico: Aracena o la costa",
           "estado": "Pendiente",
-          "cuando": "El día 4 en Vejer, mirando la previsión de Aracena, Mértola y el Algarve de los días 5 y 6.",
+          "cuando": "La noche del 29 en Vejer, mirando la previsión de Aracena, Mértola y el Algarve de los días 5 y 6.",
           "alternativas": [
             {
               "nombre": "Por Aracena y la raya (plan)",
@@ -679,21 +681,18 @@
         }
       ],
       "alojamiento": {
-        "nombre": "Eco Camping El Madroñal",
-        "tipo": "Bungalow o casita",
-        "direccion": "HU-8114 km 0,6, Fuenteheridos (10 km pasado Aracena, sobre la ruta del día 6)",
+        "nombre": "Por elegir en Aracena",
+        "tipo": "Hostal o apartamento",
+        "direccion": "Aracena",
         "telefono": null,
         "estado": "Sin reservar",
-        "servicios": [
-          "Abierto todo el año",
-          "Taberna en el camping"
-        ],
+        "servicios": [],
         "pendiente_confirmar": [
-          "Reservar la noche del 30",
-          "Preguntar por calefacción en el bungalow (en la sierra hiela)",
+          "Booking, precios del 10 nov para 1 adulto (orientativos): Apartamento La Alberca 63 €; Casa Rural Cinco Balcones 78 €",
+          "Calefacción: en la sierra hiela",
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
-        "plan_b_cena": "Taberna del camping o en Fuenteheridos"
+        "plan_b_cena": "En Aracena"
       }
     },
     {
@@ -799,15 +798,15 @@
         "consejo": "Etapa larga del viaje: comer en Mértola y no entretenerse más de la cuenta. Llegada con luz de sobra."
       },
       "alojamiento": {
-        "nombre": "Por elegir (pensión u hotel en Loulé)",
+        "nombre": "Por elegir en Loulé",
         "tipo": "Pensión u hotel",
         "direccion": "Loulé",
         "telefono": null,
         "estado": "Sin reservar",
         "servicios": [],
         "pendiente_confirmar": [
-          "Nochevieja: reservar YA, y la cena de Nochevieja con ella",
-          "No hay camping en Loulé (el Orbitur de Quarteira cerró)",
+          "Nochevieja: reservar YA, y la cena con ella",
+          "Booking, precios del 10 nov para 1 adulto (orientativos): Casa Beny 1897 Guesthouse 70 €; Dom Fernando II 71 € con cancelación gratis",
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
         "plan_b_cena": "Reservar cena de Nochevieja"
@@ -923,27 +922,23 @@
       },
       "mantenimiento": {
         "que": "Engrasar la cadena al llegar (cadena caliente). Si llovió en la Costa Vicentina, secarla antes con un trapo.",
-        "km_acumulados": 1240,
-        "desde_la_ultima": 674,
+        "km_acumulados": 1298,
+        "desde_la_ultima": 673,
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       },
       "alojamiento": {
-        "nombre": "Camping Orbitur Sagres",
-        "tipo": "Bungalow (Vénus, 1 dormitorio) con cocina y calefacción",
-        "direccion": "Cerro das Moitas, Sagres (a 2 km del pueblo, junto al cabo de São Vicente)",
-        "telefono": "+351 282 624 371",
+        "nombre": "Por elegir en Sagres",
+        "tipo": "Pensión o guesthouse",
+        "direccion": "Sagres",
+        "telefono": null,
         "estado": "Sin reservar",
-        "servicios": [
-          "Abierto todo el año",
-          "Restaurante y bar",
-          "Tienda"
-        ],
+        "servicios": [],
         "pendiente_confirmar": [
-          "Reservar en orbitur.pt la noche del 1 de enero",
-          "Preguntar si el restaurante abre el día 1",
+          "Booking, precios del 10 nov para 1 adulto (orientativos): Casa Sarguito 49 €; Residencia Julio 55 €",
+          "Preguntar qué abre para cenar el día 1",
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
-        "plan_b_cena": "Restaurante del camping o en Sagres"
+        "plan_b_cena": "En Sagres"
       }
     },
     {
@@ -1039,21 +1034,18 @@
         "consejo": "La A22 tiene el firme gastado en algunos tramos: atención a los baches con la moto cargada."
       },
       "alojamiento": {
-        "nombre": "Camping Ria Formosa (o pensión en Tavira)",
-        "tipo": "Bungalow (son de 4-5 plazas) o pensión",
-        "direccion": "Quinta da Gomeira, Cabanas de Tavira (5 km de Tavira)",
+        "nombre": "Por elegir en Tavira",
+        "tipo": "Pensión o guesthouse",
+        "direccion": "Tavira",
         "telefono": null,
         "estado": "Sin reservar",
-        "servicios": [
-          "Abierto todo el año",
-          "Tienda"
-        ],
+        "servicios": [],
         "pendiente_confirmar": [
-          "Comparar precio del bungalow con una pensión en Tavira: para uno solo puede salir más barata la pensión",
+          "Booking, precios del 10 nov para 1 adulto (orientativos): Residencial Mares 63 €; A Muralha 70 €",
           "Lavandería",
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
-        "plan_b_cena": "En Tavira o Cabanas"
+        "plan_b_cena": "En Tavira"
       }
     },
     {
@@ -1062,14 +1054,14 @@
       "dia_semana": "domingo",
       "tipo": "autovía",
       "origen": "Tavira",
-      "destino": "Osuna",
-      "km_aprox": 263,
-      "tiempo_real_aprox": "3h15",
+      "destino": "Rute",
+      "km_aprox": 349,
+      "tiempo_real_aprox": "4h30",
       "dificultad": 2,
-      "fatiga": 2,
+      "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "09:30",
-      "llegada_prevista": "15:02",
+      "salida": "09:00",
+      "llegada_prevista": "16:06",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
@@ -1078,42 +1070,45 @@
           "lon": -7.41
         },
         {
-          "nombre": "Osuna",
-          "lat": 37.24,
-          "lon": -5.1
+          "nombre": "Rute",
+          "lat": 37.33,
+          "lon": -4.37
         }
       ],
       "waypoints": [
         "Tavira",
         "Castro Marim",
         "Ayamonte",
-        "Osuna"
+        "Estepa",
+        "Rute"
       ],
       "gpx": {
         "archivo": "gpx/dia-09.gpx",
         "track": "tracks/dia-09.json",
         "vias": [
           "Castro Marim",
-          "Ayamonte"
+          "Ayamonte",
+          "Estepa"
         ],
         "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
       },
-      "carreteras": "EN 125, A 22, A-49, A-92",
+      "carreteras": "EN 125, A 22, A-49, A-92, A-318, A-45, CO-7218",
       "notas": [
-        "Que ver: Castro Marim, el puente del Guadiana en Ayamonte y vuelta a Andalucía por Huelva y Sevilla hasta Osuna.",
-        "Conducción estimada con OSRM: 3h15. Llegada con 78 min de paradas (hora portuguesa la salida y española la llegada).",
-        "Al volver a España, adelantar el reloj una hora. Salida a las 09:30 hora portuguesa (10:30 en España).",
-        "Casi todo autovía (A-49, SE-40/SE-30, A-92): tapones rojos."
+        "Que ver: Castro Marim, el puente del Guadiana en Ayamonte y vuelta a Andalucía por Huelva, Sevilla y la A-92 hasta Estepa y Rute, a la entrada de la Subbética.",
+        "Conducción estimada con OSRM: 4h30. Llegada con 97 min de paradas (hora portuguesa la salida y española la llegada).",
+        "Al volver a España, adelantar el reloj una hora. Salida a las 09:00 hora portuguesa (10:00 en España); la llegada, en hora española.",
+        "Día largo pero casi todo autovía (A-49, SE-30, A-92): tapones rojos y parada cada hora.",
+        "Se duerme en Rute y no en Osuna para que el día 10 llegue a Mecina Alfahar sin pasar de las 4 h y pico."
       ],
       "google_maps": [
         {
-          "tramo": "Tavira → Castro Marim → Ayamonte → Osuna",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=37.12730,-7.64860&destination=37.23760,-5.10310&travelmode=driving&waypoints=37.22070,-7.44350%7C37.21300,-7.40500",
+          "tramo": "Tavira → Castro Marim → Ayamonte → Estepa → Rute",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.12730,-7.64860&destination=37.32690,-4.36830&travelmode=driving&waypoints=37.22070,-7.44350%7C37.21300,-7.40500%7C37.29260,-4.87900",
           "opciones": "Evitar autopistas: NO (la etapa es de enlace)"
         }
       ],
       "guia": {
-        "resumen": "Vuelta a España y enlace hasta la campiña sevillana. Osuna para dormir barato y cerca de la Subbética.",
+        "resumen": "Vuelta a España y enlace largo por autovía hasta Rute, en la Subbética, para dejar el día siguiente solo de curvas.",
         "ver": [
           {
             "lugar": "Castro Marim",
@@ -1123,43 +1118,49 @@
             "opcional": true
           },
           {
-            "lugar": "Osuna",
-            "tipo": "ciudad",
-            "que": "Colegiata, calle San Pedro y palacios barrocos.",
-            "tiempo": "1 h 30",
+            "lugar": "Estepa",
+            "tipo": "pueblo",
+            "que": "Balcón de Andalucía y obradores de mantecados (temporada alta en Navidad).",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Rute",
+            "tipo": "pueblo",
+            "que": "Pueblo del anís, con museos del anís y del turrón.",
+            "tiempo": "Tarde",
             "en_ruta": true
           }
         ],
         "comer": {
-          "donde": "En ruta, en un área de servicio pasada Sevilla, o al llegar a Osuna.",
-          "cena": "En Osuna.",
+          "donde": "En ruta, pasada Sevilla, o en Estepa.",
+          "cena": "En Rute.",
           "platos": [
-            "Gazpacho de invierno (porra)",
-            "Mantecados de Estepa"
+            "Mantecados de Estepa",
+            "Anís de Rute (solo al llegar)"
           ]
         },
-        "tarde": "Osuna a pie.",
+        "tarde": "Rute a pie.",
         "consejo": "La circunvalación de Sevilla es de mucho tráfico: carril derecho y distancia."
       },
       "mantenimiento": {
-        "que": "Engrasar la cadena al llegar a Osuna.",
-        "km_acumulados": 1663,
-        "desde_la_ultima": 422,
+        "que": "Engrasar la cadena al llegar a Rute.",
+        "km_acumulados": 1806,
+        "desde_la_ultima": 508,
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       },
       "alojamiento": {
-        "nombre": "Por elegir (hostal en Osuna)",
-        "tipo": "Hostal u hotel pequeño",
-        "direccion": "Osuna",
+        "nombre": "Por elegir en Rute",
+        "tipo": "Habitación con baño u hotel pequeño",
+        "direccion": "Rute (Córdoba)",
         "telefono": null,
         "estado": "Sin reservar",
         "servicios": [],
         "pendiente_confirmar": [
-          "Reservar la noche del 3",
-          "Que la moto duerma en garaje",
+          "Booking, precios del 10 nov para 1 adulto (orientativos): habitación en Casa Dulce Romero 55 €; Hotel Sierra de Araceli 48 € (a 10 km); Iznájar Suites 60 € (a 9 km)",
           "Que la moto duerma a cubierto o en recinto cerrado"
         ],
-        "plan_b_cena": "En Osuna"
+        "plan_b_cena": "En Rute"
       }
     },
     {
@@ -1167,72 +1168,72 @@
       "fecha": "2027-01-04",
       "dia_semana": "lunes",
       "tipo": "montaña",
-      "origen": "Osuna",
-      "destino": "Lanjarón",
-      "km_aprox": 252,
-      "tiempo_real_aprox": "3h50",
+      "origen": "Rute",
+      "destino": "Mecina Alfahar",
+      "km_aprox": 234,
+      "tiempo_real_aprox": "4h10",
       "dificultad": 3,
       "fatiga": 3,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
       "salida": "10:00",
-      "llegada_prevista": "15:20",
+      "llegada_prevista": "15:40",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
-          "nombre": "Iznájar",
-          "lat": 37.26,
-          "lon": -4.31
+          "nombre": "Órgiva",
+          "lat": 36.9,
+          "lon": -3.42
         },
         {
-          "nombre": "Lanjarón",
-          "lat": 36.92,
-          "lon": -3.48
+          "nombre": "Mecina Alfahar",
+          "lat": 37.0,
+          "lon": -3.07
         }
       ],
       "waypoints": [
-        "Osuna",
-        "Estepa",
         "Rute",
         "Iznájar",
         "Priego de Córdoba",
         "Alcalá la Real",
-        "Lanjarón"
+        "Lanjarón",
+        "Órgiva",
+        "Torvizcón",
+        "Cádiar",
+        "Ugíjar",
+        "Mecina Alfahar"
       ],
       "gpx": {
         "archivo": "gpx/dia-10.gpx",
         "track": "tracks/dia-10.json",
         "vias": [
-          "Estepa",
-          "Rute",
           "Iznájar",
           "Priego de Córdoba",
-          "Alcalá la Real"
+          "Alcalá la Real",
+          "Lanjarón",
+          "Órgiva",
+          "Torvizcón",
+          "Cádiar",
+          "Ugíjar"
         ],
         "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
       },
-      "carreteras": "A-92, A-318, A-45, CO-7218, A-331, A-333, A-339, N-432, GR-43, A-44, A-348",
+      "carreteras": "A-331, A-333, A-339, N-432, GR-43, A-44, A-348, A-4126",
       "notas": [
-        "Que ver: Estepa, la Subbética cordobesa: Rute, el embalse de Iznájar, Priego de Córdoba y Alcalá la Real, y bajada por Granada al valle de Lecrín hasta Lanjarón.",
-        "Conducción estimada con OSRM: 3h50. Llegada con 88 min de paradas (hora española).",
-        "Etapa larga pero fluida; si el día se tuerce, cortar en Granada."
+        "Que ver: La Subbética cordobesa: el embalse de Iznájar, Priego de Córdoba y Alcalá la Real; bajada por Granada y el valle de Lecrín a Lanjarón y la Alpujarra baja (Órgiva, Torvizcón, Cádiar, Ugíjar) hasta Mecina Alfahar.",
+        "Conducción estimada con OSRM: 4h10. Llegada con 92 min de paradas (hora española).",
+        "Etapa completa de curvas: si el día va justo, saltarse Alcalá la Real (de Priego a la A-44 por Loja) y ganar media hora.",
+        "Noche en Mecina Alfahar, sin coste: llegar con luz, que pasa de 800 m y por la tarde hiela."
       ],
       "google_maps": [
         {
-          "tramo": "Osuna → Estepa → Rute → Iznájar → Priego de Córdoba → Alcalá la Real → Lanjarón",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=37.23760,-5.10310&destination=36.91850,-3.48180&travelmode=driving&waypoints=37.29260,-4.87900%7C37.32690,-4.36830%7C37.25770,-4.30840%7C37.43810,-4.19520%7C37.46140,-3.92300",
+          "tramo": "Rute → Iznájar → Priego de Córdoba → Alcalá la Real → Lanjarón → Órgiva → Torvizcón → Cádiar → Ugíjar → Mecina Alfahar",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.32690,-4.36830&destination=36.99707,-3.06922&travelmode=driving&waypoints=37.25770,-4.30840%7C37.43810,-4.19520%7C37.46140,-3.92300%7C36.91850,-3.48180%7C36.90260,-3.42380%7C36.87700,-3.30000%7C36.94590,-3.18020%7C36.96090,-3.05520",
           "opciones": "Evitar autopistas: SÍ"
         }
       ],
       "guia": {
         "resumen": "Curvas fáciles entre olivares y embalses por la Subbética, y bajada a la Alpujarra.",
         "ver": [
-          {
-            "lugar": "Estepa",
-            "tipo": "pueblo",
-            "que": "Balcón de Andalucía y obradores de mantecados (temporada alta en Navidad).",
-            "tiempo": "30 min",
-            "en_ruta": true
-          },
           {
             "lugar": "Iznájar",
             "tipo": "pueblo",
@@ -1253,33 +1254,39 @@
             "que": "Fortaleza nazarí en lo alto del cerro.",
             "tiempo": "45 min",
             "opcional": true
+          },
+          {
+            "lugar": "Mirador de Cádiar y valle del Guadalfeo",
+            "tipo": "mirador",
+            "que": "Bancales y pueblos blancos bajo Sierra Nevada nevada.",
+            "tiempo": "15 min",
+            "en_ruta": true
           }
         ],
         "comer": {
           "donde": "En Priego de Córdoba.",
-          "cena": "En Lanjarón.",
+          "cena": "En Mecina Alfahar (comprar algo en Órgiva o Ugíjar al pasar).",
           "platos": [
             "Remojón",
             "Aceite de la Subbética con pan",
-            "Jamón de Trevélez"
+            "Plato alpujarreño"
           ]
         },
-        "tarde": "Lanjarón: paseo corto y descanso.",
-        "consejo": "Si el día va justo, saltarse Alcalá la Real y bajar directo por la A-44."
+        "tarde": "Llegada a Mecina Alfahar y descanso.",
+        "consejo": "Comprar la cena en Órgiva o Ugíjar: el 4 de enero por la tarde en los pueblos pequeños puede no haber nada abierto."
       },
       "alojamiento": {
-        "nombre": "Por elegir en Lanjarón (o Camping Órgiva, ver propuestas)",
-        "tipo": "Hotel o hostal",
-        "direccion": "Lanjarón",
+        "nombre": "Cama propia en Mecina Alfahar",
+        "tipo": "Sin coste",
+        "direccion": "Mecina Alfahar (Válor, Alpujarra)",
         "telefono": null,
-        "estado": "Sin reservar",
+        "estado": "Confirmado",
         "servicios": [],
         "pendiente_confirmar": [
-          "Muchos hoteles de Lanjarón cierran en invierno: confirmar",
-          "Alternativa: Camping Órgiva, abierto todo el año, 8 km más adelante en la misma A-348",
-          "Que la moto duerma a cubierto o en recinto cerrado"
+          "Avisar de la llegada el 4 de enero",
+          "Calefacción o leña: a 820 m hiela"
         ],
-        "plan_b_cena": "En el pueblo"
+        "plan_b_cena": "Comprar la cena en Órgiva o Ugíjar al pasar"
       }
     },
     {
@@ -1287,21 +1294,21 @@
       "fecha": "2027-01-05",
       "dia_semana": "martes",
       "tipo": "montaña",
-      "origen": "Lanjarón",
+      "origen": "Mecina Alfahar",
       "destino": "Almería",
-      "km_aprox": 147,
-      "tiempo_real_aprox": "3h00",
+      "km_aprox": 88,
+      "tiempo_real_aprox": "1h45",
       "dificultad": 3,
-      "fatiga": 2,
+      "fatiga": 1,
       "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
-      "salida": "10:00",
-      "llegada_prevista": "14:18",
+      "salida": "10:30",
+      "llegada_prevista": "13:11",
       "zona_horaria": "Europe/Madrid",
       "meteo_puntos": [
         {
-          "nombre": "Ugíjar",
-          "lat": 36.96,
-          "lon": -3.06
+          "nombre": "Canjáyar",
+          "lat": 37.01,
+          "lon": -2.74
         },
         {
           "nombre": "Almería",
@@ -1310,11 +1317,7 @@
         }
       ],
       "waypoints": [
-        "Lanjarón",
-        "Órgiva",
-        "Torvizcón",
-        "Cádiar",
-        "Ugíjar",
+        "Mecina Alfahar",
         "Laujar de Andarax",
         "Canjáyar",
         "Almería"
@@ -1323,38 +1326,27 @@
         "archivo": "gpx/dia-11.gpx",
         "track": "tracks/dia-11.json",
         "vias": [
-          "Órgiva",
-          "Torvizcón",
-          "Cádiar",
-          "Ugíjar",
           "Laujar de Andarax",
           "Canjáyar"
         ],
         "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
       },
-      "carreteras": "A-348, AL-5402, A-1180, N-340A, A-7",
+      "carreteras": "A-4126, A-348, AL-5402, A-1180, N-340A, A-7",
       "notas": [
-        "Que ver: La Alpujarra por abajo: Órgiva, Torvizcón, Cádiar, Ugíjar y Laujar de Andarax, y la A-348 por Canjáyar hasta casa.",
-        "Conducción estimada con OSRM: 3h00. Llegada con 76 min de paradas (hora española).",
-        "La A-348 entre Ugíjar y Laujar pasa de 900 m: salida a las 10:00 por el hielo."
+        "Que ver: De Mecina Alfahar a casa por Laujar de Andarax y la A-348 por Canjáyar.",
+        "Conducción estimada con OSRM: 1h45. Llegada con 56 min de paradas (hora española).",
+        "Día corto: salida a las 10:30 por el hielo de la A-348 (pasa de 900 m) y en casa a la hora de comer."
       ],
       "google_maps": [
         {
-          "tramo": "Lanjarón → Órgiva → Torvizcón → Cádiar → Ugíjar → Laujar de Andarax → Canjáyar → Almería",
-          "url": "https://www.google.com/maps/dir/?api=1&origin=36.91850,-3.48180&destination=36.83810,-2.45970&travelmode=driving&waypoints=36.90260,-3.42380%7C36.87700,-3.30000%7C36.94590,-3.18020%7C36.96090,-3.05520%7C36.99520,-2.89030%7C37.00960,-2.73940",
+          "tramo": "Mecina Alfahar → Laujar de Andarax → Canjáyar → Almería",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.99707,-3.06922&destination=36.83810,-2.45970&travelmode=driving&waypoints=36.99520,-2.89030%7C37.00960,-2.73940",
           "opciones": "Evitar autopistas: SÍ"
         }
       ],
       "guia": {
-        "resumen": "Último día corto por la Alpujarra baja y la sierra de Gádor: en casa a media tarde.",
+        "resumen": "Último día corto por Laujar y la sierra de Gádor: en casa a la hora de comer.",
         "ver": [
-          {
-            "lugar": "Mirador de Cádiar y valle del Guadalfeo",
-            "tipo": "mirador",
-            "que": "Bancales y pueblos blancos bajo Sierra Nevada nevada.",
-            "tiempo": "15 min",
-            "en_ruta": true
-          },
           {
             "lugar": "Laujar de Andarax",
             "tipo": "pueblo",
@@ -1372,7 +1364,7 @@
           ]
         },
         "tarde": "Descargar la moto, cadena y fotos.",
-        "consejo": "Con hielo en la A-348 a primera hora, esperar en Órgiva o Cádiar: el día da de sobra."
+        "consejo": "Con hielo en la A-348 a primera hora, esperar en Mecina: el día da de sobra."
       },
       "alojamiento": null
     }
@@ -1389,16 +1381,16 @@
     {
       "noche": 2,
       "fecha": "2026-12-27",
-      "lugar": "Ronda",
-      "alojamiento": "Camping El Sur (Complejo Turístico El Sur)",
-      "telefono": "+34 952 87 59 39",
-      "estado": "Sin reservar"
+      "lugar": "Mijas",
+      "alojamiento": "Cama propia en Mijas",
+      "telefono": null,
+      "estado": "Confirmado"
     },
     {
       "noche": 3,
       "fecha": "2026-12-28",
-      "lugar": "Vejer de la Frontera",
-      "alojamiento": "Camping Vejer",
+      "lugar": "Ronda",
+      "alojamiento": "Por elegir en Ronda",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1406,7 +1398,7 @@
       "noche": 4,
       "fecha": "2026-12-29",
       "lugar": "Vejer de la Frontera",
-      "alojamiento": "Camping Vejer",
+      "alojamiento": "La Janda (candidato)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1414,7 +1406,7 @@
       "noche": 5,
       "fecha": "2026-12-30",
       "lugar": "Aracena",
-      "alojamiento": "Eco Camping El Madroñal",
+      "alojamiento": "Por elegir en Aracena",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1422,7 +1414,7 @@
       "noche": 6,
       "fecha": "2026-12-31",
       "lugar": "Loulé",
-      "alojamiento": "Por elegir (pensión u hotel en Loulé)",
+      "alojamiento": "Por elegir en Loulé",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1430,33 +1422,33 @@
       "noche": 7,
       "fecha": "2027-01-01",
       "lugar": "Sagres",
-      "alojamiento": "Camping Orbitur Sagres",
-      "telefono": "+351 282 624 371",
+      "alojamiento": "Por elegir en Sagres",
+      "telefono": null,
       "estado": "Sin reservar"
     },
     {
       "noche": 8,
       "fecha": "2027-01-02",
       "lugar": "Tavira",
-      "alojamiento": "Camping Ria Formosa (o pensión en Tavira)",
+      "alojamiento": "Por elegir en Tavira",
       "telefono": null,
       "estado": "Sin reservar"
     },
     {
       "noche": 9,
       "fecha": "2027-01-03",
-      "lugar": "Osuna",
-      "alojamiento": "Por elegir (hostal en Osuna)",
+      "lugar": "Rute",
+      "alojamiento": "Por elegir en Rute",
       "telefono": null,
       "estado": "Sin reservar"
     },
     {
       "noche": 10,
       "fecha": "2027-01-04",
-      "lugar": "Lanjarón",
-      "alojamiento": "Por elegir en Lanjarón (o Camping Órgiva, ver propuestas)",
+      "lugar": "Mecina Alfahar",
+      "alojamiento": "Cama propia en Mecina Alfahar",
       "telefono": null,
-      "estado": "Sin reservar"
+      "estado": "Confirmado"
     }
   ],
   "contactos": {
@@ -1582,6 +1574,7 @@
           1,
           2,
           3,
+          4,
           7,
           10,
           11
@@ -1659,7 +1652,7 @@
       "Presiones en frío cada 2-3 días: 2,0 delante / 2,5 detrás",
       "Cargar maletas en 5 minutos (cada cosa en su sitio)",
       "Cable recordatorio del Abus fuera antes de arrancar",
-      "Salir a las 09:30 (10:00 los días de sierra: 1, 2, 3, 10 y 11)"
+      "Salir a las 09:30 (10:00 los días de sierra 1, 2, 3 y 10; 10:30 el último)"
     ],
     "en_ruta": [
       "Parada cada 60-90 min con algo caliente",
@@ -1678,9 +1671,9 @@
     "filosofia": "Ropa para 4-5 días y dos lavados. El SIXS se lava a mano cada noche (seca en 2-3 h con calefacción).",
     "lavados": [
       {
-        "noche": 4,
-        "lugar": "Vejer",
-        "como": "Lavandería del alojamiento o autoservicio (día libre)"
+        "noche": 2,
+        "lugar": "Mijas",
+        "como": "Lavadora en casa (tarde libre)"
       },
       {
         "noche": 8,
@@ -1859,23 +1852,23 @@
         "hecho": false
       },
       {
-        "que": "YA: Loulé para Nochevieja (alojamiento y cena)",
+        "que": "YA: Loulé para Nochevieja (alojamiento y cena) y Ronda (noche del 28), que se llena",
         "hecho": false
       },
       {
-        "que": "YA: Camping Vejer, noches 28 y 29 (confirmar que abre)",
+        "que": "Avisar en Mijas (noche del 27) y en Mecina Alfahar (noche del 4 de enero)",
         "hecho": false
       },
       {
-        "que": "Antes del 1 dic: Orbitur Sagres (noche 1 ene) y Camping El Sur en Ronda (noche 27)",
+        "que": "Antes del 1 dic: Vejer (29) y Sagres (1 ene)",
         "hecho": false
       },
       {
-        "que": "Antes del 15 dic: Alhama, Aracena/Fuenteheridos, Tavira, Osuna y Lanjarón u Órgiva",
+        "que": "Antes del 15 dic: Alhama (26), Aracena (30), Tavira (2 ene) y Rute (3 ene)",
         "hecho": false
       },
       {
-        "que": "Reservas con cancelación gratis siempre que se pueda: el plan se mueve con la lluvia",
+        "que": "En Booking: nota de 8,5 o más, cancelación gratis, parking o garaje, y leer comentarios recientes sobre la cama y la calefacción",
         "hecho": false
       }
     ],
@@ -1903,7 +1896,7 @@
     ],
     "dinero": [
       {
-        "que": "Presupuesto orientativo (estimación, no precios consultados): 650-800 € optimista, 900-1.100 € pesimista. Alojamiento 40-60 € la noche, comida 25-40 € al día y unos 170-200 € de gasolina",
+        "que": "Presupuesto orientativo con precios de Booking del 10 nov: 900-1.200 €. Dormir unos 420-470 € (8 noches de pago; Mijas y Mecina gratis), comida 25-40 € al día y unos 180 € de gasolina",
         "hecho": false
       },
       {
