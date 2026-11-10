@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": 2,
-    "revision": 1,
+    "revision": 2,
     "actualizado": "2026-11-10",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
-      "Plan inicial (2026-11-10): alternativa barata a Marruecos para Navidad, por la zona más seca de la península en invierno. Bucle de 11 días (10 de moto y 1 libre en Vejer): Costa Tropical y Carretera de la Cabra, Torcal y Serranía de Ronda, Grazalema, Vejer, Aracena, Mértola y la EN2, Monchique y la Costa Vicentina, Sagres, Tavira, Subbética y Alpujarra. Tracks aproximados con OSRM. Fechas provisionales: 26 dic – 5 ene, con margen hasta el fin de las vacaciones."
+      "Plan inicial (2026-11-10): alternativa barata a Marruecos para Navidad, por la zona más seca de la península en invierno. Bucle de 11 días (10 de moto y 1 libre en Vejer): Costa Tropical y Carretera de la Cabra, Torcal y Serranía de Ronda, Grazalema, Vejer, Aracena, Mértola y la EN2, Monchique y la Costa Vicentina, Sagres, Tavira, Subbética y Alpujarra. Tracks aproximados con OSRM. Fechas provisionales: 26 dic – 5 ene, con margen hasta el fin de las vacaciones.",
+      "Organización (2026-11-10): alojamiento candidato para cada noche, buscando campings con bungalow abiertos en invierno (Ronda, Vejer, Fuenteheridos, Sagres, Cabanas de Tavira) y hostal donde no hay; fechas de vacaciones (26 dic – 9 ene) con margen del 6 al 9; calendario de reservas y revisión de la moto."
     ]
   },
   "proyecto": {
@@ -20,7 +21,9 @@
       "fin": "2027-01-05",
       "dias": 11,
       "noches": 10,
-      "provisionales": true
+      "provisionales": true,
+      "vacaciones": "15 días naturales: del 26 dic al 9 ene",
+      "margen": "Del 6 al 9 de enero libres: si un frente obliga a parar uno o dos días, se corre todo sin perder nada. Reyes en casa."
     },
     "distancia_total_aprox_km": 2062,
     "moto": {
@@ -195,16 +198,20 @@
         "consejo": "Repostar en Almuñécar: hasta Alhama no hay apenas gasolineras."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Alhama de Granada",
+        "nombre": "Hostal Ana (candidato)",
+        "tipo": "Hostal, habitación con baño",
+        "direccion": "Carretera de Granada 8, Alhama de Granada",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Hostal u hotel pequeño en el pueblo",
+        "servicios": [
+          "Recepción 24 h"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Aparcamiento solo en la calle: preguntar si hay sitio a cubierto para la moto",
+          "Alternativa con parking gratis: Hotel Balneario de Alhama (1,4 km del pueblo), más caro",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "En el pueblo; comprar algo en Almuñécar por si acaso (es sábado 26)"
       }
     },
     {
@@ -316,16 +323,22 @@
         "consejo": "Si hace niebla en el Torcal (pasa a menudo), no subir al mirador: no se ve nada y el asfalto va húmedo."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Ronda",
-        "telefono": null,
+        "nombre": "Camping El Sur (Complejo Turístico El Sur)",
+        "tipo": "Bungalow de madera con calefacción y cocina",
+        "direccion": "Ctra. Ronda–Algeciras (A-369) km 1,5, Ronda",
+        "telefono": "+34 952 87 59 39",
         "estado": "Sin reservar",
-        "tipo": "Hostal fuera del centro con garaje (en el centro aparcar es difícil)",
+        "servicios": [
+          "Abierto todo el año",
+          "Restaurante",
+          "Tienda",
+          "Parking junto al bungalow"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Reservar bungalow para 1 persona la noche del 27",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "Restaurante del camping o en Ronda (a unos 20 min andando)"
       }
     },
     {
@@ -458,17 +471,23 @@
         }
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Vejer de la Frontera",
+        "nombre": "Camping Vejer",
+        "tipo": "Bungalow con baño y cocina",
+        "direccion": "N-340 km 39,5, Vejer de la Frontera (en un pinar, 3 km del pueblo)",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Hostal o apartamento para dos noches; mejor abajo, en La Barca de Vejer, si el casco antiguo no tiene sitio para la moto",
+        "servicios": [
+          "Bar",
+          "Tienda",
+          "Lavadoras",
+          "Al lado, restaurante El Valenciano"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Reservar las dos noches (28 y 29 dic)",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Confirmar que abre en diciembre (figura como abierto en invierno)",
+          "Reservar las dos noches, 28 y 29",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "Restaurante El Valenciano, junto al camping"
       }
     },
     {
@@ -537,16 +556,21 @@
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Vejer de la Frontera",
+        "nombre": "Camping Vejer",
+        "tipo": "Bungalow con baño y cocina",
+        "direccion": "N-340 km 39,5, Vejer de la Frontera (en un pinar, 3 km del pueblo)",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Misma reserva que la noche 3",
+        "servicios": [
+          "Bar",
+          "Tienda",
+          "Lavadoras",
+          "Al lado, restaurante El Valenciano"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Misma reserva que la noche 28"
+        ],
+        "plan_b_cena": "Restaurante El Valenciano, junto al camping"
       }
     },
     {
@@ -655,16 +679,21 @@
         }
       ],
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Aracena",
+        "nombre": "Eco Camping El Madroñal",
+        "tipo": "Bungalow o casita",
+        "direccion": "HU-8114 km 0,6, Fuenteheridos (10 km pasado Aracena, sobre la ruta del día 6)",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Hostal u hotel pequeño",
+        "servicios": [
+          "Abierto todo el año",
+          "Taberna en el camping"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Reservar la noche del 30",
+          "Preguntar por calefacción en el bungalow (en la sierra hiela)",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "Taberna del camping o en Fuenteheridos"
       }
     },
     {
@@ -770,17 +799,18 @@
         "consejo": "Etapa larga del viaje: comer en Mértola y no entretenerse más de la cuenta. Llegada con luz de sobra."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
+        "nombre": "Por elegir (pensión u hotel en Loulé)",
+        "tipo": "Pensión u hotel",
         "direccion": "Loulé",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Pensión u hotel (Nochevieja: de las primeras en reservar)",
+        "servicios": [],
         "pendiente_confirmar": [
-          "Nochevieja: reservar de los primeros (y la cena)",
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Nochevieja: reservar YA, y la cena de Nochevieja con ella",
+          "No hay camping en Loulé (el Orbitur de Quarteira cerró)",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "Reservar cena de Nochevieja"
       }
     },
     {
@@ -898,16 +928,22 @@
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Sagres",
-        "telefono": null,
+        "nombre": "Camping Orbitur Sagres",
+        "tipo": "Bungalow (Vénus, 1 dormitorio) con cocina y calefacción",
+        "direccion": "Cerro das Moitas, Sagres (a 2 km del pueblo, junto al cabo de São Vicente)",
+        "telefono": "+351 282 624 371",
         "estado": "Sin reservar",
-        "tipo": "Pensión, guesthouse o bungalow de camping si hay alguno abierto en invierno",
+        "servicios": [
+          "Abierto todo el año",
+          "Restaurante y bar",
+          "Tienda"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Reservar en orbitur.pt la noche del 1 de enero",
+          "Preguntar si el restaurante abre el día 1",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "Restaurante del camping o en Sagres"
       }
     },
     {
@@ -1003,16 +1039,21 @@
         "consejo": "La A22 tiene el firme gastado en algunos tramos: atención a los baches con la moto cargada."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
-        "direccion": "Tavira",
+        "nombre": "Camping Ria Formosa (o pensión en Tavira)",
+        "tipo": "Bungalow (son de 4-5 plazas) o pensión",
+        "direccion": "Quinta da Gomeira, Cabanas de Tavira (5 km de Tavira)",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Pensión o guesthouse; preguntar por lavandería",
+        "servicios": [
+          "Abierto todo el año",
+          "Tienda"
+        ],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Comparar precio del bungalow con una pensión en Tavira: para uno solo puede salir más barata la pensión",
+          "Lavandería",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "En Tavira o Cabanas"
       }
     },
     {
@@ -1107,16 +1148,18 @@
         "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
+        "nombre": "Por elegir (hostal en Osuna)",
+        "tipo": "Hostal u hotel pequeño",
         "direccion": "Osuna",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Hostal u hotel pequeño",
+        "servicios": [],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Reservar la noche del 3",
+          "Que la moto duerma en garaje",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "En Osuna"
       }
     },
     {
@@ -1225,16 +1268,18 @@
         "consejo": "Si el día va justo, saltarse Alcalá la Real y bajar directo por la A-44."
       },
       "alojamiento": {
-        "nombre": "Por elegir",
+        "nombre": "Por elegir en Lanjarón (o Camping Órgiva, ver propuestas)",
+        "tipo": "Hotel o hostal",
         "direccion": "Lanjarón",
         "telefono": null,
         "estado": "Sin reservar",
-        "tipo": "Hotel de balneario o hostal; muchos cierran en invierno: confirmar",
+        "servicios": [],
         "pendiente_confirmar": [
-          "Reservar y anotar el teléfono",
-          "Que la moto duerma en garaje o patio cerrado",
-          "Calefacción en la habitación"
-        ]
+          "Muchos hoteles de Lanjarón cierran en invierno: confirmar",
+          "Alternativa: Camping Órgiva, abierto todo el año, 8 km más adelante en la misma A-348",
+          "Que la moto duerma a cubierto o en recinto cerrado"
+        ],
+        "plan_b_cena": "En el pueblo"
       }
     },
     {
@@ -1337,7 +1382,7 @@
       "noche": 1,
       "fecha": "2026-12-26",
       "lugar": "Alhama de Granada",
-      "alojamiento": "Hostal u hotel pequeño en el pueblo",
+      "alojamiento": "Hostal Ana (candidato)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1345,15 +1390,15 @@
       "noche": 2,
       "fecha": "2026-12-27",
       "lugar": "Ronda",
-      "alojamiento": "Hostal fuera del centro con garaje (en el centro aparcar es difícil)",
-      "telefono": null,
+      "alojamiento": "Camping El Sur (Complejo Turístico El Sur)",
+      "telefono": "+34 952 87 59 39",
       "estado": "Sin reservar"
     },
     {
       "noche": 3,
       "fecha": "2026-12-28",
       "lugar": "Vejer de la Frontera",
-      "alojamiento": "Hostal o apartamento para dos noches; mejor abajo, en La Barca de Vejer, si el casco antiguo no tiene sitio para la moto",
+      "alojamiento": "Camping Vejer",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1361,7 +1406,7 @@
       "noche": 4,
       "fecha": "2026-12-29",
       "lugar": "Vejer de la Frontera",
-      "alojamiento": "Misma reserva que la noche 3",
+      "alojamiento": "Camping Vejer",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1369,7 +1414,7 @@
       "noche": 5,
       "fecha": "2026-12-30",
       "lugar": "Aracena",
-      "alojamiento": "Hostal u hotel pequeño",
+      "alojamiento": "Eco Camping El Madroñal",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1377,7 +1422,7 @@
       "noche": 6,
       "fecha": "2026-12-31",
       "lugar": "Loulé",
-      "alojamiento": "Pensión u hotel (Nochevieja: de las primeras en reservar)",
+      "alojamiento": "Por elegir (pensión u hotel en Loulé)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1385,15 +1430,15 @@
       "noche": 7,
       "fecha": "2027-01-01",
       "lugar": "Sagres",
-      "alojamiento": "Pensión, guesthouse o bungalow de camping si hay alguno abierto en invierno",
-      "telefono": null,
+      "alojamiento": "Camping Orbitur Sagres",
+      "telefono": "+351 282 624 371",
       "estado": "Sin reservar"
     },
     {
       "noche": 8,
       "fecha": "2027-01-02",
       "lugar": "Tavira",
-      "alojamiento": "Pensión o guesthouse; preguntar por lavandería",
+      "alojamiento": "Camping Ria Formosa (o pensión en Tavira)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1401,7 +1446,7 @@
       "noche": 9,
       "fecha": "2027-01-03",
       "lugar": "Osuna",
-      "alojamiento": "Hostal u hotel pequeño",
+      "alojamiento": "Por elegir (hostal en Osuna)",
       "telefono": null,
       "estado": "Sin reservar"
     },
@@ -1409,7 +1454,7 @@
       "noche": 10,
       "fecha": "2027-01-04",
       "lugar": "Lanjarón",
-      "alojamiento": "Hotel de balneario o hostal; muchos cierran en invierno: confirmar",
+      "alojamiento": "Por elegir en Lanjarón (o Camping Órgiva, ver propuestas)",
       "telefono": null,
       "estado": "Sin reservar"
     }
@@ -1810,19 +1855,35 @@
     ],
     "reservas": [
       {
-        "que": "Pedir las vacaciones y confirmar las fechas (plan del 26 dic al 5 ene, con margen)",
+        "que": "Pedir las vacaciones del 26 dic al 9 ene",
         "hecho": false
       },
       {
-        "que": "Loulé (Nochevieja) y Vejer (dos noches) primero",
+        "que": "YA: Loulé para Nochevieja (alojamiento y cena)",
         "hecho": false
       },
       {
-        "que": "Resto de alojamientos, mirando que la moto duerma a cubierto",
+        "que": "YA: Camping Vejer, noches 28 y 29 (confirmar que abre)",
+        "hecho": false
+      },
+      {
+        "que": "Antes del 1 dic: Orbitur Sagres (noche 1 ene) y Camping El Sur en Ronda (noche 27)",
+        "hecho": false
+      },
+      {
+        "que": "Antes del 15 dic: Alhama, Aracena/Fuenteheridos, Tavira, Osuna y Lanjarón u Órgiva",
+        "hecho": false
+      },
+      {
+        "que": "Reservas con cancelación gratis siempre que se pueda: el plan se mueve con la lluvia",
         "hecho": false
       }
     ],
     "moto_y_equipo": [
+      {
+        "que": "Revisión de la moto la semana del 14 dic: neumáticos, pastillas, cadena y kit, y aceite si le toca",
+        "hecho": false
+      },
       {
         "que": "Revisión antes de salir: neumáticos con dibujo de sobra para 2.100 km con frío y mojado, pastillas y cadena",
         "hecho": false
