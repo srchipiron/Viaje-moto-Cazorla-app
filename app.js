@@ -1914,6 +1914,7 @@ function viewGuia() {
   return `${viajesHTML()}${conGuia.length ? `<h2>Guía turística por etapa</h2>
     <div class="card"><p class="muted">Qué ver, dónde parar, qué comer y qué hacer por la tarde. Está en la ficha de cada día.</p>
       <div class="guia-index">${conGuia.map((e) => `<a class="guia-link" href="#/etapas/${e.dia}"><span class="badge">Día ${e.dia}</span><span>${esc((d.alojamientos_resumen.find((n) => n.fecha === e.fecha) || {}).lugar || e.destino.replace(/\s*\(.*\)\s*$/, ''))}</span><small>${esc((e.guia.ver || []).filter((v) => !v.opcional).slice(0, 3).map((v) => v.lugar).join(' · '))}</small></a>`).join('')}</div></div>` : ''}
+    ${idiomaHTML(d.idioma)}
     <h2>Rutas en Kurviger</h2>
     ${rutasKurvigerHTML()}
     <p class="row"><a class="btn" href="#/pueblos">🏘️ ¿Me acerco a ese pueblo?</a> <a class="btn" href="#/radares">📷 Radares</a> <a class="btn" href="#/gasolina">⛽ Gasolina</a></p>
@@ -1935,6 +1936,14 @@ function viewGuia() {
     <div class="card"><p><b>JSON v${meta.version}${meta.revision ? `.${meta.revision}` : ''}</b> · actualizado ${meta.actualizado}${meta.sustituye_a ? `<br><small>${esc(meta.sustituye_a)}</small>` : ''}</p>${meta.uso ? `<p><small>${esc(meta.uso)}</small></p>` : ''}${meta.cambios.length ? `<details><summary>Cambios en v${meta.version}</summary>${list(meta.cambios)}</details>` : ''}<p><small>Viaje <code>${esc(V.id || '')}</code>: <code>${esc(V.base || '')}viaje.json</code></small></p></div>`;
 }
 
+/* Seccion opcional "idioma" del plan: que se habla, consejos y tabla de frases con pronunciacion. */
+function idiomaHTML(i) {
+  if (!i) return '';
+  const frases = Array.isArray(i.frases) ? i.frases : [];
+  return `<h2>Idioma y frases</h2>
+    <div class="card">${i.resumen ? `<p>${esc(i.resumen)}</p>` : ''}${Array.isArray(i.donde) && i.donde.length ? `<dl>${i.donde.map((x) => `<dt>${esc(x.zona)}</dt><dd>${esc(x.que)}</dd>`).join('')}</dl>` : ''}${Array.isArray(i.consejos) && i.consejos.length ? list(i.consejos) : ''}</div>
+    ${frases.length ? `<div class="card"><h3>Frases útiles</h3><div class="tbl-wrap"><table class="vias"><thead><tr><th>Para</th><th>Frase</th><th>Se dice</th></tr></thead><tbody>${frases.map((f) => `<tr><td>${esc(f.para)}</td><td><b>${esc(f.frase)}</b></td><td><small>${esc(f.pron || '')}</small></td></tr>`).join('')}</tbody></table></div>${i.nota ? `<p><small>${esc(i.nota)}</small></p>` : ''}</div>` : ''}`;
+}
 /* Resumen de la poliza (sin datos personales). full=true: version completa para la Guia. */
 function seguroHTML(full) {
   const s = D.data.seguro; if (!s) return '';
