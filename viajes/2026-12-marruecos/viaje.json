@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 2,
-    "revision": 9,
+    "revision": 10,
     "actualizado": "2026-11-09",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
@@ -14,7 +14,8 @@
       "Fez con día entero (2026-11-09): el día 14 queda libre en Fez (dos noches en el riad) y el 15 va de Fez a Nador del tirón (346 km, 4h55). Se quita la noche de Taza. Tope de conducción subido a unas 5 h, siempre llegando con luz. Cadena en los días 5, 8 y 11.",
       "Radares (2026-11-09): 94 radares fijos de OpenStreetMap en la zona del viaje, 12 sobre la ruta (tools/radares_osm.py). Lista incompleta y sin móviles.",
       "Móvil (2026-11-09): pasos con Digi antes de salir y SIM de Maroc Telecom el día 1 por la mañana en Nador.",
-      "Gasolineras y navegación (2026-11-09): gasolineras de OpenStreetMap en cada etapa con el tramo más largo sin ninguna (máximo 58 km, día 9), y un botón por día para abrir la etapa en Google Maps con sus puntos de paso."
+      "Gasolineras y navegación (2026-11-09): gasolineras de OpenStreetMap en cada etapa con el tramo más largo sin ninguna (máximo 58 km, día 9), y un botón por día para abrir la etapa en Google Maps con sus puntos de paso.",
+      "Idioma (2026-11-10): qué se habla en cada zona, consejos y tabla de frases útiles en la Guía."
     ]
   },
   "proyecto": {
@@ -1919,6 +1920,10 @@
         "hecho": false
       },
       {
+        "que": "Google Translate: descargar francés y árabe sin conexión",
+        "hecho": false
+      },
+      {
         "que": "Mapas sin conexión de Marruecos en Google Maps y Kurviger, y Radarbot con la base descargada",
         "hecho": false
       },
@@ -2357,5 +2362,90 @@
       "estado": "Sin reservar",
       "nota": "Facturar la moto hacia las 21:30. El domingo 10 queda libre en Nador como margen por si la nieve retrasa un día la vuelta. Llegada a casa el lunes 11 por la mañana, último día de vacaciones."
     }
-  ]
+  ],
+  "idioma": {
+    "resumen": "En la calle se habla dariya (árabe marroquí), y en el Atlas y el sur también bereber. El francés es la segunda lengua de carteles, gasolineras, bancos y policía. Con español, algo de inglés y el traductor del móvil te apañas en toda la ruta.",
+    "donde": [
+      {
+        "zona": "Norte (Nador, Guercif, Taza)",
+        "que": "Mucha gente entiende español: antigua zona del protectorado y junto a Melilla."
+      },
+      {
+        "zona": "Zona turística (Merzouga, Todra, Dadès, Aït Ben Haddou, Zagora, medina de Fez)",
+        "que": "En alojamientos, guías y restaurantes se manejan en español o inglés."
+      },
+      {
+        "zona": "Gasolineras de pueblo, controles, cajeros y gente mayor",
+        "que": "Francés o dariya: aquí sirven las frases de abajo y el traductor."
+      }
+    ],
+    "consejos": [
+      "Antes de salir, descargar en Google Translate los paquetes sin conexión de francés y árabe; la cámara traduce carteles y menús.",
+      "Saludar en su idioma (salam alaikum, shukran) y sonreír cambia el trato.",
+      "En los controles de policía casi no hace falta hablar: parar, saludar, quitarse el casco y enseñar los papeles. Si preguntan: «tourist, Espagne» y la ruta en el móvil."
+    ],
+    "frases": [
+      {
+        "para": "Saludar",
+        "frase": "Salam alaikum / Bonjour",
+        "pron": "salam aléikum / bonyúr"
+      },
+      {
+        "para": "Gracias",
+        "frase": "Shukran / Merci",
+        "pron": "shúkran / mersí"
+      },
+      {
+        "para": "Sí / No",
+        "frase": "Iyeh / La (Oui / Non)",
+        "pron": "iyé / la"
+      },
+      {
+        "para": "¿Cuánto cuesta?",
+        "frase": "Combien ? / Bshhal ?",
+        "pron": "combién / bshál"
+      },
+      {
+        "para": "Lleno, gasolina sin plomo",
+        "frase": "Le plein, sans plomb",
+        "pron": "le plan, san plon"
+      },
+      {
+        "para": "¿Dónde está…?",
+        "frase": "Où est… ?",
+        "pron": "u é"
+      },
+      {
+        "para": "Habitación para una persona",
+        "frase": "Une chambre pour une personne",
+        "pron": "ün shambr pur ün persón"
+      },
+      {
+        "para": "¿Hay garaje para la moto?",
+        "frase": "Il y a un garage pour la moto ?",
+        "pron": "il ia an garásh pur la mottó"
+      },
+      {
+        "para": "No, gracias (a vendedores)",
+        "frase": "La, shukran",
+        "pron": "la shúkran"
+      },
+      {
+        "para": "Ayuda / Avería",
+        "frase": "Au secours / En panne",
+        "pron": "o secúr / an pan"
+      },
+      {
+        "para": "Hospital / Policía",
+        "frase": "Hôpital / Police",
+        "pron": "opitál / polís"
+      },
+      {
+        "para": "La cuenta",
+        "frase": "L'addition",
+        "pron": "ladisión"
+      }
+    ],
+    "nota": "La pronunciación está escrita a la española y es aproximada."
+  }
 }
