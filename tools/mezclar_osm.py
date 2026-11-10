@@ -42,9 +42,8 @@ def main(csv_path, psv_path, vid=None):
     rad['fuente'] = rad['fuente'] + ' + OpenStreetMap (fuera de España, ODbL)'
     rad['aviso'] = ((rad.get('aviso') or '') + ' Fuera de España, solo los radares fijos mapeados en OpenStreetMap: '
                     'la lista está incompleta (en Portugal faltan muchos de la red SINCRO y todos los móviles).').strip()
-    j = json.dumps(rad, ensure_ascii=False, separators=(',', ':'))
-    j = j.replace('],[', '],\n[').replace('"radares":[', '"radares":[\n').replace('],"tramos"', '\n],"tramos"')
-    open(os.path.join(carpeta, 'radares.json'), 'w', encoding='utf-8').write(j + '\n')
+    import tramos_linea
+    tramos_linea.escribir(rad, os.path.join(carpeta, 'radares.json'))
 
     # Gasolineras: las de OSM sin precio, mezcladas por km; huecos de todos los días
     for dia, lista in go['por_dia'].items():

@@ -581,7 +581,10 @@ function mapaRadares(bounds, saltar) {
     if (!b.contains(a) && !b.contains(z)) return;
     tramos++;
     const txt = `Radar de tramo · ${radarSitio(t.ini)} · ${t.largo_km} km · a ${t.dist_km} km de la ruta (día ${t.dia})`;
-    L.polyline([a, z], { color: '#b91c1c', weight: 6, opacity: .8, dashArray: '10 8' }).addTo(LMAP).bindTooltip(txt, { sticky: true });
+    /* linea: trazado por carretera [lat, lon, lat, lon, ...]; sin ella, recta entre las dos cabinas */
+    const tz = [];
+    if (t.linea) for (let k = 0; k + 1 < t.linea.length; k += 2) tz.push([t.linea[k], t.linea[k + 1]]);
+    L.polyline(tz.length > 1 ? tz : [a, z], { color: '#b91c1c', weight: 6, opacity: .8, dashArray: '10 8' }).addTo(LMAP).bindTooltip(txt, { sticky: true });
     [a, z].forEach((p) => L.circleMarker(p, { radius: 5, color: '#fff', weight: 2, fillColor: '#b91c1c', fillOpacity: 1 }).addTo(LMAP).bindTooltip(txt));
     vistos.add(`${t.ini.lat},${t.ini.lon}`); vistos.add(`${t.fin.lat},${t.fin.lon}`);
   });
@@ -2038,7 +2041,7 @@ function viewRadares() {
         : `<p class="muted">Ningún radar ${esc(radarOrg())} en 25 km a la redonda.</p>`}</div>` : ''}
     ${tot.tramo === 0 ? '' : `<h2>Radares de tramo</h2>
     <div class="card">
-      <p>${tramos.length ? `Ninguno de los ${tramos.length} radares de tramo de la DGT pisa la ruta. El más cercano queda a <b>${tramos[0].dist_km} km</b> del día ${tramos[0].dia}. Los de la zona del viaje salen en el mapa como línea roja discontinua entre sus dos cabinas.` : 'Sin datos de tramos.'}</p>
+      <p>${tramos.length ? `Ninguno de los ${tramos.length} radares de tramo de la DGT pisa la ruta. El más cercano queda a <b>${tramos[0].dist_km} km</b> del día ${tramos[0].dia}. Los de la zona del viaje salen en el mapa como línea roja discontinua que sigue la carretera entre sus dos cabinas.` : 'Sin datos de tramos.'}</p>
       ${tramos.length ? `<div class="tbl-wrap"><table class="vias"><thead><tr><th>De la ruta</th><th>Tramo</th><th>Largo</th><th></th></tr></thead><tbody>${tramos.slice(0, 10).map((t) => `<tr>
         <td>${fmtKm(t.dist_km)}<br><small>día ${t.dia}, km ${t.km}</small></td>
         <td>📏 ${esc(radarSitio(t.ini))}${t.fin.pk != null && t.fin.pk !== t.ini.pk ? ` → pk ${t.fin.pk.toLocaleString('es-ES', { minimumFractionDigits: 1 })}` : ''}<br><small>pk ${esc(t.ini.sentido || '?')}</small></td>

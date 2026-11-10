@@ -73,6 +73,9 @@ la rama `main` en https://srchipiron.github.io/viajes-en-moto/ (hasta el 2026-11
   columnar —`campos` + `radares`, una fila por línea— más `por_dia` con los que están
   sobre el track (`en_ruta`, a menos de 250 m) y los que quedan cerca (`cerca`, menos de
   5 km), con el km de la etapa. Las filas de `por_dia` son índices (`i`) a `radares`.
+- Cada radar de tramo lleva `linea` ([lat, lon, ...] plano): su trazado por carretera (ruta de OSRM entre
+  las dos cabinas, guardada en `tools/tramos_linea.json`), que `tools/radares.py` añade con
+  `tools/tramos_linea.py`. El mapa pinta esa línea; si falta, recta entre las cabinas.
 - En la app: `radaresDia(n)` da `{ en_ruta, cerca }` hidratados, `radaresCerca(pos, km, n)`
   los más próximos a una posición mire donde mire, y `#/radares` es la vista completa.
 - Cubre solo la red que gestiona la DGT: ni Cataluña ni País Vasco, ni radares autonómicos,
