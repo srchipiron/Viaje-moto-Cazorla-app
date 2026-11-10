@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": 2,
-    "revision": 10,
-    "actualizado": "2026-11-09",
+    "revision": 11,
+    "actualizado": "2026-11-10",
     "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
     "cambios": [
       "Plan inicial (2026-11-09): bucle desde Nador por el sureste de Marruecos (Merzouga, Todra, Dadès, Aït Ben Haddou, Draa, N12, Atlas Medio, Fez). Tracks aproximados con OSRM. Fechas provisionales: vacaciones del 28 dic al 11 ene, ferry de ida el 25 dic y de vuelta el 10 ene.",
@@ -15,7 +15,8 @@
       "Radares (2026-11-09): 94 radares fijos de OpenStreetMap en la zona del viaje, 12 sobre la ruta (tools/radares_osm.py). Lista incompleta y sin móviles.",
       "Móvil (2026-11-09): pasos con Digi antes de salir y SIM de Maroc Telecom el día 1 por la mañana en Nador.",
       "Gasolineras y navegación (2026-11-09): gasolineras de OpenStreetMap en cada etapa con el tramo más largo sin ninguna (máximo 58 km, día 9), y un botón por día para abrir la etapa en Google Maps con sus puntos de paso.",
-      "Idioma (2026-11-10): qué se habla en cada zona, consejos y tabla de frases útiles en la Guía."
+      "Idioma (2026-11-10): qué se habla en cada zona, consejos y tabla de frases útiles en la Guía.",
+      "Aplazado (2026-11-10): para Navidad se hace el viaje 2026-12-sur (Andalucía y Algarve, más barato y sin ferry). Marruecos queda para otro año, mejor en primavera u otoño; las fechas y reservas de este plan ya no valen."
     ]
   },
   "proyecto": {

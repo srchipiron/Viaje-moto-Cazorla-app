@@ -1,0 +1,1864 @@
+{
+  "meta": {
+    "version": 2,
+    "revision": 1,
+    "actualizado": "2026-11-10",
+    "uso": "Fuente de verdad del viaje para la app. Actualizar estados en vez de rehacer el plan.",
+    "cambios": [
+      "Plan inicial (2026-11-10): alternativa barata a Marruecos para Navidad, por la zona más seca de la península en invierno. Bucle de 11 días (10 de moto y 1 libre en Vejer): Costa Tropical y Carretera de la Cabra, Torcal y Serranía de Ronda, Grazalema, Vejer, Aracena, Mértola y la EN2, Monchique y la Costa Vicentina, Sagres, Tavira, Subbética y Alpujarra. Tracks aproximados con OSRM. Fechas provisionales: 26 dic – 5 ene, con margen hasta el fin de las vacaciones."
+    ]
+  },
+  "proyecto": {
+    "nombre": "Sur y Algarve en Navidad (dic 2026 – ene 2027)",
+    "nombre_corto": "Sur y Algarve",
+    "paises": [
+      "ES",
+      "PT"
+    ],
+    "fechas": {
+      "inicio": "2026-12-26",
+      "fin": "2027-01-05",
+      "dias": 11,
+      "noches": 10,
+      "provisionales": true
+    },
+    "distancia_total_aprox_km": 2062,
+    "moto": {
+      "modelo": "Honda NX500",
+      "autonomia_orientativa_km": 380,
+      "regla_gasolina": "Llenar al bajar de medio depósito y en cada ciudad del sur aunque quede gasolina. Según OpenStreetMap, ningún día pasa de 60 km sin gasolinera en la ruta (lo más largo: Agdz–Zagora, día 9, y Alnif–Rissani, día 11), pero en pueblos pequeños puede no haber sin plomo o estar cerrada. Sin precios en la app: en Marruecos apenas cambia de una a otra.",
+      "rueda_delantera": "19 pulgadas",
+      "neumaticos": "Tubeless de serie; kit de mechas Givi S450 valido",
+      "presiones": {
+        "delantera_bar": 2.0,
+        "trasera_bar": 2.5,
+        "delantera_psi": 29,
+        "trasera_psi": 36,
+        "en_frio": true,
+        "con_carga": "Mismos valores solo o con carga: el manual no distingue. No subir por las maletas.",
+        "comprobar": "Con los neumaticos frios, antes de arrancar, cada 2-3 dias con el compresor Xiaomi. En caliente suben 0,2-0,3 bar: no desinflar nunca en caliente.",
+        "fuente": "Manual de usuario Honda NX500 2024: 200 kPa / 250 kPa (29 / 36 psi). Puestas el 12 sept con el compresor Xiaomi."
+      },
+      "precarga_trasera": {
+        "posiciones": 5,
+        "de_serie": "2 (de fabrica)",
+        "recomendada": "4 con maletas cargadas; 5 si toca fondo o la moto se siente blanda de atras",
+        "como": "Puesta en la posicion 4 el 13 sept con la moto cargada. Anillo escalonado en el amortiguador trasero, con la llave de gancho del kit bajo el asiento. Si toca fondo, subir a 5.",
+        "por_que": "Con 120 kg de piloto mas maletas, en la posicion de serie el amortiguador va muy hundido: la moto se vuelve lenta al entrar en curva, toca fondo en baches y el faro apunta alto."
+      },
+      "cadena": {
+        "producto": "Motul C2 Road (maleta izquierda, al fondo con las zapatillas)",
+        "cuando": "Cada 400-500 km y siempre despues de lluvia, al LLEGAR (cadena caliente), nunca antes de salir.",
+        "dias_previstos": "Día 5 en Merzouga (689 km, quitando antes la arena), día 8 en Aït Ben Haddou (1.174 km) y día 11 en Meski (1.751 km). La siguiente, en casa al volver.",
+        "regla_extra": "Con polvo o arena, limpiar con trapo antes de engrasar; si se ve gris o seca, engrasar esa noche aunque no toque.",
+        "tension": "Juego de 25-35 mm en el punto medio del ramal inferior, sin peso encima. El valor exacto, en la pegatina del basculante. Si hay puntos tensos y flojos, cadena desgastada: mirarlo antes de seguir."
+      },
+      "equipaje": [
+        "Baúl SHAD SH58X",
+        "Laterales SHAD SH38X",
+        "Bolsa de depósito SHAD E09CL Pro"
+      ]
+    },
+    "objetivo": "Las mejores carreteras de curvas del sur peninsular donde menos llueve en Navidad, en 11 días y sin ferry: Andalucía y el Algarve, con etapas de 3-5 h y un día libre.",
+    "reglas_globales": {
+      "conduccion_real_objetivo": "3h30-4h",
+      "conduccion_real_maximo": "5h",
+      "superficie": "100% asfalto",
+      "horario": "Finales de diciembre: amanece hacia las 08:20-08:40 en España (07:40 en Portugal) y anochece hacia las 17:40-18:00 (17:20 en Portugal). Salir a las 09:30, a las 10:00 los días de sierra por el hielo, y estar en el alojamiento antes de que anochezca.",
+      "paradas": "Cada 60-90 minutos, con algo caliente.",
+      "recortables_sin_cambiar_alojamiento": [
+        "El Torcal (día 2)",
+        "Arcos (día 3)",
+        "La Fóia (día 7)",
+        "Alcalá la Real (día 10)"
+      ]
+    }
+  },
+  "meteo": {
+    "zona_horaria": "Europe/Madrid",
+    "enlaces": {
+      "aemet": "https://www.aemet.es/",
+      "ipma": "https://www.ipma.pt/",
+      "windy": "https://www.windy.com/"
+    }
+  },
+  "itinerario": [
+    {
+      "dia": 1,
+      "fecha": "2026-12-26",
+      "dia_semana": "sabado",
+      "tipo": "montaña",
+      "origen": "Almería",
+      "destino": "Alhama de Granada",
+      "km_aprox": 213,
+      "tiempo_real_aprox": "4h00",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "10:00",
+      "llegada_prevista": "16:29",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Salobreña",
+          "lat": 36.75,
+          "lon": -3.59
+        },
+        {
+          "nombre": "Alhama de Granada",
+          "lat": 37.01,
+          "lon": -3.99
+        }
+      ],
+      "waypoints": [
+        "Almería",
+        "Adra",
+        "La Rábita",
+        "Castell de Ferro",
+        "Calahonda",
+        "Salobreña",
+        "Almuñécar",
+        "Otívar",
+        "Jayena",
+        "Alhama de Granada"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-01.gpx",
+        "track": "tracks/dia-01.json",
+        "vias": [
+          "Adra",
+          "La Rábita",
+          "Castell de Ferro",
+          "Calahonda",
+          "Salobreña",
+          "Almuñécar",
+          "Otívar",
+          "Jayena"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-7, N-340A, N-340, N-340a, A-4050, GR-3302, GR-3307, GR-4302, A-338",
+      "notas": [
+        "Que ver: Costa Tropical por la N-340 (La Rábita, Castell de Ferro, Calahonda, Salobreña) y subida por la Carretera de la Cabra (A-4050) de Almuñécar a Jayena, con el mar a la espalda, hasta Alhama de Granada.",
+        "Conducción estimada con OSRM: 4h00. Llegada con 90 min de paradas y 1 h para comer en Almuñécar (hora española).",
+        "De Almería a Adra, por la A-7 para ganar tiempo; desde Adra, carretera vieja por la costa.",
+        "La A-4050 pasa de 1.000 m entre Otívar y Jayena: a mediodía ya sin hielo. Si la previsión da nieve o hielo, alternativa por Motril y la A-44 hasta Granada y la A-338 a Alhama."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Almería → Adra → La Rábita → Castell de Ferro → Calahonda → Salobreña → Almuñécar → Otívar → Jayena → Alhama de Granada",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.83810,-2.45970&destination=37.00690,-3.98960&travelmode=driving&waypoints=36.74800,-3.02000%7C36.74800,-3.16800%7C36.72570,-3.35500%7C36.70200,-3.41300%7C36.74600,-3.58700%7C36.73250,-3.69170%7C36.81580,-3.67980%7C36.94920,-3.82310",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Salida tranquila por la costa y la primera carretera de curvas buena del viaje, la de la Cabra, con el Mediterráneo detrás.",
+        "ver": [
+          {
+            "lugar": "Castell de Ferro y Calahonda",
+            "tipo": "costa",
+            "que": "Carretera vieja pegada al mar entre acantilados: parada para café.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Almuñécar",
+            "tipo": "pueblo",
+            "que": "Castillo de San Miguel y paseo; buen sitio para comer antes de subir.",
+            "tiempo": "1 h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Carretera de la Cabra (A-4050)",
+            "tipo": "carretera",
+            "que": "Subida de Otívar hacia Jayena: miradores sobre el valle del río Verde y el mar.",
+            "tiempo": "—",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Tajos de Alhama",
+            "tipo": "naturaleza",
+            "que": "Garganta del río Alhama junto al pueblo: paseo al llegar.",
+            "tiempo": "45 min",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Almuñécar, antes de la Cabra.",
+          "cena": "En Alhama de Granada.",
+          "platos": [
+            "Pescaíto frito",
+            "Chirimoya de la Costa Tropical"
+          ]
+        },
+        "tarde": "Paseo por los Tajos y el casco antiguo de Alhama.",
+        "consejo": "Repostar en Almuñécar: hasta Alhama no hay apenas gasolineras."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Alhama de Granada",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Hostal u hotel pequeño en el pueblo",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 2,
+      "fecha": "2026-12-27",
+      "dia_semana": "domingo",
+      "tipo": "montaña",
+      "origen": "Alhama de Granada",
+      "destino": "Ronda",
+      "km_aprox": 183,
+      "tiempo_real_aprox": "4h20",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "10:00",
+      "llegada_prevista": "15:55",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Villanueva de la Concepción",
+          "lat": 36.93,
+          "lon": -4.54
+        },
+        {
+          "nombre": "Ronda",
+          "lat": 36.74,
+          "lon": -5.17
+        }
+      ],
+      "waypoints": [
+        "Alhama de Granada",
+        "Ventas de Zafarraya",
+        "Alfarnate",
+        "El Torcal de Antequera",
+        "Villanueva de la Concepción",
+        "Valle de Abdalajís",
+        "Ardales",
+        "El Burgo",
+        "Ronda"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-02.gpx",
+        "track": "tracks/dia-02.json",
+        "vias": [
+          "Ventas de Zafarraya",
+          "Alfarnate",
+          "El Torcal de Antequera",
+          "Villanueva de la Concepción",
+          "Valle de Abdalajís",
+          "Ardales",
+          "El Burgo"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-402, A-341, MA-4101, A-4152, A-7204, A-7075, MA-9016, MA-4402, MA-4401, MA-5403, MA-5402, MA-5401, A-366",
+      "notas": [
+        "Que ver: Boca del Asno de Zafarraya, El Torcal de Antequera, embalses del Guadalhorce junto al Caminito del Rey y la A-366 de El Burgo a Ronda por el Puerto del Viento.",
+        "Conducción estimada con OSRM: 4h20. Llegada con 95 min de paradas (hora española).",
+        "El Torcal (A-7075) y el Puerto del Viento rondan los 1.000-1.200 m: hielo posible a primera hora, de ahí la salida a las 10:00."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Alhama de Granada → Ventas de Zafarraya → Alfarnate → El Torcal de Antequera → Villanueva de la Concepción → Valle de Abdalajís → Ardales → El Burgo → Ronda",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.00690,-3.98960&destination=36.74230,-5.16580&travelmode=driving&waypoints=36.95810,-4.12140%7C36.99500,-4.26000%7C36.95300,-4.54500%7C36.92700,-4.53800%7C36.93400,-4.68100%7C36.87800,-4.84690%7C36.78960,-4.94720",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "El día más de curvas del viaje: del Poniente granadino a la Serranía de Ronda por el Torcal y los embalses.",
+        "ver": [
+          {
+            "lugar": "Boca del Asno (Zafarraya)",
+            "tipo": "mirador",
+            "que": "Paso entre la sierra de Alhama y la Axarquía, con vistas al mar en días claros.",
+            "tiempo": "10 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "El Torcal de Antequera",
+            "tipo": "naturaleza",
+            "que": "Karst de piedra caliza; sendero corto (ruta verde) desde el centro de visitantes.",
+            "tiempo": "1 h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Embalses del Guadalhorce",
+            "tipo": "naturaleza",
+            "que": "Agua turquesa entre pinares junto a la entrada del Caminito del Rey.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Ronda",
+            "tipo": "ciudad",
+            "que": "Puente Nuevo y el Tajo con la luz de la tarde.",
+            "tiempo": "1 h 30",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Ardales o en una venta de los embalses.",
+          "cena": "En Ronda.",
+          "platos": [
+            "Rabo de toro",
+            "Porra antequerana"
+          ]
+        },
+        "tarde": "Ronda a pie: el Tajo, el puente y los jardines de Cuenca.",
+        "consejo": "Si hace niebla en el Torcal (pasa a menudo), no subir al mirador: no se ve nada y el asfalto va húmedo."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Ronda",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Hostal fuera del centro con garaje (en el centro aparcar es difícil)",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 3,
+      "fecha": "2026-12-28",
+      "dia_semana": "lunes",
+      "tipo": "montaña",
+      "origen": "Ronda",
+      "destino": "Vejer de la Frontera",
+      "km_aprox": 171,
+      "tiempo_real_aprox": "3h35",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "10:00",
+      "llegada_prevista": "14:58",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "El Bosque",
+          "lat": 36.76,
+          "lon": -5.51
+        },
+        {
+          "nombre": "Vejer de la Frontera",
+          "lat": 36.25,
+          "lon": -5.97
+        }
+      ],
+      "waypoints": [
+        "Ronda",
+        "Zahara de la Sierra",
+        "Grazalema",
+        "Benamahoma",
+        "El Bosque",
+        "Arcos de la Frontera",
+        "Medina-Sidonia",
+        "Vejer de la Frontera"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-03.gpx",
+        "track": "tracks/dia-03.json",
+        "vias": [
+          "Zahara de la Sierra",
+          "Grazalema",
+          "Benamahoma",
+          "El Bosque",
+          "Arcos de la Frontera",
+          "Medina-Sidonia"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-374, A-2300, CA-9104, A-372, A-389, A-396",
+      "notas": [
+        "Que ver: Sierra de Grazalema: Zahara de la Sierra, Puerto de las Palomas (CA-9104), Grazalema y el Puerto del Boyar (A-372) hasta El Bosque; luego Arcos y Medina Sidonia hasta Vejer.",
+        "Conducción estimada con OSRM: 3h35. Llegada con 84 min de paradas (hora española).",
+        "Grazalema es de los sitios más lluviosos de España: si entra un frente, ver la alternativa del día.",
+        "La CA-9104 es estrecha y con rampas de hasta un 14 %: despacio y en primera o segunda en las horquillas."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Ronda → Zahara de la Sierra → Grazalema → Benamahoma → El Bosque → Arcos de la Frontera → Medina-Sidonia → Vejer de la Frontera",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.74230,-5.16580&destination=36.25210,-5.96720&travelmode=driving&waypoints=36.83960,-5.39110%7C36.76020,-5.36840%7C36.76510,-5.46660%7C36.75830,-5.50530%7C36.75070,-5.81060%7C36.45690,-5.92720",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Pueblos blancos y los dos puertos de Grazalema: la carretera más espectacular del viaje si hace bueno.",
+        "ver": [
+          {
+            "lugar": "Zahara de la Sierra",
+            "tipo": "pueblo",
+            "que": "Pueblo colgado sobre el embalse, con la torre del castillo arriba.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Puerto de las Palomas",
+            "tipo": "mirador",
+            "que": "Mirador en lo alto de la CA-9104, sobre el embalse de Zahara.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Grazalema",
+            "tipo": "pueblo",
+            "que": "Plaza y mantas de lana; café para entrar en calor.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Arcos de la Frontera",
+            "tipo": "pueblo",
+            "que": "Mirador de la Peña Nueva sobre el Guadalete.",
+            "tiempo": "30 min",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Grazalema o El Bosque.",
+          "cena": "En Vejer.",
+          "platos": [
+            "Queso payoyo",
+            "Sopa de Grazalema",
+            "Trucha de El Bosque"
+          ]
+        },
+        "tarde": "Vejer al anochecer: casco antiguo y arco de la Segur.",
+        "consejo": "Hojas y humedad en la sombra del Boyar: frenar recto antes de cada curva."
+      },
+      "opciones": [
+        {
+          "titulo": "Lluvia en Grazalema: por los puertos o por abajo",
+          "estado": "Pendiente",
+          "cuando": "La noche del día 2 en Ronda, con la previsión por horas de Grazalema y El Bosque.",
+          "alternativas": [
+            {
+              "nombre": "Por Zahara, las Palomas y el Boyar (plan)",
+              "coste": "Como está la ruta",
+              "por_que": "Las mejores curvas del viaje. Solo con asfalto seco o casi.",
+              "como": "No tocar nada"
+            },
+            {
+              "nombre": "Por Algodonales y Villamartín, sin puertos",
+              "coste": "Unos 15 km menos y 30 min menos",
+              "por_que": "Por debajo de 500 m y carreteras anchas: evita el agua y la niebla de los puertos. Se pierde Grazalema.",
+              "como": "Ronda → A-374 → Algodonales → A-384 → Villamartín → Arcos → Medina → Vejer"
+            }
+          ]
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Vejer de la Frontera",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Hostal o apartamento para dos noches; mejor abajo, en La Barca de Vejer, si el casco antiguo no tiene sitio para la moto",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Reservar las dos noches (28 y 29 dic)",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 4,
+      "fecha": "2026-12-29",
+      "dia_semana": "martes",
+      "tipo": "descanso",
+      "origen": "Vejer de la Frontera",
+      "destino": "Vejer de la Frontera",
+      "km_aprox": 0,
+      "tiempo_real_aprox": "0h00",
+      "dificultad": 1,
+      "fatiga": 1,
+      "perfil_kurviger": "Día sin maletas",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Vejer de la Frontera",
+          "lat": 36.25,
+          "lon": -5.97
+        }
+      ],
+      "notas": [
+        "Día libre en Vejer: descanso, cadena y lavandería. Salida corta opcional a Bolonia o Tarifa sin maletas."
+      ],
+      "guia": {
+        "resumen": "Día sin maletas en Vejer: descanso, cadena y lavandería. Si apetece moto, vuelta corta por la costa.",
+        "ver": [
+          {
+            "lugar": "Bolonia y Baelo Claudia",
+            "tipo": "historia",
+            "que": "Ciudad romana junto a la duna, a unos 35 km. Mirar el horario antes de ir.",
+            "tiempo": "2 h",
+            "opcional": true
+          },
+          {
+            "lugar": "Tarifa",
+            "tipo": "pueblo",
+            "que": "Punta de Europa con Marruecos enfrente: el viaje queda para otro año.",
+            "tiempo": "1 h 30",
+            "opcional": true
+          },
+          {
+            "lugar": "Caños de Meca y Cabo de Trafalgar",
+            "tipo": "costa",
+            "que": "Faro y playas a 15 km de Vejer.",
+            "tiempo": "1 h",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Vejer, Zahara de los Atunes o Bolonia.",
+          "cena": "En Vejer.",
+          "platos": [
+            "Atún",
+            "Tortillitas de camarones"
+          ]
+        },
+        "tarde": "Libre.",
+        "consejo": "Con poniente o levante fuerte, la vuelta por Tarifa no compensa: quedarse en Vejer."
+      },
+      "mantenimiento": {
+        "que": "Engrasar la cadena (Motul C2) con la moto fría tras la noche, de vuelta de la salida corta si la hay. Lavandería.",
+        "km_acumulados": 567,
+        "desde_la_ultima": 567,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Vejer de la Frontera",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Misma reserva que la noche 3",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 5,
+      "fecha": "2026-12-30",
+      "dia_semana": "miercoles",
+      "tipo": "autovía",
+      "origen": "Vejer de la Frontera",
+      "destino": "Aracena",
+      "km_aprox": 251,
+      "tiempo_real_aprox": "3h15",
+      "dificultad": 2,
+      "fatiga": 2,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:30",
+      "llegada_prevista": "14:01",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Jerez de la Frontera",
+          "lat": 36.69,
+          "lon": -6.14
+        },
+        {
+          "nombre": "Aracena",
+          "lat": 37.89,
+          "lon": -6.56
+        }
+      ],
+      "waypoints": [
+        "Vejer de la Frontera",
+        "Jerez de la Frontera",
+        "Aracena"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-05.gpx",
+        "track": "tracks/dia-05.json",
+        "vias": [
+          "Jerez de la Frontera"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-48, A-4, A-4R, AP-4, SE-30, A-66, N-433",
+      "notas": [
+        "Que ver: Día de enlace: Jerez, la circunvalación de Sevilla y subida a la Sierra de Aracena por la A-66 y la N-433.",
+        "Conducción estimada con OSRM: 3h15. Llegada con 78 min de paradas (hora española).",
+        "Casi todo por autovía: tapones rojos (Race) y paradas cada hora. La gracia está en el destino y en el día siguiente.",
+        "Aracena llueve más que la costa: si el día 6 viene agua, ver la alternativa."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Vejer de la Frontera → Jerez de la Frontera → Aracena",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.25210,-5.96720&destination=37.89400,-6.56120&travelmode=driving&waypoints=36.68600,-6.13700",
+          "opciones": "Evitar autopistas: NO (la etapa es de enlace)"
+        }
+      ],
+      "guia": {
+        "resumen": "Enlace por autovía hasta la Sierra de Aracena. Llegada pronto para ver el pueblo.",
+        "ver": [
+          {
+            "lugar": "Gruta de las Maravillas (Aracena)",
+            "tipo": "naturaleza",
+            "que": "Cueva visitable bajo el castillo. Mirar horario y reservar al llegar.",
+            "tiempo": "1 h",
+            "opcional": true
+          },
+          {
+            "lugar": "Castillo de Aracena",
+            "tipo": "historia",
+            "que": "Subida a pie desde el centro, vistas sobre la sierra.",
+            "tiempo": "45 min",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "Al llegar a Aracena.",
+          "cena": "En Aracena.",
+          "platos": [
+            "Jamón de Jabugo",
+            "Setas de la sierra",
+            "Presa ibérica"
+          ]
+        },
+        "tarde": "Aracena a pie.",
+        "consejo": "La A-66 al norte de Sevilla sube a la sierra: por la tarde refresca rápido."
+      },
+      "opciones": [
+        {
+          "titulo": "Si viene un frente atlántico: Aracena o la costa",
+          "estado": "Pendiente",
+          "cuando": "El día 4 en Vejer, mirando la previsión de Aracena, Mértola y el Algarve de los días 5 y 6.",
+          "alternativas": [
+            {
+              "nombre": "Por Aracena y la raya (plan)",
+              "coste": "Como está la ruta",
+              "por_que": "Sierra, Guadiana y la EN2: lo mejor del cruce a Portugal.",
+              "como": "No tocar nada"
+            },
+            {
+              "nombre": "Por la costa de Huelva",
+              "coste": "Día 5 Vejer → Sevilla → Ayamonte → Tavira (unos 300 km, casi todo autovía, 3 h 30). Día 6 Tavira → São Brás → EN2 hasta Barranco do Velho y vuelta por la EN396 a Loulé (unos 120 km)",
+              "por_que": "La costa llueve menos y la autovía es más segura con agua; la EN2 se hace igual el día 6 si escampa.",
+              "como": "Cambiar la noche 5 de Aracena a Tavira y la 8 de Tavira a Lagos o Portimão"
+            }
+          ]
+        }
+      ],
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Aracena",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Hostal u hotel pequeño",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 6,
+      "fecha": "2026-12-31",
+      "dia_semana": "jueves",
+      "tipo": "llano",
+      "origen": "Aracena",
+      "destino": "Loulé",
+      "km_aprox": 264,
+      "tiempo_real_aprox": "4h20",
+      "dificultad": 2,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "08:30",
+      "llegada_prevista": "14:26",
+      "zona_horaria": "Europe/Lisbon",
+      "meteo_puntos": [
+        {
+          "nombre": "Mértola",
+          "lat": 37.64,
+          "lon": -7.66
+        },
+        {
+          "nombre": "Loulé",
+          "lat": 37.14,
+          "lon": -8.02
+        }
+      ],
+      "waypoints": [
+        "Aracena",
+        "Aroche",
+        "Rosal de la Frontera",
+        "Serpa",
+        "Mértola",
+        "Almodôvar",
+        "Barranco do Velho",
+        "Loulé"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-06.gpx",
+        "track": "tracks/dia-06.json",
+        "vias": [
+          "Aroche",
+          "Rosal de la Frontera",
+          "Serpa",
+          "Mértola",
+          "Almodôvar",
+          "Barranco do Velho"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "N-433, IP 8, ER 265, ER 267, EN 2, EN 124, EN 396",
+      "notas": [
+        "Que ver: Raya y Bajo Alentejo: Aroche, Rosal, Serpa, el Guadiana en Mértola, y la EN2, carretera patrimonio, por la Serra do Caldeirão hasta Barranco do Velho; bajada a Loulé.",
+        "Conducción estimada con OSRM: 4h20. Llegada con 95 min de paradas (hora portuguesa).",
+        "Al cruzar a Portugal, atrasar el reloj una hora. Las horas de esta ficha, en hora portuguesa.",
+        "El track aproximado sale de la EN2 en Barranco do Velho y baja a Loulé por la EN396 (también de curvas). En Kurviger, mismo criterio.",
+        "Nochevieja en Loulé: reservar alojamiento y cena de los primeros. Repostar antes de llegar: el día 1 abren pocas gasolineras pequeñas."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Aracena → Aroche → Rosal de la Frontera → Serpa → Mértola → Almodôvar → Barranco do Velho → Loulé",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.89400,-6.56120&destination=37.13770,-8.01970&travelmode=driving&waypoints=37.94210,-6.95760%7C37.96750,-7.21890%7C37.94580,-7.59750%7C37.64300,-7.66110%7C37.51280,-8.06010%7C37.24150,-7.93970",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Cruce a Portugal por la raya, el Guadiana en Mértola y la EN2 por la Serra do Caldeirão. Nochevieja en Loulé.",
+        "ver": [
+          {
+            "lugar": "Mértola",
+            "tipo": "pueblo",
+            "que": "Castillo e iglesia-mezquita sobre el Guadiana: la mejor parada del día.",
+            "tiempo": "1 h",
+            "en_ruta": true
+          },
+          {
+            "lugar": "EN2 por la Serra do Caldeirão",
+            "tipo": "carretera",
+            "que": "Tramo final de la carretera más larga de Portugal, entre alcornoques y curvas enlazadas.",
+            "tiempo": "—",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Serpa",
+            "tipo": "pueblo",
+            "que": "Murallas y acueducto; café rápido.",
+            "tiempo": "20 min",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Mértola.",
+          "cena": "Nochevieja en Loulé (reservar).",
+          "platos": [
+            "Migas alentejanas",
+            "Carne de porco à alentejana",
+            "Queso de Serpa"
+          ]
+        },
+        "tarde": "Loulé: castillo y casco antiguo. Las campanadas en Portugal son una hora antes que en España.",
+        "consejo": "Etapa larga del viaje: comer en Mértola y no entretenerse más de la cuenta. Llegada con luz de sobra."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Loulé",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Pensión u hotel (Nochevieja: de las primeras en reservar)",
+        "pendiente_confirmar": [
+          "Nochevieja: reservar de los primeros (y la cena)",
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 7,
+      "fecha": "2027-01-01",
+      "dia_semana": "viernes",
+      "tipo": "montaña",
+      "origen": "Loulé",
+      "destino": "Sagres",
+      "km_aprox": 158,
+      "tiempo_real_aprox": "2h45",
+      "dificultad": 3,
+      "fatiga": 2,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:30",
+      "llegada_prevista": "13:28",
+      "zona_horaria": "Europe/Lisbon",
+      "meteo_puntos": [
+        {
+          "nombre": "Marmelete",
+          "lat": 37.31,
+          "lon": -8.67
+        },
+        {
+          "nombre": "Sagres",
+          "lat": 37.01,
+          "lon": -8.94
+        }
+      ],
+      "waypoints": [
+        "Loulé",
+        "Silves",
+        "Monchique",
+        "Fóia",
+        "Marmelete",
+        "Aljezur",
+        "Vila do Bispo",
+        "Sagres"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-07.gpx",
+        "track": "tracks/dia-07.json",
+        "vias": [
+          "Silves",
+          "Monchique",
+          "Fóia",
+          "Marmelete",
+          "Aljezur",
+          "Vila do Bispo"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A 22, EN 124-1, EN 124, EN 266, EN 266-3, EN 267, EN 120, ER 268, EN 268",
+      "notas": [
+        "Que ver: Silves, Serra de Monchique por la N266 hasta el mirador de la Fóia (902 m, lo más alto del Algarve), la N267 por Marmelete a Aljezur y la Costa Vicentina hasta Sagres.",
+        "Conducción estimada con OSRM: 2h45. Llegada con 72 min de paradas (hora portuguesa).",
+        "Año Nuevo: día tranquilo en la carretera. Salir con el depósito lleno del día 31.",
+        "En la Fóia sopla fuerte: casco puesto y moto con la rueda hacia el viento."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Loulé → Silves → Monchique → Fóia → Marmelete → Aljezur → Vila do Bispo → Sagres",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.13770,-8.01970&destination=37.00860,-8.94310&travelmode=driving&waypoints=37.18920,-8.43820%7C37.31770,-8.55530%7C37.31510,-8.59580%7C37.31010,-8.66810%7C37.31800,-8.80000%7C37.08320,-8.91140",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "El Algarve de interior y el Atlántico: Monchique, la Fóia y la Costa Vicentina hasta el fin de Europa.",
+        "ver": [
+          {
+            "lugar": "Silves",
+            "tipo": "pueblo",
+            "que": "Castillo de piedra roja, antigua capital del Algarve.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Fóia",
+            "tipo": "mirador",
+            "que": "Lo más alto del Algarve: en días claros se ve el cabo de São Vicente.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Aljezur",
+            "tipo": "pueblo",
+            "que": "Castillo sobre el pueblo; playas de Arrifana y Monte Clérigo a pocos km.",
+            "tiempo": "30 min",
+            "opcional": true
+          },
+          {
+            "lugar": "Fortaleza de Sagres",
+            "tipo": "historia",
+            "que": "Promontorio sobre el Atlántico. Mirar horario el día 1.",
+            "tiempo": "1 h",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Monchique o Aljezur (el día 1 muchos cierran: preguntar la noche antes).",
+          "cena": "En Sagres.",
+          "platos": [
+            "Percebes",
+            "Pescado a la brasa",
+            "Medronho (licor de Monchique, solo al llegar)"
+          ]
+        },
+        "tarde": "Puesta de sol en Sagres o en el cabo.",
+        "consejo": "Viento atlántico en la Costa Vicentina: rachas de lado en los tramos abiertos."
+      },
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar (cadena caliente). Si llovió en la Costa Vicentina, secarla antes con un trapo.",
+        "km_acumulados": 1240,
+        "desde_la_ultima": 674,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Sagres",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Pensión, guesthouse o bungalow de camping si hay alguno abierto en invierno",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 8,
+      "fecha": "2027-01-02",
+      "dia_semana": "sabado",
+      "tipo": "costa",
+      "origen": "Sagres",
+      "destino": "Tavira",
+      "km_aprox": 160,
+      "tiempo_real_aprox": "2h10",
+      "dificultad": 1,
+      "fatiga": 1,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:30",
+      "llegada_prevista": "12:45",
+      "zona_horaria": "Europe/Lisbon",
+      "meteo_puntos": [
+        {
+          "nombre": "Lagos",
+          "lat": 37.1,
+          "lon": -8.67
+        },
+        {
+          "nombre": "Tavira",
+          "lat": 37.13,
+          "lon": -7.65
+        }
+      ],
+      "waypoints": [
+        "Sagres",
+        "Cabo de São Vicente",
+        "Lagos",
+        "Tavira"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-08.gpx",
+        "track": "tracks/dia-08.json",
+        "vias": [
+          "Cabo de São Vicente",
+          "Lagos"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "EN 268, EN 125, A 22, EN 270",
+      "notas": [
+        "Que ver: Cabo de São Vicente con la luz de la mañana, Lagos y la Ponta da Piedade, y la A22 (sin peaje desde 2025) hasta Tavira.",
+        "Conducción estimada con OSRM: 2h10. Llegada con 63 min de paradas (hora portuguesa).",
+        "Día corto a propósito: tarde libre en Tavira y lavandería."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Sagres → Cabo de São Vicente → Lagos → Tavira",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.00860,-8.94310&destination=37.12730,-7.64860&travelmode=driving&waypoints=37.02300,-8.99600%7C37.10200,-8.67300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Mañana de costa y tarde libre en Tavira, la ciudad más bonita del Algarve oriental.",
+        "ver": [
+          {
+            "lugar": "Cabo de São Vicente",
+            "tipo": "mirador",
+            "que": "Faro y acantilados de 60 m: el punto más al suroeste de Europa.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Ponta da Piedade (Lagos)",
+            "tipo": "costa",
+            "que": "Arcos y farallones de roca dorada; pasarelas al borde.",
+            "tiempo": "45 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Tavira",
+            "tipo": "ciudad",
+            "que": "Puente romano, iglesias y tejados de cuatro aguas.",
+            "tiempo": "Tarde",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Lagos.",
+          "cena": "En Tavira.",
+          "platos": [
+            "Cataplana",
+            "Polvo à lagareiro",
+            "Pastel de nata"
+          ]
+        },
+        "tarde": "Tavira a pie y lavandería.",
+        "consejo": "La A22 tiene el firme gastado en algunos tramos: atención a los baches con la moto cargada."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Tavira",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Pensión o guesthouse; preguntar por lavandería",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 9,
+      "fecha": "2027-01-03",
+      "dia_semana": "domingo",
+      "tipo": "autovía",
+      "origen": "Tavira",
+      "destino": "Osuna",
+      "km_aprox": 263,
+      "tiempo_real_aprox": "3h15",
+      "dificultad": 2,
+      "fatiga": 2,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "09:30",
+      "llegada_prevista": "15:02",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Ayamonte",
+          "lat": 37.21,
+          "lon": -7.41
+        },
+        {
+          "nombre": "Osuna",
+          "lat": 37.24,
+          "lon": -5.1
+        }
+      ],
+      "waypoints": [
+        "Tavira",
+        "Castro Marim",
+        "Ayamonte",
+        "Osuna"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-09.gpx",
+        "track": "tracks/dia-09.json",
+        "vias": [
+          "Castro Marim",
+          "Ayamonte"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "EN 125, A 22, A-49, A-92",
+      "notas": [
+        "Que ver: Castro Marim, el puente del Guadiana en Ayamonte y vuelta a Andalucía por Huelva y Sevilla hasta Osuna.",
+        "Conducción estimada con OSRM: 3h15. Llegada con 78 min de paradas (hora portuguesa la salida y española la llegada).",
+        "Al volver a España, adelantar el reloj una hora. Salida a las 09:30 hora portuguesa (10:30 en España).",
+        "Casi todo autovía (A-49, SE-40/SE-30, A-92): tapones rojos."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Tavira → Castro Marim → Ayamonte → Osuna",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.12730,-7.64860&destination=37.23760,-5.10310&travelmode=driving&waypoints=37.22070,-7.44350%7C37.21300,-7.40500",
+          "opciones": "Evitar autopistas: NO (la etapa es de enlace)"
+        }
+      ],
+      "guia": {
+        "resumen": "Vuelta a España y enlace hasta la campiña sevillana. Osuna para dormir barato y cerca de la Subbética.",
+        "ver": [
+          {
+            "lugar": "Castro Marim",
+            "tipo": "historia",
+            "que": "Castillo sobre las marismas del Guadiana, en la salida.",
+            "tiempo": "20 min",
+            "opcional": true
+          },
+          {
+            "lugar": "Osuna",
+            "tipo": "ciudad",
+            "que": "Colegiata, calle San Pedro y palacios barrocos.",
+            "tiempo": "1 h 30",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En ruta, en un área de servicio pasada Sevilla, o al llegar a Osuna.",
+          "cena": "En Osuna.",
+          "platos": [
+            "Gazpacho de invierno (porra)",
+            "Mantecados de Estepa"
+          ]
+        },
+        "tarde": "Osuna a pie.",
+        "consejo": "La circunvalación de Sevilla es de mucho tráfico: carril derecho y distancia."
+      },
+      "mantenimiento": {
+        "que": "Engrasar la cadena al llegar a Osuna.",
+        "km_acumulados": 1663,
+        "desde_la_ultima": 422,
+        "detalle": "Cadena caliente, motor apagado y llave fuera, punto muerto. Girar la rueda por el neumatico hacia atras. Spray en la cara INTERIOR del ramal inferior, las dos caras laterales, una vuelta completa y un poco mas. Trapo para el exceso. Reposo 20-30 min (mejor toda la noche). Ni una gota en el disco ni en el neumatico. De paso, mirar la tension: 25-35 mm de juego (confirmar en la pegatina del basculante)."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Osuna",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Hostal u hotel pequeño",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 10,
+      "fecha": "2027-01-04",
+      "dia_semana": "lunes",
+      "tipo": "montaña",
+      "origen": "Osuna",
+      "destino": "Lanjarón",
+      "km_aprox": 252,
+      "tiempo_real_aprox": "3h50",
+      "dificultad": 3,
+      "fatiga": 3,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "10:00",
+      "llegada_prevista": "15:20",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Iznájar",
+          "lat": 37.26,
+          "lon": -4.31
+        },
+        {
+          "nombre": "Lanjarón",
+          "lat": 36.92,
+          "lon": -3.48
+        }
+      ],
+      "waypoints": [
+        "Osuna",
+        "Estepa",
+        "Rute",
+        "Iznájar",
+        "Priego de Córdoba",
+        "Alcalá la Real",
+        "Lanjarón"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-10.gpx",
+        "track": "tracks/dia-10.json",
+        "vias": [
+          "Estepa",
+          "Rute",
+          "Iznájar",
+          "Priego de Córdoba",
+          "Alcalá la Real"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-92, A-318, A-45, CO-7218, A-331, A-333, A-339, N-432, GR-43, A-44, A-348",
+      "notas": [
+        "Que ver: Estepa, la Subbética cordobesa: Rute, el embalse de Iznájar, Priego de Córdoba y Alcalá la Real, y bajada por Granada al valle de Lecrín hasta Lanjarón.",
+        "Conducción estimada con OSRM: 3h50. Llegada con 88 min de paradas (hora española).",
+        "Etapa larga pero fluida; si el día se tuerce, cortar en Granada."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Osuna → Estepa → Rute → Iznájar → Priego de Córdoba → Alcalá la Real → Lanjarón",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=37.23760,-5.10310&destination=36.91850,-3.48180&travelmode=driving&waypoints=37.29260,-4.87900%7C37.32690,-4.36830%7C37.25770,-4.30840%7C37.43810,-4.19520%7C37.46140,-3.92300",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Curvas fáciles entre olivares y embalses por la Subbética, y bajada a la Alpujarra.",
+        "ver": [
+          {
+            "lugar": "Estepa",
+            "tipo": "pueblo",
+            "que": "Balcón de Andalucía y obradores de mantecados (temporada alta en Navidad).",
+            "tiempo": "30 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Iznájar",
+            "tipo": "pueblo",
+            "que": "Pueblo blanco sobre el embalse más grande de Andalucía.",
+            "tiempo": "20 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Priego de Córdoba",
+            "tipo": "pueblo",
+            "que": "Barrio de la Villa y la Fuente del Rey.",
+            "tiempo": "45 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Fortaleza de la Mota (Alcalá la Real)",
+            "tipo": "historia",
+            "que": "Fortaleza nazarí en lo alto del cerro.",
+            "tiempo": "45 min",
+            "opcional": true
+          }
+        ],
+        "comer": {
+          "donde": "En Priego de Córdoba.",
+          "cena": "En Lanjarón.",
+          "platos": [
+            "Remojón",
+            "Aceite de la Subbética con pan",
+            "Jamón de Trevélez"
+          ]
+        },
+        "tarde": "Lanjarón: paseo corto y descanso.",
+        "consejo": "Si el día va justo, saltarse Alcalá la Real y bajar directo por la A-44."
+      },
+      "alojamiento": {
+        "nombre": "Por elegir",
+        "direccion": "Lanjarón",
+        "telefono": null,
+        "estado": "Sin reservar",
+        "tipo": "Hotel de balneario o hostal; muchos cierran en invierno: confirmar",
+        "pendiente_confirmar": [
+          "Reservar y anotar el teléfono",
+          "Que la moto duerma en garaje o patio cerrado",
+          "Calefacción en la habitación"
+        ]
+      }
+    },
+    {
+      "dia": 11,
+      "fecha": "2027-01-05",
+      "dia_semana": "martes",
+      "tipo": "montaña",
+      "origen": "Lanjarón",
+      "destino": "Almería",
+      "km_aprox": 147,
+      "tiempo_real_aprox": "3h00",
+      "dificultad": 3,
+      "fatiga": 2,
+      "perfil_kurviger": "Sin GPX de Kurviger todavía (track aproximado)",
+      "salida": "10:00",
+      "llegada_prevista": "14:18",
+      "zona_horaria": "Europe/Madrid",
+      "meteo_puntos": [
+        {
+          "nombre": "Ugíjar",
+          "lat": 36.96,
+          "lon": -3.06
+        },
+        {
+          "nombre": "Almería",
+          "lat": 36.84,
+          "lon": -2.46
+        }
+      ],
+      "waypoints": [
+        "Lanjarón",
+        "Órgiva",
+        "Torvizcón",
+        "Cádiar",
+        "Ugíjar",
+        "Laujar de Andarax",
+        "Canjáyar",
+        "Almería"
+      ],
+      "gpx": {
+        "archivo": "gpx/dia-11.gpx",
+        "track": "tracks/dia-11.json",
+        "vias": [
+          "Órgiva",
+          "Torvizcón",
+          "Cádiar",
+          "Ugíjar",
+          "Laujar de Andarax",
+          "Canjáyar"
+        ],
+        "nota": "Track APROXIMADO: ruta de OSRM por los puntos del plan, con altitudes de Copernicus DEM (Open-Meteo). Sustituir por el GPX de Kurviger cuando esté hecho (en Kurviger, perfil de curvas y evitar autopistas salvo en los días 5 y 9)."
+      },
+      "carreteras": "A-348, AL-5402, A-1180, N-340A, A-7",
+      "notas": [
+        "Que ver: La Alpujarra por abajo: Órgiva, Torvizcón, Cádiar, Ugíjar y Laujar de Andarax, y la A-348 por Canjáyar hasta casa.",
+        "Conducción estimada con OSRM: 3h00. Llegada con 76 min de paradas (hora española).",
+        "La A-348 entre Ugíjar y Laujar pasa de 900 m: salida a las 10:00 por el hielo."
+      ],
+      "google_maps": [
+        {
+          "tramo": "Lanjarón → Órgiva → Torvizcón → Cádiar → Ugíjar → Laujar de Andarax → Canjáyar → Almería",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=36.91850,-3.48180&destination=36.83810,-2.45970&travelmode=driving&waypoints=36.90260,-3.42380%7C36.87700,-3.30000%7C36.94590,-3.18020%7C36.96090,-3.05520%7C36.99520,-2.89030%7C37.00960,-2.73940",
+          "opciones": "Evitar autopistas: SÍ"
+        }
+      ],
+      "guia": {
+        "resumen": "Último día corto por la Alpujarra baja y la sierra de Gádor: en casa a media tarde.",
+        "ver": [
+          {
+            "lugar": "Mirador de Cádiar y valle del Guadalfeo",
+            "tipo": "mirador",
+            "que": "Bancales y pueblos blancos bajo Sierra Nevada nevada.",
+            "tiempo": "15 min",
+            "en_ruta": true
+          },
+          {
+            "lugar": "Laujar de Andarax",
+            "tipo": "pueblo",
+            "que": "Nacimiento del Andarax y sus bodegas.",
+            "tiempo": "30 min",
+            "en_ruta": true
+          }
+        ],
+        "comer": {
+          "donde": "En Laujar o ya en casa.",
+          "cena": "En casa.",
+          "platos": [
+            "Plato alpujarreño",
+            "Vino de la Contraviesa"
+          ]
+        },
+        "tarde": "Descargar la moto, cadena y fotos.",
+        "consejo": "Con hielo en la A-348 a primera hora, esperar en Órgiva o Cádiar: el día da de sobra."
+      },
+      "alojamiento": null
+    }
+  ],
+  "alojamientos_resumen": [
+    {
+      "noche": 1,
+      "fecha": "2026-12-26",
+      "lugar": "Alhama de Granada",
+      "alojamiento": "Hostal u hotel pequeño en el pueblo",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 2,
+      "fecha": "2026-12-27",
+      "lugar": "Ronda",
+      "alojamiento": "Hostal fuera del centro con garaje (en el centro aparcar es difícil)",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 3,
+      "fecha": "2026-12-28",
+      "lugar": "Vejer de la Frontera",
+      "alojamiento": "Hostal o apartamento para dos noches; mejor abajo, en La Barca de Vejer, si el casco antiguo no tiene sitio para la moto",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 4,
+      "fecha": "2026-12-29",
+      "lugar": "Vejer de la Frontera",
+      "alojamiento": "Misma reserva que la noche 3",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 5,
+      "fecha": "2026-12-30",
+      "lugar": "Aracena",
+      "alojamiento": "Hostal u hotel pequeño",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 6,
+      "fecha": "2026-12-31",
+      "lugar": "Loulé",
+      "alojamiento": "Pensión u hotel (Nochevieja: de las primeras en reservar)",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 7,
+      "fecha": "2027-01-01",
+      "lugar": "Sagres",
+      "alojamiento": "Pensión, guesthouse o bungalow de camping si hay alguno abierto en invierno",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 8,
+      "fecha": "2027-01-02",
+      "lugar": "Tavira",
+      "alojamiento": "Pensión o guesthouse; preguntar por lavandería",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 9,
+      "fecha": "2027-01-03",
+      "lugar": "Osuna",
+      "alojamiento": "Hostal u hotel pequeño",
+      "telefono": null,
+      "estado": "Sin reservar"
+    },
+    {
+      "noche": 10,
+      "fecha": "2027-01-04",
+      "lugar": "Lanjarón",
+      "alojamiento": "Hotel de balneario o hostal; muchos cierran en invierno: confirmar",
+      "telefono": null,
+      "estado": "Sin reservar"
+    }
+  ],
+  "contactos": {
+    "emergencias": "112",
+    "emergencias_nota": "112 en España y en Portugal.",
+    "en_casa": {
+      "nombre": "Padre",
+      "telefono": null,
+      "local": true,
+      "nota": "Contacto con ubicacion compartida en Google Maps. El numero no se guarda en el repositorio: se introduce en la app y queda solo en el movil."
+    },
+    "seguro_asistencia": {
+      "compania": "Mapfre",
+      "telefono": "+34 918 365 365",
+      "poliza_local": true,
+      "nota": "Asistencia en viaje 24 h. Desde Portugal, con el +34. Llamar SIEMPRE antes de pedir grúa o taller."
+    }
+  },
+  "seguro": {
+    "compania": "Mapfre España",
+    "producto": "Automoviles particulares - Terceros Ampliado (motocicleta Honda NX500, uso particular)",
+    "vigencia": {
+      "desde": "2026-09-01",
+      "hasta": "2027-09-01"
+    },
+    "documento": "Póliza en la app de Mapfre y en papel en la bolsa estanca. En Portugal (UE) basta con el seguro español: no hace falta carta verde.",
+    "coberturas": [
+      {
+        "nombre": "Responsabilidad civil obligatoria",
+        "limite": "Incluida"
+      },
+      {
+        "nombre": "Responsabilidad civil suplementaria",
+        "limite": "Hasta 50.000.000 EUR por siniestro"
+      },
+      {
+        "nombre": "Asistencia en viaje",
+        "limite": "Incluida, 24 h. Los limites (km, grua, hotel, vuelta a casa) estan en las condiciones generales, no en las particulares: preguntarlos al llamar si hace falta usarla"
+      },
+      {
+        "nombre": "Seguro del conductor (accidentes personales)",
+        "limite": "Fallecimiento 8.000 EUR; invalidez hasta 8.000 EUR segun baremo; asistencia sanitaria 8.000 EUR"
+      },
+      {
+        "nombre": "Defensa juridica",
+        "limite": "3.000 EUR"
+      },
+      {
+        "nombre": "Defensa en multas y asesoramiento",
+        "limite": "Incluida"
+      },
+      {
+        "nombre": "Incendio del vehiculo",
+        "limite": "Incluido. Perdida total: 100 % valor nuevo el primer año para primer propietario; despues valor de mercado"
+      },
+      {
+        "nombre": "Robo del vehiculo",
+        "limite": "Incluido con franquicia de 150 EUR. Solo robo de la moto completa"
+      }
+    ],
+    "no_incluye": "No es a todo riesgo: los daños propios de la moto por caida o accidente sin tercero responsable NO estan cubiertos (ni lunas, ni daños propios).",
+    "accesorios_declarados": [
+      {
+        "nombre": "Maleta SHAD SH58X",
+        "valor_eur": 195.0
+      },
+      {
+        "nombre": "Juego de maletas SHAD SH38X",
+        "valor_eur": 409.64
+      },
+      {
+        "nombre": "Bolsa de deposito SHAD",
+        "valor_eur": 74.51
+      },
+      {
+        "nombre": "Pantalla inteligente D6A",
+        "valor_eur": 186.48
+      },
+      {
+        "nombre": "Defensas Motoguard SG67",
+        "valor_eur": 324.99
+      }
+    ],
+    "exclusiones_relevantes": [
+      "Equipos extraibles de telefonia y navegacion (Pixel, Osmo 360) no estan cubiertos por esta poliza en ninguna garantia",
+      "Robo parcial (maletas, piezas o accesorios sueltos) no cubierto: solo la sustraccion de la moto completa, y los accesorios solo si estan declarados",
+      "Actos vandalicos no cubiertos en robo",
+      "Asistencia: no se reembolsa ningun servicio (grua, taller) contratado sin avisar antes a Mapfre",
+      "Alcohol o drogas por encima de la tasa: sin cobertura voluntaria",
+      "Carga o pasajeros fuera de lo reglamentario como causa del accidente: sin cobertura"
+    ],
+    "en_caso_de": {
+      "averia_o_accidente": [
+        "Ponerse a salvo con el chaleco reflectante puesto; 112 si hay heridos",
+        "Llamar a Mapfre asistencia (918 365 365 o 900 822 822) antes de nada: dar poliza, matricula, lugar (compartir ubicacion) y que es una moto con maletas",
+        "Si hay otro vehiculo: parte amistoso con fotos de todo (carnets, matriculas, posicion, daños). Nunca reconocer la culpa por escrito",
+        "Fotos de la moto, la via y las señales; datos de testigos",
+        "Avisar en casa y al alojamiento de esa noche si se va a llegar tarde"
+      ],
+      "robo": [
+        "Denuncia en la Guardia Civil o Policia (necesaria para la cobertura)",
+        "Llamar a Mapfre con el numero de denuncia",
+        "Las maletas y el contenido no estan cubiertos por la poliza de la moto: lleva la Osmo, el Pixel y los documentos siempre encima"
+      ]
+    },
+    "aviso": "Asistencia en viaje: llamar siempre antes de pedir grúa o taller, también desde Portugal (con el +34)."
+  },
+  "equipacion_moto": {
+    "decision": "REV'IT Vertical GTX y Tornado 4 con sus forros térmicos. Guantes de invierno nuevos; los Caliber 1 de verano se quedan en casa.",
+    "puesto_siempre": [
+      "Powerbank Baseus de 5.000 mAh y su cable en el bolsillo de la chaqueta (reserva del movil si hay que alejarse de la moto)",
+      "Botas REV'IT Breccia GTX (Gore-Tex)",
+      "Casco Shoei GT-Air 3 con Sena SRL3",
+      "Braga de cuello merino",
+      "Gafas de sol",
+      "Tapones Alpine MotoSafe Duo Pack (filtros negros Tour 17 dB y rojos Race 20 dB)",
+      "Guantes de invierno (por comprar)"
+    ],
+    "lluvia": "Guantes REV'IT Sand 5 H2O y botas Gore-Tex. Si llueve de verdad, el Tornado con su forro impermeable y la Vertical GTX aguantan: el problema son las manos, llevar un par de guantes de repuesto seco.",
+    "configuracion_por_tipo_de_dia": {
+      "montaña_y_frio": {
+        "dias": [
+          1,
+          2,
+          3,
+          7,
+          10,
+          11
+        ],
+        "pantalon": "Tornado con forro térmico e impermeable y el SIXS bottom debajo",
+        "chaqueta": "Vertical GTX con forro térmico, SIXS top, merino manga larga y polar; sotocasco SIXS y braga merino",
+        "nota": "Salida a las 10:00. Por encima de 900 m (Cabra, Torcal, Palomas, Alpujarra) puede haber 0-3 °C a mediodía."
+      },
+      "costa_y_autovia": {
+        "dias": [
+          5,
+          6,
+          8,
+          9
+        ],
+        "pantalon": "Tornado con forro térmico por la mañana",
+        "chaqueta": "Vertical GTX con forro térmico y merino; polar en el baúl",
+        "nota": "Mañanas de 3-8 °C y mediodías de 14-17 °C en la costa: capas y quitar en las paradas."
+      }
+    },
+    "tapones": "Alpine MotoSafe: filtros NEGROS (Tour 17 dB) en carretera; ROJOS (Race 20 dB) en las autovías de los días 5 y 9.",
+    "sixs": "Conjunto SIXS Carbon Underwear: top y bottom como primera capa todos los dias (se lavan a mano por la noche y estan secos por la mañana). Sotocasco en las salidas frias (dia 1 por Calar Alto, Albarracin, Maestrazgo) y para mantener el casco limpio; probado en las etapas 1 y 2 con el Sena y los tapones. Calcetines SIXS los dias de calor, MH900 los de montaña."
+  },
+  "reparto_equipaje": {
+    "regla": "Cada cosa vive siempre en la misma maleta.",
+    "bolsa_deposito_e09cl": [
+      "Bolsa SHAD E09CL Pro con Click System y cierre con llave: se puede dejar puesta en paradas cortas",
+      "Osmo 360 con su adaptador cuando no esta montada (el soporte K&F se queda en la pantalla)",
+      "Pixel conectado a la powerbank 1 (cable corto)",
+      "Powerbank 2 de reserva",
+      "Botella de agua 0,5 l (la de beber en marcha y en cada parada)",
+      "Abus 8008 + cable recordatorio",
+      "Bolsa estanca: permiso de circulacion, seguro, copias",
+      "Microfibra visera",
+      "Crema solar pequeña, balsamo labial, barritas",
+      "Billete de 20 EUR en el bolsillo exterior (el resto, tarjeta o Bizum)"
+    ],
+    "sh38x_izquierda_ropa": [
+      "Organizador grande: SIXS (top, bottom, sotocasco, calcetines), merino manga corta x2, top merino manga larga, boxers, calcetines",
+      "Tablet entre la ropa, pantalla hacia el interior (nunca en la maleta de herramientas). Al comer, sube con el casco o asume el riesgo: la poliza no cubre electronica",
+      "Organizador pequeño: pantalon MT100, toalla microfibra",
+      "Bolsa: chanclas y zapatillas ligeras",
+      "Al fondo: spray Motul C2 Road y capsulas de CO2 del kit de mechas (aerosoles lejos del escape; la izquierda no lleva escape al lado)",
+      "Organizador vacio para ropa sucia + detergente"
+    ],
+    "sh38x_derecha_taller_y_aseo": [
+      "Fondo: compresor Xiaomi, herramienta del Givi S450 (las capsulas de CO2 y el spray Motul, en la izquierda: lejos del escape)",
+      "Multiherramienta con cinta americana, bridas, nitrilo, microfibras",
+      "Botiquin",
+      "Neceser: medicacion (+1 dia), maquinilla, crema solar grande, capsulas detergente en zip",
+      "Un solo cargador de pared de varias tomas (el de la tablet) + cable largo + cable micro-USB + cable de la Osmo 360; los demas cargadores se quedan en casa",
+      "Cubrebotas si se compran"
+    ],
+    "sh58x_capas_y_lluvia": [
+      "Forros del Tornado que no se lleven puestos",
+      "Polar MH100",
+      "Guantes REV'IT Sand 5 H2O (impermeables)",
+      "Aparato para dormir con su bolsa, mascarilla, tubo y fuente de alimentacion (imprescindible; humidificador vacio y seco cada mañana; alargador corto)",
+      "Chaleco reflectante",
+      "Botella de agua de 1 a 1,5 l de reserva (se rellena en cada parada; con 120 kg y calor, medio litro por hora)",
+      "Casco y chaqueta al bajar a comer o pasear"
+    ],
+    "llaves": "Llave de repuesto de la moto y de las maletas SHAD guardada aparte de la principal (chaqueta una, maleta izquierda la otra)."
+  },
+  "rutina_diaria": {
+    "noche_anterior": [
+      "Meteo de la etapa siguiente en la app y AEMET/IPMA (lluvia y hielo en los puertos)",
+      "Cargar Pixel, las powerbanks, D6A, Sena SRL3 y Osmo 360",
+      "Aparato para dormir montado y enchufado antes de acostarse; por la mañana, humidificador vacío y seco",
+      "Cadena: días 4, 7 y 9 (la app lo avisa en la ficha)",
+      "Repasar la ruta en Kurviger y que esté descargada sin conexión",
+      "Decidir forros según la temperatura de la mañana"
+    ],
+    "mañana": [
+      "Presiones en frío cada 2-3 días: 2,0 delante / 2,5 detrás",
+      "Cargar maletas en 5 minutos (cada cosa en su sitio)",
+      "Cable recordatorio del Abus fuera antes de arrancar",
+      "Salir a las 09:30 (10:00 los días de sierra: 1, 2, 3, 10 y 11)"
+    ],
+    "en_ruta": [
+      "Parada cada 60-90 min con algo caliente",
+      "Gasolina: llenar al bajar de medio depósito; en Portugal es bastante más cara, llenar en España antes de cruzar (Rosal, día 6) y al volver (Ayamonte, día 9)",
+      "Hojas, humedad y gravilla en las curvas de sombra: invierno",
+      "En el alojamiento antes de anochecer (hacia las 17:30-18:00 en España, 17:20 en Portugal)"
+    ],
+    "llegada": [
+      "Moto en garaje o patio cerrado; antirrobo de disco puesto",
+      "Quitar la cámara y subirla",
+      "Avisar en casa",
+      "Confirmar cena y desayuno (los días 24, 25, 31 y 1 cierran muchos sitios)"
+    ]
+  },
+  "ropa_y_lavanderia": {
+    "filosofia": "Ropa para 4-5 días y dos lavados. El SIXS se lava a mano cada noche (seca en 2-3 h con calefacción).",
+    "lavados": [
+      {
+        "noche": 4,
+        "lugar": "Vejer",
+        "como": "Lavandería del alojamiento o autoservicio (día libre)"
+      },
+      {
+        "noche": 8,
+        "lugar": "Tavira",
+        "como": "Lavandería de autoservicio o la del alojamiento (tarde libre)"
+      }
+    ],
+    "cuidado_merino": "30 C, sin suavizante, nunca secadora caliente."
+  },
+  "material_en_propiedad": {
+    "compresor": {
+      "modelo": "Xiaomi Portable Electric Air Compressor v1",
+      "nota": "Carga por micro-USB; el cable en la maleta derecha."
+    },
+    "antirrobo": {
+      "modelo": "Abus Granit Detecto X-Plus 8008",
+      "nota": "Pila CR2 nueva. Cable recordatorio al manillar. Va en la bolsa de deposito."
+    },
+    "powerbank": {
+      "modelo": "2x Baseus PPKPC-1027G de 10.000 mAh (la 1 conectada al Pixel en la bolsa de deposito, la 2 de reserva en la misma bolsa) + Baseus de 5.000 mAh en el bolsillo de la chaqueta como reserva de emergencia lejos de la moto",
+      "nota": "Con la toma USB-C de la moto averiada son la alimentacion del Pixel en ruta: una conectada, la otra de reserva. Cargar las dos a tope cada noche junto con el Pixel. Consumo estimado del Pixel con Android Auto inalambrico y GPS: 8-12 % por hora, unos 50 % en una etapa larga: una powerbank por dia sobra, la segunda es el margen."
+    },
+    "otros": [
+      "Givi S450 kit tubeless",
+      "Motul C2 Road grasa de cadena",
+      "Motul limpiador de casco y visera",
+      "Bridas",
+      "Guantes de nitrilo",
+      "Multiherramienta",
+      "Detergente en cápsulas",
+      "Trapo viejo para limpiar la arena de la cadena"
+    ]
+  },
+  "inventario": {
+    "nota": "Equipo en propiedad, declarado el 10 de septiembre. Fuente para decidir que se lleva y que se compra.",
+    "moto": {
+      "marca": "Honda",
+      "modelo": "NX500",
+      "carnet": "A2",
+      "ubicacion": "Almeria",
+      "accesorios": [
+        {
+          "tipo": "Defensas superiores",
+          "marca": "Motoguard",
+          "modelo": "HG44"
+        },
+        {
+          "tipo": "Caballete central",
+          "marca": "-",
+          "modelo": "-"
+        },
+        {
+          "tipo": "Pantalla Android Auto inalambrico",
+          "marca": "AOOCCI",
+          "modelo": "D6A"
+        }
+      ]
+    },
+    "equipaje": {
+      "marca": "Shad",
+      "baul": "SH58X",
+      "maletas_laterales": "SH38X",
+      "bolsa_deposito": {
+        "modelo": "E09CL Pro",
+        "anclaje": "Click System",
+        "cierre_con_llave": true
+      }
+    },
+    "casco": {
+      "marca": "Shoei",
+      "modelo": "GT-Air 3",
+      "tipo": "integral",
+      "talla": "XL",
+      "intercomunicador": {
+        "marca": "Sena",
+        "modelo": "SRL3",
+        "integrado": true
+      }
+    },
+    "chaquetas": [
+      {
+        "marca": "REV'IT",
+        "modelo": "Vertical GTX",
+        "uso": "touring / 3 estaciones",
+        "forro_termico_desmontable": true,
+        "membrana": "Gore-Tex",
+        "espaldera": true
+      },
+      {
+        "marca": "REV'IT",
+        "modelo": "Airwave 4",
+        "uso": "verano",
+        "espaldera": false
+      }
+    ],
+    "pantalones": [
+      {
+        "marca": "REV'IT",
+        "modelo": "Tornado 4",
+        "forro_impermeable_desmontable": true,
+        "forro_termico_desmontable": true
+      },
+      {
+        "marca": "Racered",
+        "modelo": "Vaqueros AAA",
+        "tipo": "vaqueros de moto"
+      }
+    ],
+    "guantes": [
+      {
+        "marca": "REV'IT",
+        "modelo": "Sand 5 H2O",
+        "impermeable": true
+      },
+      {
+        "marca": "REV'IT",
+        "modelo": "Caliber 1",
+        "impermeable": false
+      }
+    ],
+    "camara": {
+      "marca": "DJI",
+      "modelo": "Osmo 360",
+      "tipo": "camara 360",
+      "soporte": {
+        "marca": "K&F Concept",
+        "tipo": "Abrazadera de parabrisas para moto",
+        "material": "PP66",
+        "anclajes": "Rosca 1/4 (la Osmo 360 solo monta por rosca, no por orejetas GoPro)",
+        "montaje": "Sin herramientas, palanca",
+        "llega": "2026-09-11",
+        "estado": "Rosca de 1/4 pasada (aluminio sobre acero). Fuera de servicio hasta encontrar recambio; recado en Cuenca el dia 3.",
+        "alternativa": "Palo oficial DJI solo en paradas y miradores, nunca desplegado en marcha."
+      },
+      "aviso": "Sin soporte utilizable: el K&F tiene la rosca pasada. Recambio en Cuenca el dia 3 (ver notas de la etapa). Mientras tanto, el palo oficial DJI solo en las paradas."
+    },
+    "protecciones": {
+      "espaldera": {
+        "marca": "REV'IT",
+        "modelo": "SeeFlex",
+        "montada_en": "REV'IT Vertical GTX"
+      }
+    },
+    "ropa_tecnica": {
+      "marca": "SIXS",
+      "modelo": "Carbon Underwear (conjunto)",
+      "piezas": [
+        "Camiseta interior (top)",
+        "Pantalon interior (bottom)",
+        "Sotocasco",
+        "Calcetines"
+      ],
+      "uso": "Primera capa fina y transpirable: seca el sudor, no huele y se seca en 2-3 h. Vale para el calor (bajo la chaqueta abierta) y para el frio (bajo el merino)."
+    },
+    "botas": {
+      "marca": "REV'IT",
+      "modelo": "Breccia GTX",
+      "talla": 43,
+      "membrana": "Gore-Tex"
+    }
+  },
+  "checklist_previa": {
+    "papeles": [
+      {
+        "que": "DNI, permiso de circulación e ITV en vigor (en Portugal basta el DNI)",
+        "hecho": false
+      },
+      {
+        "que": "Póliza de Mapfre en la app y en papel",
+        "hecho": false
+      }
+    ],
+    "reservas": [
+      {
+        "que": "Pedir las vacaciones y confirmar las fechas (plan del 26 dic al 5 ene, con margen)",
+        "hecho": false
+      },
+      {
+        "que": "Loulé (Nochevieja) y Vejer (dos noches) primero",
+        "hecho": false
+      },
+      {
+        "que": "Resto de alojamientos, mirando que la moto duerma a cubierto",
+        "hecho": false
+      }
+    ],
+    "moto_y_equipo": [
+      {
+        "que": "Revisión antes de salir: neumáticos con dibujo de sobra para 2.100 km con frío y mojado, pastillas y cadena",
+        "hecho": false
+      },
+      {
+        "que": "Kit de mechas tubeless y compresor",
+        "hecho": false
+      },
+      {
+        "que": "Guantes de invierno y forros térmicos de chaqueta y pantalón",
+        "hecho": false
+      },
+      {
+        "que": "Rutas en Kurviger (perfil de curvas) y mapas de Andalucía y el sur de Portugal sin conexión",
+        "hecho": false
+      }
+    ],
+    "dinero": [
+      {
+        "que": "Presupuesto orientativo (estimación, no precios consultados): 650-800 € optimista, 900-1.100 € pesimista. Alojamiento 40-60 € la noche, comida 25-40 € al día y unos 170-200 € de gasolina",
+        "hecho": false
+      },
+      {
+        "que": "Gasolina: llenar en España antes de cruzar a Portugal (día 6) y al volver (día 9)",
+        "hecho": false
+      }
+    ]
+  },
+  "principios_para_claude": [
+    "No cambiar destinos ni bases sin una razon fuerte y explicita.",
+    "No añadir turismo por añadir.",
+    "Priorizar seguridad, fluidez y disfrute sobre kilometraje o espectacularidad.",
+    "Jornadas de unas 5 h reales como máximo (lo decidió Javi el 2026-11-09: puede conducir más, pero con lógica), y siempre en el alojamiento antes de anochecer.",
+    "Justificar cada cambio con impacto en km, tiempo, dificultad y fatiga.",
+    "No inventar disponibilidad, horarios ni precios; verificar antes.",
+    "Este JSON es la fuente de verdad: actualizar estados, no rehacer el plan.",
+    "Viaje pensado para esquivar la lluvia: si la previsión cambia, mover días o usar las alternativas antes que mojarse en los puertos."
+  ]
+}

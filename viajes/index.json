@@ -1,5 +1,5 @@
 {
- "activo": "2026-12-marruecos",
+ "activo": "2026-12-sur",
  "viajes": [
   {
    "id": "2026-09-cazorla",
@@ -39,6 +39,16 @@
    "fin": "2027-01-09",
    "dias": 15,
    "km": 2447,
+   "moto": "Honda NX500"
+  },
+  {
+   "id": "2026-12-sur",
+   "nombre": "Sur y Algarve en Navidad (dic 2026 – ene 2027)",
+   "corto": "Sur y Algarve",
+   "inicio": "2026-12-26",
+   "fin": "2027-01-05",
+   "dias": 11,
+   "km": 2062,
    "moto": "Honda NX500"
   }
  ]

@@ -24,7 +24,11 @@ la rama `main` en https://srchipiron.github.io/viajes-en-moto/ (hasta el 2026-11
   (`[{ tramo, url, opciones }]`, botones para navegar con Google), `zona_horaria` (p. ej.
   `Europe/Lisbon` para la hora del ocaso en Portugal), `carreteras` y `autovia_km`. Sin
   `gpx.avisos` la app no dice nada de puntos de despiste; con `[]` dice que la ruta es lineal.
-- `viajes/2027-01-fisterra/` (activo) vino de un JSON con waypoints y rutas de Google, sin GPX:
+- `viajes/2026-12-sur/` (activo, Navidad 2026) es la alternativa barata a Marruecos: Andalucía y el
+  Algarve en 11 días. Tracks aproximados con OSRM (`fuente: "OSRM (aproximado)"`), sin GPX de Kurviger;
+  radares y gasolineras de España (DGT y Ministerio) más los de Portugal de OSM (`tools/mezclar_osm.py`).
+  `viajes/2026-12-marruecos/` queda aplazado para otro año.
+- `viajes/2027-01-fisterra/` vino de un JSON con waypoints y rutas de Google, sin GPX:
   sus tracks son aproximados (OSRM por esos puntos, altitudes EU-DEM) y llevan
   `fuente: "OSRM (aproximado)"`. Cuando lleguen los GPX de Kurviger, sustituirlos y regenerar
   radares y gasolineras. Fechas provisionales (`proyecto.fechas.provisionales`).
@@ -78,6 +82,9 @@ la rama `main` en https://srchipiron.github.io/viajes-en-moto/ (hasta el 2026-11
   Overpass (`overpass.openstreetmap.fr`; desde la sesión de Claude no hay red a Overpass: descargar el
   CSV con el navegador y pasarlo como argumento). Lleva `organismo` y `ambito` para los textos de la app
   y un aviso de que la lista está incompleta.
+- Viaje que cruza a otro país (España + Portugal): `tools/radares.py` y `tools/gasolineras.py` primero y
+  luego `python3 tools/mezclar_osm.py --viaje <id> radares.csv gasolineras.psv` con las descargas de
+  Overpass ya filtradas a lo que queda fuera de España; añade también `huecos` a las gasolineras.
 - Al regenerarlo, subir `VERSION` en `sw.js` no hace falta si solo cambia el JSON, pero sí
   conviene subir `meta.revision` del plan para que se note el cambio.
 
