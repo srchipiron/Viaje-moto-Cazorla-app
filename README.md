@@ -4,6 +4,8 @@ App web estática (PWA, funciona sin cobertura) para llevar un viaje en moto en 
 con su GPX de Kurviger, tiempo, radares, gasolineras con precio, alojamientos, listas y un modo
 «Ahora» que cruza el GPS con el plan.
 
+La app: **https://srchipiron.github.io/viajes-en-moto/** (añádela a la pantalla de inicio del móvil).
+
 Nació con el viaje de 11 días de septiembre de 2026 (Almería – Cazorla – Cuenca – Albarracín –
 Gúdar/Maestrazgo – Júcar – Segura – Almería, Honda NX500), que sigue en `viajes/2026-09-cazorla/`,
 y ahora sirve de plantilla para los siguientes.
