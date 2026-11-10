@@ -25,7 +25,7 @@ la rama `main` en https://srchipiron.github.io/viajes-en-moto/ (hasta el 2026-11
   `Europe/Lisbon` para la hora del ocaso en Portugal), `carreteras` y `autovia_km`. Sin
   `gpx.avisos` la app no dice nada de puntos de despiste; con `[]` dice que la ruta es lineal.
 - `viajes/2026-12-sur/` (activo, Navidad 2026) es la alternativa barata a Marruecos: Andalucía y el
-  Algarve en 11 días, con noches en Mijas y Mecina Alfahar. Tracks aproximados con OSRM (`fuente: "OSRM (aproximado)"`), sin GPX de Kurviger;
+  Algarve en 7 días con etapas de unas 5 h y noches gratis en Mijas y Mecina Alfahar (los gpx y tracks de los días 8 a 11 son restos sin usar). Tracks aproximados con OSRM (`fuente: "OSRM (aproximado)"`), sin GPX de Kurviger;
   radares y gasolineras de España (DGT y Ministerio) más los de Portugal de OSM (`tools/mezclar_osm.py`).
   `viajes/2026-12-marruecos/` queda aplazado para otro año.
 - `viajes/2027-01-fisterra/` vino de un JSON con waypoints y rutas de Google, sin GPX:
