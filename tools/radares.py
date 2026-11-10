@@ -254,10 +254,11 @@ def main(xml_path=None, vid=None):
         'tramos': lista_tramos,   # los 47 de tramo, del mas cercano al viaje al mas lejano
         'por_dia': por_dia,
     }
-    txt = json.dumps(out, ensure_ascii=False, separators=(',', ':'))
-    # una fila de radar por linea, para que el diff sea legible
-    txt = txt.replace('],[', '],\n[').replace('"radares":[', '"radares":[\n').replace('],"tramos"', '\n],"tramos"')
-    open('radares.json', 'w', encoding='utf-8').write(txt + '\n')
+    # trazado por carretera de cada radar de tramo (para pintarlo en el mapa) y una fila por linea
+    import tramos_linea
+    con_linea, _ = tramos_linea.aplicar(out)
+    tramos_linea.escribir(out, 'radares.json')
+    print(f'  {con_linea} de {len(lista_tramos)} tramos con trazado por carretera')
     print(f"viajes/{vid}/radares.json: {fijos} fijos + {tramo} de tramo ({len(filas)} puntos) en España, "
           f"{en_ruta_total} sobre la ruta y {cerca_total} a menos de {int(CERCA_M/1000)} km")
     print(f"  tramo mas cercano al viaje: {lista_tramos[0]['dist_km']} km (dia {lista_tramos[0]['dia']})" if lista_tramos else '  sin tramos')
